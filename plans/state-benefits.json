@@ -1,0 +1,144 @@
+{
+  "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income and relevant property tax exemptions. Version 1.1. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
+  "version": "1.1",
+  "effective_date": "2026-01-01",
+  "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
+
+  "states": [
+
+    {
+      "state_code": "VA",
+      "state_name": "Virginia",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "age_deduction": {
+          "available": true,
+          "max_deduction": 12000,
+          "age_threshold": 65,
+          "phase_out_income_start": 62000,
+          "phase_out_income_end": 87000,
+          "filing_status_note": "Per taxpayer — both spouses may each claim if both qualify"
+        },
+        "military_retirement": {
+          "exempt": true,
+          "effective_year": 2023,
+          "note": "Virginia fully exempts military retirement pay from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation is federally exempt and not taxable at state level"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Virginia does not tax Social Security benefits"
+        },
+        "top_rate": 0.0575,
+        "brackets": [
+          { "min": 0,     "max": 3000,  "rate": 0.02 },
+          { "min": 3001,  "max": 5000,  "rate": 0.03 },
+          { "min": 5001,  "max": 17000, "rate": 0.05 },
+          { "min": 17001, "max": 999999999, "rate": 0.0575 }
+        ]
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Senior and Disabled Exemption",
+            "available": true,
+            "eligibility": "Age 65+ or totally disabled",
+            "income_limit_note": "Varies by locality — set by each county/city",
+            "net_worth_limit_note": "Varies by locality",
+            "note": "Virginia localities (counties/cities) administer their own senior property tax relief programs within state guidelines. Actual benefit varies significantly by location."
+          }
+        ]
+      },
+      "sources": [
+        "https://www.tax.virginia.gov/age-deduction",
+        "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-322.03/"
+      ]
+    },
+
+    {
+      "state_code": "MD",
+      "state_name": "Maryland",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "pension_exclusion": {
+          "available": true,
+          "max_exclusion": 36200,
+          "age_threshold": 65,
+          "note": "Pension exclusion of up to $36,200 for taxpayers age 65+. Subject to income limits."
+        },
+        "military_retirement": {
+          "exempt": true,
+          "note": "Maryland fully exempts military retirement pay"
+        },
+        "va_compensation": {
+          "exempt": true
+        },
+        "ss_income": {
+          "exempt": true
+        },
+        "top_rate": 0.0575,
+        "note": "Local income tax also applies in Maryland — varies by county (typically 2.25%–3.2%)"
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homeowners' Property Tax Credit",
+            "available": true,
+            "note": "Maryland provides a homeowners' property tax credit based on income. Income-based, not age-based."
+          }
+        ]
+      }
+    },
+
+    {
+      "state_code": "FL",
+      "state_name": "Florida",
+      "income_tax": {
+        "taxes_federal_pension": false,
+        "note": "Florida has no state income tax. No tax on FERS pension, TSP withdrawals, SS, or any retirement income.",
+        "ss_income": { "exempt": true },
+        "va_compensation": { "exempt": true }
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Exemption",
+            "available": true,
+            "amount": 50000,
+            "note": "Standard homestead exemption of $50,000 for primary residence"
+          },
+          {
+            "name": "Senior Homestead Exemption",
+            "available": true,
+            "note": "Additional exemption for seniors age 65+ with income below $35,167 (2026). Amount varies by county."
+          }
+        ]
+      }
+    },
+
+    {
+      "state_code": "TX",
+      "state_name": "Texas",
+      "income_tax": {
+        "taxes_federal_pension": false,
+        "note": "Texas has no state income tax."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Senior Property Tax Freeze",
+            "available": true,
+            "age_threshold": 65,
+            "note": "Homeowners age 65+ can freeze their school district property tax. Other taxing entities may also freeze."
+          }
+        ]
+      }
+    }
+
+  ],
+
+  "_expansion_note": "Add additional states as users request them. Priority states for federal workforce: VA, MD, DC area, FL, TX, GA, NC, CO, WA."
+}

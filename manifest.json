@@ -1,0 +1,44 @@
+{
+  "_comment": "Public Finance Data — Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
+  "schema_version": "1.0",
+  "schema_min_compatible": "1.0",
+  "last_updated": "2026-03-08",
+  "maintained_by": "public-finance-data repo owner",
+  "files": {
+    "rates_annual": {
+      "version": "2026",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (January)",
+      "url": "rates/rates-annual.json",
+      "description": "TSP limits, IRMAA tiers, DIC rates, COLA values, IRA limits, SS bend points, pay cap, federal tax brackets"
+    },
+    "pay_tables": {
+      "version": "2026",
+      "effective_date": "2026-01-15",
+      "update_frequency": "annual (January)",
+      "url": "rates/pay-tables.json",
+      "description": "GS and DCIPS base pay tables — all grades, all steps, all OPM locality areas"
+    },
+    "plan_library": {
+      "version": "2.0.0",
+      "effective_date": "2026-03-07",
+      "update_frequency": "as needed",
+      "url": "plans/plan-library.json",
+      "description": "Pension plan parameters: VRS Plan 1/2/Hybrid, ERFC Legacy/Tier 1/Tier 2, FERS, other DB. Hire date auto-derive mapping. Plan combination stacking patterns."
+    },
+    "state_benefits": {
+      "version": "1.1",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as needed",
+      "url": "plans/state-benefits.json",
+      "description": "State income tax treatment of federal retirement, property tax exemptions by state"
+    },
+    "static_refs": {
+      "version": "1.0.1",
+      "effective_date": "2026-01-01",
+      "update_frequency": "rarely",
+      "url": "reference/static-refs.json",
+      "description": "SS Full Retirement Age table, IRS RMD Uniform Lifetime Table, OPM locality area codes"
+    }
+  }
+}
