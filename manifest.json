@@ -1,23 +1,24 @@
 {
-  "_comment": "Public Finance Data — Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
+  "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "1.0",
   "schema_min_compatible": "1.0",
   "last_updated": "2026-03-08",
   "maintained_by": "public-finance-data repo owner",
   "files": {
     "rates_annual": {
-      "version": "2026",
+      "version": "2026.1",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (January)",
       "url": "rates/rates-annual.json",
-      "description": "TSP limits, IRMAA tiers, DIC rates, COLA values, IRA limits, SS bend points, pay cap, federal tax brackets"
+      "description": "TSP limits, IRMAA tiers, DIC rates, COLA values, IRA limits, SS bend points, pay cap, federal tax brackets",
+      "changelog_2026_1": "Corrected tax bracket middle cutoffs (12%/22%/24%/32%/35%) for both single and MFJ per IRS Rev. Proc. 2025-32 Tables 1 and 3. 10 cutoff values corrected."
     },
     "pay_tables": {
       "version": "2026",
       "effective_date": "2026-01-15",
       "update_frequency": "annual (January)",
       "url": "rates/pay-tables.json",
-      "description": "GS and DCIPS base pay tables — all grades, all steps, all OPM locality areas"
+      "description": "GS and DCIPS base pay tables \u2014 all grades, all steps, all OPM locality areas"
     },
     "plan_library": {
       "version": "2.0.0",
