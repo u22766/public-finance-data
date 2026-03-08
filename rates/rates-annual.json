@@ -1,7 +1,7 @@
 {
   "_comment": "Annual Rate Constants \u2014 2026. All values are government-published public data. No PII. Update annually each January from OPM, IRS, SSA, and VA sources.",
-  "_corrected": "2026-03-08: 32+ corrections applied (IRA, IRMAA, deductions, TSP threshold, DIC, tax brackets). All verified against IRS Notice 2025-67, CMS CMS-8089-N, TSP Bulletin 25-3, VA.gov. Tax bracket middle cutoffs corrected per IRS Rev. Proc. 2025-32 Tables 1 and 3.",
-  "version": "2026",
+  "_corrected": "2026-03-08: 32+ corrections applied (IRA, IRMAA, deductions, TSP threshold, DIC). Tax bracket middle cutoffs (12%/22%/24%/32%/35%) corrected per IRS Rev. Proc. 2025-32 Tables 1 and 3. All values verified against IRS Notice 2025-67, CMS CMS-8089-N, TSP Bulletin 25-3, VA.gov.",
+  "version": "2026.1",
   "effective_date": "2026-01-01",
   "sources": {
     "tsp": "https://www.tsp.gov/bulletins/25-3/",
