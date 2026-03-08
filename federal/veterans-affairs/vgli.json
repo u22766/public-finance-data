@@ -1,0 +1,24 @@
+{
+  "_comment": "Veterans Group Life Insurance \u2014 age-banded premium table. Coverage $10k-$500k in $10k increments. Premium is a DEDUCTION, not income.",
+  "version": "2026",
+  "effective_date": "2025-07-01",
+  "_source_url": "https://www.benefits.va.gov/INSURANCE/vglispring2025discount.asp",
+  "_effective": "July 1, 2025 (includes 2-17% discount applied by VA)",
+  "premium_per_10k_monthly": {
+    "_comment": "Monthly cost per $10,000 of coverage, by age band. Multiply by (coverage / 10000) for total monthly premium.",
+    "under_30": 0.6,
+    "30_34": 0.8,
+    "35_39": 1.0,
+    "40_44": 1.4,
+    "45_49": 1.9,
+    "50_54": 2.9,
+    "55_59": 5.0,
+    "60_64": 8.5,
+    "65_69": 13.8,
+    "70_74": 21.5,
+    "75_79": 38.5,
+    "80_plus": 44.0
+  },
+  "_example": "Age 48, $400k coverage: $1.90 x 40 = $76.00/month. Age 62, $400k: $8.50 x 40 = $340.00/month.",
+  "_note": "Premiums increase sharply at each age band \u2014 this is a significant retirement expense. Engine should project future premiums based on veteran's age trajectory. Coverage max $500k."
+}

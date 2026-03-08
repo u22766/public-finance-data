@@ -1,0 +1,17 @@
+{
+  "_comment": "Generic defined benefit plan template. Used by consumer applications as a fallback when the user's pension plan is not in the plan library. User provides their own formula inputs or estimated monthly benefit.",
+  "version": "1.0.0",
+  "plan": {
+    "planId": "other_db",
+    "planName": "Other Defined Benefit Plan",
+    "type": "defined_benefit",
+    "category": "state_pension",
+    "inputMode": "manual",
+    "formula": {
+      "multiplier": null,
+      "facPeriod": null,
+      "description": "User enters their own multiplier, FAC period, and eligibility rules"
+    },
+    "note": "Generic DB plan \u2014 user provides all formula inputs or estimated monthly benefit"
+  }
+}

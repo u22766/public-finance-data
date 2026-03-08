@@ -29,17 +29,32 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                    ← Fetch this first (master version index)
-├── schema-changelog.md              ← Documents every schema structure change
-├── rates/
-│   ├── rates-annual.json            ← Annual rates: TSP, IRMAA, IRA, SS, FERS, VA, tax brackets, COLA
-│   └── pay-tables.json              ← GS + DCIPS pay tables, all grades/steps/locality areas
-├── plans/
-│   ├── plan-library.json            ← Pension plan parameters: VRS, ERFC, FERS, other DB
-│   └── state-benefits.json          ← State income tax treatment + property tax exemptions
+├── manifest.json                              ← Fetch this first (master version index)
+├── schema-changelog.md                        ← Documents every schema structure change
+├── federal/
+│   ├── rates-annual.json                      ← TSP, IRMAA, IRA, SS, FERS, tax brackets, COLA
+│   ├── pay-tables.json                        ← GS + DCIPS pay tables, all grades/steps/localities
+│   └── veterans-affairs/
+│       ├── compensation.json                  ← VA disability comp rates, DIC, VA COLA
+│       └── vgli.json                          ← VGLI age-banded premium table
+├── states/
+│   ├── state-benefits.json                    ← State income tax treatment + property tax + veteran benefits
+│   └── virginia/
+│       ├── vrs-plans.json                     ← VRS Plan 1, Plan 2, Hybrid (state-level)
+│       ├── erfc-plans.json                    ← ERFC Legacy, Tier 1, Tier 2 (Fairfax County)
+│       └── plan-combinations.json             ← VRS + ERFC pension stacking patterns
 └── reference/
-    └── static-refs.json             ← SS FRA table, RMD Uniform Lifetime Table, OPM locality codes
+    ├── static-refs.json                       ← SS FRA table, RMD Uniform Lifetime Table, locality codes
+    └── other-db-template.json                 ← Generic DB plan template for user-entered pensions
 ```
+
+### Domain Organization
+
+Files are organized by jurisdiction:
+
+- **`federal/`** — Federal civilian data (OPM, IRS, SSA, CMS) and Department of Veterans Affairs benefits
+- **`states/`** — State-level tax treatment and state/county pension plans
+- **`reference/`** — Static lookup tables and templates that rarely change
 
 ---
 
@@ -47,11 +62,14 @@ public-finance-data/
 
 | File | When | Trigger |
 |------|------|---------|
-| `rates-annual.json` | January | IRS, OPM, SSA, VA publish new figures |
-| `pay-tables.json` | January (mid-month) | OPM publishes new GS pay schedule |
-| `plan-library.json` | As needed | Pension plan rule changes |
-| `state-benefits.json` | As needed | State tax law changes |
-| `static-refs.json` | Rarely | SS FRA table or RMD table changes |
+| `federal/rates-annual.json` | January | IRS, OPM, SSA, CMS publish new figures |
+| `federal/pay-tables.json` | January (mid-month) | OPM publishes new GS pay schedule |
+| `federal/veterans-affairs/compensation.json` | December | VA publishes new COLA rates |
+| `federal/veterans-affairs/vgli.json` | As published | VA updates VGLI premium schedule |
+| `states/state-benefits.json` | As needed | State tax law changes |
+| `states/virginia/vrs-plans.json` | As needed | VRS rule changes |
+| `states/virginia/erfc-plans.json` | As needed | ERFC rule changes |
+| `reference/static-refs.json` | Rarely | SS FRA table or RMD table changes |
 
 ---
 
@@ -73,6 +91,8 @@ All data in this repository is drawn from official U.S. government sources:
 | DIC rates | VA.gov | https://www.va.gov/family-and-caregiver-benefits/survivor-compensation/dependency-indemnity-compensation/survivor-rates/ |
 | VGLI premiums | VA.gov | https://www.benefits.va.gov/INSURANCE/vglispring2025discount.asp |
 | RMD Uniform Lifetime Table | IRS Pub. 590-B | https://www.irs.gov/publications/p590b |
+| VRS plan parameters | VRS | https://www.varetire.org/retirement-plans/ |
+| ERFC plan parameters | ERFC | https://www.erfcpension.org/ |
 
 ---
 
@@ -80,10 +100,10 @@ All data in this repository is drawn from official U.S. government sources:
 
 The manifest includes two version fields for safe consumption:
 
-- **`schema_version`** — current structure version. Bumped when keys are added, renamed, or removed.
+- **`schema_version`** — current structure version. Bumped when keys are added, renamed, removed, or paths change.
 - **`schema_min_compatible`** — oldest consumer version that can safely read this data.
 
-**Rule of thumb:** If changes only ADD new keys or files, `schema_min_compatible` stays unchanged and older consumers keep working. See `schema-changelog.md` for the full change history.
+**Rule of thumb:** If changes only ADD new keys or files, `schema_min_compatible` stays unchanged and older consumers keep working. Path changes or key removals require a `schema_min_compatible` bump. See `schema-changelog.md` for the full change history.
 
 ---
 
@@ -105,7 +125,7 @@ When updating a file, always:
 
 ## For Maintainers — Annual Update Checklist (January)
 
-### `rates-annual.json`
+### `federal/rates-annual.json`
 - [ ] TSP regular limit (`tsp.regular_limit`)
 - [ ] TSP catch-up ages 50–59 (`tsp.catchup_age_50_59`)
 - [ ] TSP catch-up ages 60–63 (`tsp.catchup_age_60_63`)
@@ -117,19 +137,25 @@ When updating a file, always:
 - [ ] Traditional IRA deductibility phase-out (`ira.traditional_deductibility_*`)
 - [ ] SS COLA for the year (`social_security.cola_YEAR`)
 - [ ] SS bend points (`social_security.bend_points`)
-- [ ] DIC base rate (`va.dic.base_rate_monthly`)
-- [ ] VA COLA (`va.cola_YEAR`)
 - [ ] Standard deductions (`tax.standard_deduction_*`)
 - [ ] Tax brackets — all rates, both single and MFJ (`tax.brackets_*`) — verify cutoffs against IRS Rev. Proc. source tables, not computed values
 - [ ] Update `"version"` to new year
 - [ ] Update `manifest.json` `rates_annual.version`
 
-### `pay-tables.json`
+### `federal/pay-tables.json`
 - [ ] All 15 GS grades, all 10 steps — base pay figures
 - [ ] All locality area percentages
 - [ ] DCIPS band min/max figures
 - [ ] Update `"version"` to new year
 - [ ] Update `manifest.json` `pay_tables.version`
+
+### `federal/veterans-affairs/compensation.json` (December)
+- [ ] VA COLA rate (`cola_YEAR_actual`)
+- [ ] All compensation base rates by rating
+- [ ] All dependent additions by rating
+- [ ] DIC base rate and related amounts
+- [ ] Update `"version"` to new year
+- [ ] Update `manifest.json` `va_compensation.version`
 
 ### `manifest.json`
 - [ ] Update `"last_updated"` date

@@ -1,0 +1,108 @@
+{
+  "_comment": "VA disability compensation and DIC rates. VA compensation is NOT income, NOT earned income. Never in income totals, IRMAA, or SS provisional income. Update annually each December when VA publishes new COLA rates.",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "sources": {
+    "va_comp": "https://www.va.gov/disability/compensation-rates/veteran-rates/",
+    "va_dic": "https://www.va.gov/family-and-caregiver-benefits/survivor-compensation/dependency-indemnity-compensation/survivor-rates/"
+  },
+  "compensation": {
+    "_comment": "Atomized VA disability compensation by rating. Engine computes total monthly comp from base + spouse + child additions. Projections reduce comp as children age out (18 or 23 if student).",
+    "_how_it_works": "1) Look up base_rate by rating. 2) Add spouse_addition if married (30%+ only). 3) First child uses first_child_with_spouse or first_child_no_spouse. 4) Each additional child uses additional_child_under_18 or additional_child_school. 5) When child ages out, subtract their addition.",
+    "rates_by_rating": {
+      "10": {
+        "base_rate": 180.42
+      },
+      "20": {
+        "base_rate": 356.66
+      },
+      "30": {
+        "base_rate": 552.47,
+        "spouse_addition": 65.0,
+        "first_child_with_spouse": 49.0,
+        "first_child_no_spouse": 44.0,
+        "additional_child_under_18": 32.0,
+        "additional_child_school": 105.0
+      },
+      "40": {
+        "base_rate": 795.84,
+        "spouse_addition": 87.0,
+        "first_child_with_spouse": 65.0,
+        "first_child_no_spouse": 58.0,
+        "additional_child_under_18": 43.0,
+        "additional_child_school": 140.0
+      },
+      "50": {
+        "base_rate": 1132.9,
+        "spouse_addition": 109.0,
+        "first_child_with_spouse": 81.0,
+        "first_child_no_spouse": 73.0,
+        "additional_child_under_18": 54.0,
+        "additional_child_school": 176.0
+      },
+      "60": {
+        "base_rate": 1435.02,
+        "spouse_addition": 131.0,
+        "first_child_with_spouse": 97.0,
+        "first_child_no_spouse": 88.0,
+        "additional_child_under_18": 65.0,
+        "additional_child_school": 211.0
+      },
+      "70": {
+        "base_rate": 1808.45,
+        "spouse_addition": 153.0,
+        "first_child_with_spouse": 113.0,
+        "first_child_no_spouse": 102.0,
+        "additional_child_under_18": 76.0,
+        "additional_child_school": 246.0
+      },
+      "80": {
+        "base_rate": 2102.15,
+        "spouse_addition": 175.0,
+        "first_child_with_spouse": 129.0,
+        "first_child_no_spouse": 117.0,
+        "additional_child_under_18": 87.0,
+        "additional_child_school": 281.0
+      },
+      "90": {
+        "base_rate": 2362.3,
+        "spouse_addition": 197.0,
+        "first_child_with_spouse": 145.0,
+        "first_child_no_spouse": 132.0,
+        "additional_child_under_18": 98.0,
+        "additional_child_school": 317.0
+      },
+      "100": {
+        "base_rate": 3938.58,
+        "spouse_addition": 219.59,
+        "first_child_with_spouse": 160.82,
+        "first_child_no_spouse": 146.85,
+        "additional_child_under_18": 109.11,
+        "additional_child_school": 352.45
+      }
+    },
+    "_aging_out_rules": {
+      "child_under_18": "Removed from VA comp at age 18 unless full-time student",
+      "child_school_18_23": "Full-time student stays on at school rate until age 23 or graduation",
+      "child_transition_18": "At 18 if student: remains as dependent. If not student: removed entirely."
+    }
+  },
+  "dic": {
+    "_comment": "Dependency and Indemnity Compensation \u2014 paid to surviving spouse. Tax-free, permanent.",
+    "base_rate_monthly": 1699.36,
+    "eight_year_provision_monthly": 360.85,
+    "transitional_benefit_monthly": 359.8,
+    "transitional_benefit_duration_months": 24,
+    "per_child_under_18": 421.0,
+    "helpless_child_over_18": 421.0,
+    "aid_and_attendance_monthly": 421.0,
+    "_source": "VA.gov effective December 1, 2025 \u2014 2.8% COLA applied",
+    "_eight_year_note": "Added if veteran was 100% rated for 8+ consecutive years AND married to same spouse for those 8 years",
+    "_transitional_note": "Added for first 24 months if surviving spouse has children under 18 at time of veteran's death",
+    "_ten_year_note": "If veteran held 100% P&T for 10+ continuous years before death, cause of death is presumed service-connected \u2014 DIC eligibility is automatic"
+  },
+  "cola_2026_actual": 0.028,
+  "_cola_actual_note": "Actual 2026 COLA = 2.8% (applied Dec 1, 2025). This is the rate that WAS applied to current year tables.",
+  "cola_planning_default": 0.02,
+  "_cola_planning_note": "Planning assumption default for future VA COLA projections = 2.0%. Separate from the actual 2026 COLA above."
+}

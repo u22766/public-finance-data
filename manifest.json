@@ -1,39 +1,78 @@
 {
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
-  "schema_version": "1.1",
-  "schema_min_compatible": "1.0",
+  "schema_version": "2.0",
+  "schema_min_compatible": "2.0",
   "last_updated": "2026-03-08",
   "maintained_by": "public-finance-data repo owner",
+  "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
     "rates_annual": {
-      "version": "2026.1",
+      "version": "2026.2",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (January)",
-      "url": "rates/rates-annual.json",
-      "description": "TSP limits, IRMAA tiers, DIC rates, COLA values, IRA limits, SS bend points, pay cap, federal tax brackets",
-      "changelog_2026_1": "Corrected tax bracket middle cutoffs (12%/22%/24%/32%/35%) for both single and MFJ per IRS Rev. Proc. 2025-32 Tables 1 and 3. 10 cutoff values corrected."
+      "url": "federal/rates-annual.json",
+      "description": "TSP limits, IRMAA tiers, IRA limits, SS bend points, pay cap, FERS parameters, federal tax brackets, planning assumption defaults",
+      "changelog_2026_2": "Restructure: removed va and vgli sections (moved to federal/veterans-affairs/). No data values changed."
     },
     "pay_tables": {
       "version": "2026",
       "effective_date": "2026-01-15",
       "update_frequency": "annual (January)",
-      "url": "rates/pay-tables.json",
+      "url": "federal/pay-tables.json",
       "description": "GS and DCIPS base pay tables \u2014 all grades, all steps, all OPM locality areas"
     },
-    "plan_library": {
-      "version": "2.0.0",
-      "effective_date": "2026-03-07",
-      "update_frequency": "as needed",
-      "url": "plans/plan-library.json",
-      "description": "Pension plan parameters: VRS Plan 1/2/Hybrid, ERFC Legacy/Tier 1/Tier 2, FERS, other DB. Hire date auto-derive mapping. Plan combination stacking patterns."
+    "va_compensation": {
+      "version": "2026.1",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (December COLA)",
+      "url": "federal/veterans-affairs/compensation.json",
+      "description": "VA disability compensation rates by rating with dependent additions, DIC rates, VA COLA",
+      "changelog_2026_1": "Extracted from rates-annual.json during schema 2.0 restructure. All values unchanged."
+    },
+    "vgli": {
+      "version": "2026",
+      "effective_date": "2025-07-01",
+      "update_frequency": "as published by VA",
+      "url": "federal/veterans-affairs/vgli.json",
+      "description": "Veterans Group Life Insurance age-banded premium table",
+      "changelog_2026": "Extracted from rates-annual.json during schema 2.0 restructure. All values unchanged."
     },
     "state_benefits": {
       "version": "1.2",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
-      "url": "plans/state-benefits.json",
-      "description": "State income tax treatment of federal retirement, property tax exemptions, and veteran-specific benefits by state",
-      "changelog_1_2": "Added federal_veteran_benefits root section (VA funding fee exemption with survivor/remarriage rules). Added veteran_benefits to Virginia: real property tax exemption, vehicle tax exemption, line-of-duty survivor property tax (2024 amendment). Schema v1.1 (new keys, backward compatible)."
+      "url": "states/state-benefits.json",
+      "description": "State income tax treatment of federal retirement, property tax exemptions, and veteran-specific benefits by state"
+    },
+    "vrs_plans": {
+      "version": "2.0.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as needed",
+      "url": "states/virginia/vrs-plans.json",
+      "description": "Virginia Retirement System plan parameters: VRS Plan 1, Plan 2, Hybrid. Hire date auto-derive mapping.",
+      "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. VRS plans only. All values unchanged."
+    },
+    "erfc_plans": {
+      "version": "2.0.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as needed",
+      "url": "states/virginia/erfc-plans.json",
+      "description": "ERFC supplemental pension parameters: Legacy, 2001 Tier 1, 2001 Tier 2. Fairfax County (FCPS) only.",
+      "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. ERFC plans only. Added jurisdiction metadata. All values unchanged."
+    },
+    "plan_combinations": {
+      "version": "2.0.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as needed",
+      "url": "states/virginia/plan-combinations.json",
+      "description": "VRS + ERFC pension stacking patterns for Virginia"
+    },
+    "other_db_template": {
+      "version": "1.0.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "rarely",
+      "url": "reference/other-db-template.json",
+      "description": "Generic defined benefit plan template for user-entered pension parameters"
     },
     "static_refs": {
       "version": "1.0.1",

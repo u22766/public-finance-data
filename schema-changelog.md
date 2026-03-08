@@ -19,7 +19,7 @@ Consumers should compare file versions to determine whether to re-fetch. A versi
 Consumers should check `schema_min_compatible` before reading data:
 
 ```javascript
-const appSchemaVersion = "1.0"; // hardcoded in consumer app
+const appSchemaVersion = "2.0"; // hardcoded in consumer app — update after migration
 const repoMinCompatible = manifest.schema_min_compatible || "1.0";
 
 if (compareVersions(appSchemaVersion, repoMinCompatible) < 0) {
@@ -75,6 +75,74 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Schema Version 2.0 — Domain-Based Restructure
+
+**Date:** 2026-03-08
+**schema_version:** 2.0
+**schema_min_compatible:** 2.0 (BREAKING — all file paths changed)
+
+Reorganized repository from feature-based folders (`rates/`, `plans/`, `reference/`) to domain-based folders (`federal/`, `states/`, `reference/`). Split `plan-library.json` into jurisdiction-specific files. Extracted VA and VGLI data from `rates-annual.json` into dedicated files under `federal/veterans-affairs/`.
+
+### Why This Is a Breaking Change
+
+All file URL paths in the manifest changed. Consumer applications using `manifest.files.*.url` to fetch files must update to the new paths. The `schema_min_compatible` bump to 2.0 ensures apps on schema 1.x will trigger their fallback behavior rather than silently failing.
+
+### Path Migration Map
+
+| Old Path (schema 1.x) | New Path (schema 2.0) | Notes |
+|---|---|---|
+| `rates/rates-annual.json` | `federal/rates-annual.json` | VA and VGLI sections removed |
+| `rates/pay-tables.json` | `federal/pay-tables.json` | Unchanged content |
+| — | `federal/veterans-affairs/compensation.json` | NEW — extracted from rates-annual.json |
+| — | `federal/veterans-affairs/vgli.json` | NEW — extracted from rates-annual.json |
+| `plans/state-benefits.json` | `states/state-benefits.json` | Unchanged content |
+| `plans/plan-library.json` | `states/virginia/vrs-plans.json` | VRS plans + hire date mapping |
+| `plans/plan-library.json` | `states/virginia/erfc-plans.json` | ERFC plans + hire date mapping + county metadata |
+| `plans/plan-library.json` | `states/virginia/plan-combinations.json` | VRS + ERFC stacking patterns |
+| `plans/plan-library.json` | `reference/other-db-template.json` | Generic DB plan fallback |
+| `reference/static-refs.json` | `reference/static-refs.json` | Unchanged path and content |
+
+### Manifest Key Changes
+
+| Old Key (schema 1.x) | New Key(s) (schema 2.0) |
+|---|---|
+| `plan_library` | `vrs_plans`, `erfc_plans`, `plan_combinations`, `other_db_template` |
+| `rates_annual` | `rates_annual` (slimmed), `va_compensation`, `vgli` |
+
+### New File: `federal/veterans-affairs/compensation.json`
+
+Contains VA disability compensation rates by rating, dependent additions, DIC rates, and VA COLA data. All data was previously in the `va` section of `rates-annual.json`. Extracted because VA compensation has a different update cycle (December COLA) than federal civilian rates (January).
+
+### New File: `federal/veterans-affairs/vgli.json`
+
+Contains VGLI age-banded premium table. Previously the `vgli` section of `rates-annual.json`. Extracted because VGLI premiums update on their own schedule (VA-determined).
+
+### New File: `states/virginia/vrs-plans.json`
+
+Virginia Retirement System plans (Plan 1, Plan 2, Hybrid) with state-level hire date auto-derive mapping. Split from `plan-library.json` because VRS is a state-level system distinct from county-level supplemental plans.
+
+### New File: `states/virginia/erfc-plans.json`
+
+ERFC supplemental pension plans (Legacy, 2001 Tier 1, 2001 Tier 2) with county-level jurisdiction metadata. Split from `plan-library.json` because ERFC is a Fairfax County system specific to FCPS, not a state-level plan. Added `jurisdiction` object documenting county, school system, and scope.
+
+### New File: `states/virginia/plan-combinations.json`
+
+VRS + ERFC pension stacking patterns. Split from `plan-library.json` because combinations bridge state and county jurisdictions.
+
+### New File: `reference/other-db-template.json`
+
+Generic defined benefit plan template for user-entered parameters. Split from `plan-library.json` because it is not tied to any jurisdiction.
+
+### Consumer App Migration Steps
+
+1. Update `appSchemaVersion` to `"2.0"` in your schema check code
+2. Update all file fetch paths to use new `manifest.files.*.url` values
+3. Replace single `plan_library` fetch with separate `vrs_plans`, `erfc_plans`, `plan_combinations` fetches
+4. Add fetches for `va_compensation` and `vgli` (previously embedded in `rates_annual`)
+5. Update any code referencing `rates.va` or `rates.vgli` to read from the new standalone files
+
+---
+
 ## Schema Version 1.1 — Veteran Benefits (state-benefits.json v1.2)
 
 **Date:** 2026-03-08
@@ -120,7 +188,7 @@ All data validated against primary statutory sources:
 
 Baseline schema established for all data files.
 
-### Files and Structure
+### Files and Structure (schema 1.x — superseded by 2.0)
 
 | File | Key Sections |
 |------|-------------|
@@ -139,10 +207,11 @@ Baseline schema established for all data files.
 | Rename key | Yes (major) | **Yes** |
 | Remove key | Yes (major) | **Yes** |
 | Change value type | Yes (major) | **Yes** |
+| Move/rename file path | Yes (major) | **Yes** |
 | Update values only | No | No |
 | Correct values | No | No |
 
-**Growth pattern:** Adding new keys and files keeps `schema_min_compatible` at 1.0 indefinitely. Older consumers simply ignore keys they don't recognize.
+**Growth pattern:** Adding new keys and files keeps `schema_min_compatible` unchanged. Older consumers simply ignore keys they don't recognize. Path changes or key removals require a `schema_min_compatible` bump.
 
 ---
 
