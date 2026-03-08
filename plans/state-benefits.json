@@ -1,11 +1,9 @@
 {
-  "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income and relevant property tax exemptions. Version 1.1. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
-  "version": "1.1",
+  "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 1.2. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
+  "version": "1.2",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
-
   "states": [
-
     {
       "state_code": "VA",
       "state_name": "Virginia",
@@ -17,7 +15,7 @@
           "age_threshold": 65,
           "phase_out_income_start": 62000,
           "phase_out_income_end": 87000,
-          "filing_status_note": "Per taxpayer — both spouses may each claim if both qualify"
+          "filing_status_note": "Per taxpayer \u2014 both spouses may each claim if both qualify"
         },
         "military_retirement": {
           "exempt": true,
@@ -34,10 +32,26 @@
         },
         "top_rate": 0.0575,
         "brackets": [
-          { "min": 0,     "max": 3000,  "rate": 0.02 },
-          { "min": 3001,  "max": 5000,  "rate": 0.03 },
-          { "min": 5001,  "max": 17000, "rate": 0.05 },
-          { "min": 17001, "max": 999999999, "rate": 0.0575 }
+          {
+            "min": 0,
+            "max": 3000,
+            "rate": 0.02
+          },
+          {
+            "min": 3001,
+            "max": 5000,
+            "rate": 0.03
+          },
+          {
+            "min": 5001,
+            "max": 17000,
+            "rate": 0.05
+          },
+          {
+            "min": 17001,
+            "max": 999999999,
+            "rate": 0.0575
+          }
         ]
       },
       "property_tax": {
@@ -46,7 +60,7 @@
             "name": "Senior and Disabled Exemption",
             "available": true,
             "eligibility": "Age 65+ or totally disabled",
-            "income_limit_note": "Varies by locality — set by each county/city",
+            "income_limit_note": "Varies by locality \u2014 set by each county/city",
             "net_worth_limit_note": "Varies by locality",
             "note": "Virginia localities (counties/cities) administer their own senior property tax relief programs within state guidelines. Actual benefit varies significantly by location."
           }
@@ -54,10 +68,110 @@
       },
       "sources": [
         "https://www.tax.virginia.gov/age-deduction",
-        "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-322.03/"
-      ]
+        "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-322.03/",
+        "https://law.lis.virginia.gov/vacode/title58.1/chapter32/section58.1-3219.5/",
+        "https://law.lis.virginia.gov/vacode/title58.1/chapter36/section58.1-3668/",
+        "https://www.dvs.virginia.gov/benefits-services/tax-exemptions"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Veteran-specific property and housing benefits for Virginia. All require documentation from VA (Summary of Benefits Letter). Federal benefits (funding fee) are in the federal_veteran_benefits root section. Rules vary significantly by state.",
+        "real_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from local real estate tax on primary residence and up to one acre of land",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": true,
+            "iu_note": "Veterans rated less than 100% but compensated at 100% via Individual Unemployability (IU), AND rated P&T, also qualify"
+          },
+          "effective_date": "2011-01-01",
+          "acreage_note": "If locality provides exemption/deferral of more than 1 acre under Article 2 (\u00a7 58.1-3210 et seq.), the same acreage applies to this exemption",
+          "manufactured_home": true,
+          "manufactured_home_note": "Manufactured homes qualify even if veteran does not own the land, but the land itself is not exempt in that case",
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "veteran_death_on_or_after": "2011-01-01",
+            "spouse_must_not_remarry": true,
+            "remarriage_reinstatement": false,
+            "spouse_portable": true,
+            "spouse_portable_effective": "2019-07-01",
+            "spouse_portable_note": "Surviving spouse may move to a different Virginia residence and retain exemption (HB1655, 2019). Applies without restriction."
+          },
+          "sources": [
+            "https://law.lis.virginia.gov/vacode/title58.1/chapter32/section58.1-3219.5/",
+            "https://law.lis.virginia.gov/constitution/article10/section6-A/",
+            "https://www.dvs.virginia.gov/benefits-services/tax-exemptions"
+          ]
+        },
+        "vehicle_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from personal property tax on one passenger car, pickup, or panel truck for personal use",
+          "vehicle_types": [
+            "passenger_car",
+            "pickup_truck",
+            "panel_truck"
+          ],
+          "vehicle_exclusions": [
+            "motorcycle",
+            "leased",
+            "business_owned",
+            "boat",
+            "trailer",
+            "rv"
+          ],
+          "max_vehicles": 1,
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": true,
+            "iu_note": "Veterans compensated at 100% via IU and rated P&T qualify per VA DVS and locality administration"
+          },
+          "effective_date": "2021-01-01",
+          "spouse_during_life": true,
+          "spouse_during_life_note": "Vehicle owned by married couple qualifies if either spouse is the qualifying veteran",
+          "survivor_transfer": false,
+          "survivor_note": "Exemption expires on date of veteran's death. Passing the exemption to a surviving spouse is prohibited by statute (\u00a7 58.1-3668(C)).",
+          "reduced_rate_available": true,
+          "reduced_rate_note": "Localities may separately offer a reduced personal property tax rate for veterans with certain disabilities (lost limbs, blind, P&T) under \u00a7 58.1-3506(A)(19). This is independent of the full exemption and rates vary by locality.",
+          "sources": [
+            "https://law.lis.virginia.gov/vacode/title58.1/chapter36/section58.1-3668/",
+            "https://law.lis.virginia.gov/constitution/article10/section6/",
+            "https://www.dvs.virginia.gov/benefits-services/tax-exemptions"
+          ]
+        },
+        "line_of_duty_survivor_property_tax": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Real property tax exemption for surviving spouse of service member who died in the line of duty (DoD Line of Duty determination)",
+          "scope": "Separate from the 100% P&T disabled veteran exemption \u2014 this covers surviving spouses of service members who died in the line of duty, not just killed in action",
+          "eligibility": {
+            "veteran_rating_required": "none",
+            "condition": "Service member died in the line of duty with a Line of Duty determination from the U.S. Department of Defense",
+            "pt_required": false
+          },
+          "effective_date": "2025-01-01",
+          "effective_note": "Virginia voters ratified constitutional amendment November 5, 2024, effective January 1, 2025. Expanded prior 2014 amendment from 'killed in action' to 'died in the line of duty'.",
+          "prior_version": "Original 2014 amendment covered only 'killed in action' as determined by DoD",
+          "retroactive": true,
+          "retroactive_note": "Applies regardless of whether death occurred before the effective date, but exemption not applicable to any period before the effective date",
+          "survivor_conditions": {
+            "spouse_must_not_remarry": true,
+            "spouse_portable": true,
+            "spouse_portable_note": "No restriction on spouse moving to a different principal place of residence. No requirement that spouse resided in Virginia at time of death.",
+            "spouse_portable_effective": "2019-07-01"
+          },
+          "sources": [
+            "https://law.lis.virginia.gov/constitution/article10/section6-A/",
+            "https://law.lis.virginia.gov/uncodifiedacts/2024/session1/chapter395/",
+            "https://www.dvs.virginia.gov/benefits-services/tax-exemptions"
+          ]
+        },
+        "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file.",
+        "_mcc_note": "Virginia Housing (VHDA) Mortgage Credit Certificate is NOT a veteran-specific benefit. It is a general first-time homebuyer program. If modeled, it belongs in a separate homebuyer_programs section."
+      }
     },
-
     {
       "state_code": "MD",
       "state_name": "Maryland",
@@ -80,7 +194,7 @@
           "exempt": true
         },
         "top_rate": 0.0575,
-        "note": "Local income tax also applies in Maryland — varies by county (typically 2.25%–3.2%)"
+        "note": "Local income tax also applies in Maryland \u2014 varies by county (typically 2.25%\u20133.2%)"
       },
       "property_tax": {
         "exemptions": [
@@ -92,15 +206,18 @@
         ]
       }
     },
-
     {
       "state_code": "FL",
       "state_name": "Florida",
       "income_tax": {
         "taxes_federal_pension": false,
         "note": "Florida has no state income tax. No tax on FERS pension, TSP withdrawals, SS, or any retirement income.",
-        "ss_income": { "exempt": true },
-        "va_compensation": { "exempt": true }
+        "ss_income": {
+          "exempt": true
+        },
+        "va_compensation": {
+          "exempt": true
+        }
       },
       "property_tax": {
         "exemptions": [
@@ -118,7 +235,6 @@
         ]
       }
     },
-
     {
       "state_code": "TX",
       "state_name": "Texas",
@@ -137,8 +253,67 @@
         ]
       }
     }
-
   ],
-
-  "_expansion_note": "Add additional states as users request them. Priority states for federal workforce: VA, MD, DC area, FL, TX, GA, NC, CO, WA."
+  "_expansion_note": "Add additional states as users request them. Priority states for federal workforce: VA, MD, DC area, FL, TX, GA, NC, CO, WA.",
+  "federal_veteran_benefits": {
+    "_schema_note": "Federal veteran benefits that apply identically in all states. Included at root level to avoid repeating in every state entry. State entries reference this section.",
+    "va_funding_fee_exemption": {
+      "available": true,
+      "scope": "federal",
+      "description": "Waiver of one-time VA home loan funding fee on purchase, refinance, and construction loans",
+      "fee_range": "0.5% to 3.3% of loan amount depending on loan type, down payment, and prior use",
+      "fee_range_note": "Current rates effective through 2031 per Blue Water Navy Vietnam Veterans Act of 2019",
+      "eligibility": {
+        "rating_required": "any",
+        "pt_required": false,
+        "conditions": [
+          "Receiving VA compensation for service-connected disability (any rating)",
+          "Eligible for VA compensation but receiving retirement or active-duty pay instead",
+          "Active-duty service member with Purple Heart (on or before loan closing date)",
+          "Service member with proposed or memorandum rating from pre-discharge claim before closing"
+        ]
+      },
+      "frequency": "one_time_per_loan",
+      "tax_deductible": true,
+      "tax_deductible_effective": "2026",
+      "tax_deductible_note": "Starting 2026, VA funding fees are deductible on federal tax returns",
+      "retroactive_refund": true,
+      "retroactive_note": "If disability rating approved retroactive to before loan closing, veteran may claim funding fee refund via VA RLC",
+      "survivor_transfer": true,
+      "survivor_conditions": {
+        "must_receive_dic": true,
+        "spouse_must_not_remarry": true,
+        "remarriage_exceptions": {
+          "age_57_rule": {
+            "description": "Remarriage after age 57 does not bar housing loan benefits (including funding fee exemption)",
+            "effective": "2004-01-01",
+            "authority": "38 U.S.C. \u00a7 103(d)(2)(B), Veterans Benefits Act of 2003"
+          },
+          "age_55_rule": {
+            "description": "Remarriage after age 55 does not bar DIC or CHAMPVA benefits, but housing loan benefits require age 57+",
+            "effective": "2003-02-04",
+            "authority": "38 U.S.C. \u00a7 103(d)(2)(B), Veterans Benefits Act of 2002",
+            "benefits_covered": [
+              "DIC (\u00a7 1311)",
+              "CHAMPVA (\u00a7 1781)"
+            ],
+            "benefits_not_covered": [
+              "housing_loans (chapter 37)",
+              "education (chapter 35)"
+            ]
+          },
+          "terminated_remarriage": {
+            "description": "If remarriage ends by death, divorce, or annulment, DIC and related benefits may be reinstated regardless of age at remarriage",
+            "authority": "38 U.S.C. \u00a7 103(d)(2)(A), 38 CFR \u00a7 3.55(a)(3)"
+          }
+        }
+      },
+      "sources": [
+        "https://www.va.gov/housing-assistance/home-loans/funding-fee-and-closing-costs/",
+        "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title38-section103&num=0&edition=prelim",
+        "https://www.law.cornell.edu/cfr/text/38/3.55",
+        "https://news.va.gov/145096/borrowers-can-deduct-funding-fees/"
+      ]
+    }
+  }
 }
