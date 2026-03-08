@@ -1,6 +1,6 @@
 {
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "schema_min_compatible": "1.0",
   "last_updated": "2026-03-08",
   "maintained_by": "public-finance-data repo owner",
@@ -28,11 +28,12 @@
       "description": "Pension plan parameters: VRS Plan 1/2/Hybrid, ERFC Legacy/Tier 1/Tier 2, FERS, other DB. Hire date auto-derive mapping. Plan combination stacking patterns."
     },
     "state_benefits": {
-      "version": "1.1",
+      "version": "1.2",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "plans/state-benefits.json",
-      "description": "State income tax treatment of federal retirement, property tax exemptions by state"
+      "description": "State income tax treatment of federal retirement, property tax exemptions, and veteran-specific benefits by state",
+      "changelog_1_2": "Added federal_veteran_benefits root section (VA funding fee exemption with survivor/remarriage rules). Added veteran_benefits to Virginia: real property tax exemption, vehicle tax exemption, line-of-duty survivor property tax (2024 amendment). Schema v1.1 (new keys, backward compatible)."
     },
     "static_refs": {
       "version": "1.0.1",
