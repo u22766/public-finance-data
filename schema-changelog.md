@@ -75,6 +75,44 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Schema Version 1.1 — Veteran Benefits (state-benefits.json v1.2)
+
+**Date:** 2026-03-08
+**schema_version:** 1.1
+**schema_min_compatible:** 1.0 (unchanged — new keys only, backward compatible)
+
+Added veteran-specific property and housing benefit data to `state-benefits.json`.
+
+### New Root Section: `federal_veteran_benefits`
+
+Contains federal veteran benefits that apply identically in all states. Added to avoid repeating in every state entry.
+
+| Benefit | Key Details |
+|---------|------------|
+| `va_funding_fee_exemption` | Waiver of 0.5%–3.3% one-time fee. Any comp rating qualifies. Survivor transfer via DIC. Age 57+ remarriage exception for housing loan benefits. Age 55+ remarriage exception for DIC/CHAMPVA only. Terminated remarriage restores eligibility. Purple Heart exemption. Tax-deductible starting 2026. |
+
+### New State-Level Section: `veteran_benefits` (Virginia model)
+
+Added to Virginia entry as the reference template for all future state entries.
+
+| Benefit | Key Details |
+|---------|------------|
+| `real_property_tax_exemption` | Full exemption, 100% P&T or IU+P&T. Survivor transfer (no remarriage, portable since 2019). VA Code § 58.1-3219.5. |
+| `vehicle_tax_exemption` | Full exemption, 1 car/truck, 100% P&T or IU+P&T. No survivor transfer (prohibited by statute). VA Code § 58.1-3668. |
+| `line_of_duty_survivor_property_tax` | NEW benefit from Nov 2024 constitutional amendment. Surviving spouse of service member who died in line of duty (expanded from prior "killed in action" standard). Effective Jan 1, 2025. VA Constitution Art. X, § 6-A(b). |
+
+### Sources Verified (March 8, 2026)
+
+All data validated against primary statutory sources:
+- VA Code § 58.1-3219.5 (real property), § 58.1-3668 (vehicle)
+- VA Constitution Article X, Section 6-A (both subdivisions)
+- 38 U.S.C. § 103(d) (remarriage rules), 38 U.S.C. § 3729 (funding fee)
+- 38 CFR § 3.55 (remarriage reinstatement)
+- VA.gov funding fee page, VA DVS tax exemptions page
+- VA news release (Feb 2026) confirming funding fee tax deductibility
+
+---
+
 ## Schema Version 1.0 — Initial Release
 
 **Date:** 2026-03-08
