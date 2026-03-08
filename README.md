@@ -91,14 +91,15 @@ The manifest includes two version fields for safe consumption:
 
 Each file uses a `"version"` field:
 
-- **Annual rate files:** 4-digit year (e.g., `"2026"`)
+- **Annual rate files:** `year.patch` format (e.g., `"2026"`, `"2026.1"`). Annual refresh resets to new year. Corrections within the same year increment the patch number.
 - **Plan library / state benefits:** Semantic version (e.g., `"2.0.0"`)
 - **Static references:** Semantic version (e.g., `"1.0.1"`)
 
 When updating a file, always:
 1. Increment the version in the file itself
-2. Update `manifest.json` to match
+2. Update `manifest.json` to match (including `last_updated` date)
 3. Document any structural changes in `schema-changelog.md`
+4. Log value corrections in the Data Corrections section of `schema-changelog.md`
 
 ---
 
@@ -119,7 +120,7 @@ When updating a file, always:
 - [ ] DIC base rate (`va.dic.base_rate_monthly`)
 - [ ] VA COLA (`va.cola_YEAR`)
 - [ ] Standard deductions (`tax.standard_deduction_*`)
-- [ ] Tax brackets — all rates, both single and MFJ (`tax.brackets_*`)
+- [ ] Tax brackets — all rates, both single and MFJ (`tax.brackets_*`) — verify cutoffs against IRS Rev. Proc. source tables, not computed values
 - [ ] Update `"version"` to new year
 - [ ] Update `manifest.json` `rates_annual.version`
 
