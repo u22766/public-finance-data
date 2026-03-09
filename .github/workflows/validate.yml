@@ -1,0 +1,27 @@
+name: Validate Data Files
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.json'
+      - 'tests/**'
+      - '.github/workflows/validate.yml'
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run validation suite
+        run: python tests/validate.py
+        
