@@ -38,7 +38,7 @@
       "changelog_2026": "Extracted from rates-annual.json during schema 2.0 restructure. All values unchanged."
     },
     "state_benefits": {
-      "version": "1.2",
+      "version": "1.3",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/state-benefits.json",
