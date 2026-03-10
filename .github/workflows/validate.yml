@@ -31,6 +31,9 @@ jobs:
       
       - name: Run Tier 2 validation (~120 checks)
         run: python tests/validate_tier2.py states/state-benefits.json
+
+      - name: Validate DCIPS Pay Tables
+        run: python tests/validate_dcips.py
       
       - name: Validation summary
         if: success()
