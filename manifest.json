@@ -1,5 +1,5 @@
 {
-  "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
+  "_comment": "Public Finance Data — Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.0",
   "schema_min_compatible": "2.0",
   "last_updated": "2026-03-08",
@@ -19,7 +19,7 @@
       "effective_date": "2026-01-15",
       "update_frequency": "annual (January)",
       "url": "federal/pay-tables.json",
-      "description": "GS and DCIPS base pay tables \u2014 all grades, all steps, all OPM locality areas"
+      "description": "GS and DCIPS base pay tables — all grades, all steps, all OPM locality areas"
     },
     "va_compensation": {
       "version": "2026.1",
@@ -36,6 +36,13 @@
       "url": "federal/veterans-affairs/vgli.json",
       "description": "Veterans Group Life Insurance age-banded premium table",
       "changelog_2026": "Extracted from rates-annual.json during schema 2.0 restructure. All values unchanged."
+    },
+    "fehb_rates": {
+      "version": "2026.1",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (October)",
+      "url": "federal/healthcare/fehb-rates.json",
+      "description": "FEHB program-level data: government contributions, weighted averages, premium trends, FEDVIP/PSHB overview"
     },
     "state_benefits": {
       "version": "1.5",
