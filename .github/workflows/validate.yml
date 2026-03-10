@@ -1,27 +1,37 @@
+# .github/workflows/validate.yml
+# public-finance-data CI Validation
+# Runs on every push and PR to main
+#
+# Original: 179 checks (validate.py)
+# OM-11 addition: ~120 Tier 2 checks (validate_tier2.py)
+
 name: Validate Data Files
 
 on:
   push:
     branches: [main]
-    paths:
-      - '**.json'
-      - 'tests/**'
-      - '.github/workflows/validate.yml'
   pull_request:
     branches: [main]
 
 jobs:
   validate:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
-
-      - name: Run validation suite
+          python-version: '3.11'
+      
+      - name: Run core validation (179 checks)
         run: python tests/validate.py
-        
+      
+      - name: Run Tier 2 validation (~120 checks)
+        run: python tests/validate_tier2.py states/state-benefits.json
+      
+      - name: Validation summary
+        if: success()
+        run: echo "✓ All validation checks passed"
