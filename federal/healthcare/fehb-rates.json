@@ -1,0 +1,196 @@
+{
+  "_metadata": {
+    "file": "federal/healthcare/fehb-rates.json",
+    "version": "2026.1",
+    "effective_date": "2026-01-01",
+    "source": "U.S. Office of Personnel Management",
+    "source_url": "https://www.opm.gov/healthcare-insurance/healthcare/plan-information/premiums/",
+    "last_verified": "2026-03-09",
+    "notes": "FEHB program-level data. Full plan-level premiums available in OPM Excel files."
+  },
+
+  "program_overview": {
+    "name": "Federal Employees Health Benefits Program",
+    "acronym": "FEHB",
+    "plan_year": 2026,
+    "open_season": {
+      "start": "2025-11-10",
+      "end": "2025-12-08"
+    },
+    "effective_date": "2026-01-01",
+    "total_carriers": 47,
+    "total_plan_options": 132,
+    "enrollment_types": ["self_only", "self_plus_one", "self_and_family"]
+  },
+
+  "premium_changes": {
+    "plan_year": 2026,
+    "average_enrollee_increase_pct": 12.3,
+    "total_average_increase_pct": 10.2,
+    "government_share_increase_pct": 9.2,
+    "historical_increases": {
+      "2025": 13.5,
+      "2024": 7.7,
+      "2023": 8.7,
+      "2022": 3.8
+    },
+    "plans_with_premium_decrease": 23,
+    "plans_below_average_increase": 57,
+    "plans_above_average_increase": 49,
+    "source_note": "Of 129 plans available in both 2025 and 2026"
+  },
+
+  "government_contribution": {
+    "description": "Maximum government contribution (72% of weighted average)",
+    "plan_year": 2026,
+    "biweekly": {
+      "self_only": 324.76,
+      "self_plus_one": 711.17,
+      "self_and_family": 778.03
+    },
+    "monthly": {
+      "self_only": 703.65,
+      "self_plus_one": 1540.87,
+      "self_and_family": 1685.73
+    },
+    "contribution_formula": "Lesser of 72% of weighted average OR 75% of plan premium"
+  },
+
+  "weighted_average_premiums": {
+    "description": "Program-wide weighted average total premiums",
+    "plan_year": 2026,
+    "biweekly": {
+      "self_only": 451.05,
+      "self_plus_one": 987.73,
+      "self_and_family": 1080.60
+    },
+    "monthly": {
+      "self_only": 977.28,
+      "self_plus_one": 2140.08,
+      "self_and_family": 2341.30
+    }
+  },
+
+  "popular_plans_reference": {
+    "_note": "Representative premiums for high-enrollment plans. Full plan data in OPM Excel files.",
+    "plans": [
+      {
+        "carrier": "Blue Cross Blue Shield",
+        "plan_name": "FEP Blue Basic",
+        "plan_code": "113",
+        "type": "FFS",
+        "nationwide": true,
+        "self_plus_one_monthly_enrollee": 691.71,
+        "yoy_change_pct": 14.3
+      },
+      {
+        "carrier": "Blue Cross Blue Shield",
+        "plan_name": "FEP Blue Standard",
+        "plan_code": "105",
+        "type": "FFS",
+        "nationwide": true,
+        "self_and_family_monthly_enrollee": 991.60,
+        "yoy_change_pct": 7.5
+      },
+      {
+        "carrier": "GEHA",
+        "plan_name": "Standard",
+        "plan_code": "316",
+        "type": "FFS",
+        "nationwide": true,
+        "self_plus_one_monthly_enrollee": 404.11,
+        "yoy_change_pct": 7.5
+      },
+      {
+        "carrier": "GEHA",
+        "plan_name": "High",
+        "plan_code": "312",
+        "type": "FFS",
+        "nationwide": true,
+        "self_and_family_monthly_enrollee": 1137.89,
+        "yoy_change_pct": 31.0,
+        "note": "Significant increase in 2026"
+      }
+    ]
+  },
+
+  "plan_types": {
+    "ffs": {
+      "name": "Fee-for-Service",
+      "description": "Nationwide plans with PPO networks. Most flexibility for provider choice.",
+      "examples": ["BCBS Standard/Basic/FEP Blue Focus", "GEHA Standard/High", "MHBP", "Aetna"]
+    },
+    "hmo": {
+      "name": "Health Maintenance Organization",
+      "description": "Regional plans with specific service areas. Typically lower premiums, narrower networks.",
+      "examples": ["Kaiser Permanente", "UnitedHealthcare"]
+    }
+  },
+
+  "special_provisions": {
+    "self_plus_one_exceeds_family": {
+      "description": "Some plans have Self Plus One premiums higher than Self and Family",
+      "enrollee_option": "Enrollees may elect Self and Family even when covering only one dependent",
+      "reference": "OPM Self Plus One > Self and Family chart"
+    },
+    "tcc": {
+      "name": "Temporary Continuation of Coverage",
+      "description": "Continued coverage for former employees, spouses, children losing eligibility",
+      "government_contribution": false,
+      "duration_months": 18,
+      "rate_note": "Enrollee pays 102% of total premium"
+    },
+    "former_spouse": {
+      "description": "Coverage available to former spouses of federal employees",
+      "government_contribution": false,
+      "rate_note": "Enrollee pays 102% of total premium"
+    }
+  },
+
+  "fedvip": {
+    "name": "Federal Employees Dental and Vision Insurance Program",
+    "plan_year": 2026,
+    "dental": {
+      "carriers": 11,
+      "plan_options": 21,
+      "average_increase_pct": 3.3
+    },
+    "vision": {
+      "carriers": 5,
+      "plan_options": 10,
+      "average_increase_pct": 0.5
+    }
+  },
+
+  "pshb": {
+    "name": "Postal Service Health Benefits Program",
+    "description": "Separate program for USPS employees and annuitants (starting 2025)",
+    "plan_year": 2026,
+    "carriers": 17,
+    "plan_options": 75,
+    "average_enrollee_increase_pct": 11.3,
+    "total_average_increase_pct": 9.0
+  },
+
+  "medicare_coordination": {
+    "description": "FEHB coordinates with Medicare for eligible enrollees",
+    "primary_insurance": {
+      "active_employee": "FEHB",
+      "annuitant_65_plus": "Medicare (if enrolled)"
+    },
+    "part_b_reimbursement": {
+      "description": "Some FEHB plans reimburse Medicare Part B premiums",
+      "plans_offering": ["BCBS Standard", "GEHA High", "many others"],
+      "note": "Check plan brochure for specific reimbursement amounts"
+    }
+  },
+
+  "data_sources": {
+    "opm_premium_charts": {
+      "ffs_rates": "https://www.opm.gov/healthcare-insurance/healthcare/plan-information/premiums/2026/fehb/2026-ffs-premium-rates.xlsx",
+      "hmo_rates": "https://www.opm.gov/healthcare-insurance/healthcare/plan-information/premiums/2026/fehb/2026-hmo-premium-rates.xlsx"
+    },
+    "comparison_tool": "https://www.opm.gov/healthcare-insurance/healthcare/plan-information/compare-plans/",
+    "plan_brochures": "https://www.opm.gov/healthcare-insurance/healthcare/plan-information/plans/"
+  }
+}
