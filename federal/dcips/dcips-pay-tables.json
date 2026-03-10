@@ -1,0 +1,439 @@
+{
+  "_schema_note": "DCIPS compensation data for Defense Civilian Intelligence Personnel System",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "authority": "DoDI 1400.25-V2006",
+  "source_url": "https://dcips.defense.gov/Human-Resources/Compensation/",
+  "pay_cap": 197200,
+  "pay_cap_note": "Adjusted basic pay (base salary + LMS or TLMS) may not exceed $197,200 (EX-II equivalent)",
+
+  "base_grades": {
+    "_note": "Base GG grade pay rates without locality or TLMS supplements",
+    "GG-01": [22584, 23341, 24092, 24840, 25589, 26028, 26771, 27519, 27550, 28248, 28996, 29744],
+    "GG-02": [25393, 25997, 26839, 27550, 27858, 28677, 29496, 30315, 31134, 31953, 32772, 33591],
+    "GG-03": [27708, 28632, 29556, 30480, 31404, 32328, 33252, 34176, 35100, 36024, 36948, 37872],
+    "GG-04": [31103, 32140, 33177, 34214, 35251, 36288, 37325, 38362, 39399, 40436, 41473, 42510],
+    "GG-05": [34799, 35959, 37119, 38279, 39439, 40599, 41759, 42919, 44079, 45239, 46399, 47559],
+    "GG-06": [38791, 40084, 41377, 42670, 43963, 45256, 46549, 47842, 49135, 50428, 51721, 53014],
+    "GG-07": [43106, 44543, 45980, 47417, 48854, 50291, 51728, 53165, 54602, 56039, 57476, 58913],
+    "GG-08": [47738, 49329, 50920, 52511, 54102, 55693, 57284, 58875, 60466, 62057, 63648, 65239],
+    "GG-09": [52727, 54485, 56243, 58001, 59759, 61517, 63275, 65033, 66791, 68549, 70307, 72065],
+    "GG-10": [58064, 59999, 61934, 63869, 65804, 67739, 69674, 71609, 73544, 75479, 77414, 79349],
+    "GG-11": [63795, 65922, 68049, 70176, 72303, 74430, 76557, 78684, 80811, 82938, 85065, 87192],
+    "GG-12": [76463, 79012, 81561, 84110, 86659, 89208, 91757, 94306, 96855, 99404, 101953, 104502],
+    "GG-13": [90925, 93956, 96987, 100018, 103049, 106080, 109111, 112142, 115173, 118204, 121235, 124266],
+    "GG-14": [107446, 111028, 114610, 118192, 121774, 125356, 128938, 132520, 136102, 139684, 143266, 146848],
+    "GG-15": [126384, 130597, 134810, 139023, 143236, 147449, 151662, 155875, 160088, 164301, 168514, 172727]
+  },
+
+  "pay_bands": {
+    "_note": "DCIPS pay band ranges mapping to GG grade equivalents",
+    "1": {
+      "minimum": 22584,
+      "maximum": 58913,
+      "grade_equivalents": ["GG-01", "GG-02", "GG-03", "GG-04", "GG-05", "GG-06", "GG-07"],
+      "work_categories": ["entry_level", "developmental"]
+    },
+    "2": {
+      "minimum": 43106,
+      "maximum": 79349,
+      "grade_equivalents": ["GG-07", "GG-08", "GG-09", "GG-10"],
+      "work_categories": ["full_performance"]
+    },
+    "3": {
+      "minimum": 63795,
+      "maximum": 124266,
+      "grade_equivalents": ["GG-11", "GG-12", "GG-13"],
+      "work_categories": ["senior", "expert"]
+    },
+    "4": {
+      "minimum": 90925,
+      "maximum": 146848,
+      "grade_equivalents": ["GG-13", "GG-14"],
+      "work_categories": ["expert", "supervisory"]
+    },
+    "5": {
+      "minimum": 126384,
+      "maximum": 172727,
+      "grade_equivalents": ["GG-15"],
+      "work_categories": ["senior_expert", "senior_supervisory"]
+    }
+  },
+
+  "local_market_supplements": {
+    "_note": "LMS rates correspond to 2026 federal locality pay areas",
+    "Alaska": 32.36,
+    "Albany-Schenectady, NY-MA": 20.77,
+    "Albuquerque-Santa Fe-Las Vegas, NM": 18.33,
+    "Atlanta-Athens-Clarke County-Sandy Springs, GA-AL": 23.79,
+    "Austin-Round Rock-Georgetown, TX": 20.35,
+    "Birmingham-Hoover-Talladega, AL": 18.24,
+    "Boston-Worcester-Providence, MA-RI-NH-CT-ME-VT": 32.58,
+    "Buffalo-Cheektowaga-Olean, NY": 22.41,
+    "Burlington-South Burlington-Barre, VT": 19.45,
+    "Charlotte-Concord, NC-SC": 19.67,
+    "Chicago-Naperville, IL-IN-WI": 30.86,
+    "Cincinnati-Wilmington-Maysville, OH-KY-IN": 21.93,
+    "Cleveland-Akron-Canton, OH-PA": 22.23,
+    "Colorado Springs, CO": 20.15,
+    "Columbus-Marion-Zanesville, OH": 22.15,
+    "Corpus Christi-Kingsville-Alice, TX": 17.63,
+    "Dallas-Fort Worth, TX-OK": 27.26,
+    "Davenport-Moline, IA-IL": 18.93,
+    "Dayton-Springfield-Kettering, OH": 21.42,
+    "Denver-Aurora, CO": 30.52,
+    "Des Moines-Ames-West Des Moines, IA": 18.01,
+    "Detroit-Warren-Ann Arbor, MI": 29.12,
+    "Fresno-Madera-Hanford, CA": 17.65,
+    "Harrisburg-Lebanon, PA": 19.43,
+    "Hartford-East Hartford, CT-MA": 32.08,
+    "Hawaii": 22.21,
+    "Houston-The Woodlands, TX": 35.00,
+    "Huntsville-Decatur, AL-TN": 21.91,
+    "Indianapolis-Carmel-Muncie, IN": 18.15,
+    "Kansas City-Overland Park-Kansas City, MO-KS": 18.97,
+    "Laredo, TX": 21.59,
+    "Las Vegas-Henderson, NV-AZ": 19.57,
+    "Los Angeles-Long Beach, CA": 36.47,
+    "Miami-Port St. Lucie-Fort Lauderdale, FL": 24.67,
+    "Milwaukee-Racine-Waukesha, WI": 22.42,
+    "Minneapolis-St. Paul, MN-WI": 27.62,
+    "New York-Newark, NY-NJ-CT-PA": 37.95,
+    "Omaha-Council Bluffs-Fremont, NE-IA": 18.23,
+    "Palm Bay-Melbourne-Titusville, FL": 17.93,
+    "Philadelphia-Reading-Camden, PA-NJ-DE-MD": 28.99,
+    "Phoenix-Mesa, AZ": 22.45,
+    "Pittsburgh-New Castle-Weirton, PA-OH-WV": 21.03,
+    "Portland-Vancouver-Salem, OR-WA": 26.13,
+    "Raleigh-Durham-Cary, NC": 22.24,
+    "Reno-Fernley, NV": 17.52,
+    "Richmond, VA": 22.28,
+    "Rochester-Batavia-Seneca Falls, NY": 17.88,
+    "Sacramento-Roseville, CA-NV": 29.76,
+    "San Antonio-New Braunfels-Pearsall, TX": 18.78,
+    "San Diego-Chula Vista-Carlsbad, CA": 33.72,
+    "San Jose-San Francisco-Oakland, CA": 46.34,
+    "Seattle-Tacoma, WA": 31.57,
+    "Spokane-Spokane Valley-Coeur d'Alene, WA-ID": 17.67,
+    "St. Louis-St. Charles-Farmington, MO-IL": 20.03,
+    "Tucson-Nogales, AZ": 19.28,
+    "Virginia Beach-Norfolk, VA-NC": 18.80,
+    "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA": 33.94,
+    "Rest of U.S.": 17.06,
+    "_rest_of_us_note": "Includes Guam and Puerto Rico"
+  },
+
+  "targeted_local_market_supplements": {
+    "stem_cyber": {
+      "description": "STEM/Cyber Work Roles",
+      "effective_date": "2026-01-01",
+      "tlms_percentages": {
+        "GG-07": 90,
+        "GG-08": 85,
+        "GG-09": 80,
+        "GG-10": 72,
+        "GG-11": 65,
+        "GG-12": 54,
+        "GG-13": 46,
+        "GG-14": 38,
+        "GG-15": 32.49
+      },
+      "covered_series": [
+        "0132", "0401", "0801", "0803", "0804", "0806", "0808", "0810", "0819",
+        "0830", "0840", "0850", "0854", "0855", "0858", "0861", "0893", "0896",
+        "1301", "1310", "1320", "1340", "1501", "1515", "1520", "1530", "1550", "1560", "2210"
+      ],
+      "series_notes": {
+        "0132": "Work Role Science and Technology Analysis (requires scientific or engineering degree)",
+        "0401": "Supporting select S&TI missions or research, i.e., biological warfare",
+        "2210": "DCWF Work Roles: 441, 461, 511, 531, 541, 621, 622, 631, 632, 651, 652, 661, 671, 802, 121 (Exploitation Analyst - Not Certified), 322 (Interactive Operator - Not Certified)"
+      },
+      "note": "If DCIPS TLMS rate is lower than the applicable GS Locality Rate, DCIPS employee will revert to the higher applicable GS Locality Rate"
+    },
+
+    "780th_mib": {
+      "description": "780th Military Intelligence Brigade Work Roles",
+      "effective_date": "2026-01-01",
+      "tlms_percentages": {
+        "GG-07": 97,
+        "GG-08": 91,
+        "GG-09": 87,
+        "GG-10": 78,
+        "GG-11": 71,
+        "GG-12": 61,
+        "GG-13": 61,
+        "GG-14": 57,
+        "GG-15": 57
+      },
+      "covered_work_roles": ["321", "322", "121", "621"],
+      "work_role_names": {
+        "321": "Access Network Operator",
+        "322": "Interactive Operator",
+        "121": "Exploitation Analyst",
+        "621": "Capabilities Development Specialist"
+      }
+    },
+
+    "hawaii_it_cs_eng": {
+      "description": "Hawaii Targeted Local Market Supplement for Information Technology, Computer Science, and Engineering",
+      "effective_date": "2026-01-01",
+      "tlms_percentages": {
+        "GG-07": 50.4,
+        "GG-08": 50.4,
+        "GG-09": 50.4,
+        "GG-10": 50.4,
+        "GG-11": 37.4,
+        "GG-12": 30.4
+      },
+      "covered_series": ["0854", "1550", "2210"],
+      "series_names": {
+        "0854": "Computer Engineer",
+        "1550": "Computer Science Specialist",
+        "2210": "Information Technology Management"
+      },
+      "covered_locations": ["City and County of Honolulu", "County of Maui"],
+      "geoloc_codes": ["150000009", "150310003", "150585003", "151885003", "152400003", "155400003", "158205003", "158206003", "158725003", "158803003", "159700003", "159998003"]
+    },
+
+    "polygraphers": {
+      "description": "Polygrapher TLMS Schedules",
+      "effective_date": "2026-01-01",
+      "covered_series": ["0080", "0132", "1801", "1810"],
+      "eligibility_note": "Applies only to employees whose primary duty is conducting and/or quality checking polygraph exams, or directly supervising employees conducting polygraph exams",
+      "exclusion_note": "Excludes Air Force employees hired as polygraphers prior to August 16, 2009 (the date of conversion to DCIPS pay bands)",
+      "schedule_a": {
+        "description": "CONUS and Non-Foreign OCONUS",
+        "applies_to": "All Pay Bands/Grades/Work Levels IA05/GG-15/Expert and below",
+        "rates_by_locality": {
+          "Los Angeles, CA": 43,
+          "Washington, DC": 40,
+          "Fort Jackson, SC": 40,
+          "Denver, CO": 37,
+          "Hawaii": 30,
+          "Rest of U.S.": 27
+        },
+        "fort_jackson_note": "Applies to National Center for Credibility Assessment (NCCA) located at Fort Jackson, SC"
+      },
+      "schedule_b": {
+        "description": "All Foreign Areas",
+        "applies_to": "All Pay Bands/Grades/Work Levels IA05/GG-15/Expert and below",
+        "percentage": 40
+      }
+    },
+
+    "pilots": {
+      "description": "DCIPS Pilots TLMS",
+      "effective_date": "2026-01-01",
+      "covered_series": ["2181"],
+      "eligibility_note": "Only applies to DCIPS employees, in the 2181 (aircraft operator) series, and assigned to a position description that requires the piloting of aircraft",
+      "special_rate_tables": {
+        "0759": {
+          "locality_areas": ["San Jose-San Francisco-Oakland, CA"],
+          "rates": {
+            "GG-09": 68, "GG-10": 68, "GG-11": 68, "GG-12": 68, "GG-13": 68,
+            "GG-14": 59,
+            "GG-15": 49
+          }
+        },
+        "0760": {
+          "locality_areas": ["New York-Newark, NY-NJ-CT-PA"],
+          "rates": {
+            "GG-09": 62, "GG-10": 62, "GG-11": 62, "GG-12": 62, "GG-13": 62,
+            "GG-14": 52,
+            "GG-15": 42
+          }
+        },
+        "0761": {
+          "locality_areas": ["Houston-The Woodlands, TX", "Los Angeles-Long Beach, CA"],
+          "rates": {
+            "GG-09": 60, "GG-10": 60, "GG-11": 60, "GG-12": 60, "GG-13": 60,
+            "GG-14": 50,
+            "GG-15": 40
+          }
+        },
+        "0762": {
+          "locality_areas": [
+            "Boston-Worcester-Providence, MA-RI-NH-CT-ME-VT",
+            "Chicago-Naperville, IL-IN-WI",
+            "Hartford-East Hartford, CT-MA",
+            "San Diego-Chula Vista-Carlsbad, CA",
+            "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA"
+          ],
+          "rates": {
+            "GG-09": 57, "GG-10": 57, "GG-11": 57, "GG-12": 57, "GG-13": 57,
+            "GG-14": 47,
+            "GG-15": 37
+          }
+        },
+        "0763": {
+          "locality_areas": [
+            "Denver-Aurora, CO",
+            "Detroit-Warren-Ann Arbor, MI",
+            "Philadelphia-Reading-Camden, PA-NJ-DE-MD",
+            "Sacramento-Roseville, CA-NV",
+            "Seattle-Tacoma, WA"
+          ],
+          "rates": {
+            "GG-09": 54, "GG-10": 54, "GG-11": 54, "GG-12": 54, "GG-13": 54,
+            "GG-14": 44,
+            "GG-15": 34
+          }
+        },
+        "0764": {
+          "locality_areas": [
+            "Dallas-Fort Worth, TX-OK",
+            "Miami-Port St. Lucie-Fort Lauderdale, FL",
+            "Minneapolis-St. Paul, MN-WI",
+            "Portland-Vancouver-Salem, OR-WA"
+          ],
+          "rates": {
+            "GG-09": 52, "GG-10": 52, "GG-11": 52, "GG-12": 52, "GG-13": 52,
+            "GG-14": 42,
+            "GG-15": 32
+          }
+        },
+        "0765": {
+          "locality_areas": [
+            "Atlanta-Athens-Clarke County-Sandy Springs, GA-AL",
+            "Buffalo-Cheektowaga-Olean, NY",
+            "Cincinnati-Wilmington-Maysville, OH-KY-IN",
+            "Cleveland-Akron-Canton, OH-PA",
+            "Milwaukee-Racine-Waukesha, WI",
+            "Phoenix-Mesa, AZ",
+            "Raleigh-Durham-Cary, NC"
+          ],
+          "rates": {
+            "GG-09": 49, "GG-10": 49, "GG-11": 49, "GG-12": 49, "GG-13": 49,
+            "GG-14": 39,
+            "GG-15": 29
+          }
+        },
+        "0766": {
+          "locality_areas": [
+            "Columbus-Marion-Zanesville, OH",
+            "Dayton-Springfield-Kettering, OH",
+            "Huntsville-Decatur, AL-TN",
+            "Laredo, TX",
+            "Pittsburgh-New Castle-Weirton, PA-OH-WV",
+            "Richmond, VA"
+          ],
+          "rates": {
+            "GG-11": 47, "GG-12": 47, "GG-13": 47,
+            "GG-14": 37,
+            "GG-15": 27
+          }
+        },
+        "0767": {
+          "locality_areas": [
+            "Albany-Schenectady, NY-MA",
+            "Albuquerque-Santa Fe-Las Vegas, NM",
+            "Austin-Round Rock-Georgetown, TX",
+            "Birmingham-Hoover-Talladega, AL",
+            "Burlington-South Burlington-Barre, VT",
+            "Charlotte-Concord, NC-SC",
+            "Colorado Springs, CO",
+            "Corpus Christi-Kingsville-Alice, TX",
+            "Davenport-Moline, IA-IL",
+            "Des Moines-Ames-West Des Moines, IA",
+            "Fresno-Madera-Hanford, CA",
+            "Harrisburg-Lebanon, PA",
+            "Indianapolis-Carmel-Muncie, IN",
+            "Kansas City-Overland Park-Kansas City, MO-KS",
+            "Las Vegas-Henderson, NV-AZ",
+            "Omaha-Council Bluffs-Fremont, NE-IA",
+            "Palm Bay-Melbourne-Titusville, FL",
+            "Reno-Fernley, NV",
+            "Rochester-Batavia-Seneca Falls, NY",
+            "San Antonio-New Braunfels-Pearsall, TX",
+            "Spokane-Spokane Valley-Coeur d'Alene, WA-ID",
+            "St. Louis-St. Charles-Farmington, MO-IL",
+            "Tucson-Nogales, AZ",
+            "Virginia Beach-Norfolk, VA-NC",
+            "Rest of U.S. (Contiguous)"
+          ],
+          "rates": {
+            "GG-09": 45, "GG-10": 45, "GG-11": 45, "GG-12": 45, "GG-13": 45,
+            "GG-14": 35,
+            "GG-15": 25
+          }
+        },
+        "558A": {
+          "locality_areas": ["Alaska"],
+          "rates": {
+            "GG-09": 62.36, "GG-10": 62.36, "GG-11": 62.36, "GG-12": 62.36, "GG-13": 62.36,
+            "GG-14": 52.36,
+            "GG-15": 42.36
+          }
+        },
+        "558H": {
+          "locality_areas": ["Hawaii"],
+          "rates": {
+            "GG-09": 52.21, "GG-10": 52.21, "GG-11": 52.21, "GG-12": 52.21, "GG-13": 52.21,
+            "GG-14": 42.21,
+            "GG-15": 32.21
+          }
+        },
+        "558P": {
+          "locality_areas": ["Puerto Rico"],
+          "rates": {
+            "GG-11": 47.06, "GG-12": 47.06, "GG-13": 47.06,
+            "GG-14": 37.06,
+            "GG-15": 27.06
+          }
+        }
+      }
+    },
+
+    "foreign_area": {
+      "description": "Foreign Area Targeted Local Market Supplement",
+      "effective_date": "2026-01-01",
+      "percentage": 33.94,
+      "applies_to": "All Pay Bands",
+      "covered_series": "All (except those covered by Polygrapher TLMS Schedules)",
+      "locations": "All Foreign Locations"
+    }
+  },
+
+  "stem_cyber_grades": {
+    "_note": "Pre-calculated STEM/Cyber TLMS pay rates (Base GG + TLMS percentage)",
+    "GG-07": [81901, 84632, 87362, 90092, 92823, 95553, 98283, 101014, 103744, 106474, 109204, 111935],
+    "GG-08": [88315, 91259, 94202, 97145, 100089, 103032, 105975, 108919, 111862, 114805, 117749, 120692],
+    "GG-09": [94909, 98073, 101237, 104402, 107566, 110731, 113895, 117059, 120224, 123388, 126553, 129717],
+    "GG-10": [99870, 103198, 106526, 109855, 113183, 116511, 119839, 123167, 126496, 129824, 133152, 136480],
+    "GG-11": [105262, 108771, 112281, 115790, 119300, 122810, 126319, 129829, 133338, 136848, 140357, 143867],
+    "GG-12": [117753, 121678, 125604, 129529, 133455, 137380, 141306, 145231, 149157, 153082, 157008, 160933],
+    "GG-13": [132751, 137176, 141601, 146026, 150452, 154877, 159302, 163727, 168153, 172578, 177003, 181428],
+    "GG-14": [148275, 153219, 158162, 163105, 168048, 172991, 177934, 182878, 187821, 192764, 197200, 197200],
+    "GG-15": [167446, 173028, 178610, 184192, 189773, 195355, 197200, 197200, 197200, 197200, 197200, 197200]
+  },
+
+  "stem_cyber_pay_bands": {
+    "_note": "STEM/Cyber TLMS pay band ranges (minimum and maximum with TLMS applied)",
+    "2": {
+      "minimum": 81901,
+      "maximum": 136480,
+      "grade_range": ["GG-07", "GG-08", "GG-09", "GG-10"],
+      "tlms_range": "72% to 90%"
+    },
+    "3": {
+      "minimum": 105262,
+      "maximum": 181428,
+      "grade_range": ["GG-11", "GG-12", "GG-13"],
+      "tlms_range": "46% to 65%"
+    },
+    "4": {
+      "minimum": 132751,
+      "maximum": 197200,
+      "grade_range": ["GG-13", "GG-14"],
+      "tlms_range": "38% to 46%",
+      "note": "GG-14 steps 11-12 capped at $197,200"
+    },
+    "5": {
+      "minimum": 167446,
+      "maximum": 197200,
+      "grade_range": ["GG-15"],
+      "tlms_range": "32.49%",
+      "note": "Steps 7-12 capped at $197,200"
+    }
+  }
+}
