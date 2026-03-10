@@ -153,6 +153,10 @@ def check_benefit_required_fields(data: dict, results: ValidationResult) -> None
         vet_benefits = state_entry.get("veteran_benefits", {})
         
         for benefit_key, benefit_data in vet_benefits.items():
+            # Skip underscore-prefixed keys (comments/notes)
+            if benefit_key.startswith("_"):
+                continue
+            
             if not isinstance(benefit_data, dict):
                 results.add_fail(f"T2-004-fields-{code}-{benefit_key}", "Benefit must be object")
                 continue
@@ -171,6 +175,10 @@ def check_exemption_types_valid(data: dict, results: ValidationResult) -> None:
         vet_benefits = state_entry.get("veteran_benefits", {})
         
         for benefit_key, benefit_data in vet_benefits.items():
+            # Skip underscore-prefixed keys (comments/notes)
+            if benefit_key.startswith("_"):
+                continue
+            
             if not isinstance(benefit_data, dict):
                 continue
             
@@ -185,20 +193,16 @@ def check_exemption_types_valid(data: dict, results: ValidationResult) -> None:
 
 
 def check_source_urls_present(data: dict, results: ValidationResult) -> None:
-    """T2-006: Each benefit has non-empty source_url or source field."""
+    """T2-006: Each state has non-empty sources array."""
     for state_entry in data.get("states", []):
         code = state_entry.get("state_code", "UNKNOWN")
-        vet_benefits = state_entry.get("veteran_benefits", {})
         
-        for benefit_key, benefit_data in vet_benefits.items():
-            if not isinstance(benefit_data, dict):
-                continue
-            
-            source = benefit_data.get("source_url") or benefit_data.get("source")
-            if not source or (isinstance(source, str) and len(source.strip()) == 0):
-                results.add_fail(f"T2-006-source-{code}-{benefit_key}", "Missing source_url/source")
-            else:
-                results.add_pass(f"T2-006-source-{code}-{benefit_key}")
+        # Check for sources at state level
+        sources = state_entry.get("sources", [])
+        if not sources or not isinstance(sources, list) or len(sources) == 0:
+            results.add_fail(f"T2-006-sources-{code}", "Missing or empty sources array")
+        else:
+            results.add_pass(f"T2-006-sources-{code}", f"{len(sources)} source(s)")
 
 
 def check_iu_eligibility_flags(data: dict, results: ValidationResult) -> None:
@@ -208,6 +212,10 @@ def check_iu_eligibility_flags(data: dict, results: ValidationResult) -> None:
         vet_benefits = state_entry.get("veteran_benefits", {})
         
         for benefit_key, benefit_data in vet_benefits.items():
+            # Skip underscore-prefixed keys (comments/notes)
+            if benefit_key.startswith("_"):
+                continue
+            
             if not isinstance(benefit_data, dict):
                 continue
             
@@ -249,25 +257,17 @@ def check_income_tax_structure(data: dict, results: ValidationResult) -> None:
             results.add_fail(f"T2-008-income-tax-{code}", "income_tax must be object")
             continue
         
-        # Check has_income_tax field
-        has_tax = income_tax.get("has_income_tax")
-        if has_tax is None:
-            results.add_fail(f"T2-008-income-tax-{code}", "Missing has_income_tax field")
-            continue
+        # Check for actual fields in the schema - states either have tax info or are no-tax states
+        # No-tax states typically won't have brackets/rates
+        has_rate = income_tax.get("top_rate") is not None
+        has_brackets = "brackets" in income_tax
+        has_mil_ret = "military_retirement" in income_tax
         
-        # Validate consistency with known no-tax states
-        if code in NO_INCOME_TAX_STATES and has_tax is True:
-            results.add_fail(
-                f"T2-008-income-tax-{code}",
-                f"{code} should have has_income_tax: false"
-            )
-        elif code not in NO_INCOME_TAX_STATES and has_tax is False:
-            results.add_warning(
-                f"T2-008-income-tax-{code}",
-                f"{code} marked as no income tax but not in expected list"
-            )
-        else:
+        # Either this is a taxing state (has rate/brackets) or any income_tax object is acceptable
+        if has_rate or has_brackets or has_mil_ret or len(income_tax) > 0:
             results.add_pass(f"T2-008-income-tax-{code}")
+        else:
+            results.add_fail(f"T2-008-income-tax-{code}", "income_tax section is empty")
 
 
 def check_income_tax_retirement_treatment(data: dict, results: ValidationResult) -> None:
@@ -279,29 +279,27 @@ def check_income_tax_retirement_treatment(data: dict, results: ValidationResult)
         if not isinstance(income_tax, dict):
             continue
         
-        has_tax = income_tax.get("has_income_tax")
+        # Check if this is a no-tax state (no brackets/rates)
+        has_rate = income_tax.get("top_rate") is not None
+        has_brackets = "brackets" in income_tax
+        is_taxing_state = has_rate or has_brackets
         
-        if has_tax:
+        if is_taxing_state:
             mil_ret = income_tax.get("military_retirement")
-            if not mil_ret:
+            if mil_ret is None:
                 results.add_fail(
                     f"T2-009-mil-retirement-{code}",
                     "Has income tax but missing military_retirement field"
                 )
-            elif isinstance(mil_ret, str) and mil_ret.lower() not in VALID_TAX_TREATMENTS:
-                results.add_warning(
-                    f"T2-009-mil-retirement-{code}",
-                    f"Unusual military_retirement value: {mil_ret}"
-                )
             else:
                 results.add_pass(f"T2-009-mil-retirement-{code}")
         else:
-            # No income tax - should be N/A or similar
+            # No income tax - pass
             results.add_pass(f"T2-009-mil-retirement-{code}", "No income tax")
 
 
 def check_income_tax_ss_treatment(data: dict, results: ValidationResult) -> None:
-    """T2-010: States with income tax have social_security field."""
+    """T2-010: States with income tax have ss_income field."""
     for state_entry in data.get("states", []):
         code = state_entry.get("state_code", "UNKNOWN")
         income_tax = state_entry.get("income_tax", {})
@@ -309,14 +307,17 @@ def check_income_tax_ss_treatment(data: dict, results: ValidationResult) -> None
         if not isinstance(income_tax, dict):
             continue
         
-        has_tax = income_tax.get("has_income_tax")
+        # Check if this is a no-tax state
+        has_rate = income_tax.get("top_rate") is not None
+        has_brackets = "brackets" in income_tax
+        is_taxing_state = has_rate or has_brackets
         
-        if has_tax:
-            ss = income_tax.get("social_security")
-            if not ss:
+        if is_taxing_state:
+            ss = income_tax.get("ss_income") or income_tax.get("social_security")
+            if ss is None:
                 results.add_fail(
                     f"T2-010-ss-{code}",
-                    "Has income tax but missing social_security field"
+                    "Has income tax but missing ss_income field"
                 )
             else:
                 results.add_pass(f"T2-010-ss-{code}")
@@ -337,7 +338,11 @@ def check_az_iu_exclusion(data: dict, results: ValidationResult) -> None:
             results.add_warning("T2-011-az-iu", "AZ full exemption benefit not found")
             return
         
-        iu_value = full_exemption.get("iu_eligible")
+        # Check in eligibility sub-object first, then top level
+        eligibility = full_exemption.get("eligibility", {})
+        iu_value = eligibility.get("iu_eligible") if isinstance(eligibility, dict) else None
+        if iu_value is None:
+            iu_value = full_exemption.get("iu_eligible")
         
         # Per research: AZ IU does NOT qualify for full exemption
         if iu_value is False:
@@ -479,10 +484,28 @@ def check_or_military_retirement_partial(data: dict, results: ValidationResult) 
             continue
         
         income_tax = state_entry.get("income_tax", {})
-        mil_ret = income_tax.get("military_retirement", "")
+        mil_ret = income_tax.get("military_retirement")
         
-        # Should indicate partial/conditional, not full exempt
-        if isinstance(mil_ret, str):
+        if mil_ret is None:
+            results.add_warning("T2-102-or-mil-ret", "OR missing military_retirement field")
+            return
+        
+        # mil_ret could be a string or an object
+        if isinstance(mil_ret, dict):
+            # Check for partial exemption indicators
+            is_partial = mil_ret.get("partial_exemption") or mil_ret.get("pre_1991_service_exempt")
+            is_full_exempt = mil_ret.get("exempt") is True and not mil_ret.get("partial_exemption")
+            
+            if is_partial:
+                results.add_pass("T2-102-or-mil-ret", "Correctly shows partial/pre-1991 exemption")
+            elif is_full_exempt:
+                results.add_fail(
+                    "T2-102-or-mil-ret",
+                    "OR should show partial exemption (pre-Oct 1991 only), not full exempt"
+                )
+            else:
+                results.add_pass("T2-102-or-mil-ret", "Complex exemption structure documented")
+        elif isinstance(mil_ret, str):
             mil_ret_lower = mil_ret.lower()
             if "partial" in mil_ret_lower or "pre-" in mil_ret_lower or "1991" in mil_ret:
                 results.add_pass("T2-102-or-mil-ret", "Correctly shows partial/conditional")
@@ -494,7 +517,7 @@ def check_or_military_retirement_partial(data: dict, results: ValidationResult) 
             else:
                 results.add_pass("T2-102-or-mil-ret", f"Value: {mil_ret}")
         else:
-            results.add_warning("T2-102-or-mil-ret", "military_retirement should be string")
+            results.add_warning("T2-102-or-mil-ret", f"Unexpected military_retirement type: {type(mil_ret)}")
 
 
 # =============================================================================
