@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "name": "TSP Contribution Limits",
+    "description": "Annual elective deferral limits for the Thrift Savings Plan. Also applies to 401(k), 403(b), 457, and similar plans.",
+    "version": "1.0",
+    "last_updated": "2026-03-08",
+    "sources": [
+      "https://www.tsp.gov/agency-service-reps/historical-information/",
+      "https://dqydj.com/historical-401k-contribution-limit/"
+    ],
+    "notes": [
+      "TSP established by FERS Act of 1986, contributions began 1987",
+      "2001 EGTRRA significantly increased limits and added catch-up",
+      "2022 SECURE 2.0 added 'super catch-up' for ages 60-63 (effective 2025)",
+      "2026: High earners ($150K+ prior year) must make catch-up as Roth"
+    ]
+  },
+  "current_year": {
+    "year": 2026,
+    "elective_deferral_limit": 24500,
+    "catchup_50_plus": 8000,
+    "super_catchup_60_63": 11250,
+    "total_50_plus": 32500,
+    "total_60_63": 35750,
+    "annual_additions_limit": 72000
+  },
+  "history": [
+    { "year": 1987, "limit": 7000, "catchup": null, "notes": "TSP launched" },
+    { "year": 1988, "limit": 7313, "catchup": null },
+    { "year": 1989, "limit": 7627, "catchup": null },
+    { "year": 1990, "limit": 7979, "catchup": null },
+    { "year": 1991, "limit": 8475, "catchup": null },
+    { "year": 1992, "limit": 8728, "catchup": null },
+    { "year": 1993, "limit": 8994, "catchup": null },
+    { "year": 1994, "limit": 9240, "catchup": null },
+    { "year": 1995, "limit": 9240, "catchup": null },
+    { "year": 1996, "limit": 9500, "catchup": null },
+    { "year": 1997, "limit": 9500, "catchup": null },
+    { "year": 1998, "limit": 10000, "catchup": null },
+    { "year": 1999, "limit": 10000, "catchup": null },
+    { "year": 2000, "limit": 10500, "catchup": null },
+    { "year": 2001, "limit": 10500, "catchup": null },
+    { "year": 2002, "limit": 11000, "catchup": 1000, "notes": "EGTRRA catch-up begins" },
+    { "year": 2003, "limit": 12000, "catchup": 2000 },
+    { "year": 2004, "limit": 13000, "catchup": 3000 },
+    { "year": 2005, "limit": 14000, "catchup": 4000 },
+    { "year": 2006, "limit": 15000, "catchup": 5000 },
+    { "year": 2007, "limit": 15500, "catchup": 5000 },
+    { "year": 2008, "limit": 15500, "catchup": 5000 },
+    { "year": 2009, "limit": 16500, "catchup": 5500 },
+    { "year": 2010, "limit": 16500, "catchup": 5500 },
+    { "year": 2011, "limit": 16500, "catchup": 5500 },
+    { "year": 2012, "limit": 17000, "catchup": 5500 },
+    { "year": 2013, "limit": 17500, "catchup": 5500 },
+    { "year": 2014, "limit": 17500, "catchup": 5500 },
+    { "year": 2015, "limit": 18000, "catchup": 6000 },
+    { "year": 2016, "limit": 18000, "catchup": 6000 },
+    { "year": 2017, "limit": 18000, "catchup": 6000 },
+    { "year": 2018, "limit": 18500, "catchup": 6000 },
+    { "year": 2019, "limit": 19000, "catchup": 6000 },
+    { "year": 2020, "limit": 19500, "catchup": 6500 },
+    { "year": 2021, "limit": 19500, "catchup": 6500 },
+    { "year": 2022, "limit": 20500, "catchup": 6500 },
+    { "year": 2023, "limit": 22500, "catchup": 7500 },
+    { "year": 2024, "limit": 23000, "catchup": 7500 },
+    { "year": 2025, "limit": 23500, "catchup": 7500, "super_catchup_60_63": 11250, "notes": "SECURE 2.0 super catch-up begins" },
+    { "year": 2026, "limit": 24500, "catchup": 8000, "super_catchup_60_63": 11250, "notes": "Roth catch-up required for high earners" }
+  ]
+}

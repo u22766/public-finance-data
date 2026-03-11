@@ -1,0 +1,749 @@
+{
+  "metadata": {
+    "title": "IRA Contribution and Income Limits",
+    "description": "Historical IRA contribution limits, catch-up contributions, and Roth IRA income phase-out limits by filing status",
+    "version": "2.0",
+    "last_updated": "2026-03-09",
+    "sources": [
+      "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits",
+      "https://www.irs.gov/publications/p590a",
+      "https://dqydj.com/historical-ira-contribution-limit/"
+    ],
+    "notes": {
+      "contribution_limits": "Per person regardless of filing status; spousal IRA allows non-working spouse to contribute if joint return filed",
+      "roth_income_limits": "MAGI (Modified Adjusted Gross Income) thresholds for Roth IRA contribution eligibility",
+      "phase_out": "Between full_contribution and ineligible thresholds, contribution is proportionally reduced",
+      "married_separate": "If lived with spouse during year, very restrictive $0-$10K limit applies; if lived apart all year, single limits apply"
+    }
+  },
+  "annual_limits": [
+    {
+      "year": 1975,
+      "contribution_limit": 1500,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1976,
+      "contribution_limit": 1500,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1977,
+      "contribution_limit": 1500,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1978,
+      "contribution_limit": 1500,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1979,
+      "contribution_limit": 1500,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1980,
+      "contribution_limit": 1500,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1981,
+      "contribution_limit": 1500,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1982,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false,
+      "notes": "Economic Recovery Tax Act of 1981 raised limit to $2,000"
+    },
+    {
+      "year": 1983,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1984,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1985,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1986,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1987,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1988,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1989,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1990,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1991,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1992,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1993,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1994,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1995,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1996,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false
+    },
+    {
+      "year": 1997,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": false,
+      "notes": "Taxpayer Relief Act of 1997 created Roth IRA (effective 1998)"
+    },
+    {
+      "year": 1998,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "First year Roth IRA available"
+    },
+    {
+      "year": 1999,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2000,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2001,
+      "contribution_limit": 2000,
+      "catchup_50_plus": 0,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2002,
+      "contribution_limit": 3000,
+      "catchup_50_plus": 500,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "EGTRRA increased limits and added catch-up contributions"
+    },
+    {
+      "year": 2003,
+      "contribution_limit": 3000,
+      "catchup_50_plus": 500,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2004,
+      "contribution_limit": 3000,
+      "catchup_50_plus": 500,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2005,
+      "contribution_limit": 4000,
+      "catchup_50_plus": 500,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2006,
+      "contribution_limit": 4000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 95000,
+          "ineligible_at": 110000
+        },
+        "married_joint": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 160000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "Catch-up increased to $1,000"
+    },
+    {
+      "year": 2007,
+      "contribution_limit": 4000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 99000,
+          "ineligible_at": 114000
+        },
+        "married_joint": {
+          "full_contribution_below": 156000,
+          "ineligible_at": 166000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "First year income limits indexed to inflation"
+    },
+    {
+      "year": 2008,
+      "contribution_limit": 5000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 101000,
+          "ineligible_at": 116000
+        },
+        "married_joint": {
+          "full_contribution_below": 159000,
+          "ineligible_at": 169000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2009,
+      "contribution_limit": 5000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 105000,
+          "ineligible_at": 120000
+        },
+        "married_joint": {
+          "full_contribution_below": 166000,
+          "ineligible_at": 176000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2010,
+      "contribution_limit": 5000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 105000,
+          "ineligible_at": 120000
+        },
+        "married_joint": {
+          "full_contribution_below": 167000,
+          "ineligible_at": 177000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "Roth conversion income limit ($100K) eliminated"
+    },
+    {
+      "year": 2011,
+      "contribution_limit": 5000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 107000,
+          "ineligible_at": 122000
+        },
+        "married_joint": {
+          "full_contribution_below": 169000,
+          "ineligible_at": 179000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2012,
+      "contribution_limit": 5000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 110000,
+          "ineligible_at": 125000
+        },
+        "married_joint": {
+          "full_contribution_below": 173000,
+          "ineligible_at": 183000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2013,
+      "contribution_limit": 5500,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 112000,
+          "ineligible_at": 127000
+        },
+        "married_joint": {
+          "full_contribution_below": 178000,
+          "ineligible_at": 188000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2014,
+      "contribution_limit": 5500,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 114000,
+          "ineligible_at": 129000
+        },
+        "married_joint": {
+          "full_contribution_below": 181000,
+          "ineligible_at": 191000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2015,
+      "contribution_limit": 5500,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 116000,
+          "ineligible_at": 131000
+        },
+        "married_joint": {
+          "full_contribution_below": 183000,
+          "ineligible_at": 193000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2016,
+      "contribution_limit": 5500,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 117000,
+          "ineligible_at": 132000
+        },
+        "married_joint": {
+          "full_contribution_below": 184000,
+          "ineligible_at": 194000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2017,
+      "contribution_limit": 5500,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 118000,
+          "ineligible_at": 133000
+        },
+        "married_joint": {
+          "full_contribution_below": 186000,
+          "ineligible_at": 196000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2018,
+      "contribution_limit": 5500,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 120000,
+          "ineligible_at": 135000
+        },
+        "married_joint": {
+          "full_contribution_below": 189000,
+          "ineligible_at": 199000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2019,
+      "contribution_limit": 6000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 122000,
+          "ineligible_at": 137000
+        },
+        "married_joint": {
+          "full_contribution_below": 193000,
+          "ineligible_at": 203000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "contribution_limit": 6000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 124000,
+          "ineligible_at": 139000
+        },
+        "married_joint": {
+          "full_contribution_below": 196000,
+          "ineligible_at": 206000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "SECURE Act removed age limit for traditional IRA contributions"
+    },
+    {
+      "year": 2021,
+      "contribution_limit": 6000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 125000,
+          "ineligible_at": 140000
+        },
+        "married_joint": {
+          "full_contribution_below": 198000,
+          "ineligible_at": 208000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2022,
+      "contribution_limit": 6000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 129000,
+          "ineligible_at": 144000
+        },
+        "married_joint": {
+          "full_contribution_below": 204000,
+          "ineligible_at": 214000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "contribution_limit": 6500,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 138000,
+          "ineligible_at": 153000
+        },
+        "married_joint": {
+          "full_contribution_below": 218000,
+          "ineligible_at": 228000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "contribution_limit": 7000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 146000,
+          "ineligible_at": 161000
+        },
+        "married_joint": {
+          "full_contribution_below": 230000,
+          "ineligible_at": 240000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "SECURE 2.0: 529 to Roth rollovers now permitted"
+    },
+    {
+      "year": 2025,
+      "contribution_limit": 7000,
+      "catchup_50_plus": 1000,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 150000,
+          "ineligible_at": 165000
+        },
+        "married_joint": {
+          "full_contribution_below": 236000,
+          "ineligible_at": 246000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      }
+    },
+    {
+      "year": 2026,
+      "contribution_limit": 7500,
+      "catchup_50_plus": 1100,
+      "roth_available": true,
+      "roth_income_limits": {
+        "single": {
+          "full_contribution_below": 153000,
+          "ineligible_at": 168000
+        },
+        "married_joint": {
+          "full_contribution_below": 242000,
+          "ineligible_at": 252000
+        },
+        "married_separate": {
+          "full_contribution_below": 0,
+          "ineligible_at": 10000
+        }
+      },
+      "notes": "SECURE 2.0: Catch-up now indexed to inflation ($1,100)"
+    }
+  ]
+}
