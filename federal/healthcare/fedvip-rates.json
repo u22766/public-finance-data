@@ -1,0 +1,1980 @@
+{
+  "_metadata": {
+    "file": "fedvip-rates.json",
+    "version": "2026.1",
+    "effective_date": "2026-01-01",
+    "source": "OPM FEDVIP Premium Rate Charts",
+    "source_urls": [
+      "https://www.opm.gov/healthcare-insurance/dental-vision/plan-information/premiums/2026/2026-fedvip-dental-premiums.xlsx",
+      "https://www.opm.gov/healthcare-insurance/dental-vision/plan-information/premiums/2026/2026-fedvip-vision-premiums.xlsx"
+    ],
+    "last_verified": "2026-03-11",
+    "notes": "2026 FEDVIP dental and vision premium rates. Dental plans use rating regions (0-9); vision plans vary by location. Average increase: dental 3.35%, vision 0.47%."
+  },
+  "program_overview": {
+    "name": "Federal Employees Dental and Vision Insurance Program",
+    "acronym": "FEDVIP",
+    "plan_year": 2026,
+    "open_season": "November 10 - December 8, 2025",
+    "enrollment_website": "www.BENEFEDS.gov",
+    "enrollment_phone": "1-877-888-FEDS (1-877-888-3337)",
+    "premium_basis": "Employees pay pre-tax; annuitants and TRICARE enrollees pay post-tax",
+    "average_increase": {
+      "dental_pct": 3.35,
+      "vision_pct": 0.47
+    }
+  },
+  "dental": {
+    "_note": "Dental plans by rating region. Rating regions vary by carrier \u2014 check the OPM dental rating region chart for your region.",
+    "total_entries": 103,
+    "carriers": [
+      "Aetna Dental",
+      "Blue Cross Blue Shield FEP Dental",
+      "Delta Dental's Federal Employees Dental Program",
+      "Dominion National",
+      "EmblemHealth Dental",
+      "GEHA Connection Dental Federal",
+      "Humana Dental",
+      "The MetLife Federal Dental Plan",
+      "Triple-S Salud",
+      "United Concordia Dental",
+      "UnitedHealthcare Dental Plan"
+    ],
+    "plans": [
+      {
+        "plan": "Aetna Dental",
+        "option": "High",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 19.75,
+            "self_plus_one": 39.5,
+            "self_and_family": 59.25
+          },
+          "monthly": {
+            "self_only": 42.79,
+            "self_plus_one": 85.58,
+            "self_and_family": 128.38
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 17.93,
+            "self_plus_one": 35.86,
+            "self_and_family": 53.78
+          },
+          "monthly": {
+            "self_only": 38.85,
+            "self_plus_one": 77.7,
+            "self_and_family": 116.52
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 19.75,
+            "self_plus_one": 39.5,
+            "self_and_family": 59.25
+          },
+          "monthly": {
+            "self_only": 42.79,
+            "self_plus_one": 85.58,
+            "self_and_family": 128.38
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 21.01,
+            "self_plus_one": 42.01,
+            "self_and_family": 63.02
+          },
+          "monthly": {
+            "self_only": 45.52,
+            "self_plus_one": 91.02,
+            "self_and_family": 136.54
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 23.19,
+            "self_plus_one": 46.38,
+            "self_and_family": 69.57
+          },
+          "monthly": {
+            "self_only": 50.25,
+            "self_plus_one": 100.49,
+            "self_and_family": 150.74
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 25.19,
+            "self_plus_one": 50.35,
+            "self_and_family": 75.53
+          },
+          "monthly": {
+            "self_only": 54.58,
+            "self_plus_one": 109.09,
+            "self_and_family": 163.65
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "Standard",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.26,
+            "self_plus_one": 24.51,
+            "self_and_family": 36.75
+          },
+          "monthly": {
+            "self_only": 26.56,
+            "self_plus_one": 53.11,
+            "self_and_family": 79.63
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 11.14,
+            "self_plus_one": 22.27,
+            "self_and_family": 33.41
+          },
+          "monthly": {
+            "self_only": 24.14,
+            "self_plus_one": 48.25,
+            "self_and_family": 72.39
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.26,
+            "self_plus_one": 24.51,
+            "self_and_family": 36.75
+          },
+          "monthly": {
+            "self_only": 26.56,
+            "self_plus_one": 53.11,
+            "self_and_family": 79.63
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 13.03,
+            "self_plus_one": 26.06,
+            "self_and_family": 39.09
+          },
+          "monthly": {
+            "self_only": 28.23,
+            "self_plus_one": 56.46,
+            "self_and_family": 84.7
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.36,
+            "self_plus_one": 28.71,
+            "self_and_family": 43.06
+          },
+          "monthly": {
+            "self_only": 31.11,
+            "self_plus_one": 62.21,
+            "self_and_family": 93.3
+          }
+        }
+      },
+      {
+        "plan": "Aetna Dental",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 15.58,
+            "self_plus_one": 31.17,
+            "self_and_family": 46.75
+          },
+          "monthly": {
+            "self_only": 33.76,
+            "self_plus_one": 67.54,
+            "self_and_family": 101.29
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "High",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 19.51,
+            "self_plus_one": 39.02,
+            "self_and_family": 58.53
+          },
+          "monthly": {
+            "self_only": 42.27,
+            "self_plus_one": 84.54,
+            "self_and_family": 126.82
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 19.51,
+            "self_plus_one": 39.02,
+            "self_and_family": 58.53
+          },
+          "monthly": {
+            "self_only": 42.27,
+            "self_plus_one": 84.54,
+            "self_and_family": 126.82
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 21.86,
+            "self_plus_one": 43.72,
+            "self_and_family": 65.59
+          },
+          "monthly": {
+            "self_only": 47.36,
+            "self_plus_one": 94.73,
+            "self_and_family": 142.11
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 23.79,
+            "self_plus_one": 47.57,
+            "self_and_family": 71.36
+          },
+          "monthly": {
+            "self_only": 51.55,
+            "self_plus_one": 103.07,
+            "self_and_family": 154.61
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 25.77,
+            "self_plus_one": 51.54,
+            "self_and_family": 77.3
+          },
+          "monthly": {
+            "self_only": 55.84,
+            "self_plus_one": 111.67,
+            "self_and_family": 167.48
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 28.84,
+            "self_plus_one": 57.69,
+            "self_and_family": 86.53
+          },
+          "monthly": {
+            "self_only": 62.49,
+            "self_plus_one": 125.0,
+            "self_and_family": 187.48
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "Standard",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 10.5,
+            "self_plus_one": 20.99,
+            "self_and_family": 31.49
+          },
+          "monthly": {
+            "self_only": 22.75,
+            "self_plus_one": 45.48,
+            "self_and_family": 68.23
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 10.5,
+            "self_plus_one": 20.99,
+            "self_and_family": 31.49
+          },
+          "monthly": {
+            "self_only": 22.75,
+            "self_plus_one": 45.48,
+            "self_and_family": 68.23
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 11.5,
+            "self_plus_one": 22.99,
+            "self_and_family": 34.49
+          },
+          "monthly": {
+            "self_only": 24.92,
+            "self_plus_one": 49.81,
+            "self_and_family": 74.73
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 13.06,
+            "self_plus_one": 26.12,
+            "self_and_family": 39.18
+          },
+          "monthly": {
+            "self_only": 28.3,
+            "self_plus_one": 56.59,
+            "self_and_family": 84.89
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.1,
+            "self_plus_one": 28.2,
+            "self_and_family": 42.3
+          },
+          "monthly": {
+            "self_only": 30.55,
+            "self_plus_one": 61.1,
+            "self_and_family": 91.65
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Dental",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 15.56,
+            "self_plus_one": 31.13,
+            "self_and_family": 46.69
+          },
+          "monthly": {
+            "self_only": 33.71,
+            "self_plus_one": 67.45,
+            "self_and_family": 101.16
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "High",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 27.3,
+            "self_plus_one": 54.6,
+            "self_and_family": 81.9
+          },
+          "monthly": {
+            "self_only": 59.15,
+            "self_plus_one": 118.3,
+            "self_and_family": 177.45
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 18.31,
+            "self_plus_one": 36.61,
+            "self_and_family": 54.92
+          },
+          "monthly": {
+            "self_only": 39.67,
+            "self_plus_one": 79.32,
+            "self_and_family": 118.99
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 20.07,
+            "self_plus_one": 40.14,
+            "self_and_family": 60.21
+          },
+          "monthly": {
+            "self_only": 43.49,
+            "self_plus_one": 86.97,
+            "self_and_family": 130.46
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 22.02,
+            "self_plus_one": 44.05,
+            "self_and_family": 66.07
+          },
+          "monthly": {
+            "self_only": 47.71,
+            "self_plus_one": 95.44,
+            "self_and_family": 143.15
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 23.43,
+            "self_plus_one": 46.87,
+            "self_and_family": 70.3
+          },
+          "monthly": {
+            "self_only": 50.77,
+            "self_plus_one": 101.55,
+            "self_and_family": 152.32
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 27.3,
+            "self_plus_one": 54.6,
+            "self_and_family": 81.9
+          },
+          "monthly": {
+            "self_only": 59.15,
+            "self_plus_one": 118.3,
+            "self_and_family": 177.45
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "Standard",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.65,
+            "self_plus_one": 29.3,
+            "self_and_family": 43.95
+          },
+          "monthly": {
+            "self_only": 31.74,
+            "self_plus_one": 63.48,
+            "self_and_family": 95.23
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 10.33,
+            "self_plus_one": 20.65,
+            "self_and_family": 30.98
+          },
+          "monthly": {
+            "self_only": 22.38,
+            "self_plus_one": 44.74,
+            "self_and_family": 67.12
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 11.25,
+            "self_plus_one": 22.49,
+            "self_and_family": 33.74
+          },
+          "monthly": {
+            "self_only": 24.38,
+            "self_plus_one": 48.73,
+            "self_and_family": 73.1
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.12,
+            "self_plus_one": 24.24,
+            "self_and_family": 36.35
+          },
+          "monthly": {
+            "self_only": 26.26,
+            "self_plus_one": 52.52,
+            "self_and_family": 78.76
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.79,
+            "self_plus_one": 25.58,
+            "self_and_family": 38.37
+          },
+          "monthly": {
+            "self_only": 27.71,
+            "self_plus_one": 55.42,
+            "self_and_family": 83.14
+          }
+        }
+      },
+      {
+        "plan": "Delta Dental's Federal Employees Dental Program",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.65,
+            "self_plus_one": 29.3,
+            "self_and_family": 43.95
+          },
+          "monthly": {
+            "self_only": 31.74,
+            "self_plus_one": 63.48,
+            "self_and_family": 95.23
+          }
+        }
+      },
+      {
+        "plan": "Dominion National",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 9.84,
+            "self_plus_one": 19.68,
+            "self_and_family": 29.52
+          },
+          "monthly": {
+            "self_only": 21.32,
+            "self_plus_one": 42.64,
+            "self_and_family": 63.96
+          }
+        }
+      },
+      {
+        "plan": "Dominion National",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 10.91,
+            "self_plus_one": 21.82,
+            "self_and_family": 32.74
+          },
+          "monthly": {
+            "self_only": 23.64,
+            "self_plus_one": 47.28,
+            "self_and_family": 70.94
+          }
+        }
+      },
+      {
+        "plan": "Dominion National",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.51,
+            "self_plus_one": 29.02,
+            "self_and_family": 43.54
+          },
+          "monthly": {
+            "self_only": 31.44,
+            "self_plus_one": 62.88,
+            "self_and_family": 94.34
+          }
+        }
+      },
+      {
+        "plan": "Dominion National",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 5.84,
+            "self_plus_one": 11.67,
+            "self_and_family": 17.51
+          },
+          "monthly": {
+            "self_only": 12.65,
+            "self_plus_one": 25.29,
+            "self_and_family": 37.94
+          }
+        }
+      },
+      {
+        "plan": "Dominion National",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 7.46,
+            "self_plus_one": 14.92,
+            "self_and_family": 22.38
+          },
+          "monthly": {
+            "self_only": 16.16,
+            "self_plus_one": 32.33,
+            "self_and_family": 48.49
+          }
+        }
+      },
+      {
+        "plan": "Dominion National",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 8.57,
+            "self_plus_one": 17.15,
+            "self_and_family": 25.72
+          },
+          "monthly": {
+            "self_only": 18.57,
+            "self_plus_one": 37.16,
+            "self_and_family": 55.73
+          }
+        }
+      },
+      {
+        "plan": "EmblemHealth Dental",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 31.83,
+            "self_plus_one": 63.6,
+            "self_and_family": 95.43
+          },
+          "monthly": {
+            "self_only": 68.97,
+            "self_plus_one": 137.8,
+            "self_and_family": 206.77
+          }
+        }
+      },
+      {
+        "plan": "EmblemHealth Dental",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 21.16,
+            "self_plus_one": 42.29,
+            "self_and_family": 63.46
+          },
+          "monthly": {
+            "self_only": 45.85,
+            "self_plus_one": 91.63,
+            "self_and_family": 137.5
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "High",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 28.23,
+            "self_plus_one": 56.46,
+            "self_and_family": 84.63
+          },
+          "monthly": {
+            "self_only": 61.17,
+            "self_plus_one": 122.33,
+            "self_and_family": 183.37
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 18.97,
+            "self_plus_one": 37.92,
+            "self_and_family": 56.88
+          },
+          "monthly": {
+            "self_only": 41.1,
+            "self_plus_one": 82.16,
+            "self_and_family": 123.24
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 21.32,
+            "self_plus_one": 42.62,
+            "self_and_family": 63.95
+          },
+          "monthly": {
+            "self_only": 46.19,
+            "self_plus_one": 92.34,
+            "self_and_family": 138.56
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 23.26,
+            "self_plus_one": 46.53,
+            "self_and_family": 69.79
+          },
+          "monthly": {
+            "self_only": 50.4,
+            "self_plus_one": 100.82,
+            "self_and_family": 151.21
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 26.05,
+            "self_plus_one": 52.08,
+            "self_and_family": 78.13
+          },
+          "monthly": {
+            "self_only": 56.44,
+            "self_plus_one": 112.84,
+            "self_and_family": 169.28
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 28.23,
+            "self_plus_one": 56.46,
+            "self_and_family": 84.63
+          },
+          "monthly": {
+            "self_only": 61.17,
+            "self_plus_one": 122.33,
+            "self_and_family": 183.37
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "Standard",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 16.0,
+            "self_plus_one": 32.0,
+            "self_and_family": 48.0
+          },
+          "monthly": {
+            "self_only": 34.67,
+            "self_plus_one": 69.33,
+            "self_and_family": 104.0
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 10.82,
+            "self_plus_one": 21.61,
+            "self_and_family": 32.41
+          },
+          "monthly": {
+            "self_only": 23.44,
+            "self_plus_one": 46.82,
+            "self_and_family": 70.22
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.11,
+            "self_plus_one": 24.22,
+            "self_and_family": 36.24
+          },
+          "monthly": {
+            "self_only": 26.24,
+            "self_plus_one": 52.48,
+            "self_and_family": 78.52
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 13.27,
+            "self_plus_one": 26.48,
+            "self_and_family": 39.75
+          },
+          "monthly": {
+            "self_only": 28.75,
+            "self_plus_one": 57.37,
+            "self_and_family": 86.13
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.81,
+            "self_plus_one": 29.6,
+            "self_and_family": 44.39
+          },
+          "monthly": {
+            "self_only": 32.09,
+            "self_plus_one": 64.13,
+            "self_and_family": 96.18
+          }
+        }
+      },
+      {
+        "plan": "GEHA Connection Dental Federal",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 16.0,
+            "self_plus_one": 32.0,
+            "self_and_family": 48.0
+          },
+          "monthly": {
+            "self_only": 34.67,
+            "self_plus_one": 69.33,
+            "self_and_family": 104.0
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 21.73,
+            "self_plus_one": 43.47,
+            "self_and_family": 65.2
+          },
+          "monthly": {
+            "self_only": 47.08,
+            "self_plus_one": 94.19,
+            "self_and_family": 141.27
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 23.88,
+            "self_plus_one": 47.76,
+            "self_and_family": 71.64
+          },
+          "monthly": {
+            "self_only": 51.74,
+            "self_plus_one": 103.48,
+            "self_and_family": 155.22
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 25.06,
+            "self_plus_one": 50.13,
+            "self_and_family": 75.19
+          },
+          "monthly": {
+            "self_only": 54.3,
+            "self_plus_one": 108.62,
+            "self_and_family": 162.91
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 26.8,
+            "self_plus_one": 53.6,
+            "self_and_family": 80.4
+          },
+          "monthly": {
+            "self_only": 58.07,
+            "self_plus_one": 116.13,
+            "self_and_family": 174.2
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 32.24,
+            "self_plus_one": 64.47,
+            "self_and_family": 96.71
+          },
+          "monthly": {
+            "self_only": 69.85,
+            "self_plus_one": 139.69,
+            "self_and_family": 209.54
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 11.94,
+            "self_plus_one": 23.89,
+            "self_and_family": 35.83
+          },
+          "monthly": {
+            "self_only": 25.87,
+            "self_plus_one": 51.76,
+            "self_and_family": 77.63
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.87,
+            "self_plus_one": 25.74,
+            "self_and_family": 38.6
+          },
+          "monthly": {
+            "self_only": 27.89,
+            "self_plus_one": 55.77,
+            "self_and_family": 83.63
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 13.88,
+            "self_plus_one": 27.76,
+            "self_and_family": 41.64
+          },
+          "monthly": {
+            "self_only": 30.07,
+            "self_plus_one": 60.15,
+            "self_and_family": 90.22
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 15.24,
+            "self_plus_one": 30.49,
+            "self_and_family": 45.73
+          },
+          "monthly": {
+            "self_only": 33.02,
+            "self_plus_one": 66.06,
+            "self_and_family": 99.08
+          }
+        }
+      },
+      {
+        "plan": "Humana Dental",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 17.49,
+            "self_plus_one": 34.98,
+            "self_and_family": 52.47
+          },
+          "monthly": {
+            "self_only": 37.9,
+            "self_plus_one": 75.79,
+            "self_and_family": 113.69
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "High",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 25.9,
+            "self_plus_one": 51.8,
+            "self_and_family": 77.69
+          },
+          "monthly": {
+            "self_only": 56.12,
+            "self_plus_one": 112.23,
+            "self_and_family": 168.33
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 18.81,
+            "self_plus_one": 37.62,
+            "self_and_family": 56.42
+          },
+          "monthly": {
+            "self_only": 40.76,
+            "self_plus_one": 81.51,
+            "self_and_family": 122.24
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 19.92,
+            "self_plus_one": 39.84,
+            "self_and_family": 59.76
+          },
+          "monthly": {
+            "self_only": 43.16,
+            "self_plus_one": 86.32,
+            "self_and_family": 129.48
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 21.78,
+            "self_plus_one": 43.56,
+            "self_and_family": 65.35
+          },
+          "monthly": {
+            "self_only": 47.19,
+            "self_plus_one": 94.38,
+            "self_and_family": 141.59
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 23.72,
+            "self_plus_one": 47.43,
+            "self_and_family": 71.15
+          },
+          "monthly": {
+            "self_only": 51.39,
+            "self_plus_one": 102.77,
+            "self_and_family": 154.16
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 25.9,
+            "self_plus_one": 51.8,
+            "self_and_family": 77.69
+          },
+          "monthly": {
+            "self_only": 56.12,
+            "self_plus_one": 112.23,
+            "self_and_family": 168.33
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "Standard",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.34,
+            "self_plus_one": 28.68,
+            "self_and_family": 43.02
+          },
+          "monthly": {
+            "self_only": 31.07,
+            "self_plus_one": 62.14,
+            "self_and_family": 93.21
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 10.89,
+            "self_plus_one": 21.77,
+            "self_and_family": 32.66
+          },
+          "monthly": {
+            "self_only": 23.6,
+            "self_plus_one": 47.17,
+            "self_and_family": 70.76
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 11.56,
+            "self_plus_one": 23.11,
+            "self_and_family": 34.67
+          },
+          "monthly": {
+            "self_only": 25.05,
+            "self_plus_one": 50.07,
+            "self_and_family": 75.12
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.57,
+            "self_plus_one": 25.14,
+            "self_and_family": 37.71
+          },
+          "monthly": {
+            "self_only": 27.24,
+            "self_plus_one": 54.47,
+            "self_and_family": 81.71
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 13.67,
+            "self_plus_one": 27.34,
+            "self_and_family": 41.01
+          },
+          "monthly": {
+            "self_only": 29.62,
+            "self_plus_one": 59.24,
+            "self_and_family": 88.86
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Dental Plan",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.34,
+            "self_plus_one": 28.68,
+            "self_and_family": 43.02
+          },
+          "monthly": {
+            "self_only": 31.07,
+            "self_plus_one": 62.14,
+            "self_and_family": 93.21
+          }
+        }
+      },
+      {
+        "plan": "Triple-S Salud",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 6.19,
+            "self_plus_one": 12.38,
+            "self_and_family": 16.17
+          },
+          "monthly": {
+            "self_only": 13.41,
+            "self_plus_one": 26.82,
+            "self_and_family": 35.04
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "High",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 27.38,
+            "self_plus_one": 54.76,
+            "self_and_family": 82.12
+          },
+          "monthly": {
+            "self_only": 59.32,
+            "self_plus_one": 118.65,
+            "self_and_family": 177.93
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 18.36,
+            "self_plus_one": 36.71,
+            "self_and_family": 55.06
+          },
+          "monthly": {
+            "self_only": 39.78,
+            "self_plus_one": 79.54,
+            "self_and_family": 119.3
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 20.61,
+            "self_plus_one": 41.2,
+            "self_and_family": 61.81
+          },
+          "monthly": {
+            "self_only": 44.66,
+            "self_plus_one": 89.27,
+            "self_and_family": 133.92
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 22.88,
+            "self_plus_one": 45.74,
+            "self_and_family": 68.62
+          },
+          "monthly": {
+            "self_only": 49.57,
+            "self_plus_one": 99.1,
+            "self_and_family": 148.68
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 25.13,
+            "self_plus_one": 50.24,
+            "self_and_family": 75.37
+          },
+          "monthly": {
+            "self_only": 54.45,
+            "self_plus_one": 108.85,
+            "self_and_family": 163.3
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 27.38,
+            "self_plus_one": 54.76,
+            "self_and_family": 82.12
+          },
+          "monthly": {
+            "self_only": 59.32,
+            "self_plus_one": 118.65,
+            "self_and_family": 177.93
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "Standard",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 16.21,
+            "self_plus_one": 32.42,
+            "self_and_family": 48.64
+          },
+          "monthly": {
+            "self_only": 35.12,
+            "self_plus_one": 70.24,
+            "self_and_family": 105.39
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 10.93,
+            "self_plus_one": 21.83,
+            "self_and_family": 32.76
+          },
+          "monthly": {
+            "self_only": 23.68,
+            "self_plus_one": 47.3,
+            "self_and_family": 70.98
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.26,
+            "self_plus_one": 24.5,
+            "self_and_family": 36.74
+          },
+          "monthly": {
+            "self_only": 26.56,
+            "self_plus_one": 53.08,
+            "self_and_family": 79.6
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 13.58,
+            "self_plus_one": 27.16,
+            "self_and_family": 40.73
+          },
+          "monthly": {
+            "self_only": 29.42,
+            "self_plus_one": 58.85,
+            "self_and_family": 88.25
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.9,
+            "self_plus_one": 29.79,
+            "self_and_family": 44.7
+          },
+          "monthly": {
+            "self_only": 32.28,
+            "self_plus_one": 64.55,
+            "self_and_family": 96.85
+          }
+        }
+      },
+      {
+        "plan": "United Concordia Dental",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 16.21,
+            "self_plus_one": 32.42,
+            "self_and_family": 48.64
+          },
+          "monthly": {
+            "self_only": 35.12,
+            "self_plus_one": 70.24,
+            "self_and_family": 105.39
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "High",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 33.13,
+            "self_plus_one": 66.26,
+            "self_and_family": 99.39
+          },
+          "monthly": {
+            "self_only": 71.78,
+            "self_plus_one": 143.56,
+            "self_and_family": 215.35
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "High",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 22.2,
+            "self_plus_one": 44.41,
+            "self_and_family": 66.61
+          },
+          "monthly": {
+            "self_only": 48.1,
+            "self_plus_one": 96.22,
+            "self_and_family": 144.32
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "High",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 23.31,
+            "self_plus_one": 46.63,
+            "self_and_family": 69.94
+          },
+          "monthly": {
+            "self_only": 50.51,
+            "self_plus_one": 101.03,
+            "self_and_family": 151.54
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "High",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 24.52,
+            "self_plus_one": 49.03,
+            "self_and_family": 73.55
+          },
+          "monthly": {
+            "self_only": 53.13,
+            "self_plus_one": 106.23,
+            "self_and_family": 159.36
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "High",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 28.21,
+            "self_plus_one": 56.42,
+            "self_and_family": 84.64
+          },
+          "monthly": {
+            "self_only": 61.12,
+            "self_plus_one": 122.24,
+            "self_and_family": 183.39
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "High",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 33.13,
+            "self_plus_one": 66.26,
+            "self_and_family": 99.39
+          },
+          "monthly": {
+            "self_only": 71.78,
+            "self_plus_one": 143.56,
+            "self_and_family": 215.35
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "Standard",
+        "rating_region": "0",
+        "premiums": {
+          "biweekly": {
+            "self_only": 18.85,
+            "self_plus_one": 37.7,
+            "self_and_family": 56.54
+          },
+          "monthly": {
+            "self_only": 40.84,
+            "self_plus_one": 81.68,
+            "self_and_family": 122.5
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "Standard",
+        "rating_region": "1",
+        "premiums": {
+          "biweekly": {
+            "self_only": 12.68,
+            "self_plus_one": 25.36,
+            "self_and_family": 38.04
+          },
+          "monthly": {
+            "self_only": 27.47,
+            "self_plus_one": 54.95,
+            "self_and_family": 82.42
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "Standard",
+        "rating_region": "2",
+        "premiums": {
+          "biweekly": {
+            "self_only": 14.33,
+            "self_plus_one": 28.66,
+            "self_and_family": 42.99
+          },
+          "monthly": {
+            "self_only": 31.05,
+            "self_plus_one": 62.1,
+            "self_and_family": 93.15
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "Standard",
+        "rating_region": "3",
+        "premiums": {
+          "biweekly": {
+            "self_only": 15.4,
+            "self_plus_one": 30.81,
+            "self_and_family": 46.21
+          },
+          "monthly": {
+            "self_only": 33.37,
+            "self_plus_one": 66.76,
+            "self_and_family": 100.12
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "Standard",
+        "rating_region": "4",
+        "premiums": {
+          "biweekly": {
+            "self_only": 16.22,
+            "self_plus_one": 32.45,
+            "self_and_family": 48.67
+          },
+          "monthly": {
+            "self_only": 35.14,
+            "self_plus_one": 70.31,
+            "self_and_family": 105.45
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Dental Plan",
+        "option": "Standard",
+        "rating_region": "5",
+        "premiums": {
+          "biweekly": {
+            "self_only": 18.85,
+            "self_plus_one": 37.7,
+            "self_and_family": 56.54
+          },
+          "monthly": {
+            "self_only": 40.84,
+            "self_plus_one": 81.68,
+            "self_and_family": 122.5
+          }
+        }
+      }
+    ]
+  },
+  "vision": {
+    "_note": "Vision plans by location/area.",
+    "total_entries": 10,
+    "carriers": [
+      "Aetna Vision Preferred",
+      "Blue Cross Blue Shield FEP Vision",
+      "The MetLife Federal Vision Plan",
+      "UnitedHealthcare Vision Plan",
+      "VSP Vision Care"
+    ],
+    "plans": [
+      {
+        "plan": "Aetna Vision Preferred",
+        "option": "High",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 5.68,
+            "self_plus_one": 11.34,
+            "self_and_family": 17.02
+          },
+          "monthly": {
+            "self_only": 12.31,
+            "self_plus_one": 24.57,
+            "self_and_family": 36.88
+          }
+        }
+      },
+      {
+        "plan": "Aetna Vision Preferred",
+        "option": "Standard",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 3.17,
+            "self_plus_one": 6.33,
+            "self_and_family": 9.5
+          },
+          "monthly": {
+            "self_only": 6.87,
+            "self_plus_one": 13.72,
+            "self_and_family": 20.58
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Vision",
+        "option": "High",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 5.66,
+            "self_plus_one": 11.31,
+            "self_and_family": 16.97
+          },
+          "monthly": {
+            "self_only": 12.26,
+            "self_plus_one": 24.51,
+            "self_and_family": 36.77
+          }
+        }
+      },
+      {
+        "plan": "Blue Cross Blue Shield FEP Vision",
+        "option": "Standard",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 3.56,
+            "self_plus_one": 7.12,
+            "self_and_family": 10.68
+          },
+          "monthly": {
+            "self_only": 7.71,
+            "self_plus_one": 15.43,
+            "self_and_family": 23.14
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Vision Plan",
+        "option": "High",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 5.53,
+            "self_plus_one": 11.05,
+            "self_and_family": 16.58
+          },
+          "monthly": {
+            "self_only": 11.98,
+            "self_plus_one": 23.94,
+            "self_and_family": 35.92
+          }
+        }
+      },
+      {
+        "plan": "The MetLife Federal Vision Plan",
+        "option": "Standard",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 3.67,
+            "self_plus_one": 7.34,
+            "self_and_family": 11.01
+          },
+          "monthly": {
+            "self_only": 7.95,
+            "self_plus_one": 15.9,
+            "self_and_family": 23.86
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Vision Plan",
+        "option": "High",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 5.71,
+            "self_plus_one": 11.41,
+            "self_and_family": 17.12
+          },
+          "monthly": {
+            "self_only": 12.37,
+            "self_plus_one": 24.72,
+            "self_and_family": 37.09
+          }
+        }
+      },
+      {
+        "plan": "UnitedHealthcare Vision Plan",
+        "option": "Standard",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 3.74,
+            "self_plus_one": 7.48,
+            "self_and_family": 11.22
+          },
+          "monthly": {
+            "self_only": 8.1,
+            "self_plus_one": 16.21,
+            "self_and_family": 24.31
+          }
+        }
+      },
+      {
+        "plan": "VSP Vision Care",
+        "option": "High",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 6.72,
+            "self_plus_one": 13.46,
+            "self_and_family": 20.19
+          },
+          "monthly": {
+            "self_only": 14.56,
+            "self_plus_one": 29.16,
+            "self_and_family": 43.75
+          }
+        }
+      },
+      {
+        "plan": "VSP Vision Care",
+        "option": "Standard",
+        "location": "",
+        "premiums": {
+          "biweekly": {
+            "self_only": 3.58,
+            "self_plus_one": 7.16,
+            "self_and_family": 10.75
+          },
+          "monthly": {
+            "self_only": 7.76,
+            "self_plus_one": 15.51,
+            "self_and_family": 23.29
+          }
+        }
+      }
+    ]
+  }
+}
