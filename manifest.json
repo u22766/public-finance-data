@@ -2,7 +2,7 @@
   "_comment": "Public Finance Data — Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.0",
   "schema_min_compatible": "2.0",
-  "last_updated": "2026-03-11",
+  "last_updated": "2026-03-09",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
@@ -52,42 +52,6 @@
       "update_frequency": "annual (October)",
       "url": "federal/healthcare/fehb-rates.json",
       "description": "FEHB program-level data: government contributions, weighted averages, premium trends, FEDVIP/PSHB overview"
-    },
-    "ss_taxable_max": {
-      "version": "1.0",
-      "effective_date": "2026-01-01",
-      "update_frequency": "annual (October SSA announcement)",
-      "url": "federal/ss-taxable-max.json",
-      "description": "Social Security taxable wage base history 1937–2026 (90 years)",
-      "source": "https://www.ssa.gov/oact/cola/cbb.html",
-      "changelog_1_0": "Initial release. Complete SSA contribution and benefit base history."
-    },
-    "ss_bend_points": {
-      "version": "1.0",
-      "effective_date": "2026-01-01",
-      "update_frequency": "annual (October SSA announcement)",
-      "url": "federal/ss-bend-points.json",
-      "description": "Social Security PIA formula bend points history 1979–2026 (48 years)",
-      "source": "https://www.ssa.gov/oact/cola/bendpoints.html",
-      "changelog_1_0": "Initial release. Complete SSA bend point history for PIA calculations."
-    },
-    "tsp_limits": {
-      "version": "1.0",
-      "effective_date": "2026-01-01",
-      "update_frequency": "annual (November IRS announcement)",
-      "url": "federal/tsp-limits.json",
-      "description": "TSP contribution limits history 1987–2026 (40 years) including catch-up and super catch-up",
-      "source": "https://www.tsp.gov/agency-service-reps/historical-information/",
-      "changelog_1_0": "Initial release. Complete TSP limit history with EGTRRA and SECURE 2.0 annotations."
-    },
-    "ira_limits": {
-      "version": "2.0",
-      "effective_date": "2026-01-01",
-      "update_frequency": "annual (November IRS announcement)",
-      "url": "federal/ira-limits.json",
-      "description": "IRA contribution limits 1975–2026 (52 years) with Roth income phase-outs by filing status (single, married joint, married separate)",
-      "source": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits",
-      "changelog_2_0": "Initial release. Includes full Roth income phase-out history by filing status (1998–2026)."
     },
     "state_benefits": {
       "version": "1.5",
