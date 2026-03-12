@@ -752,6 +752,119 @@ check("TRICARE: AD family Group B Select cat cap = 1324",
 print(f"  TRICARE: {passed - tri_count} checks\n")
 
 # ============================================================
+# FEHB PLAN BENEFITS
+# ============================================================
+ben_count = passed
+print("FEHB Plan Benefits (federal/healthcare/fehb-plan-benefits.json):")
+with open("federal/healthcare/fehb-plan-benefits.json") as f:
+    ben = json.load(f)
+
+check("Benefits: has _metadata", "_metadata" in ben)
+check("Benefits: version is 2026.1", ben["_metadata"]["version"] == "2026.1")
+
+plans_b = ben.get("plans", [])
+check("Benefits: total_entries = 264", ben.get("total_entries") == 264)
+check("Benefits: plans length = 264", len(plans_b) == 264)
+
+# 132 in-network + 132 out-of-network
+in_net = [p for p in plans_b if p.get("network") == "In-network"]
+out_net = [p for p in plans_b if p.get("network") == "Out-of-network"]
+check("Benefits: 132 in-network entries", len(in_net) == 132)
+check("Benefits: 132 out-of-network entries", len(out_net) == 132)
+
+# All entries have required fields
+for p in plans_b:
+    name = p.get("plan_option_name", "?")[:25]
+    net = p.get("network", "?")[:3]
+    label = f"{name} [{net}]"
+    check(f"Benefits: {label} has plan_option_name", bool(p.get("plan_option_name")))
+    check(f"Benefits: {label} has plan_code", bool(p.get("plan_code")))
+    check(f"Benefits: {label} has network", p.get("network") in ("In-network", "Out-of-network"))
+    check(f"Benefits: {label} has deductible", "deductible" in p)
+    check(f"Benefits: {label} has oop_max", "oop_max" in p)
+    check(f"Benefits: {label} has copays", "copays" in p)
+    check(f"Benefits: {label} has pharmacy", "pharmacy" in p)
+    check(f"Benefits: {label} has medicare_coordination", "medicare_coordination" in p)
+
+# Spot check: BCBS Standard Option (code 10) in-network deductible
+bcbs_std_in = [p for p in in_net if p.get("plan_option_name") == "Standard Option" and p.get("plan_code") == "10"]
+check("Benefits: BCBS Standard Option in-network exists", len(bcbs_std_in) > 0)
+if bcbs_std_in:
+    ded = bcbs_std_in[0].get("deductible", {}).get("self")
+    check("Benefits: BCBS Standard in-network has deductible", ded is not None, f"got {ded}")
+
+# Unique plan options
+unique_opts = set(p["plan_option_name"] for p in plans_b)
+check("Benefits: multiple unique plan options", len(unique_opts) > 25, f"got {len(unique_opts)}")
+
+# Plan types present
+types = set(p.get("plan_option_type", "") for p in plans_b)
+check("Benefits: has Traditional plans", "Traditional" in types)
+check("Benefits: has HDHP plans", "HDHP" in types)
+
+print(f"  Benefits: {passed - ben_count} checks\n")
+
+# ============================================================
+# FEDVIP RATES
+# ============================================================
+fvp_count = passed
+print("FEDVIP Rates (federal/healthcare/fedvip-rates.json):")
+with open("federal/healthcare/fedvip-rates.json") as f:
+    fvp = json.load(f)
+
+check("FEDVIP: has _metadata", "_metadata" in fvp)
+check("FEDVIP: version is 2026.1", fvp["_metadata"]["version"] == "2026.1")
+check("FEDVIP: has dental", "dental" in fvp)
+check("FEDVIP: has vision", "vision" in fvp)
+
+# Dental
+dental = fvp.get("dental", {})
+d_plans = dental.get("plans", [])
+check("FEDVIP: dental total_entries = 103", dental.get("total_entries") == 103)
+check("FEDVIP: dental plans length = 103", len(d_plans) == 103)
+check("FEDVIP: 11 dental carriers", len(dental.get("carriers", [])) == 11)
+
+for dp in d_plans:
+    label = f"{dp['plan'][:20]} R{dp.get('rating_region','?')}"
+    prem = dp.get("premiums", {})
+    bw = prem.get("biweekly", {})
+    mo = prem.get("monthly", {})
+    check(f"FEDVIP dental: {label} bw SO > 0",
+          bw.get("self_only") is not None and bw["self_only"] > 0)
+    check(f"FEDVIP dental: {label} mo SO > 0",
+          mo.get("self_only") is not None and mo["self_only"] > 0)
+    check(f"FEDVIP dental: {label} family > individual",
+          (bw.get("self_and_family") or 0) > (bw.get("self_only") or 0))
+
+# Vision
+vision = fvp.get("vision", {})
+v_plans = vision.get("plans", [])
+check("FEDVIP: vision total_entries = 10", vision.get("total_entries") == 10)
+check("FEDVIP: vision plans length = 10", len(v_plans) == 10)
+check("FEDVIP: 5 vision carriers", len(vision.get("carriers", [])) == 5)
+
+for vp in v_plans:
+    label = f"{vp['plan'][:20]} {vp.get('option','')}"
+    prem = vp.get("premiums", {})
+    bw = prem.get("biweekly", {})
+    check(f"FEDVIP vision: {label} bw SO > 0",
+          bw.get("self_only") is not None and bw["self_only"] > 0)
+
+# Spot check: VSP High monthly self-only
+vsp_high = [v for v in v_plans if "VSP" in v["plan"] and v["option"] == "High"]
+check("FEDVIP: VSP High exists", len(vsp_high) == 1)
+if vsp_high:
+    vsp_mo = vsp_high[0]["premiums"]["monthly"]["self_only"]
+    check("FEDVIP: VSP High SO monthly = 14.56", vsp_mo == 14.56, f"got {vsp_mo}")
+
+# Program overview
+po = fvp.get("program_overview", {})
+check("FEDVIP: avg dental increase = 3.35", po.get("average_increase", {}).get("dental_pct") == 3.35)
+check("FEDVIP: avg vision increase = 0.47", po.get("average_increase", {}).get("vision_pct") == 0.47)
+
+print(f"  FEDVIP: {passed - fvp_count} checks\n")
+
+# ============================================================
 # SUMMARY
 # ============================================================
 print("=" * 60)
