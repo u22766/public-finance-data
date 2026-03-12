@@ -1,0 +1,406 @@
+{
+  "metadata": {
+    "title": "Historical COLA Data \u2014 Social Security, FERS, CSRS, and VA",
+    "description": "Annual cost-of-living adjustment percentages for Social Security benefits, FERS annuities, CSRS annuities, and VA compensation/DIC. Covers 1975-2025 (51 years).",
+    "version": "1.0",
+    "last_updated": "2026-03-11",
+    "source": "https://www.ssa.gov/oact/cola/colaseries.html",
+    "notes": {
+      "year_meaning": "The COLA year indicates when the adjustment was announced. 1975-1982 COLAs applied to June benefits. 1983+ COLAs apply to December benefits (paid in January of the following year). E.g., the 2025 COLA of 2.8% is paid with January 2026 benefits.",
+      "social_security": "Based on CPI-W third-quarter comparison. Cannot be negative. Three zero-COLA years: 2009, 2010, 2015.",
+      "csrs": "Civil Service Retirement System. Receives full SS COLA percentage with no cap.",
+      "fers": "Federal Employees Retirement System (established 1987). COLA capped: if CPI \u2264 2%, FERS = CPI; if CPI 2-3%, FERS = 2%; if CPI > 3%, FERS = CPI minus 1 percentage point. FERS-RAE and FERS-FRAE follow the same COLA formula.",
+      "va": "Veterans Affairs disability compensation and DIC. Typically matches Social Security COLA; enacted separately by Congress but has matched the SS percentage in modern practice.",
+      "1999_note": "The 1999 COLA was originally 2.4% but was retroactively changed to 2.5% by P.L. 106-554."
+    }
+  },
+  "cola_formula": {
+    "fers": {
+      "description": "FERS COLA is derived from the CPI increase (same basis as SS COLA) with a cap",
+      "rules": [
+        {
+          "condition": "CPI increase \u2264 2.0%",
+          "fers_cola": "equals CPI increase"
+        },
+        {
+          "condition": "CPI increase 2.0% to 3.0%",
+          "fers_cola": "2.0%"
+        },
+        {
+          "condition": "CPI increase > 3.0%",
+          "fers_cola": "CPI increase minus 1.0 percentage point"
+        }
+      ],
+      "minimum": 0.0,
+      "example": "If CPI increase is 5.9% (as in 2021), FERS COLA = 5.9% - 1.0% = 4.9%"
+    }
+  },
+  "annual_cola": [
+    {
+      "year": 1975,
+      "social_security": 8.0,
+      "csrs": 8.0,
+      "va": 8.0
+    },
+    {
+      "year": 1976,
+      "social_security": 6.4,
+      "csrs": 6.4,
+      "va": 6.4
+    },
+    {
+      "year": 1977,
+      "social_security": 5.9,
+      "csrs": 5.9,
+      "va": 5.9
+    },
+    {
+      "year": 1978,
+      "social_security": 6.5,
+      "csrs": 6.5,
+      "va": 6.5
+    },
+    {
+      "year": 1979,
+      "social_security": 9.9,
+      "csrs": 9.9,
+      "va": 9.9
+    },
+    {
+      "year": 1980,
+      "social_security": 14.3,
+      "csrs": 14.3,
+      "va": 14.3
+    },
+    {
+      "year": 1981,
+      "social_security": 11.2,
+      "csrs": 11.2,
+      "va": 11.2
+    },
+    {
+      "year": 1982,
+      "social_security": 7.4,
+      "csrs": 7.4,
+      "va": 7.4
+    },
+    {
+      "year": 1983,
+      "social_security": 3.5,
+      "csrs": 3.5,
+      "va": 3.5
+    },
+    {
+      "year": 1984,
+      "social_security": 3.5,
+      "csrs": 3.5,
+      "va": 3.5
+    },
+    {
+      "year": 1985,
+      "social_security": 3.1,
+      "csrs": 3.1,
+      "va": 3.1
+    },
+    {
+      "year": 1986,
+      "social_security": 1.3,
+      "csrs": 1.3,
+      "va": 1.3
+    },
+    {
+      "year": 1987,
+      "social_security": 4.2,
+      "csrs": 4.2,
+      "va": 4.2,
+      "fers": 3.2
+    },
+    {
+      "year": 1988,
+      "social_security": 4.0,
+      "csrs": 4.0,
+      "va": 4.0,
+      "fers": 3.0
+    },
+    {
+      "year": 1989,
+      "social_security": 4.7,
+      "csrs": 4.7,
+      "va": 4.7,
+      "fers": 3.7
+    },
+    {
+      "year": 1990,
+      "social_security": 5.4,
+      "csrs": 5.4,
+      "va": 5.4,
+      "fers": 4.4
+    },
+    {
+      "year": 1991,
+      "social_security": 3.7,
+      "csrs": 3.7,
+      "va": 3.7,
+      "fers": 2.7
+    },
+    {
+      "year": 1992,
+      "social_security": 3.0,
+      "csrs": 3.0,
+      "va": 3.0,
+      "fers": 2.0
+    },
+    {
+      "year": 1993,
+      "social_security": 2.6,
+      "csrs": 2.6,
+      "va": 2.6,
+      "fers": 2.0
+    },
+    {
+      "year": 1994,
+      "social_security": 2.8,
+      "csrs": 2.8,
+      "va": 2.8,
+      "fers": 2.0
+    },
+    {
+      "year": 1995,
+      "social_security": 2.6,
+      "csrs": 2.6,
+      "va": 2.6,
+      "fers": 2.0
+    },
+    {
+      "year": 1996,
+      "social_security": 2.9,
+      "csrs": 2.9,
+      "va": 2.9,
+      "fers": 2.0
+    },
+    {
+      "year": 1997,
+      "social_security": 2.1,
+      "csrs": 2.1,
+      "va": 2.1,
+      "fers": 2.0
+    },
+    {
+      "year": 1998,
+      "social_security": 1.3,
+      "csrs": 1.3,
+      "va": 1.3,
+      "fers": 1.3
+    },
+    {
+      "year": 1999,
+      "social_security": 2.5,
+      "csrs": 2.5,
+      "va": 2.5,
+      "fers": 2.0
+    },
+    {
+      "year": 2000,
+      "social_security": 3.5,
+      "csrs": 3.5,
+      "va": 3.5,
+      "fers": 2.5
+    },
+    {
+      "year": 2001,
+      "social_security": 2.6,
+      "csrs": 2.6,
+      "va": 2.6,
+      "fers": 2.0
+    },
+    {
+      "year": 2002,
+      "social_security": 1.4,
+      "csrs": 1.4,
+      "va": 1.4,
+      "fers": 1.4
+    },
+    {
+      "year": 2003,
+      "social_security": 2.1,
+      "csrs": 2.1,
+      "va": 2.1,
+      "fers": 2.0
+    },
+    {
+      "year": 2004,
+      "social_security": 2.7,
+      "csrs": 2.7,
+      "va": 2.7,
+      "fers": 2.0
+    },
+    {
+      "year": 2005,
+      "social_security": 4.1,
+      "csrs": 4.1,
+      "va": 4.1,
+      "fers": 3.1
+    },
+    {
+      "year": 2006,
+      "social_security": 3.3,
+      "csrs": 3.3,
+      "va": 3.3,
+      "fers": 2.3
+    },
+    {
+      "year": 2007,
+      "social_security": 2.3,
+      "csrs": 2.3,
+      "va": 2.3,
+      "fers": 2.0
+    },
+    {
+      "year": 2008,
+      "social_security": 5.8,
+      "csrs": 5.8,
+      "va": 5.8,
+      "fers": 4.8
+    },
+    {
+      "year": 2009,
+      "social_security": 0.0,
+      "csrs": 0.0,
+      "va": 0.0,
+      "fers": 0.0
+    },
+    {
+      "year": 2010,
+      "social_security": 0.0,
+      "csrs": 0.0,
+      "va": 0.0,
+      "fers": 0.0
+    },
+    {
+      "year": 2011,
+      "social_security": 3.6,
+      "csrs": 3.6,
+      "va": 3.6,
+      "fers": 2.6
+    },
+    {
+      "year": 2012,
+      "social_security": 1.7,
+      "csrs": 1.7,
+      "va": 1.7,
+      "fers": 1.7
+    },
+    {
+      "year": 2013,
+      "social_security": 1.5,
+      "csrs": 1.5,
+      "va": 1.5,
+      "fers": 1.5
+    },
+    {
+      "year": 2014,
+      "social_security": 1.7,
+      "csrs": 1.7,
+      "va": 1.7,
+      "fers": 1.7
+    },
+    {
+      "year": 2015,
+      "social_security": 0.0,
+      "csrs": 0.0,
+      "va": 0.0,
+      "fers": 0.0
+    },
+    {
+      "year": 2016,
+      "social_security": 0.3,
+      "csrs": 0.3,
+      "va": 0.3,
+      "fers": 0.3
+    },
+    {
+      "year": 2017,
+      "social_security": 2.0,
+      "csrs": 2.0,
+      "va": 2.0,
+      "fers": 2.0
+    },
+    {
+      "year": 2018,
+      "social_security": 2.8,
+      "csrs": 2.8,
+      "va": 2.8,
+      "fers": 2.0
+    },
+    {
+      "year": 2019,
+      "social_security": 1.6,
+      "csrs": 1.6,
+      "va": 1.6,
+      "fers": 1.6
+    },
+    {
+      "year": 2020,
+      "social_security": 1.3,
+      "csrs": 1.3,
+      "va": 1.3,
+      "fers": 1.3
+    },
+    {
+      "year": 2021,
+      "social_security": 5.9,
+      "csrs": 5.9,
+      "va": 5.9,
+      "fers": 4.9
+    },
+    {
+      "year": 2022,
+      "social_security": 8.7,
+      "csrs": 8.7,
+      "va": 8.7,
+      "fers": 7.7
+    },
+    {
+      "year": 2023,
+      "social_security": 3.2,
+      "csrs": 3.2,
+      "va": 3.2,
+      "fers": 2.2
+    },
+    {
+      "year": 2024,
+      "social_security": 2.5,
+      "csrs": 2.5,
+      "va": 2.5,
+      "fers": 2.0
+    },
+    {
+      "year": 2025,
+      "social_security": 2.8,
+      "csrs": 2.8,
+      "va": 2.8,
+      "fers": 2.0
+    }
+  ],
+  "summary_statistics": {
+    "years_covered": 51,
+    "first_year": 1975,
+    "last_year": 2025,
+    "ss_average": 3.73,
+    "ss_median": 2.9,
+    "ss_max": {
+      "year": 1980,
+      "pct": 14.3
+    },
+    "ss_min_nonzero": {
+      "year": 2016,
+      "pct": 0.3
+    },
+    "zero_cola_years": [
+      2009,
+      2010,
+      2015
+    ],
+    "fers_average_since_1987": 2.25
+  }
+}
