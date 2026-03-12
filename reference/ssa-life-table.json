@@ -1,0 +1,1699 @@
+{
+  "metadata": {
+    "title": "SSA Actuarial Period Life Table",
+    "description": "Period life table for the Social Security area population. Provides death probabilities, survivor counts, and life expectancy by exact age and sex. Used for retirement planning horizon modeling.",
+    "version": "1.0",
+    "last_updated": "2026-03-11",
+    "data_year": 2022,
+    "trustees_report": "2025",
+    "source": "https://www.ssa.gov/oact/STATS/table4c6.html",
+    "methodology": "https://www.ssa.gov/oact/NOTES/as120/LifeTables_Body.html",
+    "notes": {
+      "period_table": "A period life table represents mortality experience within a given year. Life expectancy at a given age is the average remaining years using that year's mortality rates for all future ages.",
+      "population": "Social Security area population: residents of 50 states + DC, civilian residents of US territories, federal employees abroad, non-citizens abroad insured for SS benefits, all other US citizens abroad.",
+      "death_probability": "Probability of dying within one year at the exact age.",
+      "number_of_lives": "Number of survivors out of 100,000 born alive.",
+      "life_expectancy": "Average remaining years expected prior to death at that exact age.",
+      "update_cycle": "SSA publishes updated tables with each annual Trustees Report, typically in March/April. The data year lags the report year by approximately 3 years."
+    }
+  },
+  "life_table": [
+    {
+      "age": 0,
+      "male": {
+        "death_probability": 0.006064,
+        "number_of_lives": 100000,
+        "life_expectancy": 74.74
+      },
+      "female": {
+        "death_probability": 0.005119,
+        "number_of_lives": 100000,
+        "life_expectancy": 80.18
+      }
+    },
+    {
+      "age": 1,
+      "male": {
+        "death_probability": 0.000491,
+        "number_of_lives": 99394,
+        "life_expectancy": 74.2
+      },
+      "female": {
+        "death_probability": 0.000398,
+        "number_of_lives": 99488,
+        "life_expectancy": 79.6
+      }
+    },
+    {
+      "age": 2,
+      "male": {
+        "death_probability": 0.000309,
+        "number_of_lives": 99345,
+        "life_expectancy": 73.23
+      },
+      "female": {
+        "death_probability": 0.00024,
+        "number_of_lives": 99449,
+        "life_expectancy": 78.63
+      }
+    },
+    {
+      "age": 3,
+      "male": {
+        "death_probability": 0.000248,
+        "number_of_lives": 99314,
+        "life_expectancy": 72.25
+      },
+      "female": {
+        "death_probability": 0.000198,
+        "number_of_lives": 99425,
+        "life_expectancy": 77.65
+      }
+    },
+    {
+      "age": 4,
+      "male": {
+        "death_probability": 0.000199,
+        "number_of_lives": 99290,
+        "life_expectancy": 71.27
+      },
+      "female": {
+        "death_probability": 0.00016,
+        "number_of_lives": 99405,
+        "life_expectancy": 76.66
+      }
+    },
+    {
+      "age": 5,
+      "male": {
+        "death_probability": 0.000167,
+        "number_of_lives": 99270,
+        "life_expectancy": 70.29
+      },
+      "female": {
+        "death_probability": 0.000134,
+        "number_of_lives": 99389,
+        "life_expectancy": 75.67
+      }
+    },
+    {
+      "age": 6,
+      "male": {
+        "death_probability": 0.000143,
+        "number_of_lives": 99253,
+        "life_expectancy": 69.3
+      },
+      "female": {
+        "death_probability": 0.000118,
+        "number_of_lives": 99376,
+        "life_expectancy": 74.68
+      }
+    },
+    {
+      "age": 7,
+      "male": {
+        "death_probability": 0.000126,
+        "number_of_lives": 99239,
+        "life_expectancy": 68.31
+      },
+      "female": {
+        "death_probability": 0.000109,
+        "number_of_lives": 99364,
+        "life_expectancy": 73.69
+      }
+    },
+    {
+      "age": 8,
+      "male": {
+        "death_probability": 0.000121,
+        "number_of_lives": 99226,
+        "life_expectancy": 67.32
+      },
+      "female": {
+        "death_probability": 0.000106,
+        "number_of_lives": 99353,
+        "life_expectancy": 72.7
+      }
+    },
+    {
+      "age": 9,
+      "male": {
+        "death_probability": 0.000121,
+        "number_of_lives": 99214,
+        "life_expectancy": 66.32
+      },
+      "female": {
+        "death_probability": 0.000106,
+        "number_of_lives": 99343,
+        "life_expectancy": 71.71
+      }
+    },
+    {
+      "age": 10,
+      "male": {
+        "death_probability": 0.000127,
+        "number_of_lives": 99202,
+        "life_expectancy": 65.33
+      },
+      "female": {
+        "death_probability": 0.000111,
+        "number_of_lives": 99332,
+        "life_expectancy": 70.72
+      }
+    },
+    {
+      "age": 11,
+      "male": {
+        "death_probability": 0.000143,
+        "number_of_lives": 99190,
+        "life_expectancy": 64.34
+      },
+      "female": {
+        "death_probability": 0.000121,
+        "number_of_lives": 99321,
+        "life_expectancy": 69.72
+      }
+    },
+    {
+      "age": 12,
+      "male": {
+        "death_probability": 0.000171,
+        "number_of_lives": 99176,
+        "life_expectancy": 63.35
+      },
+      "female": {
+        "death_probability": 0.00014,
+        "number_of_lives": 99309,
+        "life_expectancy": 68.73
+      }
+    },
+    {
+      "age": 13,
+      "male": {
+        "death_probability": 0.000227,
+        "number_of_lives": 99159,
+        "life_expectancy": 62.36
+      },
+      "female": {
+        "death_probability": 0.000162,
+        "number_of_lives": 99295,
+        "life_expectancy": 67.74
+      }
+    },
+    {
+      "age": 14,
+      "male": {
+        "death_probability": 0.00032,
+        "number_of_lives": 99136,
+        "life_expectancy": 61.37
+      },
+      "female": {
+        "death_probability": 0.000188,
+        "number_of_lives": 99279,
+        "life_expectancy": 66.75
+      }
+    },
+    {
+      "age": 15,
+      "male": {
+        "death_probability": 0.000451,
+        "number_of_lives": 99104,
+        "life_expectancy": 60.39
+      },
+      "female": {
+        "death_probability": 0.000224,
+        "number_of_lives": 99260,
+        "life_expectancy": 65.76
+      }
+    },
+    {
+      "age": 16,
+      "male": {
+        "death_probability": 0.000622,
+        "number_of_lives": 99060,
+        "life_expectancy": 59.42
+      },
+      "female": {
+        "death_probability": 0.000276,
+        "number_of_lives": 99238,
+        "life_expectancy": 64.78
+      }
+    },
+    {
+      "age": 17,
+      "male": {
+        "death_probability": 0.000826,
+        "number_of_lives": 98998,
+        "life_expectancy": 58.46
+      },
+      "female": {
+        "death_probability": 0.000337,
+        "number_of_lives": 99211,
+        "life_expectancy": 63.8
+      }
+    },
+    {
+      "age": 18,
+      "male": {
+        "death_probability": 0.001026,
+        "number_of_lives": 98916,
+        "life_expectancy": 57.5
+      },
+      "female": {
+        "death_probability": 0.000395,
+        "number_of_lives": 99177,
+        "life_expectancy": 62.82
+      }
+    },
+    {
+      "age": 19,
+      "male": {
+        "death_probability": 0.001182,
+        "number_of_lives": 98815,
+        "life_expectancy": 56.56
+      },
+      "female": {
+        "death_probability": 0.00045,
+        "number_of_lives": 99138,
+        "life_expectancy": 61.84
+      }
+    },
+    {
+      "age": 20,
+      "male": {
+        "death_probability": 0.001301,
+        "number_of_lives": 98698,
+        "life_expectancy": 55.63
+      },
+      "female": {
+        "death_probability": 0.000496,
+        "number_of_lives": 99094,
+        "life_expectancy": 60.87
+      }
+    },
+    {
+      "age": 21,
+      "male": {
+        "death_probability": 0.001404,
+        "number_of_lives": 98570,
+        "life_expectancy": 54.7
+      },
+      "female": {
+        "death_probability": 0.000532,
+        "number_of_lives": 99044,
+        "life_expectancy": 59.9
+      }
+    },
+    {
+      "age": 22,
+      "male": {
+        "death_probability": 0.001498,
+        "number_of_lives": 98431,
+        "life_expectancy": 53.78
+      },
+      "female": {
+        "death_probability": 0.000567,
+        "number_of_lives": 98992,
+        "life_expectancy": 58.93
+      }
+    },
+    {
+      "age": 23,
+      "male": {
+        "death_probability": 0.001586,
+        "number_of_lives": 98284,
+        "life_expectancy": 52.86
+      },
+      "female": {
+        "death_probability": 0.00061,
+        "number_of_lives": 98936,
+        "life_expectancy": 57.97
+      }
+    },
+    {
+      "age": 24,
+      "male": {
+        "death_probability": 0.001679,
+        "number_of_lives": 98128,
+        "life_expectancy": 51.94
+      },
+      "female": {
+        "death_probability": 0.00065,
+        "number_of_lives": 98875,
+        "life_expectancy": 57.0
+      }
+    },
+    {
+      "age": 25,
+      "male": {
+        "death_probability": 0.001776,
+        "number_of_lives": 97963,
+        "life_expectancy": 51.03
+      },
+      "female": {
+        "death_probability": 0.000699,
+        "number_of_lives": 98811,
+        "life_expectancy": 56.04
+      }
+    },
+    {
+      "age": 26,
+      "male": {
+        "death_probability": 0.001881,
+        "number_of_lives": 97789,
+        "life_expectancy": 50.12
+      },
+      "female": {
+        "death_probability": 0.000743,
+        "number_of_lives": 98742,
+        "life_expectancy": 55.08
+      }
+    },
+    {
+      "age": 27,
+      "male": {
+        "death_probability": 0.001985,
+        "number_of_lives": 97605,
+        "life_expectancy": 49.21
+      },
+      "female": {
+        "death_probability": 0.000796,
+        "number_of_lives": 98669,
+        "life_expectancy": 54.12
+      }
+    },
+    {
+      "age": 28,
+      "male": {
+        "death_probability": 0.002095,
+        "number_of_lives": 97412,
+        "life_expectancy": 48.31
+      },
+      "female": {
+        "death_probability": 0.000855,
+        "number_of_lives": 98590,
+        "life_expectancy": 53.16
+      }
+    },
+    {
+      "age": 29,
+      "male": {
+        "death_probability": 0.002219,
+        "number_of_lives": 97208,
+        "life_expectancy": 47.41
+      },
+      "female": {
+        "death_probability": 0.000924,
+        "number_of_lives": 98506,
+        "life_expectancy": 52.2
+      }
+    },
+    {
+      "age": 30,
+      "male": {
+        "death_probability": 0.002332,
+        "number_of_lives": 96992,
+        "life_expectancy": 46.51
+      },
+      "female": {
+        "death_probability": 0.000988,
+        "number_of_lives": 98415,
+        "life_expectancy": 51.25
+      }
+    },
+    {
+      "age": 31,
+      "male": {
+        "death_probability": 0.002445,
+        "number_of_lives": 96766,
+        "life_expectancy": 45.62
+      },
+      "female": {
+        "death_probability": 0.001053,
+        "number_of_lives": 98318,
+        "life_expectancy": 50.3
+      }
+    },
+    {
+      "age": 32,
+      "male": {
+        "death_probability": 0.002562,
+        "number_of_lives": 96529,
+        "life_expectancy": 44.73
+      },
+      "female": {
+        "death_probability": 0.001123,
+        "number_of_lives": 98214,
+        "life_expectancy": 49.35
+      }
+    },
+    {
+      "age": 33,
+      "male": {
+        "death_probability": 0.002653,
+        "number_of_lives": 96282,
+        "life_expectancy": 43.84
+      },
+      "female": {
+        "death_probability": 0.001198,
+        "number_of_lives": 98104,
+        "life_expectancy": 48.41
+      }
+    },
+    {
+      "age": 34,
+      "male": {
+        "death_probability": 0.002716,
+        "number_of_lives": 96026,
+        "life_expectancy": 42.96
+      },
+      "female": {
+        "death_probability": 0.001263,
+        "number_of_lives": 97986,
+        "life_expectancy": 47.47
+      }
+    },
+    {
+      "age": 35,
+      "male": {
+        "death_probability": 0.002791,
+        "number_of_lives": 95765,
+        "life_expectancy": 42.08
+      },
+      "female": {
+        "death_probability": 0.001324,
+        "number_of_lives": 97863,
+        "life_expectancy": 46.53
+      }
+    },
+    {
+      "age": 36,
+      "male": {
+        "death_probability": 0.002894,
+        "number_of_lives": 95498,
+        "life_expectancy": 41.19
+      },
+      "female": {
+        "death_probability": 0.001403,
+        "number_of_lives": 97733,
+        "life_expectancy": 45.59
+      }
+    },
+    {
+      "age": 37,
+      "male": {
+        "death_probability": 0.002994,
+        "number_of_lives": 95222,
+        "life_expectancy": 40.31
+      },
+      "female": {
+        "death_probability": 0.001493,
+        "number_of_lives": 97596,
+        "life_expectancy": 44.65
+      }
+    },
+    {
+      "age": 38,
+      "male": {
+        "death_probability": 0.003091,
+        "number_of_lives": 94937,
+        "life_expectancy": 39.43
+      },
+      "female": {
+        "death_probability": 0.001596,
+        "number_of_lives": 97450,
+        "life_expectancy": 43.72
+      }
+    },
+    {
+      "age": 39,
+      "male": {
+        "death_probability": 0.003217,
+        "number_of_lives": 94643,
+        "life_expectancy": 38.55
+      },
+      "female": {
+        "death_probability": 0.0017,
+        "number_of_lives": 97295,
+        "life_expectancy": 42.79
+      }
+    },
+    {
+      "age": 40,
+      "male": {
+        "death_probability": 0.003353,
+        "number_of_lives": 94339,
+        "life_expectancy": 37.67
+      },
+      "female": {
+        "death_probability": 0.001803,
+        "number_of_lives": 97129,
+        "life_expectancy": 41.86
+      }
+    },
+    {
+      "age": 41,
+      "male": {
+        "death_probability": 0.003499,
+        "number_of_lives": 94022,
+        "life_expectancy": 36.8
+      },
+      "female": {
+        "death_probability": 0.001905,
+        "number_of_lives": 96954,
+        "life_expectancy": 40.93
+      }
+    },
+    {
+      "age": 42,
+      "male": {
+        "death_probability": 0.003642,
+        "number_of_lives": 93693,
+        "life_expectancy": 35.93
+      },
+      "female": {
+        "death_probability": 0.002009,
+        "number_of_lives": 96769,
+        "life_expectancy": 40.01
+      }
+    },
+    {
+      "age": 43,
+      "male": {
+        "death_probability": 0.003811,
+        "number_of_lives": 93352,
+        "life_expectancy": 35.05
+      },
+      "female": {
+        "death_probability": 0.002116,
+        "number_of_lives": 96575,
+        "life_expectancy": 39.09
+      }
+    },
+    {
+      "age": 44,
+      "male": {
+        "death_probability": 0.003996,
+        "number_of_lives": 92997,
+        "life_expectancy": 34.19
+      },
+      "female": {
+        "death_probability": 0.002223,
+        "number_of_lives": 96371,
+        "life_expectancy": 38.17
+      }
+    },
+    {
+      "age": 45,
+      "male": {
+        "death_probability": 0.004175,
+        "number_of_lives": 92625,
+        "life_expectancy": 33.32
+      },
+      "female": {
+        "death_probability": 0.002352,
+        "number_of_lives": 96156,
+        "life_expectancy": 37.25
+      }
+    },
+    {
+      "age": 46,
+      "male": {
+        "death_probability": 0.004388,
+        "number_of_lives": 92238,
+        "life_expectancy": 32.46
+      },
+      "female": {
+        "death_probability": 0.002516,
+        "number_of_lives": 95930,
+        "life_expectancy": 36.34
+      }
+    },
+    {
+      "age": 47,
+      "male": {
+        "death_probability": 0.004666,
+        "number_of_lives": 91833,
+        "life_expectancy": 31.6
+      },
+      "female": {
+        "death_probability": 0.002712,
+        "number_of_lives": 95689,
+        "life_expectancy": 35.43
+      }
+    },
+    {
+      "age": 48,
+      "male": {
+        "death_probability": 0.004973,
+        "number_of_lives": 91405,
+        "life_expectancy": 30.75
+      },
+      "female": {
+        "death_probability": 0.002936,
+        "number_of_lives": 95429,
+        "life_expectancy": 34.53
+      }
+    },
+    {
+      "age": 49,
+      "male": {
+        "death_probability": 0.005305,
+        "number_of_lives": 90950,
+        "life_expectancy": 29.9
+      },
+      "female": {
+        "death_probability": 0.003177,
+        "number_of_lives": 95149,
+        "life_expectancy": 33.63
+      }
+    },
+    {
+      "age": 50,
+      "male": {
+        "death_probability": 0.005666,
+        "number_of_lives": 90468,
+        "life_expectancy": 29.05
+      },
+      "female": {
+        "death_probability": 0.003407,
+        "number_of_lives": 94847,
+        "life_expectancy": 32.73
+      }
+    },
+    {
+      "age": 51,
+      "male": {
+        "death_probability": 0.006069,
+        "number_of_lives": 89955,
+        "life_expectancy": 28.22
+      },
+      "female": {
+        "death_probability": 0.003642,
+        "number_of_lives": 94524,
+        "life_expectancy": 31.84
+      }
+    },
+    {
+      "age": 52,
+      "male": {
+        "death_probability": 0.006539,
+        "number_of_lives": 89409,
+        "life_expectancy": 27.39
+      },
+      "female": {
+        "death_probability": 0.003917,
+        "number_of_lives": 94180,
+        "life_expectancy": 30.96
+      }
+    },
+    {
+      "age": 53,
+      "male": {
+        "death_probability": 0.007073,
+        "number_of_lives": 88825,
+        "life_expectancy": 26.56
+      },
+      "female": {
+        "death_probability": 0.004238,
+        "number_of_lives": 93811,
+        "life_expectancy": 30.08
+      }
+    },
+    {
+      "age": 54,
+      "male": {
+        "death_probability": 0.007675,
+        "number_of_lives": 88196,
+        "life_expectancy": 25.75
+      },
+      "female": {
+        "death_probability": 0.004619,
+        "number_of_lives": 93413,
+        "life_expectancy": 29.2
+      }
+    },
+    {
+      "age": 55,
+      "male": {
+        "death_probability": 0.008348,
+        "number_of_lives": 87520,
+        "life_expectancy": 24.94
+      },
+      "female": {
+        "death_probability": 0.00504,
+        "number_of_lives": 92982,
+        "life_expectancy": 28.34
+      }
+    },
+    {
+      "age": 56,
+      "male": {
+        "death_probability": 0.009051,
+        "number_of_lives": 86789,
+        "life_expectancy": 24.15
+      },
+      "female": {
+        "death_probability": 0.005493,
+        "number_of_lives": 92513,
+        "life_expectancy": 27.48
+      }
+    },
+    {
+      "age": 57,
+      "male": {
+        "death_probability": 0.009822,
+        "number_of_lives": 86003,
+        "life_expectancy": 23.37
+      },
+      "female": {
+        "death_probability": 0.005987,
+        "number_of_lives": 92005,
+        "life_expectancy": 26.63
+      }
+    },
+    {
+      "age": 58,
+      "male": {
+        "death_probability": 0.010669,
+        "number_of_lives": 85159,
+        "life_expectancy": 22.59
+      },
+      "female": {
+        "death_probability": 0.006509,
+        "number_of_lives": 91454,
+        "life_expectancy": 25.78
+      }
+    },
+    {
+      "age": 59,
+      "male": {
+        "death_probability": 0.011548,
+        "number_of_lives": 84250,
+        "life_expectancy": 21.83
+      },
+      "female": {
+        "death_probability": 0.007067,
+        "number_of_lives": 90859,
+        "life_expectancy": 24.95
+      }
+    },
+    {
+      "age": 60,
+      "male": {
+        "death_probability": 0.012458,
+        "number_of_lives": 83277,
+        "life_expectancy": 21.08
+      },
+      "female": {
+        "death_probability": 0.007658,
+        "number_of_lives": 90217,
+        "life_expectancy": 24.12
+      }
+    },
+    {
+      "age": 61,
+      "male": {
+        "death_probability": 0.013403,
+        "number_of_lives": 82240,
+        "life_expectancy": 20.34
+      },
+      "female": {
+        "death_probability": 0.008305,
+        "number_of_lives": 89526,
+        "life_expectancy": 23.31
+      }
+    },
+    {
+      "age": 62,
+      "male": {
+        "death_probability": 0.01445,
+        "number_of_lives": 81138,
+        "life_expectancy": 19.61
+      },
+      "female": {
+        "death_probability": 0.008991,
+        "number_of_lives": 88782,
+        "life_expectancy": 22.5
+      }
+    },
+    {
+      "age": 63,
+      "male": {
+        "death_probability": 0.015571,
+        "number_of_lives": 79965,
+        "life_expectancy": 18.89
+      },
+      "female": {
+        "death_probability": 0.009681,
+        "number_of_lives": 87984,
+        "life_expectancy": 21.7
+      }
+    },
+    {
+      "age": 64,
+      "male": {
+        "death_probability": 0.016737,
+        "number_of_lives": 78720,
+        "life_expectancy": 18.18
+      },
+      "female": {
+        "death_probability": 0.010343,
+        "number_of_lives": 87132,
+        "life_expectancy": 20.9
+      }
+    },
+    {
+      "age": 65,
+      "male": {
+        "death_probability": 0.017897,
+        "number_of_lives": 77402,
+        "life_expectancy": 17.48
+      },
+      "female": {
+        "death_probability": 0.011018,
+        "number_of_lives": 86231,
+        "life_expectancy": 20.12
+      }
+    },
+    {
+      "age": 66,
+      "male": {
+        "death_probability": 0.019017,
+        "number_of_lives": 76017,
+        "life_expectancy": 16.79
+      },
+      "female": {
+        "death_probability": 0.011743,
+        "number_of_lives": 85281,
+        "life_expectancy": 19.34
+      }
+    },
+    {
+      "age": 67,
+      "male": {
+        "death_probability": 0.020213,
+        "number_of_lives": 74572,
+        "life_expectancy": 16.11
+      },
+      "female": {
+        "death_probability": 0.012532,
+        "number_of_lives": 84279,
+        "life_expectancy": 18.56
+      }
+    },
+    {
+      "age": 68,
+      "male": {
+        "death_probability": 0.021569,
+        "number_of_lives": 73064,
+        "life_expectancy": 15.43
+      },
+      "female": {
+        "death_probability": 0.013512,
+        "number_of_lives": 83223,
+        "life_expectancy": 17.79
+      }
+    },
+    {
+      "age": 69,
+      "male": {
+        "death_probability": 0.023088,
+        "number_of_lives": 71488,
+        "life_expectancy": 14.76
+      },
+      "female": {
+        "death_probability": 0.014684,
+        "number_of_lives": 82099,
+        "life_expectancy": 17.03
+      }
+    },
+    {
+      "age": 70,
+      "male": {
+        "death_probability": 0.024828,
+        "number_of_lives": 69838,
+        "life_expectancy": 14.09
+      },
+      "female": {
+        "death_probability": 0.016025,
+        "number_of_lives": 80893,
+        "life_expectancy": 16.27
+      }
+    },
+    {
+      "age": 71,
+      "male": {
+        "death_probability": 0.026705,
+        "number_of_lives": 68104,
+        "life_expectancy": 13.44
+      },
+      "female": {
+        "death_probability": 0.017468,
+        "number_of_lives": 79597,
+        "life_expectancy": 15.53
+      }
+    },
+    {
+      "age": 72,
+      "male": {
+        "death_probability": 0.028761,
+        "number_of_lives": 66285,
+        "life_expectancy": 12.8
+      },
+      "female": {
+        "death_probability": 0.019195,
+        "number_of_lives": 78206,
+        "life_expectancy": 14.8
+      }
+    },
+    {
+      "age": 73,
+      "male": {
+        "death_probability": 0.031116,
+        "number_of_lives": 64379,
+        "life_expectancy": 12.16
+      },
+      "female": {
+        "death_probability": 0.021195,
+        "number_of_lives": 76705,
+        "life_expectancy": 14.08
+      }
+    },
+    {
+      "age": 74,
+      "male": {
+        "death_probability": 0.033861,
+        "number_of_lives": 62376,
+        "life_expectancy": 11.53
+      },
+      "female": {
+        "death_probability": 0.023452,
+        "number_of_lives": 75079,
+        "life_expectancy": 13.37
+      }
+    },
+    {
+      "age": 75,
+      "male": {
+        "death_probability": 0.037088,
+        "number_of_lives": 60263,
+        "life_expectancy": 10.92
+      },
+      "female": {
+        "death_probability": 0.02598,
+        "number_of_lives": 73319,
+        "life_expectancy": 12.68
+      }
+    },
+    {
+      "age": 76,
+      "male": {
+        "death_probability": 0.041126,
+        "number_of_lives": 58028,
+        "life_expectancy": 10.32
+      },
+      "female": {
+        "death_probability": 0.029153,
+        "number_of_lives": 71414,
+        "life_expectancy": 12.0
+      }
+    },
+    {
+      "age": 77,
+      "male": {
+        "death_probability": 0.045241,
+        "number_of_lives": 55642,
+        "life_expectancy": 9.74
+      },
+      "female": {
+        "death_probability": 0.032394,
+        "number_of_lives": 69332,
+        "life_expectancy": 11.35
+      }
+    },
+    {
+      "age": 78,
+      "male": {
+        "death_probability": 0.049793,
+        "number_of_lives": 53125,
+        "life_expectancy": 9.18
+      },
+      "female": {
+        "death_probability": 0.035888,
+        "number_of_lives": 67086,
+        "life_expectancy": 10.71
+      }
+    },
+    {
+      "age": 79,
+      "male": {
+        "death_probability": 0.054768,
+        "number_of_lives": 50479,
+        "life_expectancy": 8.64
+      },
+      "female": {
+        "death_probability": 0.039676,
+        "number_of_lives": 64678,
+        "life_expectancy": 10.09
+      }
+    },
+    {
+      "age": 80,
+      "male": {
+        "death_probability": 0.06066,
+        "number_of_lives": 47715,
+        "life_expectancy": 8.11
+      },
+      "female": {
+        "death_probability": 0.044156,
+        "number_of_lives": 62112,
+        "life_expectancy": 9.49
+      }
+    },
+    {
+      "age": 81,
+      "male": {
+        "death_probability": 0.067027,
+        "number_of_lives": 44820,
+        "life_expectancy": 7.6
+      },
+      "female": {
+        "death_probability": 0.049087,
+        "number_of_lives": 59370,
+        "life_expectancy": 8.9
+      }
+    },
+    {
+      "age": 82,
+      "male": {
+        "death_probability": 0.073999,
+        "number_of_lives": 41816,
+        "life_expectancy": 7.11
+      },
+      "female": {
+        "death_probability": 0.054635,
+        "number_of_lives": 56455,
+        "life_expectancy": 8.34
+      }
+    },
+    {
+      "age": 83,
+      "male": {
+        "death_probability": 0.081737,
+        "number_of_lives": 38722,
+        "life_expectancy": 6.64
+      },
+      "female": {
+        "death_probability": 0.061066,
+        "number_of_lives": 53371,
+        "life_expectancy": 7.79
+      }
+    },
+    {
+      "age": 84,
+      "male": {
+        "death_probability": 0.090458,
+        "number_of_lives": 35557,
+        "life_expectancy": 6.18
+      },
+      "female": {
+        "death_probability": 0.068431,
+        "number_of_lives": 50112,
+        "life_expectancy": 7.26
+      }
+    },
+    {
+      "age": 85,
+      "male": {
+        "death_probability": 0.100525,
+        "number_of_lives": 32340,
+        "life_expectancy": 5.75
+      },
+      "female": {
+        "death_probability": 0.076841,
+        "number_of_lives": 46683,
+        "life_expectancy": 6.76
+      }
+    },
+    {
+      "age": 86,
+      "male": {
+        "death_probability": 0.111793,
+        "number_of_lives": 29089,
+        "life_expectancy": 5.34
+      },
+      "female": {
+        "death_probability": 0.086205,
+        "number_of_lives": 43095,
+        "life_expectancy": 6.28
+      }
+    },
+    {
+      "age": 87,
+      "male": {
+        "death_probability": 0.124494,
+        "number_of_lives": 25837,
+        "life_expectancy": 4.94
+      },
+      "female": {
+        "death_probability": 0.096851,
+        "number_of_lives": 39380,
+        "life_expectancy": 5.83
+      }
+    },
+    {
+      "age": 88,
+      "male": {
+        "death_probability": 0.138398,
+        "number_of_lives": 22621,
+        "life_expectancy": 4.58
+      },
+      "female": {
+        "death_probability": 0.109019,
+        "number_of_lives": 35566,
+        "life_expectancy": 5.4
+      }
+    },
+    {
+      "age": 89,
+      "male": {
+        "death_probability": 0.153207,
+        "number_of_lives": 19490,
+        "life_expectancy": 4.23
+      },
+      "female": {
+        "death_probability": 0.121867,
+        "number_of_lives": 31689,
+        "life_expectancy": 5.0
+      }
+    },
+    {
+      "age": 90,
+      "male": {
+        "death_probability": 0.169704,
+        "number_of_lives": 16504,
+        "life_expectancy": 3.91
+      },
+      "female": {
+        "death_probability": 0.135805,
+        "number_of_lives": 27827,
+        "life_expectancy": 4.62
+      }
+    },
+    {
+      "age": 91,
+      "male": {
+        "death_probability": 0.187963,
+        "number_of_lives": 13703,
+        "life_expectancy": 3.6
+      },
+      "female": {
+        "death_probability": 0.151108,
+        "number_of_lives": 24048,
+        "life_expectancy": 4.27
+      }
+    },
+    {
+      "age": 92,
+      "male": {
+        "death_probability": 0.208395,
+        "number_of_lives": 11128,
+        "life_expectancy": 3.32
+      },
+      "female": {
+        "death_probability": 0.16802,
+        "number_of_lives": 20414,
+        "life_expectancy": 3.94
+      }
+    },
+    {
+      "age": 93,
+      "male": {
+        "death_probability": 0.230808,
+        "number_of_lives": 8809,
+        "life_expectancy": 3.06
+      },
+      "female": {
+        "death_probability": 0.18634,
+        "number_of_lives": 16984,
+        "life_expectancy": 3.64
+      }
+    },
+    {
+      "age": 94,
+      "male": {
+        "death_probability": 0.253914,
+        "number_of_lives": 6776,
+        "life_expectancy": 2.83
+      },
+      "female": {
+        "death_probability": 0.206432,
+        "number_of_lives": 13819,
+        "life_expectancy": 3.36
+      }
+    },
+    {
+      "age": 95,
+      "male": {
+        "death_probability": 0.277402,
+        "number_of_lives": 5055,
+        "life_expectancy": 2.63
+      },
+      "female": {
+        "death_probability": 0.228086,
+        "number_of_lives": 10967,
+        "life_expectancy": 3.1
+      }
+    },
+    {
+      "age": 96,
+      "male": {
+        "death_probability": 0.300882,
+        "number_of_lives": 3653,
+        "life_expectancy": 2.44
+      },
+      "female": {
+        "death_probability": 0.250406,
+        "number_of_lives": 8465,
+        "life_expectancy": 2.87
+      }
+    },
+    {
+      "age": 97,
+      "male": {
+        "death_probability": 0.324326,
+        "number_of_lives": 2554,
+        "life_expectancy": 2.28
+      },
+      "female": {
+        "death_probability": 0.273699,
+        "number_of_lives": 6346,
+        "life_expectancy": 2.66
+      }
+    },
+    {
+      "age": 98,
+      "male": {
+        "death_probability": 0.347332,
+        "number_of_lives": 1726,
+        "life_expectancy": 2.13
+      },
+      "female": {
+        "death_probability": 0.296984,
+        "number_of_lives": 4609,
+        "life_expectancy": 2.47
+      }
+    },
+    {
+      "age": 99,
+      "male": {
+        "death_probability": 0.36943,
+        "number_of_lives": 1126,
+        "life_expectancy": 2.0
+      },
+      "female": {
+        "death_probability": 0.319502,
+        "number_of_lives": 3240,
+        "life_expectancy": 2.3
+      }
+    },
+    {
+      "age": 100,
+      "male": {
+        "death_probability": 0.391927,
+        "number_of_lives": 710,
+        "life_expectancy": 1.88
+      },
+      "female": {
+        "death_probability": 0.342716,
+        "number_of_lives": 2205,
+        "life_expectancy": 2.14
+      }
+    },
+    {
+      "age": 101,
+      "male": {
+        "death_probability": 0.414726,
+        "number_of_lives": 432,
+        "life_expectancy": 1.76
+      },
+      "female": {
+        "death_probability": 0.366532,
+        "number_of_lives": 1449,
+        "life_expectancy": 2.0
+      }
+    },
+    {
+      "age": 102,
+      "male": {
+        "death_probability": 0.437722,
+        "number_of_lives": 253,
+        "life_expectancy": 1.66
+      },
+      "female": {
+        "death_probability": 0.390844,
+        "number_of_lives": 918,
+        "life_expectancy": 1.87
+      }
+    },
+    {
+      "age": 103,
+      "male": {
+        "death_probability": 0.4608,
+        "number_of_lives": 142,
+        "life_expectancy": 1.56
+      },
+      "female": {
+        "death_probability": 0.415531,
+        "number_of_lives": 559,
+        "life_expectancy": 1.75
+      }
+    },
+    {
+      "age": 104,
+      "male": {
+        "death_probability": 0.48384,
+        "number_of_lives": 77,
+        "life_expectancy": 1.47
+      },
+      "female": {
+        "death_probability": 0.440463,
+        "number_of_lives": 327,
+        "life_expectancy": 1.63
+      }
+    },
+    {
+      "age": 105,
+      "male": {
+        "death_probability": 0.508032,
+        "number_of_lives": 40,
+        "life_expectancy": 1.39
+      },
+      "female": {
+        "death_probability": 0.466891,
+        "number_of_lives": 183,
+        "life_expectancy": 1.52
+      }
+    },
+    {
+      "age": 106,
+      "male": {
+        "death_probability": 0.533434,
+        "number_of_lives": 19,
+        "life_expectancy": 1.31
+      },
+      "female": {
+        "death_probability": 0.494904,
+        "number_of_lives": 97,
+        "life_expectancy": 1.42
+      }
+    },
+    {
+      "age": 107,
+      "male": {
+        "death_probability": 0.560105,
+        "number_of_lives": 9,
+        "life_expectancy": 1.23
+      },
+      "female": {
+        "death_probability": 0.524599,
+        "number_of_lives": 49,
+        "life_expectancy": 1.32
+      }
+    },
+    {
+      "age": 108,
+      "male": {
+        "death_probability": 0.588111,
+        "number_of_lives": 4,
+        "life_expectancy": 1.15
+      },
+      "female": {
+        "death_probability": 0.556075,
+        "number_of_lives": 23,
+        "life_expectancy": 1.23
+      }
+    },
+    {
+      "age": 109,
+      "male": {
+        "death_probability": 0.617516,
+        "number_of_lives": 2,
+        "life_expectancy": 1.08
+      },
+      "female": {
+        "death_probability": 0.589439,
+        "number_of_lives": 10,
+        "life_expectancy": 1.14
+      }
+    },
+    {
+      "age": 110,
+      "male": {
+        "death_probability": 0.648392,
+        "number_of_lives": 1,
+        "life_expectancy": 1.01
+      },
+      "female": {
+        "death_probability": 0.624805,
+        "number_of_lives": 4,
+        "life_expectancy": 1.05
+      }
+    },
+    {
+      "age": 111,
+      "male": {
+        "death_probability": 0.680812,
+        "number_of_lives": 0,
+        "life_expectancy": 0.94
+      },
+      "female": {
+        "death_probability": 0.662294,
+        "number_of_lives": 2,
+        "life_expectancy": 0.97
+      }
+    },
+    {
+      "age": 112,
+      "male": {
+        "death_probability": 0.714852,
+        "number_of_lives": 0,
+        "life_expectancy": 0.87
+      },
+      "female": {
+        "death_probability": 0.702031,
+        "number_of_lives": 1,
+        "life_expectancy": 0.89
+      }
+    },
+    {
+      "age": 113,
+      "male": {
+        "death_probability": 0.750595,
+        "number_of_lives": 0,
+        "life_expectancy": 0.81
+      },
+      "female": {
+        "death_probability": 0.744153,
+        "number_of_lives": 0,
+        "life_expectancy": 0.82
+      }
+    },
+    {
+      "age": 114,
+      "male": {
+        "death_probability": 0.788125,
+        "number_of_lives": 0,
+        "life_expectancy": 0.75
+      },
+      "female": {
+        "death_probability": 0.788125,
+        "number_of_lives": 0,
+        "life_expectancy": 0.75
+      }
+    },
+    {
+      "age": 115,
+      "male": {
+        "death_probability": 0.827531,
+        "number_of_lives": 0,
+        "life_expectancy": 0.7
+      },
+      "female": {
+        "death_probability": 0.827531,
+        "number_of_lives": 0,
+        "life_expectancy": 0.7
+      }
+    },
+    {
+      "age": 116,
+      "male": {
+        "death_probability": 0.868907,
+        "number_of_lives": 0,
+        "life_expectancy": 0.64
+      },
+      "female": {
+        "death_probability": 0.868907,
+        "number_of_lives": 0,
+        "life_expectancy": 0.64
+      }
+    },
+    {
+      "age": 117,
+      "male": {
+        "death_probability": 0.912353,
+        "number_of_lives": 0,
+        "life_expectancy": 0.59
+      },
+      "female": {
+        "death_probability": 0.912353,
+        "number_of_lives": 0,
+        "life_expectancy": 0.59
+      }
+    },
+    {
+      "age": 118,
+      "male": {
+        "death_probability": 0.95797,
+        "number_of_lives": 0,
+        "life_expectancy": 0.54
+      },
+      "female": {
+        "death_probability": 0.95797,
+        "number_of_lives": 0,
+        "life_expectancy": 0.54
+      }
+    },
+    {
+      "age": 119,
+      "male": {
+        "death_probability": 1.0,
+        "number_of_lives": 0,
+        "life_expectancy": 0.5
+      },
+      "female": {
+        "death_probability": 1.0,
+        "number_of_lives": 0,
+        "life_expectancy": 0.5
+      }
+    }
+  ],
+  "retirement_planning_reference": {
+    "_comment": "Key ages for retirement planning with life expectancy data",
+    "ages": {
+      "50": {
+        "male_life_expectancy": 29.05,
+        "female_life_expectancy": 32.73,
+        "male_expected_age_at_death": 79.0,
+        "female_expected_age_at_death": 82.7,
+        "planning_note": "Early planning horizon"
+      },
+      "55": {
+        "male_life_expectancy": 24.94,
+        "female_life_expectancy": 28.34,
+        "male_expected_age_at_death": 79.9,
+        "female_expected_age_at_death": 83.3,
+        "planning_note": "FERS MRA for many employees"
+      },
+      "57": {
+        "male_life_expectancy": 23.37,
+        "female_life_expectancy": 26.63,
+        "male_expected_age_at_death": 80.4,
+        "female_expected_age_at_death": 83.6,
+        "planning_note": "FERS MRA for birth year 1970+"
+      },
+      "60": {
+        "male_life_expectancy": 21.08,
+        "female_life_expectancy": 24.12,
+        "male_expected_age_at_death": 81.1,
+        "female_expected_age_at_death": 84.1,
+        "planning_note": "FERS voluntary early retirement (MRA+10)"
+      },
+      "62": {
+        "male_life_expectancy": 19.61,
+        "female_life_expectancy": 22.5,
+        "male_expected_age_at_death": 81.6,
+        "female_expected_age_at_death": 84.5,
+        "planning_note": "Social Security earliest eligibility; FERS immediate retirement (age 62 with 5 years)"
+      },
+      "65": {
+        "male_life_expectancy": 17.48,
+        "female_life_expectancy": 20.12,
+        "male_expected_age_at_death": 82.5,
+        "female_expected_age_at_death": 85.1,
+        "planning_note": "Medicare eligibility; traditional retirement age"
+      },
+      "66": {
+        "male_life_expectancy": 16.79,
+        "female_life_expectancy": 19.34,
+        "male_expected_age_at_death": 82.8,
+        "female_expected_age_at_death": 85.3,
+        "planning_note": "SS FRA for birth years 1943-1954"
+      },
+      "67": {
+        "male_life_expectancy": 16.11,
+        "female_life_expectancy": 18.56,
+        "male_expected_age_at_death": 83.1,
+        "female_expected_age_at_death": 85.6,
+        "planning_note": "SS FRA for birth year 1960+"
+      },
+      "70": {
+        "male_life_expectancy": 14.09,
+        "female_life_expectancy": 16.27,
+        "male_expected_age_at_death": 84.1,
+        "female_expected_age_at_death": 86.3,
+        "planning_note": "Maximum SS delayed retirement credits"
+      },
+      "72": {
+        "male_life_expectancy": 12.8,
+        "female_life_expectancy": 14.8,
+        "male_expected_age_at_death": 84.8,
+        "female_expected_age_at_death": 86.8,
+        "planning_note": "Common planning checkpoint"
+      },
+      "73": {
+        "male_life_expectancy": 12.16,
+        "female_life_expectancy": 14.08,
+        "male_expected_age_at_death": 85.2,
+        "female_expected_age_at_death": 87.1,
+        "planning_note": "RMD start age (SECURE 2.0, born 1951-1959)"
+      },
+      "75": {
+        "male_life_expectancy": 10.92,
+        "female_life_expectancy": 12.68,
+        "male_expected_age_at_death": 85.9,
+        "female_expected_age_at_death": 87.7,
+        "planning_note": "RMD start age (SECURE 2.0, born 1960+, effective 2033)"
+      },
+      "80": {
+        "male_life_expectancy": 8.11,
+        "female_life_expectancy": 9.49,
+        "male_expected_age_at_death": 88.1,
+        "female_expected_age_at_death": 89.5,
+        "planning_note": "Planning checkpoint"
+      },
+      "85": {
+        "male_life_expectancy": 5.75,
+        "female_life_expectancy": 6.76,
+        "male_expected_age_at_death": 90.8,
+        "female_expected_age_at_death": 91.8,
+        "planning_note": "Extended longevity planning"
+      },
+      "90": {
+        "male_life_expectancy": 3.91,
+        "female_life_expectancy": 4.62,
+        "male_expected_age_at_death": 93.9,
+        "female_expected_age_at_death": 94.6,
+        "planning_note": "Advanced age planning"
+      },
+      "95": {
+        "male_life_expectancy": 2.63,
+        "female_life_expectancy": 3.1,
+        "male_expected_age_at_death": 97.6,
+        "female_expected_age_at_death": 98.1,
+        "planning_note": "Maximum typical planning horizon"
+      }
+    }
+  }
+}
