@@ -4,6 +4,8 @@
 #
 # Original: 179 checks (validate.py)
 # OM-11 addition: ~120 Tier 2 checks (validate_tier2.py)
+# OM-14 addition: 7 Medicare checks (validate_medicare.py)
+# Housekeeping: 4 historical file checks (validate_historical.py)
 
 name: Validate Data Files
 
@@ -31,9 +33,15 @@ jobs:
       
       - name: Run Tier 2 validation (~120 checks)
         run: python tests/validate_tier2.py states/state-benefits.json
+      
+      - name: Validate Medicare rates
+        run: python tests/validate_medicare.py federal/healthcare/medicare-rates.json
 
       - name: Validate DCIPS Pay Tables
         run: python tests/validate_dcips.py
+
+      - name: Validate historical data files
+        run: python tests/validate_historical.py
       
       - name: Validation summary
         if: success()
