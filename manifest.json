@@ -47,11 +47,12 @@
       "changelog_2026": "Extracted from rates-annual.json during schema 2.0 restructure. All values unchanged."
     },
     "fehb_rates": {
-      "version": "2026.1",
+      "version": "2026.3",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (October)",
       "url": "federal/healthcare/fehb-rates.json",
-      "description": "FEHB program-level data: government contributions, weighted averages, premium trends, FEDVIP/PSHB overview"
+      "description": "FEHB premium rates \u2014 complete 132-plan dataset (19 nationwide FFS + 459 regional HMO entries) from OPM Excel files",
+      "last_updated": "2026-03-11"
     },
     "medicare_rates": {
       "version": "2026.1",
@@ -167,6 +168,12 @@
       "description": "Historical COLA percentages 1975-2025 for Social Security, FERS, CSRS, and VA. Includes FERS cap formula and summary statistics.",
       "source": "https://www.ssa.gov/oact/cola/colaseries.html",
       "changelog_1_0": "Initial release. 51 years of COLA data with computed FERS adjustments."
+    },
+    "tricare_rates": {
+      "path": "federal/healthcare/tricare-rates.json",
+      "version": "2026.1",
+      "description": "TRICARE premium and cost-share schedule \u2014 Prime, Select, TFL, Reserve Select, Retired Reserve, TYA, CHCBP",
+      "last_updated": "2026-03-11"
     }
   }
 }
