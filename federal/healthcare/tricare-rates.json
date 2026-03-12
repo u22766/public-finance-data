@@ -1,0 +1,364 @@
+{
+  "_metadata": {
+    "file": "tricare-rates.json",
+    "version": "2026.1",
+    "effective_date": "2026-01-01",
+    "source": "Defense Health Agency (DHA), TRICARE Health Plan",
+    "source_url": "https://tricare.mil/Costs/Compare",
+    "federal_register": "FR Doc. 2025-19819 (Nov 10, 2025)",
+    "last_verified": "2026-03-11",
+    "cola_basis": "CY 2026 retiree COLA: 2.8%",
+    "notes": "CY 2026 TRICARE costs. Group A = sponsor entered service before Jan 1, 2018. Group B = on/after Jan 1, 2018."
+  },
+  "group_definitions": {
+    "group_a": "Sponsor's initial enlistment or appointment began BEFORE January 1, 2018",
+    "group_b": "Sponsor's initial enlistment or appointment began ON OR AFTER January 1, 2018"
+  },
+  "retiree_costs": {
+    "_note": "Costs for retirees, their family members, survivors, and others",
+    "group_a": {
+      "prime": {
+        "enrollment_fee_annual": {
+          "individual": 381.96,
+          "family": 765.0
+        },
+        "enrollment_fee_medically_retired": {
+          "individual": 0,
+          "family": 0,
+          "_note": "Frozen at rate when classified; see medically_retired_fee_schedule"
+        },
+        "deductible_annual": 0,
+        "catastrophic_cap_annual": 3000,
+        "copays_network": {
+          "primary_care": 26,
+          "specialty_care": 39,
+          "urgent_care": 39,
+          "emergency": 79,
+          "lab_xray": 0,
+          "ambulatory_surgery": 79,
+          "hospitalization_per_admission": 198,
+          "mental_health_inpatient_per_admission": 198,
+          "mental_health_outpatient": 39,
+          "dme_pct": 20,
+          "skilled_nursing_per_day": 39
+        }
+      },
+      "select": {
+        "enrollment_fee_annual": {
+          "individual": 186.96,
+          "family": 375.0
+        },
+        "enrollment_fee_medically_retired": {
+          "individual": 0,
+          "family": 0
+        },
+        "deductible_annual": {
+          "individual": 150,
+          "family": 300
+        },
+        "catastrophic_cap_annual": 4381,
+        "catastrophic_cap_medically_retired": 3000,
+        "copays_network": {
+          "primary_care": 38,
+          "specialty_care": 52,
+          "urgent_care": 38,
+          "emergency": 138,
+          "lab_xray": 0,
+          "ambulatory_surgery_pct": 20,
+          "hospitalization_per_day_max": 250,
+          "hospitalization_pct_max": 25,
+          "_hospitalization_note": "$250/day or up to 25% of hospital charges, whichever is less, plus 20% of separately billed services",
+          "mental_health_outpatient": 52,
+          "dme_pct": 20,
+          "ambulance_ground": 117
+        },
+        "cost_share_non_network_pct": 25
+      }
+    },
+    "group_b": {
+      "prime": {
+        "enrollment_fee_annual": {
+          "individual": 462.96,
+          "family": 927.0
+        },
+        "deductible_annual": 0,
+        "catastrophic_cap_annual": 4635,
+        "copays_network": {
+          "primary_care": 26,
+          "specialty_care": 39,
+          "urgent_care": 39,
+          "emergency": 79,
+          "lab_xray": 0,
+          "ambulatory_surgery": 79,
+          "hospitalization_per_admission": 198,
+          "mental_health_inpatient_per_admission": 198,
+          "mental_health_outpatient": 39,
+          "dme_pct": 20,
+          "skilled_nursing_per_day": 39
+        }
+      },
+      "select": {
+        "enrollment_fee_annual": {
+          "individual": 594.96,
+          "family": 1191.0
+        },
+        "deductible_annual": {
+          "individual_network": 198,
+          "individual_non_network": 397,
+          "family_network": 397,
+          "family_non_network": 794,
+          "_note": "Prescription costs also apply to deductible"
+        },
+        "catastrophic_cap_annual": 4635,
+        "copays_network": {
+          "primary_care": 33,
+          "specialty_care": 52,
+          "urgent_care": 52,
+          "emergency": 105,
+          "lab_xray": 0,
+          "ambulatory_surgery": 125,
+          "hospitalization_per_admission": 231,
+          "mental_health_inpatient_per_admission": 231,
+          "mental_health_outpatient": 52,
+          "dme_pct": 20,
+          "skilled_nursing_per_day": 66,
+          "ambulance_ground": 79
+        },
+        "cost_share_non_network_pct": 25
+      }
+    }
+  },
+  "active_duty_family_costs": {
+    "_note": "Active duty service members have $0 out-of-pocket. Costs below are for their family members and transitional survivors.",
+    "group_a": {
+      "prime": {
+        "enrollment_fee_annual": 0,
+        "deductible_annual": 0,
+        "catastrophic_cap_annual": 1000,
+        "all_network_copays": 0
+      },
+      "select": {
+        "enrollment_fee_annual": 0,
+        "deductible_annual": {
+          "e1_e4_individual": 50,
+          "e5_above": 0,
+          "_note": "E-1 to E-4: $50/individual, limited to $100/family"
+        },
+        "catastrophic_cap_annual": 1000,
+        "copays_network": {
+          "primary_care": 28,
+          "specialty_care": 39,
+          "urgent_care": 28,
+          "emergency": 103,
+          "lab_xray": 0,
+          "ambulatory_surgery": 25,
+          "hospitalization_per_day": 24.5,
+          "hospitalization_min_per_admission": 25
+        }
+      }
+    },
+    "group_b": {
+      "prime": {
+        "enrollment_fee_annual": 0,
+        "deductible_annual": 0,
+        "catastrophic_cap_annual": 1324,
+        "all_network_copays": 0
+      },
+      "select": {
+        "enrollment_fee_annual": 0,
+        "deductible_annual": {
+          "e1_e4_individual": 66,
+          "e1_e4_family": 132,
+          "e5_above_individual": 198,
+          "e5_above_family": 397
+        },
+        "catastrophic_cap_annual": 1324,
+        "copays_network": {
+          "primary_care": 19,
+          "specialty_care": 33,
+          "urgent_care": 26,
+          "emergency": 52,
+          "lab_xray": 0,
+          "ambulatory_surgery": 33,
+          "hospitalization_per_admission": 79,
+          "mental_health_inpatient_per_admission": 79,
+          "mental_health_outpatient": 33,
+          "dme_pct": 10
+        }
+      }
+    }
+  },
+  "premium_based_plans": {
+    "_note": "Monthly premiums for premium-based TRICARE plans. These are separate from Prime/Select enrollment fees.",
+    "tricare_reserve_select": {
+      "monthly": {
+        "member_only": 57.88,
+        "member_and_family": 286.66
+      },
+      "2025_monthly": {
+        "member_only": 53.8,
+        "member_and_family": 274.48
+      },
+      "yoy_change_pct": {
+        "member_only": 7.6,
+        "member_and_family": 4.4
+      }
+    },
+    "tricare_retired_reserve": {
+      "monthly": {
+        "member_only": 645.9,
+        "member_and_family": 1548.3
+      },
+      "2025_monthly": {
+        "member_only": 631.26,
+        "member_and_family": 1513.04
+      }
+    },
+    "tricare_young_adult_prime": {
+      "monthly": 794.0,
+      "2025_monthly": 727.0,
+      "yoy_change_pct": 9.2,
+      "age_range": "21-26"
+    },
+    "tricare_young_adult_select": {
+      "monthly": 363.0,
+      "2025_monthly": 337.0,
+      "yoy_change_pct": 7.7,
+      "age_range": "21-26"
+    },
+    "chcbp_quarterly": {
+      "member_only": 2103.0,
+      "family": 5339.0,
+      "2025_quarterly": {
+        "member_only": 1849.0,
+        "family": 4621.0
+      },
+      "_note": "Continued Health Care Benefit Program; quarterly premiums"
+    }
+  },
+  "tricare_for_life": {
+    "_note": "For Medicare-eligible beneficiaries with TRICARE. Must have Medicare Parts A and B.",
+    "enrollment_fee": 0,
+    "deductible_annual": {
+      "individual": 150,
+      "family": 300,
+      "_note": "Only when TRICARE is the only payer"
+    },
+    "catastrophic_cap_annual": 3000,
+    "medicare_part_a_deductible": 1736,
+    "medicare_part_b_deductible_annual": 283,
+    "cost_sharing": {
+      "services_covered_by_both": "Medicare pays approved amount, TRICARE pays remainder, you pay $0",
+      "services_covered_by_medicare_only": "You pay Medicare deductible and cost-share",
+      "services_covered_by_tricare_only": "You pay TRICARE deductible and cost-share"
+    },
+    "hospital_stay": {
+      "days_1_60": {
+        "you_pay": 0,
+        "_note": "TRICARE pays $1,736 Part A deductible"
+      },
+      "days_61_90": {
+        "tricare_pays_per_day": 434
+      },
+      "days_91_150": {
+        "tricare_pays_per_day": 868,
+        "_note": "Lifetime reserve days"
+      },
+      "days_151_plus": "TRICARE is primary payer; you pay TRICARE cost-share"
+    },
+    "skilled_nursing": {
+      "days_1_20": {
+        "you_pay": 0
+      },
+      "days_21_100": {
+        "tricare_pays_per_day": 217
+      },
+      "days_101_plus": "TRICARE is primary payer with pre-authorization"
+    }
+  },
+  "medically_retired_fee_schedule": {
+    "_note": "TRICARE Prime enrollment fee freezes at the rate when classified in DEERS as medically retired or survivor. Frozen as long as no break in Prime enrollment.",
+    "schedule": [
+      {
+        "period": "Starting Jan 1, 2026",
+        "individual": 381.96,
+        "family": 765.0
+      },
+      {
+        "period": "Jan 1, 2024 - Dec 31, 2025",
+        "individual": 372.0,
+        "family": 744.0
+      },
+      {
+        "period": "Jan 1, 2023 - Dec 31, 2023",
+        "individual": 351.96,
+        "family": 703.92
+      },
+      {
+        "period": "Jan 1, 2022 - Dec 31, 2022",
+        "individual": 323.0,
+        "family": 647.0
+      },
+      {
+        "period": "Jan 1, 2021 - Dec 31, 2021",
+        "individual": 303.0,
+        "family": 606.0
+      },
+      {
+        "period": "Jan 1, 2020 - Dec 31, 2020",
+        "individual": 300.0,
+        "family": 600.0
+      },
+      {
+        "period": "Jan 1, 2019 - Dec 31, 2019",
+        "individual": 297.0,
+        "family": 594.0
+      },
+      {
+        "period": "Jan 1, 2018 - Dec 31, 2018",
+        "individual": 289.08,
+        "family": 578.16
+      },
+      {
+        "period": "Oct 1, 2015 - Dec 31, 2017",
+        "individual": 282.6,
+        "family": 565.2
+      },
+      {
+        "period": "Oct 1, 2014 - Sep 30, 2015",
+        "individual": 277.92,
+        "family": 555.84
+      },
+      {
+        "period": "Oct 1, 2013 - Sep 30, 2014",
+        "individual": 273.84,
+        "family": 547.68
+      },
+      {
+        "period": "Oct 1, 2012 - Sep 30, 2013",
+        "individual": 269.28,
+        "family": 538.56
+      },
+      {
+        "period": "Oct 1, 2011 - Sep 30, 2012",
+        "individual": 260.0,
+        "family": 520.0
+      },
+      {
+        "period": "Before Oct 1, 2011",
+        "individual": 230.0,
+        "family": 460.0
+      }
+    ]
+  },
+  "open_season": {
+    "period": "November 10 - December 9",
+    "applies_to": "TRICARE Prime and TRICARE Select plan changes",
+    "_note": "Changes effective January 1 of following year"
+  },
+  "data_sources": [
+    "https://tricare.mil/Costs/Compare",
+    "https://www.federalregister.gov/documents/2025/11/10/2025-19819/tricare-calendar-year-cy-2026-tricare-prime-and-tricare-select-out-of-pocket-expenses",
+    "https://www.federalregister.gov/documents/2025/10/28/2025-19672/tricare-notice-of-tricare-plan-program-changes-for-calendar-year-cy-2026"
+  ]
+}
