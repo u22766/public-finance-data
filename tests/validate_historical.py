@@ -538,6 +538,220 @@ check("COLA: zero_cola_years = [2009, 2010, 2015]",
 print(f"  COLA: {passed - cpt_count} checks\n")
 
 # ============================================================
+# FEHB PLAN PREMIUMS (OM-13)
+# ============================================================
+fehb_count = passed
+print("FEHB Plan Premiums (federal/healthcare/fehb-rates.json):")
+with open("federal/healthcare/fehb-rates.json") as f:
+    fehb = json.load(f)
+
+check("FEHB: has _metadata", "_metadata" in fehb)
+check("FEHB: version is 2026.3", fehb.get("_metadata", {}).get("version") == "2026.3")
+check("FEHB: has plan_premium_data", "plan_premium_data" in fehb)
+
+ppd = fehb.get("plan_premium_data", {})
+plans = ppd.get("plans", [])
+check("FEHB: plan_year is 2026", ppd.get("_plan_year") == 2026)
+check("FEHB: total_plan_entries = 478", ppd.get("total_plan_entries") == 478)
+check("FEHB: nationwide_plans = 19", ppd.get("nationwide_plans") == 19)
+check("FEHB: plans array length = 478", len(plans) == 478)
+
+# All plans have required fields
+for p in plans:
+    cname = p.get("carrier", "?")[:30]
+    loc = p.get("location", "?")[:15]
+    label = f"{cname} [{loc}]"
+
+    check(f"FEHB: {label} has carrier", "carrier" in p and p["carrier"])
+    check(f"FEHB: {label} has type", "type" in p and p["type"] in ("FFS", "HMO"))
+    check(f"FEHB: {label} has enrollment_codes", "enrollment_codes" in p)
+    check(f"FEHB: {label} has premiums", "premiums" in p)
+
+    # Must have all 3 enrollment types
+    premiums = p.get("premiums", {})
+    for etype in ("self_only", "self_plus_one", "self_and_family"):
+        check(f"FEHB: {label} has {etype}", etype in premiums)
+        ep = premiums.get(etype, {})
+        bw_e = ep.get("biweekly_enrollee", 0)
+        mo_e = ep.get("monthly_enrollee", 0)
+        bw_t = ep.get("biweekly_total", 0)
+        bw_g = ep.get("biweekly_govt", 0)
+
+        check(f"FEHB: {label} {etype} bw_enrollee >= 0", bw_e >= 0, f"got {bw_e}")
+        check(f"FEHB: {label} {etype} mo_enrollee >= 0", mo_e >= 0, f"got {mo_e}")
+        check(f"FEHB: {label} {etype} bw_total > 0", bw_t > 0, f"got {bw_t}")
+
+        # Total = govt + enrollee (within $0.02 tolerance for rounding)
+        if bw_t > 0:
+            check(f"FEHB: {label} {etype} total = govt + enrollee",
+                  abs(bw_t - bw_g - bw_e) < 0.02,
+                  f"total={bw_t}, govt={bw_g}, empl={bw_e}, diff={bw_t - bw_g - bw_e:.2f}")
+
+# Nationwide vs regional
+nw_plans = [p for p in plans if p.get("nationwide")]
+reg_plans = [p for p in plans if not p.get("nationwide")]
+check("FEHB: 19 nationwide plan entries", len(nw_plans) == 19)
+check("FEHB: 459 regional plan entries", len(reg_plans) == 459)
+
+# FFS vs HMO
+ffs_plans = [p for p in plans if p["type"] == "FFS"]
+hmo_plans = [p for p in plans if p["type"] == "HMO"]
+check("FEHB: has FFS plans", len(ffs_plans) > 0)
+check("FEHB: has HMO plans", len(hmo_plans) > 0)
+check("FEHB: all nationwide are FFS", all(p["type"] == "FFS" for p in nw_plans))
+
+# Carrier coverage in nationwide plans
+nw_carriers = set(p["carrier"] for p in nw_plans)
+check("FEHB: nationwide has BCBS", any("Blue Cross" in c for c in nw_carriers))
+check("FEHB: nationwide has GEHA", any("GEHA" in c for c in nw_carriers))
+check("FEHB: nationwide has MHBP", any("MHBP" in c for c in nw_carriers))
+check("FEHB: nationwide has SAMBA", any("SAMBA" in c for c in nw_carriers))
+
+# Spot check: BCBS Basic Self-Only biweekly enrollee = 133.77
+bcbs_basic_so = None
+for p in nw_plans:
+    if "Basic" in p.get("option", "") and "Blue Cross" in p.get("carrier", ""):
+        bcbs_basic_so = p["premiums"]["self_only"]["biweekly_enrollee"]
+        break
+check("FEHB: BCBS Basic SO bw = 133.77", bcbs_basic_so == 133.77, f"got {bcbs_basic_so}")
+
+# Spot check: GEHA Standard SPO monthly enrollee = 404.11
+geha_std_spo = None
+for p in nw_plans:
+    if "Standard" in p.get("option", "") and p.get("carrier", "").startswith("GEHA Benefit"):
+        geha_std_spo = p["premiums"]["self_plus_one"]["monthly_enrollee"]
+        break
+check("FEHB: GEHA Standard SPO monthly = 404.11", geha_std_spo == 404.11, f"got {geha_std_spo}")
+
+# Government contribution checks
+gc = fehb.get("government_contribution", {})
+gc_bw = gc.get("biweekly", {})
+check("FEHB: gov contribution SO bw = 324.76", gc_bw.get("self_only") == 324.76)
+check("FEHB: gov contribution SPO bw = 711.17", gc_bw.get("self_plus_one") == 711.17)
+check("FEHB: gov contribution SF bw = 778.03", gc_bw.get("self_and_family") == 778.03)
+
+# HSA limits
+hsa_lim = fehb.get("hsa_limits_2026", {})
+check("FEHB: HSA individual max = 4400", hsa_lim.get("individual_max") == 4400)
+check("FEHB: HSA family max = 8750", hsa_lim.get("family_max") == 8750)
+check("FEHB: HSA catch-up = 1000", hsa_lim.get("catch_up_55_plus") == 1000)
+
+# FSA limits
+fsa_lim = fehb.get("fsa_limits_2026", {})
+check("FEHB: HCFSA max = 3400", fsa_lim.get("hcfsa_max") == 3400)
+check("FEHB: FSA carryover = 680", fsa_lim.get("carryover_limit") == 680)
+
+# Gov contribution consistency: plans at 75% cap should have govt = weighted avg
+# (66 of 132 plans get the 75% max for SO — verify at least some do)
+max_govt_so = gc_bw.get("self_only", 0)
+plans_at_max = [p for p in nw_plans
+                if abs(p["premiums"]["self_only"]["biweekly_govt"] - max_govt_so) < 0.01]
+check("FEHB: multiple nationwide plans at 75% max govt contribution",
+      len(plans_at_max) >= 5, f"found {len(plans_at_max)}")
+
+print(f"  FEHB: {passed - fehb_count} checks\n")
+
+# ============================================================
+# TRICARE RATES (OM-15)
+# ============================================================
+tri_count = passed
+print("TRICARE Rates (federal/healthcare/tricare-rates.json):")
+with open("federal/healthcare/tricare-rates.json") as f:
+    tri = json.load(f)
+
+check("TRICARE: has _metadata", "_metadata" in tri)
+check("TRICARE: version is 2026.1", tri["_metadata"]["version"] == "2026.1")
+check("TRICARE: effective 2026-01-01", tri["_metadata"]["effective_date"] == "2026-01-01")
+check("TRICARE: COLA basis mentions 2.8%", "2.8%" in tri["_metadata"].get("cola_basis", ""))
+
+# Group definitions
+check("TRICARE: has group_definitions", "group_definitions" in tri)
+
+# Retiree costs structure
+rc = tri.get("retiree_costs", {})
+check("TRICARE: has retiree_costs", bool(rc))
+for grp in ("group_a", "group_b"):
+    g = rc.get(grp, {})
+    check(f"TRICARE: retiree {grp} has prime", "prime" in g)
+    check(f"TRICARE: retiree {grp} has select", "select" in g)
+    
+    # Prime enrollment fees
+    prime = g.get("prime", {})
+    ef = prime.get("enrollment_fee_annual", {})
+    check(f"TRICARE: retiree {grp} prime fee individual > 0", ef.get("individual", 0) > 0)
+    check(f"TRICARE: retiree {grp} prime fee family > individual",
+          ef.get("family", 0) > ef.get("individual", 0))
+    
+    # Select enrollment fees
+    select = g.get("select", {})
+    sef = select.get("enrollment_fee_annual", {})
+    check(f"TRICARE: retiree {grp} select fee individual > 0", sef.get("individual", 0) > 0)
+
+# Specific value spot checks
+check("TRICARE: Group A Prime individual fee = 381.96",
+      rc["group_a"]["prime"]["enrollment_fee_annual"]["individual"] == 381.96)
+check("TRICARE: Group A Prime family fee = 765",
+      rc["group_a"]["prime"]["enrollment_fee_annual"]["family"] == 765.00)
+check("TRICARE: Group B Prime individual fee = 462.96",
+      rc["group_b"]["prime"]["enrollment_fee_annual"]["individual"] == 462.96)
+check("TRICARE: Group B Select individual fee = 594.96",
+      rc["group_b"]["select"]["enrollment_fee_annual"]["individual"] == 594.96)
+check("TRICARE: Group B Select family fee = 1191",
+      rc["group_b"]["select"]["enrollment_fee_annual"]["family"] == 1191.00)
+
+# Catastrophic caps
+check("TRICARE: Group A Prime cat cap = 3000",
+      rc["group_a"]["prime"]["catastrophic_cap_annual"] == 3000)
+check("TRICARE: Group A Select cat cap = 4381",
+      rc["group_a"]["select"]["catastrophic_cap_annual"] == 4381)
+check("TRICARE: Group B cat caps = 4635",
+      rc["group_b"]["prime"]["catastrophic_cap_annual"] == 4635)
+
+# Group B > Group A for enrollment fees (by design)
+check("TRICARE: Group B Prime fee > Group A Prime fee",
+      rc["group_b"]["prime"]["enrollment_fee_annual"]["individual"] >
+      rc["group_a"]["prime"]["enrollment_fee_annual"]["individual"])
+
+# Premium-based plans
+pb = tri.get("premium_based_plans", {})
+check("TRICARE: has premium_based_plans", bool(pb))
+trs = pb.get("tricare_reserve_select", {}).get("monthly", {})
+check("TRICARE: TRS member only = 57.88", trs.get("member_only") == 57.88)
+check("TRICARE: TRS family = 286.66", trs.get("member_and_family") == 286.66)
+
+trr = pb.get("tricare_retired_reserve", {}).get("monthly", {})
+check("TRICARE: TRR member only = 645.90", trr.get("member_only") == 645.90)
+check("TRICARE: TRR family = 1548.30", trr.get("member_and_family") == 1548.30)
+
+check("TRICARE: TYA Prime monthly = 794",
+      pb.get("tricare_young_adult_prime", {}).get("monthly") == 794.00)
+check("TRICARE: TYA Select monthly = 363",
+      pb.get("tricare_young_adult_select", {}).get("monthly") == 363.00)
+
+# TRICARE For Life
+tfl = tri.get("tricare_for_life", {})
+check("TRICARE: TFL enrollment fee = 0", tfl.get("enrollment_fee") == 0)
+check("TRICARE: TFL cat cap = 3000", tfl.get("catastrophic_cap_annual") == 3000)
+check("TRICARE: TFL Part A deductible = 1736", tfl.get("medicare_part_a_deductible") == 1736)
+check("TRICARE: TFL Part B deductible = 283", tfl.get("medicare_part_b_deductible_annual") == 283)
+
+# Medically retired fee schedule
+mrs = tri.get("medically_retired_fee_schedule", {}).get("schedule", [])
+check("TRICARE: medically retired fee schedule has 14 entries", len(mrs) == 14)
+check("TRICARE: oldest fee (pre-2011) = $230 individual",
+      mrs[-1]["individual"] == 230.00)
+
+# Active duty family
+adf = tri.get("active_duty_family_costs", {})
+check("TRICARE: has active_duty_family_costs", bool(adf))
+check("TRICARE: AD family Group A Prime enrollment = 0",
+      adf["group_a"]["prime"]["enrollment_fee_annual"] == 0)
+check("TRICARE: AD family Group B Select cat cap = 1324",
+      adf["group_b"]["select"]["catastrophic_cap_annual"] == 1324)
+
+print(f"  TRICARE: {passed - tri_count} checks\n")
+
+# ============================================================
 # SUMMARY
 # ============================================================
 print("=" * 60)
