@@ -170,10 +170,28 @@
       "changelog_1_0": "Initial release. 51 years of COLA data with computed FERS adjustments."
     },
     "tricare_rates": {
-      "path": "federal/healthcare/tricare-rates.json",
       "version": "2026.1",
       "description": "TRICARE premium and cost-share schedule \u2014 Prime, Select, TFL, Reserve Select, Retired Reserve, TYA, CHCBP",
-      "last_updated": "2026-03-11"
+      "last_updated": "2026-03-11",
+      "url": "federal/healthcare/tricare-rates.json",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual"
+    },
+    "fehb_plan_benefits": {
+      "version": "2026.1",
+      "description": "FEHB plan benefits \u2014 deductibles, OOP max, copays, pharmacy tiers, Medicare coordination for all 132 plans (in-network + out-of-network)",
+      "last_updated": "2026-03-11",
+      "url": "federal/healthcare/fehb-plan-benefits.json",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual"
+    },
+    "fedvip_rates": {
+      "version": "2026.1",
+      "description": "FEDVIP dental and vision premium rates \u2014 11 dental carriers by rating region, 5 vision carriers nationwide",
+      "last_updated": "2026-03-11",
+      "url": "federal/healthcare/fedvip-rates.json",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual"
     }
   }
 }
