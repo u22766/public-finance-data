@@ -1,5 +1,5 @@
 {
-  "_comment": "Public Finance Data — Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
+  "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.0",
   "schema_min_compatible": "2.0",
   "last_updated": "2026-03-11",
@@ -19,7 +19,7 @@
       "effective_date": "2026-01-15",
       "update_frequency": "annual (January)",
       "url": "federal/pay-tables.json",
-      "description": "GS and DCIPS base pay tables — all grades, all steps, all OPM locality areas"
+      "description": "GS and DCIPS base pay tables \u2014 all grades, all steps, all OPM locality areas"
     },
     "dcips_pay_tables": {
       "version": "2026.1",
@@ -105,6 +105,68 @@
       "update_frequency": "rarely",
       "url": "reference/static-refs.json",
       "description": "SS Full Retirement Age table, IRS RMD Uniform Lifetime Table, OPM locality area codes"
+    },
+    "tsp_limits": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (November)",
+      "url": "federal/tsp-limits.json",
+      "description": "TSP contribution limits history 1987-2026: elective deferral, catch-up, super catch-up (60-63), annual additions limit",
+      "source": "https://www.tsp.gov/plan-participation/eligibility/contribution-limits/",
+      "changelog_1_0": "Initial release. 40 years of TSP/401k limit history."
+    },
+    "ss_bend_points": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (October)",
+      "url": "federal/ss-bend-points.json",
+      "description": "Social Security PIA bend points history 1979-2026: first and second bend points, PIA replacement factors",
+      "source": "https://www.ssa.gov/oact/COLA/bendpoints.html",
+      "changelog_1_0": "Initial release. 48 years of bend point history."
+    },
+    "ss_taxable_max": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (October)",
+      "url": "federal/ss-taxable-max.json",
+      "description": "Social Security taxable maximum history 1937-2026: wage base, OASDI rates, max employee tax",
+      "source": "https://www.ssa.gov/oact/COLA/cbb.html",
+      "changelog_1_0": "Initial release. 90 years of taxable maximum history."
+    },
+    "ira_limits": {
+      "version": "2.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (November)",
+      "url": "federal/ira-limits.json",
+      "description": "IRA contribution limits history 1975-2026: contribution limits, catch-up, Roth income phase-outs by filing status (single, married joint, married separate)",
+      "source": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits",
+      "changelog_2_0": "v2.0: Added Roth income phase-out thresholds by filing status for all years since 1998."
+    },
+    "ssa_life_table": {
+      "version": "1.0",
+      "effective_date": "2025-03-01",
+      "update_frequency": "annual (March/April with Trustees Report)",
+      "url": "reference/ssa-life-table.json",
+      "description": "SSA actuarial period life table: death probabilities, survivor counts, and life expectancy by age (0-119) and sex. 2022 data from 2025 Trustees Report. Includes retirement planning reference ages.",
+      "source": "https://www.ssa.gov/oact/STATS/table4c6.html",
+      "changelog_1_0": "Initial release. Full 120-age period life table with retirement planning reference."
+    },
+    "county_property_tax": {
+      "version": "1.0",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/counties/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details for 10 high-military-population counties across 9 states. Tax rates, exemption types, application contacts.",
+      "changelog_1_0": "Initial release. 10 counties: Fairfax VA, Virginia Beach VA, Prince George's MD, Cumberland NC, Bexar TX, Hillsborough FL, El Paso CO, Pierce WA, Maricopa AZ, Clark NV."
+    },
+    "cola_history": {
+      "version": "1.0",
+      "effective_date": "2025-10-01",
+      "update_frequency": "annual (October after SSA announcement)",
+      "url": "federal/cola-history.json",
+      "description": "Historical COLA percentages 1975-2025 for Social Security, FERS, CSRS, and VA. Includes FERS cap formula and summary statistics.",
+      "source": "https://www.ssa.gov/oact/cola/colaseries.html",
+      "changelog_1_0": "Initial release. 51 years of COLA data with computed FERS adjustments."
     }
   }
 }
