@@ -1,0 +1,458 @@
+{
+  "_schema_note": "Medicare Parts A, B, and D premium rates, IRMAA surcharges, deductibles, and coinsurance. Source: CMS official announcements.",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "last_updated": "2026-03-09",
+  "source_url": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles",
+  "tax_year_for_magi": 2024,
+  "_tax_year_note": "IRMAA determination uses MAGI from tax returns filed 2 years prior. 2026 premiums based on 2024 tax returns.",
+
+  "part_b": {
+    "_description": "Medicare Part B covers physicians' services, outpatient hospital services, certain home health services, durable medical equipment, and certain other medical and health services not covered by Part A.",
+    "standard_premium_monthly": 202.90,
+    "annual_deductible": 283.00,
+    "coinsurance_rate": 0.20,
+    "_coinsurance_note": "After meeting deductible, Medicare typically pays 80% of the Medicare-approved amount; beneficiary pays 20%.",
+    
+    "immunosuppressive_drug_premium_monthly": 121.60,
+    "_immunosuppressive_note": "For individuals whose full Medicare coverage ended 36 months after kidney transplant (available since 2023).",
+
+    "irmaa": {
+      "_description": "Income-Related Monthly Adjustment Amount. Affects approximately 8% of Part B beneficiaries with higher income.",
+      
+      "single_filer_brackets": [
+        {
+          "bracket": 0,
+          "magi_min": 0,
+          "magi_max": 109000,
+          "irmaa_amount": 0.00,
+          "total_premium": 202.90,
+          "premium_percentage_of_cost": 25
+        },
+        {
+          "bracket": 1,
+          "magi_min": 109001,
+          "magi_max": 137000,
+          "irmaa_amount": 81.20,
+          "total_premium": 284.10,
+          "premium_percentage_of_cost": 35
+        },
+        {
+          "bracket": 2,
+          "magi_min": 137001,
+          "magi_max": 171000,
+          "irmaa_amount": 202.90,
+          "total_premium": 405.80,
+          "premium_percentage_of_cost": 50
+        },
+        {
+          "bracket": 3,
+          "magi_min": 171001,
+          "magi_max": 205000,
+          "irmaa_amount": 324.60,
+          "total_premium": 527.50,
+          "premium_percentage_of_cost": 65
+        },
+        {
+          "bracket": 4,
+          "magi_min": 205001,
+          "magi_max": 499999,
+          "irmaa_amount": 446.30,
+          "total_premium": 649.20,
+          "premium_percentage_of_cost": 80
+        },
+        {
+          "bracket": 5,
+          "magi_min": 500000,
+          "magi_max": null,
+          "irmaa_amount": 487.00,
+          "total_premium": 689.90,
+          "premium_percentage_of_cost": 85
+        }
+      ],
+      
+      "joint_filer_brackets": [
+        {
+          "bracket": 0,
+          "magi_min": 0,
+          "magi_max": 218000,
+          "irmaa_amount": 0.00,
+          "total_premium": 202.90,
+          "premium_percentage_of_cost": 25
+        },
+        {
+          "bracket": 1,
+          "magi_min": 218001,
+          "magi_max": 274000,
+          "irmaa_amount": 81.20,
+          "total_premium": 284.10,
+          "premium_percentage_of_cost": 35
+        },
+        {
+          "bracket": 2,
+          "magi_min": 274001,
+          "magi_max": 342000,
+          "irmaa_amount": 202.90,
+          "total_premium": 405.80,
+          "premium_percentage_of_cost": 50
+        },
+        {
+          "bracket": 3,
+          "magi_min": 342001,
+          "magi_max": 410000,
+          "irmaa_amount": 324.60,
+          "total_premium": 527.50,
+          "premium_percentage_of_cost": 65
+        },
+        {
+          "bracket": 4,
+          "magi_min": 410001,
+          "magi_max": 749999,
+          "irmaa_amount": 446.30,
+          "total_premium": 649.20,
+          "premium_percentage_of_cost": 80
+        },
+        {
+          "bracket": 5,
+          "magi_min": 750000,
+          "magi_max": null,
+          "irmaa_amount": 487.00,
+          "total_premium": 689.90,
+          "premium_percentage_of_cost": 85
+        }
+      ],
+      
+      "married_filing_separately_brackets": [
+        {
+          "bracket": 0,
+          "magi_min": 0,
+          "magi_max": 109000,
+          "irmaa_amount": 0.00,
+          "total_premium": 202.90,
+          "_note": "Standard premium"
+        },
+        {
+          "bracket": 4,
+          "magi_min": 109001,
+          "magi_max": 390999,
+          "irmaa_amount": 446.30,
+          "total_premium": 649.20,
+          "_note": "Jumps directly to bracket 4"
+        },
+        {
+          "bracket": 5,
+          "magi_min": 391000,
+          "magi_max": null,
+          "irmaa_amount": 487.00,
+          "total_premium": 689.90,
+          "_note": "Maximum premium"
+        }
+      ],
+      
+      "_mfs_note": "Married filing separately has only 3 tiers with accelerated IRMAA surcharges. This applies to beneficiaries who are married, lived with their spouse at any time during the taxable year, but file a separate return."
+    },
+
+    "late_enrollment_penalty": {
+      "rate_per_12_month_period": 0.10,
+      "_description": "Monthly premium may increase by 10% for each full 12-month period that person could have had Part B but did not sign up. Penalty lasts for as long as enrolled in Part B.",
+      "exemptions": [
+        "Covered by employer group health plan while working",
+        "Covered by spouse's employer group health plan while spouse is working",
+        "International volunteers (specific programs)",
+        "Individuals eligible for equitable relief"
+      ]
+    }
+  },
+
+  "part_d": {
+    "_description": "Medicare Part D provides coverage for prescription drugs through private insurance plans approved by Medicare. IRMAA surcharge is paid directly to Medicare, not to the plan.",
+    "average_plan_premium_monthly": 46.50,
+    "_premium_note": "Part D premiums vary by plan. This is the nationwide average for 2026 standalone Part D plans.",
+    "out_of_pocket_cap": true,
+    "_oop_note": "Beginning 2025, Part D has an annual out-of-pocket spending cap. Once reached, beneficiary pays $0 for covered medications for remainder of year.",
+    
+    "irmaa": {
+      "_description": "Part D IRMAA is paid in addition to plan premium. Uses same income brackets as Part B.",
+      
+      "single_filer_brackets": [
+        {
+          "bracket": 0,
+          "magi_min": 0,
+          "magi_max": 109000,
+          "irmaa_amount": 0.00
+        },
+        {
+          "bracket": 1,
+          "magi_min": 109001,
+          "magi_max": 137000,
+          "irmaa_amount": 14.50
+        },
+        {
+          "bracket": 2,
+          "magi_min": 137001,
+          "magi_max": 171000,
+          "irmaa_amount": 37.50
+        },
+        {
+          "bracket": 3,
+          "magi_min": 171001,
+          "magi_max": 205000,
+          "irmaa_amount": 60.40
+        },
+        {
+          "bracket": 4,
+          "magi_min": 205001,
+          "magi_max": 499999,
+          "irmaa_amount": 83.30
+        },
+        {
+          "bracket": 5,
+          "magi_min": 500000,
+          "magi_max": null,
+          "irmaa_amount": 91.00
+        }
+      ],
+      
+      "joint_filer_brackets": [
+        {
+          "bracket": 0,
+          "magi_min": 0,
+          "magi_max": 218000,
+          "irmaa_amount": 0.00
+        },
+        {
+          "bracket": 1,
+          "magi_min": 218001,
+          "magi_max": 274000,
+          "irmaa_amount": 14.50
+        },
+        {
+          "bracket": 2,
+          "magi_min": 274001,
+          "magi_max": 342000,
+          "irmaa_amount": 37.50
+        },
+        {
+          "bracket": 3,
+          "magi_min": 342001,
+          "magi_max": 410000,
+          "irmaa_amount": 60.40
+        },
+        {
+          "bracket": 4,
+          "magi_min": 410001,
+          "magi_max": 749999,
+          "irmaa_amount": 83.30
+        },
+        {
+          "bracket": 5,
+          "magi_min": 750000,
+          "magi_max": null,
+          "irmaa_amount": 91.00
+        }
+      ],
+      
+      "married_filing_separately_brackets": [
+        {
+          "bracket": 0,
+          "magi_min": 0,
+          "magi_max": 109000,
+          "irmaa_amount": 0.00
+        },
+        {
+          "bracket": 4,
+          "magi_min": 109001,
+          "magi_max": 390999,
+          "irmaa_amount": 83.30
+        },
+        {
+          "bracket": 5,
+          "magi_min": 391000,
+          "magi_max": null,
+          "irmaa_amount": 91.00
+        }
+      ]
+    }
+  },
+
+  "part_a": {
+    "_description": "Medicare Part A covers inpatient hospital, skilled nursing facility, hospice, inpatient rehabilitation, and some home health care services. Approximately 99% of beneficiaries do not pay a Part A premium (40+ quarters of Medicare-covered employment).",
+    
+    "premiums": {
+      "full_premium_monthly": 565.00,
+      "_full_premium_note": "For uninsured aged individuals with fewer than 30 quarters of coverage, and certain individuals with disabilities who have exhausted other entitlements.",
+      "reduced_premium_monthly": 311.00,
+      "_reduced_premium_note": "For individuals with 30-39 quarters of coverage, or married to someone with 30-39 quarters.",
+      "premium_free_quarters_required": 40
+    },
+    
+    "inpatient_hospital": {
+      "deductible_per_benefit_period": 1736.00,
+      "_deductible_note": "Covers beneficiary's share of costs for the first 60 days of Medicare-covered inpatient hospital care in a benefit period.",
+      "coinsurance_days_61_90": 434.00,
+      "coinsurance_lifetime_reserve_days": 868.00,
+      "_lifetime_reserve_note": "Up to 60 lifetime reserve days available for extended hospital stays."
+    },
+    
+    "skilled_nursing_facility": {
+      "coinsurance_days_21_100": 217.00,
+      "_snf_note": "Days 1-20: $0 after hospital deductible. Days 21-100: daily coinsurance. Day 101+: beneficiary pays all costs."
+    }
+  },
+
+  "irmaa_appeals": {
+    "_description": "Beneficiaries may appeal IRMAA determination if circumstances have changed.",
+    "appeal_deadline_days": 60,
+    "_appeal_note": "60 days from receiving SSA notice to file appeal.",
+    
+    "life_changing_events": [
+      {
+        "event": "marriage",
+        "description": "Recently married"
+      },
+      {
+        "event": "divorce_annulment",
+        "description": "Divorce or annulment"
+      },
+      {
+        "event": "death_of_spouse",
+        "description": "Death of spouse"
+      },
+      {
+        "event": "work_stoppage",
+        "description": "You or your spouse stopped working or reduced work hours"
+      },
+      {
+        "event": "work_reduction",
+        "description": "You or your spouse had a significant reduction in income"
+      },
+      {
+        "event": "loss_of_income_producing_property",
+        "description": "Loss of income-producing property due to disaster, fraud, or other circumstances beyond control"
+      },
+      {
+        "event": "loss_of_pension",
+        "description": "Loss of pension income"
+      },
+      {
+        "event": "employer_settlement",
+        "description": "Receipt of settlement from employer or former employer due to bankruptcy, reorganization, or closure"
+      }
+    ],
+    
+    "contact": {
+      "agency": "Social Security Administration",
+      "phone": "800-772-1213",
+      "tty": "800-325-0778",
+      "hours": "Monday-Friday, 8am-7pm local time"
+    }
+  },
+
+  "magi_calculation": {
+    "_description": "Modified Adjusted Gross Income for IRMAA is calculated from IRS Form 1040.",
+    "formula": "Line 11 (Adjusted Gross Income) + Line 2a (Tax-exempt interest income)",
+    "includes": [
+      "Wages, salaries, tips",
+      "Taxable interest",
+      "Ordinary dividends",
+      "Taxable IRA distributions",
+      "Taxable pensions and annuities",
+      "Social Security benefits (taxable portion)",
+      "Capital gains",
+      "Rental income",
+      "Business income",
+      "Tax-exempt interest (added back)"
+    ],
+    "_planning_note": "Income planning strategies (Roth conversions, timing of capital gains, etc.) may help reduce IRMAA liability."
+  },
+
+  "premium_history": {
+    "_description": "Historical Part B standard monthly premiums and annual deductibles.",
+    "years": [
+      {
+        "year": 2020,
+        "standard_premium": 144.60,
+        "annual_deductible": 198.00
+      },
+      {
+        "year": 2021,
+        "standard_premium": 148.50,
+        "annual_deductible": 203.00
+      },
+      {
+        "year": 2022,
+        "standard_premium": 170.10,
+        "annual_deductible": 233.00,
+        "_note": "Largest year-over-year dollar increase in program history, partly due to Aduhelm uncertainty."
+      },
+      {
+        "year": 2023,
+        "standard_premium": 164.90,
+        "annual_deductible": 226.00,
+        "_note": "Premium decreased from 2022 (first decrease in over a decade)."
+      },
+      {
+        "year": 2024,
+        "standard_premium": 174.70,
+        "annual_deductible": 240.00
+      },
+      {
+        "year": 2025,
+        "standard_premium": 185.00,
+        "annual_deductible": 257.00
+      },
+      {
+        "year": 2026,
+        "standard_premium": 202.90,
+        "annual_deductible": 283.00,
+        "_note": "9.7% increase; would have been $11/month higher without skin substitute spending reductions."
+      }
+    ]
+  },
+
+  "hold_harmless_provision": {
+    "_description": "The Social Security Act provides that Part B premiums for current enrollees cannot increase by more than the dollar amount of the Social Security COLA.",
+    "applies_to": "Beneficiaries who have Part B premiums deducted from Social Security benefits",
+    "effect": "Premium increase limited to COLA increase amount",
+    "exceptions": [
+      "New enrollees",
+      "Beneficiaries subject to IRMAA",
+      "Beneficiaries enrolled in Medicare but not receiving Social Security benefits",
+      "Medicaid beneficiaries (states pay premium)"
+    ]
+  },
+
+  "enrollment_periods": {
+    "initial_enrollment_period": {
+      "duration_months": 7,
+      "description": "3 months before turning 65, the month of 65th birthday, and 3 months after"
+    },
+    "general_enrollment_period": {
+      "dates": "January 1 - March 31",
+      "coverage_start": "July 1 of enrollment year",
+      "_note": "Late enrollment penalty may apply"
+    },
+    "special_enrollment_period": {
+      "duration_months": 8,
+      "description": "After losing employer coverage or when employer group health plan ends",
+      "_note": "No late enrollment penalty if enrolling during SEP"
+    }
+  },
+
+  "sources": [
+    {
+      "name": "CMS 2026 Medicare Parts A & B Premiums and Deductibles",
+      "url": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles",
+      "date": "2025-11-14"
+    },
+    {
+      "name": "Federal Register - Medicare Part B Monthly Actuarial Rates",
+      "url": "https://www.federalregister.gov/public-inspection",
+      "reference": "CMS-8089-N, CMS-8090-N, CMS-8091-N"
+    },
+    {
+      "name": "Medicare.gov Costs Overview",
+      "url": "https://www.medicare.gov/basics/costs/medicare-costs"
+    }
+  ]
+}
