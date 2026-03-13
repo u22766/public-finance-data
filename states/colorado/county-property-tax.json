@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 CO",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
+    "state_code": "CO",
+    "version": "1.1",
+    "last_updated": "2026-03-13",
+    "sources": [
+      "County tax assessor/collector offices",
+      "County appraisal district offices",
+      "State comptroller/tax authority publications"
+    ],
+    "notes": {
+      "tax_rate_format": "Rate per $100 of assessed value unless otherwise noted.",
+      "scope": "Initial release covers counties with major military installations from states in state-benefits.json.",
+      "update_cycle": "Tax rates typically set annually by county boards."
+    }
+  },
+  "counties": [
+    {
+      "county": "El Paso County",
+      "state_code": "CO",
+      "fips": "08041",
+      "military_installations": [
+        "Fort Carson",
+        "Peterson SFB",
+        "Schriever SFB",
+        "USAFA",
+        "NORAD"
+      ],
+      "estimated_veteran_population": 102000,
+      "tax_year": 2025,
+      "property_tax": {
+        "total_mill_levy": 78.0,
+        "residential_assessment_rate_pct": 6.7,
+        "_note": "Effective rate = market value \u00d7 6.7% \u00d7 mill levy / 1000"
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_property_tax": {
+          "type": "partial_exemption",
+          "exemption_calculation": "50% of first $200,000 market value exempt from assessment",
+          "eligibility": "100% permanent service-connected disability",
+          "surviving_spouse": true
+        }
+      },
+      "application": {
+        "office": "El Paso County Assessor",
+        "url": "https://assessor.elpasoco.com/"
+      },
+      "source": "https://cdola.colorado.gov/disabled-veteran-property-tax-exemption"
+    }
+  ]
+}

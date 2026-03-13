@@ -19,7 +19,7 @@ Consumers should compare file versions to determine whether to re-fetch. A versi
 Consumers should check `schema_min_compatible` before reading data:
 
 ```javascript
-const appSchemaVersion = "2.0"; // hardcoded in consumer app — update after migration
+const appSchemaVersion = "2.1"; // hardcoded in consumer app — update after migration
 const repoMinCompatible = manifest.schema_min_compatible || "1.0";
 
 if (compareVersions(appSchemaVersion, repoMinCompatible) < 0) {
@@ -72,6 +72,61 @@ Corrected federal income tax bracket middle cutoffs for both single and married-
 | 32% max | 512,850 | 512,450 |
 
 All corresponding `min` values on adjacent brackets adjusted accordingly. 10% and 37% endpoints were already correct and unchanged.
+
+---
+
+## Schema Version 2.1 — County Data Per-State Restructure
+
+**Date:** March 13, 2026 (Session 24)
+**Change type:** Breaking — file path change
+**`schema_version`:** 2.0 → 2.1
+**`schema_min_compatible`:** 2.0 → 2.1
+
+### Summary
+
+Restructured county property tax data from a single flat file into per-state files under state-specific directories. No data values changed — structural reorganization only.
+
+### Breaking Change
+
+**Removed:** `states/counties/county-property-tax.json` (single file, 10 counties)
+**Removed:** `states/counties/` directory
+
+**Added:** 9 per-state county files:
+
+| Manifest Key | Path | Counties |
+|---|---|---|
+| `county_property_tax_az` | `states/arizona/county-property-tax.json` | Maricopa County |
+| `county_property_tax_co` | `states/colorado/county-property-tax.json` | El Paso County |
+| `county_property_tax_fl` | `states/florida/county-property-tax.json` | Hillsborough County |
+| `county_property_tax_md` | `states/maryland/county-property-tax.json` | Prince George's County |
+| `county_property_tax_nc` | `states/north-carolina/county-property-tax.json` | Cumberland County |
+| `county_property_tax_nv` | `states/nevada/county-property-tax.json` | Clark County |
+| `county_property_tax_tx` | `states/texas/county-property-tax.json` | Bexar County |
+| `county_property_tax_va` | `states/virginia/county-property-tax.json` | Fairfax County, Virginia Beach |
+| `county_property_tax_wa` | `states/washington/county-property-tax.json` | Pierce County |
+
+### Schema Changes
+
+Each per-state file now includes `metadata.state_code` field identifying the state. Version bumped from `1.0` to `1.1`.
+
+### Consumer Migration
+
+Consumers referencing `county_property_tax` must update to state-specific keys (`county_property_tax_va`, etc.). The `counties` array schema within each file is unchanged — only the file location and manifest key changed.
+
+```javascript
+// Before (Schema 2.0):
+const countyData = await fetch(manifest.files.county_property_tax.url);
+
+// After (Schema 2.1):
+// Option A: Fetch specific state
+const vaCounties = await fetch(manifest.files.county_property_tax_va.url);
+
+// Option B: Fetch all county files
+const countyKeys = Object.keys(manifest.files).filter(k => k.startsWith('county_property_tax_'));
+const allCounties = await Promise.all(
+  countyKeys.map(k => fetch(manifest.files[k].url).then(r => r.json()))
+);
+```
 
 ---
 

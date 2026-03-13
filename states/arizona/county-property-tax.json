@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 AZ",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
+    "state_code": "AZ",
+    "version": "1.1",
+    "last_updated": "2026-03-13",
+    "sources": [
+      "County tax assessor/collector offices",
+      "County appraisal district offices",
+      "State comptroller/tax authority publications"
+    ],
+    "notes": {
+      "tax_rate_format": "Rate per $100 of assessed value unless otherwise noted.",
+      "scope": "Initial release covers counties with major military installations from states in state-benefits.json.",
+      "update_cycle": "Tax rates typically set annually by county boards."
+    }
+  },
+  "counties": [
+    {
+      "county": "Maricopa County",
+      "state_code": "AZ",
+      "fips": "04013",
+      "military_installations": [
+        "Luke AFB"
+      ],
+      "estimated_veteran_population": 210000,
+      "tax_year": 2025,
+      "property_tax": {
+        "primary_rate_per_100": 0.47,
+        "secondary_rate_per_100": 0.79,
+        "assessment_ratio_residential_pct": 10
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_assessed_value": 4188,
+          "eligibility": "Service-connected disability; AZ resident",
+          "surviving_spouse": true,
+          "_note": "Amount adjusted annually. Applies to assessed (not market) value."
+        }
+      },
+      "application": {
+        "office": "Maricopa County Assessor",
+        "url": "https://mcassessor.maricopa.gov/"
+      },
+      "source": "https://azdor.gov/forms/property-tax-forms"
+    }
+  ]
+}

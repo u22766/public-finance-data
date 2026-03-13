@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 NC",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
+    "state_code": "NC",
+    "version": "1.1",
+    "last_updated": "2026-03-13",
+    "sources": [
+      "County tax assessor/collector offices",
+      "County appraisal district offices",
+      "State comptroller/tax authority publications"
+    ],
+    "notes": {
+      "tax_rate_format": "Rate per $100 of assessed value unless otherwise noted.",
+      "scope": "Initial release covers counties with major military installations from states in state-benefits.json.",
+      "update_cycle": "Tax rates typically set annually by county boards."
+    }
+  },
+  "counties": [
+    {
+      "county": "Cumberland County",
+      "state_code": "NC",
+      "fips": "37051",
+      "military_installations": [
+        "Fort Liberty"
+      ],
+      "estimated_veteran_population": 62000,
+      "tax_year": 2025,
+      "property_tax": {
+        "real_estate_rate_per_100": 0.735,
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "partial_exemption",
+          "exemption_amount": 45000,
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Permanent residence",
+          "_note": "NC does not offer full exemption; $45,000 exclusion from appraised value"
+        }
+      },
+      "application": {
+        "office": "Cumberland County Tax Administration",
+        "url": "https://www.cumberlandcountync.gov/departments/tax-group/tax"
+      },
+      "source": "https://www.ncdor.gov/taxes-forms/property-tax/property-tax-exemptions-exclusions"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 VA",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
+    "state_code": "VA",
+    "version": "1.1",
+    "last_updated": "2026-03-13",
+    "sources": [
+      "County tax assessor/collector offices",
+      "County appraisal district offices",
+      "State comptroller/tax authority publications"
+    ],
+    "notes": {
+      "tax_rate_format": "Rate per $100 of assessed value unless otherwise noted.",
+      "scope": "Initial release covers counties with major military installations from states in state-benefits.json.",
+      "update_cycle": "Tax rates typically set annually by county boards."
+    }
+  },
+  "counties": [
+    {
+      "county": "Fairfax County",
+      "state_code": "VA",
+      "fips": "51059",
+      "military_installations": [
+        "Fort Belvoir",
+        "NGA Campus East",
+        "DIA HQ"
+      ],
+      "estimated_veteran_population": 78000,
+      "tax_year": 2026,
+      "property_tax": {
+        "real_estate_rate_per_100": 1.095,
+        "stormwater_levy_per_100": 0.0325,
+        "total_effective_rate_per_100": 1.1275,
+        "mean_residential_assessment": 794234,
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Primary residence + up to 1 acre",
+          "vehicle_reduced_rate_per_100": 0.01,
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true
+        },
+        "kia_surviving_spouse": {
+          "type": "full_exemption",
+          "eligibility": "Unremarried surviving spouse of service member killed in action",
+          "applies_to": "Primary residence + up to 1 acre"
+        }
+      },
+      "senior_disability_relief": {
+        "age_threshold": 65,
+        "income_tiers": [
+          {
+            "max_income": 60000,
+            "exemption_pct": 100
+          },
+          {
+            "max_income": 70000,
+            "exemption_pct": 75
+          },
+          {
+            "max_income": 80000,
+            "exemption_pct": 50
+          },
+          {
+            "max_income": 90000,
+            "exemption_pct": 25
+          }
+        ],
+        "asset_limit": 400000,
+        "assessment_cap_pct_of_mean": 125
+      },
+      "application": {
+        "office": "Fairfax County DTA \u2014 Tax Relief Office",
+        "email": "taxrelief@fairfaxcounty.gov",
+        "url": "https://www.fairfaxcounty.gov/taxes/relief",
+        "pre_certification_available": true
+      },
+      "source": "https://www.fairfaxcounty.gov/taxes/relief/real-estate-disabled-veterans"
+    },
+    {
+      "county": "Virginia Beach",
+      "state_code": "VA",
+      "fips": "51810",
+      "military_installations": [
+        "NAS Oceana",
+        "JEBLS Little Creek-Fort Story",
+        "Dam Neck"
+      ],
+      "estimated_veteran_population": 67000,
+      "tax_year": 2025,
+      "property_tax": {
+        "real_estate_rate_per_100": 0.99,
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T or IU at 100% per VA Code \u00a758.1-3219.5",
+          "applies_to": "Primary residence + up to 1 acre",
+          "surviving_spouse": true
+        }
+      },
+      "application": {
+        "office": "Virginia Beach Commissioner of Revenue",
+        "url": "https://www.vbgov.com/government/departments/commissioner-of-the-revenue/"
+      },
+      "source": "https://www.vbgov.com/government/departments/commissioner-of-the-revenue/"
+    }
+  ]
+}

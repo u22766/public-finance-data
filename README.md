@@ -39,7 +39,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 23 entries)
+├── manifest.json                                ← Fetch this first (master version index, 43 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -50,6 +50,14 @@ public-finance-data/
 │   ├── ss-taxable-max.json                      ← SS taxable maximum (1937–2026)
 │   ├── ira-limits.json                          ← IRA/Roth limits + phase-outs (1975–2026)
 │   ├── cola-history.json                        ← COLA history — FERS, CSRS, SS, VA (51 years, 4 systems)
+│   ├── federal-tax-brackets.json                ← Federal income tax brackets (1913–2026)
+│   ├── standard-deduction-history.json          ← Standard deduction history (1970–2026)
+│   ├── capital-gains-rates.json                 ← Capital gains tax rates (1913–2026)
+│   ├── hsa-limits.json                          ← HSA contribution limits (2004–2026)
+│   ├── federal-pay-raises.json                  ← Federal civilian pay raises (1970–2026)
+│   ├── estate-gift-tax.json                     ← Estate & gift tax exemptions (1916–2026)
+│   ├── fers-contribution-rates.json             ← FERS employee contribution rates by hire cohort
+│   ├── fehb-premium-history.json                ← FEHB average premium history (1999–2025)
 │   ├── dcips/
 │   │   └── dcips-pay-tables.json                ← DCIPS pay bands — all occupational categories
 │   ├── healthcare/
@@ -64,24 +72,46 @@ public-finance-data/
 │
 ├── states/
 │   ├── state-benefits.json                      ← 15 states: income tax, property tax, veteran benefits
-│   ├── counties/
-│   │   └── county-property-tax.json             ← 10 counties: effective rates + veteran exemptions
-│   └── virginia/
-│       ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid
-│       ├── erfc-plans.json                      ← ERFC Legacy, Tier 1, Tier 2 (Fairfax County)
-│       └── plan-combinations.json               ← VRS + ERFC pension stacking patterns
+│   ├── arizona/
+│   │   └── county-property-tax.json             ← Maricopa County
+│   ├── colorado/
+│   │   └── county-property-tax.json             ← El Paso County
+│   ├── florida/
+│   │   └── county-property-tax.json             ← Hillsborough County
+│   ├── maryland/
+│   │   └── county-property-tax.json             ← Prince George's County
+│   ├── nevada/
+│   │   └── county-property-tax.json             ← Clark County
+│   ├── north-carolina/
+│   │   └── county-property-tax.json             ← Cumberland County
+│   ├── texas/
+│   │   └── county-property-tax.json             ← Bexar County
+│   ├── virginia/
+│   │   ├── county-property-tax.json             ← Fairfax County, Virginia Beach
+│   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid
+│   │   ├── erfc-plans.json                      ← ERFC Legacy, Tier 1, Tier 2 (Fairfax County)
+│   │   └── plan-combinations.json               ← VRS + ERFC pension stacking patterns
+│   └── washington/
+│       └── county-property-tax.json             ← Pierce County
 │
 ├── reference/
 │   ├── static-refs.json                         ← SS FRA table, RMD Uniform Lifetime Table, locality codes
 │   ├── ssa-life-table.json                      ← SSA period life table (ages 0–119, M/F/combined)
-│   └── other-db-template.json                   ← Generic DB plan template for user-entered pensions
+│   ├── other-db-template.json                   ← Generic DB plan template for user-entered pensions
+│   ├── social-security-claiming.json            ← SS claiming strategy rules and reduction factors
+│   ├── military-retirement-rules.json           ← Military retirement system rules (Legacy, Redux, BRS)
+│   ├── rmd-rules-history.json                   ← RMD age threshold history and SECURE Act changes
+│   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
 └── tests/
-    ├── validate.py                              ← Core validation (231 checks)
+    ├── validate.py                              ← Core validation (311 checks)
     ├── validate_tier2.py                        ← State benefits validation (169 checks)
     ├── validate_medicare.py                     ← Medicare rates validation (7 checks)
     ├── validate_dcips.py                        ← DCIPS pay tables validation (424 checks)
-    └── validate_historical.py                   ← Historical + healthcare validation (11,928 checks)
+    ├── validate_historical.py                   ← Historical + healthcare + county validation (1,963 checks)
+    ├── validate_pharmacy.py                     ← TRICARE pharmacy validation (92 checks)
+    ├── validate_dental.py                       ← TRICARE dental validation (116 checks)
+    └── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
 ```
 
 ### Domain Organization
@@ -94,7 +124,7 @@ Files are organized by jurisdiction and domain:
 
 ---
 
-## Manifest — Current Data Files (23 Entries)
+## Manifest — Current Data Files (43 Entries)
 
 | Key | Version | File |
 |-----|---------|------|
@@ -106,21 +136,41 @@ Files are organized by jurisdiction and domain:
 | `ss_taxable_max` | 1.0 | `federal/ss-taxable-max.json` |
 | `ira_limits` | 2.0 | `federal/ira-limits.json` |
 | `cola_history` | 1.0 | `federal/cola-history.json` |
+| `federal_tax_brackets` | 1.1 | `federal/federal-tax-brackets.json` |
+| `standard_deduction_history` | 1.0.1 | `federal/standard-deduction-history.json` |
+| `capital_gains_rates` | 1.0.1 | `federal/capital-gains-rates.json` |
+| `hsa_limits` | 1.0 | `federal/hsa-limits.json` |
+| `federal_pay_raises` | 1.0 | `federal/federal-pay-raises.json` |
+| `estate_gift_tax` | 1.0.1 | `federal/estate-gift-tax.json` |
+| `fers_contribution_rates` | 1.0 | `federal/fers-contribution-rates.json` |
+| `fehb_premium_history` | 1.0 | `federal/fehb-premium-history.json` |
 | `fehb_rates` | 2026.3 | `federal/healthcare/fehb-rates.json` |
 | `fehb_plan_benefits` | 2026.1 | `federal/healthcare/fehb-plan-benefits.json` |
 | `fedvip_rates` | 2026.1 | `federal/healthcare/fedvip-rates.json` |
-| `tricare_rates` | 2026.1 | `federal/healthcare/tricare-rates.json` |
-| `medicare_rates` | 2026.1 | `federal/healthcare/medicare-rates.json` |
+| `tricare_rates` | 2026.3 | `federal/healthcare/tricare-rates.json` |
+| `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
 | `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
 | `state_benefits` | 1.5 | `states/state-benefits.json` |
-| `county_property_tax` | 1.0 | `states/counties/county-property-tax.json` |
+| `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
+| `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
+| `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
+| `county_property_tax_md` | 1.1 | `states/maryland/county-property-tax.json` |
+| `county_property_tax_nc` | 1.1 | `states/north-carolina/county-property-tax.json` |
+| `county_property_tax_nv` | 1.1 | `states/nevada/county-property-tax.json` |
+| `county_property_tax_tx` | 1.1 | `states/texas/county-property-tax.json` |
+| `county_property_tax_va` | 1.1 | `states/virginia/county-property-tax.json` |
+| `county_property_tax_wa` | 1.1 | `states/washington/county-property-tax.json` |
 | `vrs_plans` | 2.0.0 | `states/virginia/vrs-plans.json` |
 | `erfc_plans` | 2.0.0 | `states/virginia/erfc-plans.json` |
 | `plan_combinations` | 2.0.0 | `states/virginia/plan-combinations.json` |
 | `static_refs` | 1.0.1 | `reference/static-refs.json` |
 | `ssa_life_table` | 1.0 | `reference/ssa-life-table.json` |
 | `other_db_template` | 1.0.0 | `reference/other-db-template.json` |
+| `social_security_claiming` | 1.1 | `reference/social-security-claiming.json` |
+| `military_retirement_rules` | 1.0 | `reference/military-retirement-rules.json` |
+| `rmd_rules_history` | 1.0 | `reference/rmd-rules-history.json` |
+| `obbba_tax_provisions` | 1.0 | `reference/obbba-tax-provisions.json` |
 
 ---
 
@@ -130,21 +180,24 @@ Files are organized by jurisdiction and domain:
 
 Each state entry includes income tax treatment of military/federal retirement pay, property tax exemptions for disabled veterans, additional veteran benefit programs, application procedures, survivor transfer conditions, and pending legislation flags.
 
-**County property tax** (10 counties): Fairfax County VA, Virginia Beach VA, Prince George's County MD, Cumberland County NC, Bexar County TX, Hillsborough County FL, El Paso County CO, Pierce County WA, Maricopa County AZ, Clark County NV
+**County property tax** (10 counties across 9 states, stored as per-state files under `states/{state}/county-property-tax.json`): Fairfax County VA, Virginia Beach VA, Prince George's County MD, Cumberland County NC, Bexar County TX, Hillsborough County FL, El Paso County CO, Pierce County WA, Maricopa County AZ, Clark County NV
 
 ---
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs five test suites totaling **12,759+ checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs eight test suites totaling **3,153 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 231 | Manifest integrity, all federal/state/reference files |
+| Core | `validate.py` | 311 | Manifest integrity, all federal/state/reference files |
 | Tier 2 | `validate_tier2.py` | 169 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
-| Historical | `validate_historical.py` | 11,928 | Historical series, FEHB (9,109), TRICARE, FEDVIP, plan benefits |
+| Historical | `validate_historical.py` | 1,963 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
+| Pharmacy | `validate_pharmacy.py` | 92 | TRICARE pharmacy cost-share validation |
+| Dental | `validate_dental.py` | 116 | TRICARE dental premium validation |
+| OBBBA | `validate_obbba.py` | 71 | OBBBA tax provision structure and cross-references |
 
 ---
 
@@ -163,7 +216,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | `federal/veterans-affairs/compensation.json` | December | VA publishes new COLA rates |
 | `federal/veterans-affairs/vgli.json` | As published | VA updates VGLI premium schedule |
 | `states/state-benefits.json` | As needed | State tax law changes |
-| `states/counties/county-property-tax.json` | As needed | County rate or exemption changes |
+| `states/{state}/county-property-tax.json` | As needed | County rate or exemption changes |
 | Historical series (tsp, ss, ira, cola) | January | Annual new-year data point added |
 | `reference/static-refs.json` | Rarely | SS FRA table or RMD table changes |
 

@@ -1,7 +1,7 @@
 {
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
-  "schema_version": "2.0",
-  "schema_min_compatible": "2.0",
+  "schema_version": "2.1",
+  "schema_min_compatible": "2.1",
   "last_updated": "2026-03-13",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
@@ -153,14 +153,6 @@
       "source": "https://www.ssa.gov/oact/STATS/table4c6.html",
       "changelog_1_0": "Initial release. Full 120-age period life table with retirement planning reference."
     },
-    "county_property_tax": {
-      "version": "1.0",
-      "effective_date": "2025-01-01",
-      "update_frequency": "annual (after county rate-setting)",
-      "url": "states/counties/county-property-tax.json",
-      "description": "County-level property tax rates and veteran exemption details for 10 high-military-population counties across 9 states. Tax rates, exemption types, application contacts.",
-      "changelog_1_0": "Initial release. 10 counties: Fairfax VA, Virginia Beach VA, Prince George's MD, Cumberland NC, Bexar TX, Hillsborough FL, El Paso CO, Pierce WA, Maricopa AZ, Clark NV."
-    },
     "cola_history": {
       "version": "1.0",
       "effective_date": "2025-10-01",
@@ -290,6 +282,87 @@
       "last_updated": "2026-03-13",
       "effective_date": "2025-07-04",
       "update_frequency": "as_needed"
+    },
+    "county_property_tax_az": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/arizona/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Maricopa County (AZ).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_co": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/colorado/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: El Paso County (CO).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_fl": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/florida/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Hillsborough County (FL).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_md": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/maryland/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Prince George's County (MD).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_nc": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/north-carolina/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Cumberland County (NC).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_nv": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/nevada/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Clark County (NV).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_tx": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/texas/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Bexar County (TX).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_va": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/virginia/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Fairfax County, Virginia Beach (VA).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+    },
+    "county_property_tax_wa": {
+      "version": "1.1",
+      "effective_date": "2025-01-01",
+      "update_frequency": "annual (after county rate-setting)",
+      "url": "states/washington/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemption details: Pierce County (WA).",
+      "last_updated": "2026-03-13",
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     }
   }
 }

@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 TX",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
+    "state_code": "TX",
+    "version": "1.1",
+    "last_updated": "2026-03-13",
+    "sources": [
+      "County tax assessor/collector offices",
+      "County appraisal district offices",
+      "State comptroller/tax authority publications"
+    ],
+    "notes": {
+      "tax_rate_format": "Rate per $100 of assessed value unless otherwise noted.",
+      "scope": "Initial release covers counties with major military installations from states in state-benefits.json.",
+      "update_cycle": "Tax rates typically set annually by county boards."
+    }
+  },
+  "counties": [
+    {
+      "county": "Bexar County",
+      "state_code": "TX",
+      "fips": "48029",
+      "military_installations": [
+        "JBSA (Fort Sam Houston, Lackland AFB, Randolph AFB)"
+      ],
+      "estimated_veteran_population": 153000,
+      "tax_year": 2025,
+      "property_tax": {
+        "approximate_total_rate_per_100": 2.31,
+        "rate_breakdown": {
+          "county": 0.245,
+          "city_san_antonio": 0.547,
+          "northside_isd": 1.164,
+          "flood_control": 0.028,
+          "alamo_colleges": 0.147,
+          "university_health": 0.177
+        },
+        "homestead_exemption_school": 140000,
+        "_note": "No state property tax. Total varies by taxing jurisdiction overlap."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% service-connected or IU per TX Tax Code \u00a711.131",
+          "applies_to": "Residence homestead \u2014 total appraised value",
+          "surviving_spouse": true,
+          "surviving_spouse_transfers_to_new_homestead": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "tiers": [
+            {
+              "rating_min": 10,
+              "rating_max": 29,
+              "amount": 5000
+            },
+            {
+              "rating_min": 30,
+              "rating_max": 49,
+              "amount": 7500
+            },
+            {
+              "rating_min": 50,
+              "rating_max": 69,
+              "amount": 10000
+            },
+            {
+              "rating_min": 70,
+              "rating_max": 100,
+              "amount": 12000
+            }
+          ],
+          "applies_to": "Any one property (not limited to homestead)",
+          "age_65_plus_with_10_pct": 12000
+        }
+      },
+      "payment_plans": {
+        "quarterly": true,
+        "ten_month_bexar_only": true
+      },
+      "application": {
+        "office": "Bexar Central Appraisal District",
+        "address": "411 N Frio St, San Antonio, TX 78207",
+        "phone": "210-242-2432",
+        "url": "https://help.bcad.org/",
+        "deadline": "April 30 (late filing up to 5 years for veteran exemptions)"
+      },
+      "source": "https://www.bexar.org/2582/Property-Tax-Frequently-Asked-Questions"
+    }
+  ]
+}

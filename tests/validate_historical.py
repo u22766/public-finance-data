@@ -154,24 +154,61 @@ def validate_life_table(root):
     print(f"  LT: {PASS - start} checks")
 
 def validate_county_property_tax(root):
-    section("County Property Tax")
+    section("County Property Tax (per-state files)")
     global PASS, FAIL
     start = PASS
-    f = json.load(open(os.path.join(root, 'states/counties/county-property-tax.json')))
-    check('metadata' in f, "has metadata")
-    check('counties' in f, "has counties")
-    counties = f.get('counties', [])
-    check(len(counties) >= 10, f"has 10+ counties (got {len(counties)})")
-    
-    for c in counties:
-        check('county' in c, f"county entry has name")
-        check('state_code' in c, f"{c.get('county','')} has state_code")
-        check('property_tax' in c or 'tax_rate' in c or 'effective_rate' in c, 
-              f"{c.get('county','')} has tax data")
-    
-    states = set(c.get('state_code','') for c in counties)
-    check(len(states) >= 8, f"covers 8+ states (got {len(states)})")
-    
+
+    # Expected per-state county files after restructure from flat states/counties/
+    expected_states = {
+        'AZ': 'states/arizona/county-property-tax.json',
+        'CO': 'states/colorado/county-property-tax.json',
+        'FL': 'states/florida/county-property-tax.json',
+        'MD': 'states/maryland/county-property-tax.json',
+        'NC': 'states/north-carolina/county-property-tax.json',
+        'NV': 'states/nevada/county-property-tax.json',
+        'TX': 'states/texas/county-property-tax.json',
+        'VA': 'states/virginia/county-property-tax.json',
+        'WA': 'states/washington/county-property-tax.json',
+    }
+
+    all_counties = []
+    all_state_codes = set()
+
+    for state_code, rel_path in sorted(expected_states.items()):
+        full_path = os.path.join(root, rel_path)
+        check(os.path.isfile(full_path), f"{state_code} county file exists at {rel_path}")
+        if not os.path.isfile(full_path):
+            continue
+
+        f = json.load(open(full_path))
+        check('metadata' in f, f"{state_code} has metadata")
+        check('counties' in f, f"{state_code} has counties")
+
+        meta = f.get('metadata', {})
+        check(meta.get('state_code') == state_code,
+              f"{state_code} metadata.state_code matches ({meta.get('state_code')})")
+        check(meta.get('version') is not None, f"{state_code} has version")
+
+        counties = f.get('counties', [])
+        check(len(counties) >= 1, f"{state_code} has at least 1 county (got {len(counties)})")
+
+        for c in counties:
+            check('county' in c, f"{state_code} county entry has name")
+            check(c.get('state_code') == state_code,
+                  f"{c.get('county','')} state_code matches file ({c.get('state_code')})")
+            check('property_tax' in c or 'tax_rate' in c or 'effective_rate' in c,
+                  f"{c.get('county','')} has tax data")
+            all_counties.append(c)
+            all_state_codes.add(c.get('state_code', ''))
+
+    check(len(all_counties) >= 10, f"total counties across all files >= 10 (got {len(all_counties)})")
+    check(len(all_state_codes) >= 8, f"covers 8+ states (got {len(all_state_codes)})")
+
+    # Verify old flat file is removed
+    old_flat = os.path.join(root, 'states/counties/county-property-tax.json')
+    check(not os.path.isfile(old_flat),
+          "old flat states/counties/county-property-tax.json removed")
+
     print(f"  CPT: {PASS - start} checks")
 
 def validate_cola_history(root):
