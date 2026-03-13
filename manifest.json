@@ -282,6 +282,14 @@
       "url": "reference/military-retirement-rules.json",
       "description": "Military retirement systems (Final Pay, High-3, REDUX, BRS): formulas, TSP matching, SBP, CRDP/CRSC",
       "last_updated": "2026-03-12"
+    },
+    "obbba_tax_provisions": {
+      "url": "reference/obbba-tax-provisions.json",
+      "version": "1.0",
+      "description": "One Big Beautiful Bill Act (P.L. 119-21) tax provisions relevant to retirement and financial planning",
+      "last_updated": "2026-03-13",
+      "effective_date": "2025-07-04",
+      "update_frequency": "as_needed"
     }
   }
 }

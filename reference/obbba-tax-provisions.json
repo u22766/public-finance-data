@@ -1,0 +1,252 @@
+{
+  "metadata": {
+    "file": "obbba-tax-provisions.json",
+    "description": "One Big Beautiful Bill Act (OBBBA) tax provisions relevant to retirement and financial planning. P.L. 119-21, signed July 4, 2025.",
+    "version": "1.0",
+    "effective_date": "2025-07-04",
+    "last_updated": "2026-03-13",
+    "update_frequency": "as_needed",
+    "sources": [
+      "https://www.irs.gov/newsroom/one-big-beautiful-bill-provisions",
+      "https://www.irs.gov/newsroom/one-big-beautiful-bill-act-tax-deductions-for-working-americans-and-seniors",
+      "https://www.irs.gov/newsroom/one-big-beautiful-bill-provisions-individuals-and-workers",
+      "https://www.irs.gov/newsroom/treasury-irs-issue-guidance-on-trump-accounts-established-under-the-working-families-tax-cuts-notice-announces-upcoming-regulations"
+    ],
+    "law_reference": "One Big Beautiful Bill Act, P.L. 119-21, 119th Congress",
+    "irs_guidance": [
+      "Revenue Procedure 2025-32 (2026 inflation adjustments incorporating OBBBA)",
+      "Notice 2025-68 (Trump Accounts initial guidance)",
+      "FS-2025-03 (Tax deductions for workers and seniors)"
+    ]
+  },
+  "tcja_permanence": {
+    "description": "OBBBA permanently extends individual tax provisions from the Tax Cuts and Jobs Act of 2017 that were set to expire December 31, 2025.",
+    "effective_date": "2025-07-04",
+    "sunset": null,
+    "provisions_made_permanent": [
+      {
+        "provision": "individual_tax_rates",
+        "description": "Seven-bracket structure with rates 10%, 12%, 22%, 24%, 32%, 35%, 37% made permanent",
+        "cross_reference": "federal/federal-tax-brackets.json"
+      },
+      {
+        "provision": "standard_deduction",
+        "description": "Enlarged standard deduction made permanent with additional OBBBA inflation adjustment for 2026 bottom two brackets",
+        "cross_reference": "federal/standard-deduction-history.json",
+        "note": "OBBBA provides 4% inflation adjustment for 10% and 12% brackets, 2.3% for higher brackets in 2026"
+      },
+      {
+        "provision": "personal_exemption_elimination",
+        "description": "Personal exemption permanently set to $0"
+      },
+      {
+        "provision": "estate_tax_exemption",
+        "description": "Doubled estate tax exemption made permanent and indexed for inflation",
+        "cross_reference": "federal/estate-gift-tax.json",
+        "values_2026": {
+          "per_person_exemption": 14390000,
+          "married_couple_exemption": 28780000,
+          "top_rate_pct": 40
+        }
+      },
+      {
+        "provision": "child_tax_credit",
+        "description": "CTC increased to $2,200 per child and made permanent, refundable portion $1,400 indexed for inflation"
+      },
+      {
+        "provision": "qbi_deduction",
+        "description": "20% qualified business income deduction for pass-through businesses made permanent"
+      },
+      {
+        "provision": "amt_exemption",
+        "description": "Higher AMT exemption amounts made permanent and indexed for inflation"
+      }
+    ]
+  },
+  "new_deductions": {
+    "senior_deduction": {
+      "description": "Additional $6,000 deduction for taxpayers age 65 and older, available to both itemizers and non-itemizers, in addition to existing age 65+ additional standard deduction",
+      "effective_dates": "2025-01-01 through 2028-12-31",
+      "sunset": "2028-12-31",
+      "amount_per_person": 6000,
+      "married_both_qualifying": 12000,
+      "phase_out": {
+        "single_magi_threshold": 75000,
+        "joint_magi_threshold": 150000
+      },
+      "age_requirement": "Must attain age 65 on or before last day of taxable year",
+      "retirement_planning_note": "Stacks with existing additional standard deduction for age 65+ ($2,000 single / $1,600 MFJ in 2026). Combined potential deduction reduction for qualifying single senior: up to $8,000 beyond base standard deduction."
+    },
+    "tip_income_deduction": {
+      "description": "Deduction for qualified tips in customarily-tipped occupations",
+      "effective_dates": "2025-01-01 through 2028-12-31",
+      "sunset": "2028-12-31",
+      "maximum_annual": 25000,
+      "phase_out": {
+        "single_magi_threshold": 150000,
+        "joint_magi_threshold": 300000
+      }
+    },
+    "overtime_deduction": {
+      "description": "Deduction for qualified overtime compensation exceeding regular rate of pay",
+      "effective_dates": "2025-01-01 through 2028-12-31",
+      "sunset": "2028-12-31",
+      "maximum_annual_single": 12500,
+      "maximum_annual_joint": 25000,
+      "phase_out": {
+        "single_magi_threshold": 150000,
+        "joint_magi_threshold": 300000
+      }
+    },
+    "auto_loan_interest_deduction": {
+      "description": "Deduction for interest paid on loan for new personal-use vehicle",
+      "effective_dates": "2025-01-01 through 2028-12-31",
+      "sunset": "2028-12-31",
+      "maximum_annual": 10000,
+      "phase_out": {
+        "single_magi_threshold": 100000,
+        "joint_magi_threshold": 200000
+      },
+      "restrictions": [
+        "New vehicle only (original use must begin with taxpayer)",
+        "Personal use only (not business or commercial)",
+        "Lease payments do not qualify"
+      ]
+    }
+  },
+  "salt_deduction": {
+    "description": "State and local tax deduction cap increased from $10,000 to $40,000",
+    "effective_dates": "2025-01-01 through 2029-12-31",
+    "sunset": "2029-12-31",
+    "cap_schedule": {
+      "2025": 40000,
+      "2026": 40400,
+      "2027": 40804,
+      "2028": 41212,
+      "2029": 41624
+    },
+    "cap_increase_rate_annual_pct": 1.0,
+    "income_phase_out": {
+      "single_magi_threshold": 250000,
+      "joint_magi_threshold": 500000,
+      "phase_out_rate_pct": 30,
+      "minimum_cap": 10000
+    },
+    "note": "Cap and income threshold increase 1% annually through 2029. After 2029, reverts to $10,000 unless extended."
+  },
+  "trump_accounts": {
+    "description": "New tax-advantaged savings accounts for children under IRC Section 530A. Functions as traditional IRA during growth period (before age 18), then converts to standard IRA rules.",
+    "effective_date": "2026-01-01",
+    "first_contributions_allowed": "2026-07-04",
+    "eligibility": {
+      "beneficiary_requirements": [
+        "U.S. citizen",
+        "Has Social Security number",
+        "Under age 18 by end of calendar year"
+      ],
+      "no_income_requirements": true
+    },
+    "contribution_limits": {
+      "annual_aggregate": 5000,
+      "employer_max_per_employee": 2500,
+      "employer_contributions_count_toward_aggregate": true,
+      "indexed_for_inflation_after": 2027,
+      "indexing_increment": 100
+    },
+    "pilot_program_contribution": {
+      "amount": 1000,
+      "eligible_births": "2025-01-01 through 2028-12-31",
+      "counts_toward_annual_limit": false
+    },
+    "investment_restrictions": [
+      "Mutual funds or ETFs tracking qualified U.S. equity index",
+      "Annual fees and expenses must not exceed 0.1% of balance"
+    ],
+    "distribution_rules": {
+      "growth_period_withdrawals": "Generally prohibited until January 1 of year beneficiary turns 18",
+      "post_18_rules": "Converts to traditional IRA rules, distributions taxed as ordinary income"
+    },
+    "tax_treatment": {
+      "contributions": "After-tax (no deduction allowed)",
+      "growth": "Tax-deferred",
+      "distributions": "Taxed as ordinary income under traditional IRA rules",
+      "employer_contributions": "Excluded from employee taxable income"
+    },
+    "irs_guidance": "Notice 2025-68, Form 4547 (Trump Account Election)"
+  },
+  "energy_credit_changes": {
+    "description": "OBBBA phases out or eliminates several clean energy tax credits from the Inflation Reduction Act",
+    "provisions": [
+      {
+        "credit": "residential_clean_energy",
+        "description": "30% credit for rooftop solar and clean energy systems terminated",
+        "termination_date": "2025-12-31"
+      },
+      {
+        "credit": "home_energy_efficiency",
+        "description": "Credits up to $3,200 for efficiency upgrades terminated",
+        "termination_date": "2025-12-31"
+      },
+      {
+        "credit": "electric_vehicle",
+        "description": "EV tax credits phased out",
+        "termination_date": "2025-09-30"
+      }
+    ],
+    "retirement_planning_note": "Homeowners planning energy upgrades as part of retirement preparation should note these credits are no longer available for projects after the listed dates."
+  },
+  "other_provisions": {
+    "research_expensing": {
+      "description": "Domestic research and experimentation costs can be expensed in year incurred (retroactive to 2022 for small businesses, 2025 for others)",
+      "effective_date": "2025-01-01"
+    },
+    "aca_premium_tax_credits": {
+      "description": "Enhanced ACA marketplace premium tax credits not extended; revert to pre-enhancement levels",
+      "effective_date": "2025-11-01",
+      "note": "May affect early retirees relying on ACA marketplace coverage before Medicare eligibility"
+    },
+    "medicare_physician_fee": {
+      "description": "Physician fee schedule increased 2.5% for services January 1, 2026 through December 31, 2026"
+    },
+    "hsa_eligibility_expansion": {
+      "description": "Individual market bronze and catastrophic health plans treated as high-deductible health plans eligible for HSA contributions",
+      "cross_reference": "federal/hsa-limits.json",
+      "retirement_planning_note": "Expands HSA eligibility for early retirees on ACA marketplace bronze plans"
+    }
+  },
+  "cross_references": {
+    "note": "The following repo files contain 2026 values that already incorporate OBBBA changes via IRS Revenue Procedure 2025-32",
+    "files_incorporating_obbba": [
+      {
+        "file": "federal/federal-tax-brackets.json",
+        "field": "2026 brackets and rates",
+        "status": "Current \u2014 reflects OBBBA-permanent TCJA rates with enhanced inflation adjustment"
+      },
+      {
+        "file": "federal/standard-deduction-history.json",
+        "field": "2026 standard deduction amounts",
+        "status": "Current \u2014 $16,100 single / $32,200 MFJ reflects OBBBA adjustment"
+      },
+      {
+        "file": "federal/rates-annual.json",
+        "field": "2026 tax.standard_deduction values",
+        "status": "Current"
+      },
+      {
+        "file": "federal/estate-gift-tax.json",
+        "field": "2026 exemption",
+        "status": "Current \u2014 OBBBA makes TCJA doubled exemption permanent"
+      },
+      {
+        "file": "federal/capital-gains-rates.json",
+        "field": "2026 rates",
+        "status": "Current \u2014 OBBBA preserves TCJA capital gains rate structure"
+      },
+      {
+        "file": "federal/hsa-limits.json",
+        "field": "2026 limits",
+        "status": "Current \u2014 note new OBBBA bronze plan HSA eligibility expansion"
+      }
+    ]
+  }
+}
