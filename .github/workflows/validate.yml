@@ -7,6 +7,8 @@
 # OM-14 addition: 7 Medicare checks (validate_medicare.py)
 # Housekeeping: 4 historical file checks (validate_historical.py)
 # OM-15b addition: 92 pharmacy checks (validate_pharmacy.py)
+# Session 22: 116 dental checks (validate_dental.py)
+# Session 23: 71 OBBBA checks (validate_obbba.py)
 
 name: Validate Data Files
 
@@ -46,6 +48,12 @@ jobs:
 
       - name: Validate TRICARE pharmacy costs (92 checks)
         run: python tests/validate_pharmacy.py
+
+      - name: Validate TRICARE dental costs (116 checks)
+        run: python tests/validate_dental.py
+
+      - name: Validate OBBBA tax provisions (71 checks)
+        run: python tests/validate_obbba.py
       
       - name: Validation summary
         if: success()
