@@ -6,6 +6,7 @@
 # OM-11 addition: ~120 Tier 2 checks (validate_tier2.py)
 # OM-14 addition: 7 Medicare checks (validate_medicare.py)
 # Housekeeping: 4 historical file checks (validate_historical.py)
+# OM-15b addition: 92 pharmacy checks (validate_pharmacy.py)
 
 name: Validate Data Files
 
@@ -42,6 +43,9 @@ jobs:
 
       - name: Validate historical data files
         run: python tests/validate_historical.py
+
+      - name: Validate TRICARE pharmacy costs (92 checks)
+        run: python tests/validate_pharmacy.py
       
       - name: Validation summary
         if: success()
