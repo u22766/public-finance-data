@@ -1,0 +1,242 @@
+{
+  "_comment": "Virginia Retirement System (VRS) pension plan parameters. State-level defined benefit plans covering all Virginia public employees. Update as VRS rules change.",
+  "version": "2.0.0",
+  "effective_date": "2026-01-01",
+  "employer": "Virginia Retirement System",
+  "scope": "state",
+  "hireDateMapping": [
+    {
+      "planId": "vrs_plan1",
+      "label": "VRS Plan 1",
+      "hiredBefore": "2010-07-01",
+      "note": "Must be vested (5 yrs service) by 1/1/2013 to retain Plan 1"
+    },
+    {
+      "planId": "vrs_plan2",
+      "label": "VRS Plan 2",
+      "hiredOnOrAfter": "2010-07-01",
+      "hiredBefore": "2014-01-01",
+      "note": "Hired 7/1/2010 through 12/31/2013"
+    },
+    {
+      "planId": "vrs_hybrid",
+      "label": "VRS Hybrid",
+      "hiredOnOrAfter": "2014-01-01",
+      "note": "Hired on or after 1/1/2014 \u2014 DB + DC components"
+    }
+  ],
+  "plans": {
+    "vrs_plan1": {
+      "planId": "vrs_plan1",
+      "planName": "Virginia VRS Plan 1",
+      "type": "defined_benefit",
+      "category": "state_pension",
+      "employer": "Virginia Retirement System",
+      "formula": {
+        "multiplier": 0.017,
+        "facPeriod": 3,
+        "facMethod": "highest_consecutive",
+        "facUnit": "years",
+        "description": "1.7% \u00d7 Average Final Compensation (highest 36 months) \u00d7 Years of Service"
+      },
+      "eligibility": {
+        "unreducedAge": 65,
+        "unreducedService": 5,
+        "earlyAge": 55,
+        "earlyService": 5,
+        "earlyPenalty": "actuarial_reduction",
+        "ruleOf90": false,
+        "note": "Age 65 with 5 yrs, OR age 50 with 30 yrs for unreduced"
+      },
+      "contributions": {
+        "employee": 5.0,
+        "employer": "actuarially_determined",
+        "note": "5% employee mandatory contribution"
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years of creditable service"
+      },
+      "cola": {
+        "method": "annual",
+        "note": "Annual COLA applies in retirement \u2014 amount varies by Board action"
+      },
+      "survivorOptions": [
+        {
+          "option": "basic",
+          "memberPct": 100,
+          "survivorPct": 0,
+          "label": "Basic (no survivor)"
+        },
+        {
+          "option": "A",
+          "memberPct": 85,
+          "survivorPct": 100,
+          "label": "Option A \u2014 100% survivor"
+        },
+        {
+          "option": "B",
+          "memberPct": null,
+          "survivorPct": 50,
+          "label": "Option B \u2014 50% survivor"
+        },
+        {
+          "option": "C",
+          "memberPct": 96,
+          "survivorPct": null,
+          "label": "Option C \u2014 120 guaranteed payments"
+        }
+      ],
+      "sickLeaveCredit": true,
+      "dcComponent": false
+    },
+    "vrs_plan2": {
+      "planId": "vrs_plan2",
+      "planName": "Virginia VRS Plan 2",
+      "type": "defined_benefit",
+      "category": "state_pension",
+      "employer": "Virginia Retirement System",
+      "formula": {
+        "multiplier": 0.0165,
+        "facPeriod": 5,
+        "facMethod": "highest_consecutive",
+        "facUnit": "years",
+        "description": "1.65% \u00d7 Average Final Compensation (highest 60 months) \u00d7 Years of Service"
+      },
+      "eligibility": {
+        "unreducedRule": "normal_ss_age_with_5_yrs",
+        "earlyAge": 60,
+        "earlyService": 5,
+        "earlyPenalty": "actuarial_reduction",
+        "ruleOf90": false,
+        "note": "Social Security normal retirement age with 5 yrs service for unreduced"
+      },
+      "contributions": {
+        "employee": 5.0,
+        "employer": "actuarially_determined",
+        "note": "5% employee mandatory contribution"
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years of creditable service"
+      },
+      "cola": {
+        "method": "annual",
+        "note": "Annual COLA applies in retirement \u2014 amount varies by Board action"
+      },
+      "survivorOptions": [
+        {
+          "option": "basic",
+          "memberPct": 100,
+          "survivorPct": 0,
+          "label": "Basic (no survivor)"
+        },
+        {
+          "option": "A",
+          "memberPct": 85,
+          "survivorPct": 100,
+          "label": "Option A \u2014 100% survivor"
+        },
+        {
+          "option": "B",
+          "memberPct": null,
+          "survivorPct": 50,
+          "label": "Option B \u2014 50% survivor"
+        },
+        {
+          "option": "C",
+          "memberPct": 96,
+          "survivorPct": null,
+          "label": "Option C \u2014 120 guaranteed payments"
+        }
+      ],
+      "sickLeaveCredit": true,
+      "dcComponent": false
+    },
+    "vrs_hybrid": {
+      "planId": "vrs_hybrid",
+      "planName": "Virginia VRS Hybrid",
+      "type": "hybrid",
+      "category": "state_pension",
+      "employer": "Virginia Retirement System",
+      "dbComponent": {
+        "multiplier": 0.01,
+        "facPeriod": 5,
+        "facMethod": "highest_consecutive",
+        "facUnit": "years",
+        "description": "1.0% \u00d7 Average Final Compensation (highest 60 months) \u00d7 Years of Service"
+      },
+      "dcComponent": {
+        "employeeDefault": 4.0,
+        "employerAuto": 1.0,
+        "employerMatch": 2.5,
+        "matchVehicle": "457b",
+        "matchNote": "Employer matches up to 2.5% of employee 457(b) voluntary contribution",
+        "accounts": {
+          "vrs401a": {
+            "label": "VRS 401(a)",
+            "fundedBy": "employer",
+            "employeeContrib": false,
+            "note": "Employer-funded DC account \u2014 auto 1% + match deposited here"
+          },
+          "hybrid457b": {
+            "label": "VRS Hybrid 457(b)",
+            "fundedBy": "employee",
+            "defaultContrib": 4.0,
+            "note": "Voluntary employee deferrals \u2014 employer matches up to 2.5%"
+          }
+        }
+      },
+      "eligibility": {
+        "unreducedRule": "normal_ss_age_with_5_yrs",
+        "earlyAge": 60,
+        "earlyService": 5,
+        "earlyPenalty": "actuarial_reduction",
+        "ruleOf90": false,
+        "note": "Social Security normal retirement age with 5 yrs service for unreduced DB benefit"
+      },
+      "contributions": {
+        "employee_db": 4.0,
+        "employee_dc_default": 4.0,
+        "employer_dc_auto": 1.0,
+        "employer_dc_match_max": 2.5,
+        "note": "4% mandatory DB + 4% default DC voluntary (adjustable). Employer: 1% auto + up to 2.5% match on 457b."
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years for both DB and DC employer contributions"
+      },
+      "cola": {
+        "method": "annual",
+        "note": "DB component receives annual COLA in retirement"
+      },
+      "survivorOptions": [
+        {
+          "option": "basic",
+          "memberPct": 100,
+          "survivorPct": 0,
+          "label": "Basic (no survivor)"
+        },
+        {
+          "option": "A",
+          "memberPct": 85,
+          "survivorPct": 100,
+          "label": "Option A \u2014 100% survivor"
+        },
+        {
+          "option": "B",
+          "memberPct": null,
+          "survivorPct": 50,
+          "label": "Option B \u2014 50% survivor"
+        },
+        {
+          "option": "C",
+          "memberPct": 96,
+          "survivorPct": null,
+          "label": "Option C \u2014 120 guaranteed payments"
+        }
+      ],
+      "sickLeaveCredit": true
+    }
+  }
+}
