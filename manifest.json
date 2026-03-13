@@ -2,7 +2,7 @@
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.0",
   "schema_min_compatible": "2.0",
-  "last_updated": "2026-03-12",
+  "last_updated": "2026-03-13",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
@@ -204,20 +204,20 @@
       "last_updated": "2026-03-12"
     },
     "standard_deduction_history": {
-      "version": "1.0",
+      "version": "1.0.1",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/standard-deduction-history.json",
       "description": "Standard deduction history 2001-2026 by filing status with age 65+ additional amounts",
-      "last_updated": "2026-03-12"
+      "last_updated": "2026-03-13"
     },
     "capital_gains_rates": {
-      "version": "1.0",
+      "version": "1.0.1",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/capital-gains-rates.json",
       "description": "Long-term capital gains tax rate history 2001-2026 with NIIT thresholds",
-      "last_updated": "2026-03-12"
+      "last_updated": "2026-03-13"
     },
     "hsa_limits": {
       "version": "1.0",
@@ -236,12 +236,12 @@
       "last_updated": "2026-03-12"
     },
     "estate_gift_tax": {
-      "version": "1.0",
+      "version": "1.0.1",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/estate-gift-tax.json",
       "description": "Estate tax exemption, top rate, gift annual exclusion, and lifetime exemption history 2001-2026",
-      "last_updated": "2026-03-12"
+      "last_updated": "2026-03-13"
     },
     "fers_contribution_rates": {
       "version": "1.0",

@@ -2,10 +2,10 @@
   "metadata": {
     "name": "Estate and Gift Tax Exemption History",
     "description": "Historical federal estate tax exemption amounts, top rates, gift tax annual exclusion, and generation-skipping transfer tax exemption. Essential for estate planning in retirement.",
-    "version": "1.0",
+    "version": "1.0.1",
     "last_updated": "2026-03-12",
     "sources": [
-      "https://taxfoundation.org/data/all/federal/federal-estate-tax-rates-exemptions-history/",
+      "https://taxfoundation.org/data/all/federal/federal-estate-and-gift-tax-rates-exemptions-and-exclusions-1916-2014/",
       "IRS Revenue Procedures (annual inflation adjustments)",
       "Congressional Research Service: Federal Estate and Gift Taxes (R43089)"
     ],

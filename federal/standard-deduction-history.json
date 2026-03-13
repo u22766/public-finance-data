@@ -2,11 +2,11 @@
   "metadata": {
     "name": "Standard Deduction History",
     "description": "Historical federal standard deduction amounts by filing status, including additional deductions for age 65+ and blind taxpayers.",
-    "version": "1.0",
+    "version": "1.0.1",
     "last_updated": "2026-03-12",
     "sources": [
       "https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2026",
-      "https://taxfoundation.org/data/all/federal/standard-deduction-amounts/",
+      "https://taxfoundation.org/taxedu/glossary/standard-deduction/",
       "IRS Revenue Procedures (annual inflation adjustments)"
     ],
     "notes": [
