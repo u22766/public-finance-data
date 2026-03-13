@@ -1,0 +1,807 @@
+{
+  "metadata": {
+    "name": "Federal Income Tax Brackets",
+    "description": "Historical federal marginal income tax brackets by filing status. Covers the modern bracket era from 2001 (EGTRRA) through 2026.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2026",
+      "https://taxfoundation.org/data/all/federal/historical-income-tax-rates-brackets/",
+      "IRS Revenue Procedures (annual inflation adjustments)"
+    ],
+    "notes": [
+      "Brackets shown are for ordinary income (wages, pensions, IRA distributions, SS above thresholds).",
+      "2001-2002: Pre-EGTRRA rates (15%, 28%, 31%, 36%, 39.6%) plus new 10% bracket in 2001.",
+      "2003-2012: EGTRRA/JGTRRA rates (10%, 15%, 25%, 28%, 33%, 35%).",
+      "2013-2017: ATRA restored 39.6% top rate, added ACA 0.9% Medicare surtax.",
+      "2018-2025: TCJA rates (10%, 12%, 22%, 24%, 32%, 35%, 37%).",
+      "2026: TCJA sunset \u2014 rates revert to pre-TCJA structure with inflation adjustments per IRS Rev. Proc. 2025-32.",
+      "All bracket thresholds are the START of each bracket (income at or above).",
+      "Retirement planning use: Roth conversion analysis, tax-efficient withdrawal sequencing, IRMAA bracket awareness."
+    ]
+  },
+  "filing_statuses": [
+    "single",
+    "married_filing_jointly",
+    "married_filing_separately",
+    "head_of_household"
+  ],
+  "history": [
+    {
+      "year": 2001,
+      "law": "EGTRRA Phase-In",
+      "rates": [
+        10,
+        15,
+        27.5,
+        30.5,
+        35.5,
+        39.1
+      ],
+      "single": [
+        0,
+        6000,
+        27050,
+        65550,
+        136750,
+        297350
+      ],
+      "married_filing_jointly": [
+        0,
+        12000,
+        45200,
+        109250,
+        166500,
+        297350
+      ],
+      "notes": "New 10% bracket introduced by EGTRRA; other rates began phased reduction"
+    },
+    {
+      "year": 2002,
+      "law": "EGTRRA Phase-In",
+      "rates": [
+        10,
+        15,
+        27,
+        30,
+        35,
+        38.6
+      ],
+      "single": [
+        0,
+        6000,
+        27950,
+        67700,
+        141250,
+        307050
+      ],
+      "married_filing_jointly": [
+        0,
+        12000,
+        46700,
+        112850,
+        171950,
+        307050
+      ]
+    },
+    {
+      "year": 2003,
+      "law": "JGTRRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        7000,
+        28400,
+        68800,
+        143500,
+        311950
+      ],
+      "married_filing_jointly": [
+        0,
+        14000,
+        56800,
+        114650,
+        174700,
+        311950
+      ],
+      "notes": "JGTRRA accelerated EGTRRA rate cuts to 2003; established 6-bracket structure through 2012"
+    },
+    {
+      "year": 2004,
+      "law": "JGTRRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        7150,
+        29050,
+        70350,
+        146750,
+        319100
+      ],
+      "married_filing_jointly": [
+        0,
+        14300,
+        58100,
+        117250,
+        178650,
+        319100
+      ]
+    },
+    {
+      "year": 2005,
+      "law": "JGTRRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        7300,
+        29700,
+        71950,
+        150150,
+        326450
+      ],
+      "married_filing_jointly": [
+        0,
+        14600,
+        59400,
+        119950,
+        182800,
+        326450
+      ]
+    },
+    {
+      "year": 2006,
+      "law": "JGTRRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        7550,
+        30650,
+        74200,
+        154800,
+        336550
+      ],
+      "married_filing_jointly": [
+        0,
+        15100,
+        61300,
+        123700,
+        188450,
+        336550
+      ]
+    },
+    {
+      "year": 2007,
+      "law": "JGTRRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        7825,
+        31850,
+        77100,
+        160850,
+        349700
+      ],
+      "married_filing_jointly": [
+        0,
+        15650,
+        63700,
+        128500,
+        195850,
+        349700
+      ]
+    },
+    {
+      "year": 2008,
+      "law": "JGTRRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        8025,
+        32550,
+        78850,
+        164550,
+        357700
+      ],
+      "married_filing_jointly": [
+        0,
+        16050,
+        65100,
+        131450,
+        200300,
+        357700
+      ]
+    },
+    {
+      "year": 2009,
+      "law": "JGTRRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        8350,
+        33950,
+        82250,
+        171550,
+        372950
+      ],
+      "married_filing_jointly": [
+        0,
+        16700,
+        67900,
+        137050,
+        208850,
+        372950
+      ]
+    },
+    {
+      "year": 2010,
+      "law": "JGTRRA (extended)",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        8375,
+        34000,
+        82400,
+        171850,
+        373650
+      ],
+      "married_filing_jointly": [
+        0,
+        16750,
+        68000,
+        137300,
+        209250,
+        373650
+      ]
+    },
+    {
+      "year": 2011,
+      "law": "Tax Relief Act of 2010",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        8500,
+        34500,
+        83600,
+        174400,
+        379150
+      ],
+      "married_filing_jointly": [
+        0,
+        17000,
+        69000,
+        139350,
+        212300,
+        379150
+      ]
+    },
+    {
+      "year": 2012,
+      "law": "Tax Relief Act of 2010",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35
+      ],
+      "single": [
+        0,
+        8700,
+        35350,
+        85650,
+        178650,
+        388350
+      ],
+      "married_filing_jointly": [
+        0,
+        17400,
+        70700,
+        142700,
+        217450,
+        388350
+      ]
+    },
+    {
+      "year": 2013,
+      "law": "ATRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35,
+        39.6
+      ],
+      "single": [
+        0,
+        8925,
+        36250,
+        87850,
+        183250,
+        398350,
+        400000
+      ],
+      "married_filing_jointly": [
+        0,
+        17850,
+        72500,
+        146400,
+        223050,
+        398350,
+        450000
+      ],
+      "notes": "ATRA restored 39.6% top bracket; 0.9% ACA Medicare surtax also applies above $200K/$250K"
+    },
+    {
+      "year": 2014,
+      "law": "ATRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35,
+        39.6
+      ],
+      "single": [
+        0,
+        9075,
+        36900,
+        89350,
+        186350,
+        405100,
+        406750
+      ],
+      "married_filing_jointly": [
+        0,
+        18150,
+        73800,
+        148850,
+        226850,
+        405100,
+        457600
+      ]
+    },
+    {
+      "year": 2015,
+      "law": "ATRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35,
+        39.6
+      ],
+      "single": [
+        0,
+        9225,
+        37450,
+        90750,
+        189300,
+        411500,
+        413200
+      ],
+      "married_filing_jointly": [
+        0,
+        18450,
+        74900,
+        151200,
+        230450,
+        411500,
+        464850
+      ]
+    },
+    {
+      "year": 2016,
+      "law": "ATRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35,
+        39.6
+      ],
+      "single": [
+        0,
+        9275,
+        37650,
+        91150,
+        190150,
+        413350,
+        415050
+      ],
+      "married_filing_jointly": [
+        0,
+        18550,
+        75300,
+        151900,
+        231450,
+        413350,
+        466950
+      ]
+    },
+    {
+      "year": 2017,
+      "law": "ATRA",
+      "rates": [
+        10,
+        15,
+        25,
+        28,
+        33,
+        35,
+        39.6
+      ],
+      "single": [
+        0,
+        9325,
+        37950,
+        91900,
+        191650,
+        416700,
+        418400
+      ],
+      "married_filing_jointly": [
+        0,
+        18650,
+        75900,
+        153100,
+        233350,
+        416700,
+        470700
+      ]
+    },
+    {
+      "year": 2018,
+      "law": "TCJA",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        9525,
+        38700,
+        82500,
+        157500,
+        200000,
+        500000
+      ],
+      "married_filing_jointly": [
+        0,
+        19050,
+        77400,
+        165000,
+        315000,
+        400000,
+        600000
+      ],
+      "notes": "TCJA reduced most rates, widened brackets, eliminated personal exemptions"
+    },
+    {
+      "year": 2019,
+      "law": "TCJA",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        9700,
+        39475,
+        84200,
+        160725,
+        204100,
+        510300
+      ],
+      "married_filing_jointly": [
+        0,
+        19400,
+        78950,
+        168400,
+        321450,
+        408200,
+        612350
+      ]
+    },
+    {
+      "year": 2020,
+      "law": "TCJA",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        9875,
+        40125,
+        85525,
+        163300,
+        207350,
+        518400
+      ],
+      "married_filing_jointly": [
+        0,
+        19750,
+        80250,
+        171050,
+        326600,
+        414700,
+        622050
+      ]
+    },
+    {
+      "year": 2021,
+      "law": "TCJA",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        9950,
+        40525,
+        86375,
+        164925,
+        209425,
+        523600
+      ],
+      "married_filing_jointly": [
+        0,
+        19900,
+        81050,
+        172750,
+        329850,
+        418850,
+        628300
+      ]
+    },
+    {
+      "year": 2022,
+      "law": "TCJA",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        10275,
+        41775,
+        89075,
+        170050,
+        215950,
+        539900
+      ],
+      "married_filing_jointly": [
+        0,
+        20550,
+        83550,
+        178150,
+        340100,
+        431900,
+        647850
+      ]
+    },
+    {
+      "year": 2023,
+      "law": "TCJA",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        11000,
+        44725,
+        95375,
+        182100,
+        231250,
+        578125
+      ],
+      "married_filing_jointly": [
+        0,
+        22000,
+        89450,
+        190750,
+        364200,
+        462500,
+        693750
+      ]
+    },
+    {
+      "year": 2024,
+      "law": "TCJA",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        11600,
+        47150,
+        100525,
+        191950,
+        243725,
+        609350
+      ],
+      "married_filing_jointly": [
+        0,
+        23200,
+        94300,
+        201050,
+        383900,
+        487450,
+        731200
+      ]
+    },
+    {
+      "year": 2025,
+      "law": "TCJA (final year)",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        11925,
+        48475,
+        103350,
+        197300,
+        250525,
+        626350
+      ],
+      "married_filing_jointly": [
+        0,
+        23850,
+        96950,
+        206700,
+        394600,
+        501050,
+        751600
+      ],
+      "notes": "Last year of TCJA rates before scheduled sunset"
+    },
+    {
+      "year": 2026,
+      "law": "TCJA Extended / Rev. Proc. 2025-32",
+      "rates": [
+        10,
+        12,
+        22,
+        24,
+        32,
+        35,
+        37
+      ],
+      "single": [
+        0,
+        12400,
+        50400,
+        105700,
+        201775,
+        256225,
+        640600
+      ],
+      "married_filing_jointly": [
+        0,
+        24800,
+        100800,
+        211400,
+        403550,
+        512450,
+        768700
+      ],
+      "notes": "TCJA rates continued. Brackets per IRS Rev. Proc. 2025-32. Verified against rates-annual.json."
+    }
+  ]
+}

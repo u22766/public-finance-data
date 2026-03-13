@@ -1,0 +1,256 @@
+{
+  "metadata": {
+    "name": "HSA Contribution Limits History",
+    "description": "Annual Health Savings Account contribution limits, catch-up contributions, and HDHP minimum deductible/OOP maximum requirements since HSA inception in 2004.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://www.irs.gov/publications/p969",
+      "IRS Revenue Procedures (annual inflation adjustments)",
+      "https://www.shrm.org/topics-tools/news/benefits-compensation"
+    ],
+    "notes": [
+      "HSAs require enrollment in a High Deductible Health Plan (HDHP).",
+      "Catch-up contribution ($1,000) available for age 55+.",
+      "HSA funds roll over indefinitely \u2014 triple tax advantage (deductible, tax-free growth, tax-free qualified withdrawals).",
+      "After age 65, non-medical withdrawals taxed as ordinary income (no penalty) \u2014 functions like traditional IRA.",
+      "For FEHB: GEHA HDHP and a few other plans are HSA-compatible.",
+      "HDHP minimum deductible and OOP maximums shown are IRS requirements for HSA eligibility."
+    ]
+  },
+  "history": [
+    {
+      "year": 2004,
+      "self_only": 2600,
+      "family": 5150,
+      "catchup_55": 500,
+      "hdhp_min_deductible_self": 1000,
+      "hdhp_min_deductible_family": 2000,
+      "hdhp_oop_max_self": 5000,
+      "hdhp_oop_max_family": 10000,
+      "notes": "First year HSAs available"
+    },
+    {
+      "year": 2005,
+      "self_only": 2650,
+      "family": 5250,
+      "catchup_55": 600,
+      "hdhp_min_deductible_self": 1000,
+      "hdhp_min_deductible_family": 2000,
+      "hdhp_oop_max_self": 5100,
+      "hdhp_oop_max_family": 10200
+    },
+    {
+      "year": 2006,
+      "self_only": 2700,
+      "family": 5450,
+      "catchup_55": 700,
+      "hdhp_min_deductible_self": 1050,
+      "hdhp_min_deductible_family": 2100,
+      "hdhp_oop_max_self": 5250,
+      "hdhp_oop_max_family": 10500
+    },
+    {
+      "year": 2007,
+      "self_only": 2850,
+      "family": 5650,
+      "catchup_55": 800,
+      "hdhp_min_deductible_self": 1100,
+      "hdhp_min_deductible_family": 2200,
+      "hdhp_oop_max_self": 5500,
+      "hdhp_oop_max_family": 11000
+    },
+    {
+      "year": 2008,
+      "self_only": 2900,
+      "family": 5800,
+      "catchup_55": 900,
+      "hdhp_min_deductible_self": 1100,
+      "hdhp_min_deductible_family": 2200,
+      "hdhp_oop_max_self": 5600,
+      "hdhp_oop_max_family": 11200
+    },
+    {
+      "year": 2009,
+      "self_only": 3000,
+      "family": 5950,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1150,
+      "hdhp_min_deductible_family": 2300,
+      "hdhp_oop_max_self": 5800,
+      "hdhp_oop_max_family": 11600,
+      "notes": "Catch-up reached permanent $1,000 level"
+    },
+    {
+      "year": 2010,
+      "self_only": 3050,
+      "family": 6150,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1200,
+      "hdhp_min_deductible_family": 2400,
+      "hdhp_oop_max_self": 5950,
+      "hdhp_oop_max_family": 11900
+    },
+    {
+      "year": 2011,
+      "self_only": 3050,
+      "family": 6150,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1200,
+      "hdhp_min_deductible_family": 2400,
+      "hdhp_oop_max_self": 5950,
+      "hdhp_oop_max_family": 11900
+    },
+    {
+      "year": 2012,
+      "self_only": 3100,
+      "family": 6250,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1200,
+      "hdhp_min_deductible_family": 2400,
+      "hdhp_oop_max_self": 6050,
+      "hdhp_oop_max_family": 12100
+    },
+    {
+      "year": 2013,
+      "self_only": 3250,
+      "family": 6450,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1250,
+      "hdhp_min_deductible_family": 2500,
+      "hdhp_oop_max_self": 6250,
+      "hdhp_oop_max_family": 12500
+    },
+    {
+      "year": 2014,
+      "self_only": 3300,
+      "family": 6550,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1250,
+      "hdhp_min_deductible_family": 2500,
+      "hdhp_oop_max_self": 6350,
+      "hdhp_oop_max_family": 12700
+    },
+    {
+      "year": 2015,
+      "self_only": 3350,
+      "family": 6650,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1300,
+      "hdhp_min_deductible_family": 2600,
+      "hdhp_oop_max_self": 6450,
+      "hdhp_oop_max_family": 12900
+    },
+    {
+      "year": 2016,
+      "self_only": 3350,
+      "family": 6750,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1300,
+      "hdhp_min_deductible_family": 2600,
+      "hdhp_oop_max_self": 6550,
+      "hdhp_oop_max_family": 13100
+    },
+    {
+      "year": 2017,
+      "self_only": 3400,
+      "family": 6750,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1300,
+      "hdhp_min_deductible_family": 2600,
+      "hdhp_oop_max_self": 6550,
+      "hdhp_oop_max_family": 13100
+    },
+    {
+      "year": 2018,
+      "self_only": 3450,
+      "family": 6900,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1350,
+      "hdhp_min_deductible_family": 2700,
+      "hdhp_oop_max_self": 6650,
+      "hdhp_oop_max_family": 13300
+    },
+    {
+      "year": 2019,
+      "self_only": 3500,
+      "family": 7000,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1350,
+      "hdhp_min_deductible_family": 2700,
+      "hdhp_oop_max_self": 6750,
+      "hdhp_oop_max_family": 13500
+    },
+    {
+      "year": 2020,
+      "self_only": 3550,
+      "family": 7100,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1400,
+      "hdhp_min_deductible_family": 2800,
+      "hdhp_oop_max_self": 6900,
+      "hdhp_oop_max_family": 13800
+    },
+    {
+      "year": 2021,
+      "self_only": 3600,
+      "family": 7200,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1400,
+      "hdhp_min_deductible_family": 2800,
+      "hdhp_oop_max_self": 7000,
+      "hdhp_oop_max_family": 14000
+    },
+    {
+      "year": 2022,
+      "self_only": 3650,
+      "family": 7300,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1400,
+      "hdhp_min_deductible_family": 2800,
+      "hdhp_oop_max_self": 7050,
+      "hdhp_oop_max_family": 14100
+    },
+    {
+      "year": 2023,
+      "self_only": 3850,
+      "family": 7750,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1500,
+      "hdhp_min_deductible_family": 3000,
+      "hdhp_oop_max_self": 7500,
+      "hdhp_oop_max_family": 15000
+    },
+    {
+      "year": 2024,
+      "self_only": 4150,
+      "family": 8300,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1600,
+      "hdhp_min_deductible_family": 3200,
+      "hdhp_oop_max_self": 8050,
+      "hdhp_oop_max_family": 16100
+    },
+    {
+      "year": 2025,
+      "self_only": 4300,
+      "family": 8550,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1650,
+      "hdhp_min_deductible_family": 3300,
+      "hdhp_oop_max_self": 8300,
+      "hdhp_oop_max_family": 16600
+    },
+    {
+      "year": 2026,
+      "self_only": 4400,
+      "family": 8750,
+      "catchup_55": 1000,
+      "hdhp_min_deductible_self": 1650,
+      "hdhp_min_deductible_family": 3300,
+      "hdhp_oop_max_self": 8500,
+      "hdhp_oop_max_family": 17000,
+      "notes": "HSA limits per IRS Rev. Proc. 2025-19. Cross-verified against fehb-rates.json."
+    }
+  ]
+}

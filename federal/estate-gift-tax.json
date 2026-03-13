@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "name": "Estate and Gift Tax Exemption History",
+    "description": "Historical federal estate tax exemption amounts, top rates, gift tax annual exclusion, and generation-skipping transfer tax exemption. Essential for estate planning in retirement.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://taxfoundation.org/data/all/federal/federal-estate-tax-rates-exemptions-history/",
+      "IRS Revenue Procedures (annual inflation adjustments)",
+      "Congressional Research Service: Federal Estate and Gift Taxes (R43089)"
+    ],
+    "notes": [
+      "Estate tax exemption = amount that can pass to heirs tax-free. Portable between spouses since 2011.",
+      "Gift tax annual exclusion = amount per recipient per year with no tax or reporting required.",
+      "Lifetime gift tax exemption is unified with estate tax exemption.",
+      "TCJA (2018-2025) doubled the exemption. Scheduled to sunset in 2026 but may be extended.",
+      "For retirement planning: estate tax interacts with inherited IRA rules, Roth conversion strategy, and beneficiary planning."
+    ]
+  },
+  "history": [
+    {
+      "year": 2001,
+      "estate_exemption": 675000,
+      "top_rate_pct": 55,
+      "gift_annual_exclusion": 10000,
+      "gift_lifetime_exemption": 675000
+    },
+    {
+      "year": 2002,
+      "estate_exemption": 1000000,
+      "top_rate_pct": 50,
+      "gift_annual_exclusion": 11000,
+      "gift_lifetime_exemption": 1000000,
+      "notes": "EGTRRA began phased increase"
+    },
+    {
+      "year": 2003,
+      "estate_exemption": 1000000,
+      "top_rate_pct": 49,
+      "gift_annual_exclusion": 11000,
+      "gift_lifetime_exemption": 1000000
+    },
+    {
+      "year": 2004,
+      "estate_exemption": 1500000,
+      "top_rate_pct": 48,
+      "gift_annual_exclusion": 11000,
+      "gift_lifetime_exemption": 1000000
+    },
+    {
+      "year": 2005,
+      "estate_exemption": 1500000,
+      "top_rate_pct": 47,
+      "gift_annual_exclusion": 11000,
+      "gift_lifetime_exemption": 1000000
+    },
+    {
+      "year": 2006,
+      "estate_exemption": 2000000,
+      "top_rate_pct": 46,
+      "gift_annual_exclusion": 12000,
+      "gift_lifetime_exemption": 1000000
+    },
+    {
+      "year": 2007,
+      "estate_exemption": 2000000,
+      "top_rate_pct": 45,
+      "gift_annual_exclusion": 12000,
+      "gift_lifetime_exemption": 1000000
+    },
+    {
+      "year": 2008,
+      "estate_exemption": 2000000,
+      "top_rate_pct": 45,
+      "gift_annual_exclusion": 12000,
+      "gift_lifetime_exemption": 1000000
+    },
+    {
+      "year": 2009,
+      "estate_exemption": 3500000,
+      "top_rate_pct": 45,
+      "gift_annual_exclusion": 13000,
+      "gift_lifetime_exemption": 1000000
+    },
+    {
+      "year": 2010,
+      "estate_exemption": 5000000,
+      "top_rate_pct": 0,
+      "gift_annual_exclusion": 13000,
+      "gift_lifetime_exemption": 1000000,
+      "notes": "Estate tax temporarily repealed for 2010 under EGTRRA sunset. Some estates elected to apply 2010 rules."
+    },
+    {
+      "year": 2011,
+      "estate_exemption": 5000000,
+      "top_rate_pct": 35,
+      "gift_annual_exclusion": 13000,
+      "gift_lifetime_exemption": 5000000,
+      "notes": "Tax Relief Act of 2010: reunified estate/gift exemption at $5M. Portability between spouses introduced."
+    },
+    {
+      "year": 2012,
+      "estate_exemption": 5120000,
+      "top_rate_pct": 35,
+      "gift_annual_exclusion": 13000,
+      "gift_lifetime_exemption": 5120000
+    },
+    {
+      "year": 2013,
+      "estate_exemption": 5250000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 14000,
+      "gift_lifetime_exemption": 5250000,
+      "notes": "ATRA made portability permanent; top rate increased to 40%"
+    },
+    {
+      "year": 2014,
+      "estate_exemption": 5340000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 14000,
+      "gift_lifetime_exemption": 5340000
+    },
+    {
+      "year": 2015,
+      "estate_exemption": 5430000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 14000,
+      "gift_lifetime_exemption": 5430000
+    },
+    {
+      "year": 2016,
+      "estate_exemption": 5450000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 14000,
+      "gift_lifetime_exemption": 5450000
+    },
+    {
+      "year": 2017,
+      "estate_exemption": 5490000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 14000,
+      "gift_lifetime_exemption": 5490000
+    },
+    {
+      "year": 2018,
+      "estate_exemption": 11180000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 15000,
+      "gift_lifetime_exemption": 11180000,
+      "notes": "TCJA doubled exemption"
+    },
+    {
+      "year": 2019,
+      "estate_exemption": 11400000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 15000,
+      "gift_lifetime_exemption": 11400000
+    },
+    {
+      "year": 2020,
+      "estate_exemption": 11580000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 15000,
+      "gift_lifetime_exemption": 11580000
+    },
+    {
+      "year": 2021,
+      "estate_exemption": 11700000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 15000,
+      "gift_lifetime_exemption": 11700000
+    },
+    {
+      "year": 2022,
+      "estate_exemption": 12060000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 16000,
+      "gift_lifetime_exemption": 12060000
+    },
+    {
+      "year": 2023,
+      "estate_exemption": 12920000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 17000,
+      "gift_lifetime_exemption": 12920000
+    },
+    {
+      "year": 2024,
+      "estate_exemption": 13610000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 18000,
+      "gift_lifetime_exemption": 13610000
+    },
+    {
+      "year": 2025,
+      "estate_exemption": 13990000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 19000,
+      "gift_lifetime_exemption": 13990000
+    },
+    {
+      "year": 2026,
+      "estate_exemption": 14390000,
+      "top_rate_pct": 40,
+      "gift_annual_exclusion": 19000,
+      "gift_lifetime_exemption": 14390000,
+      "notes": "Per IRS Rev. Proc. 2025-32. TCJA elevated exemption continued."
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "name": "Standard Deduction History",
+    "description": "Historical federal standard deduction amounts by filing status, including additional deductions for age 65+ and blind taxpayers.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2026",
+      "https://taxfoundation.org/data/all/federal/standard-deduction-amounts/",
+      "IRS Revenue Procedures (annual inflation adjustments)"
+    ],
+    "notes": [
+      "Standard deduction is the baseline deduction for taxpayers who do not itemize.",
+      "Age 65+ / blind additional deduction stacks on top of the base amount.",
+      "For retirees: standard deduction is critical for calculating taxable income from pensions, SS, and IRA distributions.",
+      "TCJA (2018-2025) nearly doubled the standard deduction and eliminated personal exemptions.",
+      "2026: If TCJA sunset occurred, personal exemption would return but standard deduction would decrease. Per Rev. Proc. 2025-32, TCJA rates continued."
+    ]
+  },
+  "history": [
+    {
+      "year": 2001,
+      "single": 4550,
+      "mfj": 7600,
+      "hoh": 6650,
+      "additional_65_single": 1100,
+      "additional_65_mfj_each": 900
+    },
+    {
+      "year": 2002,
+      "single": 4700,
+      "mfj": 7850,
+      "hoh": 6900,
+      "additional_65_single": 1150,
+      "additional_65_mfj_each": 900
+    },
+    {
+      "year": 2003,
+      "single": 4750,
+      "mfj": 9500,
+      "hoh": 7000,
+      "additional_65_single": 1150,
+      "additional_65_mfj_each": 900,
+      "notes": "MFJ increased by JGTRRA marriage penalty relief"
+    },
+    {
+      "year": 2004,
+      "single": 4850,
+      "mfj": 9700,
+      "hoh": 7150,
+      "additional_65_single": 1200,
+      "additional_65_mfj_each": 950
+    },
+    {
+      "year": 2005,
+      "single": 5000,
+      "mfj": 10000,
+      "hoh": 7300,
+      "additional_65_single": 1250,
+      "additional_65_mfj_each": 1000
+    },
+    {
+      "year": 2006,
+      "single": 5150,
+      "mfj": 10300,
+      "hoh": 7550,
+      "additional_65_single": 1250,
+      "additional_65_mfj_each": 1000
+    },
+    {
+      "year": 2007,
+      "single": 5350,
+      "mfj": 10700,
+      "hoh": 7850,
+      "additional_65_single": 1300,
+      "additional_65_mfj_each": 1050
+    },
+    {
+      "year": 2008,
+      "single": 5450,
+      "mfj": 10900,
+      "hoh": 8000,
+      "additional_65_single": 1350,
+      "additional_65_mfj_each": 1050
+    },
+    {
+      "year": 2009,
+      "single": 5700,
+      "mfj": 11400,
+      "hoh": 8350,
+      "additional_65_single": 1400,
+      "additional_65_mfj_each": 1100
+    },
+    {
+      "year": 2010,
+      "single": 5700,
+      "mfj": 11400,
+      "hoh": 8400,
+      "additional_65_single": 1400,
+      "additional_65_mfj_each": 1100
+    },
+    {
+      "year": 2011,
+      "single": 5800,
+      "mfj": 11600,
+      "hoh": 8500,
+      "additional_65_single": 1450,
+      "additional_65_mfj_each": 1150
+    },
+    {
+      "year": 2012,
+      "single": 5950,
+      "mfj": 11900,
+      "hoh": 8700,
+      "additional_65_single": 1450,
+      "additional_65_mfj_each": 1150
+    },
+    {
+      "year": 2013,
+      "single": 6100,
+      "mfj": 12200,
+      "hoh": 8950,
+      "additional_65_single": 1500,
+      "additional_65_mfj_each": 1200
+    },
+    {
+      "year": 2014,
+      "single": 6200,
+      "mfj": 12400,
+      "hoh": 9100,
+      "additional_65_single": 1550,
+      "additional_65_mfj_each": 1200
+    },
+    {
+      "year": 2015,
+      "single": 6300,
+      "mfj": 12600,
+      "hoh": 9250,
+      "additional_65_single": 1550,
+      "additional_65_mfj_each": 1250
+    },
+    {
+      "year": 2016,
+      "single": 6300,
+      "mfj": 12600,
+      "hoh": 9300,
+      "additional_65_single": 1550,
+      "additional_65_mfj_each": 1250
+    },
+    {
+      "year": 2017,
+      "single": 6350,
+      "mfj": 12700,
+      "hoh": 9350,
+      "additional_65_single": 1550,
+      "additional_65_mfj_each": 1250
+    },
+    {
+      "year": 2018,
+      "single": 12000,
+      "mfj": 24000,
+      "hoh": 18000,
+      "additional_65_single": 1600,
+      "additional_65_mfj_each": 1300,
+      "notes": "TCJA nearly doubled standard deduction; personal exemption eliminated"
+    },
+    {
+      "year": 2019,
+      "single": 12200,
+      "mfj": 24400,
+      "hoh": 18350,
+      "additional_65_single": 1650,
+      "additional_65_mfj_each": 1300
+    },
+    {
+      "year": 2020,
+      "single": 12400,
+      "mfj": 24800,
+      "hoh": 18650,
+      "additional_65_single": 1650,
+      "additional_65_mfj_each": 1300
+    },
+    {
+      "year": 2021,
+      "single": 12550,
+      "mfj": 25100,
+      "hoh": 18800,
+      "additional_65_single": 1700,
+      "additional_65_mfj_each": 1350
+    },
+    {
+      "year": 2022,
+      "single": 12950,
+      "mfj": 25900,
+      "hoh": 19400,
+      "additional_65_single": 1750,
+      "additional_65_mfj_each": 1400
+    },
+    {
+      "year": 2023,
+      "single": 13850,
+      "mfj": 27700,
+      "hoh": 20800,
+      "additional_65_single": 1850,
+      "additional_65_mfj_each": 1500
+    },
+    {
+      "year": 2024,
+      "single": 14600,
+      "mfj": 29200,
+      "hoh": 21900,
+      "additional_65_single": 1950,
+      "additional_65_mfj_each": 1550
+    },
+    {
+      "year": 2025,
+      "single": 15000,
+      "mfj": 30000,
+      "hoh": 22500,
+      "additional_65_single": 2000,
+      "additional_65_mfj_each": 1600
+    },
+    {
+      "year": 2026,
+      "single": 16100,
+      "mfj": 32200,
+      "hoh": 24150,
+      "additional_65_single": 2050,
+      "additional_65_mfj_each": 1650,
+      "notes": "Per IRS Rev. Proc. 2025-32. Cross-verified against rates-annual.json."
+    }
+  ]
+}

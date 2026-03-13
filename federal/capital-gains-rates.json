@@ -1,0 +1,502 @@
+{
+  "metadata": {
+    "name": "Capital Gains Tax Rates History",
+    "description": "Historical long-term capital gains and qualified dividend tax rates by income bracket. Essential for investment liquidation planning in retirement.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://taxfoundation.org/data/all/federal/federal-capital-gains-tax-rates-and-collections/",
+      "IRS Revenue Procedures (annual inflation adjustments)",
+      "Congressional Research Service: Capital Gains Taxes (RL31364)"
+    ],
+    "notes": [
+      "Long-term capital gains (LTCG) = assets held >1 year. Short-term gains taxed as ordinary income.",
+      "Qualified dividends taxed at same preferential rates as LTCG since 2003 (JGTRRA).",
+      "Net Investment Income Tax (NIIT) of 3.8% applies above $200K single / $250K MFJ since 2013 (ACA).",
+      "0% rate is critical for retirement planning: retirees in lower brackets can harvest gains tax-free.",
+      "Bracket thresholds shown are for taxable income (after deductions)."
+    ]
+  },
+  "history": [
+    {
+      "year": 2001,
+      "rates": [
+        10,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        27050
+      ],
+      "mfj_thresholds": [
+        0,
+        45200
+      ],
+      "notes": "Pre-JGTRRA: 10% rate for those in 15% bracket, 20% for higher brackets"
+    },
+    {
+      "year": 2002,
+      "rates": [
+        10,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        27950
+      ],
+      "mfj_thresholds": [
+        0,
+        46700
+      ]
+    },
+    {
+      "year": 2003,
+      "rates": [
+        5,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        28400
+      ],
+      "mfj_thresholds": [
+        0,
+        56800
+      ],
+      "notes": "JGTRRA reduced LTCG rates to 5%/15%; qualified dividends now taxed at same rates"
+    },
+    {
+      "year": 2004,
+      "rates": [
+        5,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        29050
+      ],
+      "mfj_thresholds": [
+        0,
+        58100
+      ]
+    },
+    {
+      "year": 2005,
+      "rates": [
+        5,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        29700
+      ],
+      "mfj_thresholds": [
+        0,
+        59400
+      ]
+    },
+    {
+      "year": 2006,
+      "rates": [
+        5,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        30650
+      ],
+      "mfj_thresholds": [
+        0,
+        61300
+      ]
+    },
+    {
+      "year": 2007,
+      "rates": [
+        5,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        31850
+      ],
+      "mfj_thresholds": [
+        0,
+        63700
+      ]
+    },
+    {
+      "year": 2008,
+      "rates": [
+        0,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        32550
+      ],
+      "mfj_thresholds": [
+        0,
+        65100
+      ],
+      "notes": "0% rate replaced 5% rate for taxpayers in 10%/15% ordinary income brackets"
+    },
+    {
+      "year": 2009,
+      "rates": [
+        0,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        33950
+      ],
+      "mfj_thresholds": [
+        0,
+        67900
+      ]
+    },
+    {
+      "year": 2010,
+      "rates": [
+        0,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        34000
+      ],
+      "mfj_thresholds": [
+        0,
+        68000
+      ]
+    },
+    {
+      "year": 2011,
+      "rates": [
+        0,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        34500
+      ],
+      "mfj_thresholds": [
+        0,
+        69000
+      ]
+    },
+    {
+      "year": 2012,
+      "rates": [
+        0,
+        15
+      ],
+      "single_thresholds": [
+        0,
+        35350
+      ],
+      "mfj_thresholds": [
+        0,
+        70700
+      ]
+    },
+    {
+      "year": 2013,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        36250,
+        400000
+      ],
+      "mfj_thresholds": [
+        0,
+        72500,
+        450000
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8,
+      "notes": "ATRA added 20% top rate; ACA NIIT (3.8%) also applies above thresholds. Effective top rate = 23.8%."
+    },
+    {
+      "year": 2014,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        36900,
+        406750
+      ],
+      "mfj_thresholds": [
+        0,
+        73800,
+        457600
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2015,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        37450,
+        413200
+      ],
+      "mfj_thresholds": [
+        0,
+        74900,
+        464850
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2016,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        37650,
+        415050
+      ],
+      "mfj_thresholds": [
+        0,
+        75300,
+        466950
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2017,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        37950,
+        418400
+      ],
+      "mfj_thresholds": [
+        0,
+        75900,
+        470700
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2018,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        38600,
+        425800
+      ],
+      "mfj_thresholds": [
+        0,
+        77200,
+        479000
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8,
+      "notes": "TCJA: LTCG brackets now indexed independently from ordinary income brackets"
+    },
+    {
+      "year": 2019,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        39375,
+        434550
+      ],
+      "mfj_thresholds": [
+        0,
+        78750,
+        488850
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2020,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        40000,
+        441450
+      ],
+      "mfj_thresholds": [
+        0,
+        80000,
+        496600
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2021,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        40400,
+        445850
+      ],
+      "mfj_thresholds": [
+        0,
+        80800,
+        501600
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2022,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        41675,
+        459750
+      ],
+      "mfj_thresholds": [
+        0,
+        83350,
+        517200
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2023,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        44625,
+        492300
+      ],
+      "mfj_thresholds": [
+        0,
+        89250,
+        553850
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2024,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        47025,
+        518900
+      ],
+      "mfj_thresholds": [
+        0,
+        94050,
+        583750
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2025,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        48350,
+        533400
+      ],
+      "mfj_thresholds": [
+        0,
+        96700,
+        600050
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8
+    },
+    {
+      "year": 2026,
+      "rates": [
+        0,
+        15,
+        20
+      ],
+      "single_thresholds": [
+        0,
+        50600,
+        558600
+      ],
+      "mfj_thresholds": [
+        0,
+        101200,
+        628300
+      ],
+      "niit_threshold_single": 200000,
+      "niit_threshold_mfj": 250000,
+      "niit_rate": 3.8,
+      "notes": "Per IRS Rev. Proc. 2025-32 inflation adjustments."
+    }
+  ]
+}

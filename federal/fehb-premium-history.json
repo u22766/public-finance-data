@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "name": "FEHB Premium Trend History",
+    "description": "Historical FEHB weighted average biweekly enrollee premiums and total premiums by enrollment type. Shows healthcare cost trajectory for federal retirement planning.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://www.opm.gov/healthcare-insurance/healthcare/reference/reports/",
+      "OPM Annual FEHB Premium Rate Reports",
+      "Government Accountability Office FEHB reports"
+    ],
+    "notes": [
+      "Premiums shown are weighted averages across all FEHB plans.",
+      "Government pays approximately 72-75% of the weighted average premium.",
+      "Retirees pay the same premiums as active employees (unique federal benefit).",
+      "FEHB continues into retirement if enrolled for 5+ years before retirement.",
+      "Premium trend is critical for projecting healthcare costs in retirement."
+    ]
+  },
+  "average_premium_trend": [
+    {
+      "year": 2006,
+      "total_biweekly_self_only": 169.82,
+      "enrollee_biweekly_self_only": 45.84,
+      "yoy_total_change_pct": 6.1
+    },
+    {
+      "year": 2007,
+      "total_biweekly_self_only": 177.46,
+      "enrollee_biweekly_self_only": 48.34,
+      "yoy_total_change_pct": 4.5
+    },
+    {
+      "year": 2008,
+      "total_biweekly_self_only": 185.02,
+      "enrollee_biweekly_self_only": 51.84,
+      "yoy_total_change_pct": 4.3
+    },
+    {
+      "year": 2009,
+      "total_biweekly_self_only": 199.19,
+      "enrollee_biweekly_self_only": 55.12,
+      "yoy_total_change_pct": 7.7
+    },
+    {
+      "year": 2010,
+      "total_biweekly_self_only": 213.15,
+      "enrollee_biweekly_self_only": 58.59,
+      "yoy_total_change_pct": 7.0
+    },
+    {
+      "year": 2011,
+      "total_biweekly_self_only": 221.26,
+      "enrollee_biweekly_self_only": 62.1,
+      "yoy_total_change_pct": 3.8
+    },
+    {
+      "year": 2012,
+      "total_biweekly_self_only": 228.37,
+      "enrollee_biweekly_self_only": 63.48,
+      "yoy_total_change_pct": 3.2
+    },
+    {
+      "year": 2013,
+      "total_biweekly_self_only": 237.47,
+      "enrollee_biweekly_self_only": 65.28,
+      "yoy_total_change_pct": 4.0
+    },
+    {
+      "year": 2014,
+      "total_biweekly_self_only": 245.24,
+      "enrollee_biweekly_self_only": 67.34,
+      "yoy_total_change_pct": 3.3
+    },
+    {
+      "year": 2015,
+      "total_biweekly_self_only": 256.25,
+      "enrollee_biweekly_self_only": 70.89,
+      "yoy_total_change_pct": 4.5
+    },
+    {
+      "year": 2016,
+      "total_biweekly_self_only": 272.14,
+      "enrollee_biweekly_self_only": 75.24,
+      "yoy_total_change_pct": 6.2
+    },
+    {
+      "year": 2017,
+      "total_biweekly_self_only": 283.81,
+      "enrollee_biweekly_self_only": 78.28,
+      "yoy_total_change_pct": 4.3
+    },
+    {
+      "year": 2018,
+      "total_biweekly_self_only": 290.13,
+      "enrollee_biweekly_self_only": 79.24,
+      "yoy_total_change_pct": 2.2
+    },
+    {
+      "year": 2019,
+      "total_biweekly_self_only": 298.0,
+      "enrollee_biweekly_self_only": 81.54,
+      "yoy_total_change_pct": 2.7
+    },
+    {
+      "year": 2020,
+      "total_biweekly_self_only": 309.3,
+      "enrollee_biweekly_self_only": 85.87,
+      "yoy_total_change_pct": 3.8
+    },
+    {
+      "year": 2021,
+      "total_biweekly_self_only": 318.9,
+      "enrollee_biweekly_self_only": 89.26,
+      "yoy_total_change_pct": 3.1
+    },
+    {
+      "year": 2022,
+      "total_biweekly_self_only": 327.34,
+      "enrollee_biweekly_self_only": 91.79,
+      "yoy_total_change_pct": 2.6
+    },
+    {
+      "year": 2023,
+      "total_biweekly_self_only": 341.4,
+      "enrollee_biweekly_self_only": 95.37,
+      "yoy_total_change_pct": 4.3
+    },
+    {
+      "year": 2024,
+      "total_biweekly_self_only": 365.98,
+      "enrollee_biweekly_self_only": 102.11,
+      "yoy_total_change_pct": 7.2
+    },
+    {
+      "year": 2025,
+      "total_biweekly_self_only": 392.75,
+      "enrollee_biweekly_self_only": 109.47,
+      "yoy_total_change_pct": 7.3
+    },
+    {
+      "year": 2026,
+      "total_biweekly_self_only": 415.0,
+      "enrollee_biweekly_self_only": 115.86,
+      "yoy_total_change_pct": 5.7,
+      "notes": "Estimated from OPM 2026 premium announcement"
+    }
+  ],
+  "trend_analysis": {
+    "total_premium_cagr_pct": 4.6,
+    "enrollee_premium_cagr_pct": 4.7,
+    "avg_annual_increase_pct": 4.7
+  }
+}

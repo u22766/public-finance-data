@@ -1,0 +1,198 @@
+{
+  "metadata": {
+    "name": "Social Security Claiming Rules and FRA History",
+    "description": "Social Security Full Retirement Age schedule, early filing reductions, delayed retirement credits, spousal benefits, and key rule changes. Supplements the FRA table in static-refs.json with claiming strategy data.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://www.ssa.gov/benefits/retirement/planner/agereduction.html",
+      "https://www.ssa.gov/benefits/retirement/planner/delayret.html",
+      "Social Security Act, as amended",
+      "Congressional Research Service: Social Security (RL33514)"
+    ],
+    "notes": [
+      "Earliest eligibility: age 62 (reduced benefit).",
+      "FRA determines the 'full' or '100%' benefit amount.",
+      "Delayed credits accrue from FRA to age 70 (no benefit from delaying past 70).",
+      "For married couples: spousal benefit, survivor benefit, and filing strategies interact with claiming age.",
+      "FERS Supplement bridges the gap between FERS MRA retirement and age 62 SS eligibility."
+    ]
+  },
+  "fra_schedule": [
+    {
+      "birth_year_start": 1937,
+      "birth_year_end": 1937,
+      "fra_years": 65,
+      "fra_months": 0
+    },
+    {
+      "birth_year_start": 1938,
+      "birth_year_end": 1938,
+      "fra_years": 65,
+      "fra_months": 2
+    },
+    {
+      "birth_year_start": 1939,
+      "birth_year_end": 1939,
+      "fra_years": 65,
+      "fra_months": 4
+    },
+    {
+      "birth_year_start": 1940,
+      "birth_year_end": 1940,
+      "fra_years": 65,
+      "fra_months": 6
+    },
+    {
+      "birth_year_start": 1941,
+      "birth_year_end": 1941,
+      "fra_years": 65,
+      "fra_months": 8
+    },
+    {
+      "birth_year_start": 1942,
+      "birth_year_end": 1942,
+      "fra_years": 65,
+      "fra_months": 10
+    },
+    {
+      "birth_year_start": 1943,
+      "birth_year_end": 1954,
+      "fra_years": 66,
+      "fra_months": 0
+    },
+    {
+      "birth_year_start": 1955,
+      "birth_year_end": 1955,
+      "fra_years": 66,
+      "fra_months": 2
+    },
+    {
+      "birth_year_start": 1956,
+      "birth_year_end": 1956,
+      "fra_years": 66,
+      "fra_months": 4
+    },
+    {
+      "birth_year_start": 1957,
+      "birth_year_end": 1957,
+      "fra_years": 66,
+      "fra_months": 6
+    },
+    {
+      "birth_year_start": 1958,
+      "birth_year_end": 1958,
+      "fra_years": 66,
+      "fra_months": 8
+    },
+    {
+      "birth_year_start": 1959,
+      "birth_year_end": 1959,
+      "fra_years": 66,
+      "fra_months": 10
+    },
+    {
+      "birth_year_start": 1960,
+      "birth_year_end": 9999,
+      "fra_years": 67,
+      "fra_months": 0
+    }
+  ],
+  "early_filing_reductions": {
+    "description": "Permanent reduction for filing before FRA",
+    "worker_benefit": {
+      "reduction_per_month_first_36": 0.5556,
+      "reduction_per_month_after_36": 0.4167,
+      "units": "percent per month",
+      "example_fra_67_file_62": {
+        "months_early": 60,
+        "reduction_pct": 30.0,
+        "benefit_pct_of_pia": 70.0,
+        "calculation": "First 36 months: 36 \u00d7 5/9% = 20%. Next 24 months: 24 \u00d7 5/12% = 10%. Total: 30%."
+      },
+      "example_fra_66_file_62": {
+        "months_early": 48,
+        "reduction_pct": 25.0,
+        "benefit_pct_of_pia": 75.0
+      }
+    },
+    "spousal_benefit": {
+      "max_spousal_pct_of_worker_pia": 50,
+      "reduction_per_month_first_36": 0.6944,
+      "reduction_per_month_after_36": 0.4167,
+      "units": "percent per month",
+      "example_fra_67_file_62": {
+        "months_early": 60,
+        "reduction_from_50_pct": 17.5,
+        "benefit_pct_of_worker_pia": 32.5
+      }
+    }
+  },
+  "delayed_retirement_credits": {
+    "description": "Permanent increase for delaying past FRA, up to age 70",
+    "schedule": [
+      {
+        "birth_year_start": 1935,
+        "birth_year_end": 1936,
+        "annual_credit_pct": 6.0,
+        "monthly_credit_pct": 0.5
+      },
+      {
+        "birth_year_start": 1937,
+        "birth_year_end": 1938,
+        "annual_credit_pct": 6.5,
+        "monthly_credit_pct": 0.5417
+      },
+      {
+        "birth_year_start": 1939,
+        "birth_year_end": 1940,
+        "annual_credit_pct": 7.0,
+        "monthly_credit_pct": 0.5833
+      },
+      {
+        "birth_year_start": 1941,
+        "birth_year_end": 1942,
+        "annual_credit_pct": 7.5,
+        "monthly_credit_pct": 0.625
+      },
+      {
+        "birth_year_start": 1943,
+        "birth_year_end": 9999,
+        "annual_credit_pct": 8.0,
+        "monthly_credit_pct": 0.6667
+      }
+    ],
+    "example_fra_67_delay_to_70": {
+      "months_delayed": 36,
+      "credit_pct": 24.0,
+      "benefit_pct_of_pia": 124.0,
+      "notes": "Born 1960+: FRA 67, delay to 70 = 3 years \u00d7 8% = 24% increase"
+    }
+  },
+  "earnings_test": {
+    "description": "Benefits reduced if you work and earn above thresholds before FRA",
+    "under_fra_all_year": {
+      "rule": "$1 withheld for every $2 earned above threshold",
+      "threshold_2026": 23520
+    },
+    "year_reaching_fra": {
+      "rule": "$1 withheld for every $3 earned above threshold (only months before FRA birthday)",
+      "threshold_2026": 62520
+    },
+    "at_and_above_fra": {
+      "rule": "No earnings test \u2014 full benefit regardless of earnings"
+    },
+    "notes": "Withheld benefits are not lost \u2014 they increase your benefit once you reach FRA."
+  },
+  "windfall_elimination_provision": {
+    "description": "WEP reduces SS benefits for workers who also receive a pension from non-SS-covered employment (e.g., some state/local government, foreign).",
+    "affects": "Workers with fewer than 30 years of 'substantial' SS-covered earnings who also receive a non-covered pension.",
+    "max_reduction_2026": 627.5,
+    "notes": "Social Security Fairness Act of 2023 (P.L. 118-393) repealed WEP effective January 2025. Former WEP reductions are being recalculated."
+  },
+  "government_pension_offset": {
+    "description": "GPO reduces SS spousal/survivor benefits by 2/3 of the government pension amount.",
+    "affects": "Individuals receiving a government pension from non-SS-covered employment who also claim SS spousal or survivor benefits.",
+    "notes": "Social Security Fairness Act of 2023 (P.L. 118-393) repealed GPO effective January 2025. Benefits are being recalculated for affected individuals."
+  }
+}

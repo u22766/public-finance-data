@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "name": "FERS Employee Contribution Rate History",
+    "description": "Historical FERS employee contribution rates by hire date cohort. Rates differ based on when an employee entered federal service.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://www.opm.gov/retirement-center/fers-information/",
+      "Congressional Research Service: Federal Employees' Retirement System (RL30387)",
+      "5 U.S.C. \u00a7 8422"
+    ],
+    "notes": [
+      "FERS employees contribute a percentage of basic pay toward their defined benefit pension.",
+      "Three cohorts exist based on hire date, created by FERS-RAE (2013) and FERS-FRAE (2014).",
+      "FERS: Hired before 1/1/2013 \u2014 0.8% of basic pay (original rate since 1987).",
+      "FERS-RAE: Hired 1/1/2013\u201312/31/2013 \u2014 3.1% of basic pay.",
+      "FERS-FRAE: Hired 1/1/2014 or later \u2014 4.4% of basic pay.",
+      "Government contributes the balance needed to fund the pension (currently ~13-15% of pay).",
+      "Congressional/elected official FERS rates are higher: 1.3%, 3.6%, and 4.9% respectively.",
+      "Law enforcement/firefighter FERS rates: 1.3%, 3.6%, and 4.9% respectively.",
+      "CSRS employees (hired before 1/1/1987): 7.0% contribution rate."
+    ]
+  },
+  "cohorts": [
+    {
+      "cohort": "FERS",
+      "hire_date_range": "Before January 1, 2013",
+      "employee_rate_pct": 0.8,
+      "effective_date": "1987-01-01",
+      "law": "Federal Employees' Retirement System Act of 1986",
+      "congressional_rate_pct": 1.3,
+      "law_enforcement_rate_pct": 1.3
+    },
+    {
+      "cohort": "FERS-RAE",
+      "hire_date_range": "January 1, 2013 through December 31, 2013",
+      "employee_rate_pct": 3.1,
+      "effective_date": "2013-01-01",
+      "law": "Middle Class Tax Relief and Job Creation Act of 2012 (P.L. 112-96)",
+      "congressional_rate_pct": 3.6,
+      "law_enforcement_rate_pct": 3.6
+    },
+    {
+      "cohort": "FERS-FRAE",
+      "hire_date_range": "January 1, 2014 or later",
+      "employee_rate_pct": 4.4,
+      "effective_date": "2014-01-01",
+      "law": "Bipartisan Budget Act of 2013 (P.L. 113-67)",
+      "congressional_rate_pct": 4.9,
+      "law_enforcement_rate_pct": 4.9
+    }
+  ],
+  "csrs_reference": {
+    "employee_rate_pct": 7.0,
+    "hire_date_range": "Before January 1, 1987",
+    "notes": "CSRS is closed to new entrants. Rate has been 7% since inception."
+  },
+  "fers_benefit_formula": {
+    "standard_multiplier_pct": 1.0,
+    "age_62_plus_20yrs_multiplier_pct": 1.1,
+    "formula": "high_3_avg_salary \u00d7 multiplier \u00d7 years_of_service",
+    "high_3_note": "Highest 3 consecutive years of basic pay (usually last 3 years before retirement)"
+  },
+  "timeline": [
+    {
+      "year": 1987,
+      "event": "FERS created",
+      "rate_change": "0.8% employee contribution established"
+    },
+    {
+      "year": 2013,
+      "event": "FERS-RAE created",
+      "rate_change": "New hires pay 3.1% (P.L. 112-96)"
+    },
+    {
+      "year": 2014,
+      "event": "FERS-FRAE created",
+      "rate_change": "New hires pay 4.4% (P.L. 113-67)"
+    },
+    {
+      "year": 2026,
+      "event": "Current",
+      "rate_change": "No rate changes. Three cohorts remain active."
+    }
+  ]
+}

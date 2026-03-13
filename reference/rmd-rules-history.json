@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "name": "Required Minimum Distribution Rules History",
+    "description": "History of RMD starting ages, rule changes, and key policy milestones. Essential for retirement distribution planning and Roth conversion windows.",
+    "version": "1.0",
+    "last_updated": "2026-03-12",
+    "sources": [
+      "https://www.irs.gov/retirement-plans/plan-participant-employee/required-minimum-distributions",
+      "SECURE Act (P.L. 116-94, December 2019)",
+      "SECURE 2.0 Act (P.L. 117-328, Division T, December 2022)"
+    ],
+    "notes": [
+      "RMDs apply to traditional IRAs, 401(k), 403(b), TSP, and most employer plans.",
+      "Roth IRAs: No RMDs for original owner (since SECURE 2.0, effective 2024). Inherited Roth IRAs still have RMDs.",
+      "Roth 401(k)/TSP: No RMDs starting 2024 (SECURE 2.0). Previously required RMDs like traditional accounts.",
+      "The window between retirement and RMD age is the prime Roth conversion opportunity.",
+      "Penalty for missed RMD: reduced from 50% to 25% (10% if corrected timely) by SECURE 2.0."
+    ]
+  },
+  "rmd_age_history": [
+    {
+      "period": "1987-2019",
+      "rmd_start_age": 70.5,
+      "law": "Tax Reform Act of 1986 / IRS regulations",
+      "notes": "Original RMD age. Applied to all traditional retirement accounts."
+    },
+    {
+      "period": "2020-2022",
+      "rmd_start_age": 72,
+      "law": "SECURE Act (P.L. 116-94)",
+      "effective_date": "2020-01-01",
+      "applies_to": "Individuals turning 70.5 after December 31, 2019",
+      "notes": "First RMD age increase in over 30 years."
+    },
+    {
+      "period": "2023-2032",
+      "rmd_start_age": 73,
+      "law": "SECURE 2.0 Act (P.L. 117-328)",
+      "effective_date": "2023-01-01",
+      "applies_to": "Individuals turning 72 after December 31, 2022",
+      "notes": "Second increase. Born 1951-1959: RMDs begin at 73."
+    },
+    {
+      "period": "2033+",
+      "rmd_start_age": 75,
+      "law": "SECURE 2.0 Act (P.L. 117-328)",
+      "effective_date": "2033-01-01",
+      "applies_to": "Individuals turning 73 after December 31, 2032",
+      "notes": "Born 1960 or later: RMDs begin at 75. Longest Roth conversion window."
+    }
+  ],
+  "key_rule_changes": [
+    {
+      "year": 2001,
+      "law": "EGTRRA",
+      "change": "Simplified RMD calculation using Uniform Lifetime Table"
+    },
+    {
+      "year": 2009,
+      "law": "Worker, Retiree, and Employer Recovery Act",
+      "change": "RMD waiver for 2009 due to financial crisis"
+    },
+    {
+      "year": 2020,
+      "law": "CARES Act",
+      "change": "RMD waiver for 2020 due to COVID-19"
+    },
+    {
+      "year": 2022,
+      "law": "IRS updated tables",
+      "change": "New Uniform Lifetime Table effective 2022 \u2014 reduced RMD amounts (longer life expectancy factors)"
+    },
+    {
+      "year": 2023,
+      "law": "SECURE 2.0",
+      "change": "RMD age increased to 73. Penalty reduced to 25% (10% if corrected). Roth employer plan accounts exempted from RMDs starting 2024."
+    },
+    {
+      "year": 2024,
+      "law": "SECURE 2.0",
+      "change": "Roth 401(k)/403(b)/TSP no longer subject to RMDs for original owner."
+    },
+    {
+      "year": 2033,
+      "law": "SECURE 2.0",
+      "change": "RMD age increases to 75 for those born 1960+."
+    }
+  ],
+  "rmd_penalty_history": [
+    {
+      "period": "Before 2023",
+      "penalty_pct": 50,
+      "notes": "50% excise tax on amount not distributed"
+    },
+    {
+      "period": "2023+",
+      "penalty_pct": 25,
+      "notes": "Reduced to 25% by SECURE 2.0"
+    },
+    {
+      "period": "2023+ (corrected timely)",
+      "penalty_pct": 10,
+      "notes": "Further reduced to 10% if corrected within 2 years"
+    }
+  ],
+  "inherited_ira_rules": {
+    "pre_secure_act": "Stretch IRA: beneficiaries could take RMDs over their own life expectancy",
+    "post_secure_act_2020": "Most non-spouse beneficiaries must empty inherited IRA within 10 years (no annual RMD required, just 10-year liquidation)",
+    "exceptions_to_10_year": [
+      "Surviving spouse",
+      "Minor children (until age of majority, then 10-year clock starts)",
+      "Disabled or chronically ill individuals",
+      "Beneficiaries not more than 10 years younger than the deceased"
+    ],
+    "irs_2024_final_rules": "Annual RMDs ARE required during the 10-year window if the original owner had already begun RMDs. Final regulations effective 2025."
+  }
+}

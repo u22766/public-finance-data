@@ -6,154 +6,146 @@
   "source_url": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles",
   "tax_year_for_magi": 2024,
   "_tax_year_note": "IRMAA determination uses MAGI from tax returns filed 2 years prior. 2026 premiums based on 2024 tax returns.",
-
   "part_b": {
     "_description": "Medicare Part B covers physicians' services, outpatient hospital services, certain home health services, durable medical equipment, and certain other medical and health services not covered by Part A.",
-    "standard_premium_monthly": 202.90,
-    "annual_deductible": 283.00,
-    "coinsurance_rate": 0.20,
+    "standard_premium_monthly": 202.9,
+    "annual_deductible": 283.0,
+    "coinsurance_rate": 0.2,
     "_coinsurance_note": "After meeting deductible, Medicare typically pays 80% of the Medicare-approved amount; beneficiary pays 20%.",
-    
-    "immunosuppressive_drug_premium_monthly": 121.60,
+    "immunosuppressive_drug_premium_monthly": 121.6,
     "_immunosuppressive_note": "For individuals whose full Medicare coverage ended 36 months after kidney transplant (available since 2023).",
-
     "irmaa": {
       "_description": "Income-Related Monthly Adjustment Amount. Affects approximately 8% of Part B beneficiaries with higher income.",
-      
       "single_filer_brackets": [
         {
           "bracket": 0,
           "magi_min": 0,
           "magi_max": 109000,
-          "irmaa_amount": 0.00,
-          "total_premium": 202.90,
+          "irmaa_amount": 0.0,
+          "total_premium": 202.9,
           "premium_percentage_of_cost": 25
         },
         {
           "bracket": 1,
           "magi_min": 109001,
           "magi_max": 137000,
-          "irmaa_amount": 81.20,
-          "total_premium": 284.10,
+          "irmaa_amount": 81.2,
+          "total_premium": 284.1,
           "premium_percentage_of_cost": 35
         },
         {
           "bracket": 2,
           "magi_min": 137001,
           "magi_max": 171000,
-          "irmaa_amount": 202.90,
-          "total_premium": 405.80,
+          "irmaa_amount": 202.9,
+          "total_premium": 405.8,
           "premium_percentage_of_cost": 50
         },
         {
           "bracket": 3,
           "magi_min": 171001,
           "magi_max": 205000,
-          "irmaa_amount": 324.60,
-          "total_premium": 527.50,
+          "irmaa_amount": 324.6,
+          "total_premium": 527.5,
           "premium_percentage_of_cost": 65
         },
         {
           "bracket": 4,
           "magi_min": 205001,
           "magi_max": 499999,
-          "irmaa_amount": 446.30,
-          "total_premium": 649.20,
+          "irmaa_amount": 446.3,
+          "total_premium": 649.2,
           "premium_percentage_of_cost": 80
         },
         {
           "bracket": 5,
           "magi_min": 500000,
           "magi_max": null,
-          "irmaa_amount": 487.00,
-          "total_premium": 689.90,
+          "irmaa_amount": 487.0,
+          "total_premium": 689.9,
           "premium_percentage_of_cost": 85
         }
       ],
-      
       "joint_filer_brackets": [
         {
           "bracket": 0,
           "magi_min": 0,
           "magi_max": 218000,
-          "irmaa_amount": 0.00,
-          "total_premium": 202.90,
+          "irmaa_amount": 0.0,
+          "total_premium": 202.9,
           "premium_percentage_of_cost": 25
         },
         {
           "bracket": 1,
           "magi_min": 218001,
           "magi_max": 274000,
-          "irmaa_amount": 81.20,
-          "total_premium": 284.10,
+          "irmaa_amount": 81.2,
+          "total_premium": 284.1,
           "premium_percentage_of_cost": 35
         },
         {
           "bracket": 2,
           "magi_min": 274001,
           "magi_max": 342000,
-          "irmaa_amount": 202.90,
-          "total_premium": 405.80,
+          "irmaa_amount": 202.9,
+          "total_premium": 405.8,
           "premium_percentage_of_cost": 50
         },
         {
           "bracket": 3,
           "magi_min": 342001,
           "magi_max": 410000,
-          "irmaa_amount": 324.60,
-          "total_premium": 527.50,
+          "irmaa_amount": 324.6,
+          "total_premium": 527.5,
           "premium_percentage_of_cost": 65
         },
         {
           "bracket": 4,
           "magi_min": 410001,
           "magi_max": 749999,
-          "irmaa_amount": 446.30,
-          "total_premium": 649.20,
+          "irmaa_amount": 446.3,
+          "total_premium": 649.2,
           "premium_percentage_of_cost": 80
         },
         {
           "bracket": 5,
           "magi_min": 750000,
           "magi_max": null,
-          "irmaa_amount": 487.00,
-          "total_premium": 689.90,
+          "irmaa_amount": 487.0,
+          "total_premium": 689.9,
           "premium_percentage_of_cost": 85
         }
       ],
-      
       "married_filing_separately_brackets": [
         {
           "bracket": 0,
           "magi_min": 0,
           "magi_max": 109000,
-          "irmaa_amount": 0.00,
-          "total_premium": 202.90,
+          "irmaa_amount": 0.0,
+          "total_premium": 202.9,
           "_note": "Standard premium"
         },
         {
           "bracket": 4,
           "magi_min": 109001,
           "magi_max": 390999,
-          "irmaa_amount": 446.30,
-          "total_premium": 649.20,
+          "irmaa_amount": 446.3,
+          "total_premium": 649.2,
           "_note": "Jumps directly to bracket 4"
         },
         {
           "bracket": 5,
           "magi_min": 391000,
           "magi_max": null,
-          "irmaa_amount": 487.00,
-          "total_premium": 689.90,
+          "irmaa_amount": 487.0,
+          "total_premium": 689.9,
           "_note": "Maximum premium"
         }
       ],
-      
       "_mfs_note": "Married filing separately has only 3 tiers with accelerated IRMAA surcharges. This applies to beneficiaries who are married, lived with their spouse at any time during the taxable year, but file a separate return."
     },
-
     "late_enrollment_penalty": {
-      "rate_per_12_month_period": 0.10,
+      "rate_per_12_month_period": 0.1,
       "_description": "Monthly premium may increase by 10% for each full 12-month period that person could have had Part B but did not sign up. Penalty lasts for as long as enrolled in Part B.",
       "exemptions": [
         "Covered by employer group health plan while working",
@@ -163,148 +155,137 @@
       ]
     }
   },
-
   "part_d": {
     "_description": "Medicare Part D provides coverage for prescription drugs through private insurance plans approved by Medicare. IRMAA surcharge is paid directly to Medicare, not to the plan.",
-    "average_plan_premium_monthly": 46.50,
+    "average_plan_premium_monthly": 46.5,
     "_premium_note": "Part D premiums vary by plan. This is the nationwide average for 2026 standalone Part D plans.",
     "out_of_pocket_cap": true,
     "_oop_note": "Beginning 2025, Part D has an annual out-of-pocket spending cap. Once reached, beneficiary pays $0 for covered medications for remainder of year.",
-    
     "irmaa": {
       "_description": "Part D IRMAA is paid in addition to plan premium. Uses same income brackets as Part B.",
-      
       "single_filer_brackets": [
         {
           "bracket": 0,
           "magi_min": 0,
           "magi_max": 109000,
-          "irmaa_amount": 0.00
+          "irmaa_amount": 0.0
         },
         {
           "bracket": 1,
           "magi_min": 109001,
           "magi_max": 137000,
-          "irmaa_amount": 14.50
+          "irmaa_amount": 14.5
         },
         {
           "bracket": 2,
           "magi_min": 137001,
           "magi_max": 171000,
-          "irmaa_amount": 37.50
+          "irmaa_amount": 37.5
         },
         {
           "bracket": 3,
           "magi_min": 171001,
           "magi_max": 205000,
-          "irmaa_amount": 60.40
+          "irmaa_amount": 60.4
         },
         {
           "bracket": 4,
           "magi_min": 205001,
           "magi_max": 499999,
-          "irmaa_amount": 83.30
+          "irmaa_amount": 83.3
         },
         {
           "bracket": 5,
           "magi_min": 500000,
           "magi_max": null,
-          "irmaa_amount": 91.00
+          "irmaa_amount": 91.0
         }
       ],
-      
       "joint_filer_brackets": [
         {
           "bracket": 0,
           "magi_min": 0,
           "magi_max": 218000,
-          "irmaa_amount": 0.00
+          "irmaa_amount": 0.0
         },
         {
           "bracket": 1,
           "magi_min": 218001,
           "magi_max": 274000,
-          "irmaa_amount": 14.50
+          "irmaa_amount": 14.5
         },
         {
           "bracket": 2,
           "magi_min": 274001,
           "magi_max": 342000,
-          "irmaa_amount": 37.50
+          "irmaa_amount": 37.5
         },
         {
           "bracket": 3,
           "magi_min": 342001,
           "magi_max": 410000,
-          "irmaa_amount": 60.40
+          "irmaa_amount": 60.4
         },
         {
           "bracket": 4,
           "magi_min": 410001,
           "magi_max": 749999,
-          "irmaa_amount": 83.30
+          "irmaa_amount": 83.3
         },
         {
           "bracket": 5,
           "magi_min": 750000,
           "magi_max": null,
-          "irmaa_amount": 91.00
+          "irmaa_amount": 91.0
         }
       ],
-      
       "married_filing_separately_brackets": [
         {
           "bracket": 0,
           "magi_min": 0,
           "magi_max": 109000,
-          "irmaa_amount": 0.00
+          "irmaa_amount": 0.0
         },
         {
           "bracket": 4,
           "magi_min": 109001,
           "magi_max": 390999,
-          "irmaa_amount": 83.30
+          "irmaa_amount": 83.3
         },
         {
           "bracket": 5,
           "magi_min": 391000,
           "magi_max": null,
-          "irmaa_amount": 91.00
+          "irmaa_amount": 91.0
         }
       ]
     }
   },
-
   "part_a": {
     "_description": "Medicare Part A covers inpatient hospital, skilled nursing facility, hospice, inpatient rehabilitation, and some home health care services. Approximately 99% of beneficiaries do not pay a Part A premium (40+ quarters of Medicare-covered employment).",
-    
     "premiums": {
-      "full_premium_monthly": 565.00,
+      "full_premium_monthly": 565.0,
       "_full_premium_note": "For uninsured aged individuals with fewer than 30 quarters of coverage, and certain individuals with disabilities who have exhausted other entitlements.",
-      "reduced_premium_monthly": 311.00,
+      "reduced_premium_monthly": 311.0,
       "_reduced_premium_note": "For individuals with 30-39 quarters of coverage, or married to someone with 30-39 quarters.",
       "premium_free_quarters_required": 40
     },
-    
     "inpatient_hospital": {
-      "deductible_per_benefit_period": 1736.00,
+      "deductible_per_benefit_period": 1736.0,
       "_deductible_note": "Covers beneficiary's share of costs for the first 60 days of Medicare-covered inpatient hospital care in a benefit period.",
-      "coinsurance_days_61_90": 434.00,
-      "coinsurance_lifetime_reserve_days": 868.00,
+      "coinsurance_days_61_90": 434.0,
+      "coinsurance_lifetime_reserve_days": 868.0,
       "_lifetime_reserve_note": "Up to 60 lifetime reserve days available for extended hospital stays."
     },
-    
     "skilled_nursing_facility": {
-      "coinsurance_days_21_100": 217.00,
+      "coinsurance_days_21_100": 217.0,
       "_snf_note": "Days 1-20: $0 after hospital deductible. Days 21-100: daily coinsurance. Day 101+: beneficiary pays all costs."
     }
   },
-
   "irmaa_appeals": {
     "_description": "Beneficiaries may appeal IRMAA determination if circumstances have changed.",
     "appeal_deadline_days": 60,
     "_appeal_note": "60 days from receiving SSA notice to file appeal.",
-    
     "life_changing_events": [
       {
         "event": "marriage",
@@ -339,7 +320,6 @@
         "description": "Receipt of settlement from employer or former employer due to bankruptcy, reorganization, or closure"
       }
     ],
-    
     "contact": {
       "agency": "Social Security Administration",
       "phone": "800-772-1213",
@@ -347,7 +327,6 @@
       "hours": "Monday-Friday, 8am-7pm local time"
     }
   },
-
   "magi_calculation": {
     "_description": "Modified Adjusted Gross Income for IRMAA is calculated from IRS Form 1040.",
     "formula": "Line 11 (Adjusted Gross Income) + Line 2a (Tax-exempt interest income)",
@@ -365,51 +344,270 @@
     ],
     "_planning_note": "Income planning strategies (Roth conversions, timing of capital gains, etc.) may help reduce IRMAA liability."
   },
-
   "premium_history": {
-    "_description": "Historical Part B standard monthly premiums and annual deductibles.",
-    "years": [
+    "_description": "Historical Medicare Part B standard monthly premiums, deductibles, and Part A inpatient deductibles going back to 2001. Supplements the 7-year history in medicare-rates.json with extended trend data.",
+    "_sources": [
+      "https://www.cms.gov/data-research/statistics-trends-and-reports/cms-fast-facts",
+      "https://www.kff.org/medicare/issue-brief/what-to-know-about-medicare-spending-and-financing/",
+      "CMS Annual Release: Medicare Parts A & B Premiums and Deductibles",
+      "Social Security Trustees Annual Reports"
+    ],
+    "part_a_inpatient_deductible": [
+      {
+        "year": 2001,
+        "deductible": 792
+      },
+      {
+        "year": 2002,
+        "deductible": 812
+      },
+      {
+        "year": 2003,
+        "deductible": 840
+      },
+      {
+        "year": 2004,
+        "deductible": 876
+      },
+      {
+        "year": 2005,
+        "deductible": 912
+      },
+      {
+        "year": 2006,
+        "deductible": 952
+      },
+      {
+        "year": 2007,
+        "deductible": 992
+      },
+      {
+        "year": 2008,
+        "deductible": 1024
+      },
+      {
+        "year": 2009,
+        "deductible": 1068
+      },
+      {
+        "year": 2010,
+        "deductible": 1100
+      },
+      {
+        "year": 2011,
+        "deductible": 1132
+      },
+      {
+        "year": 2012,
+        "deductible": 1156
+      },
+      {
+        "year": 2013,
+        "deductible": 1184
+      },
+      {
+        "year": 2014,
+        "deductible": 1216
+      },
+      {
+        "year": 2015,
+        "deductible": 1260
+      },
+      {
+        "year": 2016,
+        "deductible": 1288
+      },
+      {
+        "year": 2017,
+        "deductible": 1316
+      },
+      {
+        "year": 2018,
+        "deductible": 1340
+      },
+      {
+        "year": 2019,
+        "deductible": 1364
+      },
       {
         "year": 2020,
-        "standard_premium": 144.60,
-        "annual_deductible": 198.00
+        "deductible": 1408
       },
       {
         "year": 2021,
-        "standard_premium": 148.50,
-        "annual_deductible": 203.00
+        "deductible": 1484
       },
       {
         "year": 2022,
-        "standard_premium": 170.10,
-        "annual_deductible": 233.00,
-        "_note": "Largest year-over-year dollar increase in program history, partly due to Aduhelm uncertainty."
+        "deductible": 1556
       },
       {
         "year": 2023,
-        "standard_premium": 164.90,
-        "annual_deductible": 226.00,
-        "_note": "Premium decreased from 2022 (first decrease in over a decade)."
+        "deductible": 1600
       },
       {
         "year": 2024,
-        "standard_premium": 174.70,
-        "annual_deductible": 240.00
+        "deductible": 1632
       },
       {
         "year": 2025,
-        "standard_premium": 185.00,
-        "annual_deductible": 257.00
+        "deductible": 1676
       },
       {
         "year": 2026,
-        "standard_premium": 202.90,
-        "annual_deductible": 283.00,
-        "_note": "9.7% increase; would have been $11/month higher without skin substitute spending reductions."
+        "deductible": 1736
+      }
+    ],
+    "trend_analysis": {
+      "part_b_premium_2001": 50.0,
+      "part_b_premium_2026": 202.9,
+      "pct_increase_25yr": 305.8,
+      "compound_annual_growth_rate_pct": 5.8,
+      "notes": "Medicare Part B premiums have grown at roughly 5.3% annually over 25 years, significantly outpacing general inflation (~2.5% avg)."
+    },
+    "years": [
+      {
+        "year": 2001,
+        "annual_deductible": 100,
+        "standard_premium": 50.0
+      },
+      {
+        "year": 2002,
+        "annual_deductible": 100,
+        "standard_premium": 54.0
+      },
+      {
+        "year": 2003,
+        "annual_deductible": 100,
+        "standard_premium": 58.7
+      },
+      {
+        "year": 2004,
+        "annual_deductible": 100,
+        "notes": "MMA enacted; Part D coming 2006",
+        "standard_premium": 66.6
+      },
+      {
+        "year": 2005,
+        "annual_deductible": 110,
+        "standard_premium": 78.2
+      },
+      {
+        "year": 2006,
+        "annual_deductible": 124,
+        "notes": "Part D prescription drug benefit launched; first year of IRMAA surcharges",
+        "standard_premium": 88.5
+      },
+      {
+        "year": 2007,
+        "annual_deductible": 131,
+        "standard_premium": 93.5
+      },
+      {
+        "year": 2008,
+        "annual_deductible": 135,
+        "standard_premium": 96.4
+      },
+      {
+        "year": 2009,
+        "annual_deductible": 135,
+        "notes": "Held flat due to hold-harmless (no SS COLA in 2010)",
+        "standard_premium": 96.4
+      },
+      {
+        "year": 2010,
+        "annual_deductible": 155,
+        "notes": "Premium held flat again (no SS COLA); deductible still increased",
+        "standard_premium": 96.4
+      },
+      {
+        "year": 2011,
+        "annual_deductible": 162,
+        "notes": "Large jump to recoup 2 years of held-flat premiums for new enrollees",
+        "standard_premium": 115.4
+      },
+      {
+        "year": 2012,
+        "annual_deductible": 140,
+        "standard_premium": 99.9
+      },
+      {
+        "year": 2013,
+        "annual_deductible": 147,
+        "standard_premium": 104.9
+      },
+      {
+        "year": 2014,
+        "annual_deductible": 147,
+        "standard_premium": 104.9
+      },
+      {
+        "year": 2015,
+        "annual_deductible": 147,
+        "notes": "Held flat 3rd year in a row due to hold-harmless",
+        "standard_premium": 104.9
+      },
+      {
+        "year": 2016,
+        "annual_deductible": 166,
+        "notes": "Large jump for new enrollees/high-income; most held at $104.90",
+        "standard_premium": 121.8
+      },
+      {
+        "year": 2017,
+        "annual_deductible": 183,
+        "standard_premium": 134.0
+      },
+      {
+        "year": 2018,
+        "annual_deductible": 183,
+        "standard_premium": 134.0
+      },
+      {
+        "year": 2019,
+        "annual_deductible": 185,
+        "standard_premium": 135.5
+      },
+      {
+        "year": 2020,
+        "annual_deductible": 198,
+        "standard_premium": 144.6
+      },
+      {
+        "year": 2021,
+        "annual_deductible": 203,
+        "standard_premium": 148.5
+      },
+      {
+        "year": 2022,
+        "annual_deductible": 233,
+        "notes": "Large increase partly due to Aduhelm (Alzheimer's drug) pricing uncertainty",
+        "standard_premium": 170.1
+      },
+      {
+        "year": 2023,
+        "annual_deductible": 226,
+        "notes": "Rare decrease after Aduhelm coverage decision revised",
+        "standard_premium": 164.9
+      },
+      {
+        "year": 2024,
+        "annual_deductible": 240,
+        "standard_premium": 174.7
+      },
+      {
+        "year": 2025,
+        "annual_deductible": 257,
+        "standard_premium": 185.0
+      },
+      {
+        "year": 2026,
+        "annual_deductible": 283,
+        "notes": "Per CMS 2026 announcement. Cross-verified against medicare-rates.json.",
+        "standard_premium": 202.9
       }
     ]
   },
-
   "hold_harmless_provision": {
     "_description": "The Social Security Act provides that Part B premiums for current enrollees cannot increase by more than the dollar amount of the Social Security COLA.",
     "applies_to": "Beneficiaries who have Part B premiums deducted from Social Security benefits",
@@ -421,7 +619,6 @@
       "Medicaid beneficiaries (states pay premium)"
     ]
   },
-
   "enrollment_periods": {
     "initial_enrollment_period": {
       "duration_months": 7,
@@ -438,7 +635,6 @@
       "_note": "No late enrollment penalty if enrolling during SEP"
     }
   },
-
   "sources": [
     {
       "name": "CMS 2026 Medicare Parts A & B Premiums and Deductibles",

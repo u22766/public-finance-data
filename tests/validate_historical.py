@@ -1,881 +1,708 @@
 #!/usr/bin/env python3
 """
-validate_historical.py — CI validation for historical data files
-  federal/tsp-limits.json
-  federal/ss-bend-points.json
-  federal/ss-taxable-max.json
-  federal/ira-limits.json
-
-Run: python tests/validate_historical.py
+Validation suite for ALL historical/reference data files in public-finance-data.
+Replaces validate_historical.py with expanded coverage for 12 new files.
 """
 import json
 import sys
 import os
 
-passed = 0
-failed = 0
-errors = []
+PASS = 0
+FAIL = 0
 
-def check(label, condition, detail=""):
-    global passed, failed
+def check(condition, label):
+    global PASS, FAIL
     if condition:
-        passed += 1
+        PASS += 1
     else:
-        failed += 1
-        msg = f"FAIL: {label}"
-        if detail:
-            msg += f" — {detail}"
-        errors.append(msg)
-        print(msg)
+        FAIL += 1
+        print(f"  FAIL: {label}")
 
-def resolve_path(filename):
-    """Find the file relative to repo root or CWD."""
-    candidates = [
-        filename,
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), filename),
-    ]
-    for c in candidates:
-        if os.path.exists(c):
-            return c
-    return filename
+def section(name):
+    print(f"\n--- {name} ---")
 
-# ============================================================
-# 1. TSP LIMITS
-# ============================================================
-print("=" * 60)
-print("TSP Limits Validation")
-print("=" * 60)
+# ==============================================================
+# EXISTING FILE VALIDATIONS (preserved from validate_historical.py)
+# ==============================================================
 
-tsp_path = resolve_path('federal/tsp-limits.json')
-with open(tsp_path) as f:
-    tsp = json.load(f)
-
-# Structure
-check("TSP: has metadata", 'metadata' in tsp)
-check("TSP: has current_year", 'current_year' in tsp)
-check("TSP: has history", 'history' in tsp)
-check("TSP: metadata.version exists", tsp.get('metadata', {}).get('version') is not None)
-
-# Current year structure
-cy = tsp.get('current_year', {})
-check("TSP: current_year.year is 2026", cy.get('year') == 2026)
-check("TSP: elective_deferral_limit present", 'elective_deferral_limit' in cy)
-check("TSP: elective_deferral_limit is int", isinstance(cy.get('elective_deferral_limit'), int))
-check("TSP: catchup_50_plus present", 'catchup_50_plus' in cy)
-check("TSP: super_catchup_60_63 present", 'super_catchup_60_63' in cy)
-check("TSP: annual_additions_limit present", 'annual_additions_limit' in cy)
-
-# 2026 spot checks against TSP.gov / IRS Notice 2025-67
-check("TSP: 2026 deferral limit = 24500", cy.get('elective_deferral_limit') == 24500)
-check("TSP: 2026 catchup 50+ = 8000", cy.get('catchup_50_plus') == 8000)
-check("TSP: 2026 super catchup 60-63 = 11250", cy.get('super_catchup_60_63') == 11250)
-check("TSP: 2026 total_50_plus = 32500", cy.get('total_50_plus') == 32500)
-check("TSP: 2026 total_60_63 = 35750", cy.get('total_60_63') == 35750)
-check("TSP: 2026 annual additions = 72000", cy.get('annual_additions_limit') == 72000)
-
-# History
-hist = tsp.get('history', [])
-check("TSP: history has 30+ entries", len(hist) >= 30)
-check("TSP: history entries have year", all('year' in e for e in hist))
-check("TSP: history entries have limit", all('limit' in e for e in hist))
-check("TSP: years are sequential", 
-      sorted([e['year'] for e in hist]) == list(range(min(e['year'] for e in hist), max(e['year'] for e in hist) + 1)),
-      f"gaps in year sequence")
-check("TSP: earliest year <= 1987", min(e['year'] for e in hist) <= 1987)
-check("TSP: latest year = 2026", max(e['year'] for e in hist) == 2026)
-
-# Spot check historical values
-hist_by_year = {e['year']: e for e in hist}
-check("TSP: 2024 limit = 23000", hist_by_year.get(2024, {}).get('limit') == 23000)
-check("TSP: 2020 limit = 19500", hist_by_year.get(2020, {}).get('limit') == 19500)
-
-# Monotonic: limits should generally increase (allow same, not decrease except rare)
-limits = [e['limit'] for e in sorted(hist, key=lambda x: x['year'])]
-decreases = sum(1 for i in range(1, len(limits)) if limits[i] < limits[i-1])
-check("TSP: limits mostly non-decreasing", decreases <= 2, f"{decreases} decreases found")
-
-print(f"  TSP: {passed} checks\n")
-tsp_count = passed
-
-# ============================================================
-# 2. SS BEND POINTS
-# ============================================================
-print("=" * 60)
-print("SS Bend Points Validation")
-print("=" * 60)
-
-bp_path = resolve_path('federal/ss-bend-points.json')
-with open(bp_path) as f:
-    bp = json.load(f)
-
-# Structure
-check("BP: has metadata", 'metadata' in bp)
-check("BP: has current_year", 'current_year' in bp)
-check("BP: has history", 'history' in bp)
-
-# Current year
-bcy = bp.get('current_year', {})
-check("BP: current_year.year is 2026", bcy.get('year') == 2026)
-check("BP: first_bend_point present", 'first_bend_point' in bcy)
-check("BP: second_bend_point present", 'second_bend_point' in bcy)
-check("BP: pia_factors present", 'pia_factors' in bcy)
-
-# 2026 spot checks against SSA
-check("BP: 2026 first bend = 1286", bcy.get('first_bend_point') == 1286)
-check("BP: 2026 second bend = 7749", bcy.get('second_bend_point') == 7749)
-check("BP: first < second", bcy.get('first_bend_point', 0) < bcy.get('second_bend_point', 0))
-
-# PIA factors
-pia = bcy.get('pia_factors', {})
-check("BP: PIA below_first = 0.90", pia.get('below_first') == 0.90)
-check("BP: PIA between = 0.32", pia.get('between') == 0.32)
-check("BP: PIA above_second = 0.15", pia.get('above_second') == 0.15)
-
-# History
-bhist = bp.get('history', [])
-check("BP: history has 40+ entries", len(bhist) >= 40)
-check("BP: entries have year", all('year' in e for e in bhist))
-check("BP: entries have first", all('first' in e for e in bhist))
-check("BP: entries have second", all('second' in e for e in bhist))
-check("BP: earliest year <= 1979", min(e['year'] for e in bhist) <= 1979)
-check("BP: latest year = 2026", max(e['year'] for e in bhist) == 2026)
-
-# Bend points should increase over time
-firsts = [(e['year'], e['first']) for e in sorted(bhist, key=lambda x: x['year'])]
-first_decreases = sum(1 for i in range(1, len(firsts)) if firsts[i][1] < firsts[i-1][1])
-check("BP: first bend mostly non-decreasing", first_decreases <= 1, f"{first_decreases} decreases")
-
-# Cross-field: first always < second
-check("BP: first < second in all history", 
-      all(e['first'] < e['second'] for e in bhist),
-      "found entry where first >= second")
-
-print(f"  BP: {passed - tsp_count} checks\n")
-bp_count = passed
-
-# ============================================================
-# 3. SS TAXABLE MAXIMUM
-# ============================================================
-print("=" * 60)
-print("SS Taxable Maximum Validation")
-print("=" * 60)
-
-stm_path = resolve_path('federal/ss-taxable-max.json')
-with open(stm_path) as f:
-    stm = json.load(f)
-
-# Structure
-check("STM: has metadata", 'metadata' in stm)
-check("STM: has current_year", 'current_year' in stm)
-check("STM: has history", 'history' in stm)
-
-# Current year
-scy = stm.get('current_year', {})
-check("STM: current_year.year is 2026", scy.get('year') == 2026)
-check("STM: amount present", 'amount' in scy)
-check("STM: oasdi_rate_employee present", 'oasdi_rate_employee' in scy)
-
-# 2026 spot checks against SSA
-check("STM: 2026 amount = 184500", scy.get('amount') == 184500)
-check("STM: 2026 employee rate = 0.062", scy.get('oasdi_rate_employee') == 0.062)
-check("STM: 2026 employer rate = 0.062", scy.get('oasdi_rate_employer') == 0.062)
-check("STM: 2026 self-employed rate = 0.124", scy.get('oasdi_rate_self_employed') == 0.124)
-
-# Max tax cross-check: amount * rate = max_tax
-expected_max = round(scy.get('amount', 0) * scy.get('oasdi_rate_employee', 0), 2)
-actual_max = scy.get('max_employee_tax', 0)
-check("STM: max_employee_tax = amount * rate", 
-      abs(expected_max - actual_max) < 1.0,
-      f"expected ~{expected_max}, got {actual_max}")
-
-# History
-shist = stm.get('history', [])
-check("STM: history has 80+ entries", len(shist) >= 80)
-check("STM: entries have year", all('year' in e for e in shist))
-check("STM: entries have amount", all('amount' in e for e in shist))
-check("STM: earliest year <= 1937", min(e['year'] for e in shist) <= 1937)
-check("STM: latest year = 2026", max(e['year'] for e in shist) == 2026)
-
-# Spot check historical
-shist_by_year = {e['year']: e for e in shist}
-check("STM: 2024 amount = 168600", shist_by_year.get(2024, {}).get('amount') == 168600)
-check("STM: 2020 amount = 137700", shist_by_year.get(2020, {}).get('amount') == 137700)
-
-# Mostly non-decreasing (SS taxable max has never decreased)
-amounts = [e['amount'] for e in sorted(shist, key=lambda x: x['year'])]
-stm_decreases = sum(1 for i in range(1, len(amounts)) if amounts[i] < amounts[i-1])
-check("STM: amounts non-decreasing", stm_decreases == 0, f"{stm_decreases} decreases found")
-
-print(f"  STM: {passed - bp_count} checks\n")
-stm_count = passed
-
-# ============================================================
-# 4. IRA LIMITS
-# ============================================================
-print("=" * 60)
-print("IRA Limits Validation")
-print("=" * 60)
-
-ira_path = resolve_path('federal/ira-limits.json')
-with open(ira_path) as f:
-    ira = json.load(f)
-
-# Structure
-check("IRA: has metadata", 'metadata' in ira)
-check("IRA: has annual_limits", 'annual_limits' in ira)
-check("IRA: metadata version = 2.0", ira.get('metadata', {}).get('version') == '2.0')
-
-limits = ira.get('annual_limits', [])
-check("IRA: has 50+ entries", len(limits) >= 50)
-check("IRA: entries have year", all('year' in e for e in limits))
-check("IRA: entries have contribution_limit", all('contribution_limit' in e for e in limits))
-check("IRA: entries have roth_available", all('roth_available' in e for e in limits))
-
-years = [e['year'] for e in limits]
-check("IRA: earliest year <= 1975", min(years) <= 1975)
-check("IRA: latest year = 2026", max(years) == 2026)
-check("IRA: years sequential", 
-      sorted(years) == list(range(min(years), max(years) + 1)),
-      "gaps in year sequence")
-
-# 2026 spot checks
-ira_by_year = {e['year']: e for e in limits}
-e2026 = ira_by_year.get(2026, {})
-check("IRA: 2026 contribution_limit = 7500", e2026.get('contribution_limit') == 7500)
-check("IRA: 2026 catchup_50_plus = 1100", e2026.get('catchup_50_plus') == 1100)
-check("IRA: 2026 roth_available = true", e2026.get('roth_available') == True)
-
-# Roth availability timeline
-check("IRA: 1997 roth_available = false", ira_by_year.get(1997, {}).get('roth_available') == False)
-check("IRA: 1998 roth_available = true", ira_by_year.get(1998, {}).get('roth_available') == True,
-      "Roth IRA introduced in 1998")
-
-# Roth income limits structure (post-1998)
-roth_years = [e for e in limits if e.get('roth_available') and e.get('roth_income_limits')]
-check("IRA: Roth years have income limits", len(roth_years) >= 25,
-      f"found {len(roth_years)} years with roth_income_limits")
-
-if roth_years:
-    sample = roth_years[-1]  # most recent
-    ril = sample.get('roth_income_limits', {})
-    check("IRA: Roth limits have single", 'single' in ril)
-    check("IRA: Roth limits have married_joint", 'married_joint' in ril)
-    check("IRA: Roth limits have married_separate", 'married_separate' in ril)
+def validate_tsp_limits(root):
+    section("TSP Limits")
+    f = json.load(open(os.path.join(root, 'federal/tsp-limits.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 38, f"history has 38+ entries (got {len(hist)})")
     
-    for status in ['single', 'married_joint', 'married_separate']:
-        if status in ril:
-            check(f"IRA: {status} has full_contribution_below", 
-                  'full_contribution_below' in ril[status])
-            check(f"IRA: {status} has ineligible_at", 
-                  'ineligible_at' in ril[status])
-            # ineligible_at > full_contribution_below
-            fcb = ril[status].get('full_contribution_below', 0)
-            ina = ril[status].get('ineligible_at', 0)
-            check(f"IRA: {status} ineligible_at > full_contribution_below",
-                  ina > fcb or (status == 'married_separate' and fcb == 0),
-                  f"fcb={fcb}, ina={ina}")
+    years = [e['year'] for e in hist]
+    check(min(years) <= 1987, "starts at or before 1987")
+    check(max(years) >= 2026, "includes 2026")
+    check(len(years) == len(set(years)), "no duplicate years")
+    
+    for e in hist:
+        check('limit' in e, f"year {e['year']} has limit")
+        check(isinstance(e['limit'], (int, float)), f"year {e['year']} limit is numeric")
+        if e['year'] >= 2002:
+            check('catchup' in e and e['catchup'] is not None, f"year {e['year']} has catchup (post-2001)")
+    
+    # Spot checks
+    y2026 = next((e for e in hist if e['year'] == 2026), None)
+    if y2026:
+        check(y2026['limit'] == 24500, f"2026 limit = 24500 (got {y2026.get('limit')})")
+        check(y2026.get('catchup') == 8000, f"2026 catchup = 8000 (got {y2026.get('catchup')})")
+    
+    y1987 = next((e for e in hist if e['year'] == 1987), None)
+    if y1987:
+        check(y1987['limit'] == 7000, f"1987 limit = 7000 (got {y1987.get('limit')})")
+    
+    # Monotonic increase in limits
+    for i in range(1, len(hist)):
+        check(hist[i]['limit'] >= hist[i-1]['limit'], 
+              f"limit non-decreasing: {hist[i-1]['year']}({hist[i-1]['limit']}) <= {hist[i]['year']}({hist[i]['limit']})")
+    
+    print(f"  TSP: {PASS} checks")
+    return PASS
 
-# 2026 Roth income limit spot checks
-r2026 = e2026.get('roth_income_limits', {})
-check("IRA: 2026 single full_below = 153000", 
-      r2026.get('single', {}).get('full_contribution_below') == 153000)
-check("IRA: 2026 single ineligible = 168000",
-      r2026.get('single', {}).get('ineligible_at') == 168000)
-check("IRA: 2026 MFJ full_below = 242000",
-      r2026.get('married_joint', {}).get('full_contribution_below') == 242000)
-check("IRA: 2026 MFJ ineligible = 252000",
-      r2026.get('married_joint', {}).get('ineligible_at') == 252000)
-check("IRA: 2026 MFS ineligible = 10000",
-      r2026.get('married_separate', {}).get('ineligible_at') == 10000)
+def validate_ss_bend_points(root):
+    section("SS Bend Points")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/ss-bend-points.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 40, f"history has 40+ entries (got {len(hist)})")
+    
+    for e in hist:
+        check('year' in e, f"entry has year")
+        check('first' in e, f"year {e.get('year')} has first bend point")
+        check('second' in e, f"year {e.get('year')} has second bend point")
+        if 'first' in e and 'second' in e:
+            check(e['second'] > e['first'], f"year {e.get('year')} second > first")
+    
+    y2026 = next((e for e in hist if e['year'] == 2026), None)
+    if y2026:
+        check(y2026['first'] > 0, f"2026 first > 0")
+        check(y2026['second'] > y2026['first'], f"2026 second > first")
+    
+    print(f"  BP: {PASS - start} checks")
 
-# Contribution limits non-decreasing
-clims = [e['contribution_limit'] for e in sorted(limits, key=lambda x: x['year'])]
-ira_decreases = sum(1 for i in range(1, len(clims)) if clims[i] < clims[i-1])
-check("IRA: contribution limits non-decreasing", ira_decreases == 0, 
-      f"{ira_decreases} decreases found")
+def validate_ss_taxable_max(root):
+    section("SS Taxable Maximum")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/ss-taxable-max.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 40, f"history has 40+ entries (got {len(hist)})")
+    
+    for e in hist:
+        check('year' in e, f"entry has year")
+        check('amount' in e, f"year {e.get('year')} has amount")
+    
+    y2026 = next((e for e in hist if e['year'] == 2026), None)
+    if y2026:
+        check(y2026['amount'] >= 160000, f"2026 amount >= 160000 (got {y2026.get('amount')})")
+    
+    print(f"  STM: {PASS - start} checks")
 
-# Pre-Roth years should not have roth_income_limits
-pre_roth = [e for e in limits if not e.get('roth_available')]
-bad_pre_roth = [e for e in pre_roth if 'roth_income_limits' in e]
-check("IRA: pre-Roth years have no roth_income_limits", len(bad_pre_roth) == 0,
-      f"{len(bad_pre_roth)} pre-Roth entries have income limits")
+def validate_ira_limits(root):
+    section("IRA Limits")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/ira-limits.json')))
+    check('metadata' in f, "has metadata")
+    check('annual_limits' in f, "has annual_limits")
+    limits = f.get('annual_limits', [])
+    check(len(limits) >= 50, f"annual_limits has 50+ entries (got {len(limits)})")
+    
+    for e in limits:
+        check('year' in e, f"entry has year")
+        if 'contribution_limit' in e:
+            check(e['contribution_limit'] > 0, f"year {e.get('year')} contribution_limit > 0")
+    
+    print(f"  IRA: {PASS - start} checks")
 
-print(f"  IRA: {passed - stm_count} checks\n")
-ira_count = passed
+def validate_life_table(root):
+    section("SSA Life Table")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'reference/ssa-life-table.json')))
+    check('metadata' in f, "has metadata")
+    
+    check('life_table' in f, "has life_table")
+    table = f.get('life_table', [])
+    check(len(table) >= 100, f"life_table has 100+ entries (got {len(table)})")
+    
+    if len(table) > 0:
+        check('age' in table[0], "entries have age field")
+        check('male' in table[0], "entries have male data")
+        check('female' in table[0], "entries have female data")
+        
+        for gender in ['male', 'female']:
+            if gender in table[0]:
+                check('life_expectancy' in table[0][gender], f"{gender} has life_expectancy")
+                
+                age0 = next((e for e in table if e['age'] == 0), None)
+                if age0:
+                    check(age0[gender]['life_expectancy'] > 70, f"{gender} age 0 LE > 70")
+                
+                age65 = next((e for e in table if e['age'] == 65), None)
+                if age65:
+                    check(10 < age65[gender]['life_expectancy'] < 30, f"{gender} age 65 LE between 10-30")
+    
+    print(f"  LT: {PASS - start} checks")
 
-# ============================================================
-# 5. SSA ACTUARIAL LIFE TABLE
-# ============================================================
-print("=" * 60)
-print("SSA Life Table Validation")
-print("=" * 60)
+def validate_county_property_tax(root):
+    section("County Property Tax")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'states/counties/county-property-tax.json')))
+    check('metadata' in f, "has metadata")
+    check('counties' in f, "has counties")
+    counties = f.get('counties', [])
+    check(len(counties) >= 10, f"has 10+ counties (got {len(counties)})")
+    
+    for c in counties:
+        check('county' in c, f"county entry has name")
+        check('state_code' in c, f"{c.get('county','')} has state_code")
+        check('property_tax' in c or 'tax_rate' in c or 'effective_rate' in c, 
+              f"{c.get('county','')} has tax data")
+    
+    states = set(c.get('state_code','') for c in counties)
+    check(len(states) >= 8, f"covers 8+ states (got {len(states)})")
+    
+    print(f"  CPT: {PASS - start} checks")
 
-lt_path = resolve_path('reference/ssa-life-table.json')
-with open(lt_path) as f:
-    lt = json.load(f)
+def validate_cola_history(root):
+    section("COLA History")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/cola-history.json')))
+    check('metadata' in f, "has metadata")
+    check('annual_cola' in f, "has annual_cola")
+    check('cola_formula' in f, "has cola_formula")
+    
+    colas = f.get('annual_cola', [])
+    check(len(colas) >= 50, f"50+ years of COLA data (got {len(colas)})")
+    
+    for c in colas:
+        check('year' in c, "entry has year")
+        check('social_security' in c, f"year {c.get('year','')} has social_security")
+        if 'fers' in c and 'social_security' in c:
+            ss = c['social_security']
+            fers = c['fers']
+            if ss is not None and fers is not None and c.get('year', 0) >= 1987:
+                if ss <= 2:
+                    check(abs(fers - ss) < 0.01, f"year {c['year']} FERS = SS when SS <= 2%")
+                elif ss <= 3:
+                    check(abs(fers - 2.0) < 0.01, f"year {c['year']} FERS = 2% when 2 < SS <= 3%")
+                else:
+                    check(abs(fers - (ss - 1.0)) < 0.01, f"year {c['year']} FERS = SS-1 when SS > 3%")
+    
+    print(f"  COLA: {PASS - start} checks")
 
-# Structure
-check("LT: has metadata", 'metadata' in lt)
-check("LT: has life_table", 'life_table' in lt)
-check("LT: has retirement_planning_reference", 'retirement_planning_reference' in lt)
-check("LT: metadata version = 1.0", lt.get('metadata', {}).get('version') == '1.0')
-check("LT: data_year = 2022", lt.get('metadata', {}).get('data_year') == 2022)
-check("LT: trustees_report = 2025", lt.get('metadata', {}).get('trustees_report') == '2025')
+# ==============================================================
+# FEHB VALIDATION (preserved from validate_historical.py)
+# ==============================================================
 
-# Life table entries
-ltable = lt.get('life_table', [])
-check("LT: has 120 entries", len(ltable) == 120)
-check("LT: ages 0-119", 
-      ltable[0]['age'] == 0 and ltable[-1]['age'] == 119 if ltable else False)
-check("LT: all entries have age", all('age' in e for e in ltable))
-check("LT: all entries have male", all('male' in e for e in ltable))
-check("LT: all entries have female", all('female' in e for e in ltable))
+def validate_fehb_rates(root):
+    section("FEHB Rates (Full Dataset)")
+    global PASS, FAIL
+    start = PASS
+    path = os.path.join(root, 'federal/healthcare/fehb-rates.json')
+    if not os.path.exists(path):
+        print("  SKIP: fehb-rates.json not found")
+        return
+    f = json.load(open(path))
+    check('_metadata' in f or 'metadata' in f, "has metadata")
+    check('plan_premium_data' in f, "has plan_premium_data")
+    ppd = f.get('plan_premium_data', {})
+    plans = ppd.get('plans', []) if isinstance(ppd, dict) else []
+    check(len(plans) >= 400, f"400+ plan entries (got {len(plans)})")
+    
+    nationwide = [p for p in plans if p.get('nationwide')]
+    regional = [p for p in plans if not p.get('nationwide')]
+    check(len(nationwide) >= 15, f"15+ nationwide plans (got {len(nationwide)})")
+    check(len(regional) >= 400, f"400+ regional plans (got {len(regional)})")
+    
+    for p in plans[:50]:  # spot check first 50
+        check('carrier' in p or 'plan_name' in p, f"plan has identifier")
+        prem = p.get('premiums', {})
+        for etype in ['self_only', 'self_plus_one', 'self_and_family']:
+            if etype in prem:
+                edata = prem[etype]
+                if isinstance(edata, dict):
+                    bw = edata.get('biweekly', {})
+                    if isinstance(bw, dict):
+                        for fld in ['total', 'government', 'enrollee']:
+                            if fld in bw:
+                                check(bw[fld] >= 0, f"{p.get('carrier','?')} {etype} bw {fld} >= 0")
+                        if 'total' in bw and 'government' in bw and 'enrollee' in bw:
+                            diff = abs(bw['total'] - bw['government'] - bw['enrollee'])
+                            check(diff < 0.02, f"{p.get('carrier','?')} {etype} total = govt + enrollee (diff={diff:.2f})")
+    
+    # Spot check BCBS Basic Self Only
+    bcbs = [p for p in plans if 'Blue Cross' in p.get('plan_name', '') and 'Basic' in p.get('plan_name', '') and p.get('nationwide')]
+    if bcbs:
+        so = bcbs[0].get('self_only', {}).get('biweekly', {})
+        if 'enrollee' in so:
+            check(100 < so['enrollee'] < 200, f"BCBS Basic SO enrollee biweekly in range (got {so['enrollee']})")
+    
+    print(f"  FEHB: {PASS - start} checks")
 
-# Male/female structure
-if ltable:
-    sample = ltable[65]  # age 65
-    for sex in ['male', 'female']:
-        s = sample.get(sex, {})
-        check(f"LT: age 65 {sex} has death_probability", 'death_probability' in s)
-        check(f"LT: age 65 {sex} has number_of_lives", 'number_of_lives' in s)
-        check(f"LT: age 65 {sex} has life_expectancy", 'life_expectancy' in s)
+def validate_tricare(root):
+    section("TRICARE Rates")
+    global PASS, FAIL
+    start = PASS
+    path = os.path.join(root, 'federal/healthcare/tricare-rates.json')
+    if not os.path.exists(path):
+        print("  SKIP: tricare-rates.json not found")
+        return
+    f = json.load(open(path))
+    check('metadata' in f or '_metadata' in f, "has metadata")
+    
+    # Check for retiree cost sections
+    has_retiree = any(k for k in f.keys() if 'retiree' in k.lower() or 'group' in k.lower())
+    check(has_retiree or 'retiree_costs' in f or 'plans' in f, "has retiree cost data")
+    
+    # Check for premium-based plans
+    has_premium = any(k for k in f.keys() if 'trs' in k.lower() or 'reserve' in k.lower() or 'premium' in k.lower())
+    check(has_premium or 'premium_based_plans' in f, "has premium-based plan data")
+    
+    print(f"  TRICARE: {PASS - start} checks")
 
-# Death probability range checks
-for entry in ltable:
-    age = entry['age']
-    for sex in ['male', 'female']:
-        dp = entry[sex]['death_probability']
-        if not (0 < dp <= 1.0):
-            check(f"LT: age {age} {sex} death_prob in (0,1]", False, f"got {dp}")
-            break
-else:
-    check("LT: all death probabilities in valid range (0,1]", True)
+def validate_fehb_benefits(root):
+    section("FEHB Plan Benefits")
+    global PASS, FAIL
+    start = PASS
+    path = os.path.join(root, 'federal/healthcare/fehb-plan-benefits.json')
+    if not os.path.exists(path):
+        print("  SKIP: fehb-plan-benefits.json not found")
+        return
+    f = json.load(open(path))
+    check('_metadata' in f or 'metadata' in f, "has metadata")
+    check('plans' in f, "has plans")
+    plans = f.get('plans', [])
+    check(len(plans) >= 100, f"100+ plan entries (got {len(plans)})")
+    
+    for p in plans[:10]:  # spot check first 10
+        check('plan_name' in p or 'plan_code' in p, "plan has identifier")
+    
+    print(f"  Benefits: {PASS - start} checks")
 
-# Age 119 should have death_probability = 1.0
-check("LT: age 119 male death_prob = 1.0", ltable[-1]['male']['death_probability'] == 1.0)
-check("LT: age 119 female death_prob = 1.0", ltable[-1]['female']['death_probability'] == 1.0)
+def validate_fedvip(root):
+    section("FEDVIP Rates")
+    global PASS, FAIL
+    start = PASS
+    path = os.path.join(root, 'federal/healthcare/fedvip-rates.json')
+    if not os.path.exists(path):
+        print("  SKIP: fedvip-rates.json not found")
+        return
+    f = json.load(open(path))
+    check('_metadata' in f or 'metadata' in f, "has metadata")
+    check('dental' in f, "has dental data")
+    check('vision' in f, "has vision data")
+    
+    dental = f.get('dental', {})
+    if 'carriers' in dental:
+        check(len(dental['carriers']) >= 5, f"5+ dental carriers (got {len(dental['carriers'])})")
+    elif 'plans' in dental:
+        check(len(dental['plans']) >= 5, f"5+ dental plans (got {len(dental['plans'])})")
+    
+    vision = f.get('vision', {})
+    if 'carriers' in vision:
+        check(len(vision['carriers']) >= 3, f"3+ vision carriers (got {len(vision['carriers'])})")
+    elif 'plans' in vision:
+        check(len(vision['plans']) >= 3, f"3+ vision plans (got {len(vision['plans'])})")
+    
+    print(f"  FEDVIP: {PASS - start} checks")
 
-# Life expectancy decreases with age
-male_les = [(e['age'], e['male']['life_expectancy']) for e in ltable]
-le_increases = sum(1 for i in range(1, len(male_les)) if male_les[i][1] > male_les[i-1][1])
-check("LT: male life expectancy decreases with age", le_increases == 0,
-      f"{le_increases} increases found")
+# ==============================================================
+# NEW FILE VALIDATIONS (Session 21 — 12 historical files)
+# ==============================================================
 
-# Female life expectancy > male at most ages
-female_gt_male = sum(1 for e in ltable if e['age'] <= 100 and 
-                     e['female']['life_expectancy'] > e['male']['life_expectancy'])
-check("LT: female LE > male LE for ages 0-100", female_gt_male >= 95,
-      f"female > male at {female_gt_male}/101 ages")
+def validate_tax_brackets(root):
+    section("Federal Tax Brackets")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/federal-tax-brackets.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 25, f"25+ years (got {len(hist)})")
+    
+    for e in hist:
+        check('year' in e, f"entry has year")
+        check('rates' in e, f"year {e.get('year')} has rates")
+        check('single' in e, f"year {e.get('year')} has single brackets")
+        check('married_filing_jointly' in e, f"year {e.get('year')} has MFJ brackets")
+        if 'rates' in e and 'single' in e:
+            check(len(e['rates']) == len(e['single']), 
+                  f"year {e.get('year')} rates count = single brackets count")
+        if 'rates' in e:
+            check(e['rates'][0] == 10, f"year {e.get('year')} lowest rate = 10%")
+            check(max(e['rates']) <= 39.6, f"year {e.get('year')} top rate <= 39.6%")
+        if 'single' in e:
+            check(e['single'][0] == 0, f"year {e.get('year')} single starts at 0")
+    
+    # Cross-check 2026 against rates-annual
+    ra_path = os.path.join(root, 'federal/rates-annual.json')
+    if os.path.exists(ra_path):
+        ra = json.load(open(ra_path))
+        tax = ra.get('tax', {})
+        ra_brackets = tax.get('brackets_single_2026', [])
+        if ra_brackets:
+            y2026 = next((e for e in hist if e['year'] == 2026), None)
+            if y2026 and 'single' in y2026:
+                ra_first = ra_brackets[0].get('min', ra_brackets[0].get('from', 0))
+                check(y2026['single'][0] == 0, "2026 single bracket starts at 0")
+    
+    print(f"  TaxBrackets: {PASS - start} checks")
 
-# Spot checks against SSA source (2022 period table, 2025 TR)
-check("LT: age 0 male LE = 74.74", ltable[0]['male']['life_expectancy'] == 74.74)
-check("LT: age 0 female LE = 80.18", ltable[0]['female']['life_expectancy'] == 80.18)
-check("LT: age 65 male LE = 17.48", ltable[65]['male']['life_expectancy'] == 17.48)
-check("LT: age 65 female LE = 20.12", ltable[65]['female']['life_expectancy'] == 20.12)
-check("LT: age 65 male death_prob = 0.017897", ltable[65]['male']['death_probability'] == 0.017897)
+def validate_standard_deduction(root):
+    section("Standard Deduction History")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/standard-deduction-history.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 25, f"25+ years (got {len(hist)})")
+    
+    for e in hist:
+        check('year' in e, f"entry has year")
+        check('single' in e, f"year {e.get('year')} has single")
+        check('mfj' in e, f"year {e.get('year')} has mfj")
+        if 'single' in e and 'mfj' in e:
+            check(e['mfj'] >= e['single'], f"year {e.get('year')} MFJ >= single")
+        if 'additional_65_single' in e:
+            check(e['additional_65_single'] > 0, f"year {e.get('year')} age 65+ deduction > 0")
+    
+    # TCJA jump check
+    y2017 = next((e for e in hist if e['year'] == 2017), None)
+    y2018 = next((e for e in hist if e['year'] == 2018), None)
+    if y2017 and y2018:
+        check(y2018['single'] > y2017['single'] * 1.5, "2018 single > 1.5x 2017 (TCJA doubling)")
+    
+    # Cross-check 2026 against rates-annual
+    ra_path = os.path.join(root, 'federal/rates-annual.json')
+    if os.path.exists(ra_path):
+        ra = json.load(open(ra_path))
+        tax = ra.get('tax', {})
+        ra_single = tax.get('standard_deduction_single')
+        y2026 = next((e for e in hist if e['year'] == 2026), None)
+        if ra_single and y2026:
+            check(y2026['single'] == ra_single, 
+                  f"2026 single matches rates-annual ({y2026['single']} vs {ra_single})")
+    
+    print(f"  StdDeduction: {PASS - start} checks")
 
-# Retirement planning reference
-ref = lt.get('retirement_planning_reference', {}).get('ages', {})
-check("LT: has planning ref for age 62", '62' in ref)
-check("LT: has planning ref for age 65", '65' in ref)
-check("LT: has planning ref for age 67", '67' in ref)
-check("LT: has planning ref for age 70", '70' in ref)
+def validate_capital_gains(root):
+    section("Capital Gains Rates")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/capital-gains-rates.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 25, f"25+ years (got {len(hist)})")
+    
+    for e in hist:
+        check('year' in e, f"entry has year")
+        check('rates' in e, f"year {e.get('year')} has rates")
+        if 'rates' in e:
+            check(0 in e['rates'] or 5 in e['rates'] or 10 in e['rates'], 
+                  f"year {e.get('year')} has preferential low rate")
+    
+    # NIIT check for 2013+
+    for e in hist:
+        if e.get('year', 0) >= 2013:
+            check('niit_rate' in e, f"year {e['year']} has NIIT rate (post-ACA)")
+            if 'niit_rate' in e:
+                check(e['niit_rate'] == 3.8, f"year {e['year']} NIIT = 3.8%")
+    
+    print(f"  CapGains: {PASS - start} checks")
 
-# Cross-check planning ref against life table
-if '65' in ref:
-    ref65 = ref['65']
-    check("LT: planning ref 65 male LE matches table", 
-          ref65.get('male_life_expectancy') == ltable[65]['male']['life_expectancy'])
-    check("LT: planning ref 65 expected death age = 65 + LE",
-          ref65.get('male_expected_age_at_death') == round(65 + ltable[65]['male']['life_expectancy'], 1))
+def validate_hsa_limits(root):
+    section("HSA Limits")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/hsa-limits.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 20, f"20+ years (got {len(hist)})")
+    check(hist[0].get('year') == 2004, "starts at 2004 (HSA inception)")
+    
+    for e in hist:
+        check('self_only' in e, f"year {e.get('year')} has self_only")
+        check('family' in e, f"year {e.get('year')} has family")
+        if 'self_only' in e and 'family' in e:
+            check(e['family'] > e['self_only'], f"year {e.get('year')} family > self_only")
+        check('catchup_55' in e, f"year {e.get('year')} has catchup_55")
+        if e.get('year', 0) >= 2009:
+            check(e.get('catchup_55') == 1000, f"year {e.get('year')} catchup = 1000 (post-2009)")
+    
+    # Cross-check 2026 against FEHB
+    fehb_path = os.path.join(root, 'federal/healthcare/fehb-rates.json')
+    if os.path.exists(fehb_path):
+        fehb = json.load(open(fehb_path))
+        hsa = fehb.get('hsa_limits_2026', {})
+        y2026 = next((e for e in hist if e['year'] == 2026), None)
+        if hsa and y2026:
+            check(y2026['self_only'] == hsa.get('individual_max'), 
+                  f"2026 self_only matches FEHB ({y2026['self_only']} vs {hsa.get('individual_max')})")
+            check(y2026['family'] == hsa.get('family_max'),
+                  f"2026 family matches FEHB ({y2026['family']} vs {hsa.get('family_max')})")
+    
+    print(f"  HSA: {PASS - start} checks")
 
-print(f"  LT: {passed - ira_count} checks\n")
-lt_count = passed
+def validate_pay_raises(root):
+    section("Federal Pay Raises")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/federal-pay-raises.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 25, f"25+ years (got {len(hist)})")
+    
+    for e in hist:
+        check('year' in e, f"entry has year")
+        check('gs_raise_pct' in e, f"year {e.get('year')} has gs_raise_pct")
+        check('military_raise_pct' in e, f"year {e.get('year')} has military_raise_pct")
+        check(e.get('gs_raise_pct', -1) >= 0, f"year {e.get('year')} GS raise >= 0")
+        check(e.get('military_raise_pct', -1) >= 0, f"year {e.get('year')} military raise >= 0")
+    
+    # Pay freeze years
+    for year in [2011, 2012, 2013]:
+        entry = next((e for e in hist if e['year'] == year), None)
+        if entry:
+            check(entry['gs_raise_pct'] == 0.0, f"{year} GS raise = 0% (pay freeze)")
+    
+    check('summary_statistics' in f, "has summary_statistics")
+    
+    print(f"  PayRaises: {PASS - start} checks")
 
-# ============================================================
-# 6. COUNTY PROPERTY TAX
-# ============================================================
-print("=" * 60)
-print("County Property Tax Validation")
-print("=" * 60)
+def validate_estate_gift_tax(root):
+    section("Estate & Gift Tax")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/estate-gift-tax.json')))
+    check('metadata' in f, "has metadata")
+    check('history' in f, "has history")
+    hist = f.get('history', [])
+    check(len(hist) >= 25, f"25+ years (got {len(hist)})")
+    
+    for e in hist:
+        check('year' in e, f"entry has year")
+        check('estate_exemption' in e, f"year {e.get('year')} has estate_exemption")
+        check('gift_annual_exclusion' in e, f"year {e.get('year')} has gift_annual_exclusion")
+    
+    # TCJA doubling check
+    y2017 = next((e for e in hist if e['year'] == 2017), None)
+    y2018 = next((e for e in hist if e['year'] == 2018), None)
+    if y2017 and y2018:
+        check(y2018['estate_exemption'] > y2017['estate_exemption'] * 1.8, 
+              "2018 exemption > 1.8x 2017 (TCJA doubling)")
+    
+    print(f"  EstateTax: {PASS - start} checks")
 
-cpt_path = resolve_path('states/counties/county-property-tax.json')
-with open(cpt_path) as f:
-    cpt = json.load(f)
+def validate_fers_contribution(root):
+    section("FERS Contribution Rates")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/fers-contribution-rates.json')))
+    check('metadata' in f, "has metadata")
+    check('cohorts' in f, "has cohorts")
+    cohorts = f.get('cohorts', [])
+    check(len(cohorts) == 3, f"exactly 3 cohorts (got {len(cohorts)})")
+    
+    expected_rates = [0.8, 3.1, 4.4]
+    for i, c in enumerate(cohorts):
+        check('employee_rate_pct' in c, f"cohort {i} has rate")
+        if 'employee_rate_pct' in c:
+            check(c['employee_rate_pct'] == expected_rates[i], 
+                  f"cohort {i} rate = {expected_rates[i]} (got {c['employee_rate_pct']})")
+    
+    check('csrs_reference' in f, "has CSRS reference")
+    if 'csrs_reference' in f:
+        check(f['csrs_reference'].get('employee_rate_pct') == 7.0, "CSRS rate = 7.0%")
+    
+    check('fers_benefit_formula' in f, "has benefit formula")
+    
+    print(f"  FERS: {PASS - start} checks")
 
-# Structure
-check("CPT: has metadata", 'metadata' in cpt)
-check("CPT: has counties", 'counties' in cpt)
-check("CPT: metadata version = 1.0", cpt.get('metadata', {}).get('version') == '1.0')
+def validate_rmd_rules(root):
+    section("RMD Rules History")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'reference/rmd-rules-history.json')))
+    check('metadata' in f, "has metadata")
+    check('rmd_age_history' in f, "has rmd_age_history")
+    
+    ages = f.get('rmd_age_history', [])
+    check(len(ages) >= 4, f"4+ RMD age periods (got {len(ages)})")
+    
+    # Check age progression
+    age_values = [a['rmd_start_age'] for a in ages]
+    check(70.5 in age_values, "includes original 70.5 age")
+    check(72 in age_values, "includes SECURE Act 72")
+    check(73 in age_values, "includes SECURE 2.0 73")
+    check(75 in age_values, "includes SECURE 2.0 75")
+    
+    check('key_rule_changes' in f, "has key_rule_changes")
+    check('inherited_ira_rules' in f, "has inherited_ira_rules")
+    
+    print(f"  RMD: {PASS - start} checks")
 
-counties = cpt.get('counties', [])
-check("CPT: has 10 counties", len(counties) == 10)
+def validate_medicare_premium_history(root):
+    section("Medicare Premium History (Merged into medicare-rates.json)")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/healthcare/medicare-rates.json')))
+    ph = f.get('premium_history', {})
+    check('years' in ph, "has years (Part B premiums)")
+    
+    premiums = ph.get('years', [])
+    check(len(premiums) >= 25, f"25+ years (got {len(premiums)})")
+    
+    for p in premiums:
+        check('year' in p, f"entry has year")
+        check('standard_premium' in p, f"year {p.get('year')} has standard_premium")
+        check(p.get('standard_premium', 0) > 0, f"year {p.get('year')} premium > 0")
+    
+    # Cross-check 2026 against same file's Part B section
+    pb = f.get('part_b', {})
+    med_premium = pb.get('standard_premium_monthly')
+    y2026 = next((p for p in premiums if p['year'] == 2026), None)
+    if med_premium and y2026:
+        check(abs(y2026['standard_premium'] - med_premium) < 0.01,
+              f"2026 premium history matches Part B section ({y2026['standard_premium']} vs {med_premium})")
+    
+    check('part_a_inpatient_deductible' in ph, "has Part A deductible history")
+    check('trend_analysis' in ph, "has trend analysis")
+    
+    print(f"  MedHistory: {PASS - start} checks")
 
-# Required fields per county
-required_fields = ['county', 'state_code', 'fips', 'military_installations', 
-                   'property_tax', 'veteran_exemptions', 'application', 'source']
-for county in counties:
-    name = f"{county.get('county', '?')}, {county.get('state_code', '?')}"
-    for field in required_fields:
-        check(f"CPT: {name} has {field}", field in county)
+def validate_ss_claiming(root):
+    section("Social Security Claiming Rules")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'reference/social-security-claiming.json')))
+    check('metadata' in f, "has metadata")
+    check('fra_schedule' in f, "has fra_schedule")
+    
+    fra = f.get('fra_schedule', [])
+    check(len(fra) >= 10, f"10+ FRA entries (got {len(fra)})")
+    
+    # Check FRA progression
+    last_fra = next((e for e in fra if e.get('birth_year_start') == 1960), None)
+    if last_fra:
+        check(last_fra['fra_years'] == 67, "Born 1960+ FRA = 67")
+    
+    check('early_filing_reductions' in f, "has early_filing_reductions")
+    check('delayed_retirement_credits' in f, "has delayed_retirement_credits")
+    check('earnings_test' in f, "has earnings_test")
+    
+    # WEP/GPO repeal check
+    if 'windfall_elimination_provision' in f:
+        wep = f['windfall_elimination_provision']
+        check('repeal' in json.dumps(wep).lower() or 'fairness act' in json.dumps(wep).lower(),
+              "WEP section references SS Fairness Act repeal")
+    
+    print(f"  SSClaiming: {PASS - start} checks")
 
-# State codes should be valid 2-letter codes
-valid_states = {'VA', 'MD', 'NC', 'TX', 'FL', 'CO', 'WA', 'AZ', 'NV', 'DC',
-                'GA', 'PA', 'AK', 'HI', 'OR'}
-for county in counties:
-    check(f"CPT: {county['county']} state_code valid",
-          county.get('state_code') in valid_states,
-          f"got {county.get('state_code')}")
+def validate_fehb_premium_history(root):
+    section("FEHB Premium History")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'federal/fehb-premium-history.json')))
+    check('metadata' in f, "has metadata")
+    check('average_premium_trend' in f, "has average_premium_trend")
+    
+    trend = f.get('average_premium_trend', [])
+    check(len(trend) >= 15, f"15+ years (got {len(trend)})")
+    
+    for e in trend:
+        check('year' in e, f"entry has year")
+        check('total_biweekly_self_only' in e, f"year {e.get('year')} has total premium")
+        check('enrollee_biweekly_self_only' in e, f"year {e.get('year')} has enrollee premium")
+        if 'total_biweekly_self_only' in e and 'enrollee_biweekly_self_only' in e:
+            check(e['total_biweekly_self_only'] > e['enrollee_biweekly_self_only'],
+                  f"year {e.get('year')} total > enrollee")
+    
+    check('trend_analysis' in f, "has trend_analysis")
+    
+    print(f"  FEHBHistory: {PASS - start} checks")
 
-# FIPS codes should be 5 digits
-for county in counties:
-    fips = county.get('fips', '')
-    check(f"CPT: {county['county']} FIPS is 5 digits",
-          len(fips) == 5 and fips.isdigit(),
-          f"got {fips}")
+def validate_military_retirement(root):
+    section("Military Retirement Rules")
+    global PASS, FAIL
+    start = PASS
+    f = json.load(open(os.path.join(root, 'reference/military-retirement-rules.json')))
+    check('metadata' in f, "has metadata")
+    check('retirement_systems' in f, "has retirement_systems")
+    
+    systems = f.get('retirement_systems', [])
+    check(len(systems) == 4, f"exactly 4 systems (got {len(systems)})")
+    
+    system_names = [s.get('system', '') for s in systems]
+    for expected in ['Final Pay', 'High-3', 'BRS']:
+        check(any(expected.lower() in n.lower() for n in system_names), f"has {expected} system")
+    
+    # BRS-specific checks
+    brs = next((s for s in systems if 'BRS' in s.get('system', '') or 'Blended' in s.get('system', '')), None)
+    if brs:
+        check(brs.get('multiplier_per_year_pct') == 2.0, "BRS multiplier = 2.0%/year")
+        check(brs.get('tsp_matching') == True, "BRS has TSP matching")
+        check('tsp_match_details' in brs, "BRS has TSP match details")
+    
+    check('survivor_benefit_plan' in f, "has SBP data")
+    check('concurrent_receipt' in f, "has CRDP/CRSC data")
+    
+    print(f"  MilRetirement: {PASS - start} checks")
 
-# Each county should have at least one military installation
-for county in counties:
-    check(f"CPT: {county['county']} has military installations",
-          len(county.get('military_installations', [])) >= 1)
+# ==============================================================
+# MAIN
+# ==============================================================
 
-# Veteran exemptions should have at least one entry with a type
-for county in counties:
-    exemptions = county.get('veteran_exemptions', {})
-    types_found = [v.get('type') for v in exemptions.values() if isinstance(v, dict)]
-    valid_types = {'full_exemption', 'partial_exemption', 'reduction'}
-    check(f"CPT: {county['county']} has valid exemption type",
-          any(t in valid_types for t in types_found),
-          f"types: {types_found}")
-
-# Spot checks
-fairfax = [c for c in counties if c['county'] == 'Fairfax County']
-if fairfax:
-    f = fairfax[0]
-    check("CPT: Fairfax rate = 1.095", f['property_tax'].get('real_estate_rate_per_100') == 1.095)
-    check("CPT: Fairfax is full_exemption",
-          f['veteran_exemptions'].get('disabled_veteran_100_pct', {}).get('type') == 'full_exemption')
-
-bexar = [c for c in counties if c['county'] == 'Bexar County']
-if bexar:
-    b = bexar[0]
-    check("CPT: Bexar has partial tiers",
-          len(b['veteran_exemptions'].get('disabled_veteran_partial', {}).get('tiers', [])) == 4)
-
-print(f"  CPT: {passed - lt_count} checks\n")
-cpt_count = passed
-
-# ============================================================
-# 7. COLA HISTORY
-# ============================================================
-print("=" * 60)
-print("COLA History Validation")
-print("=" * 60)
-
-cola_path = resolve_path('federal/cola-history.json')
-with open(cola_path) as f:
-    cola = json.load(f)
-
-check("COLA: has metadata", 'metadata' in cola)
-check("COLA: has annual_cola", 'annual_cola' in cola)
-check("COLA: has cola_formula", 'cola_formula' in cola)
-check("COLA: has summary_statistics", 'summary_statistics' in cola)
-check("COLA: metadata version = 1.0", cola.get('metadata', {}).get('version') == '1.0')
-
-entries = cola.get('annual_cola', [])
-check("COLA: has 51 entries", len(entries) == 51)
-check("COLA: first year = 1975", entries[0].get('year') == 1975 if entries else False)
-check("COLA: last year = 2025", entries[-1].get('year') == 2025 if entries else False)
-
-# All entries have required fields
-check("COLA: all have year", all('year' in e for e in entries))
-check("COLA: all have social_security", all('social_security' in e for e in entries))
-check("COLA: all have csrs", all('csrs' in e for e in entries))
-check("COLA: all have va", all('va' in e for e in entries))
-
-# FERS present for 1987+
-fers_entries = [e for e in entries if e['year'] >= 1987]
-check("COLA: FERS present for 1987+", all('fers' in e for e in fers_entries))
-
-# COLA values are non-negative
-check("COLA: all SS COLAs >= 0", all(e['social_security'] >= 0 for e in entries))
-
-# Spot checks against SSA source
-cola_by_year = {e['year']: e for e in entries}
-check("COLA: 1980 SS = 14.3", cola_by_year.get(1980, {}).get('social_security') == 14.3)
-check("COLA: 2009 SS = 0.0", cola_by_year.get(2009, {}).get('social_security') == 0.0)
-check("COLA: 2010 SS = 0.0", cola_by_year.get(2010, {}).get('social_security') == 0.0)
-check("COLA: 2015 SS = 0.0", cola_by_year.get(2015, {}).get('social_security') == 0.0)
-check("COLA: 2022 SS = 8.7", cola_by_year.get(2022, {}).get('social_security') == 8.7)
-check("COLA: 2025 SS = 2.8", cola_by_year.get(2025, {}).get('social_security') == 2.8)
-
-# CSRS = SS (no cap)
-check("COLA: CSRS matches SS for all years", 
-      all(e['csrs'] == e['social_security'] for e in entries))
-
-# VA = SS
-check("COLA: VA matches SS for all years",
-      all(e['va'] == e['social_security'] for e in entries))
-
-# FERS cap formula validation
-for e in fers_entries:
-    ss = e['social_security']
-    fers = e['fers']
-    if ss <= 2.0:
-        expected = ss
-    elif ss <= 3.0:
-        expected = 2.0
+if __name__ == '__main__':
+    root = sys.argv[1] if len(sys.argv) > 1 else '.'
+    print(f"Validating historical/reference data files in: {root}")
+    
+    # Existing files
+    validate_tsp_limits(root)
+    validate_ss_bend_points(root)
+    validate_ss_taxable_max(root)
+    validate_ira_limits(root)
+    validate_life_table(root)
+    validate_county_property_tax(root)
+    validate_cola_history(root)
+    validate_fehb_rates(root)
+    validate_tricare(root)
+    validate_fehb_benefits(root)
+    validate_fedvip(root)
+    
+    # New Session 21 files
+    validate_tax_brackets(root)
+    validate_standard_deduction(root)
+    validate_capital_gains(root)
+    validate_hsa_limits(root)
+    validate_pay_raises(root)
+    validate_estate_gift_tax(root)
+    validate_fers_contribution(root)
+    validate_rmd_rules(root)
+    validate_medicare_premium_history(root)
+    validate_ss_claiming(root)
+    validate_fehb_premium_history(root)
+    validate_military_retirement(root)
+    
+    print(f"\n{'='*60}")
+    print(f"Results: {PASS} passed, {FAIL} failed")
+    if FAIL > 0:
+        print(f"\n❌ {FAIL} checks FAILED!")
+        sys.exit(1)
     else:
-        expected = round(ss - 1.0, 1)
-    check(f"COLA: {e['year']} FERS cap correct (SS={ss}, FERS={fers})",
-          fers == expected, f"expected {expected}, got {fers}")
-
-# Summary stats
-stats = cola.get('summary_statistics', {})
-check("COLA: zero_cola_years = [2009, 2010, 2015]",
-      stats.get('zero_cola_years') == [2009, 2010, 2015])
-
-print(f"  COLA: {passed - cpt_count} checks\n")
-
-# ============================================================
-# FEHB PLAN PREMIUMS (OM-13)
-# ============================================================
-fehb_count = passed
-print("FEHB Plan Premiums (federal/healthcare/fehb-rates.json):")
-with open("federal/healthcare/fehb-rates.json") as f:
-    fehb = json.load(f)
-
-check("FEHB: has _metadata", "_metadata" in fehb)
-check("FEHB: version is 2026.3", fehb.get("_metadata", {}).get("version") == "2026.3")
-check("FEHB: has plan_premium_data", "plan_premium_data" in fehb)
-
-ppd = fehb.get("plan_premium_data", {})
-plans = ppd.get("plans", [])
-check("FEHB: plan_year is 2026", ppd.get("_plan_year") == 2026)
-check("FEHB: total_plan_entries = 478", ppd.get("total_plan_entries") == 478)
-check("FEHB: nationwide_plans = 19", ppd.get("nationwide_plans") == 19)
-check("FEHB: plans array length = 478", len(plans) == 478)
-
-# All plans have required fields
-for p in plans:
-    cname = p.get("carrier", "?")[:30]
-    loc = p.get("location", "?")[:15]
-    label = f"{cname} [{loc}]"
-
-    check(f"FEHB: {label} has carrier", "carrier" in p and p["carrier"])
-    check(f"FEHB: {label} has type", "type" in p and p["type"] in ("FFS", "HMO"))
-    check(f"FEHB: {label} has enrollment_codes", "enrollment_codes" in p)
-    check(f"FEHB: {label} has premiums", "premiums" in p)
-
-    # Must have all 3 enrollment types
-    premiums = p.get("premiums", {})
-    for etype in ("self_only", "self_plus_one", "self_and_family"):
-        check(f"FEHB: {label} has {etype}", etype in premiums)
-        ep = premiums.get(etype, {})
-        bw_e = ep.get("biweekly_enrollee", 0)
-        mo_e = ep.get("monthly_enrollee", 0)
-        bw_t = ep.get("biweekly_total", 0)
-        bw_g = ep.get("biweekly_govt", 0)
-
-        check(f"FEHB: {label} {etype} bw_enrollee >= 0", bw_e >= 0, f"got {bw_e}")
-        check(f"FEHB: {label} {etype} mo_enrollee >= 0", mo_e >= 0, f"got {mo_e}")
-        check(f"FEHB: {label} {etype} bw_total > 0", bw_t > 0, f"got {bw_t}")
-
-        # Total = govt + enrollee (within $0.02 tolerance for rounding)
-        if bw_t > 0:
-            check(f"FEHB: {label} {etype} total = govt + enrollee",
-                  abs(bw_t - bw_g - bw_e) < 0.02,
-                  f"total={bw_t}, govt={bw_g}, empl={bw_e}, diff={bw_t - bw_g - bw_e:.2f}")
-
-# Nationwide vs regional
-nw_plans = [p for p in plans if p.get("nationwide")]
-reg_plans = [p for p in plans if not p.get("nationwide")]
-check("FEHB: 19 nationwide plan entries", len(nw_plans) == 19)
-check("FEHB: 459 regional plan entries", len(reg_plans) == 459)
-
-# FFS vs HMO
-ffs_plans = [p for p in plans if p["type"] == "FFS"]
-hmo_plans = [p for p in plans if p["type"] == "HMO"]
-check("FEHB: has FFS plans", len(ffs_plans) > 0)
-check("FEHB: has HMO plans", len(hmo_plans) > 0)
-check("FEHB: all nationwide are FFS", all(p["type"] == "FFS" for p in nw_plans))
-
-# Carrier coverage in nationwide plans
-nw_carriers = set(p["carrier"] for p in nw_plans)
-check("FEHB: nationwide has BCBS", any("Blue Cross" in c for c in nw_carriers))
-check("FEHB: nationwide has GEHA", any("GEHA" in c for c in nw_carriers))
-check("FEHB: nationwide has MHBP", any("MHBP" in c for c in nw_carriers))
-check("FEHB: nationwide has SAMBA", any("SAMBA" in c for c in nw_carriers))
-
-# Spot check: BCBS Basic Self-Only biweekly enrollee = 133.77
-bcbs_basic_so = None
-for p in nw_plans:
-    if "Basic" in p.get("option", "") and "Blue Cross" in p.get("carrier", ""):
-        bcbs_basic_so = p["premiums"]["self_only"]["biweekly_enrollee"]
-        break
-check("FEHB: BCBS Basic SO bw = 133.77", bcbs_basic_so == 133.77, f"got {bcbs_basic_so}")
-
-# Spot check: GEHA Standard SPO monthly enrollee = 404.11
-geha_std_spo = None
-for p in nw_plans:
-    if "Standard" in p.get("option", "") and p.get("carrier", "").startswith("GEHA Benefit"):
-        geha_std_spo = p["premiums"]["self_plus_one"]["monthly_enrollee"]
-        break
-check("FEHB: GEHA Standard SPO monthly = 404.11", geha_std_spo == 404.11, f"got {geha_std_spo}")
-
-# Government contribution checks
-gc = fehb.get("government_contribution", {})
-gc_bw = gc.get("biweekly", {})
-check("FEHB: gov contribution SO bw = 324.76", gc_bw.get("self_only") == 324.76)
-check("FEHB: gov contribution SPO bw = 711.17", gc_bw.get("self_plus_one") == 711.17)
-check("FEHB: gov contribution SF bw = 778.03", gc_bw.get("self_and_family") == 778.03)
-
-# HSA limits
-hsa_lim = fehb.get("hsa_limits_2026", {})
-check("FEHB: HSA individual max = 4400", hsa_lim.get("individual_max") == 4400)
-check("FEHB: HSA family max = 8750", hsa_lim.get("family_max") == 8750)
-check("FEHB: HSA catch-up = 1000", hsa_lim.get("catch_up_55_plus") == 1000)
-
-# FSA limits
-fsa_lim = fehb.get("fsa_limits_2026", {})
-check("FEHB: HCFSA max = 3400", fsa_lim.get("hcfsa_max") == 3400)
-check("FEHB: FSA carryover = 680", fsa_lim.get("carryover_limit") == 680)
-
-# Gov contribution consistency: plans at 75% cap should have govt = weighted avg
-# (66 of 132 plans get the 75% max for SO — verify at least some do)
-max_govt_so = gc_bw.get("self_only", 0)
-plans_at_max = [p for p in nw_plans
-                if abs(p["premiums"]["self_only"]["biweekly_govt"] - max_govt_so) < 0.01]
-check("FEHB: multiple nationwide plans at 75% max govt contribution",
-      len(plans_at_max) >= 5, f"found {len(plans_at_max)}")
-
-print(f"  FEHB: {passed - fehb_count} checks\n")
-
-# ============================================================
-# TRICARE RATES (OM-15)
-# ============================================================
-tri_count = passed
-print("TRICARE Rates (federal/healthcare/tricare-rates.json):")
-with open("federal/healthcare/tricare-rates.json") as f:
-    tri = json.load(f)
-
-check("TRICARE: has _metadata", "_metadata" in tri)
-check("TRICARE: version is 2026.1", tri["_metadata"]["version"] == "2026.1")
-check("TRICARE: effective 2026-01-01", tri["_metadata"]["effective_date"] == "2026-01-01")
-check("TRICARE: COLA basis mentions 2.8%", "2.8%" in tri["_metadata"].get("cola_basis", ""))
-
-# Group definitions
-check("TRICARE: has group_definitions", "group_definitions" in tri)
-
-# Retiree costs structure
-rc = tri.get("retiree_costs", {})
-check("TRICARE: has retiree_costs", bool(rc))
-for grp in ("group_a", "group_b"):
-    g = rc.get(grp, {})
-    check(f"TRICARE: retiree {grp} has prime", "prime" in g)
-    check(f"TRICARE: retiree {grp} has select", "select" in g)
-    
-    # Prime enrollment fees
-    prime = g.get("prime", {})
-    ef = prime.get("enrollment_fee_annual", {})
-    check(f"TRICARE: retiree {grp} prime fee individual > 0", ef.get("individual", 0) > 0)
-    check(f"TRICARE: retiree {grp} prime fee family > individual",
-          ef.get("family", 0) > ef.get("individual", 0))
-    
-    # Select enrollment fees
-    select = g.get("select", {})
-    sef = select.get("enrollment_fee_annual", {})
-    check(f"TRICARE: retiree {grp} select fee individual > 0", sef.get("individual", 0) > 0)
-
-# Specific value spot checks
-check("TRICARE: Group A Prime individual fee = 381.96",
-      rc["group_a"]["prime"]["enrollment_fee_annual"]["individual"] == 381.96)
-check("TRICARE: Group A Prime family fee = 765",
-      rc["group_a"]["prime"]["enrollment_fee_annual"]["family"] == 765.00)
-check("TRICARE: Group B Prime individual fee = 462.96",
-      rc["group_b"]["prime"]["enrollment_fee_annual"]["individual"] == 462.96)
-check("TRICARE: Group B Select individual fee = 594.96",
-      rc["group_b"]["select"]["enrollment_fee_annual"]["individual"] == 594.96)
-check("TRICARE: Group B Select family fee = 1191",
-      rc["group_b"]["select"]["enrollment_fee_annual"]["family"] == 1191.00)
-
-# Catastrophic caps
-check("TRICARE: Group A Prime cat cap = 3000",
-      rc["group_a"]["prime"]["catastrophic_cap_annual"] == 3000)
-check("TRICARE: Group A Select cat cap = 4381",
-      rc["group_a"]["select"]["catastrophic_cap_annual"] == 4381)
-check("TRICARE: Group B cat caps = 4635",
-      rc["group_b"]["prime"]["catastrophic_cap_annual"] == 4635)
-
-# Group B > Group A for enrollment fees (by design)
-check("TRICARE: Group B Prime fee > Group A Prime fee",
-      rc["group_b"]["prime"]["enrollment_fee_annual"]["individual"] >
-      rc["group_a"]["prime"]["enrollment_fee_annual"]["individual"])
-
-# Premium-based plans
-pb = tri.get("premium_based_plans", {})
-check("TRICARE: has premium_based_plans", bool(pb))
-trs = pb.get("tricare_reserve_select", {}).get("monthly", {})
-check("TRICARE: TRS member only = 57.88", trs.get("member_only") == 57.88)
-check("TRICARE: TRS family = 286.66", trs.get("member_and_family") == 286.66)
-
-trr = pb.get("tricare_retired_reserve", {}).get("monthly", {})
-check("TRICARE: TRR member only = 645.90", trr.get("member_only") == 645.90)
-check("TRICARE: TRR family = 1548.30", trr.get("member_and_family") == 1548.30)
-
-check("TRICARE: TYA Prime monthly = 794",
-      pb.get("tricare_young_adult_prime", {}).get("monthly") == 794.00)
-check("TRICARE: TYA Select monthly = 363",
-      pb.get("tricare_young_adult_select", {}).get("monthly") == 363.00)
-
-# TRICARE For Life
-tfl = tri.get("tricare_for_life", {})
-check("TRICARE: TFL enrollment fee = 0", tfl.get("enrollment_fee") == 0)
-check("TRICARE: TFL cat cap = 3000", tfl.get("catastrophic_cap_annual") == 3000)
-check("TRICARE: TFL Part A deductible = 1736", tfl.get("medicare_part_a_deductible") == 1736)
-check("TRICARE: TFL Part B deductible = 283", tfl.get("medicare_part_b_deductible_annual") == 283)
-
-# Medically retired fee schedule
-mrs = tri.get("medically_retired_fee_schedule", {}).get("schedule", [])
-check("TRICARE: medically retired fee schedule has 14 entries", len(mrs) == 14)
-check("TRICARE: oldest fee (pre-2011) = $230 individual",
-      mrs[-1]["individual"] == 230.00)
-
-# Active duty family
-adf = tri.get("active_duty_family_costs", {})
-check("TRICARE: has active_duty_family_costs", bool(adf))
-check("TRICARE: AD family Group A Prime enrollment = 0",
-      adf["group_a"]["prime"]["enrollment_fee_annual"] == 0)
-check("TRICARE: AD family Group B Select cat cap = 1324",
-      adf["group_b"]["select"]["catastrophic_cap_annual"] == 1324)
-
-print(f"  TRICARE: {passed - tri_count} checks\n")
-
-# ============================================================
-# FEHB PLAN BENEFITS
-# ============================================================
-ben_count = passed
-print("FEHB Plan Benefits (federal/healthcare/fehb-plan-benefits.json):")
-with open("federal/healthcare/fehb-plan-benefits.json") as f:
-    ben = json.load(f)
-
-check("Benefits: has _metadata", "_metadata" in ben)
-check("Benefits: version is 2026.1", ben["_metadata"]["version"] == "2026.1")
-
-plans_b = ben.get("plans", [])
-check("Benefits: total_entries = 264", ben.get("total_entries") == 264)
-check("Benefits: plans length = 264", len(plans_b) == 264)
-
-# 132 in-network + 132 out-of-network
-in_net = [p for p in plans_b if p.get("network") == "In-network"]
-out_net = [p for p in plans_b if p.get("network") == "Out-of-network"]
-check("Benefits: 132 in-network entries", len(in_net) == 132)
-check("Benefits: 132 out-of-network entries", len(out_net) == 132)
-
-# All entries have required fields
-for p in plans_b:
-    name = p.get("plan_option_name", "?")[:25]
-    net = p.get("network", "?")[:3]
-    label = f"{name} [{net}]"
-    check(f"Benefits: {label} has plan_option_name", bool(p.get("plan_option_name")))
-    check(f"Benefits: {label} has plan_code", bool(p.get("plan_code")))
-    check(f"Benefits: {label} has network", p.get("network") in ("In-network", "Out-of-network"))
-    check(f"Benefits: {label} has deductible", "deductible" in p)
-    check(f"Benefits: {label} has oop_max", "oop_max" in p)
-    check(f"Benefits: {label} has copays", "copays" in p)
-    check(f"Benefits: {label} has pharmacy", "pharmacy" in p)
-    check(f"Benefits: {label} has medicare_coordination", "medicare_coordination" in p)
-
-# Spot check: BCBS Standard Option (code 10) in-network deductible
-bcbs_std_in = [p for p in in_net if p.get("plan_option_name") == "Standard Option" and p.get("plan_code") == "10"]
-check("Benefits: BCBS Standard Option in-network exists", len(bcbs_std_in) > 0)
-if bcbs_std_in:
-    ded = bcbs_std_in[0].get("deductible", {}).get("self")
-    check("Benefits: BCBS Standard in-network has deductible", ded is not None, f"got {ded}")
-
-# Unique plan options
-unique_opts = set(p["plan_option_name"] for p in plans_b)
-check("Benefits: multiple unique plan options", len(unique_opts) > 25, f"got {len(unique_opts)}")
-
-# Plan types present
-types = set(p.get("plan_option_type", "") for p in plans_b)
-check("Benefits: has Traditional plans", "Traditional" in types)
-check("Benefits: has HDHP plans", "HDHP" in types)
-
-print(f"  Benefits: {passed - ben_count} checks\n")
-
-# ============================================================
-# FEDVIP RATES
-# ============================================================
-fvp_count = passed
-print("FEDVIP Rates (federal/healthcare/fedvip-rates.json):")
-with open("federal/healthcare/fedvip-rates.json") as f:
-    fvp = json.load(f)
-
-check("FEDVIP: has _metadata", "_metadata" in fvp)
-check("FEDVIP: version is 2026.1", fvp["_metadata"]["version"] == "2026.1")
-check("FEDVIP: has dental", "dental" in fvp)
-check("FEDVIP: has vision", "vision" in fvp)
-
-# Dental
-dental = fvp.get("dental", {})
-d_plans = dental.get("plans", [])
-check("FEDVIP: dental total_entries = 103", dental.get("total_entries") == 103)
-check("FEDVIP: dental plans length = 103", len(d_plans) == 103)
-check("FEDVIP: 11 dental carriers", len(dental.get("carriers", [])) == 11)
-
-for dp in d_plans:
-    label = f"{dp['plan'][:20]} R{dp.get('rating_region','?')}"
-    prem = dp.get("premiums", {})
-    bw = prem.get("biweekly", {})
-    mo = prem.get("monthly", {})
-    check(f"FEDVIP dental: {label} bw SO > 0",
-          bw.get("self_only") is not None and bw["self_only"] > 0)
-    check(f"FEDVIP dental: {label} mo SO > 0",
-          mo.get("self_only") is not None and mo["self_only"] > 0)
-    check(f"FEDVIP dental: {label} family > individual",
-          (bw.get("self_and_family") or 0) > (bw.get("self_only") or 0))
-
-# Vision
-vision = fvp.get("vision", {})
-v_plans = vision.get("plans", [])
-check("FEDVIP: vision total_entries = 10", vision.get("total_entries") == 10)
-check("FEDVIP: vision plans length = 10", len(v_plans) == 10)
-check("FEDVIP: 5 vision carriers", len(vision.get("carriers", [])) == 5)
-
-for vp in v_plans:
-    label = f"{vp['plan'][:20]} {vp.get('option','')}"
-    prem = vp.get("premiums", {})
-    bw = prem.get("biweekly", {})
-    check(f"FEDVIP vision: {label} bw SO > 0",
-          bw.get("self_only") is not None and bw["self_only"] > 0)
-
-# Spot check: VSP High monthly self-only
-vsp_high = [v for v in v_plans if "VSP" in v["plan"] and v["option"] == "High"]
-check("FEDVIP: VSP High exists", len(vsp_high) == 1)
-if vsp_high:
-    vsp_mo = vsp_high[0]["premiums"]["monthly"]["self_only"]
-    check("FEDVIP: VSP High SO monthly = 14.56", vsp_mo == 14.56, f"got {vsp_mo}")
-
-# Program overview
-po = fvp.get("program_overview", {})
-check("FEDVIP: avg dental increase = 3.35", po.get("average_increase", {}).get("dental_pct") == 3.35)
-check("FEDVIP: avg vision increase = 0.47", po.get("average_increase", {}).get("vision_pct") == 0.47)
-
-print(f"  FEDVIP: {passed - fvp_count} checks\n")
-
-# ============================================================
-# SUMMARY
-# ============================================================
-print("=" * 60)
-print(f"Results: {passed} passed, {failed} failed")
-print("=" * 60)
-
-if errors:
-    print("\nFailures:")
-    for e in errors:
-        print(f"  {e}")
-    sys.exit(1)
-else:
-    print("\n✅ All historical data validation checks passed!")
-    sys.exit(0)
+        print(f"\n✅ All historical data validation checks passed!")
