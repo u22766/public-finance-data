@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Social Security Claiming Rules and FRA History",
     "description": "Social Security Full Retirement Age schedule, early filing reductions, delayed retirement credits, spousal benefits, and key rule changes. Supplements the FRA table in static-refs.json with claiming strategy data.",
-    "version": "1.0",
+    "version": "1.1",
     "last_updated": "2026-03-12",
     "sources": [
       "https://www.ssa.gov/benefits/retirement/planner/agereduction.html",
@@ -16,7 +16,8 @@
       "Delayed credits accrue from FRA to age 70 (no benefit from delaying past 70).",
       "For married couples: spousal benefit, survivor benefit, and filing strategies interact with claiming age.",
       "FERS Supplement bridges the gap between FERS MRA retirement and age 62 SS eligibility."
-    ]
+    ],
+    "last_verified": "2026-03-12"
   },
   "fra_schedule": [
     {
@@ -194,5 +195,12 @@
     "description": "GPO reduces SS spousal/survivor benefits by 2/3 of the government pension amount.",
     "affects": "Individuals receiving a government pension from non-SS-covered employment who also claim SS spousal or survivor benefits.",
     "notes": "Social Security Fairness Act of 2023 (P.L. 118-393) repealed GPO effective January 2025. Benefits are being recalculated for affected individuals."
+  },
+  "claim_age_rules": {
+    "earliest_retirement_claim_age": 62,
+    "latest_delayed_credit_age": 70,
+    "survivor_earliest_claim_age": 60,
+    "disabled_survivor_earliest_claim_age": 50,
+    "_note": "Earliest age 62 for retirement benefits. Delayed retirement credits accrue up to age 70. Survivor benefits available from age 60 (50 if disabled)."
   }
 }

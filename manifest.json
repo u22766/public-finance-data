@@ -101,11 +101,12 @@
       "description": "Generic defined benefit plan template for user-entered pension parameters"
     },
     "static_refs": {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "effective_date": "2026-01-01",
       "update_frequency": "rarely",
       "url": "reference/static-refs.json",
-      "description": "SS Full Retirement Age table, IRS RMD Uniform Lifetime Table, OPM locality area codes"
+      "description": "SS Full Retirement Age table, IRS RMD Uniform Lifetime Table, OPM locality area codes",
+      "last_updated": "2026-03-12"
     },
     "tsp_limits": {
       "version": "1.0",
@@ -194,7 +195,7 @@
       "update_frequency": "annual"
     },
     "federal_tax_brackets": {
-      "version": "1.0",
+      "version": "1.1",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/federal-tax-brackets.json",
@@ -267,7 +268,7 @@
       "last_updated": "2026-03-12"
     },
     "social_security_claiming": {
-      "version": "1.0",
+      "version": "1.1",
       "effective_date": "2026-01-01",
       "update_frequency": "as enacted",
       "url": "reference/social-security-claiming.json",
