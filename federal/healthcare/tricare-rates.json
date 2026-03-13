@@ -1,14 +1,14 @@
 {
   "_metadata": {
     "file": "tricare-rates.json",
-    "version": "2026.1",
+    "version": "2026.2",
     "effective_date": "2026-01-01",
     "source": "Defense Health Agency (DHA), TRICARE Health Plan",
     "source_url": "https://tricare.mil/Costs/Compare",
     "federal_register": "FR Doc. 2025-19819 (Nov 10, 2025)",
-    "last_verified": "2026-03-11",
+    "last_verified": "2026-03-12",
     "cola_basis": "CY 2026 retiree COLA: 2.8%",
-    "notes": "CY 2026 TRICARE costs. Group A = sponsor entered service before Jan 1, 2018. Group B = on/after Jan 1, 2018."
+    "notes": "CY 2026 TRICARE costs. Group A = sponsor entered service before Jan 1, 2018. Group B = on/after Jan 1, 2018. Pharmacy costs added in v2026.2."
   },
   "group_definitions": {
     "group_a": "Sponsor's initial enlistment or appointment began BEFORE January 1, 2018",
@@ -188,6 +188,169 @@
       }
     }
   },
+  "pharmacy_costs": {
+    "_note": "CY 2026-2027 TRICARE Pharmacy Program costs. NDAA FY2018 Sec 702 established copay schedule through Dec 31, 2027. Copays vary by formulary status, pharmacy type, and beneficiary category.",
+    "source": "https://tricare.mil/Costs/PharmacyCosts",
+    "last_updated_on_source": "2025-02-13",
+    "formulary_categories": {
+      "generic_formulary": "Lowest cost tier. FDA-approved generic equivalent of brand-name drug on TRICARE formulary.",
+      "brand_name_formulary": "Brand-name drug on TRICARE formulary.",
+      "non_formulary": "Drug not on TRICARE formulary. Provider must establish medical necessity for coverage at formulary copay. Otherwise full non-formulary copay applies.",
+      "non_covered": "Drug not covered by TRICARE. Beneficiary pays full cost."
+    },
+    "pharmacy_types": {
+      "military": "Military hospital or clinic pharmacy. Up to 90-day supply.",
+      "home_delivery": "TRICARE Pharmacy Home Delivery (Express Scripts). Up to 90-day supply.",
+      "retail_network": "TRICARE retail network pharmacy. Up to 30-day supply.",
+      "non_network_domestic": "Non-network retail pharmacy in US and US territories.",
+      "non_network_overseas": "Non-network retail pharmacy outside US and US territories."
+    },
+    "active_duty_service_members": {
+      "_note": "ADSMs pay $0 for covered drugs at military pharmacies, home delivery, and retail network pharmacies. Non-formulary drugs require medical necessity. Non-network: pay full cost up front, file claim for reimbursement.",
+      "military": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary": 0
+      },
+      "home_delivery_90day": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary": 0
+      },
+      "retail_network_30day": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary": 0
+      }
+    },
+    "active_duty_family_prime_remote_us": {
+      "_note": "AD family members enrolled in TRICARE Prime Remote in the US. Effective Feb 28, 2026, $0 copays for covered drugs at military, home delivery, and retail network pharmacies. Non-formulary requires medical necessity.",
+      "effective_date": "2026-02-28",
+      "military": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary": 0
+      },
+      "home_delivery_90day": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary": 0
+      },
+      "retail_network_30day": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary": 0
+      }
+    },
+    "standard_beneficiaries": {
+      "_note": "All beneficiaries EXCEPT medically retired sponsors/dependents and survivors of ADSMs. Includes retirees, retiree family members, reserve/guard members, and dependents. NDAA FY2018 rates effective CY 2026-2027.",
+      "military": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary_note": "Generally not available without medical necessity"
+      },
+      "home_delivery_90day": {
+        "generic": 14,
+        "brand": 44,
+        "non_formulary": 85
+      },
+      "retail_network_30day": {
+        "generic": 16,
+        "brand": 48,
+        "non_formulary": 85
+      },
+      "non_network_domestic": {
+        "prime_enrollees": {
+          "cost_share_pct": 50,
+          "_note": "50% cost-share applies after meeting point-of-service annual deductible"
+        },
+        "all_other_beneficiaries": {
+          "formulary_minimum": 48,
+          "formulary_pct_of_total": 20,
+          "_note": "$48 or 20% of total cost, whichever is more, after annual deductible",
+          "non_formulary_minimum": 85,
+          "non_formulary_pct_of_total": 20,
+          "_note_nf": "$85 or 20% of total cost, whichever is more, after annual deductible"
+        }
+      },
+      "non_network_overseas": {
+        "adsm_adfm_prime_overseas": {
+          "cost": 0,
+          "_note": "May have to pay full cost up front and file claim for reimbursement"
+        },
+        "adfm_select_overseas_and_trs": {
+          "cost_share_pct": 20,
+          "_note": "20% cost-share after annual deductible"
+        },
+        "retirees_trr_all_others_select_overseas": {
+          "cost_share_pct": 25,
+          "_note": "25% cost-share after annual deductible"
+        }
+      }
+    },
+    "medically_retired_and_adsm_survivors": {
+      "_note": "NDAA FY2018 Sec 702 froze pharmacy copays at 2017 rates for: (1) medically retired service members and their family members, (2) survivors of active duty service members. These rates do NOT change with standard copay increases.",
+      "authority": "NDAA FY2018 Section 702",
+      "military": {
+        "generic": 0,
+        "brand": 0,
+        "non_formulary_note": "Generally not available without medical necessity"
+      },
+      "home_delivery_90day": {
+        "generic": 0,
+        "brand": 20,
+        "non_formulary": 49
+      },
+      "retail_network_30day": {
+        "generic": 10,
+        "brand": 24,
+        "non_formulary": 50
+      },
+      "non_network_domestic": {
+        "prime_enrollees": {
+          "cost_share_pct": 50,
+          "point_of_service_deductible_individual": 300,
+          "point_of_service_deductible_family": 600,
+          "_note": "50% cost-share after POS deductible ($300 individual / $600 family)"
+        },
+        "select_enrollees": {
+          "formulary_minimum": 24,
+          "formulary_pct_of_total": 20,
+          "_note": "$24 or 20% of total cost, whichever is more, after annual deductible"
+        }
+      },
+      "non_network_overseas": {
+        "select_overseas": {
+          "cost_share_pct": 25,
+          "_note": "25% cost-share after annual deductible"
+        }
+      }
+    },
+    "prior_year_copays_2025": {
+      "_note": "CY 2024-2025 standard beneficiary copays for year-over-year comparison. NDAA FY2018 rates. Medically retired/survivor rates unchanged.",
+      "home_delivery_90day": {
+        "generic": 13,
+        "brand": 38,
+        "non_formulary": 76
+      },
+      "retail_network_30day": {
+        "generic": 16,
+        "brand": 43,
+        "non_formulary": 76
+      }
+    },
+    "yoy_change_2025_to_2026": {
+      "home_delivery_generic_pct": 7.7,
+      "home_delivery_brand_pct": 15.8,
+      "home_delivery_non_formulary_pct": 11.8,
+      "retail_generic_pct": 0.0,
+      "retail_brand_pct": 11.6,
+      "retail_non_formulary_pct": 11.8,
+      "_note": "12% to 15.8% increase over 2024-2025 rates per Federal Register notice"
+    },
+    "ndaa_fy2018_copay_schedule_end": "2027-12-31",
+    "non_covered_drugs": "Beneficiary pays full cost. Not available at military pharmacies or home delivery."
+  },
   "premium_based_plans": {
     "_note": "Monthly premiums for premium-based TRICARE plans. These are separate from Prime/Select enrollment fees.",
     "tricare_reserve_select": {
@@ -359,6 +522,8 @@
   "data_sources": [
     "https://tricare.mil/Costs/Compare",
     "https://www.federalregister.gov/documents/2025/11/10/2025-19819/tricare-calendar-year-cy-2026-tricare-prime-and-tricare-select-out-of-pocket-expenses",
-    "https://www.federalregister.gov/documents/2025/10/28/2025-19672/tricare-notice-of-tricare-plan-program-changes-for-calendar-year-cy-2026"
+    "https://www.federalregister.gov/documents/2025/10/28/2025-19672/tricare-notice-of-tricare-plan-program-changes-for-calendar-year-cy-2026",
+    "https://tricare.mil/Costs/PharmacyCosts",
+    "https://militaryrx.express-scripts.com/blog/changes-your-tricare-prescription-drug-copayments-2026"
   ]
 }

@@ -170,9 +170,9 @@
       "changelog_1_0": "Initial release. 51 years of COLA data with computed FERS adjustments."
     },
     "tricare_rates": {
-      "version": "2026.1",
-      "description": "TRICARE premium and cost-share schedule \u2014 Prime, Select, TFL, Reserve Select, Retired Reserve, TYA, CHCBP",
-      "last_updated": "2026-03-11",
+      "version": "2026.2",
+      "description": "TRICARE premium, cost-share, and pharmacy copay schedule \u2014 Prime, Select, TFL, Reserve Select, Retired Reserve, TYA, CHCBP",
+      "last_updated": "2026-03-12",
       "url": "federal/healthcare/tricare-rates.json",
       "effective_date": "2026-01-01",
       "update_frequency": "annual"
