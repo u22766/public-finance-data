@@ -353,9 +353,10 @@ def validate_frozen_rates_lower(pc: dict) -> List[str]:
 def validate_metadata_version(data: dict) -> List[str]:
     """Metadata version should be 2026.2 after pharmacy addition."""
     errors = []
-    version = data.get('_metadata', {}).get('version')
-    if version != '2026.2':
-        errors.append(f"Metadata version: expected '2026.2', got '{version}'")
+    version = data.get('_metadata', {}).get('version', '')
+    # Version must be 2026.2 or later (pharmacy was added in 2026.2)
+    if not version.startswith('2026.') or float(version.split('.')[1]) < 2:
+        errors.append(f"Metadata version: expected '2026.2' or later, got '{version}'")
     return errors
 
 

@@ -1,14 +1,14 @@
 {
   "_metadata": {
     "file": "tricare-rates.json",
-    "version": "2026.2",
+    "version": "2026.3",
     "effective_date": "2026-01-01",
     "source": "Defense Health Agency (DHA), TRICARE Health Plan",
     "source_url": "https://tricare.mil/Costs/Compare",
     "federal_register": "FR Doc. 2025-19819 (Nov 10, 2025)",
     "last_verified": "2026-03-12",
     "cola_basis": "CY 2026 retiree COLA: 2.8%",
-    "notes": "CY 2026 TRICARE costs. Group A = sponsor entered service before Jan 1, 2018. Group B = on/after Jan 1, 2018. Pharmacy costs added in v2026.2."
+    "notes": "CY 2026 TRICARE costs. Group A = sponsor entered service before Jan 1, 2018. Group B = on/after Jan 1, 2018. Pharmacy costs added in v2026.2. TDP dental premiums, cost-shares, and plan maximums added in v2026.3."
   },
   "group_definitions": {
     "group_a": "Sponsor's initial enlistment or appointment began BEFORE January 1, 2018",
@@ -351,6 +351,158 @@
     "ndaa_fy2018_copay_schedule_end": "2027-12-31",
     "non_covered_drugs": "Beneficiary pays full cost. Not available at military pharmacies or home delivery."
   },
+  "dental_costs": {
+    "_note": "TRICARE Dental Program (TDP) costs. Administered by United Concordia. Voluntary program for AD family members, NG/Reserve members, and their families. Retirees and their families get dental through FEDVIP, not TDP. Active duty service members receive dental care via the Active Duty Dental Program (ADDP) at no cost. Survivors of ADSMs pay no premiums.",
+    "source": "https://tricare.mil/Costs/DentalCosts/TDP/Premiums",
+    "source_cost_shares": "https://tricare.mil/Costs/DentalCosts/TDP/CostShares",
+    "source_maximums": "https://tricare.mil/Costs/DentalCosts/TDP/Maximums",
+    "contractor": "United Concordia",
+    "effective_period": {
+      "start": "2026-03-01",
+      "end": "2027-02-28",
+      "_note": "TDP rates are set annually March 1 through Feb 28/29 of the following year"
+    },
+    "eligibility": {
+      "active_duty_family_members": true,
+      "selected_reserve_members": true,
+      "selected_reserve_family_members": true,
+      "individual_ready_reserve_members": true,
+      "irr_family_members": true,
+      "adsm_survivors": "Eligible, no premium",
+      "retirees": "Not eligible for TDP \u2014 use FEDVIP instead",
+      "retiree_family_members": "Not eligible for TDP \u2014 use FEDVIP instead",
+      "enrollment_minimum_service_remaining": "12 months"
+    },
+    "monthly_premiums": {
+      "_note": "Pay-ahead program \u2014 each payment covers the NEXT month of coverage. Rates effective March 1, 2026 through Feb 28, 2027.",
+      "active_duty": {
+        "_note": "AD sponsors do not enroll (covered by ADDP). These premiums are for AD family members only.",
+        "single": {
+          "_note": "One family member, not the sponsor",
+          "e1_e4": 8.79,
+          "e5_and_above": 11.72
+        },
+        "family": {
+          "_note": "More than one family member, not the sponsor",
+          "e1_e4": 22.85,
+          "e5_and_above": 30.47
+        }
+      },
+      "selected_reserve_and_irr_mobilization": {
+        "sponsor_only": {
+          "e1_e4": 8.79,
+          "e5_and_above": 11.72
+        },
+        "single": 29.3,
+        "family": 76.18,
+        "sponsor_and_family": {
+          "e1_e4": 84.87,
+          "e5_and_above": 87.9
+        }
+      },
+      "irr_non_mobilization": {
+        "sponsor_only": 29.3,
+        "single": 29.3,
+        "family": 76.18,
+        "sponsor_and_family": 105.48
+      },
+      "adsm_survivors": {
+        "premium": 0,
+        "_note": "Survivors of active duty service members pay no TDP premiums"
+      }
+    },
+    "prior_year_premiums_2025": {
+      "_note": "March 1, 2025 through Feb 28, 2026 rates for YoY comparison. Source: TRICARE 2025 Costs and Fees fact sheet.",
+      "active_duty": {
+        "single": {
+          "e1_e4": 8.65,
+          "e5_and_above": 11.53
+        },
+        "family": {
+          "e1_e4": 22.48,
+          "e5_and_above": 29.98
+        }
+      }
+    },
+    "cost_shares": {
+      "_note": "Cost-share percentages for covered dental services. Vary by sponsor pay grade and CONUS/OCONUS location. OCONUS command-sponsored beneficiaries pay 0% for most services. SelRes/IRR members and families stationed OCONUS pay CONUS rates.",
+      "conus_e1_e4": {
+        "diagnostic": 0,
+        "preventive": 0,
+        "sealants": 0,
+        "consultation_office_visit": 20,
+        "post_surgical": 20,
+        "basic_restorative": 20,
+        "endodontic": 30,
+        "periodontic": 30,
+        "oral_surgery": 30,
+        "general_anesthesia": 40,
+        "intravenous_sedation": 50,
+        "miscellaneous_services": 50,
+        "other_restorative": 50,
+        "implant_services": 50,
+        "prosthodontic": 50,
+        "orthodontic": 50
+      },
+      "conus_e5_and_above": {
+        "diagnostic": 0,
+        "preventive": 0,
+        "sealants": 0,
+        "consultation_office_visit": 20,
+        "post_surgical": 20,
+        "basic_restorative": 20,
+        "endodontic": 40,
+        "periodontic": 40,
+        "oral_surgery": 40,
+        "general_anesthesia": 40,
+        "intravenous_sedation": 50,
+        "miscellaneous_services": 50,
+        "other_restorative": 50,
+        "implant_services": 50,
+        "prosthodontic": 50,
+        "orthodontic": 50
+      },
+      "oconus_command_sponsored": {
+        "_note": "0% for most services. Exceptions: other restorative, implants, prosthodontic, and orthodontic at 50%. Does NOT apply to SelRes/IRR members and families \u2014 they pay CONUS rates.",
+        "diagnostic": 0,
+        "preventive": 0,
+        "sealants": 0,
+        "consultation_office_visit": 0,
+        "post_surgical": 0,
+        "basic_restorative": 0,
+        "endodontic": 0,
+        "periodontic": 0,
+        "oral_surgery": 0,
+        "general_anesthesia": 0,
+        "intravenous_sedation": 0,
+        "miscellaneous_services": 0,
+        "other_restorative": 50,
+        "implant_services": 50,
+        "prosthodontic": 50,
+        "orthodontic": 50
+      },
+      "orthodontic_eligibility": {
+        "family_members": true,
+        "children_max_age": "21 or 23 based on student status",
+        "spouses_max_age": 23,
+        "ng_reserve_sponsors_max_age": 23
+      }
+    },
+    "plan_maximums": {
+      "annual_non_orthodontic": {
+        "per_person_per_contract_year": 1500,
+        "_note": "Payments for certain diagnostic and preventive services do not count against the annual maximum"
+      },
+      "lifetime_orthodontic": {
+        "per_person": 1750,
+        "_note": "Orthodontic diagnostic services count against the annual maximum, not the lifetime maximum"
+      },
+      "annual_accident_care": {
+        "per_person_per_contract_year": 1200,
+        "_note": "After meeting the accident care maximum, additional costs apply to the annual maximum"
+      }
+    }
+  },
   "premium_based_plans": {
     "_note": "Monthly premiums for premium-based TRICARE plans. These are separate from Prime/Select enrollment fees.",
     "tricare_reserve_select": {
@@ -524,6 +676,9 @@
     "https://www.federalregister.gov/documents/2025/11/10/2025-19819/tricare-calendar-year-cy-2026-tricare-prime-and-tricare-select-out-of-pocket-expenses",
     "https://www.federalregister.gov/documents/2025/10/28/2025-19672/tricare-notice-of-tricare-plan-program-changes-for-calendar-year-cy-2026",
     "https://tricare.mil/Costs/PharmacyCosts",
-    "https://militaryrx.express-scripts.com/blog/changes-your-tricare-prescription-drug-copayments-2026"
+    "https://militaryrx.express-scripts.com/blog/changes-your-tricare-prescription-drug-copayments-2026",
+    "https://tricare.mil/Costs/DentalCosts/TDP/Premiums",
+    "https://tricare.mil/Costs/DentalCosts/TDP/CostShares",
+    "https://tricare.mil/Costs/DentalCosts/TDP/Maximums"
   ]
 }
