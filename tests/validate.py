@@ -244,6 +244,7 @@ def test_referential_integrity(s):
     vrs = s.load_json("states/virginia/vrs-plans.json")
     erfc = s.load_json("states/virginia/fairfax-county/erfc-plans.json")
     combos = s.load_json("states/virginia/fairfax-county/plan-combinations.json")
+    acers = s.load_json("states/virginia/arlington-county/acers-plans.json")
 
     # Collect all plan IDs
     all_plan_ids = set()
@@ -273,6 +274,28 @@ def test_referential_integrity(s):
             s.check(f"ERFC {pid} has formula", "formula" in plan)
     else:
         s.check("erfc-plans.json loads", False)
+
+    if acers:
+        acers_plans = acers.get("plans", {})
+        s.check("ACERS has plans", len(acers_plans) > 0)
+        all_plan_ids.update(acers_plans.keys())
+        s.check("ACERS has hireDateMapping", "hireDateMapping" in acers)
+        s.check("ACERS has jurisdiction", "jurisdiction" in acers)
+        s.check("ACERS scope is county", acers.get("scope") == "county")
+
+        for pid, plan in acers_plans.items():
+            has_formula_or_input = "formula" in plan or plan.get("inputMode") == "estimated_benefit"
+            s.check(f"ACERS {pid} has formula or inputMode", has_formula_or_input)
+            if "vesting" in plan:
+                s.check(f"ACERS {pid} vesting has years", "years" in plan["vesting"])
+            if "contributions" in plan and plan["contributions"].get("employee") is not None:
+                s.check(f"ACERS {pid} employee contribution is numeric",
+                        isinstance(plan["contributions"]["employee"], (int, float)))
+            if "survivorOptions" in plan:
+                s.check(f"ACERS {pid} has survivor options",
+                        len(plan["survivorOptions"]) > 0)
+    else:
+        s.check("acers-plans.json loads", False)
 
     # Plan combinations should reference valid plan IDs
     if combos:

@@ -90,6 +90,8 @@ public-finance-data/
 │   ├── virginia/
 │   │   ├── county-property-tax.json             ← Fairfax County, Virginia Beach
 │   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid (state-level)
+│   │   ├── arlington-county/
+│   │   │   └── acers-plans.json                  ← ACERS pension plans (independent, not VRS)
 │   │   └── fairfax-county/
 │   │       ├── erfc-plans.json                  ← ERFC Legacy, Tier 1, Tier 2 (county-level pension)
 │   │       └── plan-combinations.json           ← VRS + ERFC pension stacking patterns
@@ -128,7 +130,7 @@ public-finance-data/
 Files are organized by jurisdiction and domain:
 
 - **`federal/`** — Federal civilian data (OPM, IRS, SSA, CMS), healthcare plans (OPM, DoD, CMS), and Department of Veterans Affairs benefits
-- **`states/`** — State-level tax treatment, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`)
+- **`states/`** — State-level tax treatment, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`, `states/virginia/arlington-county/`)
 - **`reference/`** — Static lookup tables, actuarial data, and templates that rarely change
 
 ---
@@ -171,6 +173,7 @@ Files are organized by jurisdiction and domain:
 | `county_property_tax_va` | 1.1 | `states/virginia/county-property-tax.json` |
 | `county_property_tax_wa` | 1.1 | `states/washington/county-property-tax.json` |
 | `vrs_plans` | 2.0.0 | `states/virginia/vrs-plans.json` |
+| `acers_plans_arlington` | 2026.1 | `states/virginia/arlington-county/acers-plans.json` |
 | `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
 | `plan_combinations_fairfax` | 2.0.0 | `states/virginia/fairfax-county/plan-combinations.json` |
 | `static_refs` | 1.0.1 | `reference/static-refs.json` |
@@ -196,7 +199,7 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,140 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,166 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
@@ -267,6 +270,7 @@ All data in this repository is drawn from official U.S. government sources:
 | RMD Uniform Lifetime Table | IRS Pub. 590-B | https://www.irs.gov/publications/p590b |
 | VRS plan parameters | VRS | https://www.varetire.org/retirement-plans/ |
 | ERFC plan parameters | ERFC | https://www.erfcpension.org/ |
+| ACERS plan parameters | Arlington County | https://www.arlingtonva.us/Government/Careers/6-Retiree-Resources/ACERS |
 | Military basic pay tables | DFAS / navycs.com | https://militarypay.defense.gov/Pay/Basic-Pay/ |
 | Military retirement rules | Defense.gov / USC | https://militarypay.defense.gov/Pay/Retirement/ |
 

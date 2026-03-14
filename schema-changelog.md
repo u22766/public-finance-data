@@ -75,6 +75,29 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Data Addition: ACERS Plans (Arlington County)
+
+**Date:** March 14, 2026 (Session 34)
+**Change type:** New file + manifest key (non-breaking)
+**`schema_version`:** 2.2 (unchanged — adding new file does not require bump)
+
+Added `states/virginia/arlington-county/acers-plans.json` with full plan parameters for the Arlington County Employees' Retirement System (ACERS). ACERS is a fully independent defined benefit pension system (NOT VRS) with $3.28B in assets and 111% funded ratio (FY2024).
+
+**New file:** `states/virginia/arlington-county/acers-plans.json`
+**New manifest key:** `acers_plans_arlington`
+
+**Coverage:**
+- 6 plan tiers across 3 code chapters (Ch.21, Ch.35, Ch.46)
+- General members: 1.5% × AFC × years (max 30), FAC = highest 36 consecutive months
+- School Board (Ch.35): 0.625% × AFC × years
+- Public safety: separate provisions (age 52 normal retirement, 7.5% employee contribution)
+- Post-2025 tier (Ord. No. 24-13): parameters flagged for verification
+- COLA, SS Leveling, DROP, lump sum, survivor options documented
+
+**Validation:** 26 new checks added to `validate.py` Layer 5 (referential integrity).
+
+---
+
 ## Schema Version 2.2 — County-Level Pension Jurisdictional Restructure
 
 **Date:** March 14, 2026 (Session 33)
