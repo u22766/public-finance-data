@@ -1,9 +1,9 @@
 {
-  "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 1.4. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
-  "version": "1.6",
+  "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 1.4. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
+  "version": "1.7",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
-  "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary — 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
+  "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary \u2014 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
   "states": [
     {
       "state_code": "AK",
@@ -18,7 +18,7 @@
             "name": "Senior Citizen Exemption",
             "available": true,
             "amount": 150000,
-            "amount_note": "First $150,000 of assessed value — mandatory statewide minimum",
+            "amount_note": "First $150,000 of assessed value \u2014 mandatory statewide minimum",
             "age_threshold": 65,
             "note": "Mandatory under AS 29.45.030(e). Municipalities may increase above $150,000."
           }
@@ -42,7 +42,7 @@
           "eligibility": {
             "rating_required": 50,
             "rating_note": "Service-connected disability rated 50% or more by VA or branch of service",
-            "iu_eligible_note": "Statute references disability 'rated as 50 percent or more' — IU not explicitly addressed; recommend verification with borough assessor",
+            "iu_eligible_note": "Statute references disability 'rated as 50 percent or more' \u2014 IU not explicitly addressed; recommend verification with borough assessor",
             "honorable_discharge_required": false,
             "honorable_note": "Discharge must be 'under a condition that is not dishonorable'",
             "residency_required": true,
@@ -57,7 +57,7 @@
             "no_other_note": "Cannot own other property receiving residential, senior citizen, or disabled veteran exemption"
           },
           "application": {
-            "filing_requirement": "Annual — deadline varies by municipality",
+            "filing_requirement": "Annual \u2014 deadline varies by municipality",
             "example_deadlines": {
               "matsu_borough": "Application deadline set locally",
               "kenai_peninsula": "February 15",
@@ -134,8 +134,8 @@
           "income_limit": "None for P&T disabled veterans",
           "eligibility": {
             "permanently_totally_disabled": true,
-            "rating_note": "Must be permanently and totally disabled — Alabama uses general P&T standard, not specific VA rating percentage",
-            "iu_eligible_note": "Verify with county — statute references permanent and total disability",
+            "rating_note": "Must be permanently and totally disabled \u2014 Alabama uses general P&T standard, not specific VA rating percentage",
+            "iu_eligible_note": "Verify with county \u2014 statute references permanent and total disability",
             "primary_residence": true,
             "single_family": true
           },
@@ -144,7 +144,7 @@
             "note": "Must own and occupy as primary residence on first day of tax year"
           },
           "survivor_transfer": false,
-          "survivor_note": "General homestead exemption does not automatically transfer to surviving spouse — spouse must independently qualify (e.g., by age 65+)"
+          "survivor_note": "General homestead exemption does not automatically transfer to surviving spouse \u2014 spouse must independently qualify (e.g., by age 65+)"
         },
         "sah_housing_exemption": {
           "available": true,
@@ -158,7 +158,75 @@
           "survivor_conditions": {
             "unremarried_spouse": true
           },
-          "authority": "Ala. Code §40-9-21"
+          "authority": "Ala. Code \u00a740-9-21"
+        }
+      }
+    },
+    {
+      "state_code": "AR",
+      "state_name": "Arkansas",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "Arkansas fully exempts military retirement pay from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Arkansas does not tax Social Security benefits"
+        },
+        "top_rate": 0.039,
+        "rate_type": "graduated",
+        "rate_note": "Top rate 3.9% on income over $24,300 (2025). Rate has been gradually reducing."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Tax Credit",
+            "available": true,
+            "amount": 375,
+            "eligibility": "All homeowners on primary residence",
+            "note": "$375 annual property tax credit on homestead"
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Arkansas",
+        "https://www.dfa.arkansas.gov/assessment-coordination/property-tax-relief"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Arkansas veteran-specific benefits. Full property tax exemption for 100% disabled veterans and veterans with specific severe injuries. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from property taxes on homestead and qualifying personal property for 100% disabled veterans, veterans who are blind, have lost use of a limb, or lost an eye",
+          "eligibility": {
+            "rating_required": 100,
+            "alternative_qualifying_conditions": [
+              "Blind in both eyes",
+              "Loss of use of one or more limbs",
+              "Loss of an eye"
+            ],
+            "iu_eligible": "Verify \u2014 statute references 100% service-connected disability",
+            "honorable_discharge_required": true
+          },
+          "application": {
+            "where": "County assessor's office",
+            "documentation": [
+              "DD-214",
+              "VA disability rating letter"
+            ]
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "dependent_children": true
+          },
+          "authority": "Ark. Const. Amend. 49; ACA \u00a726-3-306"
         }
       }
     },
@@ -226,7 +294,7 @@
             "income_year": 2025,
             "excluded_from_income": [
               "Social Security benefits",
-              "Military pensions (all types — expanded by SB 1749 from disability pensions only)",
+              "Military pensions (all types \u2014 expanded by SB 1749 from disability pensions only)",
               "Veterans disability payments"
             ],
             "note": "Income limits apply even for 100% service-connected full exemption"
@@ -252,11 +320,11 @@
             "spouse_must_not_remarry": true,
             "must_be_primary_residence": true,
             "property_specific": true,
-            "property_note": "Surviving spouse exemption applies to the property itself — if spouse sells, exemption ends",
+            "property_note": "Surviving spouse exemption applies to the property itself \u2014 if spouse sells, exemption ends",
             "effective_date": "2027-01-01",
             "effective_note": "Surviving spouse can first claim continued exemption beginning January 2027, only if veteran received full exemption in 2026 and passed away during 2026"
           },
-          "authority": "ARS § 42-11111 as amended by SB 1749 (Laws 2025, Chapter 247, signed June 27, 2025)"
+          "authority": "ARS \u00a7 42-11111 as amended by SB 1749 (Laws 2025, Chapter 247, signed June 27, 2025)"
         },
         "disabled_veteran_partial_exemption": {
           "available": true,
@@ -264,7 +332,7 @@
           "description": "Assessed value reduction prorated by disability percentage for veterans with service-connected or nonservice-connected disability",
           "exemption_amount_2026": 4873,
           "exemption_amount_note": "CPI-indexed annually. Amount is multiplied by veteran's disability percentage.",
-          "example_note": "Example: $4,873 × 60% disability = $2,924 assessed value reduction",
+          "example_note": "Example: $4,873 \u00d7 60% disability = $2,924 assessed value reduction",
           "eligibility": {
             "rating_required": 1,
             "rating_note": "1%-99% service-connected, or 1%-100% nonservice-connected disability",
@@ -294,7 +362,7 @@
             "file_with": "County Assessor",
             "window": "First Monday in January through March 1"
           },
-          "authority": "ARS § 42-11111"
+          "authority": "ARS \u00a7 42-11111"
         },
         "_funding_fee_note": "See federal_veteran_benefits for VA funding fee exemption details"
       }
@@ -385,7 +453,7 @@
             "service_connected_death": true,
             "note": "Unremarried surviving spouse of qualified veteran or veteran who died of service-connected cause"
           },
-          "authority": "Cal. Const. Art. XIII §4(a); R&TC §205.5"
+          "authority": "Cal. Const. Art. XIII \u00a74(a); R&TC \u00a7205.5"
         },
         "veterans_exemption": {
           "available": true,
@@ -527,6 +595,91 @@
       }
     },
     {
+      "state_code": "CT",
+      "state_name": "Connecticut",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "Military retired pay is fully exempt from Connecticut income tax if taxed on federal return"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation and military disability retirement pay conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": false,
+          "note": "Connecticut taxes Social Security for higher-income filers; AGI threshold phase-out applies"
+        },
+        "top_rate": 0.0699,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 6.99% on income over $500,000 (2025)"
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Wartime Veteran Basic Exemption",
+            "available": true,
+            "amount_base": 1000,
+            "eligibility": "Honorably discharged veteran with 90+ days wartime service. Amount increases with municipality revaluation increase factors.",
+            "note": "Applied to assessed value of real estate or motor vehicle. Town-administered; actual amounts vary by municipality."
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Connecticut",
+        "https://portal.ct.gov/opm/igpp/grants/tax-relief-grants/additional-veterans-tax-relief-program",
+        "https://www.cga.ct.gov/2024/rpt/pdf/2024-R-0124.pdf"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Connecticut veteran-specific property tax benefits. New (Oct 2024) full dwelling exemption for 100% P&T veterans. Older tiered system with base and disability add-ons. Amounts vary significantly by municipality due to revaluation increase factors. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "pt_disabled_veteran_dwelling_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "effective_date": "2024-10-01",
+          "description": "Full property tax exemption on dwelling (primary residence) for veterans with 100% permanent and total service-connected disability. Effective for Grand List years starting October 1, 2024. First reflected on 2026 tax bills.",
+          "coverage": "Dwelling only (fractional share if co-owned). Law does not explicitly cover the lot/land. If veteran does not own a dwelling, one motor vehicle exempt instead.",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": "Ambiguous \u2014 law references '100% permanent and total' rating but does not define whether IU/TDIU qualifies. OLR report notes the law is silent on this question.",
+            "honorable_discharge_required": false,
+            "honorable_discharge_note": "100% disabled veterans exempt from the 90-day wartime service requirement",
+            "wartime_service_required": false
+          },
+          "application": {
+            "where": "Town assessor's office",
+            "form": "Form D-2",
+            "filing_deadline": "Annually before January 1 for prior October 1 Grand List",
+            "documentation": [
+              "VA documentation of 100% P&T rating"
+            ],
+            "late_filing": "Law explicitly allows late filing of P&T disability proof"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "minor_child": true,
+            "minor_child_note": "Until child turns 18"
+          },
+          "cannot_combine_with": "Other veteran property tax exemptions under CGS \u00a712-81(20)/(21)",
+          "authority": "PA 24-46; CGS \u00a712-81(83)"
+        },
+        "disabled_veteran_tiered_exemption": {
+          "available": true,
+          "exemption_type": "partial",
+          "description": "Tiered exemption based on disability rating (10%+). Amounts vary by rating, income, and municipality revaluation increase factor. Example: 100% disabled veteran with income \u2264$18,000 single/$21,000 married receives at least $10,515 exemption (base, before increase factor).",
+          "eligibility": {
+            "rating_required": 10,
+            "income_based_enhancement": true,
+            "wartime_service_required": true,
+            "wartime_service_days": 90
+          },
+          "authority": "CGS \u00a712-81(20); \u00a712-81g(a) & (d)"
+        }
+      }
+    },
+    {
       "state_code": "DC",
       "state_name": "District of Columbia",
       "income_tax": {
@@ -560,7 +713,7 @@
             "name": "Homestead Deduction",
             "available": true,
             "amount": 88110,
-            "amount_note": "Standard homestead deduction for 2026 — reduces assessed value",
+            "amount_note": "Standard homestead deduction for 2026 \u2014 reduces assessed value",
             "note": "Basic homestead deduction available to all owner-occupied primary residences"
           },
           {
@@ -582,9 +735,9 @@
         "veterans_homestead_deduction": {
           "available": true,
           "exemption_type": "deduction",
-          "description": "Large assessed value deduction for 100% P&T disabled veterans — reduces assessed value before computing property tax",
+          "description": "Large assessed value deduction for 100% P&T disabled veterans \u2014 reduces assessed value before computing property tax",
           "deduction_amount": 445000,
-          "deduction_amount_note": "Amount may be adjusted annually — verify with DC OTR for current tax year",
+          "deduction_amount_note": "Amount may be adjusted annually \u2014 verify with DC OTR for current tax year",
           "eligibility": {
             "rating_required": 100,
             "pt_required": true,
@@ -593,7 +746,7 @@
             "ownership_required": 50,
             "ownership_note": "Veteran must maintain at least 50% ownership of property as shown by deed",
             "domicile_required": true,
-            "domicile_note": "Veteran must be domiciled in DC — the property must be principal residence",
+            "domicile_note": "Veteran must be domiciled in DC \u2014 the property must be principal residence",
             "dwelling_units_max": 5,
             "dwelling_units_note": "Property must have no more than 5 dwelling units"
           },
@@ -615,7 +768,7 @@
             "documentation_required": "DD-2058 (State of Legal Residence Certificate) showing DC as domicile"
           },
           "survivor_transfer": false,
-          "survivor_note": "Standard veteran deduction does not automatically transfer to surviving spouse — separate surviving spouse provisions may apply",
+          "survivor_note": "Standard veteran deduction does not automatically transfer to surviving spouse \u2014 separate surviving spouse provisions may apply",
           "pending_legislation": {
             "bill": "Disabled Veterans Complete Property Tax Exemption Amendment Act of 2025",
             "status": "Referred to Committee on Business and Economic Development as of November 2025",
@@ -682,7 +835,7 @@
             "rating_required": 100,
             "pt_required": true,
             "iu_eligible": false,
-            "iu_note": "Florida statute specifies 'total and permanent' — verify IU eligibility with county property appraiser",
+            "iu_note": "Florida statute specifies 'total and permanent' \u2014 verify IU eligibility with county property appraiser",
             "honorable_discharge_required": true,
             "residency_required": true,
             "residency_date": "January 1 of tax year",
@@ -714,7 +867,7 @@
             "spouse_portable": true,
             "spouse_portable_note": "If surviving spouse sells and moves, exemption on new property capped at amount from most recent tax roll of prior property"
           },
-          "authority": "Florida Statute § 196.081",
+          "authority": "Florida Statute \u00a7 196.081",
           "sources": [
             "https://floridavets.org/benefits-services/housing/",
             "https://floridarevenue.com/property/Documents/FAQ_VPTDExemption.pdf"
@@ -733,13 +886,13 @@
             "residency_required": true
           },
           "homestead_required": false,
-          "homestead_note": "This exemption is NOT limited to homestead property — can apply to any property veteran owns",
+          "homestead_note": "This exemption is NOT limited to homestead property \u2014 can apply to any property veteran owns",
           "survivor_transfer": true,
           "survivor_conditions": {
             "spouse_eligible": true,
             "spouse_must_not_remarry": true
           },
-          "authority": "Florida Statute § 196.24",
+          "authority": "Florida Statute \u00a7 196.24",
           "sources": [
             "https://floridavets.org/benefits-services/housing/"
           ]
@@ -763,7 +916,7 @@
             "effective_date": "2021-01-01",
             "effective_note": "Amendment 6 (passed November 2020) allows surviving spouses to retain discount"
           },
-          "authority": "Florida Constitution Article VII Section 6(e), Florida Statute § 196.082",
+          "authority": "Florida Constitution Article VII Section 6(e), Florida Statute \u00a7 196.082",
           "sources": [
             "https://floridavets.org/benefits-services/housing/"
           ]
@@ -782,11 +935,11 @@
             "va_housing_grant": true,
             "va_housing_grant_note": "Veterans who received VA Specially Adapted Housing grant also qualify",
             "income_limit_may_apply": true,
-            "income_note": "Gross annual household income limits may apply — check with county property appraiser"
+            "income_note": "Gross annual household income limits may apply \u2014 check with county property appraiser"
           },
           "homestead_required": true,
           "residency_required": true,
-          "authority": "Florida Statute § 196.101",
+          "authority": "Florida Statute \u00a7 196.101",
           "sources": [
             "https://floridavets.org/benefits-services/housing/"
           ]
@@ -805,7 +958,7 @@
           "survivor_conditions": {
             "spouse_must_not_remarry": true
           },
-          "authority": "Florida Statute § 196.081(4)",
+          "authority": "Florida Statute \u00a7 196.081(4)",
           "sources": [
             "https://floridavets.org/benefits-services/housing/"
           ]
@@ -851,7 +1004,7 @@
             "name": "Senior School Tax Exemption",
             "available": true,
             "age_threshold": 62,
-            "note": "Seniors 62+ may be exempt from school taxes on homestead — varies by county"
+            "note": "Seniors 62+ may be exempt from school taxes on homestead \u2014 varies by county"
           }
         ]
       },
@@ -867,7 +1020,7 @@
           "exemption_type": "partial",
           "description": "Exemption from homestead property taxes up to federally-indexed amount for qualifying disabled veterans",
           "exemption_amount_2025": 121812,
-          "exemption_amount_note": "Amount indexed annually per 38 U.S.C. § 2102 (Specially Adapted Housing grant limit). Value above exemption remains taxable.",
+          "exemption_amount_note": "Amount indexed annually per 38 U.S.C. \u00a7 2102 (Specially Adapted Housing grant limit). Value above exemption remains taxable.",
           "eligibility": {
             "rating_required": 100,
             "pt_required": true,
@@ -882,7 +1035,7 @@
             "honorable_discharge_required": true,
             "residency_required": true
           },
-          "scope": "Homestead owned and occupied as residence — applies to state, county, municipal, and school taxes",
+          "scope": "Homestead owned and occupied as residence \u2014 applies to state, county, municipal, and school taxes",
           "application": {
             "file_with": "County Tax Commissioner or Tax Receiver",
             "documentation": "VA disability letter, DD-214, doctor's letter if qualifying by specific disability"
@@ -901,7 +1054,7 @@
             "proposed_change": "Would provide FULL exemption (100% of assessed value) for 100% P&T veterans, plus partial exemptions based on disability percentage for veterans below 100%",
             "proposed_effective": "January 1, 2027 if approved by voters November 2026"
           },
-          "authority": "O.C.G.A. § 48-5-48",
+          "authority": "O.C.G.A. \u00a7 48-5-48",
           "sources": [
             "https://veterans.georgia.gov/disabled-veteran-homestead-tax-exemption",
             "https://law.justia.com/codes/georgia/title-48/chapter-5/article-2/part-1/section-48-5-48/"
@@ -926,7 +1079,7 @@
           },
           "max_vehicles": 1,
           "license_plate_requirement": false,
-          "license_plate_note": "Recent legislation removed requirement for Disabled Veteran plate — veterans may choose any Georgia plate",
+          "license_plate_note": "Recent legislation removed requirement for Disabled Veteran plate \u2014 veterans may choose any Georgia plate",
           "survivor_transfer": true,
           "survivor_conditions": {
             "spouse_eligible": true,
@@ -940,7 +1093,7 @@
           "available": true,
           "exemption_type": "partial",
           "exemption_amount": 85645,
-          "exemption_amount_note": "Amount as of current year — may be indexed",
+          "exemption_amount_note": "Amount as of current year \u2014 may be indexed",
           "description": "Homestead exemption for unremarried surviving spouse of service member killed as a result of war or armed conflict",
           "eligibility": {
             "veteran_rating_required": "none",
@@ -1008,7 +1161,7 @@
           "eligibility": {
             "rating_required": 100,
             "rating_note": "Totally disabled due to injuries received while on active duty with U.S. Armed Forces. Kauai County has expanded eligibility to 80%+ disability.",
-            "iu_eligible_note": "Statute says 'totally disabled' — recommend verification with county assessor for IU eligibility",
+            "iu_eligible_note": "Statute says 'totally disabled' \u2014 recommend verification with county assessor for IU eligibility",
             "kauai_expanded": true,
             "kauai_note": "Kauai covers 80%-100% disability (form updated October 2025)"
           },
@@ -1044,7 +1197,7 @@
             "must_continue_occupancy": true,
             "retroactive_note": "Widow/widower may apply even if veteran did not have exemption during lifetime, provided veteran would have qualified"
           },
-          "authority": "HRS § 246-29.5; Honolulu ROH § 8-10.5; county-specific ordinances"
+          "authority": "HRS \u00a7 246-29.5; Honolulu ROH \u00a7 8-10.5; county-specific ordinances"
         },
         "vehicle_registration_fee_exemption": {
           "available": true,
@@ -1057,10 +1210,94 @@
             "va_subsidized_vehicle": true,
             "note": "Must have 100% service-connected disability and vehicle must have current registration and safety check"
           },
-          "renewal": "Annual — new exemption letter required each year from Office of Veterans' Services",
+          "renewal": "Annual \u2014 new exemption letter required each year from Office of Veterans' Services",
           "authority": "Hawaii OVS"
         },
         "_funding_fee_note": "See federal_veteran_benefits for VA funding fee exemption details"
+      }
+    },
+    {
+      "state_code": "IA",
+      "state_name": "Iowa",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "Iowa fully exempts military retirement pay from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Iowa does not tax Social Security benefits"
+        },
+        "top_rate": 0.038,
+        "rate_type": "flat",
+        "rate_note": "Flat 3.8% rate (2026). Iowa transitioned from graduated to flat rate; was 3.9% in 2025."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Tax Credit",
+            "available": true,
+            "note": "Credit equal to tax on the first $4,850 of actual value for all homestead owners. File by July 1.",
+            "eligibility": "Iowa resident, owner-occupied primary residence for 6+ months/year"
+          }
+        ]
+      },
+      "sources": [
+        "https://revenue.iowa.gov/taxes/tax-guidance/tax-credits-deductions-exemption/disabled-veteran-homestead-property-tax-credit",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Iowa"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Iowa veteran-specific benefits. 100% property tax credit for 100% disabled veterans (equal to full tax levy). Separate military service exemption for all veterans. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_homestead_tax_credit": {
+          "available": true,
+          "exemption_type": "credit",
+          "description": "Tax credit equal to 100% of the actual tax levy on homestead property for 100% disabled veterans. Effectively eliminates property tax. Enacted 2014 (HF 166, expanded 2015).",
+          "size_limits": {
+            "within_city": "0.5 acre maximum",
+            "outside_city": "40 acres maximum including house and outbuildings"
+          },
+          "eligibility": {
+            "rating_required": 100,
+            "iu_eligible": true,
+            "iu_note": "Veterans with permanent and total disability rating based on individual unemployability compensated at 100% rate qualify",
+            "honorable_discharge_required": true,
+            "iowa_resident_for_income_tax": true,
+            "occupy_6_months_per_year": true,
+            "sah_grant_recipients": true,
+            "sah_note": "Veterans who acquired homestead under 38 U.S.C. \u00a72101/2102 (VA SAH grant) also qualify"
+          },
+          "application": {
+            "where": "County assessor's office",
+            "filing_deadline": "July 1 of the year credit is first claimed",
+            "documentation": [
+              "DD-214 (first application only)",
+              "VA Benefits Summary letter (issued within 12 months)"
+            ],
+            "reapplication": "Not required in successive years while qualifications and homestead remain unchanged"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "must_remain_in_homestead": true,
+            "dic_recipients_eligible": true,
+            "dic_note": "Surviving spouses receiving DIC qualify even if veteran was not 100% service-connected"
+          },
+          "cannot_combine_with": "Military service tax exemption (Iowa Code Ch. 426A)",
+          "authority": "Iowa Code \u00a7425.15; Iowa Code Ch. 425"
+        },
+        "military_service_tax_exemption": {
+          "available": true,
+          "amount_wartime": 1852,
+          "amount_wwi": 2778,
+          "description": "Reduces taxable value of property. $1,852 for most veterans; $2,778 for WWI veterans. Cannot combine with Disabled Veteran Homestead Tax Credit.",
+          "authority": "Iowa Code Ch. 426A",
+          "exemption_type": "deduction"
+        }
       }
     },
     {
@@ -1124,7 +1361,7 @@
               "eav_reduction": 250000
             }
           ],
-          "eav_note": "EAV is equalized assessed value — typically 33.33% of fair market value. $250,000 EAV ≈ $750,000 market value.",
+          "eav_note": "EAV is equalized assessed value \u2014 typically 33.33% of fair market value. $250,000 EAV \u2248 $750,000 market value.",
           "commercial_exclusion": true,
           "commercial_note": "Portion of property used for commercial purposes is excluded",
           "eligibility": {
@@ -1135,7 +1372,7 @@
           },
           "application": {
             "form": "PTAX-342",
-            "filing": "Annual — must reapply each year",
+            "filing": "Annual \u2014 must reapply each year",
             "permanent_total_note": "Per new legislation, veterans rated 100% P&T by VA no longer need to reapply annually"
           },
           "survivor_transfer": true,
@@ -1202,10 +1439,10 @@
           "eligibility": {
             "wartime_service_required": true,
             "qualifying_periods": [
-              "WWII (Dec 7 1941 – Dec 31 1946)",
-              "Korea (Jun 27 1950 – Jan 31 1955)",
-              "Vietnam (Aug 5 1964 – May 7 1975)",
-              "Gulf War (Aug 2 1990 – TBD)"
+              "WWII (Dec 7 1941 \u2013 Dec 31 1946)",
+              "Korea (Jun 27 1950 \u2013 Jan 31 1955)",
+              "Vietnam (Aug 5 1964 \u2013 May 7 1975)",
+              "Gulf War (Aug 2 1990 \u2013 TBD)"
             ],
             "rating_required": 10,
             "honorable_discharge_required": true
@@ -1255,6 +1492,146 @@
       }
     },
     {
+      "state_code": "KS",
+      "state_name": "Kansas",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "Kansas fully exempts military retirement pay from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": false,
+          "ss_note": "Kansas taxes Social Security benefits for filers with federal AGI above $75,000"
+        },
+        "top_rate": 0.057,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 5.7% on income over $30,000 single / $60,000 joint (2025)"
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Kansas",
+        "https://www.ksrevenue.gov/faqs-taxcredits.html"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Kansas veteran-specific benefits. No full property tax exemption for disabled veterans \u2014 uses income-based homestead refund program. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_homestead_refund": {
+          "available": true,
+          "exemption_type": "refund",
+          "description": "Refund of a portion of property taxes paid on homestead. Amount based on household income; maximum refund $700. Not a full exemption. Filed on Form K-40SVR.",
+          "max_refund": 700,
+          "eligibility": {
+            "rating_required": 50,
+            "income_limit_2025": 42600,
+            "home_value_limit": 350000,
+            "honorable_discharge_required": true,
+            "kansas_resident": true,
+            "own_and_occupy_full_year": true
+          },
+          "application": {
+            "where": "Filed with Kansas Department of Revenue",
+            "form": "K-40SVR (or K-40H for standard homestead claim)",
+            "documentation": [
+              "Proof of property taxes paid",
+              "VA disability rating"
+            ],
+            "filing_deadline": "April 15 of following year (filed with income tax return)"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "surviving_spouse_of_disabled_veteran": true,
+            "killed_in_action_spouse": true
+          },
+          "authority": "K.S.A. \u00a779-4508 et seq."
+        },
+        "disabled_veteran_sales_tax_exemption": {
+          "available": true,
+          "effective_date": "2026-07-01",
+          "annual_limit": 24000,
+          "description": "Starting July 1, 2026, 100% service-connected disabled veterans exempt from sales tax on up to $24,000 in annual purchases (excludes tobacco, alcohol, vehicles)",
+          "rating_required": 100,
+          "exemption_type": "full"
+        }
+      }
+    },
+    {
+      "state_code": "KY",
+      "state_name": "Kentucky",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": false,
+          "partial_exemption": true,
+          "exemption_amount": 31110,
+          "note": "Kentucky excludes up to $31,110 of military retirement pay from state income tax. Additional exclusions may apply in certain situations."
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Kentucky does not tax Social Security benefits"
+        },
+        "top_rate": 0.04,
+        "rate_type": "flat",
+        "rate_note": "Flat 4.0% rate (2025). Rate has been gradually reducing; was 5% in 2022."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Exemption",
+            "available": true,
+            "amount_2025_2026": 49100,
+            "eligibility": "Age 65+ or totally disabled",
+            "note": "Reduces assessed value of primary residence by up to $49,100 for 2025-2026 tax years. Adjusted biennially for inflation."
+          }
+        ]
+      },
+      "sources": [
+        "https://revenue.ky.gov/Individual/Pages/Homestead-Exemption.aspx",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Kentucky"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Kentucky veteran-specific property tax benefits. Uses general homestead exemption (age or disability) rather than veteran-specific program. 100% P&T disabled veterans qualify through disability provision. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "homestead_exemption_for_disabled_veterans": {
+          "available": true,
+          "exemption_type": "partial",
+          "description": "Kentucky's homestead exemption reduces assessed value by up to $49,100 (2025-2026). Available to homeowners age 65+ or totally disabled, including 100% P&T disabled veterans. No veteran-specific full exemption exists.",
+          "amount_2025_2026": 49100,
+          "inflation_adjustment": "Biennial adjustment based on cost of living",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": "Verify with county PVA \u2014 statute references total disability",
+            "honorable_discharge_required": false,
+            "veteran_specific": false,
+            "veteran_specific_note": "This is a general disability/age homestead exemption, not veteran-specific"
+          },
+          "application": {
+            "where": "County Property Valuation Administrator (PVA)",
+            "documentation": [
+              "VA disability rating letter",
+              "Proof of ownership"
+            ],
+            "reapplication": "100% P&T veterans do not need to reapply annually"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "age_65_or_disabled": true
+          },
+          "authority": "KRS \u00a7132.810; Ky. Const. \u00a7170"
+        }
+      }
+    },
+    {
       "state_code": "MD",
       "state_name": "Maryland",
       "income_tax": {
@@ -1282,7 +1659,7 @@
         },
         "top_rate": 0.0575,
         "local_income_tax": true,
-        "local_income_tax_note": "Maryland counties impose local income tax in addition to state tax — typically 2.25% to 3.2% depending on county"
+        "local_income_tax_note": "Maryland counties impose local income tax in addition to state tax \u2014 typically 2.25% to 3.2% depending on county"
       },
       "property_tax": {
         "exemptions": [
@@ -1329,10 +1706,10 @@
             "spouse_must_not_remarry": true,
             "dic_eligible": true,
             "dic_note": "Surviving spouse receiving DIC may also qualify",
-            "annual_refiling": "May be required — consult local assessor's office"
+            "annual_refiling": "May be required \u2014 consult local assessor's office"
           },
           "effective_date": "Prior to 2018",
-          "authority": "Maryland Tax-Property Article § 7-208",
+          "authority": "Maryland Tax-Property Article \u00a7 7-208",
           "sources": [
             "https://dat.maryland.gov/realproperty/Pages/Property-Tax-Exemptions.aspx",
             "https://veterans.maryland.gov/Benefits/TaxExemptions/Pages/State-Property-Tax-Exemptions.aspx"
@@ -1370,9 +1747,9 @@
             "income_limit": 100000,
             "income_limit_note": "Federal AGI must not exceed $100,000"
           },
-          "scope": "County or municipal property tax only — separate from state exemption",
-          "note": "Not all counties may offer this credit — contact local assessor to verify",
-          "authority": "Maryland Tax-Property Article § 9-265",
+          "scope": "County or municipal property tax only \u2014 separate from state exemption",
+          "note": "Not all counties may offer this credit \u2014 contact local assessor to verify",
+          "authority": "Maryland Tax-Property Article \u00a7 9-265",
           "sources": [
             "https://veterans.maryland.gov/local-veteran-property-tax-exemptions/"
           ]
@@ -1434,10 +1811,10 @@
             "primary_residence": true
           },
           "application": {
-            "form": "Form 5107 — Affidavit for Disabled Veterans Exemption",
+            "form": "Form 5107 \u2014 Affidavit for Disabled Veterans Exemption",
             "where": "Local assessing unit (city or township)",
             "deadline": "January 1 through December 31 of the year exemption is requested",
-            "reapplication": "Not required beginning January 1, 2025 — exemption continues until rescinded or revoked"
+            "reapplication": "Not required beginning January 1, 2025 \u2014 exemption continues until rescinded or revoked"
           },
           "survivor_transfer": true,
           "survivor_conditions": {
@@ -1446,6 +1823,102 @@
             "note": "Un-remarried surviving spouse retains exemption, including on homestead property acquired after veteran's death"
           },
           "authority": "MCL 211.7b; MCL 211.7c (2025 amendment eliminating annual reapplication)"
+        }
+      }
+    },
+    {
+      "state_code": "MN",
+      "state_name": "Minnesota",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "Minnesota fully exempts military retirement pay and Survivor Benefit Plan payments from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": false,
+          "note": "Minnesota taxes Social Security benefits for higher-income filers; partial subtraction available based on income"
+        },
+        "top_rate": 0.0985,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 9.85% on income over $193,240 single / $284,810 joint (2025)"
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Market Value Exclusion (Standard)",
+            "available": true,
+            "note": "Standard homestead market value exclusion for all homeowners. Amount varies by property value."
+          }
+        ]
+      },
+      "sources": [
+        "https://www.revenue.state.mn.us/market-value-exclusion-veterans-disability",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Minnesota",
+        "https://www.house.mn.gov/sessiondaily/Story/18466"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Minnesota veteran-specific property tax benefits. Market value exclusion program reduces taxable market value of homestead. Two tiers based on disability rating. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_market_value_exclusion": {
+          "available": true,
+          "exemption_type": "partial",
+          "description": "Reduces market value of homestead for property tax purposes. Two exclusion levels based on disability status. Not a tax exemption or forgiveness \u2014 reduces taxable market value.",
+          "tiers": [
+            {
+              "rating_range": "70-99%",
+              "exclusion_amount": 150000,
+              "note": "Market value exclusion of up to $150,000 for veterans with 70% or higher service-connected disability"
+            },
+            {
+              "rating_range": "100% P&T",
+              "exclusion_amount": 300000,
+              "note": "Market value exclusion of up to $300,000 for veterans with total (100%) and permanent disability or individual unemployability"
+            }
+          ],
+          "eligibility": {
+            "rating_required": 70,
+            "iu_eligible": true,
+            "iu_note": "Veterans with permanent individual unemployability qualify for the $300,000 tier",
+            "honorable_discharge_required": true,
+            "homestead_required": true,
+            "primary_caregiver_eligible": true,
+            "primary_caregiver_note": "If veteran does not own a homestead, their primary family caregiver may be eligible"
+          },
+          "application": {
+            "where": "County assessor's office",
+            "filing_deadline": "December 31 for taxes payable the following year",
+            "documentation": [
+              "DD-214 or discharge papers",
+              "VA documentation verifying disability rating"
+            ],
+            "reapplication": "Surviving spouses must apply to continue; veterans need not reapply"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "must_remain_in_homestead": true,
+            "dic_recipients_eligible": true
+          },
+          "enacted": 2008,
+          "authority": "Minn. Stat. \u00a7273.13 subd. 34; \u00a7273.1384 subd. 1"
+        },
+        "veteran_military_service_credit": {
+          "available": true,
+          "amount": 750,
+          "description": "Income tax credit of up to $750 for past military service",
+          "note": "Additional combat zone service credit available for post-2014 service",
+          "exemption_type": "credit"
+        },
+        "_pending_legislation": {
+          "hf194_hf684_hf1297": {
+            "status": "Advanced by House Veterans and Military Affairs Division (2025-2026 session)",
+            "would_do": "Increase market value exclusion from $150,000 to $165,000-$200,000 for 70%+ disabled veterans and from $300,000 to $330,000-$400,000 for 100% P&T. Amounts unchanged since 2008.",
+            "note": "Multiple bills addressing same issue; exact amounts vary by bill version"
+          }
         }
       }
     },
@@ -1480,8 +1953,8 @@
             "max_credit_homeowner": 1100,
             "max_credit_renter": 750,
             "eligibility": "Age 65+, or age 60+ receiving surviving spouse benefits, or 100% disabled, or 100% disabled veteran",
-            "income_limit_note": "Income limits apply — see MO DOR for current thresholds",
-            "note": "Tax credit (not exemption) — reduces amount owed, does not eliminate property tax"
+            "income_limit_note": "Income limits apply \u2014 see MO DOR for current thresholds",
+            "note": "Tax credit (not exemption) \u2014 reduces amount owed, does not eliminate property tax"
           }
         ]
       },
@@ -1513,7 +1986,68 @@
             "rating_required": 100,
             "primary_residence": true
           },
-          "authority": "RSMo §137.106"
+          "authority": "RSMo \u00a7137.106"
+        }
+      }
+    },
+    {
+      "state_code": "MS",
+      "state_name": "Mississippi",
+      "income_tax": {
+        "has_income_tax": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "Mississippi fully exempts military retirement pay from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Mississippi does not tax Social Security benefits"
+        },
+        "top_rate": 0.05,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 5% on income over $10,000 (2025). Mississippi is phasing down income tax; rate scheduled to decrease further."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Exemption (Standard)",
+            "available": true,
+            "note": "Standard homestead exemption on first $7,500 of assessed value for owner-occupied primary residence"
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Mississippi",
+        "https://www.dor.ms.gov/taxareas/exempt"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Mississippi veteran-specific benefits. Full property tax exemption for 100% disabled veterans. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full property tax exemption on homestead for 100% service-connected permanently and totally disabled veterans",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": "Verify with county tax assessor",
+            "honorable_discharge_required": true
+          },
+          "application": {
+            "where": "County tax assessor's office",
+            "documentation": [
+              "DD-214",
+              "VA disability letter"
+            ]
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true
+          },
+          "authority": "Miss. Code Ann. \u00a727-33-67"
         }
       }
     },
@@ -1571,9 +2105,9 @@
             "rating_required": 100,
             "pt_required": true,
             "iu_eligible": false,
-            "iu_note": "NC statute specifies 'permanent and total' — verify IU eligibility with county tax office",
+            "iu_note": "NC statute specifies 'permanent and total' \u2014 verify IU eligibility with county tax office",
             "specially_adapted_housing_eligible": true,
-            "specially_adapted_note": "Veterans receiving VA Specially Adapted Housing benefits under 38 U.S.C. § 2101 also qualify",
+            "specially_adapted_note": "Veterans receiving VA Specially Adapted Housing benefits under 38 U.S.C. \u00a7 2101 also qualify",
             "honorable_discharge_required": true,
             "residency_required": true,
             "occupancy_required": true
@@ -1617,13 +2151,107 @@
             "vehicle_exemption_proposed": true,
             "vehicle_note": "Would also exclude primary motor vehicle owned by 100% disabled veteran from property tax"
           },
-          "authority": "N.C.G.S. § 105-277.1C",
+          "authority": "N.C.G.S. \u00a7 105-277.1C",
           "sources": [
             "https://www.milvets.nc.gov/benefits-services/veterans-property-tax-relief",
             "https://www.ncdor.gov/taxes-forms/property-tax/property-tax-forms/ncdva-9-certification-disabled-veterans-property-tax-exclusion"
           ]
         },
         "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file."
+      }
+    },
+    {
+      "state_code": "NJ",
+      "state_name": "New Jersey",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal civil service pensions (OPM) are taxable even if based on military service credit",
+        "military_retirement": {
+          "exempt": true,
+          "note": "U.S. military pension and survivor's benefit payments are not taxable in New Jersey"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation and total/permanent disability income conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Social Security benefits are not taxable in New Jersey"
+        },
+        "sbp_annuities": {
+          "exempt": true,
+          "note": "SBP, RCSBP, and RSFPP annuities are exempt from New Jersey income tax"
+        },
+        "top_rate": 0.1075,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates up to 10.75% on income over $1M (2025). Pension exclusion: up to $100,000 joint/$75,000 single for qualifying retirement income.",
+        "veteran_income_tax_exemption": {
+          "amount": 6000,
+          "note": "Honorably discharged veterans receive a $6,000 personal exemption on NJ income tax; joint filers with veteran spouse may also claim"
+        }
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Veteran's Property Tax Deduction",
+            "available": true,
+            "amount": 250,
+            "eligibility": "Honorably discharged wartime veteran or unremarried surviving spouse/civil union partner of veteran or service member killed on active duty",
+            "note": "$250 annual deduction from property taxes. Filed with municipal tax assessor or collector using Form V.S.S."
+          }
+        ]
+      },
+      "sources": [
+        "https://www.nj.gov/treasury/taxation/military/taxinformation.shtml",
+        "https://www.nj.gov/treasury/taxation/lpt/lpt-disabledvet.shtml",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/New-Jersey"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "New Jersey veteran-specific benefits. Full property tax exemption for 100% P&T disabled veterans. Proportional exemption legislation pending. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Complete property tax exemption on primary residence and lot for 100% permanently and totally disabled veterans",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": true,
+            "iu_note": "Veterans deemed unemployable by VA and compensated at 100% rate qualify for full exemption",
+            "honorable_discharge_required": true
+          },
+          "application": {
+            "where": "Local municipal tax assessor",
+            "form": "D.V.S.S.E.",
+            "documentation": [
+              "DD-214",
+              "VA Certificate of Disability (active certification)"
+            ],
+            "filing_deadline": "File with local assessor; appeals to County Board of Taxation by April 1"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "includes_domestic_partner": true,
+            "must_have_been_receiving": false,
+            "surviving_spouse_of_service_connected_death": true
+          },
+          "authority": "N.J.S.A. 54:4-3.30 et seq."
+        },
+        "_pending_legislation": {
+          "s522_proportional_exemption": {
+            "status": "Pending (carried over from prior session)",
+            "would_do": "Proportional property tax exemption for veterans with 30-90% disability rating, capped at $10,000. IU veterans would receive full exemption. Surviving spouses limited to those of 100% exempt veterans.",
+            "note": "Estimated $228-376M state cost in first year"
+          },
+          "a941_retroactive_exemption": {
+            "status": "Advanced by Assembly committee (March 2025)",
+            "would_do": "Retroactive property tax exemption for 100% disabled veterans to date of VA disability determination. Municipalities would refund taxes collected after determination date."
+          },
+          "s204_expanded_survivor": {
+            "status": "Introduced January 2026",
+            "would_do": "Expand disabled veteran property tax exemption eligibility to include certain individuals with close personal relationship to deceased veteran"
+          }
+        }
       }
     },
     {
@@ -1651,14 +2279,14 @@
         "https://www.clarkcountynv.gov/government/assessor/exemption"
       ],
       "veteran_benefits": {
-        "_schema_note": "Veteran-specific property and vehicle tax benefits for Nevada. No state income tax. Exemptions are assessed value deductions (assessed value ≈ 35% of taxable value). Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "_schema_note": "Veteran-specific property and vehicle tax benefits for Nevada. No state income tax. Exemptions are assessed value deductions (assessed value \u2248 35% of taxable value). Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
         "wartime_veteran_exemption": {
           "available": true,
           "exemption_type": "deduction",
           "description": "Assessed value deduction for wartime veterans, applicable to real property, personal property, or vehicle registration",
           "exemption_assessed_value": 3540,
           "fiscal_year": "2025/2026",
-          "amount_note": "CPI-indexed annually from $2,000 base (2003). Assessed value ≈ 35% of taxable value.",
+          "amount_note": "CPI-indexed annually from $2,000 base (2003). Assessed value \u2248 35% of taxable value.",
           "eligibility": {
             "service_requirement": "90+ consecutive days active duty during qualifying wartime period",
             "qualifying_periods_note": "Includes WWII, Korea, Vietnam, Persian Gulf, and other designated periods per NRS 361.090",
@@ -1704,7 +2332,7 @@
           "eligibility": {
             "rating_required": 60,
             "rating_note": "Permanent service-connected disability of 60% or more. Combined percentages allowed (not to exceed 100%).",
-            "iu_eligible_note": "Statute references 'permanent service-connected disability' with specific percentage — IU not explicitly addressed; recommend verification with county assessor",
+            "iu_eligible_note": "Statute references 'permanent service-connected disability' with specific percentage \u2014 IU not explicitly addressed; recommend verification with county assessor",
             "honorable_discharge_required": true,
             "residency_required": true
           },
@@ -1765,7 +2393,7 @@
           {
             "name": "STAR Exemption",
             "available": true,
-            "note": "School Tax Relief — reduces school property taxes for owner-occupied primary residences. Basic STAR and Enhanced STAR (age 65+) available."
+            "note": "School Tax Relief \u2014 reduces school property taxes for owner-occupied primary residences. Basic STAR and Enhanced STAR (age 65+) available."
           }
         ]
       },
@@ -1775,7 +2403,7 @@
         "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/New-York"
       ],
       "veteran_benefits": {
-        "_schema_note": "Veteran-specific property tax benefits for New York. Three exemption types available — local option. Amounts set by municipality. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "_schema_note": "Veteran-specific property tax benefits for New York. Three exemption types available \u2014 local option. Amounts set by municipality. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
         "alternative_veterans_exemption": {
           "available": true,
           "exemption_type": "partial",
@@ -1792,9 +2420,9 @@
               "additional_note": "Additional 10% of assessed value for combat zone service, subject to local cap"
             },
             "disability": {
-              "formula": "Assessed value × 50% × disability rating percentage",
+              "formula": "Assessed value \u00d7 50% \u00d7 disability rating percentage",
               "max_exemption": 40000,
-              "max_note": "Up to $40,000 or the product of $40,000 × latest equalization rate, whichever is less"
+              "max_note": "Up to $40,000 or the product of $40,000 \u00d7 latest equalization rate, whichever is less"
             }
           },
           "eligibility": {
@@ -1803,14 +2431,14 @@
             "primary_residence": true
           },
           "application_deadline": "March 1 in most communities",
-          "authority": "RPTL §458-a"
+          "authority": "RPTL \u00a7458-a"
         },
         "cold_war_veterans_exemption": {
           "available": true,
           "exemption_type": "partial",
           "local_option": true,
           "description": "Local-option exemption for veterans who served during the Cold War period. Similar structure to alternative veterans exemption.",
-          "authority": "RPTL §458-b"
+          "authority": "RPTL \u00a7458-b"
         },
         "_pending_legislation": {
           "s1183_a74": {
@@ -1896,7 +2524,7 @@
             "must_have_been_receiving": true,
             "must_occupy_homestead": true
           },
-          "authority": "ORC §323.152; ORC §4503.065"
+          "authority": "ORC \u00a7323.152; ORC \u00a74503.065"
         },
         "_pending_legislation": {
           "sb_92": {
@@ -1904,6 +2532,91 @@
             "would_do": "Total property tax exemption for totally disabled veterans and surviving spouses on primary residence. Effective tax year 2025 for real property, 2026 for manufactured homes.",
             "note": "Would replace partial enhanced exemption with full exemption"
           }
+        }
+      }
+    },
+    {
+      "state_code": "OK",
+      "state_name": "Oklahoma",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "100% of income received as salary or compensation by an Oklahoma resident as a member of any component of the Armed Forces is deductible from taxable income, including retired pay"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Oklahoma does not tax Social Security benefits included in federal AGI"
+        },
+        "top_rate": 0.0475,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 4.75% on income over $7,200 single / $12,200 joint (2025)"
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Exemption",
+            "available": true,
+            "amount": 1000,
+            "amount_note": "Assessed value, not market value. Results in approximately $80-$120 tax savings depending on millage rate.",
+            "eligibility": "Oklahoma resident, owner-occupied primary residence"
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Oklahoma",
+        "https://oklahoma.gov/veterans/benefits.html",
+        "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/ad-valorem/current/998.pdf"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Oklahoma veteran-specific benefits. Full property tax exemption for 100% disabled veterans (constitutional provision). Sales tax and motor vehicle exemptions also available. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from property tax on the fair cash value of homestead property for 100% permanently disabled veterans and surviving spouses. Constitutional provision effective January 1, 2006.",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": true,
+            "iu_note": "Veterans in receipt of compensation at the 100% rate qualify",
+            "honorable_discharge_required": true,
+            "oklahoma_resident": true,
+            "homestead_required": true,
+            "homestead_note": "Must have homestead exemption in place or be eligible. Must own and occupy as of January 1."
+          },
+          "application": {
+            "where": "County assessor's office",
+            "form": "OTC Form 998",
+            "documentation": [
+              "VA property tax letter with raised seal certifying 100% permanent disability",
+              "DD-214"
+            ],
+            "filing_deadline": "Deed recorded by February 1; file anytime",
+            "reapplication": "Not required unless qualifications change or property changes"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "killed_in_action_spouse": true
+          },
+          "authority": "Okla. Const. Art. 10, \u00a78E; 68 O.S. \u00a72887"
+        },
+        "disabled_veteran_sales_tax_exemption": {
+          "available": true,
+          "annual_limit": 25000,
+          "description": "100% permanently disabled veterans exempt from sales tax on up to $25,000 in annual purchases (excludes tobacco, alcohol, vehicles). Surviving spouses: up to $1,000.",
+          "requires_veterans_registry": true,
+          "exemption_type": "full"
+        },
+        "disabled_veteran_motor_vehicle_exemption": {
+          "available": true,
+          "description": "Motor vehicle excise tax exemption for 100% permanently disabled veterans. One vehicle per consecutive three-year period. Surviving spouses not eligible.",
+          "authority": "68 O.S.",
+          "exemption_type": "full"
         }
       }
     },
@@ -1968,7 +2681,7 @@
             "rating_note": "40% or more disability certified by VA, branch of service, or licensed physician",
             "service_connected_higher_amount": true,
             "service_connected_note": "Service-connected disability qualifies for higher exemption amount ($31,565 vs $26,303)",
-            "iu_eligible_note": "Requires disability certification at 40%+ — IU with 40%+ combined rating should qualify; recommend verification",
+            "iu_eligible_note": "Requires disability certification at 40%+ \u2014 IU with 40%+ combined rating should qualify; recommend verification",
             "wartime_service_required": true,
             "wartime_service_note": "91+ consecutive days beginning on or before Jan 31, 1955, or 178+ days beginning after Jan 31, 1955",
             "honorable_discharge_required": true,
@@ -2018,7 +2731,7 @@
           "exemption_year": "2025-2026",
           "annual_increase_percent": 3,
           "eligibility": {
-            "requirement": "Oregon resident National Guard or Reserve member called to federal active duty — at least one day of qualified service during tax year",
+            "requirement": "Oregon resident National Guard or Reserve member called to federal active duty \u2014 at least one day of qualified service during tax year",
             "note": "Started at $60,000 in 2005, increasing 3% annually"
           },
           "application": {
@@ -2050,7 +2763,7 @@
         },
         "top_rate": 0.0307,
         "rate_type": "flat",
-        "rate_note": "PA flat tax of 3.07% — among the lowest income tax rates in the nation"
+        "rate_note": "PA flat tax of 3.07% \u2014 among the lowest income tax rates in the nation"
       },
       "property_tax": {
         "exemptions": [
@@ -2104,7 +2817,7 @@
             "note": "Dwelling must be owned solely by veteran or as estate by the entirety with spouse"
           },
           "application": {
-            "file_with": "County Director of Veterans Affairs — State Veterans' Commission certifies financial need",
+            "file_with": "County Director of Veterans Affairs \u2014 State Veterans' Commission certifies financial need",
             "deadline_note": "Must file before tax period commences for that period's exemption",
             "documentation": [
               "DD-214 or equivalent discharge document",
@@ -2124,13 +2837,13 @@
           },
           "pending_legislation": {
             "bill_1": "SB 831 (2025-2026 session)",
-            "bill_1_status": "In committee — bipartisan support",
+            "bill_1_status": "In committee \u2014 bipartisan support",
             "bill_1_proposed": "Would remove wartime service requirement and add graduated reductions for 10%+ disability ($7,500-$15,000 based on rating)",
             "bill_2": "HB 1257 / companion constitutional amendment",
             "bill_2_status": "Passed House committee unanimously (June 2025)",
             "bill_2_proposed": "Constitutional amendment to expand to all 100% disabled veterans regardless of wartime service, plus proportional exemption for 50%+ disability"
           },
-          "authority": "51 Pa.C.S. Ch. 89; 43 Pa. Code Ch. 5 Sub-Chapter C; PA Constitution Art. VIII, § 2(c)"
+          "authority": "51 Pa.C.S. Ch. 89; 43 Pa. Code Ch. 5 Sub-Chapter C; PA Constitution Art. VIII, \u00a7 2(c)"
         },
         "_funding_fee_note": "See federal_veteran_benefits for VA funding fee exemption details"
       }
@@ -2181,7 +2894,7 @@
           "eligibility": {
             "rating_required": 100,
             "pt_required": true,
-            "iu_eligible_note": "Verify with SC DOR — statute references permanent and total disability",
+            "iu_eligible_note": "Verify with SC DOR \u2014 statute references permanent and total disability",
             "honorable_discharge_note": "Service in U.S. Armed Forces",
             "primary_residence": true,
             "acreage_limit": 5
@@ -2202,12 +2915,12 @@
             "available": true,
             "note": "Veterans with specific mobility or brain injuries may be exempt from all residence taxes"
           },
-          "authority": "SC Code §12-37-220(B)(1)"
+          "authority": "SC Code \u00a712-37-220(B)(1)"
         },
         "_pending_legislation": {
           "hb_4700": {
             "status": "Introduced January 2026",
-            "would_do": "Proportional exemption for veterans with less than 100% disability — percentage equal to disability rating",
+            "would_do": "Proportional exemption for veterans with less than 100% disability \u2014 percentage equal to disability rating",
             "note": "Would first apply to property tax years beginning after 2025"
           }
         }
@@ -2226,7 +2939,7 @@
             "name": "Tax Relief for Elderly and Disabled",
             "available": true,
             "eligibility": "Age 65+ or permanently and totally disabled",
-            "income_limit_note": "Income limits apply — vary by program year",
+            "income_limit_note": "Income limits apply \u2014 vary by program year",
             "note": "State reimbursement program, not a true exemption. Homeowner pays taxes, then receives state refund."
           }
         ]
@@ -2236,7 +2949,7 @@
         "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Tennessee"
       ],
       "veteran_benefits": {
-        "_schema_note": "Veteran-specific property tax relief for Tennessee. No state income tax. Property tax relief is a reimbursement program — not an exemption. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "_schema_note": "Veteran-specific property tax relief for Tennessee. No state income tax. Property tax relief is a reimbursement program \u2014 not an exemption. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
         "disabled_veteran_property_tax_relief": {
           "available": true,
           "exemption_type": "credit",
@@ -2263,9 +2976,9 @@
             "unremarried_spouse": true,
             "note": "Surviving spouse may qualify for continued property tax relief"
           },
-          "authority": "TCA §67-5-704",
+          "authority": "TCA \u00a767-5-704",
           "credit_mechanism": "reimbursement",
-          "credit_note": "Operates as a state reimbursement — veteran pays taxes first, then receives refund"
+          "credit_note": "Operates as a state reimbursement \u2014 veteran pays taxes first, then receives refund"
         }
       }
     },
@@ -2313,13 +3026,13 @@
           "eligibility": {
             "rating_required": 100,
             "pt_required": false,
-            "pt_note": "100% rating OR IU determination qualifies — P&T not specifically required",
+            "pt_note": "100% rating OR IU determination qualifies \u2014 P&T not specifically required",
             "iu_eligible": true,
             "iu_note": "Veterans receiving 100% compensation due to Individual Unemployability (IU) determination qualify",
             "compensation_required": true,
             "compensation_note": "Must be receiving 100% disability compensation from VA"
           },
-          "scope": "Residence homestead only — other properties may qualify for partial exemption under § 11.22",
+          "scope": "Residence homestead only \u2014 other properties may qualify for partial exemption under \u00a7 11.22",
           "homestead_required": true,
           "applies_to_all_taxing_units": true,
           "applies_note": "Exemption removes entire appraised value from school, county, city, and special district taxes",
@@ -2348,7 +3061,7 @@
             "spouse_portable": true,
             "spouse_portable_note": "Surviving spouse may transfer to new homestead but exemption amount capped at dollar amount from last year exemption was received on prior homestead"
           },
-          "authority": "Texas Tax Code § 11.131",
+          "authority": "Texas Tax Code \u00a7 11.131",
           "sources": [
             "https://comptroller.texas.gov/taxes/property-tax/exemptions/disabledvet-100-faq.php",
             "https://texvet.org/property-tax"
@@ -2368,7 +3081,7 @@
             "50_69_percent": 10000,
             "70_99_percent": 12000
           },
-          "scope": "Can apply to ANY one property veteran owns — not limited to homestead",
+          "scope": "Can apply to ANY one property veteran owns \u2014 not limited to homestead",
           "homestead_required": false,
           "additional_exemption_65_plus": {
             "available": true,
@@ -2387,7 +3100,7 @@
             "children_note": "Surviving child must be under 18 and unmarried",
             "spouse_must_not_remarry": true
           },
-          "authority": "Texas Tax Code § 11.22",
+          "authority": "Texas Tax Code \u00a7 11.22",
           "sources": [
             "https://comptroller.texas.gov/taxes/property-tax/exemptions/disabledvet-faq.php"
           ]
@@ -2407,7 +3120,7 @@
             "spouse_exemption_100_percent": true,
             "spouse_note": "Surviving spouse receives 100% exemption if veteran had 100% rating, or same percentage as veteran otherwise"
           },
-          "authority": "Texas Tax Code § 11.132",
+          "authority": "Texas Tax Code \u00a7 11.132",
           "sources": [
             "https://comptroller.texas.gov/taxes/property-tax/exemptions/disabledvet-faq.php"
           ]
@@ -2424,14 +3137,14 @@
           "survivor_conditions": {
             "spouse_must_not_remarry": true
           },
-          "authority": "Texas Tax Code § 11.133",
+          "authority": "Texas Tax Code \u00a7 11.133",
           "sources": [
             "https://comptroller.texas.gov/taxes/property-tax/exemptions/",
             "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Texas"
           ]
         },
         "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file.",
-        "_vehicle_note": "Texas offers disabled veteran license plates and related vehicle registration fee exemptions — see Texas DMV for details."
+        "_vehicle_note": "Texas offers disabled veteran license plates and related vehicle registration fee exemptions \u2014 see Texas DMV for details."
       }
     },
     {
@@ -2445,7 +3158,7 @@
           "age_threshold": 65,
           "phase_out_income_start": 62000,
           "phase_out_income_end": 87000,
-          "filing_status_note": "Per taxpayer — both spouses may each claim if both qualify"
+          "filing_status_note": "Per taxpayer \u2014 both spouses may each claim if both qualify"
         },
         "military_retirement": {
           "exempt": true,
@@ -2490,7 +3203,7 @@
             "name": "Senior and Disabled Exemption",
             "available": true,
             "eligibility": "Age 65+ or totally disabled",
-            "income_limit_note": "Varies by locality — set by each county/city",
+            "income_limit_note": "Varies by locality \u2014 set by each county/city",
             "net_worth_limit_note": "Varies by locality",
             "note": "Virginia localities (counties/cities) administer their own senior property tax relief programs within state guidelines. Actual benefit varies significantly by location."
           }
@@ -2516,7 +3229,7 @@
             "iu_note": "Veterans rated less than 100% but compensated at 100% via Individual Unemployability (IU), AND rated P&T, also qualify"
           },
           "effective_date": "2011-01-01",
-          "acreage_note": "If locality provides exemption/deferral of more than 1 acre under Article 2 (§ 58.1-3210 et seq.), the same acreage applies to this exemption",
+          "acreage_note": "If locality provides exemption/deferral of more than 1 acre under Article 2 (\u00a7 58.1-3210 et seq.), the same acreage applies to this exemption",
           "manufactured_home": true,
           "manufactured_home_note": "Manufactured homes qualify even if veteran does not own the land, but the land itself is not exempt in that case",
           "survivor_transfer": true,
@@ -2562,9 +3275,9 @@
           "spouse_during_life": true,
           "spouse_during_life_note": "Vehicle owned by married couple qualifies if either spouse is the qualifying veteran",
           "survivor_transfer": false,
-          "survivor_note": "Exemption expires on date of veteran's death. Passing the exemption to a surviving spouse is prohibited by statute (§ 58.1-3668(C)).",
+          "survivor_note": "Exemption expires on date of veteran's death. Passing the exemption to a surviving spouse is prohibited by statute (\u00a7 58.1-3668(C)).",
           "reduced_rate_available": true,
-          "reduced_rate_note": "Localities may separately offer a reduced personal property tax rate for veterans with certain disabilities (lost limbs, blind, P&T) under § 58.1-3506(A)(19). This is independent of the full exemption and rates vary by locality.",
+          "reduced_rate_note": "Localities may separately offer a reduced personal property tax rate for veterans with certain disabilities (lost limbs, blind, P&T) under \u00a7 58.1-3506(A)(19). This is independent of the full exemption and rates vary by locality.",
           "sources": [
             "https://law.lis.virginia.gov/vacode/title58.1/chapter36/section58.1-3668/",
             "https://law.lis.virginia.gov/constitution/article10/section6/",
@@ -2575,7 +3288,7 @@
           "available": true,
           "exemption_type": "full",
           "description": "Real property tax exemption for surviving spouse of service member who died in the line of duty (DoD Line of Duty determination)",
-          "scope": "Separate from the 100% P&T disabled veteran exemption — this covers surviving spouses of service members who died in the line of duty, not just killed in action",
+          "scope": "Separate from the 100% P&T disabled veteran exemption \u2014 this covers surviving spouses of service members who died in the line of duty, not just killed in action",
           "eligibility": {
             "veteran_rating_required": "none",
             "condition": "Service member died in the line of duty with a Line of Duty determination from the U.S. Department of Defense",
@@ -2630,7 +3343,7 @@
         "disabled_veteran_property_tax_reduction": {
           "available": true,
           "exemption_type": "reduction",
-          "description": "Income-based property tax reduction for disabled veterans — amount varies by income level, property value, and local levy rates",
+          "description": "Income-based property tax reduction for disabled veterans \u2014 amount varies by income level, property value, and local levy rates",
           "benefit_type": "Value frozen and exemption from excess/special levies; possible reduction in regular levies depending on income",
           "eligibility": {
             "rating_required": 80,
@@ -2643,15 +3356,15 @@
           "income_requirements": {
             "income_based": true,
             "threshold_varies_by_county": true,
-            "threshold_note": "Income Threshold 3 is based on county median household income — varies by county",
+            "threshold_note": "Income Threshold 3 is based on county median household income \u2014 varies by county",
             "va_benefits_excluded": true,
             "va_benefits_note": "VA disability compensation and DIC are NOT counted toward combined disposable income"
           },
           "benefit_levels": {
             "note": "Three exemption levels based on final calculated combined disposable income",
-            "level_1": "Highest income within threshold — frozen value, exempt from excess levies",
-            "level_2": "Mid-range income — additional levy exemptions",
-            "level_3": "Lowest income — maximum exemptions from regular and excess levies"
+            "level_1": "Highest income within threshold \u2014 frozen value, exempt from excess levies",
+            "level_2": "Mid-range income \u2014 additional levy exemptions",
+            "level_3": "Lowest income \u2014 maximum exemptions from regular and excess levies"
           },
           "application": {
             "file_with": "County Assessor where property is located",
@@ -2679,7 +3392,7 @@
           "available": true,
           "exemption_type": "grant",
           "description": "Grant assistance for property tax payment for qualifying surviving spouses of veterans",
-          "benefit_type": "Grant to help pay property taxes — does not need to be repaid if residence requirements met",
+          "benefit_type": "Grant to help pay property taxes \u2014 does not need to be repaid if residence requirements met",
           "eligibility": {
             "spouse_age_required": 62,
             "spouse_must_not_remarry": true,
@@ -2705,9 +3418,69 @@
         },
         "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file."
       }
+    },
+    {
+      "state_code": "WI",
+      "state_name": "Wisconsin",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "military_retirement": {
+          "exempt": true,
+          "note": "Wisconsin fully exempts military retirement pay from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Wisconsin does not tax Social Security benefits"
+        },
+        "top_rate": 0.0765,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 7.65% on income over $405,550 (2025)"
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://www.revenue.wi.gov/Pages/FAQS/ise-vetcr.aspx",
+        "https://dva.wi.gov/Pages/benefitsClaims/Property-Tax-Credit.aspx",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Wisconsin"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Wisconsin veteran-specific benefits. Property tax relief delivered via refundable income tax credit, not exemption. 100% of property taxes reimbursed for qualifying veterans. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_credit": {
+          "available": true,
+          "exemption_type": "credit",
+          "description": "Refundable income tax credit equal to 100% of property taxes paid on primary residence. Not a traditional property tax exemption \u2014 filed on Wisconsin income tax return after WDVA certification.",
+          "eligibility": {
+            "rating_required": 100,
+            "iu_eligible": true,
+            "iu_note": "Certain IU cases qualify; WDVA certification required",
+            "residency_requirement": "Must have been Wisconsin resident upon entry into military service or for five consecutive years after beginning service",
+            "homestead_required": true,
+            "land_limit": "Primary residence including land up to one acre"
+          },
+          "application": {
+            "where": "Wisconsin Department of Veterans Affairs (WDVA) for eligibility certification; claim on Wisconsin income tax return",
+            "documentation": [
+              "WDVA eligibility certification",
+              "Property tax bill"
+            ],
+            "reapplication": "Annual claim on income tax return"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "wdva_certification_required": true
+          },
+          "authority": "Wis. Stat. \u00a771.07(6e)"
+        }
+      }
     }
   ],
-  "_expansion_note": "25 states live: VA, MD, DC, FL, TX, GA, NC, CO, WA (v1.4) + PA, AK, HI, AZ, NV, OR (v1.5) + CA, NY, OH, IL, MI, TN, SC, AL, MO, IN (v1.6). Priority coverage for federal workforce, high veteran population, and highest veteran-population uncovered states.",
+  "_expansion_note": "Coverage: 35 states/territories as of v1.7. Tier 1 (9 states, Session 14), Tier 2 (6 states, Session 15), Tier 3A (10 states, Session 25), Tier 3B (10 states, Session 27). Next: Tier 3C-D for remaining states toward 50-state coverage.",
   "federal_veteran_benefits": {
     "_schema_note": "Federal veteran benefits that apply identically in all states. Included at root level to avoid repeating in every state entry. State entries reference this section.",
     "va_funding_fee_exemption": {
@@ -2740,15 +3513,15 @@
           "age_57_rule": {
             "description": "Remarriage after age 57 does not bar housing loan benefits (including funding fee exemption)",
             "effective": "2004-01-01",
-            "authority": "38 U.S.C. § 103(d)(2)(B), Veterans Benefits Act of 2003"
+            "authority": "38 U.S.C. \u00a7 103(d)(2)(B), Veterans Benefits Act of 2003"
           },
           "age_55_rule": {
             "description": "Remarriage after age 55 does not bar DIC or CHAMPVA benefits, but housing loan benefits require age 57+",
             "effective": "2003-02-04",
-            "authority": "38 U.S.C. § 103(d)(2)(B), Veterans Benefits Act of 2002",
+            "authority": "38 U.S.C. \u00a7 103(d)(2)(B), Veterans Benefits Act of 2002",
             "benefits_covered": [
-              "DIC (§ 1311)",
-              "CHAMPVA (§ 1781)"
+              "DIC (\u00a7 1311)",
+              "CHAMPVA (\u00a7 1781)"
             ],
             "benefits_not_covered": [
               "housing_loans (chapter 37)",
@@ -2757,7 +3530,7 @@
           },
           "terminated_remarriage": {
             "description": "If remarriage ends by death, divorce, or annulment, DIC and related benefits may be reinstated regardless of age at remarriage",
-            "authority": "38 U.S.C. § 103(d)(2)(A), 38 CFR § 3.55(a)(3)"
+            "authority": "38 U.S.C. \u00a7 103(d)(2)(A), 38 CFR \u00a7 3.55(a)(3)"
           }
         }
       },
@@ -2768,5 +3541,6 @@
         "https://news.va.gov/145096/borrowers-can-deduct-funding-fees/"
       ]
     }
-  }
+  },
+  "last_updated": "2026-03-13"
 }

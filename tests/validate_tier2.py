@@ -42,7 +42,8 @@ VALID_EXEMPTION_TYPES = [
     "reduction",
     "discount",
     "grant",
-    "credit"
+    "credit",
+    "refund"
 ]
 
 # Valid IU eligibility values

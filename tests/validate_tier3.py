@@ -132,21 +132,25 @@ def check_retiree_guidance(data, results):
 
 
 def check_version(data, results):
-    """T3-005: Version is 1.6."""
+    """T3-005: Version is at least 1.6."""
     version = data.get("version", "")
-    if version == "1.6":
-        results.add_pass("T3-005-version", "Version 1.6")
-    else:
-        results.add_fail("T3-005-version", f"Expected version 1.6, got '{version}'")
+    try:
+        vf = float(version)
+        if vf >= 1.6:
+            results.add_pass("T3-005-version", f"Version {version} >= 1.6")
+        else:
+            results.add_fail("T3-005-version", f"Version {version} < 1.6")
+    except ValueError:
+        results.add_fail("T3-005-version", f"Version not numeric: {version}")
 
 
 def check_total_state_count(data, results):
-    """T3-006: Total states is 25 (15 prior + 10 new)."""
+    """T3-006: Total states is at least 25 (15 prior + 10 Tier 3A)."""
     count = len(data.get("states", []))
-    if count == 25:
-        results.add_pass("T3-006-count", "25 states")
+    if count >= 25:
+        results.add_pass("T3-006-count", f"{count} states (>= 25)")
     else:
-        results.add_fail("T3-006-count", f"Expected 25 states, got {count}")
+        results.add_fail("T3-006-count", f"Expected >= 25 states, got {count}")
 
 
 # ============================================================
