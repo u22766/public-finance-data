@@ -11,7 +11,7 @@ This repository contains **no personal information of any kind**. All data is dr
 A structured, version-controlled library of government-published financial data useful for retirement planning, tax analysis, benefits estimation, and fiscal modeling. Coverage includes:
 
 - **Federal retirement systems** — FERS rates, TSP contribution limits, COLA history, Social Security bend points and taxable maximums
-- **Federal pay** — GS pay tables (all grades/steps/localities) and DCIPS pay bands
+- **Federal pay** — GS pay tables (all grades/steps/localities), DCIPS pay bands, and military basic pay (27 grades × 22 YOS, 2016–2026)
 - **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL), Medicare IRMAA
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
 - **Tax data** — Federal brackets, standard deductions, IRA/Roth limits and phase-outs
@@ -26,7 +26,7 @@ Designed as a generic data source that any application, tool, or analysis can co
 
 ## How to Use This Repo
 
-1. Fetch `manifest.json` first — it's the version index listing all 23 available data files.
+1. Fetch `manifest.json` first — it's the version index listing all 44 available data files.
 2. Compare each file's `version` to your locally cached copy.
 3. Fetch only the files that have newer versions.
 4. If GitHub is unreachable, fall back to your last cached fetch.
@@ -39,7 +39,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 43 entries)
+├── manifest.json                                ← Fetch this first (master version index, 44 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -58,6 +58,7 @@ public-finance-data/
 │   ├── estate-gift-tax.json                     ← Estate & gift tax exemptions (1916–2026)
 │   ├── fers-contribution-rates.json             ← FERS employee contribution rates by hire cohort
 │   ├── fehb-premium-history.json                ← FEHB average premium history (1999–2025)
+│   ├── military-pay-tables.json                 ← Military basic pay by grade/YOS (2016–2026, 27 grades)
 │   ├── dcips/
 │   │   └── dcips-pay-tables.json                ← DCIPS pay bands — all occupational categories
 │   ├── healthcare/
@@ -99,7 +100,7 @@ public-finance-data/
 │   ├── ssa-life-table.json                      ← SSA period life table (ages 0–119, M/F/combined)
 │   ├── other-db-template.json                   ← Generic DB plan template for user-entered pensions
 │   ├── social-security-claiming.json            ← SS claiming strategy rules and reduction factors
-│   ├── military-retirement-rules.json           ← Military retirement system rules (Legacy, Redux, BRS)
+│   ├── military-retirement-rules.json           ← Military retirement rules (Legacy, Redux, BRS, Ch.61 disability, CRDP/CRSC)
 │   ├── rmd-rules-history.json                   ← RMD age threshold history and SECURE Act changes
 │   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
@@ -113,6 +114,7 @@ public-finance-data/
     ├── validate_pharmacy.py                     ← TRICARE pharmacy validation (92 checks)
     ├── validate_dental.py                       ← TRICARE dental validation (116 checks)
     └── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
+    └── validate_military.py                     ← Military retirement rules + pay tables validation (705 checks)
 ```
 
 ### Domain Organization
@@ -125,7 +127,7 @@ Files are organized by jurisdiction and domain:
 
 ---
 
-## Manifest — Current Data Files (43 Entries)
+## Manifest — Current Data Files (44 Entries)
 
 | Key | Version | File |
 |-----|---------|------|
@@ -152,7 +154,7 @@ Files are organized by jurisdiction and domain:
 | `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
 | `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
-| `state_benefits` | 1.5 | `states/state-benefits.json` |
+| `state_benefits` | 1.6 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
 | `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
 | `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
@@ -169,7 +171,8 @@ Files are organized by jurisdiction and domain:
 | `ssa_life_table` | 1.0 | `reference/ssa-life-table.json` |
 | `other_db_template` | 1.0.0 | `reference/other-db-template.json` |
 | `social_security_claiming` | 1.1 | `reference/social-security-claiming.json` |
-| `military_retirement_rules` | 1.0 | `reference/military-retirement-rules.json` |
+| `military_retirement_rules` | 2.0 | `reference/military-retirement-rules.json` |
+| `military_pay_tables` | 2026.1 | `federal/military-pay-tables.json` |
 | `rmd_rules_history` | 1.0 | `reference/rmd-rules-history.json` |
 | `obbba_tax_provisions` | 1.0 | `reference/obbba-tax-provisions.json` |
 
@@ -187,11 +190,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs nine test suites totaling **3,362 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs ten test suites totaling **4,071 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 311 | Manifest integrity, all federal/state/reference files |
+| Core | `validate.py` | 315 | Manifest integrity, all federal/state/reference files |
 | Tier 2 | `validate_tier2.py` | 255 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
@@ -200,6 +203,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Dental | `validate_dental.py` | 116 | TRICARE dental premium validation |
 | OBBBA | `validate_obbba.py` | 71 | OBBBA tax provision structure and cross-references |
 | Tier 3A | `validate_tier3.py` | 123 | Tier 3A state expansion — CA, NY, OH, IL, MI, TN, SC, AL, MO, IN |
+| Military | `validate_military.py` | 705 | Military retirement rules v2.0, pay tables 2016–2026 |
 
 ---
 
@@ -217,6 +221,8 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | `federal/healthcare/medicare-rates.json` | November | CMS publishes new IRMAA thresholds |
 | `federal/veterans-affairs/compensation.json` | December | VA publishes new COLA rates |
 | `federal/veterans-affairs/vgli.json` | As published | VA updates VGLI premium schedule |
+| `federal/military-pay-tables.json` | January | NDAA enacts annual pay raise |
+| `reference/military-retirement-rules.json` | As enacted | Retirement/disability/concurrent receipt law changes |
 | `states/state-benefits.json` | As needed | State tax law changes |
 | `states/{state}/county-property-tax.json` | As needed | County rate or exemption changes |
 | Historical series (tsp, ss, ira, cola) | January | Annual new-year data point added |
@@ -250,6 +256,8 @@ All data in this repository is drawn from official U.S. government sources:
 | RMD Uniform Lifetime Table | IRS Pub. 590-B | https://www.irs.gov/publications/p590b |
 | VRS plan parameters | VRS | https://www.varetire.org/retirement-plans/ |
 | ERFC plan parameters | ERFC | https://www.erfcpension.org/ |
+| Military basic pay tables | DFAS / navycs.com | https://militarypay.defense.gov/Pay/Basic-Pay/ |
+| Military retirement rules | Defense.gov / USC | https://militarypay.defense.gov/Pay/Retirement/ |
 
 ---
 
@@ -338,6 +346,13 @@ When updating a file, always:
 ### `manifest.json`
 - [ ] Update `"last_updated"` date
 - [ ] Confirm all file versions match their respective files
+
+### `federal/military-pay-tables.json` (January, after NDAA)
+- [ ] Add new year's pay table (all 27 grades × 22 YOS columns)
+- [ ] Update `pay_raise_history` with new year's raise percentage and NDAA authority
+- [ ] Verify values against DFAS published tables
+- [ ] Update `"version"` to new year
+- [ ] Update `manifest.json` `military_pay_tables.version`
 
 ---
 
