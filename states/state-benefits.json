@@ -1,6 +1,6 @@
 {
-  "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 1.4. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
-  "version": "2.0",
+  "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
+  "version": "2.1",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary — 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -256,6 +256,41 @@
           "authority": "Ark. Const. Amend. 49; ACA §26-3-306"
         },
         "_vehicle_note": "Arkansas levies ad valorem tax on motor vehicles. The disabled_veteran_property_tax_exemption covers both homestead and qualifying personal property including vehicles for 100% disabled veterans. Vehicle property tax is paid at time of annual tag renewal per ACA §26-26-1119."
+      }
+    },
+    {
+      "state_code": "AS",
+      "state_name": "American Samoa",
+      "is_territory": true,
+      "_territory_note": "Unincorporated US territory. American Samoa has sought to mirror its tax code on the federal IRC, but progress to fully incorporate federal tax benefits is unclear. Residents are US nationals (not citizens by birth) unless born to a US citizen parent.",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "_tax_system": "Attempting mirror code adoption of federal IRC; implementation status unclear",
+        "military_retirement": {
+          "exempt": false,
+          "note": "Military retired pay tax treatment under American Samoa's tax code is unclear due to incomplete mirror code implementation"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation is federally exempt"
+        },
+        "ss_income": {
+          "exempt": false,
+          "note": "Social Security coverage applies; tax treatment under AS code unclear"
+        },
+        "note": "American Samoa's tax system is based on an incomplete adoption of the federal IRC. Residents should consult the American Samoa Tax Office for current treatment of retirement income."
+      },
+      "property_tax": {
+        "exemptions": [],
+        "note": "No specific veteran property tax exemptions have been identified for American Samoa"
+      },
+      "sources": [
+        "https://www.cnas.org/publications/commentary/state-level-veteran-benefits-in-u-s-territories",
+        "https://www.irs.gov/individuals/international-taxpayers/individuals-living-or-working-in-a-us-territory"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "American Samoa offers zero territory-level veteran benefits per CNAS analysis. Federal VA benefits (compensation, healthcare, education) apply. No territory-specific property tax or income tax exemptions have been identified.",
+        "_no_benefits_note": "As of 2026, American Samoa does not offer territory-specific veteran tax exemptions, property tax exemptions, or employment preference benefits. Veterans rely on federal VA benefits."
       }
     },
     {
@@ -1264,6 +1299,89 @@
           ]
         },
         "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file."
+      }
+    },
+    {
+      "state_code": "GU",
+      "state_name": "Guam",
+      "is_territory": true,
+      "_territory_note": "Unincorporated US territory using a mirror tax code — residents file with the Guam Department of Revenue and Taxation at federal income tax rates, not with the IRS.",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "_tax_system": "mirror_code",
+        "_mirror_note": "Guam mirrors the federal IRC. Residents pay taxes at federal rates to Guam DRT, not the IRS. Federal tax brackets and standard deduction apply.",
+        "military_retirement": {
+          "exempt": false,
+          "note": "Military retired pay is taxable in Guam at federal rates"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation is federally exempt and excluded from Guam taxable income"
+        },
+        "dic": {
+          "exempt": true,
+          "note": "Dependency and Indemnity Compensation is tax-free under both federal and Guam mirror code"
+        },
+        "sbp": {
+          "taxable": true,
+          "note": "Survivor Benefit Plan annuities are taxable in Guam at federal rates"
+        },
+        "disability_retirement_pay": {
+          "exempt": true,
+          "note": "Military disability retirement pay for service-connected injury/sickness is excluded from taxable income per IRS Publication 525"
+        },
+        "ss_income": {
+          "exempt": false,
+          "note": "Social Security benefits taxed under the same rules as federal — partially taxable based on combined income thresholds"
+        },
+        "top_rate": 0.37,
+        "note": "Guam mirrors federal tax rates. Top marginal rate is 37% (same as federal). Residents file with Guam DRT, not IRS."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Exemption",
+            "available": true,
+            "note": "Guam offers homestead exemptions for primary residences — contact Guam DRT for current limits"
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Guam",
+        "https://www.guamtax.com/",
+        "https://www.cnas.org/publications/commentary/state-level-veteran-benefits-in-u-s-territories",
+        "https://vaclaimsinsider.com/guam-veteran-benefits-ultimate-guide/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Veteran-specific property and housing benefits for Guam. All require documentation from VA. Federal benefits are in the federal_veteran_benefits root section. Guam offers 14 territory-level veteran benefits per CNAS analysis.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from all Guam property taxes on one residence for 100% disabled or individually unemployable veterans",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": false,
+            "pt_note": "100% service-connected disability OR individually unemployable (IU) rating required — P&T not explicitly required",
+            "iu_eligible": true,
+            "service_requirement": "Must have served in the U.S. Armed Forces"
+          },
+          "max_properties": 1,
+          "max_properties_note": "Exemption applies to one residence per veteran; does not apply to commercial properties",
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "gold_star_parents": true,
+            "legal_guardian": true,
+            "legal_guardian_note": "Legal guardian managing the property of a veteran with service-connected disabilities also qualifies",
+            "minor_dependents": true,
+            "minor_dependents_note": "Minor dependent children supervised by a legal guardian qualify"
+          },
+          "sources": [
+            "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Guam",
+            "https://www.guamtax.com/forms/ApplicationforVeteranExemption.pdf"
+          ]
+        },
+        "_vehicle_note": "No specific veteran vehicle personal property tax exemption identified. Guam does not appear to levy an annual vehicle personal property tax in the manner of states like Virginia or Mississippi. Veterans with VA-provided vehicles may have separate license/registration benefits."
       }
     },
     {
@@ -2458,6 +2576,53 @@
           },
           "authority": "RSMo §137.106"
         }
+      }
+    },
+    {
+      "state_code": "MP",
+      "state_name": "Northern Mariana Islands",
+      "is_territory": true,
+      "_territory_note": "Commonwealth in political union with the US. CNMI mirrors the federal IRC as its income tax law, substituting 'CNMI' for 'United States.' Bona fide residents file with the CNMI Division of Revenue and Taxation, not the IRS.",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "_tax_system": "mirror_code",
+        "_mirror_note": "CNMI mirrors the federal IRC. Bona fide residents file with CNMI Division of Revenue and Taxation. Additional local wage/salary and earnings taxes may apply.",
+        "military_retirement": {
+          "exempt": false,
+          "note": "Military retired pay is taxable in the CNMI at federal rates"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation is federally exempt and excluded from CNMI taxable income via mirror code"
+        },
+        "dic": {
+          "exempt": true,
+          "note": "DIC is tax-free under mirror code"
+        },
+        "disability_retirement_pay": {
+          "exempt": true,
+          "note": "Military disability retirement pay for service-connected injury/sickness is excluded from taxable income"
+        },
+        "ss_income": {
+          "exempt": false,
+          "note": "Social Security taxed under federal rules via mirror code"
+        },
+        "top_rate": 0.37,
+        "note": "CNMI mirrors federal tax rates with additional local taxes. Top marginal rate is 37% (federal mirror). Bona fide residents file with CNMI DRT."
+      },
+      "property_tax": {
+        "exemptions": [],
+        "note": "No specific general property tax exemptions identified for CNMI"
+      },
+      "sources": [
+        "https://finance.gov.mp/",
+        "https://www.cnas.org/publications/commentary/state-level-veteran-benefits-in-u-s-territories",
+        "https://vadisabilitygroup.com/northern-mariana-islands-us-territory-benefits-for-100-disabled-veterans/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Veteran-specific benefits for the Northern Mariana Islands. CNMI offers 4 territory-level veteran benefits per CNAS analysis, primarily tax exemptions inherited from the mirror code and employment/education benefits.",
+        "_mirror_code_tax_note": "CNMI mirrors the federal tax code, which means VA disability compensation, DIC, and military disability retirement pay are excluded from territorial income — these are inherited federal exemptions rather than CNMI-specific legislation.",
+        "_no_property_exemption_note": "No CNMI-specific disabled veteran property tax exemption has been identified. Veterans should contact the CNMI Division of Revenue and Taxation for current property tax relief programs."
       }
     },
     {
@@ -3735,6 +3900,168 @@
       }
     },
     {
+      "state_code": "PR",
+      "state_name": "Puerto Rico",
+      "is_territory": true,
+      "_territory_note": "Commonwealth of the US with its own tax code (not a mirror code). Residents file with the Puerto Rico Departamento de Hacienda, not the IRS. PR-sourced income is exempt from federal income tax for bona fide residents. Social Security and Medicare taxes apply.",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "_tax_system": "own_code",
+        "_code_note": "Puerto Rico has its own Internal Revenue Code separate from the federal IRC. Bona fide residents do not pay federal income tax on PR-sourced income but file with Hacienda.",
+        "military_retirement": {
+          "exempt": true,
+          "effective_year": 2025,
+          "note": "Legislation signed August 2024 exempts all military retired pay from territorial taxes, effective for 2025 tax year. Implementation by Hacienda and the Office of the Veterans Advocate is ongoing."
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation is federally exempt and not subject to PR territorial taxes"
+        },
+        "dic": {
+          "exempt": true,
+          "note": "DIC is tax-free"
+        },
+        "sbp": {
+          "taxable": true,
+          "note": "Survivor Benefit Plan annuities are taxable in Puerto Rico"
+        },
+        "veteran_personal_exemption": {
+          "amount": 1500,
+          "joint_amount": 3000,
+          "note": "Veterans may claim an additional $1,500 personal tax exemption ($3,000 if both spouses are veterans filing jointly). Available for life."
+        },
+        "federal_pension_deduction": {
+          "under_60": 11000,
+          "age_60_plus": 15000,
+          "note": "Retirees receiving a US government pension or annuity may deduct $11,000 (under 60) or $15,000 (60+) from territorial taxable income. Applies to FERS annuity, CSRS, and other federal pensions."
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Social Security benefits are not subject to Puerto Rico income tax"
+        },
+        "top_rate": 0.33,
+        "brackets": [
+          {
+            "min": 0,
+            "max": 9000,
+            "rate": 0.0
+          },
+          {
+            "min": 9001,
+            "max": 25000,
+            "rate": 0.07
+          },
+          {
+            "min": 25001,
+            "max": 41500,
+            "rate": 0.14
+          },
+          {
+            "min": 41501,
+            "max": 61500,
+            "rate": 0.25
+          },
+          {
+            "min": 61501,
+            "max": 999999999,
+            "rate": 0.33
+          }
+        ],
+        "note": "Puerto Rico has its own progressive tax system. Top rate is 33%. First $9,000 is tax-free. Federal income tax does NOT apply to PR-sourced income for bona fide residents. Social Security and Medicare payroll taxes apply."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Standard Veteran Property Tax Exemption",
+            "available": true,
+            "amount": 5000,
+            "amount_note": "Up to $5,000 of appraised taxable value of primary residence",
+            "eligibility": "Honorably discharged veterans and unremarried surviving spouses",
+            "land_limit": "1,000 square meters in urban zone or 1 cuerda (3,930 sq meters) in rural zone",
+            "duration": "Permanent",
+            "note": "Standard exemption for veteran-owned primary residence. Administered by CRIM (Centro de Recaudacion de Ingresos Municipales)."
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Puerto-Rico",
+        "https://vaclaimsinsider.com/the-best-puerto-rico-veteran-benefits/",
+        "https://law.justia.com/codes/puerto-rico/title-twenty-nine/part-iv/chapter-62/737/",
+        "https://news.va.gov/139592/unlocking-veteran-tax-exemptions-across-states-and-u-s-territories/",
+        "https://vadisabilitygroup.com/puerto-rico-us-territory-benefits-for-100-disabled-veterans/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Veteran-specific property, vehicle, and housing benefits for Puerto Rico. All require documentation from VA. Puerto Rico offers 13 territory-level veteran benefits per CNAS analysis. Land measurements use 'cuerda' (1 cuerda ≈ 3,930 sq meters ≈ 0.971 acres).",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "tiered",
+          "description": "Tiered real estate property tax exemption based on disability rating, from partial to full exemption",
+          "tiers": [
+            {
+              "name": "50%+ Service-Connected Disability",
+              "rating_required": 50,
+              "exemption_amount": 50000,
+              "exemption_note": "Exemption on first $50,000 of appraised taxable value of primary residence",
+              "documentation": "Written VA certification of disability rating as of January 1 of the tax year",
+              "residency_required": true,
+              "residency_note": "Veteran or veteran's family must have resided at dwelling from January 1 of year immediately preceding the year of requested exemption"
+            },
+            {
+              "name": "100% Disabled Veteran Full Exemption",
+              "rating_required": 100,
+              "exemption_type": "full",
+              "exemption_note": "Complete exemption from property taxes on primary residence",
+              "includes_family": true,
+              "family_note": "Applies to house built, acquired, or remodeled by the 100% disabled veteran or their immediate family"
+            }
+          ],
+          "land_limit": "1,000 square meters in urban zone or 1 cuerda (3,930 sq meters) in rural zone",
+          "land_note": "The 'cuerda' is a traditional Puerto Rican unit of land area: 1 cuerda ≈ 3,930 sq meters ≈ 4,700 sq yards ≈ 0.971 acres",
+          "retroactive_application": true,
+          "retroactive_note": "Applications for exemption may be retroactive for up to 3 years once approved",
+          "administering_agency": "CRIM (Centro de Recaudacion de Ingresos Municipales)",
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "minor_children": true,
+            "disabled_children": true
+          },
+          "sources": [
+            "https://law.justia.com/codes/puerto-rico/title-twenty-nine/part-iv/chapter-62/737/",
+            "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Puerto-Rico"
+          ]
+        },
+        "vehicle_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from motor vehicle taxes, license plate fees, and driver's license fees for 100% disabled veterans",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": false,
+            "service_connected": true,
+            "note": "Must be declared 100% disabled by the VA, or vehicle must be exempt under the PR Internal Revenue Code disability provisions"
+          },
+          "va_funded_vehicle": {
+            "available": true,
+            "description": "Vehicles provided by the VA are fully exempt from vehicle taxes and license fees",
+            "replacement_rule": "Replacement vehicle qualifies for exemption if the replaced vehicle was owned for at least 4 years for personal use",
+            "fortuitous_loss_exception": "If vehicle becomes unusable due to accident/disaster not caused by owner's negligence, the 4-year rule is waived"
+          },
+          "age_based_exemption": {
+            "available": true,
+            "age_threshold": 60,
+            "description": "Veterans over 60 are exempt from vehicle taxes and fees for license plates or driver's licenses, regardless of disability status"
+          },
+          "survivor_transfer": false,
+          "survivor_note": "Vehicle exemption tied to the qualifying veteran; transfer provisions unclear",
+          "sources": [
+            "https://law.justia.com/codes/puerto-rico/title-twenty-nine/part-iv/chapter-62/737/",
+            "https://vadisabilitygroup.com/puerto-rico-us-territory-benefits-for-100-disabled-veterans/"
+          ]
+        }
+      }
+    },
+    {
       "state_code": "RI",
       "state_name": "Rhode Island",
       "income_tax": {
@@ -4466,6 +4793,89 @@
       }
     },
     {
+      "state_code": "VI",
+      "state_name": "U.S. Virgin Islands",
+      "is_territory": true,
+      "_territory_note": "Unincorporated US territory using a mirror tax code (VITIT). Residents file with the USVI Bureau of Internal Revenue at federal income tax rates, not with the IRS. The USVI offers the most territory-level veteran benefits (26) among the five territories.",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "_tax_system": "mirror_code",
+        "_mirror_note": "USVI mirrors the federal IRC. Residents pay taxes at federal rates to the USVI Bureau of Internal Revenue, not the IRS. The effective result is equivalent to living in a state with no state income tax.",
+        "military_retirement": {
+          "exempt": false,
+          "note": "Military retired pay is taxable in the USVI at federal rates"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation is federally exempt and excluded from USVI taxable income"
+        },
+        "dic": {
+          "exempt": true,
+          "note": "DIC is tax-free under both federal law and USVI mirror code"
+        },
+        "sbp": {
+          "taxable": true,
+          "note": "Survivor Benefit Plan annuities are taxable in the USVI at federal rates"
+        },
+        "disability_retirement_pay": {
+          "exempt": true,
+          "note": "Military disability retirement pay for service-connected injury/sickness is excluded from taxable income per IRS Publication 525"
+        },
+        "ss_income": {
+          "exempt": false,
+          "note": "Social Security benefits taxed under the same rules as federal — partially taxable based on combined income thresholds"
+        },
+        "top_rate": 0.37,
+        "note": "USVI mirrors federal tax rates. Top marginal rate is 37% (same as federal). Residents file with USVI Bureau of Internal Revenue, not IRS. Effectively equivalent to states with no state income tax."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Veteran Homestead Tax Credit",
+            "available": true,
+            "amount": 650,
+            "amount_note": "Maximum $650 annual tax credit on primary residence",
+            "eligibility": "Honorably discharged veterans, 20+ year National Guard retirees, Guard members deployed 30+ days to combat zone, and surviving spouses",
+            "note": "Property owner of record as of January 1 of the taxable year. Application deadline is prior to March 1."
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/US-Virgin-Islands",
+        "https://vadisabilitygroup.com/virgin-islands-us-territory-benefits-for-100-disabled-veterans/",
+        "https://veterans.vi.gov/",
+        "https://www.cnas.org/publications/commentary/state-level-veteran-benefits-in-u-s-territories",
+        "https://news.va.gov/139592/unlocking-veteran-tax-exemptions-across-states-and-u-s-territories/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Veteran-specific property and housing benefits for USVI. All require documentation from VA. USVI offers 26 territory-level veteran benefits per CNAS analysis — the most among all territories.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from all property taxes for permanently and totally disabled veterans",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "service_connected": true,
+            "discharge": "other_than_dishonorable",
+            "ownership_required": true,
+            "ownership_note": "Must be property owner of record as of January 1 of the taxable year"
+          },
+          "administering_agency": "Tax Assessors Office (separate offices for St. Croix and St. Thomas/St. John)",
+          "contact": {
+            "st_croix": "1131 King Street, Suite 101, Christiansted, St. Croix, VI 00820",
+            "st_thomas": "5049 Kongens Gade, St. Thomas, VI 00802"
+          },
+          "survivor_transfer": false,
+          "survivor_note": "Surviving spouses qualify for the $650 veteran homestead credit but not the full disabled veteran exemption unless independently eligible",
+          "sources": [
+            "https://vadisabilitygroup.com/virgin-islands-us-territory-benefits-for-100-disabled-veterans/"
+          ]
+        },
+        "_vehicle_note": "No specific veteran vehicle personal property tax exemption identified for the USVI. The USVI does not appear to levy an annual vehicle personal property tax. Veterans should contact the USVI Bureau of Internal Revenue for current vehicle fee exemptions."
+      }
+    },
+    {
       "state_code": "VT",
       "state_name": "Vermont",
       "income_tax": {
@@ -4866,7 +5276,7 @@
       }
     }
   ],
-  "_expansion_note": "Coverage: 50 states + DC (51 entries). Tier 3D: NE, ND, RI, SD, VT, WY added in v1.9. Full national coverage achieved.",
+  "_expansion_note": "Coverage: 50 states + DC + 5 US territories (56 entries). Territory expansion added in v2.1: PR, GU, VI, CNMI (MP), and American Samoa (AS). Territories have distinct tax systems — see is_territory flag and _territory_note.",
   "federal_veteran_benefits": {
     "_schema_note": "Federal veteran benefits that apply identically in all states. Included at root level to avoid repeating in every state entry. State entries reference this section.",
     "va_funding_fee_exemption": {

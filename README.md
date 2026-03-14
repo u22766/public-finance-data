@@ -15,7 +15,7 @@ A structured, version-controlled library of government-published financial data 
 - **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL), Medicare IRMAA
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
 - **Tax data** — Federal brackets, standard deductions, IRA/Roth limits and phase-outs
-- **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC (51 jurisdictions)
+- **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
 - **County property tax** — Effective rates and veteran exemptions for 10 counties
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes)
 - **State/local pensions** — Virginia VRS plans, Fairfax County ERFC plans, pension stacking patterns
@@ -72,7 +72,7 @@ public-finance-data/
 │       └── vgli.json                            ← VGLI age-banded premium table
 │
 ├── states/
-│   ├── state-benefits.json                      ← 51 jurisdictions (50 states + DC): income tax, property tax, veteran benefits
+│   ├── state-benefits.json                      ← 56 jurisdictions (50 states + DC + 5 territories): income tax, property tax, veteran benefits
 │   ├── arizona/
 │   │   └── county-property-tax.json             ← Maricopa County
 │   ├── colorado/
@@ -118,6 +118,7 @@ public-finance-data/
     └── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
     └── validate_military.py                     ← Military retirement rules + pay tables validation (705 checks)
     └── validate_vehicle_audit.py                ← Vehicle personal property tax audit validation (111 checks)
+    └── validate_territories.py                 ← US territory expansion validation (129 checks)
 ```
 
 ### Domain Organization
@@ -157,7 +158,7 @@ Files are organized by jurisdiction and domain:
 | `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
 | `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
-| `state_benefits` | 1.7 | `states/state-benefits.json` |
+| `state_benefits` | 2.1 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
 | `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
 | `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
@@ -183,7 +184,7 @@ Files are organized by jurisdiction and domain:
 
 ## State and County Coverage
 
-**State benefits** (50 states + DC — full national coverage): AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VA, VT, WA, WI, WV, WY
+**State benefits** (50 states + DC + 5 US territories — 56 jurisdictions): AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UT, VA, VI, VT, WA, WI, WV, WY
 
 Each state entry includes income tax treatment of military/federal retirement pay, property tax exemptions for disabled veterans, additional veteran benefit programs, application procedures, survivor transfer conditions, and pending legislation flags.
 
@@ -193,7 +194,7 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fourteen test suites totaling **4,950 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,113 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
@@ -210,6 +211,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Tier 3C | `validate_tier3c.py` | 187 | Tier 3C state expansion — LA, MA, WV, NH, ME, UT, NM, ID, MT, DE |
 | Tier 3D | `validate_tier3d.py` | 176 | Tier 3D final expansion — NE, ND, RI, SD, VT, WY (50 states + DC) |
 | Vehicle Audit | `validate_vehicle_audit.py` | 111 | Vehicle personal property tax exemptions — MS, SC, CT, AL, AR, NC |
+| Territories | `validate_territories.py` | 129 | US territory expansion — AS, GU, MP, PR, VI (56 jurisdictions) |
 | Military | `validate_military.py` | 705 | Military retirement rules v2.0, pay tables 2016–2026 |
 
 ---

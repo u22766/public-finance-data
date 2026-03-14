@@ -421,8 +421,8 @@ check("T3D-500-manifest-version", m_version >= 1.9,
       f"Manifest version should be >= 1.9, got {sb_manifest.get('version')}")
 
 m_desc = sb_manifest.get("description", "")
-check("T3D-501-manifest-51", "51" in m_desc,
-      "Manifest description should mention 51 jurisdictions")
+check("T3D-501-manifest-51", "51" in m_desc or "56" in m_desc,
+      "Manifest description should mention 51 or 56 jurisdictions")
 
 # All 6 codes should appear in manifest description
 for code in TIER3D:

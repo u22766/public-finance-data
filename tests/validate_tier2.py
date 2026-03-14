@@ -38,6 +38,7 @@ EXPECTED_STATES = [
 VALID_EXEMPTION_TYPES = [
     "full",
     "partial",
+    "tiered",
     "deduction",
     "reduction",
     "discount",
