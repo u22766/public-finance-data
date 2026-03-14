@@ -1,8 +1,9 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 10 validation suites, 4,071+ total checks
+# 11 validation suites, 4,332+ total checks
 #
+# Session 27: Added validate_tier3b.py (170 checks) for Tier 3B states; updated tier2/tier3 for forward-compat
 # Session 26: Added validate_military.py (705 checks) for military retirement rules v2.0 and pay tables
 # Session 25: Added validate_tier3.py (123 checks) for Tier 3A states
 
@@ -53,6 +54,9 @@ jobs:
 
       - name: Validate Tier 3A states (123 checks)
         run: python tests/validate_tier3.py
+
+      - name: Validate Tier 3B states (170 checks)
+        run: python tests/validate_tier3b.py
 
       - name: Validate military retirement rules and pay tables (705 checks)
         run: python tests/validate_military.py
