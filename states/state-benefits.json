@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 1.4. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
-  "version": "1.7",
+  "version": "1.8",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary \u2014 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -785,6 +785,88 @@
       }
     },
     {
+      "state_code": "DE",
+      "state_name": "Delaware",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal pensions taxable but eligible for pension exclusion up to $12,500",
+        "military_retirement": {
+          "exempt": false,
+          "exempt_note": "Partial exclusion up to $12,500",
+          "note": "Delaware allows $12,500 pension exclusion for military retired pay (no age requirement as of 2025). Pending legislation would increase to $25,000."
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Social Security benefits are exempt from Delaware income tax"
+        },
+        "sbp_annuities": {
+          "exempt": false,
+          "sbp_note": "SBP annuities are tax-free for survivors age 62+; otherwise taxable with pension exclusion available"
+        },
+        "top_rate": 0.066,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates up to 6.6% on income over $60,000 (2025)"
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Delaware",
+        "https://vetsguardian.com/veteran-benefits-for-delaware/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Delaware veteran-specific benefits. No statewide full property tax exemption for disabled veterans, but county-administered exemptions exist (New Castle County offers full exemption for 100% P&T). School tax credit available statewide. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_school_tax_credit": {
+          "available": true,
+          "exemption_type": "credit",
+          "description": "100% credit against non-vocational school district property tax on primary residence for veterans with 100% P&T or IU disability rating. County and municipal taxes are separate and not covered by this statewide credit.",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": true,
+            "iu_note": "Veterans receiving 100% disability compensation due to individual unemployability qualify",
+            "honorable_discharge_required": true,
+            "delaware_resident_years": 3,
+            "delaware_resident_note": "Must have been legal Delaware resident for 3 years prior to application"
+          },
+          "application": {
+            "where": "County assessment office (New Castle, Kent, or Sussex)",
+            "form": "Application for Disabled Veteran School Property Tax Credit",
+            "documentation": [
+              "VA disability rating letter",
+              "DD-214",
+              "Driver's license/state ID",
+              "Social Security card"
+            ],
+            "filing_deadline": "April 30",
+            "annual_reapplication": false,
+            "annual_reapplication_note": "Once approved, veterans do not need to reapply"
+          },
+          "survivor_transfer": false,
+          "authority": "Delaware Code Title 9, Chapter 83; Title 14 \u00a71902"
+        },
+        "county_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "County-administered full property tax exemption for 100% P&T disabled veterans. Coverage varies by county. New Castle County fully exempts qualifying veterans from county property taxes. Kent and Sussex counties may have different provisions.",
+          "county_administered": true,
+          "county_note": "Each county sets additional eligibility requirements. New Castle County provides full exemption; Kent and Sussex may vary.",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": true,
+            "domicile_required": true,
+            "domicile_period_note": "Period varies by county (New Castle: 10 consecutive years; 12-month waiver for 100% disabled veterans)"
+          },
+          "authority": "Delaware HB 265 (enacted); county-specific ordinances"
+        }
+      }
+    },
+    {
       "state_code": "FL",
       "state_name": "Florida",
       "income_tax": {
@@ -1301,6 +1383,77 @@
       }
     },
     {
+      "state_code": "ID",
+      "state_name": "Idaho",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal pensions generally taxable with deduction available for qualifying retirement income",
+        "military_retirement": {
+          "exempt": false,
+          "exempt_note": "Tax-free for disabled retirees and retirees 62+",
+          "note": "Idaho exempts military retirement pay for disabled retirees and retirees age 62 or older. Deduction amounts updated annually in Idaho income tax instructions."
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Idaho exempts Social Security benefits from state income tax"
+        },
+        "sbp_annuities": {
+          "exempt": false,
+          "sbp_note": "SBP taxability follows same rules as military retired pay (exempt for disabled/62+)"
+        },
+        "top_rate": 0.055,
+        "rate_type": "flat",
+        "rate_note": "Flat 5.5% rate (2025, reduced from prior graduated system)"
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://tax.idaho.gov/taxes/property/homeowners/veteran-benefit/",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Idaho"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Idaho veteran-specific benefits. Property tax reduction up to $1,500 for 100% disabled veterans. No income limit for this program. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_reduction": {
+          "available": true,
+          "exemption_type": "reduction",
+          "description": "100% service-connected disabled veterans may reduce property taxes on home and up to one acre of land by as much as $1,500. No income limit. Does not reduce solid waste, irrigation, or other fees. Surviving spouse can continue benefit but not transfer to new property after veteran's death.",
+          "max_reduction": 1500,
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": false,
+            "pt_note": "Veterans with permanent and total disability need only apply once; others must reapply annually",
+            "iu_eligible": true,
+            "iu_note": "Veterans receiving 100% compensation due to individual unemployability qualify",
+            "honorable_discharge_required": true,
+            "homeowners_exemption_required": true,
+            "homeowners_exemption_note": "Property must have active Idaho Homeowner's Exemption",
+            "idaho_resident": true
+          },
+          "application": {
+            "where": "County assessor's office or Idaho State Tax Commission online portal",
+            "form": "100% Service-Connected Disabled Veterans Property Tax Benefit Application",
+            "documentation": [
+              "Current VA disability rating letter (as of Jan 1 of application year)",
+              "DD-214 (first-time applicants)"
+            ],
+            "filing_deadline": "January 1 through April 15 annually"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "surviving_spouse": true,
+            "not_transferable_to_new_property": true,
+            "not_transferable_note": "Benefit not transferable to new property after veteran's death"
+          },
+          "authority": "Idaho Code \u00a763-703 through \u00a763-705A"
+        }
+      }
+    },
+    {
       "state_code": "IL",
       "state_name": "Illinois",
       "income_tax": {
@@ -1632,6 +1785,179 @@
       }
     },
     {
+      "state_code": "LA",
+      "state_name": "Louisiana",
+      "income_tax": {
+        "taxes_federal_pension": false,
+        "taxes_federal_pension_note": "Federal retirement benefits, both military and nonmilitary, are excluded from Louisiana taxable income per R.S. 47:44.2",
+        "military_retirement": {
+          "exempt": true,
+          "note": "Military retired pay is fully excluded from Louisiana state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Social Security benefits taxed on federal return may be excluded from Louisiana taxable income per R.S. 47:44.2"
+        },
+        "sbp_annuities": {
+          "exempt": true,
+          "note": "Military Survivor Benefit Plan annuities are exempt from Louisiana state income tax"
+        },
+        "top_rate": 0.03,
+        "rate_type": "flat",
+        "rate_note": "Flat 3% rate effective January 1, 2025 (replaced prior graduated system up to 4.25%). Standard deduction: $12,500 single / $25,000 MFJ."
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Homestead Exemption",
+            "available": true,
+            "amount_assessed": 7500,
+            "note": "All qualifying homeowners exempt on first $7,500 assessed value ($75,000 fair market value at 10% assessment ratio)"
+          }
+        ]
+      },
+      "sources": [
+        "https://vetaffairs.la.gov/benefits/state",
+        "https://revenue.louisiana.gov/tax-education-and-faqs/faqs/individual-income-tax/is-there-a-list-of-retirement-system-benefits-that-may-be-excluded-from-louisiana-income-tax/",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Louisiana"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Louisiana veteran-specific benefits. Tiered property tax exemption based on disability rating with full exemption at 100%. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Tiered additional homestead exemption based on VA disability rating. 50-69%: additional $2,500 assessed value exempt. 70-99%: additional $4,500 assessed value exempt. 100%/IU/total disability: full exemption from all ad valorem taxes (certain municipal assessments may still apply).",
+          "tiers": [
+            {
+              "rating_min": 50,
+              "rating_max": 69,
+              "additional_assessed_value_exempt": 2500
+            },
+            {
+              "rating_min": 70,
+              "rating_max": 99,
+              "additional_assessed_value_exempt": 4500
+            },
+            {
+              "rating_min": 100,
+              "exemption": "full"
+            }
+          ],
+          "eligibility": {
+            "rating_required": 50,
+            "pt_required": false,
+            "pt_required_note": "Tiered benefits start at 50%; full exemption at 100% or total disability",
+            "iu_eligible": true,
+            "iu_note": "Veterans with 100% unemployability or total disability receive full exemption",
+            "honorable_discharge_required": true
+          },
+          "application": {
+            "where": "Parish tax assessor's office",
+            "form": "Louisiana Department of Veterans Affairs Form A25",
+            "documentation": [
+              "VA disability rating letter",
+              "DD-214"
+            ],
+            "filing_deadline": "Contact parish assessor for local deadlines"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "active_duty_death": true,
+            "active_duty_death_note": "Unremarried surviving spouse of service member who died on active duty receives full exemption. If spouse moves to new property, exemption continues up to the amount on first property."
+          },
+          "authority": "Louisiana Constitution Article VII, Section 21(K); Amendment 2 (2022)"
+        }
+      }
+    },
+    {
+      "state_code": "MA",
+      "state_name": "Massachusetts",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal civilian pensions are generally taxable in Massachusetts",
+        "military_retirement": {
+          "exempt": true,
+          "note": "Military retired pay is not taxed in Massachusetts"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Social Security benefits are not taxed in Massachusetts"
+        },
+        "sbp_annuities": {
+          "exempt": true,
+          "note": "Survivor pensions paid to surviving spouse are not taxed in Massachusetts"
+        },
+        "top_rate": 0.09,
+        "rate_type": "flat_with_surtax",
+        "rate_note": "5% flat rate plus 4% surtax on income over $1,053,750 (2025, indexed). Effective top rate 9% for high earners."
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://www.mass.gov/info-details/local-property-tax-exemptions-for-veterans",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Massachusetts",
+        "https://vadisabilitygroup.com/massachusetts-state-benefits-for-100-disabled-veterans/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Massachusetts veteran-specific benefits. Tiered property tax exemptions under Clause 22 based on disability type. Municipalities may double amounts under HERO Act. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "partial",
+          "description": "Tiered property tax exemptions under Clause 22 based on disability type: $400 for 10%+ disability or Purple Heart; $750 for loss of one hand/foot/eye; $1,250 for loss of two or more limbs/eyes; $1,500 for paraplegics or 100% disability for service-connected blindness. Municipalities may vote to double amounts and/or index to inflation under the HERO Act.",
+          "base_amounts": {
+            "ten_percent_or_purple_heart": 400,
+            "loss_one_limb_or_eye": 750,
+            "loss_two_or_more": 1250,
+            "paraplegic_or_100pct_blind": 1500
+          },
+          "hero_act_note": "Municipalities may vote to double exemption amounts and/or tie to inflation under the HERO Act",
+          "eligibility": {
+            "rating_required": 10,
+            "pt_required": false,
+            "iu_eligible": "verify",
+            "iu_note": "Statute references disability categories rather than VA rating percentages; verify with local assessor",
+            "honorable_discharge_required": true,
+            "residency_required": true,
+            "residency_note": "Must have lived in MA for 6 months before service OR 5 consecutive years before filing"
+          },
+          "application": {
+            "where": "Local board of assessors",
+            "documentation": [
+              "DD-214",
+              "VA disability rating letter"
+            ],
+            "filing_deadline": "Within 90 days of third-quarter actual tax bill (typically around March 31)",
+            "annual_reapplication": true
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "killed_in_action_spouse": true,
+            "surviving_parents": true,
+            "surviving_parents_note": "Surviving parents of service members KIA/MIA also eligible"
+          },
+          "pending_legislation": {
+            "bill": "S.2046 / H.3836",
+            "session": "2025-2026",
+            "status": "committee",
+            "description": "Would create proportional property tax exemption based on VA disability percentage: 30-49% = $2,500; 50-69% = $5,000; 70%+ = full exemption. Effective TY 2026.",
+            "note": "If enacted, would significantly expand benefits beyond current Clause 22 amounts"
+          },
+          "authority": "M.G.L. Chapter 59, Section 5, Clause 22"
+        }
+      }
+    },
+    {
       "state_code": "MD",
       "state_name": "Maryland",
       "income_tax": {
@@ -1755,6 +2081,75 @@
           ]
         },
         "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file."
+      }
+    },
+    {
+      "state_code": "ME",
+      "state_name": "Maine",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal civilian pensions are generally taxable in Maine with pension income deduction available",
+        "military_retirement": {
+          "exempt": true,
+          "note": "Maine fully exempts military retirement pay from state income tax. Expanded to include Space Force, USPHS, and NOAA Corps effective 2026 tax year."
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Maine exempts Social Security benefits from state income tax (conforming to federal thresholds)"
+        },
+        "sbp_annuities": {
+          "exempt": true,
+          "note": "SBP annuities are exempt from Maine state income tax"
+        },
+        "top_rate": 0.0715,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates up to 7.15% on income over $58,050 single / $116,100 joint (2025, indexed)"
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Maine",
+        "https://www.maine.gov/veterans/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Maine veteran-specific benefits. Property tax exemption for wartime veterans age 62+ or 100% disabled. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "partial",
+          "description": "Wartime veterans age 62 or older, or with 100% disability, receive $6,000 exemption from property taxes on primary residence. Paraplegic veterans with VA specially adapted housing grant may receive $50,000 exemption.",
+          "amounts": {
+            "standard_exemption": 6000,
+            "paraplegic_adapted_housing": 50000
+          },
+          "eligibility": {
+            "wartime_service_required": true,
+            "age_or_disability": "Age 62+ OR 100% disability OR receiving 100% disability benefits",
+            "rating_required": 100,
+            "rating_required_note": "100% disability required if under age 62; wartime veterans 62+ qualify regardless of disability status",
+            "iu_eligible": true,
+            "iu_note": "Veterans receiving 100% disability benefits qualify",
+            "honorable_discharge_required": true
+          },
+          "application": {
+            "where": "Municipal assessor's office",
+            "documentation": [
+              "DD-214",
+              "VA disability rating letter"
+            ],
+            "filing_deadline": "April 1 (check with municipality)"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "unremarried_spouse_note": "Unremarried surviving spouse of qualifying veteran may receive exemption"
+          },
+          "authority": "36 MRSA \u00a7653"
+        }
       }
     },
     {
@@ -2052,6 +2447,80 @@
       }
     },
     {
+      "state_code": "MT",
+      "state_name": "Montana",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal pensions generally taxable. Retirees 65+ may deduct up to $5,500 (2025).",
+        "military_retirement": {
+          "exempt": false,
+          "exempt_note": "Partial exemption for working Montana residents",
+          "note": "Starting 2024, working Montana residents may deduct up to 50% of military retirement income or Montana-source wage income (whichever is less) for 5 consecutive years. Expires tax year 2033. Retirees 65+ may use $5,500 general retirement deduction instead."
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "Montana exempts Social Security benefits from state income tax"
+        },
+        "sbp_annuities": {
+          "exempt": false,
+          "sbp_note": "Starting 2024, surviving spouses may subtract 50% of survivor annuity (same 5-year, wage-income limitation applies)"
+        },
+        "top_rate": 0.059,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 5.9% on income over $21,100 single / $42,200 joint (2025)"
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://revenue.mt.gov/property/property-tax-help/mdv",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Montana"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Montana veteran-specific benefits. Income-based property tax rate reduction for 100% disabled veterans (MDV program). Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_reduction": {
+          "available": true,
+          "exemption_type": "reduction",
+          "description": "Montana Disabled Veteran Assistance Program (MDV) reduces the property tax rate on primary residence. Rate reduction is 50%, 70%, 80%, or 100% of normal tax rate depending on income and marital status. For homes on agricultural/forest land, benefit applies to home and one-acre homesite.",
+          "reduction_tiers_note": "Reduction percentage depends on income brackets updated annually by PCE inflation factor. For TY 2026: income thresholds approximately $61,000 (single) / $70,000 (married) / $53,000 (unmarried surviving spouse) for 100% reduction, with lower reductions at higher incomes.",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": false,
+            "pt_note": "Must be rated or paid at 100% disabled by VA for service-connected disability",
+            "iu_eligible": true,
+            "iu_note": "Veterans paid at 100% rate due to individual unemployability qualify",
+            "honorable_discharge_required": true,
+            "income_limits_apply": true,
+            "primary_residence_required": true,
+            "occupancy_requirement": "Must live in home at least 7 months per year",
+            "montana_resident": true
+          },
+          "application": {
+            "where": "Montana Department of Revenue field office or online",
+            "form": "MDV Property Tax Relief Application",
+            "documentation": [
+              "VA Benefit Summary Letter showing 100% service-connected disability",
+              "Federal tax return (if new MT resident)"
+            ],
+            "filing_deadline": "April 15 (late applications considered for following year)"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "unremarried_spouse_of_veteran_100pct_at_death": true,
+            "unremarried_spouse_of_kia": true
+          },
+          "auto_renewal": true,
+          "auto_renewal_note": "Once approved, renews automatically as long as veteran continues to own, occupy, and meet income requirements",
+          "authority": "Montana Code Annotated \u00a715-6-311"
+        }
+      }
+    },
+    {
       "state_code": "NC",
       "state_name": "North Carolina",
       "income_tax": {
@@ -2161,6 +2630,77 @@
       }
     },
     {
+      "state_code": "NH",
+      "state_name": "New Hampshire",
+      "income_tax": {
+        "has_income_tax": false,
+        "taxes_federal_pension": false,
+        "taxes_federal_pension_note": "New Hampshire has no state income tax (interest/dividend tax repealed effective 2025)",
+        "military_retirement": {
+          "exempt": true,
+          "note": "No state income tax; military retirement is not taxed"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "No state income tax"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "No state income tax"
+        },
+        "top_rate": 0,
+        "rate_type": "none",
+        "rate_note": "New Hampshire has no state income tax. Interest and dividend tax was repealed effective January 1, 2025."
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/New-Hampshire",
+        "https://www.revenue.nh.gov/assistance/tax-overview"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "New Hampshire veteran-specific benefits. Full property tax exemption for 100% P&T disabled veterans. Municipal-option credits for wartime and disabled veterans. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Veterans with 100% permanent and total service-connected disability receive full property tax exemption on primary residence. Qualifying surviving spouses may continue.",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": "verify",
+            "iu_note": "Statute references 100% permanently and totally disabled; IU eligibility not explicitly addressed in statute",
+            "honorable_discharge_required": true
+          },
+          "application": {
+            "where": "Town/city assessor or tax collector",
+            "documentation": [
+              "VA disability rating letter",
+              "DD-214"
+            ],
+            "filing_deadline": "Contact local assessor for municipal deadlines"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true
+          },
+          "authority": "NH RSA 72:36-a"
+        },
+        "wartime_veteran_property_tax_credit": {
+          "available": true,
+          "exemption_type": "credit",
+          "description": "Municipal-option property tax credit for wartime veterans. Standard credit $50-$500 (varies by municipality); towns may adopt higher amounts. Disabled veterans may receive $700-$4,000 credit depending on municipality.",
+          "eligibility": {
+            "wartime_service_required": true,
+            "minimum_service_days": 90,
+            "honorable_discharge_required": true
+          },
+          "note": "Amounts vary significantly by municipality. Contact local assessor to verify adopted amounts.",
+          "authority": "NH RSA 72:28 through 72:35"
+        }
+      }
+    },
+    {
       "state_code": "NJ",
       "state_name": "New Jersey",
       "income_tax": {
@@ -2251,6 +2791,82 @@
             "status": "Introduced January 2026",
             "would_do": "Expand disabled veteran property tax exemption eligibility to include certain individuals with close personal relationship to deceased veteran"
           }
+        }
+      }
+    },
+    {
+      "state_code": "NM",
+      "state_name": "New Mexico",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal civilian pensions are taxable in New Mexico",
+        "military_retirement": {
+          "exempt": false,
+          "exempt_note": "Partial exemption up to $40,000",
+          "note": "New Mexico offers partial tax exemption of military retired pay up to $40,000 (2025+, increased from $30,000)"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "New Mexico exempts Social Security benefits from state income tax (effective 2022+)"
+        },
+        "sbp_annuities": {
+          "exempt": false,
+          "sbp_note": "SBP annuities are taxable beyond the $40,000 military retirement exclusion"
+        },
+        "top_rate": 0.059,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates up to 5.9% on income over $210,000 single / $315,000 joint (2025)"
+      },
+      "property_tax": {
+        "exemptions": [
+          {
+            "name": "Standard Veteran Property Tax Exemption",
+            "available": true,
+            "amount": 10000,
+            "note": "$10,000 standard veteran property tax exemption for all honorably discharged veterans with 90+ days active duty service (effective 2025, CPI-indexed)"
+          }
+        ]
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/New-Mexico",
+        "https://www.tax.newmexico.gov/"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "New Mexico veteran-specific benefits. Proportional disabled veteran property tax exemption by disability percentage (2026+). 100% P&T full exemption. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "100% permanently and totally disabled veterans receive full property tax exemption on primary residence. Starting 2026, proportional exemption available based on VA disability percentage (e.g., 50% rating = 50% property tax reduction). Unremarried surviving spouse of eligible veteran or service member who died in line of duty also eligible.",
+          "effective_date_proportional": "2026-01-01",
+          "proportional_note": "New amendment (ratified Nov 2024) authorizes proportional reduction by VA disability percentage starting 2026",
+          "eligibility": {
+            "rating_required": 100,
+            "rating_required_note": "100% P&T for full exemption; any rating for proportional (2026+)",
+            "pt_required": true,
+            "iu_eligible": true,
+            "iu_note": "Veterans receiving 100% compensation due to individual unemployability qualify for full exemption",
+            "honorable_discharge_required": true,
+            "new_mexico_resident": true
+          },
+          "application": {
+            "where": "County assessor's office",
+            "documentation": [
+              "VA disability rating letter",
+              "DD-214"
+            ],
+            "filing_deadline": "Contact county assessor"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "killed_in_line_of_duty": true,
+            "killed_in_line_of_duty_note": "2024 amendment expanded to include spouses of service members who died in line of duty (not just KIA)"
+          },
+          "authority": "NM Constitution Article VIII; NM Taxation and Revenue Dept; HB 47 (2024)"
         }
       }
     },
@@ -3148,6 +3764,75 @@
       }
     },
     {
+      "state_code": "UT",
+      "state_name": "Utah",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal pensions are taxable but eligible for Retirement Tax Credit (code AO/18)",
+        "military_retirement": {
+          "exempt": true,
+          "exempt_note": "Effectively exempt via nonrefundable Military Retirement Credit equal to 4.5% of military retirement pay (offsets Utah's flat 4.5% rate)",
+          "note": "Utah provides a nonrefundable Military Retirement Credit (TC-40A code AJ) equal to 4.5% of military retirement pay included in federal AGI, effectively zeroing out Utah tax on that income. Cannot combine with general Retirement Credit."
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": false,
+          "ss_note": "Utah provides income-based Social Security Benefits Credit; phase-out begins at $54,000 single / $90,000 MFJ (2025)"
+        },
+        "sbp_annuities": {
+          "exempt": true,
+          "exempt_note": "Effectively exempt via nonrefundable credit equal to 4.5% of survivor benefits",
+          "note": "Same 4.5% credit mechanism as military retirement pay"
+        },
+        "top_rate": 0.045,
+        "rate_type": "flat",
+        "rate_note": "Flat 4.5% rate (reduced from 4.55% by HB 106, 2025 General Session)"
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Utah",
+        "https://incometax.utah.gov/credits/military-retirement",
+        "https://tax.utah.gov"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "Utah veteran-specific benefits. Property tax exemption for disabled veterans varies by municipality. Income tax effectively exempt via credit mechanism. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "partial",
+          "description": "Disabled veterans with 10%+ service-connected disability may receive property tax reduction on primary residence. Amount varies by municipality, up to $266,670 reduction based on disability level and income. Statewide minimum applies but local jurisdictions may set higher amounts.",
+          "eligibility": {
+            "rating_required": 10,
+            "pt_required": false,
+            "iu_eligible": "verify",
+            "iu_note": "Contact municipal assessor to verify IU eligibility under local rules",
+            "honorable_discharge_required": true,
+            "income_limits_apply": true,
+            "income_limits_note": "Income limits and exemption amounts vary by municipality"
+          },
+          "application": {
+            "where": "County assessor's office",
+            "documentation": [
+              "VA disability rating letter",
+              "DD-214",
+              "Income documentation"
+            ],
+            "filing_deadline": "September 1 (varies by county)"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true
+          },
+          "note": "Amounts and income limits are municipality-specific. Statewide statute sets minimums but local jurisdictions administer.",
+          "authority": "Utah Code \u00a759-2-1104 et seq."
+        }
+      }
+    },
+    {
       "state_code": "VA",
       "state_name": "Virginia",
       "income_tax": {
@@ -3478,9 +4163,92 @@
           "authority": "Wis. Stat. \u00a771.07(6e)"
         }
       }
+    },
+    {
+      "state_code": "WV",
+      "state_name": "West Virginia",
+      "income_tax": {
+        "taxes_federal_pension": true,
+        "taxes_federal_pension_note": "Federal civilian pensions are generally taxable in West Virginia",
+        "military_retirement": {
+          "exempt": true,
+          "note": "West Virginia fully exempts military retirement pay from state income tax"
+        },
+        "va_compensation": {
+          "exempt": true,
+          "note": "VA disability compensation conforms to federal exemption"
+        },
+        "ss_income": {
+          "exempt": true,
+          "note": "West Virginia exempts Social Security benefits from state income tax"
+        },
+        "sbp_annuities": {
+          "exempt": true,
+          "note": "SBP annuities are exempt from West Virginia state income tax"
+        },
+        "top_rate": 0.0465,
+        "rate_type": "graduated",
+        "rate_note": "Graduated rates; top rate 4.65% (2025, rates have been reducing). Standard deduction mirrors federal amounts."
+      },
+      "property_tax": {
+        "exemptions": []
+      },
+      "sources": [
+        "https://veterans.wv.gov/benefits/Pages/StateBenefits.aspx",
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/West-Virginia"
+      ],
+      "veteran_benefits": {
+        "_schema_note": "West Virginia veteran-specific benefits. Property tax credit for 90-100% disabled veterans (2024+); 100% P&T may qualify for full exemption under \u00a711-6B. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
+        "disabled_veteran_real_property_tax_credit": {
+          "available": true,
+          "exemption_type": "credit",
+          "description": "Disabled Veteran Real Property Tax Credit: honorably discharged veterans with 90-100% combined VA disability rating may claim income tax credit equal to property taxes paid on primary residence. Effective beginning tax year 2024.",
+          "eligibility": {
+            "rating_required": 90,
+            "pt_required": false,
+            "iu_eligible": "verify",
+            "iu_note": "Statute specifies 90-100% combined disability rating; IU eligibility not explicitly addressed",
+            "honorable_discharge_required": true,
+            "primary_residence_required": true,
+            "timely_payment_required": true,
+            "timely_payment_note": "Property taxes must be paid on time (first half by Oct 1, second half by April 1)"
+          },
+          "application": {
+            "where": "Filed with West Virginia income tax return",
+            "documentation": [
+              "VA disability rating",
+              "Proof of property taxes paid"
+            ],
+            "filing_deadline": "Filed with annual income tax return"
+          },
+          "survivor_transfer": false,
+          "authority": "West Virginia Code \u00a711-21-24a (2023 legislation)"
+        },
+        "disabled_veteran_property_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Veterans rated 100% permanent and totally disabled by the VA may be exempt from certain property taxes under \u00a711-6B",
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible": "verify",
+            "iu_note": "Statute references 100% permanent and total disability; contact county assessor for IU eligibility",
+            "honorable_discharge_required": true
+          },
+          "application": {
+            "where": "County Assessor's Office or local Department of Veterans Assistance",
+            "documentation": [
+              "VA disability rating letter",
+              "DD-214"
+            ]
+          },
+          "survivor_transfer": false,
+          "authority": "West Virginia State Code \u00a711-6B"
+        }
+      }
     }
   ],
-  "_expansion_note": "Coverage: 35 states/territories as of v1.7. Tier 1 (9 states, Session 14), Tier 2 (6 states, Session 15), Tier 3A (10 states, Session 25), Tier 3B (10 states, Session 27). Next: Tier 3C-D for remaining states toward 50-state coverage.",
+  "_expansion_note": "Coverage: 45 states/territories as of v1.8. Tier 1 (9 states, Session 14), Tier 2 (6 states, Session 15), Tier 3A (10 states, Session 25), Tier 3B (10 states, Session 27), Tier 3C (10 states, Session 28). Next: Tier 3D for remaining 6 states (NE, ND, RI, SD, VT, WY).",
   "federal_veteran_benefits": {
     "_schema_note": "Federal veteran benefits that apply identically in all states. Included at root level to avoid repeating in every state entry. State entries reference this section.",
     "va_funding_fee_exemption": {
@@ -3542,5 +4310,5 @@
       ]
     }
   },
-  "last_updated": "2026-03-13"
+  "last_updated": "2026-03-14"
 }

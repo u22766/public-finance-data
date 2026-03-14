@@ -15,7 +15,7 @@ A structured, version-controlled library of government-published financial data 
 - **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL), Medicare IRMAA
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
 - **Tax data** — Federal brackets, standard deductions, IRA/Roth limits and phase-outs
-- **State benefits** — Income tax treatment, property tax exemptions, and veteran benefits for 35 states
+- **State benefits** — Income tax treatment, property tax exemptions, and veteran benefits for 45 states
 - **County property tax** — Effective rates and veteran exemptions for 10 counties
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes)
 - **State/local pensions** — Virginia VRS plans, Fairfax County ERFC plans, pension stacking patterns
@@ -72,7 +72,7 @@ public-finance-data/
 │       └── vgli.json                            ← VGLI age-banded premium table
 │
 ├── states/
-│   ├── state-benefits.json                      ← 35 states: income tax, property tax, veteran benefits
+│   ├── state-benefits.json                      ← 45 states: income tax, property tax, veteran benefits
 │   ├── arizona/
 │   │   └── county-property-tax.json             ← Maricopa County
 │   ├── colorado/
@@ -109,6 +109,7 @@ public-finance-data/
     ├── validate_tier2.py                        ← State benefits validation (255 checks)
     └── validate_tier3.py                        ← Tier 3A state expansion validation (123 checks)
     └── validate_tier3b.py                       ← Tier 3B state expansion validation (170 checks)
+    └── validate_tier3c.py                       ← Tier 3C state expansion validation (187 checks)
     ├── validate_medicare.py                     ← Medicare rates validation (7 checks)
     ├── validate_dcips.py                        ← DCIPS pay tables validation (424 checks)
     ├── validate_historical.py                   ← Historical + healthcare + county validation (1,963 checks)
@@ -181,7 +182,7 @@ Files are organized by jurisdiction and domain:
 
 ## State and County Coverage
 
-**State benefits** (35 states): VA, MD, DC, FL, TX, GA, NC, CO, WA, PA, AK, HI, AZ, NV, OR, CA, NY, OH, IL, MI, TN, SC, AL, MO, IN, NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS
+**State benefits** (45 states): VA, MD, DC, FL, TX, GA, NC, CO, WA, PA, AK, HI, AZ, NV, OR, CA, NY, OH, IL, MI, TN, SC, AL, MO, IN, NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS, LA, MA, WV, NH, ME, UT, NM, ID, MT, DE
 
 Each state entry includes income tax treatment of military/federal retirement pay, property tax exemptions for disabled veterans, additional veteran benefit programs, application procedures, survivor transfer conditions, and pending legislation flags.
 
@@ -191,7 +192,7 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs eleven test suites totaling **4,332 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs twelve test suites totaling **4,519 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
@@ -205,6 +206,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | OBBBA | `validate_obbba.py` | 71 | OBBBA tax provision structure and cross-references |
 | Tier 3A | `validate_tier3.py` | 123 | Tier 3A state expansion — CA, NY, OH, IL, MI, TN, SC, AL, MO, IN |
 | Tier 3B | `validate_tier3b.py` | 170 | Tier 3B state expansion — NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS |
+| Tier 3C | `validate_tier3c.py` | 187 | Tier 3C state expansion — LA, MA, WV, NH, ME, UT, NM, ID, MT, DE |
 | Military | `validate_military.py` | 705 | Military retirement rules v2.0, pay tables 2016–2026 |
 
 ---

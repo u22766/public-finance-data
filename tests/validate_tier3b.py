@@ -545,22 +545,30 @@ def check_survivor_transfer_present(states, r):
 # ─── Section 6: Manifest check ───
 
 def check_manifest(r):
-    """Manifest must reference state_benefits v1.7 with 35 states."""
+    """Manifest must reference state_benefits v1.7+ with 35+ states."""
     base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     path = os.path.join(base, "manifest.json")
     with open(path) as f:
         m = json.load(f)
     sb = m.get("files", {}).get("state_benefits", {})
     v = sb.get("version", "")
-    if v == "1.7":
-        r.add_pass("MAN-01", "Manifest state_benefits version = 1.7")
+    try:
+        vf = float(v)
+    except (ValueError, TypeError):
+        vf = 0.0
+    if vf >= 1.7:
+        r.add_pass("MAN-01", f"Manifest state_benefits version {v} >= 1.7")
     else:
-        r.add_fail("MAN-01", f"Manifest state_benefits version should be 1.7, got {v}")
+        r.add_fail("MAN-01", f"Manifest state_benefits version should be >= 1.7, got {v}")
     desc = sb.get("description", "")
-    if "35" in desc:
-        r.add_pass("MAN-02", "Manifest description references 35 states")
+    # Extract state count from description - look for number followed by 'states'
+    import re
+    count_match = re.search(r'(\d+)\s+states', desc)
+    count = int(count_match.group(1)) if count_match else 0
+    if count >= 35:
+        r.add_pass("MAN-02", f"Manifest description references {count} states (>= 35)")
     else:
-        r.add_fail("MAN-02", f"Manifest description should reference 35 states")
+        r.add_fail("MAN-02", f"Manifest description should reference >= 35 states, found {count}")
     # Check all 10 new codes are mentioned
     for code in TIER3B_CODES:
         if code in desc:

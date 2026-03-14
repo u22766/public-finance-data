@@ -2,7 +2,7 @@
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.1",
   "schema_min_compatible": "2.1",
-  "last_updated": "2026-03-13",
+  "last_updated": "2026-03-14",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
@@ -64,12 +64,12 @@
       "changelog_2026_1": "Initial release. Complete 2026 CMS data with all IRMAA filing status brackets."
     },
     "state_benefits": {
-      "version": "1.7",
+      "version": "1.8",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/state-benefits.json",
-      "description": "State income tax treatment and veteran property tax benefits for 35 states (VA, MD, DC, FL, TX, GA, NC, CO, WA, PA, AK, HI, AZ, NV, OR, CA, NY, OH, IL, MI, TN, SC, AL, MO, IN, NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS)",
-      "last_updated": "2026-03-13"
+      "description": "State income tax treatment and veteran property tax benefits for 45 states (VA, MD, DC, FL, TX, GA, NC, CO, WA, PA, AK, HI, AZ, NV, OR, CA, NY, OH, IL, MI, TN, SC, AL, MO, IN, NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS, LA, MA, WV, NH, ME, UT, NM, ID, MT, DE)",
+      "last_updated": "2026-03-14"
     },
     "vrs_plans": {
       "version": "2.0.0",
