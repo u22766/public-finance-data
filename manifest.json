@@ -1,7 +1,7 @@
 {
-  "_comment": "Public Finance Data — Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
-  "schema_version": "2.1",
-  "schema_min_compatible": "2.1",
+  "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
+  "schema_version": "2.2",
+  "schema_min_compatible": "2.2",
   "last_updated": "2026-03-14",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
@@ -19,7 +19,7 @@
       "effective_date": "2026-01-15",
       "update_frequency": "annual (January)",
       "url": "federal/pay-tables.json",
-      "description": "GS and DCIPS base pay tables — all grades, all steps, all OPM locality areas"
+      "description": "GS and DCIPS base pay tables \u2014 all grades, all steps, all OPM locality areas"
     },
     "dcips_pay_tables": {
       "version": "2026.1",
@@ -51,7 +51,7 @@
       "effective_date": "2026-01-01",
       "update_frequency": "annual (October)",
       "url": "federal/healthcare/fehb-rates.json",
-      "description": "FEHB premium rates — complete 132-plan dataset (19 nationwide FFS + 459 regional HMO entries) from OPM Excel files",
+      "description": "FEHB premium rates \u2014 complete 132-plan dataset (19 nationwide FFS + 459 regional HMO entries) from OPM Excel files",
       "last_updated": "2026-03-11"
     },
     "medicare_rates": {
@@ -71,7 +71,7 @@
       "description": "State and territory income tax treatment, veteran property tax benefits, and vehicle personal property tax exemptions for 56 jurisdictions (50 states + DC + 5 US territories: AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UT, VA, VI, VT, WA, WI, WV, WY)",
       "last_updated": "2026-03-14",
       "changelog": [
-        "v2.1: Added 5 US territories (AS, GU, MP, PR, VI) — territory expansion with income tax, real estate, and vehicle property tax separation"
+        "v2.1: Added 5 US territories (AS, GU, MP, PR, VI) \u2014 territory expansion with income tax, real estate, and vehicle property tax separation"
       ]
     },
     "vrs_plans": {
@@ -81,21 +81,6 @@
       "url": "states/virginia/vrs-plans.json",
       "description": "Virginia Retirement System plan parameters: VRS Plan 1, Plan 2, Hybrid. Hire date auto-derive mapping.",
       "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. VRS plans only. All values unchanged."
-    },
-    "erfc_plans": {
-      "version": "2.0.0",
-      "effective_date": "2026-01-01",
-      "update_frequency": "as needed",
-      "url": "states/virginia/erfc-plans.json",
-      "description": "ERFC supplemental pension parameters: Legacy, 2001 Tier 1, 2001 Tier 2. Fairfax County (FCPS) only.",
-      "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. ERFC plans only. Added jurisdiction metadata. All values unchanged."
-    },
-    "plan_combinations": {
-      "version": "2.0.0",
-      "effective_date": "2026-01-01",
-      "update_frequency": "as needed",
-      "url": "states/virginia/plan-combinations.json",
-      "description": "VRS + ERFC pension stacking patterns for Virginia"
     },
     "other_db_template": {
       "version": "1.0.0",
@@ -168,7 +153,7 @@
     },
     "tricare_rates": {
       "version": "2026.3",
-      "description": "TRICARE premium, cost-share, pharmacy copay, and dental program schedule — Prime, Select, TFL, TDP, Reserve Select, Retired Reserve, TYA, CHCBP",
+      "description": "TRICARE premium, cost-share, pharmacy copay, and dental program schedule \u2014 Prime, Select, TFL, TDP, Reserve Select, Retired Reserve, TYA, CHCBP",
       "last_updated": "2026-03-12",
       "url": "federal/healthcare/tricare-rates.json",
       "effective_date": "2026-01-01",
@@ -176,7 +161,7 @@
     },
     "fehb_plan_benefits": {
       "version": "2026.1",
-      "description": "FEHB plan benefits — deductibles, OOP max, copays, pharmacy tiers, Medicare coordination for all 132 plans (in-network + out-of-network)",
+      "description": "FEHB plan benefits \u2014 deductibles, OOP max, copays, pharmacy tiers, Medicare coordination for all 132 plans (in-network + out-of-network)",
       "last_updated": "2026-03-11",
       "url": "federal/healthcare/fehb-plan-benefits.json",
       "effective_date": "2026-01-01",
@@ -184,7 +169,7 @@
     },
     "fedvip_rates": {
       "version": "2026.1",
-      "description": "FEDVIP dental and vision premium rates — 11 dental carriers by rating region, 5 vision carriers nationwide",
+      "description": "FEDVIP dental and vision premium rates \u2014 11 dental carriers by rating region, 5 vision carriers nationwide",
       "last_updated": "2026-03-11",
       "url": "federal/healthcare/fedvip-rates.json",
       "effective_date": "2026-01-01",
@@ -294,7 +279,7 @@
       "url": "states/arizona/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Maricopa County (AZ).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_co": {
       "version": "1.1",
@@ -303,7 +288,7 @@
       "url": "states/colorado/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: El Paso County (CO).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_fl": {
       "version": "1.1",
@@ -312,7 +297,7 @@
       "url": "states/florida/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Hillsborough County (FL).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_md": {
       "version": "1.1",
@@ -321,7 +306,7 @@
       "url": "states/maryland/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Prince George's County (MD).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_nc": {
       "version": "1.1",
@@ -330,7 +315,7 @@
       "url": "states/north-carolina/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Cumberland County (NC).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_nv": {
       "version": "1.1",
@@ -339,7 +324,7 @@
       "url": "states/nevada/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Clark County (NV).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_tx": {
       "version": "1.1",
@@ -348,7 +333,7 @@
       "url": "states/texas/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Bexar County (TX).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_va": {
       "version": "1.1",
@@ -357,7 +342,7 @@
       "url": "states/virginia/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Fairfax County, Virginia Beach (VA).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_wa": {
       "version": "1.1",
@@ -366,7 +351,7 @@
       "url": "states/washington/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Pierce County (WA).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "military_pay_tables": {
       "version": "2026.1",
@@ -375,6 +360,21 @@
       "url": "federal/military-pay-tables.json",
       "description": "Monthly military basic pay by grade and YOS, 2016-2026. Supports High-3 average calculation for military retirement.",
       "last_updated": "2026-03-13"
+    },
+    "erfc_plans_fairfax": {
+      "version": "2.0.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as needed",
+      "url": "states/virginia/fairfax-county/erfc-plans.json",
+      "description": "ERFC supplemental pension parameters: Legacy, 2001 Tier 1, 2001 Tier 2. Fairfax County (FCPS) only. County-level plan under states/virginia/fairfax-county/.",
+      "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. ERFC plans only. Added jurisdiction metadata. All values unchanged."
+    },
+    "plan_combinations_fairfax": {
+      "version": "2.0.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as needed",
+      "url": "states/virginia/fairfax-county/plan-combinations.json",
+      "description": "VRS + ERFC pension stacking patterns for Fairfax County employees. County-level data under states/virginia/fairfax-county/."
     }
   }
 }

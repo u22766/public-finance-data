@@ -1,0 +1,223 @@
+{
+  "_comment": "Educational Employees' Supplementary Retirement System of Fairfax County (ERFC). County-level supplemental defined benefit plan for FCPS full-time educational and administrative employees. Supplements VRS and Social Security. Update as ERFC rules change.",
+  "version": "2.0.0",
+  "effective_date": "2026-01-01",
+  "employer": "Educational Employees' Supplementary Retirement System of Fairfax County",
+  "scope": "county",
+  "jurisdiction": {
+    "state": "VA",
+    "county": "Fairfax County",
+    "school_system": "Fairfax County Public Schools (FCPS)",
+    "note": "ERFC is a legally separate single-employer retirement system established under Virginia code. It serves approximately 41,500 active and retired FCPS members."
+  },
+  "hireDateMapping": [
+    {
+      "planId": "erfc_legacy",
+      "label": "ERFC Legacy",
+      "hiredBefore": "2001-01-01",
+      "note": "Pre-2001 ERFC members \u2014 legacy formula and contribution rates"
+    },
+    {
+      "planId": "erfc_2001_tier1",
+      "label": "ERFC 2001 Tier 1",
+      "hiredOnOrAfter": "2001-01-01",
+      "hiredBefore": "2017-07-01",
+      "note": "ERFC 2001 plan, Tier 1 \u2014 hired 2001 through June 2017"
+    },
+    {
+      "planId": "erfc_2001_tier2",
+      "label": "ERFC 2001 Tier 2",
+      "hiredOnOrAfter": "2017-07-01",
+      "note": "ERFC 2001 plan, Tier 2 \u2014 hired July 1, 2017 or later"
+    }
+  ],
+  "plans": {
+    "erfc_legacy": {
+      "planId": "erfc_legacy",
+      "planName": "ERFC Legacy Plan",
+      "type": "defined_benefit",
+      "category": "supplemental_pension",
+      "employer": "Educational Employees' Supplementary Retirement System of Fairfax County",
+      "formula": {
+        "multiplier": null,
+        "facPeriod": null,
+        "description": "Legacy formula \u2014 pre-2001 hires. User enters estimated monthly benefit."
+      },
+      "inputMode": "estimated_benefit",
+      "note": "Legacy ERFC members have varying formulas. Consumer applications typically accept a user-provided monthly estimate.",
+      "contributions": {
+        "employee": null,
+        "employer": null,
+        "note": "Varies by era \u2014 user should verify with ERFC statement"
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years FCPS employment"
+      },
+      "cola": {
+        "method": "annual",
+        "note": "COLA applies in retirement"
+      },
+      "survivorOptions": [
+        {
+          "option": "basic",
+          "memberPct": 100,
+          "survivorPct": 0,
+          "label": "Basic (no survivor)"
+        },
+        {
+          "option": "A",
+          "memberPct": 85,
+          "survivorPct": 100,
+          "label": "Option A \u2014 100% survivor"
+        },
+        {
+          "option": "B",
+          "memberPct": null,
+          "survivorPct": 50,
+          "label": "Option B \u2014 50% survivor"
+        },
+        {
+          "option": "C",
+          "memberPct": 96,
+          "survivorPct": null,
+          "label": "Option C \u2014 120 guaranteed payments"
+        }
+      ]
+    },
+    "erfc_2001_tier1": {
+      "planId": "erfc_2001_tier1",
+      "planName": "ERFC 2001 Tier 1",
+      "type": "defined_benefit",
+      "category": "supplemental_pension",
+      "employer": "Educational Employees' Supplementary Retirement System of Fairfax County",
+      "formula": {
+        "multiplier": 0.008,
+        "facPeriod": 3,
+        "facMethod": "highest_consecutive",
+        "facUnit": "years",
+        "description": "0.8% \u00d7 Final Average Compensation (highest 36 months) \u00d7 Years of Credited Service"
+      },
+      "eligibility": {
+        "ruleOf90": true,
+        "alternateFRA": true,
+        "alternateService": 5,
+        "note": "Rule of 90 (age + service \u2265 90) OR full SS age with 5+ yrs"
+      },
+      "contributions": {
+        "employee": 2.0,
+        "employer": 5.34,
+        "note": "Tier 1: 2% employee / 5.34% employer"
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years full-time FCPS employment"
+      },
+      "cola": {
+        "method": "annual",
+        "note": "COLA applies in retirement"
+      },
+      "sickLeaveCredit": true,
+      "sickLeaveCreditEffective": "2024-07-01",
+      "smallPensionRule": {
+        "threshold": 100,
+        "unit": "monthly",
+        "action": "lump_sum",
+        "note": "If basic benefit \u2264 $100/month, paid as one-time lump sum"
+      },
+      "survivorOptions": [
+        {
+          "option": "basic",
+          "memberPct": 100,
+          "survivorPct": 0,
+          "label": "Basic (no survivor)"
+        },
+        {
+          "option": "A",
+          "memberPct": 85,
+          "survivorPct": 100,
+          "label": "Option A \u2014 100% survivor"
+        },
+        {
+          "option": "B",
+          "memberPct": null,
+          "survivorPct": 50,
+          "label": "Option B \u2014 50% survivor"
+        },
+        {
+          "option": "C",
+          "memberPct": 96,
+          "survivorPct": null,
+          "label": "Option C \u2014 120 guaranteed payments"
+        }
+      ]
+    },
+    "erfc_2001_tier2": {
+      "planId": "erfc_2001_tier2",
+      "planName": "ERFC 2001 Tier 2",
+      "type": "defined_benefit",
+      "category": "supplemental_pension",
+      "employer": "Educational Employees' Supplementary Retirement System of Fairfax County",
+      "formula": {
+        "multiplier": 0.008,
+        "facPeriod": 5,
+        "facMethod": "highest_consecutive",
+        "facUnit": "years",
+        "description": "0.8% \u00d7 Final Average Compensation (highest 60 months) \u00d7 Years of Credited Service"
+      },
+      "eligibility": {
+        "ruleOf90": true,
+        "alternateFRA": true,
+        "alternateService": 5,
+        "note": "Rule of 90 (age + service \u2265 90) OR full SS age with 5+ yrs"
+      },
+      "contributions": {
+        "employee": 3.0,
+        "employer": 6.48,
+        "note": "Tier 2: 3% employee / 6.48% employer"
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years full-time FCPS employment"
+      },
+      "cola": {
+        "method": "annual",
+        "note": "COLA applies in retirement"
+      },
+      "sickLeaveCredit": true,
+      "sickLeaveCreditEffective": "2024-07-01",
+      "smallPensionRule": {
+        "threshold": 100,
+        "unit": "monthly",
+        "action": "lump_sum",
+        "note": "If basic benefit \u2264 $100/month, paid as one-time lump sum"
+      },
+      "survivorOptions": [
+        {
+          "option": "basic",
+          "memberPct": 100,
+          "survivorPct": 0,
+          "label": "Basic (no survivor)"
+        },
+        {
+          "option": "A",
+          "memberPct": 85,
+          "survivorPct": 100,
+          "label": "Option A \u2014 100% survivor"
+        },
+        {
+          "option": "B",
+          "memberPct": null,
+          "survivorPct": 50,
+          "label": "Option B \u2014 50% survivor"
+        },
+        {
+          "option": "C",
+          "memberPct": 96,
+          "survivorPct": null,
+          "label": "Option C \u2014 120 guaranteed payments"
+        }
+      ]
+    }
+  }
+}

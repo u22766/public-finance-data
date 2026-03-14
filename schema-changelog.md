@@ -19,7 +19,7 @@ Consumers should compare file versions to determine whether to re-fetch. A versi
 Consumers should check `schema_min_compatible` before reading data:
 
 ```javascript
-const appSchemaVersion = "2.1"; // hardcoded in consumer app — update after migration
+const appSchemaVersion = "2.2"; // hardcoded in consumer app — update after migration
 const repoMinCompatible = manifest.schema_min_compatible || "1.0";
 
 if (compareVersions(appSchemaVersion, repoMinCompatible) < 0) {
@@ -72,6 +72,62 @@ Corrected federal income tax bracket middle cutoffs for both single and married-
 | 32% max | 512,850 | 512,450 |
 
 All corresponding `min` values on adjacent brackets adjusted accordingly. 10% and 37% endpoints were already correct and unchanged.
+
+---
+
+## Schema Version 2.2 — County-Level Pension Jurisdictional Restructure
+
+**Date:** March 14, 2026 (Session 33)
+**Change type:** Breaking — file path and manifest key change
+**`schema_version`:** 2.1 → 2.2
+**`schema_min_compatible`:** 2.1 → 2.2
+
+### Summary
+
+Moved county-level pension data (ERFC plans and VRS+ERFC plan combinations) from the state-level `states/virginia/` directory into a county-specific subdirectory `states/virginia/fairfax-county/`. This corrects a jurisdictional hierarchy issue: ERFC is a Fairfax County retirement system, not a Virginia state system. VRS plans remain at state level.
+
+### Breaking Change
+
+**Removed manifest keys:**
+- `erfc_plans` (url: `states/virginia/erfc-plans.json`)
+- `plan_combinations` (url: `states/virginia/plan-combinations.json`)
+
+**Added manifest keys:**
+- `erfc_plans_fairfax` (url: `states/virginia/fairfax-county/erfc-plans.json`)
+- `plan_combinations_fairfax` (url: `states/virginia/fairfax-county/plan-combinations.json`)
+
+**Deleted files (old locations):**
+- `states/virginia/erfc-plans.json`
+- `states/virginia/plan-combinations.json`
+
+**Unchanged:**
+- `states/virginia/vrs-plans.json` — VRS is a state-level pension, correct location
+- `states/virginia/county-property-tax.json` — multi-county collection, correct at state level
+- `reference/other-db-template.json` — generic DB template, unchanged
+
+### Rationale
+
+ERFC (Employees' Retirement Fund of the City of Fairfax County) is administered by Fairfax County for county government and FCPS employees. Placing it alongside VRS (a Virginia state pension system) implied they were peer-level systems. The restructure makes the jurisdictional hierarchy explicit: state-level pension data at the state directory, county-level pension data in a county subdirectory.
+
+This pattern supports future expansion if other county/municipal pension systems are added (e.g., NYC pension funds under `states/new-york/new-york-city/`, Chicago pension funds under `states/illinois/chicago/`).
+
+### Consumer Migration
+
+```javascript
+// Before (Schema 2.1):
+const erfc = await fetch(manifest.files.erfc_plans.url);
+const combos = await fetch(manifest.files.plan_combinations.url);
+
+// After (Schema 2.2):
+const erfc = await fetch(manifest.files.erfc_plans_fairfax.url);
+const combos = await fetch(manifest.files.plan_combinations_fairfax.url);
+```
+
+### Research Context: County-Level Pension Landscape
+
+Research conducted during this session found that over 5,000 locally-administered pension plans exist in the United States. Notable examples include New York City (5 separate pension funds covering 300,000+ members), Chicago (Municipal Employees' Annuity and Benefit Fund plus police/fire/teachers funds), 20 California counties operating independent retirement systems under the 1937 County Employees Retirement Act (including LA County, San Diego, Orange County, San Francisco), and Pennsylvania with 928+ local municipal pension plans. Illinois has 365+ local plans.
+
+For this repo's scope (federal retirement planning with state/local benefits as supplementary data), the `other-db-template.json` file handles user-entered pension parameters for any plan not explicitly modeled. The explicit ERFC modeling exists because Virginia/Fairfax County is the repo's most deeply covered jurisdiction. The directory structure now supports adding other county/municipal pension systems as needed.
 
 ---
 

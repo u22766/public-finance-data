@@ -242,8 +242,8 @@ def test_referential_integrity(s):
     print("\n--- Layer 5: Cross-File Referential Integrity ---")
 
     vrs = s.load_json("states/virginia/vrs-plans.json")
-    erfc = s.load_json("states/virginia/erfc-plans.json")
-    combos = s.load_json("states/virginia/plan-combinations.json")
+    erfc = s.load_json("states/virginia/fairfax-county/erfc-plans.json")
+    combos = s.load_json("states/virginia/fairfax-county/plan-combinations.json")
 
     # Collect all plan IDs
     all_plan_ids = set()
