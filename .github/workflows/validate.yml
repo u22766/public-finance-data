@@ -1,9 +1,9 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 8 validation suites, 3,153+ total checks
+# 9 validation suites, 3,362+ total checks
 #
-# Session 24: Bumped actions to v6 (Node 24 support)
+# Session 25: Added validate_tier3.py (123 checks) for Tier 3A states
 
 name: Validate Data Files
 
@@ -49,6 +49,9 @@ jobs:
 
       - name: Validate OBBBA tax provisions (71 checks)
         run: python tests/validate_obbba.py
+
+      - name: Validate Tier 3A states (123 checks)
+        run: python tests/validate_tier3.py
       
       - name: Validation summary
         if: success()
