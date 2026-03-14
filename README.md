@@ -18,7 +18,7 @@ A structured, version-controlled library of government-published financial data 
 - **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
 - **County property tax** — Effective rates and veteran exemptions for 10 counties
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes)
-- **State/local pensions** — Virginia VRS plans, Fairfax County ERFC plans, pension stacking patterns
+- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC plans (county-level), pension stacking patterns
 
 Designed as a generic data source that any application, tool, or analysis can consume — no authentication, no API keys, no tracking.
 
@@ -89,9 +89,10 @@ public-finance-data/
 │   │   └── county-property-tax.json             ← Bexar County
 │   ├── virginia/
 │   │   ├── county-property-tax.json             ← Fairfax County, Virginia Beach
-│   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid
-│   │   ├── erfc-plans.json                      ← ERFC Legacy, Tier 1, Tier 2 (Fairfax County)
-│   │   └── plan-combinations.json               ← VRS + ERFC pension stacking patterns
+│   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid (state-level)
+│   │   └── fairfax-county/
+│   │       ├── erfc-plans.json                  ← ERFC Legacy, Tier 1, Tier 2 (county-level pension)
+│   │       └── plan-combinations.json           ← VRS + ERFC pension stacking patterns
 │   └── washington/
 │       └── county-property-tax.json             ← Pierce County
 │
@@ -105,20 +106,21 @@ public-finance-data/
 │   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
 └── tests/
-    ├── validate.py                              ← Core validation (311 checks)
-    ├── validate_tier2.py                        ← State benefits validation (255 checks)
-    └── validate_tier3.py                        ← Tier 3A state expansion validation (123 checks)
-    └── validate_tier3b.py                       ← Tier 3B state expansion validation (170 checks)
-    └── validate_tier3c.py                       ← Tier 3C state expansion validation (187 checks)
+    ├── validate.py                              ← Core validation (315 checks)
+    ├── validate_tier2.py                        ← State benefits validation (527 checks)
+    ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
+    ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
+    ├── validate_tier3c.py                       ← Tier 3C state expansion validation (187 checks)
+    ├── validate_tier3d.py                       ← Tier 3D final expansion validation (179 checks)
     ├── validate_medicare.py                     ← Medicare rates validation (7 checks)
     ├── validate_dcips.py                        ← DCIPS pay tables validation (424 checks)
-    ├── validate_historical.py                   ← Historical + healthcare + county validation (1,963 checks)
+    ├── validate_historical.py                   ← Historical + healthcare + county validation (1,968 checks)
     ├── validate_pharmacy.py                     ← TRICARE pharmacy validation (92 checks)
     ├── validate_dental.py                       ← TRICARE dental validation (116 checks)
-    └── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
-    └── validate_military.py                     ← Military retirement rules + pay tables validation (705 checks)
-    └── validate_vehicle_audit.py                ← Vehicle personal property tax audit validation (111 checks)
-    └── validate_territories.py                 ← US territory expansion validation (129 checks)
+    ├── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
+    ├── validate_military.py                     ← Military retirement rules + pay tables validation (705 checks)
+    ├── validate_vehicle_audit.py                ← Vehicle personal property tax audit validation (123 checks)
+    └── validate_territories.py                  ← US territory expansion validation (129 checks)
 ```
 
 ### Domain Organization
@@ -126,7 +128,7 @@ public-finance-data/
 Files are organized by jurisdiction and domain:
 
 - **`federal/`** — Federal civilian data (OPM, IRS, SSA, CMS), healthcare plans (OPM, DoD, CMS), and Department of Veterans Affairs benefits
-- **`states/`** — State-level tax treatment, county property tax data, and state/county pension plans
+- **`states/`** — State-level tax treatment, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`)
 - **`reference/`** — Static lookup tables, actuarial data, and templates that rarely change
 
 ---
@@ -158,7 +160,7 @@ Files are organized by jurisdiction and domain:
 | `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
 | `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
-| `state_benefits` | 2.1 | `states/state-benefits.json` |
+| `state_benefits` | 2.2 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
 | `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
 | `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
@@ -169,8 +171,8 @@ Files are organized by jurisdiction and domain:
 | `county_property_tax_va` | 1.1 | `states/virginia/county-property-tax.json` |
 | `county_property_tax_wa` | 1.1 | `states/washington/county-property-tax.json` |
 | `vrs_plans` | 2.0.0 | `states/virginia/vrs-plans.json` |
-| `erfc_plans` | 2.0.0 | `states/virginia/erfc-plans.json` |
-| `plan_combinations` | 2.0.0 | `states/virginia/plan-combinations.json` |
+| `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
+| `plan_combinations_fairfax` | 2.0.0 | `states/virginia/fairfax-county/plan-combinations.json` |
 | `static_refs` | 1.0.1 | `reference/static-refs.json` |
 | `ssa_life_table` | 1.0 | `reference/ssa-life-table.json` |
 | `other_db_template` | 1.0.0 | `reference/other-db-template.json` |
@@ -194,23 +196,23 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,113 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,140 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
 | Core | `validate.py` | 315 | Manifest integrity, all federal/state/reference files |
-| Tier 2 | `validate_tier2.py` | 490 | State benefits — field structure, exemption types, IU eligibility |
+| Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
-| Historical | `validate_historical.py` | 1,963 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
+| Historical | `validate_historical.py` | 1,968 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
 | Pharmacy | `validate_pharmacy.py` | 92 | TRICARE pharmacy cost-share validation |
 | Dental | `validate_dental.py` | 116 | TRICARE dental premium validation |
 | OBBBA | `validate_obbba.py` | 71 | OBBBA tax provision structure and cross-references |
-| Tier 3A | `validate_tier3.py` | 123 | Tier 3A state expansion — CA, NY, OH, IL, MI, TN, SC, AL, MO, IN |
-| Tier 3B | `validate_tier3b.py` | 170 | Tier 3B state expansion — NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS |
+| Tier 3A | `validate_tier3.py` | 125 | Tier 3A state expansion — CA, NY, OH, IL, MI, TN, SC, AL, MO, IN |
+| Tier 3B | `validate_tier3b.py` | 172 | Tier 3B state expansion — NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS |
 | Tier 3C | `validate_tier3c.py` | 187 | Tier 3C state expansion — LA, MA, WV, NH, ME, UT, NM, ID, MT, DE |
-| Tier 3D | `validate_tier3d.py` | 176 | Tier 3D final expansion — NE, ND, RI, SD, VT, WY (50 states + DC) |
-| Vehicle Audit | `validate_vehicle_audit.py` | 111 | Vehicle personal property tax exemptions — MS, SC, CT, AL, AR, NC |
+| Tier 3D | `validate_tier3d.py` | 179 | Tier 3D final expansion — NE, ND, RI, SD, VT, WY (50 states + DC) |
+| Vehicle Audit | `validate_vehicle_audit.py` | 123 | Vehicle personal property tax exemptions — MS, SC, CT, AL, AR, NC, NE |
 | Territories | `validate_territories.py` | 129 | US territory expansion — AS, GU, MP, PR, VI (56 jurisdictions) |
 | Military | `validate_military.py` | 705 | Military retirement rules v2.0, pay tables 2016–2026 |
 
@@ -274,8 +276,8 @@ All data in this repository is drawn from official U.S. government sources:
 
 The manifest includes two version fields for safe consumption:
 
-- **`schema_version`** — current structure version (currently `2.0`). Bumped when keys are added, renamed, removed, or paths change.
-- **`schema_min_compatible`** — oldest consumer version that can safely read this data (currently `2.0`).
+- **`schema_version`** — current structure version (currently `2.2`). Bumped when keys are added, renamed, removed, or paths change.
+- **`schema_min_compatible`** — oldest consumer version that can safely read this data (currently `2.2`).
 
 **Rule of thumb:** If changes only ADD new keys or files, `schema_min_compatible` stays unchanged and older consumers keep working. Path changes or key removals require a `schema_min_compatible` bump. See `schema-changelog.md` for the full change history.
 
