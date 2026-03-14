@@ -382,6 +382,18 @@
       "update_frequency": "as needed",
       "url": "states/virginia/arlington-county/acers-plans.json",
       "description": "ACERS pension plan parameters for Arlington County employees. Independent DB system (not VRS). Covers general, school board, and public safety employees under Chapters 21, 35, and 46 of Arlington County Code."
+    },
+    "fcers_plans_fairfax": {
+      "name": "Fairfax County Employees' Retirement System (FCERS) Plans",
+      "url": "states/virginia/fairfax-county/fcers-plans.json",
+      "domain": "state_local_pension",
+      "version": "2026.1",
+      "effective_date": "2026-01-01",
+      "description": "Fairfax County ERS defined benefit pension plan parameters \u2014 5 plan tiers (A-E) for general county and FCPS non-teaching employees. Includes benefit formulas, eligibility rules, contributions, disability, DROP, survivor options.",
+      "source": "Fairfax County Retirement Systems",
+      "source_url": "https://www.fairfaxcounty.gov/retirement/employees-retirement-system",
+      "update_frequency": "annual",
+      "schema_notes": "Independent municipal pension system (not VRS). Plan A/B (pre-2013), C/D (2013-2019), E (2019+). A/C use integrated SS contribution; B/D/E use flat rate."
     }
   }
 }

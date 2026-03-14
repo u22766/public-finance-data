@@ -1,0 +1,816 @@
+{
+  "_comment": "Fairfax County Employees' Retirement System (FCERS/ERS). Fully independent defined benefit pension system (not VRS). Established 1955. Covers general county employees and certain FCPS non-teaching positions (bus drivers, cafeteria, clerical, custodians, trades). Five plan tiers (A-E) based on hire date and contribution election. Update as Fairfax County Code changes.",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "employer": "Fairfax County Employees' Retirement System",
+  "scope": "county",
+  "jurisdiction": {
+    "state": "VA",
+    "county": "Fairfax County",
+    "note": "FCERS is a fully independent single-employer defined benefit pension system established 1955 (originally Supplemental Retirement System). It is NOT part of VRS. Covers general Fairfax County government employees and certain Fairfax County Public Schools (FCPS) non-teaching employees. Governed by Fairfax County Code Chapter 3 (Retirement).",
+    "source_url": "https://www.fairfaxcounty.gov/retirement/employees-retirement-system"
+  },
+  "hireDateMapping": [
+    {
+      "planId": "fcers_plan_a",
+      "label": "ERS Plan A (pre-2013, integrated contribution)",
+      "hiredBefore": "2013-01-01",
+      "contributionType": "integrated",
+      "note": "County/FCPS employees hired before 1/1/2013 who elected Plan A (4% up to SS wage base + 5.333% above). Plans A and B were available; employee selected one at hire. CLOSED to new members."
+    },
+    {
+      "planId": "fcers_plan_b",
+      "label": "ERS Plan B (pre-2013, flat contribution)",
+      "hiredBefore": "2013-01-01",
+      "contributionType": "flat",
+      "note": "County/FCPS employees hired before 1/1/2013 who elected Plan B (flat 5.333%). Plans A and B were available; employee selected one at hire. CLOSED to new members."
+    },
+    {
+      "planId": "fcers_plan_c",
+      "label": "ERS Plan C (2013-2019, integrated contribution)",
+      "hiredOnOrAfter": "2013-01-01",
+      "hiredBefore": "2019-07-01",
+      "contributionType": "integrated",
+      "note": "County/FCPS employees hired 1/1/2013 through 6/30/2019 who elected Plan C (4% up to SS wage base + 5.333% above). Plans C and D were available; employee selected one at hire. CLOSED to new members."
+    },
+    {
+      "planId": "fcers_plan_d",
+      "label": "ERS Plan D (2013-2019, flat contribution)",
+      "hiredOnOrAfter": "2013-01-01",
+      "hiredBefore": "2019-07-01",
+      "contributionType": "flat",
+      "note": "County/FCPS employees hired 1/1/2013 through 6/30/2019 who elected Plan D (flat 5.333%). Plans C and D were available; employee selected one at hire. CLOSED to new members."
+    },
+    {
+      "planId": "fcers_plan_e",
+      "label": "ERS Plan E (2019+, flat contribution)",
+      "hiredOnOrAfter": "2019-07-01",
+      "contributionType": "flat",
+      "note": "County/FCPS employees hired on or after 7/1/2019. Single plan \u2014 no choice between integrated/flat. OPEN to new members."
+    }
+  ],
+  "plans": {
+    "fcers_plan_a": {
+      "planId": "fcers_plan_a",
+      "planName": "FCERS Plan A",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 1/1/2013. Existing members retain Plan A provisions.",
+      "formula": {
+        "baseBenefit": {
+          "multiplier": 0.018,
+          "escalator": 1.03,
+          "description": "1.8% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03"
+        },
+        "preSocialSecurityBenefit": {
+          "multiplier": 0.01,
+          "escalator": 1.03,
+          "paidUntilAge": 65,
+          "description": "1.0% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03. Paid from retirement until age 65."
+        },
+        "facPeriod": 36,
+        "facMethod": "highest_consecutive",
+        "facUnit": "months",
+        "facDefinition": "average_of_highest_78_consecutive_biweekly_pay_periods_or_36_months",
+        "maxServiceYears": 30,
+        "ssBreakpointUsed": true,
+        "ssBreakpointNote": "Social Security Breakpoint (average of SS taxable wage bases for 35 years before age 65) is used in the Plan A benefit formula and Pre-SS Benefit computation.",
+        "description": "Base benefit = 1.8% \u00d7 FAS \u00d7 Years \u00d7 1.03. Pre-SS benefit = 1.0% \u00d7 FAS \u00d7 Years \u00d7 1.03 (temporary, paid until age 65). Total benefit at retirement = Base + Pre-SS."
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 50,
+              "minService": 30,
+              "description": "Age 50 with 30+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 80,
+              "description": "Age + years of eligibility service \u2265 80 (at any time after age 50)"
+            }
+          ]
+        },
+        "earlyRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 50,
+              "minService": 25,
+              "description": "Age 50 with 25+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 75,
+              "description": "Age + years of eligibility service \u2265 75 (at any time after age 50)"
+            }
+          ],
+          "reduction": "age_based_from_65",
+          "reductionNote": "Base benefit only (no Pre-SS benefit). Reduced based on age at early retirement \u2014 the younger from age 65, the greater the reduction. Consult ERS Active Employee Handbook for reduction schedule.",
+          "preSocialSecurityBenefit": false
+        },
+        "deferredVested": {
+          "minService": 5,
+          "benefitStartAge": 65,
+          "preSocialSecurityBenefit": false,
+          "note": "Terminate employment, leave contributions in system, receive benefit at age 65. Base benefit formula applies; no Pre-SS benefit."
+        }
+      },
+      "contributions": {
+        "employee": {
+          "type": "integrated",
+          "belowSSWageBase": 4.0,
+          "aboveSSWageBase": 5.333,
+          "note": "4% of salary up to SS Maximum Wage Base, then 5\u2153% of compensation above SS wage base."
+        },
+        "employer": "actuarially_determined",
+        "employerNote": "Employer contribution rate set by annual actuarial valuation, approximately 28-31%."
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years of creditable service"
+      },
+      "cola": {
+        "method": "none_specified",
+        "note": "FCERS benefits do not include an automatic COLA. Benefit adjustments require Board of Supervisors action."
+      },
+      "disability": {
+        "nonJobRelated": {
+          "minService": 5,
+          "formula": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service (max 30) \u00d7 1.03",
+          "multiplier": 0.02,
+          "escalator": 1.03,
+          "maxServiceYears": 30,
+          "preSocialSecurityBenefit": false
+        },
+        "jobRelated": {
+          "minService": "any",
+          "formula": "66\u2154% of FAS less Workers' Compensation payments",
+          "percentOfFAS": 66.67
+        }
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "normal_retirement_eligible_only",
+        "note": "Deferred Retirement Option Program \u2014 up to 3 years. Monthly benefit credited to DROP account while continuing to work. Applications must be received 60+ days prior to DROP entry date."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "note": "Accrued sick leave may be converted to additional benefit service. For employees hired on/after 1/1/2013, capped at 2,080 hours."
+      },
+      "survivorOptions": [
+        {
+          "option": "refund",
+          "survivorPct": 0,
+          "label": "Refund of contributions and interest (pre-retirement death)"
+        },
+        {
+          "option": "50pct",
+          "survivorPct": 50,
+          "label": "50% Joint and Last Survivor"
+        },
+        {
+          "option": "66pct",
+          "survivorPct": 66.67,
+          "label": "66\u2154% Joint and Last Survivor"
+        },
+        {
+          "option": "75pct",
+          "survivorPct": 75,
+          "label": "75% Joint and Last Survivor"
+        },
+        {
+          "option": "100pct",
+          "survivorPct": 100,
+          "label": "100% Joint and Last Survivor"
+        }
+      ],
+      "servicePurchase": {
+        "available": true,
+        "interestRate_within12months": 7.25,
+        "interestRate_after12months": 15.0,
+        "completionDeadline": "3 years from initiation",
+        "eligibleService": [
+          "prior_VRS_service",
+          "prior_ERFC_service",
+          "military_service",
+          "prior_FCERS_service"
+        ],
+        "note": "Buy-back of prior service. Within 12 months of re-employment: 7.25% interest. After 12 months: 15% interest. Must complete within 3 years."
+      }
+    },
+    "fcers_plan_b": {
+      "planId": "fcers_plan_b",
+      "planName": "FCERS Plan B",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 1/1/2013. Existing members retain Plan A provisions.",
+      "formula": {
+        "baseBenefit": {
+          "multiplier": 0.02,
+          "escalator": 1.03,
+          "description": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03"
+        },
+        "preSocialSecurityBenefit": {
+          "multiplier": 0.01,
+          "escalator": 1.03,
+          "paidUntilAge": 65,
+          "description": "1.0% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03. Paid from retirement until age 65."
+        },
+        "facPeriod": 36,
+        "facMethod": "highest_consecutive",
+        "facUnit": "months",
+        "facDefinition": "average_of_highest_78_consecutive_biweekly_pay_periods_or_36_months",
+        "maxServiceYears": 30,
+        "ssBreakpointUsed": false,
+        "ssBreakpointNote": "SS Breakpoint not used in Plan B base benefit formula, but IS used in Pre-SS Benefit computation.",
+        "description": "Base benefit = 2.0% \u00d7 FAS \u00d7 Years \u00d7 1.03. Pre-SS benefit = 1.0% \u00d7 FAS \u00d7 Years \u00d7 1.03 (temporary, paid until age 65). Total benefit at retirement = Base + Pre-SS."
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 50,
+              "minService": 30,
+              "description": "Age 50 with 30+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 80,
+              "description": "Age + years of eligibility service \u2265 80 (at any time after age 50)"
+            }
+          ]
+        },
+        "earlyRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 50,
+              "minService": 25,
+              "description": "Age 50 with 25+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 75,
+              "description": "Age + years of eligibility service \u2265 75 (at any time after age 50)"
+            }
+          ],
+          "reduction": "age_based_from_65",
+          "reductionNote": "Base benefit only (no Pre-SS benefit). Reduced based on age at early retirement \u2014 the younger from age 65, the greater the reduction. Consult ERS Active Employee Handbook for reduction schedule.",
+          "preSocialSecurityBenefit": false
+        },
+        "deferredVested": {
+          "minService": 5,
+          "benefitStartAge": 65,
+          "preSocialSecurityBenefit": false,
+          "note": "Terminate employment, leave contributions in system, receive benefit at age 65. Base benefit formula applies; no Pre-SS benefit."
+        }
+      },
+      "contributions": {
+        "employee": {
+          "type": "flat",
+          "rate": 5.333,
+          "note": "Flat 5\u2153% of total compensation."
+        },
+        "employer": "actuarially_determined",
+        "employerNote": "Employer contribution rate set by annual actuarial valuation, approximately 28-31%."
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years of creditable service"
+      },
+      "cola": {
+        "method": "none_specified",
+        "note": "FCERS benefits do not include an automatic COLA. Benefit adjustments require Board of Supervisors action."
+      },
+      "disability": {
+        "nonJobRelated": {
+          "minService": 5,
+          "formula": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service (max 30) \u00d7 1.03",
+          "multiplier": 0.02,
+          "escalator": 1.03,
+          "maxServiceYears": 30,
+          "preSocialSecurityBenefit": false
+        },
+        "jobRelated": {
+          "minService": "any",
+          "formula": "66\u2154% of FAS less Workers' Compensation payments",
+          "percentOfFAS": 66.67
+        }
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "normal_retirement_eligible_only",
+        "note": "Deferred Retirement Option Program \u2014 up to 3 years. Monthly benefit credited to DROP account while continuing to work. Applications must be received 60+ days prior to DROP entry date."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "note": "Accrued sick leave may be converted to additional benefit service. For employees hired on/after 1/1/2013, capped at 2,080 hours."
+      },
+      "survivorOptions": [
+        {
+          "option": "refund",
+          "survivorPct": 0,
+          "label": "Refund of contributions and interest (pre-retirement death)"
+        },
+        {
+          "option": "50pct",
+          "survivorPct": 50,
+          "label": "50% Joint and Last Survivor"
+        },
+        {
+          "option": "66pct",
+          "survivorPct": 66.67,
+          "label": "66\u2154% Joint and Last Survivor"
+        },
+        {
+          "option": "75pct",
+          "survivorPct": 75,
+          "label": "75% Joint and Last Survivor"
+        },
+        {
+          "option": "100pct",
+          "survivorPct": 100,
+          "label": "100% Joint and Last Survivor"
+        }
+      ],
+      "servicePurchase": {
+        "available": true,
+        "interestRate_within12months": 7.25,
+        "interestRate_after12months": 15.0,
+        "completionDeadline": "3 years from initiation",
+        "eligibleService": [
+          "prior_VRS_service",
+          "prior_ERFC_service",
+          "military_service",
+          "prior_FCERS_service"
+        ],
+        "note": "Buy-back of prior service. Within 12 months of re-employment: 7.25% interest. After 12 months: 15% interest. Must complete within 3 years."
+      }
+    },
+    "fcers_plan_c": {
+      "planId": "fcers_plan_c",
+      "planName": "FCERS Plan C",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 7/1/2019. Existing members retain Plan C provisions.",
+      "formula": {
+        "baseBenefit": {
+          "multiplier": 0.018,
+          "escalator": 1.03,
+          "description": "1.8% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03"
+        },
+        "preSocialSecurityBenefit": {
+          "multiplier": 0.01,
+          "escalator": 1.03,
+          "paidUntilAge": 65,
+          "description": "1.0% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03. Paid from retirement until age 65."
+        },
+        "facPeriod": 36,
+        "facMethod": "highest_consecutive",
+        "facUnit": "months",
+        "facDefinition": "average_of_highest_78_consecutive_biweekly_pay_periods_or_36_months",
+        "maxServiceYears": 30,
+        "ssBreakpointUsed": true,
+        "ssBreakpointNote": "Social Security Breakpoint (average of SS taxable wage bases for 35 years before age 65) is used in the Plan A benefit formula and Pre-SS Benefit computation.",
+        "description": "Base benefit = 1.8% \u00d7 FAS \u00d7 Years \u00d7 1.03. Pre-SS benefit = 1.0% \u00d7 FAS \u00d7 Years \u00d7 1.03 (temporary, paid until age 65). Total benefit at retirement = Base + Pre-SS."
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 55,
+              "minService": 30,
+              "description": "Age 55 with 30+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 85,
+              "description": "Age + years of eligibility service \u2265 85 (at any time after age 55)"
+            }
+          ]
+        },
+        "earlyRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 50,
+              "minService": 25,
+              "description": "Age 50 with 25+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 75,
+              "description": "Age + years of eligibility service \u2265 75 (at any time after age 50)"
+            }
+          ],
+          "reduction": "age_based_from_65",
+          "reductionNote": "Base benefit only (no Pre-SS benefit). Reduced based on age at early retirement \u2014 the younger from age 65, the greater the reduction. Consult ERS Active Employee Handbook for reduction schedule.",
+          "preSocialSecurityBenefit": false
+        },
+        "deferredVested": {
+          "minService": 5,
+          "benefitStartAge": 65,
+          "preSocialSecurityBenefit": false,
+          "note": "Terminate employment, leave contributions in system, receive benefit at age 65. Base benefit formula applies; no Pre-SS benefit."
+        }
+      },
+      "contributions": {
+        "employee": {
+          "type": "integrated",
+          "belowSSWageBase": 4.0,
+          "aboveSSWageBase": 5.333,
+          "note": "4% of salary up to SS Maximum Wage Base, then 5\u2153% of compensation above SS wage base."
+        },
+        "employer": "actuarially_determined",
+        "employerNote": "Employer contribution rate set by annual actuarial valuation, approximately 28-31%."
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years of creditable service"
+      },
+      "cola": {
+        "method": "none_specified",
+        "note": "FCERS benefits do not include an automatic COLA. Benefit adjustments require Board of Supervisors action."
+      },
+      "disability": {
+        "nonJobRelated": {
+          "minService": 5,
+          "formula": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service (max 30) \u00d7 1.03",
+          "multiplier": 0.02,
+          "escalator": 1.03,
+          "maxServiceYears": 30,
+          "preSocialSecurityBenefit": false
+        },
+        "jobRelated": {
+          "minService": "any",
+          "formula": "66\u2154% of FAS less Workers' Compensation payments",
+          "percentOfFAS": 66.67
+        }
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "normal_retirement_eligible_only",
+        "note": "Deferred Retirement Option Program \u2014 up to 3 years. Monthly benefit credited to DROP account while continuing to work. Applications must be received 60+ days prior to DROP entry date."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "note": "Accrued sick leave may be converted to additional benefit service, capped at 2,080 hours."
+      },
+      "survivorOptions": [
+        {
+          "option": "refund",
+          "survivorPct": 0,
+          "label": "Refund of contributions and interest (pre-retirement death)"
+        },
+        {
+          "option": "50pct",
+          "survivorPct": 50,
+          "label": "50% Joint and Last Survivor"
+        },
+        {
+          "option": "66pct",
+          "survivorPct": 66.67,
+          "label": "66\u2154% Joint and Last Survivor"
+        },
+        {
+          "option": "75pct",
+          "survivorPct": 75,
+          "label": "75% Joint and Last Survivor"
+        },
+        {
+          "option": "100pct",
+          "survivorPct": 100,
+          "label": "100% Joint and Last Survivor"
+        }
+      ],
+      "servicePurchase": {
+        "available": true,
+        "interestRate_within12months": 7.25,
+        "interestRate_after12months": 15.0,
+        "completionDeadline": "3 years from initiation",
+        "eligibleService": [
+          "prior_VRS_service",
+          "prior_ERFC_service",
+          "military_service",
+          "prior_FCERS_service"
+        ],
+        "note": "Buy-back of prior service. Within 12 months of re-employment: 7.25% interest. After 12 months: 15% interest. Must complete within 3 years."
+      }
+    },
+    "fcers_plan_d": {
+      "planId": "fcers_plan_d",
+      "planName": "FCERS Plan D",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 7/1/2019. Existing members retain Plan D provisions.",
+      "formula": {
+        "baseBenefit": {
+          "multiplier": 0.02,
+          "escalator": 1.03,
+          "description": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03"
+        },
+        "preSocialSecurityBenefit": {
+          "multiplier": 0.01,
+          "escalator": 1.03,
+          "paidUntilAge": 65,
+          "description": "1.0% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03. Paid from retirement until age 65."
+        },
+        "facPeriod": 36,
+        "facMethod": "highest_consecutive",
+        "facUnit": "months",
+        "facDefinition": "average_of_highest_78_consecutive_biweekly_pay_periods_or_36_months",
+        "maxServiceYears": 30,
+        "ssBreakpointUsed": false,
+        "ssBreakpointNote": "SS Breakpoint not used in Plan B base benefit formula, but IS used in Pre-SS Benefit computation.",
+        "description": "Base benefit = 2.0% \u00d7 FAS \u00d7 Years \u00d7 1.03. Pre-SS benefit = 1.0% \u00d7 FAS \u00d7 Years \u00d7 1.03 (temporary, paid until age 65). Total benefit at retirement = Base + Pre-SS."
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 55,
+              "minService": 30,
+              "description": "Age 55 with 30+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 85,
+              "description": "Age + years of eligibility service \u2265 85 (at any time after age 55)"
+            }
+          ]
+        },
+        "earlyRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 50,
+              "minService": 25,
+              "description": "Age 50 with 25+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 75,
+              "description": "Age + years of eligibility service \u2265 75 (at any time after age 50)"
+            }
+          ],
+          "reduction": "age_based_from_65",
+          "reductionNote": "Base benefit only (no Pre-SS benefit). Reduced based on age at early retirement \u2014 the younger from age 65, the greater the reduction. Consult ERS Active Employee Handbook for reduction schedule.",
+          "preSocialSecurityBenefit": false
+        },
+        "deferredVested": {
+          "minService": 5,
+          "benefitStartAge": 65,
+          "preSocialSecurityBenefit": false,
+          "note": "Terminate employment, leave contributions in system, receive benefit at age 65. Base benefit formula applies; no Pre-SS benefit."
+        }
+      },
+      "contributions": {
+        "employee": {
+          "type": "flat",
+          "rate": 5.333,
+          "note": "Flat 5\u2153% of total compensation."
+        },
+        "employer": "actuarially_determined",
+        "employerNote": "Employer contribution rate set by annual actuarial valuation, approximately 28-31%."
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years of creditable service"
+      },
+      "cola": {
+        "method": "none_specified",
+        "note": "FCERS benefits do not include an automatic COLA. Benefit adjustments require Board of Supervisors action."
+      },
+      "disability": {
+        "nonJobRelated": {
+          "minService": 5,
+          "formula": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service (max 30) \u00d7 1.03",
+          "multiplier": 0.02,
+          "escalator": 1.03,
+          "maxServiceYears": 30,
+          "preSocialSecurityBenefit": false
+        },
+        "jobRelated": {
+          "minService": "any",
+          "formula": "66\u2154% of FAS less Workers' Compensation payments",
+          "percentOfFAS": 66.67
+        }
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "normal_retirement_eligible_only",
+        "note": "Deferred Retirement Option Program \u2014 up to 3 years. Monthly benefit credited to DROP account while continuing to work. Applications must be received 60+ days prior to DROP entry date."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "note": "Accrued sick leave may be converted to additional benefit service, capped at 2,080 hours."
+      },
+      "survivorOptions": [
+        {
+          "option": "refund",
+          "survivorPct": 0,
+          "label": "Refund of contributions and interest (pre-retirement death)"
+        },
+        {
+          "option": "50pct",
+          "survivorPct": 50,
+          "label": "50% Joint and Last Survivor"
+        },
+        {
+          "option": "66pct",
+          "survivorPct": 66.67,
+          "label": "66\u2154% Joint and Last Survivor"
+        },
+        {
+          "option": "75pct",
+          "survivorPct": 75,
+          "label": "75% Joint and Last Survivor"
+        },
+        {
+          "option": "100pct",
+          "survivorPct": 100,
+          "label": "100% Joint and Last Survivor"
+        }
+      ],
+      "servicePurchase": {
+        "available": true,
+        "interestRate_within12months": 7.25,
+        "interestRate_after12months": 15.0,
+        "completionDeadline": "3 years from initiation",
+        "eligibleService": [
+          "prior_VRS_service",
+          "prior_ERFC_service",
+          "military_service",
+          "prior_FCERS_service"
+        ],
+        "note": "Buy-back of prior service. Within 12 months of re-employment: 7.25% interest. After 12 months: 15% interest. Must complete within 3 years."
+      }
+    },
+    "fcers_plan_e": {
+      "planId": "fcers_plan_e",
+      "planName": "FCERS Plan E",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "open",
+      "statusNote": "Open to new members hired on or after 7/1/2019. Current plan for all new ERS-eligible hires.",
+      "formula": {
+        "baseBenefit": {
+          "multiplier": 0.02,
+          "escalator": null,
+          "description": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service (no 1.03 escalator)"
+        },
+        "preSocialSecurityBenefit": null,
+        "facPeriod": 36,
+        "facMethod": "highest_consecutive",
+        "facUnit": "months",
+        "facDefinition": "average_of_highest_78_consecutive_biweekly_pay_periods_or_36_months",
+        "maxServiceYears": 30,
+        "ssBreakpointUsed": false,
+        "ssBreakpointNote": "Not applicable \u2014 Plan E has no Pre-Social Security Benefit and no SS Breakpoint integration.",
+        "description": "Base benefit = 2.0% \u00d7 FAS \u00d7 Years. No Pre-Social Security Benefit. No 1.03 escalator."
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 55,
+              "minService": 30,
+              "description": "Age 55 with 30+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 85,
+              "description": "Age + years of eligibility service \u2265 85 (at any time after age 55)"
+            }
+          ]
+        },
+        "earlyRetirement": {
+          "conditions": [
+            {
+              "type": "age_plus_service",
+              "minAge": 50,
+              "minService": 25,
+              "description": "Age 50 with 25+ years of eligibility service"
+            },
+            {
+              "type": "rule_of",
+              "ruleOf": 75,
+              "description": "Age + years of eligibility service \u2265 75 (at any time after age 50)"
+            }
+          ],
+          "reduction": "age_based_from_65",
+          "reductionNote": "Base benefit only (no Pre-SS benefit, no 1.03 escalator). Reduced based on age at early retirement \u2014 the younger from age 65, the greater the reduction.",
+          "preSocialSecurityBenefit": false
+        },
+        "deferredVested": {
+          "minService": 5,
+          "benefitStartAge": 65,
+          "preSocialSecurityBenefit": false,
+          "note": "Terminate employment, leave contributions in system, receive benefit at age 65. Base benefit formula applies; no Pre-SS benefit."
+        }
+      },
+      "contributions": {
+        "employee": {
+          "type": "flat",
+          "rate": 5.333,
+          "note": "Flat 5\u2153% of total compensation."
+        },
+        "employer": "actuarially_determined",
+        "employerNote": "Employer contribution rate set by annual actuarial valuation, approximately 28-31%."
+      },
+      "vesting": {
+        "years": 5,
+        "note": "5 years of creditable service"
+      },
+      "cola": {
+        "method": "none_specified",
+        "note": "FCERS benefits do not include an automatic COLA. Benefit adjustments require Board of Supervisors action."
+      },
+      "disability": {
+        "nonJobRelated": {
+          "minService": 5,
+          "formula": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service (max 30)",
+          "multiplier": 0.02,
+          "escalator": null,
+          "maxServiceYears": 30,
+          "preSocialSecurityBenefit": false
+        },
+        "jobRelated": {
+          "minService": "any",
+          "formula": "66\u2154% of FAS less Workers' Compensation payments",
+          "percentOfFAS": 66.67
+        }
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "normal_retirement_eligible_only",
+        "note": "Deferred Retirement Option Program \u2014 up to 3 years. Monthly benefit credited to DROP account while continuing to work. Applications must be received 60+ days prior to DROP entry date."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "note": "Accrued sick leave may be converted to additional benefit service, capped at 2,080 hours."
+      },
+      "survivorOptions": [
+        {
+          "option": "refund",
+          "survivorPct": 0,
+          "label": "Refund of contributions and interest (pre-retirement death)"
+        },
+        {
+          "option": "50pct",
+          "survivorPct": 50,
+          "label": "50% Joint and Last Survivor"
+        },
+        {
+          "option": "66pct",
+          "survivorPct": 66.67,
+          "label": "66\u2154% Joint and Last Survivor"
+        },
+        {
+          "option": "75pct",
+          "survivorPct": 75,
+          "label": "75% Joint and Last Survivor"
+        },
+        {
+          "option": "100pct",
+          "survivorPct": 100,
+          "label": "100% Joint and Last Survivor"
+        }
+      ],
+      "servicePurchase": {
+        "available": true,
+        "interestRate_within12months": 7.25,
+        "interestRate_after12months": 15.0,
+        "completionDeadline": "3 years from initiation",
+        "eligibleService": [
+          "prior_VRS_service",
+          "prior_ERFC_service",
+          "military_service",
+          "prior_FCERS_service"
+        ],
+        "note": "Buy-back of prior service. Within 12 months of re-employment: 7.25% interest. After 12 months: 15% interest. Must complete within 3 years."
+      }
+    }
+  }
+}

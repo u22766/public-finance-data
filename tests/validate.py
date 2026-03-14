@@ -245,6 +245,7 @@ def test_referential_integrity(s):
     erfc = s.load_json("states/virginia/fairfax-county/erfc-plans.json")
     combos = s.load_json("states/virginia/fairfax-county/plan-combinations.json")
     acers = s.load_json("states/virginia/arlington-county/acers-plans.json")
+    fcers = s.load_json("states/virginia/fairfax-county/fcers-plans.json")
 
     # Collect all plan IDs
     all_plan_ids = set()
@@ -296,6 +297,82 @@ def test_referential_integrity(s):
                         len(plan["survivorOptions"]) > 0)
     else:
         s.check("acers-plans.json loads", False)
+
+    # FCERS (Fairfax County Employees' Retirement System) — 5 plan tiers
+    if fcers:
+        fcers_plans = fcers.get("plans", {})
+        s.check("FCERS has plans", len(fcers_plans) > 0)
+        s.check("FCERS has 5 plan tiers", len(fcers_plans) == 5)
+        all_plan_ids.update(fcers_plans.keys())
+        s.check("FCERS has hireDateMapping", "hireDateMapping" in fcers)
+        s.check("FCERS has 5 hireDateMapping entries", len(fcers.get("hireDateMapping", [])) == 5)
+        s.check("FCERS has jurisdiction", "jurisdiction" in fcers)
+        s.check("FCERS scope is county", fcers.get("scope") == "county")
+        s.check("FCERS jurisdiction state is VA", fcers.get("jurisdiction", {}).get("state") == "VA")
+        s.check("FCERS employer contains Fairfax",
+                "Fairfax" in fcers.get("employer", ""))
+
+        expected_plans = ["fcers_plan_a", "fcers_plan_b", "fcers_plan_c", "fcers_plan_d", "fcers_plan_e"]
+        for ep in expected_plans:
+            s.check(f"FCERS {ep} exists", ep in fcers_plans)
+
+        for pid, plan in fcers_plans.items():
+            s.check(f"FCERS {pid} has formula", "formula" in plan)
+            s.check(f"FCERS {pid} has baseBenefit", "baseBenefit" in plan.get("formula", {}))
+            bb = plan.get("formula", {}).get("baseBenefit", {})
+            s.check(f"FCERS {pid} baseBenefit has multiplier", "multiplier" in bb)
+            s.check(f"FCERS {pid} multiplier > 0",
+                    isinstance(bb.get("multiplier"), (int, float)) and bb.get("multiplier") > 0)
+            s.check(f"FCERS {pid} has eligibility", "eligibility" in plan)
+            s.check(f"FCERS {pid} has normalRetirement",
+                    "normalRetirement" in plan.get("eligibility", {}))
+            s.check(f"FCERS {pid} has contributions", "contributions" in plan)
+            if "vesting" in plan:
+                s.check(f"FCERS {pid} vesting has years", "years" in plan["vesting"])
+                s.check(f"FCERS {pid} vesting is 5 years", plan["vesting"]["years"] == 5)
+            if "survivorOptions" in plan:
+                s.check(f"FCERS {pid} has survivor options",
+                        len(plan["survivorOptions"]) > 0)
+            if "drop" in plan:
+                s.check(f"FCERS {pid} DROP available", plan["drop"].get("available") == True)
+                s.check(f"FCERS {pid} DROP max 3 years", plan["drop"].get("maxYears") == 3)
+            if "disability" in plan:
+                s.check(f"FCERS {pid} has disability provisions", "nonJobRelated" in plan["disability"])
+
+        # Plan A/C should be 1.8%, B/D/E should be 2.0%
+        for pid in ["fcers_plan_a", "fcers_plan_c"]:
+            if pid in fcers_plans:
+                m = fcers_plans[pid]["formula"]["baseBenefit"]["multiplier"]
+                s.check(f"FCERS {pid} multiplier is 1.8%", abs(m - 0.018) < 0.001)
+        for pid in ["fcers_plan_b", "fcers_plan_d", "fcers_plan_e"]:
+            if pid in fcers_plans:
+                m = fcers_plans[pid]["formula"]["baseBenefit"]["multiplier"]
+                s.check(f"FCERS {pid} multiplier is 2.0%", abs(m - 0.02) < 0.001)
+
+        # Plan E should NOT have Pre-SS benefit
+        if "fcers_plan_e" in fcers_plans:
+            s.check("FCERS Plan E has no Pre-SS benefit",
+                    fcers_plans["fcers_plan_e"]["formula"].get("preSocialSecurityBenefit") is None)
+
+        # Plans A/B should have Pre-SS benefit
+        for pid in ["fcers_plan_a", "fcers_plan_b"]:
+            if pid in fcers_plans:
+                preSS = fcers_plans[pid]["formula"].get("preSocialSecurityBenefit")
+                s.check(f"FCERS {pid} has Pre-SS benefit", preSS is not None and preSS is not False)
+
+        # Plan A/B normal retirement: age 50 + rule of 80; C/D/E: age 55 + rule of 85
+        for pid in ["fcers_plan_a", "fcers_plan_b"]:
+            if pid in fcers_plans:
+                conds = fcers_plans[pid]["eligibility"]["normalRetirement"]["conditions"]
+                ages = [c.get("minAge") for c in conds if c.get("minAge")]
+                s.check(f"FCERS {pid} normal min age 50", 50 in ages)
+        for pid in ["fcers_plan_c", "fcers_plan_d", "fcers_plan_e"]:
+            if pid in fcers_plans:
+                conds = fcers_plans[pid]["eligibility"]["normalRetirement"]["conditions"]
+                ages = [c.get("minAge") for c in conds if c.get("minAge")]
+                s.check(f"FCERS {pid} normal min age 55", 55 in ages)
+    else:
+        s.check("fcers-plans.json loads", False)
 
     # Plan combinations should reference valid plan IDs
     if combos:

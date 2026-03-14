@@ -75,6 +75,20 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Data Addition: FCERS Plans (Fairfax County Employees' Retirement System)
+
+**Date:** March 14, 2026 (Session 35)
+**Type:** Non-breaking addition (no schema version bump)
+
+Added `states/virginia/fairfax-county/fcers-plans.json` with full plan parameters for the Fairfax County Employees' Retirement System (FCERS/ERS). FCERS is a fully independent defined benefit pension system (NOT VRS) established 1955. Covers general county employees and certain FCPS non-teaching positions.
+
+**New file:** `states/virginia/fairfax-county/fcers-plans.json`
+**New manifest key:** `fcers_plans_fairfax`
+**Plans modeled:** 5 plan tiers (A, B, C, D, E) with different hire date ranges, contribution structures, and multipliers
+**CI impact:** +95 validation checks in `validate.py` Layer 5 (total: 5,261 across 15 suites)
+
+---
+
 ## Data Addition: ACERS Plans (Arlington County)
 
 **Date:** March 14, 2026 (Session 34)
