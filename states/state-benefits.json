@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 1.4. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
-  "version": "1.9",
+  "version": "2.0",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary — 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -159,6 +159,33 @@
             "unremarried_spouse": true
           },
           "authority": "Ala. Code §40-9-21"
+        },
+        "vehicle_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from license fees and ad valorem (property) taxes on one motor vehicle paid for fully or partially by VA funds to accommodate veteran's disability",
+          "max_vehicles": 1,
+          "max_vehicles_note": "One disabled veteran license plate exempt from registration fees and taxes. Additional plates incur regular fees.",
+          "eligibility": {
+            "va_funded_vehicle": true,
+            "va_funded_note": "Vehicle must be all or partly paid for with VA funds to accommodate veteran's service-connected disability",
+            "wartime_service_required": true,
+            "wartime_note": "Veteran must have been disabled during any U.S. war, conflict, or period of hostilities against a foreign nation",
+            "private_use_only": true
+          },
+          "registration_fee_exemption": {
+            "available": true,
+            "rating_threshold": 10,
+            "description": "Veterans with 10% or higher disability rating: first license plate exempt from registration fees. Veterans with 50%+ disability or special mechanical controls: $5.00 annual fee.",
+            "note": "Registration fee exemption is separate from the VA-funded vehicle ad valorem exemption and available to a broader group"
+          },
+          "survivor_transfer": false,
+          "survivor_note": "Surviving spouse may not order or retain disabled veteran license plate",
+          "authority": "Ala. Code §40-12-254",
+          "sources": [
+            "https://va.alabama.gov/wp-content/uploads/2019/11/AL-Laws-Affecting-Veterans-.pdf",
+            "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Alabama"
+          ]
         }
       }
     },
@@ -227,7 +254,8 @@
             "dependent_children": true
           },
           "authority": "Ark. Const. Amend. 49; ACA §26-3-306"
-        }
+        },
+        "_vehicle_note": "Arkansas levies ad valorem tax on motor vehicles. The disabled_veteran_property_tax_exemption covers both homestead and qualifying personal property including vehicles for 100% disabled veterans. Vehicle property tax is paid at time of annual tag renewal per ACA §26-26-1119."
       }
     },
     {
@@ -676,6 +704,53 @@
             "wartime_service_days": 90
           },
           "authority": "CGS §12-81(20); §12-81g(a) & (d)"
+        },
+        "vehicle_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full property tax exemption on one motor vehicle for veterans with 100% P&T service-connected disability who do not own a dwelling. Connecticut levies annual municipal property tax on motor vehicles.",
+          "max_vehicles": 1,
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "must_not_own_dwelling": true,
+            "must_not_own_dwelling_note": "Vehicle exemption is alternative to dwelling exemption under PA 24-46. Veterans who own a dwelling receive the dwelling exemption instead.",
+            "vehicle_must_be_garaged_in_ct": true,
+            "honorable_discharge_required": false,
+            "honorable_discharge_note": "100% P&T veterans exempt from 90-day wartime service requirement"
+          },
+          "effective_date": "2024-10-01",
+          "effective_note": "First reflected on 2026 tax bills (based on October 1, 2024 Grand List)",
+          "wartime_veteran_alternative": {
+            "available": true,
+            "description": "Wartime veterans (90+ days service) without real property may apply standard $1,000-$1,500 exemption toward motor vehicle assessment",
+            "income_qualified_amount_note": "Income-qualified wartime veterans may receive higher exemption amounts set by municipality"
+          },
+          "active_duty_exemption": {
+            "available": true,
+            "description": "Active-duty CT residents receive total exemption on one CT-registered motor vehicle as of October 1 assessment date",
+            "filing_deadline": "December 31 of the year taxes are due"
+          },
+          "spouse_during_life": true,
+          "spouse_during_life_note": "Vehicle belonging to spouse domiciled with P&T veteran is also covered",
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "minor_child": true,
+            "minor_child_note": "Until child turns 18"
+          },
+          "cannot_combine_with": "Other veteran property tax exemptions under CGS §12-81(20)/(21)",
+          "application": {
+            "form": "Form D-2 (for P&T exemption); affidavit (for motor vehicle/mobile home)",
+            "where": "Town assessor's office",
+            "filing_deadline": "January 1 for prior October 1 Grand List",
+            "annual_filing": true
+          },
+          "authority": "PA 24-46; CGS §12-81(83); CGS §12-81(20)",
+          "sources": [
+            "https://portal.ct.gov/governor/news/press-releases/2024/05-2024/governor-lamont-signs-law-establishing-property-tax-exemption-for-veterans",
+            "https://www.cga.ct.gov/2024/rpt/pdf/2024-R-0124.pdf"
+          ]
         }
       }
     },
@@ -2443,6 +2518,45 @@
             "unremarried_spouse": true
           },
           "authority": "Miss. Code Ann. §27-33-67"
+        },
+        "vehicle_ad_valorem_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from motor vehicle ad valorem and privilege taxes for disabled veterans with 100% permanent service-connected disability or 70%+ non-permanent rating. Two vehicles per veteran.",
+          "vehicle_types": [
+            "private_passenger_vehicle",
+            "pickup_truck",
+            "motorcycle"
+          ],
+          "max_vehicles": 2,
+          "max_vehicles_note": "Two motor vehicle plates or one motorcycle plate at $1 each. Additional vehicles incur regular taxes and fees.",
+          "eligibility": {
+            "rating_required": 70,
+            "rating_note": "100% permanent service-connected disability, or at least 70% non-permanent service-connected disability",
+            "pt_required_for_permanent": true,
+            "non_permanent_renewal": "Veterans with non-permanent rating must provide updated VA Benefit Summary Letter annually",
+            "honorable_discharge_required": true,
+            "residency_required": true
+          },
+          "license_plate": {
+            "cost": 1.0,
+            "per_plate": true,
+            "type": "Disabled American Veteran plate with branch of service seal",
+            "non_transferable": true
+          },
+          "spouse_during_life": true,
+          "spouse_during_life_note": "Vehicles may be registered jointly with spouse at same address",
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "spouse_can_apply_posthumously": true,
+            "spouse_note": "Surviving unremarried spouse can retain or apply for plates under same terms"
+          },
+          "authority": "Miss. Code §27-19-53; §27-51-41(2)(j)",
+          "sources": [
+            "https://www.msva.ms.gov/state-benefits",
+            "https://law.justia.com/codes/mississippi/title-27/chapter-51/in-general/section-27-51-41/"
+          ]
         }
       }
     },
@@ -2626,7 +2740,8 @@
             "https://www.ncdor.gov/taxes-forms/property-tax/property-tax-forms/ncdva-9-certification-disabled-veterans-property-tax-exclusion"
           ]
         },
-        "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file."
+        "_funding_fee_note": "VA funding fee exemption is a federal benefit. See federal_veteran_benefits at root level of this file.",
+        "_vehicle_note": "North Carolina levies annual property tax on motor vehicles through the Tag & Tax Together system (combined with registration renewal). Disabled veterans with VA-adapted vehicles are exempt from the highway-use tax. The pending Veterans Relief Act (S 660 / H 39) would also exclude the primary motor vehicle of 100% disabled veterans from property tax. Currently no separate vehicle property tax exemption for disabled veterans beyond the pending legislation."
       }
     },
     {
@@ -3739,11 +3854,6 @@
             "primary_residence": true,
             "acreage_limit": 5
           },
-          "vehicle_exemption": {
-            "available": true,
-            "vehicles": 2,
-            "note": "Two private passenger vehicles exempt from property tax for disabled veteran or spouse at same address"
-          },
           "survivor_transfer": true,
           "survivor_conditions": {
             "unremarried_spouse": true,
@@ -3755,7 +3865,8 @@
             "available": true,
             "note": "Veterans with specific mobility or brain injuries may be exempt from all residence taxes"
           },
-          "authority": "SC Code §12-37-220(B)(1)"
+          "authority": "SC Code §12-37-220(B)(1)",
+          "_vehicle_cross_reference": "See vehicle_tax_exemption for disabled veteran vehicle personal property tax exemption"
         },
         "_pending_legislation": {
           "hb_4700": {
@@ -3763,6 +3874,47 @@
             "would_do": "Proportional exemption for veterans with less than 100% disability — percentage equal to disability rating",
             "note": "Would first apply to property tax years beginning after 2025"
           }
+        },
+        "vehicle_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Full exemption from personal property tax on up to two private passenger vehicles for permanently and totally disabled veterans",
+          "vehicle_types": [
+            "private_passenger_vehicle"
+          ],
+          "max_vehicles": 2,
+          "eligibility": {
+            "rating_required": 100,
+            "pt_required": true,
+            "iu_eligible_note": "Verify with SC DOR — statute references permanent and total disability",
+            "special_license_tags": "Disabled veteran special license tags from DMV under §56-3-1110 to §56-3-1130, or VA certificate of total and permanent disability",
+            "spouse_vehicle_eligible": true,
+            "spouse_vehicle_note": "Vehicles in spouse's name qualify if spouse resides with veteran and vehicle is registered at same address"
+          },
+          "trust_owned": {
+            "eligible": true,
+            "conditions": "Vehicle titled to trustee qualifies if veteran or surviving spouse is income beneficiary of trust, satisfies all other criteria, and uses the vehicle"
+          },
+          "survivor_transfer": true,
+          "survivor_conditions": {
+            "unremarried_spouse": true,
+            "max_vehicles_survivor": 1,
+            "survivor_note": "Surviving spouse retains exemption on one vehicle for life or until remarriage. Spouse who moves to SC after veteran's death also qualifies for one vehicle."
+          },
+          "pow_moh_eligible": true,
+          "pow_moh_note": "Former POWs and Medal of Honor recipients also qualify for two-vehicle exemption. MOH surviving spouse retains two vehicles; POW/Purple Heart surviving spouse retains one.",
+          "application": {
+            "form": "PT-401I",
+            "where": "SC Department of Revenue via MyDORWAY online portal or mail",
+            "processing_time": "4-6 weeks",
+            "replacement_vehicle_note": "When replacing an exempt vehicle, must redo application with DOR — transferring plates does not carry exemption"
+          },
+          "retroactive_note": "Exemption can be claimed retroactive to previous 2 years if taxes paid on time within 2 years of application",
+          "authority": "SC Code §12-37-220(B)(3)",
+          "sources": [
+            "https://dor.sc.gov/tax-tips/veterans-learn-more-about-sc-property-tax-exemptions",
+            "https://scdva.sc.gov/news/property-tax-exemption-disabled-south-carolina-veterans-expanded"
+          ]
         }
       }
     },

@@ -15,7 +15,7 @@ A structured, version-controlled library of government-published financial data 
 - **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL), Medicare IRMAA
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
 - **Tax data** — Federal brackets, standard deductions, IRA/Roth limits and phase-outs
-- **State benefits** — Income tax treatment, property tax exemptions, and veteran benefits for all 50 states + DC (51 jurisdictions)
+- **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC (51 jurisdictions)
 - **County property tax** — Effective rates and veteran exemptions for 10 counties
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes)
 - **State/local pensions** — Virginia VRS plans, Fairfax County ERFC plans, pension stacking patterns
@@ -117,6 +117,7 @@ public-finance-data/
     ├── validate_dental.py                       ← TRICARE dental validation (116 checks)
     └── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
     └── validate_military.py                     ← Military retirement rules + pay tables validation (705 checks)
+    └── validate_vehicle_audit.py                ← Vehicle personal property tax audit validation (111 checks)
 ```
 
 ### Domain Organization
@@ -192,12 +193,12 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs thirteen test suites totaling **4,831 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fourteen test suites totaling **4,950 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
 | Core | `validate.py` | 315 | Manifest integrity, all federal/state/reference files |
-| Tier 2 | `validate_tier2.py` | 482 | State benefits — field structure, exemption types, IU eligibility |
+| Tier 2 | `validate_tier2.py` | 490 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
 | Historical | `validate_historical.py` | 1,963 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
@@ -208,6 +209,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Tier 3B | `validate_tier3b.py` | 170 | Tier 3B state expansion — NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS |
 | Tier 3C | `validate_tier3c.py` | 187 | Tier 3C state expansion — LA, MA, WV, NH, ME, UT, NM, ID, MT, DE |
 | Tier 3D | `validate_tier3d.py` | 176 | Tier 3D final expansion — NE, ND, RI, SD, VT, WY (50 states + DC) |
+| Vehicle Audit | `validate_vehicle_audit.py` | 111 | Vehicle personal property tax exemptions — MS, SC, CT, AL, AR, NC |
 | Military | `validate_military.py` | 705 | Military retirement rules v2.0, pay tables 2016–2026 |
 
 ---
