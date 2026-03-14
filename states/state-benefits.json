@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
-  "version": "2.1",
+  "version": "2.2",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary — 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -3023,7 +3023,8 @@
       "sources": [
         "https://revenue.nebraska.gov/about/frequently-asked-questions/military-retirement-benefits-exclusion",
         "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/Nebraska",
-        "https://nebraskalegislature.gov/laws/statutes.php?statute=77-3506"
+        "https://nebraskalegislature.gov/laws/statutes.php?statute=77-3506",
+        "https://veterans.nebraska.gov/vehicletax"
       ],
       "veteran_benefits": {
         "_schema_note": "Nebraska veteran-specific benefits. Full homestead exemption for 100% service-connected permanently disabled veterans (Category 4V). IU eligible. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
@@ -3060,7 +3061,35 @@
             "kia_spouse_note": "Unremarried surviving spouse of service member who died from service-connected disability"
           },
           "authority": "Nebraska Revised Statute §77-3506",
-          "pending_legislation_note": "LB 272 (2025) would extend partial homestead exemption to veterans with 10-99% disability proportional to rating. LB 425 would set threshold at 80%. Neither enacted as of March 2026."
+          "pending_legislation_note": "LB 272 (2025) would extend partial homestead exemption to veterans with 10-99% disability proportional to rating. LB 425 would set threshold at 80%. Neither enacted as of March 2026. Note: LB 650 (2025) vehicle tax exemption was enacted — see vehicle_tax_exemption entry."
+        },
+        "vehicle_tax_exemption": {
+          "available": true,
+          "exemption_type": "full",
+          "description": "Motor vehicle tax and motor vehicle fee exemption for one vehicle owned and used for personal transportation by a disabled or blind veteran. Covers any service-connected disability rating (including 0%). Does NOT include plate fee, sales tax, wheel tax, or other fees.",
+          "eligibility": {
+            "rating_required": 0,
+            "rating_note": "Any service-connected disability rating (including 0%) per 5 U.S.C. § 2108 definition. Also covers veterans receiving VA compensation, disability retirement benefits, or pension, and blind veterans.",
+            "iu_eligible": true,
+            "iu_note": "IU-rated veterans qualify as they receive VA compensation",
+            "honorable_discharge_required": true,
+            "discharge_note": "Separated under honorable conditions",
+            "vehicle_limit": 1,
+            "vehicle_limit_note": "ONE vehicle owned and used for personal transportation. If veteran has multiple vehicles, they choose which one to apply the exemption to.",
+            "personal_use_required": true
+          },
+          "application": {
+            "where": "Nebraska Department of Veterans' Affairs Military & Veterans' Registry",
+            "registry_url": "https://veterans.nebraska.gov/registry",
+            "documentation": [
+              "VA benefit summary letter showing service-connected disability rating or VA compensation",
+              "Must appear on NDVA Military & Veterans' Registry"
+            ],
+            "timing_note": "Must apply within 30 days of registration renewal date or new vehicle purchase date. Registry approval may take up to 48 hours to sync with DMV."
+          },
+          "effective_date": "2026-01-01",
+          "authority": "LB650 (2025)",
+          "_scope_note": "Exemption covers Motor Vehicle Tax and Motor Vehicle Fee only. Plate fee, sales tax, wheel tax, and other fees still apply."
         }
       }
     },

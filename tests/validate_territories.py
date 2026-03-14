@@ -340,7 +340,7 @@ def main():
     section("Section 10: Manifest Consistency")
 
     sb_manifest = manifest['files'].get('state_benefits', {})
-    check(sb_manifest.get('version') == '2.1', f"Manifest version 2.1 (got {sb_manifest.get('version')})")
+    check(sb_manifest.get('version', '0') >= '2.1', f"Manifest version >= 2.1 (got {sb_manifest.get('version')})")
     check('56' in sb_manifest.get('description', '') or 'territor' in sb_manifest.get('description', '').lower(),
           "Manifest description references 56 jurisdictions or territories")
 

@@ -649,6 +649,27 @@ def validate_ss_claiming(root):
         check('repeal' in json.dumps(wep).lower() or 'fairness act' in json.dumps(wep).lower(),
               "WEP section references SS Fairness Act repeal")
     
+    # ── FRA deduplication guard ──
+    # FRA schedule must live ONLY in social-security-claiming.json.
+    # static-refs.json should contain only a cross-reference stub.
+    sr = json.load(open(os.path.join(root, 'reference/static-refs.json')))
+    fra_stub = sr.get('social_security_fra', {})
+    check('_cross_reference' in fra_stub,
+          "static-refs FRA has _cross_reference pointer")
+    if '_cross_reference' in fra_stub:
+        check('social-security-claiming.json' in fra_stub['_cross_reference'],
+              "static-refs FRA cross-ref points to social-security-claiming.json")
+    # Guard: no actual schedule data in the stub
+    data_keys = [k for k in fra_stub if not k.startswith('_') and k != 'source']
+    check(len(data_keys) == 0,
+          f"static-refs FRA has NO data keys (found: {data_keys})")
+    # Guard: no birth_year or fra_years anywhere in the stub values
+    stub_json = json.dumps(fra_stub)
+    check('birth_year' not in stub_json,
+          "static-refs FRA contains no birth_year data")
+    check('fra_years' not in stub_json,
+          "static-refs FRA contains no fra_years data")
+    
     print(f"  SSClaiming: {PASS - start} checks")
 
 def validate_fehb_premium_history(root):

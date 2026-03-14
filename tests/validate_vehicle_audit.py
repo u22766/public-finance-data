@@ -97,6 +97,12 @@ def main():
     check('_vehicle_note' in nc.get('veteran_benefits', {}),
           "NC has _vehicle_note")
 
+    # NE vehicle exemption (LB650, enacted 2025)
+    ne = find_state(states, 'NE')
+    check(ne is not None, "Nebraska found")
+    check('vehicle_tax_exemption' in ne.get('veteran_benefits', {}),
+          "NE has vehicle_tax_exemption")
+
     # ================================================================
     # SECTION 2: Mississippi vehicle_ad_valorem_exemption
     # ================================================================
@@ -336,9 +342,27 @@ def main():
           "SC disabled_veteran_property_tax_exemption still present")
 
     # ================================================================
-    # SECTION 8: Manifest checks
+    # SECTION 9: Nebraska vehicle_tax_exemption (LB650, effective 2026)
     # ================================================================
-    print("Section 8: Manifest checks")
+    print("Section 9: Nebraska vehicle_tax_exemption")
+
+    ne_v = ne['veteran_benefits'].get('vehicle_tax_exemption', {})
+    check(ne_v.get('available') is True, "NE vehicle available == True")
+    check(ne_v.get('exemption_type') == 'full', "NE exemption_type == full")
+    check(ne_v.get('effective_date') == '2026-01-01', "NE effective_date == 2026-01-01")
+    check('LB650' in ne_v.get('authority', ''), "NE authority references LB650")
+    elig = ne_v.get('eligibility', {})
+    check(elig.get('rating_required') == 0, "NE rating_required == 0 (any SC disability)")
+    check(elig.get('vehicle_limit') == 1, "NE vehicle_limit == 1")
+    check(elig.get('iu_eligible') is True, "NE IU eligible")
+    check(elig.get('honorable_discharge_required') is True, "NE honorable discharge required")
+    check('_scope_note' in ne_v, "NE has _scope_note about partial coverage")
+    check('Motor Vehicle Tax' in ne_v.get('_scope_note', ''), "NE scope note mentions Motor Vehicle Tax")
+
+    # ================================================================
+    # SECTION 10: Manifest checks
+    # ================================================================
+    print("Section 10: Manifest checks")
 
     sb_manifest = manifest.get('files', {}).get('state_benefits', {})
     m_ver = sb_manifest.get('version', '0')

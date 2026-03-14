@@ -64,7 +64,7 @@
       "changelog_2026_1": "Initial release. Complete 2026 CMS data with all IRMAA filing status brackets."
     },
     "state_benefits": {
-      "version": "2.1",
+      "version": "2.2",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/state-benefits.json",
