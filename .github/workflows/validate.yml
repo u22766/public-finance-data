@@ -1,8 +1,9 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 15 validation suites, 5,113 total checks
+# 17 validation suites
 #
+# Session 42: Added validate_municipal.py (153 checks) for MCERP and FCPP municipal pension data
 # Session 31: Added validate_territories.py (129 checks) for US territory expansion (AS, GU, MP, PR, VI)
 # Session 30: Added validate_vehicle_audit.py (111 checks) for vehicle/personal property tax audit
 # Session 29: Added validate_tier3d.py (176 checks) for final 6 states — 50 states + DC complete
@@ -76,6 +77,9 @@ jobs:
 
       - name: Validate US territory expansion (129 checks)
         run: python tests/validate_territories.py
+
+      - name: Validate municipal pension plans — MCERP and FCPP (153 checks)
+        run: python tests/validate_municipal.py
       
       - name: Validation summary
         if: success()
