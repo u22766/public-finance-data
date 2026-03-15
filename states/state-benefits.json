@@ -2736,7 +2736,9 @@
         "top_rate": 0.04,
         "rate_type": "graduated",
         "rate_note": "Graduated rates; top rate 5% on income over $10,000 (2025). Mississippi is phasing down income tax; rate scheduled to decrease further.",
-        "note": "Mississippi flat income tax rate of 4.0% (2026). Phase-down: 5.0% (2023), 4.7% (2024), 4.4% (2025), 4.0% (2026), 3.0% by 2030. Further reductions possible."
+        "note": "Mississippi flat income tax rate of 4.0% (2026). Phase-down: 5.0% (2023), 4.7% (2024), 4.4% (2025), 4.0% (2026), 3.0% by 2030. Further reductions possible.",
+        "taxes_federal_pension": false,
+        "taxes_federal_pension_note": "Mississippi exempts all retirement income from state income tax, including federal civilian pensions, military retirement, 401(k), IRA, 403(b), and annuity distributions. Early distributions may be taxable."
       },
       "property_tax": {
         "exemptions": [
