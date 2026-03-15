@@ -75,6 +75,26 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Data Addition: PORS Plans (Fairfax County Police Officers Retirement System)
+
+- **Date:** March 14, 2026
+- **File:** `states/virginia/fairfax-county/pors-plans.json` (NEW)
+- **Manifest ID:** `pors_plans_fairfax`
+- **Version:** 2026.1
+- **Schema version unchanged** (2.2) — file addition is non-breaking
+
+Adds Fairfax County Police Officers Retirement System data with 3 plan tiers (A, B, C) based on sworn-in date. PORS is independent from VRS, established 1944 (oldest Fairfax County retirement system). Covers only sworn full-time FCPD officers. Key parameters: 2.8% multiplier, 8.65% employee contribution, NO Social Security participation, 3-year DROP, automatic CPI-based COLA (max 4%).
+
+## Data Addition: URS Plans (Fairfax County Uniformed Retirement System)
+
+- **Date:** March 14, 2026
+- **File:** `states/virginia/fairfax-county/urs-plans.json` (NEW)
+- **Manifest ID:** `urs_plans_fairfax`
+- **Version:** 2026.1
+- **Schema version unchanged** (2.2) — file addition is non-breaking
+
+Adds Fairfax County Uniformed Retirement System data with 4 modeled plan tiers (B, D, E, F). URS is independent from VRS, established 1974. Covers Fire/Rescue, Sheriff, Animal Control, Police Helicopter, and Public Safety Communications. Unique features: Pre-62 Supplemental Benefit (Plans B/D only), Pre-Social Security Benefit, severe service-connected disability at 90%. URS members DO participate in Social Security (unlike PORS).
+
 ## Data Addition: FCERS Plans (Fairfax County Employees' Retirement System)
 
 **Date:** March 14, 2026 (Session 35)

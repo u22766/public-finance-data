@@ -1,0 +1,403 @@
+{
+  "_comment": "Fairfax County Police Officers Retirement System (PORS). Fully independent defined benefit pension system (not VRS). Established 1944 (oldest of Fairfax County's three retirement systems). Covers sworn full-time law enforcement officers of the Fairfax County Police Department only. Three plan tiers (A-C) based on hire date. Update as Fairfax County Code changes.",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "employer": "Fairfax County Police Officers Retirement System",
+  "scope": "county",
+  "jurisdiction": {
+    "state": "VA",
+    "county": "Fairfax County",
+    "note": "PORS is a fully independent single-employer defined benefit pension system established 1944 under Chapter 303 of the Acts of Assembly. NOT part of VRS. In 1981 Fairfax County enacted Article 7 of the Fairfax County Code adopting and continuing Chapter 303. Covers only sworn full-time police officers of the Fairfax County Police Department. Governed by Fairfax County Code Chapter 3, Article 7.",
+    "source_url": "https://www.fairfaxcounty.gov/retirement/police-officers-retirement-system"
+  },
+  "hireDateMapping": [
+    {
+      "planId": "pors_plan_a",
+      "label": "PORS Plan A (pre-2013)",
+      "hiredBefore": "2013-01-01",
+      "note": "Sworn officers hired (sworn in) before 1/1/2013. CLOSED to new members."
+    },
+    {
+      "planId": "pors_plan_b",
+      "label": "PORS Plan B (2013-2019)",
+      "hiredOnOrAfter": "2013-01-01",
+      "hiredBefore": "2019-07-01",
+      "note": "Sworn officers hired (sworn in) 1/1/2013 through 6/30/2019. CLOSED to new members."
+    },
+    {
+      "planId": "pors_plan_c",
+      "label": "PORS Plan C (2019+)",
+      "hiredOnOrAfter": "2019-07-01",
+      "note": "Sworn officers hired (sworn in) on or after 7/1/2019. OPEN to new members."
+    }
+  ],
+  "plans": {
+    "pors_plan_a": {
+      "planId": "pors_plan_a",
+      "planName": "PORS Plan A",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 1/1/2013. Existing members retain Plan A provisions.",
+      "eligibleEmployees": "Sworn full-time police officers of the Fairfax County Police Department hired (sworn in) before 1/1/2013.",
+      "finalAverageSalary": {
+        "periods": 78,
+        "periodUnit": "biweekly_pay_periods",
+        "periodMonths": 36,
+        "method": "highest_consecutive",
+        "note": "Average of highest 78 consecutive biweekly pay periods (36 months). FMLA/LWOP periods are excluded from FAS calculation. Military leave compensation is imputed if member was unable to use paid leave."
+      },
+      "benefitFormula": {
+        "multiplier": 2.8,
+        "multiplierNote": "2.8% per year of benefit service",
+        "escalator": 1.03,
+        "escalatorNote": "Total benefit increased by 3% (\u00d71.03)",
+        "formula": "2.8% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03",
+        "maxServiceYears": null,
+        "maxServiceNote": "No statutory cap on benefit service years in PORS formula."
+      },
+      "normalRetirement": {
+        "ageRequirement": 55,
+        "serviceRequirement": 25,
+        "condition": "OR",
+        "note": "Age 55 OR 25 years of creditable service (including sick leave credit)."
+      },
+      "earlyRetirement": {
+        "serviceRequirement": 20,
+        "ageRequirement": null,
+        "condition": "Under age 55 with 20+ years of creditable service. Benefit reduced based on both age and service.",
+        "reductionNote": "Normal retirement formula applies with a reduction factor based on age and years of service at early retirement."
+      },
+      "deferredVested": {
+        "vestingYears": 5,
+        "payableAge": 55,
+        "formula": "Normal retirement formula applied to service at termination",
+        "note": "Must leave contributions in the System. Deferred annuity payable at age 55."
+      },
+      "disability": {
+        "nonServiceConnected": {
+          "formula": "2.8% \u00d7 AFC \u00d7 Years of Service \u00d7 1.03",
+          "minimumBenefit": "10% of AFC",
+          "serviceRequirement": "At least 5 years of creditable service",
+          "sickLeaveCredit": true,
+          "medicalReExam": "Annually for first 5 years, then every 3 years",
+          "note": "Total disability only; no partial non-service-connected disability. Benefits are taxable. No automatic surviving spouse/children benefit payable."
+        },
+        "serviceConnected": {
+          "formula": "66.67% of salary at time of disability",
+          "offset": "Less Workers' Compensation payments",
+          "serviceRequirement": "Any amount of retirement-eligible service",
+          "note": "66\u2154% of salary at time of disability less Workers' Compensation benefits."
+        }
+      },
+      "cola": {
+        "type": "automatic_cpi",
+        "formula": "Lesser of 4.0% or Washington-Arlington-Alexandria CPI-U increase for 12 months ending March 31",
+        "cap": 4.0,
+        "adHocCola": "Additional 1.0% ad-hoc COLA at Board of Trustees discretion when system funding ratio exceeds 100%",
+        "effectiveDate": "July 1 each year",
+        "note": "CPI-U is the Consumer Price Index for All Urban Consumers for the Washington-Arlington-Alexandria, DC-VA-MD-WV area. First-year retirees receive prorated COLA.",
+        "source_url": "https://www.fairfaxcounty.gov/retirement/cost-living-adjustment-cola"
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "Must be eligible for normal retirement (age 55 or 25 years of service)",
+        "interestRate": 5.0,
+        "interestNote": "Pro-rated annual rate of 5% credited to DROP account",
+        "colaApplies": true,
+        "irrevocable": true,
+        "distributionOptions": [
+          "lump_sum",
+          "rollover_ira",
+          "rollover_qualified_plan",
+          "actuarial_equivalent_annuity_increase",
+          "combination"
+        ],
+        "note": "Election irrevocable after effective date. Employee remains active for all other purposes during DROP. Sick leave must be converted to retirement credit at DROP entry (option to retain 40 hours)."
+      },
+      "survivorOptions": {
+        "jointAndLastSurvivor": [
+          "50%",
+          "66.67%",
+          "75%",
+          "100%"
+        ],
+        "automaticDeathBenefit": true,
+        "automaticDeathBenefitNote": "Automatic death benefit payable to eligible surviving spouse and children upon death before retirement, after service retirement, or after service-connected disability retirement. Not payable if death occurs while receiving non-service-connected or deferred vested benefit.",
+        "preRetirementDeath": "Return of employee contributions to beneficiary unless automatic benefit payable to surviving spouse/children"
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "conversionRate": "172 hours equals one month of creditable service",
+        "usedForEligibility": true,
+        "usedForBenefitCalculation": true
+      },
+      "vestingYears": 5,
+      "employeeContribution": {
+        "rate": 8.65,
+        "type": "percent_of_gross",
+        "note": "8.65% of retirement-eligible gross earnings. Rate reduced from 12% (pre-2007) to 11% (2007), 10% (2008), then 8.65% (2014). Rate change does not affect benefit calculations.",
+        "preTax": true,
+        "socialSecurityParticipation": false,
+        "socialSecurityNote": "PORS members do NOT participate in Social Security."
+      },
+      "membershipStats": {
+        "asOf": "2023-06-30",
+        "activeMembers": 1258,
+        "dropParticipants": 57,
+        "terminatedVested": 102,
+        "retirees": 1398,
+        "note": "As of June 30, 2023 per Fairfax County ACFR."
+      },
+      "source_url": "https://www.fairfaxcounty.gov/retirement/service-retirement-police"
+    },
+    "pors_plan_b": {
+      "planId": "pors_plan_b",
+      "planName": "PORS Plan B",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 7/1/2019. Existing members retain Plan B provisions.",
+      "eligibleEmployees": "Sworn full-time police officers of the Fairfax County Police Department hired (sworn in) 1/1/2013 through 6/30/2019.",
+      "finalAverageSalary": {
+        "periods": 78,
+        "periodUnit": "biweekly_pay_periods",
+        "periodMonths": 36,
+        "method": "highest_consecutive",
+        "note": "Average of highest 78 consecutive biweekly pay periods (36 months). FMLA/LWOP periods are excluded from FAS calculation. Military leave compensation is imputed if member was unable to use paid leave."
+      },
+      "benefitFormula": {
+        "multiplier": 2.8,
+        "multiplierNote": "2.8% per year of benefit service",
+        "escalator": 1.03,
+        "escalatorNote": "Total benefit increased by 3% (\u00d71.03)",
+        "formula": "2.8% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03",
+        "maxServiceYears": null,
+        "maxServiceNote": "No statutory cap on benefit service years in PORS formula."
+      },
+      "normalRetirement": {
+        "ageRequirement": 55,
+        "serviceRequirement": 25,
+        "condition": "OR",
+        "note": "Age 55 OR 25 years of creditable service (including sick leave credit)."
+      },
+      "earlyRetirement": {
+        "serviceRequirement": 20,
+        "ageRequirement": null,
+        "condition": "Under age 55 with 20+ years of creditable service. Benefit reduced based on both age and service.",
+        "reductionNote": "Normal retirement formula applies with a reduction factor based on age and years of service at early retirement."
+      },
+      "deferredVested": {
+        "vestingYears": 5,
+        "payableAge": 55,
+        "formula": "Normal retirement formula applied to service at termination",
+        "note": "Must leave contributions in the System. Deferred annuity payable at age 55."
+      },
+      "disability": {
+        "nonServiceConnected": {
+          "formula": "2.8% \u00d7 AFC \u00d7 Years of Service \u00d7 1.03",
+          "minimumBenefit": "10% of AFC",
+          "serviceRequirement": "At least 5 years of creditable service",
+          "sickLeaveCredit": true,
+          "medicalReExam": "Annually for first 5 years, then every 3 years",
+          "note": "Total disability only; no partial non-service-connected disability. Benefits are taxable. No automatic surviving spouse/children benefit payable."
+        },
+        "serviceConnected": {
+          "formula": "66.67% of salary at time of disability",
+          "offset": "Less Workers' Compensation payments",
+          "serviceRequirement": "Any amount of retirement-eligible service",
+          "note": "66\u2154% of salary at time of disability less Workers' Compensation benefits."
+        }
+      },
+      "cola": {
+        "type": "automatic_cpi",
+        "formula": "Lesser of 4.0% or Washington-Arlington-Alexandria CPI-U increase for 12 months ending March 31",
+        "cap": 4.0,
+        "adHocCola": "Additional 1.0% ad-hoc COLA at Board of Trustees discretion when system funding ratio exceeds 100%",
+        "effectiveDate": "July 1 each year",
+        "note": "CPI-U is the Consumer Price Index for All Urban Consumers for the Washington-Arlington-Alexandria, DC-VA-MD-WV area. First-year retirees receive prorated COLA.",
+        "source_url": "https://www.fairfaxcounty.gov/retirement/cost-living-adjustment-cola"
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "Must be eligible for normal retirement (age 55 or 25 years of service)",
+        "interestRate": 5.0,
+        "interestNote": "Pro-rated annual rate of 5% credited to DROP account",
+        "colaApplies": true,
+        "irrevocable": true,
+        "distributionOptions": [
+          "lump_sum",
+          "rollover_ira",
+          "rollover_qualified_plan",
+          "actuarial_equivalent_annuity_increase",
+          "combination"
+        ],
+        "note": "Election irrevocable after effective date. Employee remains active for all other purposes during DROP. Sick leave must be converted to retirement credit at DROP entry (option to retain 40 hours)."
+      },
+      "survivorOptions": {
+        "jointAndLastSurvivor": [
+          "50%",
+          "66.67%",
+          "75%",
+          "100%"
+        ],
+        "automaticDeathBenefit": true,
+        "automaticDeathBenefitNote": "Automatic death benefit payable to eligible surviving spouse and children upon death before retirement, after service retirement, or after service-connected disability retirement. Not payable if death occurs while receiving non-service-connected or deferred vested benefit.",
+        "preRetirementDeath": "Return of employee contributions to beneficiary unless automatic benefit payable to surviving spouse/children"
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "conversionRate": "172 hours equals one month of creditable service",
+        "usedForEligibility": true,
+        "usedForBenefitCalculation": true,
+        "maxHours": 2080,
+        "maxHoursNote": "For officers hired on or after 1/1/2013, maximum accrued sick leave credit for retirement eligibility and benefit computation is the employee's accrued sick leave balance, with credit capped at 2,080 hours."
+      },
+      "vestingYears": 5,
+      "employeeContribution": {
+        "rate": 8.65,
+        "type": "percent_of_gross",
+        "note": "8.65% of retirement-eligible gross earnings. Rate reduced from 12% (pre-2007) to 11% (2007), 10% (2008), then 8.65% (2014). Rate change does not affect benefit calculations.",
+        "preTax": true,
+        "socialSecurityParticipation": false,
+        "socialSecurityNote": "PORS members do NOT participate in Social Security."
+      },
+      "membershipStats": {
+        "asOf": "2023-06-30",
+        "activeMembers": 1258,
+        "dropParticipants": 57,
+        "terminatedVested": 102,
+        "retirees": 1398,
+        "note": "As of June 30, 2023 per Fairfax County ACFR."
+      },
+      "source_url": "https://www.fairfaxcounty.gov/retirement/service-retirement-police"
+    },
+    "pors_plan_c": {
+      "planId": "pors_plan_c",
+      "planName": "PORS Plan C",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "open",
+      "statusNote": "OPEN to new members. All sworn officers hired on or after 7/1/2019 are automatically enrolled in Plan C.",
+      "eligibleEmployees": "Sworn full-time police officers of the Fairfax County Police Department hired (sworn in) on or after 7/1/2019.",
+      "finalAverageSalary": {
+        "periods": 78,
+        "periodUnit": "biweekly_pay_periods",
+        "periodMonths": 36,
+        "method": "highest_consecutive",
+        "note": "Average of highest 78 consecutive biweekly pay periods (36 months). FMLA/LWOP periods are excluded from FAS calculation. Military leave compensation is imputed if member was unable to use paid leave."
+      },
+      "benefitFormula": {
+        "multiplier": 2.8,
+        "multiplierNote": "2.8% per year of benefit service",
+        "escalator": null,
+        "escalatorNote": "No 3% escalator for Plan C. This is the primary difference from Plans A and B.",
+        "formula": "2.8% \u00d7 FAS \u00d7 Years of Benefit Service",
+        "maxServiceYears": null,
+        "maxServiceNote": "No statutory cap on benefit service years in PORS formula."
+      },
+      "normalRetirement": {
+        "ageRequirement": 55,
+        "serviceRequirement": 25,
+        "condition": "OR",
+        "note": "Age 55 OR 25 years of creditable service (including sick leave credit)."
+      },
+      "earlyRetirement": {
+        "serviceRequirement": 20,
+        "ageRequirement": null,
+        "condition": "Under age 55 with 20+ years of creditable service. Benefit reduced based on both age and service.",
+        "reductionNote": "Normal retirement formula applies with a reduction factor based on age and years of service at early retirement."
+      },
+      "deferredVested": {
+        "vestingYears": 5,
+        "payableAge": 55,
+        "formula": "Normal retirement formula applied to service at termination",
+        "note": "Must leave contributions in the System. Deferred annuity payable at age 55."
+      },
+      "disability": {
+        "nonServiceConnected": {
+          "formula": "2.8% \u00d7 AFC \u00d7 Years of Service",
+          "minimumBenefit": "10% of AFC",
+          "serviceRequirement": "At least 5 years of creditable service",
+          "sickLeaveCredit": true,
+          "medicalReExam": "Annually for first 5 years, then every 3 years",
+          "note": "Total disability only; no partial non-service-connected disability. No 3% escalator for Plan C. Benefits are taxable. No automatic surviving spouse/children benefit payable."
+        },
+        "serviceConnected": {
+          "formula": "66.67% of salary at time of disability",
+          "offset": "Less Workers' Compensation payments",
+          "serviceRequirement": "Any amount of retirement-eligible service",
+          "note": "66\u2154% of salary at time of disability less Workers' Compensation benefits."
+        }
+      },
+      "cola": {
+        "type": "automatic_cpi",
+        "formula": "Lesser of 4.0% or Washington-Arlington-Alexandria CPI-U increase for 12 months ending March 31",
+        "cap": 4.0,
+        "adHocCola": "Additional 1.0% ad-hoc COLA at Board of Trustees discretion when system funding ratio exceeds 100%",
+        "effectiveDate": "July 1 each year",
+        "note": "CPI-U is the Consumer Price Index for All Urban Consumers for the Washington-Arlington-Alexandria, DC-VA-MD-WV area. First-year retirees receive prorated COLA.",
+        "source_url": "https://www.fairfaxcounty.gov/retirement/cost-living-adjustment-cola"
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "Must be eligible for normal retirement (age 55 or 25 years of service)",
+        "interestRate": 5.0,
+        "interestNote": "Pro-rated annual rate of 5% credited to DROP account",
+        "colaApplies": true,
+        "irrevocable": true,
+        "distributionOptions": [
+          "lump_sum",
+          "rollover_ira",
+          "rollover_qualified_plan",
+          "actuarial_equivalent_annuity_increase",
+          "combination"
+        ],
+        "note": "Election irrevocable after effective date. Employee remains active for all other purposes during DROP. Sick leave must be converted to retirement credit at DROP entry (option to retain 40 hours)."
+      },
+      "survivorOptions": {
+        "jointAndLastSurvivor": [
+          "50%",
+          "66.67%",
+          "75%",
+          "100%"
+        ],
+        "automaticDeathBenefit": true,
+        "automaticDeathBenefitNote": "Automatic death benefit payable to eligible surviving spouse and children upon death before retirement, after service retirement, or after service-connected disability retirement. Not payable if death occurs while receiving non-service-connected or deferred vested benefit.",
+        "preRetirementDeath": "Return of employee contributions to beneficiary unless automatic benefit payable to surviving spouse/children"
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "conversionRate": "172 hours equals one month of creditable service",
+        "usedForEligibility": true,
+        "usedForBenefitCalculation": true,
+        "maxHours": 2080,
+        "maxHoursNote": "For officers hired on or after 1/1/2013, maximum accrued sick leave credit for retirement eligibility and benefit computation is the employee's accrued sick leave balance, with credit capped at 2,080 hours."
+      },
+      "vestingYears": 5,
+      "employeeContribution": {
+        "rate": 8.65,
+        "type": "percent_of_gross",
+        "note": "8.65% of retirement-eligible gross earnings. Rate reduced from 12% (pre-2007) to 11% (2007), 10% (2008), then 8.65% (2014). Rate change does not affect benefit calculations.",
+        "preTax": true,
+        "socialSecurityParticipation": false,
+        "socialSecurityNote": "PORS members do NOT participate in Social Security."
+      },
+      "membershipStats": {
+        "asOf": "2023-06-30",
+        "activeMembers": 1258,
+        "dropParticipants": 57,
+        "terminatedVested": 102,
+        "retirees": 1398,
+        "note": "As of June 30, 2023 per Fairfax County ACFR."
+      },
+      "source_url": "https://www.fairfaxcounty.gov/retirement/service-retirement-police"
+    }
+  }
+}

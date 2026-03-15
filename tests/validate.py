@@ -496,6 +496,288 @@ def test_overlay_compatibility(s):
                 isinstance(prem, dict) and len(prem) >= 12)
 
 
+def test_pors_plans(s):
+    """Validate Fairfax County Police Officers Retirement System (PORS) data."""
+    path = s.root / "states" / "virginia" / "fairfax-county" / "pors-plans.json"
+    s.check("PORS file exists", path.exists())
+    if not path.exists():
+        return
+
+    import json
+    data = json.loads(path.read_text())
+
+    # Top-level structure
+    s.check("PORS has version", "version" in data)
+    s.check("PORS has effective_date", "effective_date" in data)
+    s.check("PORS has employer", "employer" in data)
+    s.check("PORS has jurisdiction", "jurisdiction" in data)
+    s.check("PORS jurisdiction is VA", data.get("jurisdiction", {}).get("state") == "VA")
+    s.check("PORS jurisdiction is Fairfax County", "Fairfax" in data.get("jurisdiction", {}).get("county", ""))
+    s.check("PORS has hireDateMapping", "hireDateMapping" in data and len(data["hireDateMapping"]) == 3)
+    s.check("PORS has plans dict", "plans" in data and isinstance(data["plans"], dict))
+    s.check("PORS has 3 plans", len(data.get("plans", {})) == 3)
+
+    # Plan IDs match
+    expected_plans = {"pors_plan_a", "pors_plan_b", "pors_plan_c"}
+    actual_plans = set(data.get("plans", {}).keys())
+    s.check("PORS plan IDs correct", actual_plans == expected_plans,
+            f"expected {expected_plans}, got {actual_plans}")
+
+    # Hire date mapping IDs match plans
+    mapping_ids = {m["planId"] for m in data.get("hireDateMapping", [])}
+    s.check("PORS hireDateMapping IDs match plans", mapping_ids == expected_plans)
+
+    # Validate each plan
+    for pid, plan in data.get("plans", {}).items():
+        s.check(f"PORS {pid} has planName", "planName" in plan)
+        s.check(f"PORS {pid} type is defined_benefit", plan.get("type") == "defined_benefit")
+        s.check(f"PORS {pid} has benefitFormula", "benefitFormula" in plan)
+
+        bf = plan.get("benefitFormula", {})
+        s.check(f"PORS {pid} multiplier is 2.8", abs(bf.get("multiplier", 0) - 2.8) < 0.001)
+        s.check(f"PORS {pid} has formula string", "formula" in bf)
+
+        # FAS
+        fas = plan.get("finalAverageSalary", {})
+        s.check(f"PORS {pid} FAS periods is 78", fas.get("periods") == 78)
+        s.check(f"PORS {pid} FAS is 36 months", fas.get("periodMonths") == 36)
+
+        # Normal retirement
+        nr = plan.get("normalRetirement", {})
+        s.check(f"PORS {pid} normal ret age 55", nr.get("ageRequirement") == 55)
+        s.check(f"PORS {pid} normal ret service 25", nr.get("serviceRequirement") == 25)
+
+        # Early retirement
+        er = plan.get("earlyRetirement", {})
+        s.check(f"PORS {pid} early ret service 20", er.get("serviceRequirement") == 20)
+
+        # Deferred vested
+        dv = plan.get("deferredVested", {})
+        s.check(f"PORS {pid} deferred vesting 5 years", dv.get("vestingYears") == 5)
+        s.check(f"PORS {pid} deferred payable at 55", dv.get("payableAge") == 55)
+
+        # Vesting
+        s.check(f"PORS {pid} vesting is 5 years", plan.get("vestingYears") == 5)
+
+        # Employee contribution
+        ec = plan.get("employeeContribution", {})
+        s.check(f"PORS {pid} contribution is 8.65%", abs(ec.get("rate", 0) - 8.65) < 0.01)
+        s.check(f"PORS {pid} no Social Security", ec.get("socialSecurityParticipation") == False)
+
+        # COLA
+        cola = plan.get("cola", {})
+        s.check(f"PORS {pid} COLA type is automatic_cpi", cola.get("type") == "automatic_cpi")
+        s.check(f"PORS {pid} COLA cap is 4.0%", cola.get("cap") == 4.0)
+
+        # DROP
+        drop = plan.get("drop", {})
+        s.check(f"PORS {pid} DROP available", drop.get("available") == True)
+        s.check(f"PORS {pid} DROP max 3 years", drop.get("maxYears") == 3)
+        s.check(f"PORS {pid} DROP interest 5%", drop.get("interestRate") == 5.0)
+
+        # Survivor options
+        so = plan.get("survivorOptions", {})
+        s.check(f"PORS {pid} has J&LS options", len(so.get("jointAndLastSurvivor", [])) == 4)
+
+        # Disability
+        dis = plan.get("disability", {})
+        s.check(f"PORS {pid} has nonServiceConnected disability", "nonServiceConnected" in dis)
+        s.check(f"PORS {pid} has serviceConnected disability", "serviceConnected" in dis)
+        sc = dis.get("serviceConnected", {})
+        s.check(f"PORS {pid} service-connected is 66.67%",
+                "66" in sc.get("formula", "") or "66.67" in sc.get("formula", ""))
+
+        # Sick leave
+        sl = plan.get("sickLeaveCredit", {})
+        s.check(f"PORS {pid} sick leave available", sl.get("available") == True)
+
+        # Membership stats
+        ms = plan.get("membershipStats", {})
+        s.check(f"PORS {pid} has membership stats", ms.get("activeMembers", 0) > 0)
+
+    # Plan-specific checks
+    # Plans A & B have 1.03 escalator; Plan C does not
+    plan_a = data["plans"]["pors_plan_a"]
+    plan_b = data["plans"]["pors_plan_b"]
+    plan_c = data["plans"]["pors_plan_c"]
+
+    s.check("PORS Plan A has 1.03 escalator",
+            plan_a["benefitFormula"].get("escalator") == 1.03)
+    s.check("PORS Plan B has 1.03 escalator",
+            plan_b["benefitFormula"].get("escalator") == 1.03)
+    s.check("PORS Plan C has NO escalator",
+            plan_c["benefitFormula"].get("escalator") is None)
+
+    # Plan statuses
+    s.check("PORS Plan A is closed", plan_a.get("status") == "closed")
+    s.check("PORS Plan B is closed", plan_b.get("status") == "closed")
+    s.check("PORS Plan C is open", plan_c.get("status") == "open")
+
+    # Plan B and C should have sick leave max hours
+    s.check("PORS Plan B has sick leave max 2080",
+            plan_b.get("sickLeaveCredit", {}).get("maxHours") == 2080)
+    s.check("PORS Plan C has sick leave max 2080",
+            plan_c.get("sickLeaveCredit", {}).get("maxHours") == 2080)
+
+
+def test_urs_plans(s):
+    """Validate Fairfax County Uniformed Retirement System (URS) data."""
+    path = s.root / "states" / "virginia" / "fairfax-county" / "urs-plans.json"
+    s.check("URS file exists", path.exists())
+    if not path.exists():
+        return
+
+    import json
+    data = json.loads(path.read_text())
+
+    # Top-level structure
+    s.check("URS has version", "version" in data)
+    s.check("URS has effective_date", "effective_date" in data)
+    s.check("URS has employer", "employer" in data)
+    s.check("URS has jurisdiction", "jurisdiction" in data)
+    s.check("URS jurisdiction is VA", data.get("jurisdiction", {}).get("state") == "VA")
+    s.check("URS jurisdiction is Fairfax County", "Fairfax" in data.get("jurisdiction", {}).get("county", ""))
+    s.check("URS has hireDateMapping", "hireDateMapping" in data and len(data["hireDateMapping"]) == 6)
+    s.check("URS has plans dict", "plans" in data and isinstance(data["plans"], dict))
+    s.check("URS has 4 modeled plans", len(data.get("plans", {})) == 4)
+
+    # Plan IDs match
+    expected_plans = {"urs_plan_b", "urs_plan_d", "urs_plan_e", "urs_plan_f"}
+    actual_plans = set(data.get("plans", {}).keys())
+    s.check("URS plan IDs correct", actual_plans == expected_plans,
+            f"expected {expected_plans}, got {actual_plans}")
+
+    # Validate each plan
+    for pid, plan in data.get("plans", {}).items():
+        s.check(f"URS {pid} has planName", "planName" in plan)
+        s.check(f"URS {pid} type is defined_benefit", plan.get("type") == "defined_benefit")
+        s.check(f"URS {pid} has benefitFormula", "benefitFormula" in plan)
+
+        bf = plan.get("benefitFormula", {})
+        s.check(f"URS {pid} has multiplier > 0", bf.get("multiplier", 0) > 0)
+        s.check(f"URS {pid} has formula string", "formula" in bf)
+
+        # FAS
+        fas = plan.get("finalAverageSalary", {})
+        s.check(f"URS {pid} FAS periods is 78", fas.get("periods") == 78)
+        s.check(f"URS {pid} FAS is 36 months", fas.get("periodMonths") == 36)
+
+        # Normal retirement
+        nr = plan.get("normalRetirement", {})
+        s.check(f"URS {pid} normal ret age 55", nr.get("ageRequirement") == 55)
+        s.check(f"URS {pid} normal ret age+service 6", nr.get("ageServiceRequirement") == 6)
+        s.check(f"URS {pid} normal ret service 25", nr.get("serviceOnlyRequirement") == 25)
+
+        # Early retirement
+        er = plan.get("earlyRetirement", {})
+        s.check(f"URS {pid} early ret service 20", er.get("serviceRequirement") == 20)
+
+        # Deferred vested
+        dv = plan.get("deferredVested", {})
+        s.check(f"URS {pid} deferred vesting 5 years", dv.get("vestingYears") == 5)
+        s.check(f"URS {pid} deferred payable at 55", dv.get("payableAge") == 55)
+
+        # Vesting
+        s.check(f"URS {pid} vesting is 5 years", plan.get("vestingYears") == 5)
+
+        # Employee contribution
+        ec = plan.get("employeeContribution", {})
+        s.check(f"URS {pid} contribution rate > 0", ec.get("rate", 0) > 0)
+        s.check(f"URS {pid} participates in Social Security", ec.get("socialSecurityParticipation") == True)
+
+        # COLA
+        cola = plan.get("cola", {})
+        s.check(f"URS {pid} COLA type is automatic_cpi", cola.get("type") == "automatic_cpi")
+        s.check(f"URS {pid} COLA cap is 4.0%", cola.get("cap") == 4.0)
+
+        # DROP
+        drop = plan.get("drop", {})
+        s.check(f"URS {pid} DROP available", drop.get("available") == True)
+        s.check(f"URS {pid} DROP max 3 years", drop.get("maxYears") == 3)
+        s.check(f"URS {pid} DROP interest 5%", drop.get("interestRate") == 5.0)
+
+        # Survivor options
+        so = plan.get("survivorOptions", {})
+        s.check(f"URS {pid} has J&LS options", len(so.get("jointAndLastSurvivor", [])) == 4)
+
+        # Disability
+        dis = plan.get("disability", {})
+        s.check(f"URS {pid} has serviceConnected disability", "serviceConnected" in dis)
+        s.check(f"URS {pid} has severeServiceConnected disability", "severeServiceConnected" in dis)
+        ssc = dis.get("severeServiceConnected", {})
+        s.check(f"URS {pid} severe disability is 90%", "90%" in ssc.get("formula", ""))
+
+        # Sick leave
+        sl = plan.get("sickLeaveCredit", {})
+        s.check(f"URS {pid} sick leave available", sl.get("available") == True)
+
+        # Membership stats
+        ms = plan.get("membershipStats", {})
+        s.check(f"URS {pid} has membership stats", ms.get("activeMembers", 0) > 0)
+
+    # Plan-specific formula checks
+    plan_b = data["plans"]["urs_plan_b"]
+    plan_d = data["plans"]["urs_plan_d"]
+    plan_e = data["plans"]["urs_plan_e"]
+    plan_f = data["plans"]["urs_plan_f"]
+
+    # Plan B: 2.0% multiplier
+    s.check("URS Plan B multiplier is 2.0%", abs(plan_b["benefitFormula"]["multiplier"] - 2.0) < 0.001)
+    # Plans D, E: 2.5% multiplier
+    s.check("URS Plan D multiplier is 2.5%", abs(plan_d["benefitFormula"]["multiplier"] - 2.5) < 0.001)
+    s.check("URS Plan E multiplier is 2.5%", abs(plan_e["benefitFormula"]["multiplier"] - 2.5) < 0.001)
+    s.check("URS Plan F multiplier is 2.5%", abs(plan_f["benefitFormula"]["multiplier"] - 2.5) < 0.001)
+
+    # Escalator: B, D, E have 1.03; F does not
+    s.check("URS Plan B has 1.03 escalator", plan_b["benefitFormula"].get("escalator") == 1.03)
+    s.check("URS Plan D has 1.03 escalator", plan_d["benefitFormula"].get("escalator") == 1.03)
+    s.check("URS Plan E has 1.03 escalator", plan_e["benefitFormula"].get("escalator") == 1.03)
+    s.check("URS Plan F has NO escalator", plan_f["benefitFormula"].get("escalator") is None)
+
+    # Pre-Social Security Benefit: B (0.2%), D & E (0.3%), F (none)
+    s.check("URS Plan B Pre-SS multiplier is 0.2%",
+            abs(plan_b.get("preSocialSecurityBenefit", {}).get("multiplier", 0) - 0.2) < 0.001)
+    s.check("URS Plan D Pre-SS multiplier is 0.3%",
+            abs(plan_d.get("preSocialSecurityBenefit", {}).get("multiplier", 0) - 0.3) < 0.001)
+    s.check("URS Plan E Pre-SS multiplier is 0.3%",
+            abs(plan_e.get("preSocialSecurityBenefit", {}).get("multiplier", 0) - 0.3) < 0.001)
+    s.check("URS Plan F has NO Pre-SS benefit",
+            plan_f.get("preSocialSecurityBenefit", {}).get("available") == False)
+
+    # Pre-62 Supplement: B and D yes, E and F no
+    s.check("URS Plan B has Pre-62 supplement",
+            plan_b.get("pre62Supplement", {}).get("available") == True)
+    s.check("URS Plan D has Pre-62 supplement",
+            plan_d.get("pre62Supplement", {}).get("available") == True)
+    s.check("URS Plan E has NO Pre-62 supplement",
+            plan_e.get("pre62Supplement", {}).get("available") == False)
+    s.check("URS Plan F has NO Pre-62 supplement",
+            plan_f.get("pre62Supplement", {}).get("available") == False)
+
+    # Plan statuses
+    s.check("URS Plan B is closed", plan_b.get("status") == "closed")
+    s.check("URS Plan D is closed", plan_d.get("status") == "closed")
+    s.check("URS Plan E is closed", plan_e.get("status") == "closed")
+    s.check("URS Plan F is open", plan_f.get("status") == "open")
+
+    # Sick leave max for E and F
+    s.check("URS Plan E has sick leave max 2080",
+            plan_e.get("sickLeaveCredit", {}).get("maxHours") == 2080)
+    s.check("URS Plan F has sick leave max 2080",
+            plan_f.get("sickLeaveCredit", {}).get("maxHours") == 2080)
+
+    # Cross-system comparison: PORS vs URS vs FCERS are different systems
+    pors_path = s.root / "states" / "virginia" / "fairfax-county" / "pors-plans.json"
+    if pors_path.exists():
+        pors = json.loads(pors_path.read_text())
+        s.check("PORS and URS are distinct systems",
+                pors.get("employer") != data.get("employer"))
+        # PORS does NOT participate in SS; URS does
+        pors_ss = pors["plans"]["pors_plan_a"]["employeeContribution"].get("socialSecurityParticipation")
+        urs_ss = plan_b["employeeContribution"].get("socialSecurityParticipation")
+        s.check("PORS no SS, URS yes SS", pors_ss == False and urs_ss == True)
+
+
 # ── Main ──
 
 def main():
@@ -518,6 +800,8 @@ def main():
     test_data_integrity(s)
     test_referential_integrity(s)
     test_overlay_compatibility(s)
+    test_pors_plans(s)
+    test_urs_plans(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)

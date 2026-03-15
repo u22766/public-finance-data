@@ -1,0 +1,612 @@
+{
+  "_comment": "Fairfax County Uniformed Retirement System (URS). Fully independent defined benefit pension system (not VRS). Established 1974. Covers uniformed/sworn employees of Fire and Rescue, Sheriff, Animal Control, Police Helicopter Unit, and Public Safety Communications (since 2005). Four modeled plan tiers (B, D, E, F). Plans A and C are legacy tiers with very few remaining active members and are noted but not fully modeled. Update as Fairfax County Code changes.",
+  "version": "2026.1",
+  "effective_date": "2026-01-01",
+  "employer": "Fairfax County Uniformed Retirement System",
+  "scope": "county",
+  "jurisdiction": {
+    "state": "VA",
+    "county": "Fairfax County",
+    "note": "URS is a fully independent single-employer defined benefit pension system established July 1, 1974. NOT part of VRS. Prior to 1974 these employees were members of the Employees' Retirement System. In 2005 membership was extended to non-administrative employees of the Department of Public Safety Communications. Governed by Fairfax County Code Chapter 3, Article 3.",
+    "source_url": "https://www.fairfaxcounty.gov/retirement/uniformed-retirement-system"
+  },
+  "hireDateMapping": [
+    {
+      "planId": "urs_plan_a",
+      "label": "URS Plan A (pre-7/1/1976, legacy)",
+      "hiredBefore": "1976-07-01",
+      "note": "Uniformed employees hired before 7/1/1976. Extremely few active members remain. One-time option to switch to Plan C was offered. CLOSED. Not fully modeled."
+    },
+    {
+      "planId": "urs_plan_b",
+      "label": "URS Plan B (7/1/1976 - 7/1/1981)",
+      "hiredOnOrAfter": "1976-07-01",
+      "hiredBefore": "1981-07-01",
+      "note": "Uniformed employees hired 7/1/1976 through 6/30/1981. One-time option to switch to Plan D was offered. CLOSED to new members."
+    },
+    {
+      "planId": "urs_plan_c",
+      "label": "URS Plan C (legacy, pre-1997)",
+      "hiredBefore": "1997-03-22",
+      "note": "Legacy tier \u2014 employees who switched from Plan A. Very few active members remain. CLOSED. Not fully modeled."
+    },
+    {
+      "planId": "urs_plan_d",
+      "label": "URS Plan D (1981/1997 - 2012)",
+      "hiredOnOrAfter": "1981-07-01",
+      "hiredBefore": "2013-01-01",
+      "note": "Uniformed employees hired 7/1/1981 through 12/31/2012 (or switched from Plan B). All new hires after 3/22/1997 entered Plan D. CLOSED to new members."
+    },
+    {
+      "planId": "urs_plan_e",
+      "label": "URS Plan E (2013-2019)",
+      "hiredOnOrAfter": "2013-01-01",
+      "hiredBefore": "2019-07-01",
+      "note": "Uniformed employees hired 1/1/2013 through 6/30/2019. Pre-62 Supplemental Benefit does NOT apply. CLOSED to new members."
+    },
+    {
+      "planId": "urs_plan_f",
+      "label": "URS Plan F (2019+)",
+      "hiredOnOrAfter": "2019-07-01",
+      "note": "Uniformed employees hired on or after 7/1/2019. No 3% escalator, no Pre-SS benefit, no Pre-62 supplement. OPEN to new members."
+    }
+  ],
+  "plans": {
+    "urs_plan_b": {
+      "planId": "urs_plan_b",
+      "planName": "URS Plan B",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members. One-time option to switch to Plan D was offered. Legacy members remain.",
+      "eligibleEmployees": "Uniformed/sworn employees of Fire and Rescue, Sheriff, Animal Control, Police Helicopter hired 7/1/1976 through 6/30/1981 (or who remained in Plan B after switch option).",
+      "finalAverageSalary": {
+        "periods": 78,
+        "periodUnit": "biweekly_pay_periods",
+        "periodMonths": 36,
+        "method": "highest_consecutive",
+        "note": "Average of highest 78 consecutive biweekly pay periods (36 months). FMLA/LWOP periods are excluded. 24-hour shift personnel sick leave balances adjusted to 8-hour shift equivalent for retirement purposes."
+      },
+      "benefitFormula": {
+        "multiplier": 2.0,
+        "multiplierNote": "2.0% per year of benefit service",
+        "escalator": 1.03,
+        "escalatorNote": "Total benefit increased by 3% (\u00d71.03)",
+        "formula": "2.0% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03",
+        "maxServiceYears": null,
+        "maxServiceNote": "No statutory cap on benefit service years."
+      },
+      "preSocialSecurityBenefit": {
+        "available": true,
+        "multiplier": 0.2,
+        "formula": "0.2% \u00d7 FAS \u00d7 Years of Benefit Service",
+        "payableUntilAge": 62,
+        "prorated": true,
+        "proratedNote": "Pro-rated for members with less than 25 years of service",
+        "colaApplies": false,
+        "note": "Based on Social Security benefit that would have been payable if member had been age 65 at retirement. Payable only until age 62."
+      },
+      "pre62Supplement": {
+        "available": true,
+        "hiredBefore19760701": "Equal to primary Social Security benefit at age 65, increased by 3%",
+        "hiredOnOrAfter19760701": "Percentage of Social Security benefit based on years of service (up to 100% at 25 years), increased by 3%",
+        "payableUntilAge": 62,
+        "note": "Pre-62 Supplemental Benefit provides income between retirement and Social Security eligibility at age 62. Amount depends on hire date. Ends at age 62."
+      },
+      "normalRetirement": {
+        "ageRequirement": 55,
+        "ageServiceRequirement": 6,
+        "serviceOnlyRequirement": 25,
+        "condition": "OR",
+        "note": "Age 55 with at least 6 years of creditable service OR 25 years of creditable service (including sick leave credit)."
+      },
+      "earlyRetirement": {
+        "serviceRequirement": 20,
+        "ageRequirement": null,
+        "condition": "20 or more years of creditable service (under normal retirement eligibility).",
+        "reductionNote": "Normal retirement formula applies with a reduction factor based on age and years of service. Supplemental benefits may or may not apply depending on plan."
+      },
+      "deferredVested": {
+        "vestingYears": 5,
+        "payableAge": 55,
+        "formula": "Normal retirement formula applied to service at termination",
+        "note": "Must leave contributions in the System. Deferred annuity payable at age 55. Deferred vested members are NOT eligible for Pre-62 Supplement or Pre-Social Security Benefit."
+      },
+      "disability": {
+        "nonServiceConnected": {
+          "formula": "Normal retirement formula or minimum benefit",
+          "serviceRequirement": "At least 5 years of creditable service",
+          "note": "Not fully documented in available sources for Plan B. Follows general URS disability provisions."
+        },
+        "serviceConnected": {
+          "formula": "40% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "serviceRequirement": "Any amount of service",
+          "note": "40% of salary at time of retirement less Workers' Compensation."
+        },
+        "severeServiceConnected": {
+          "formula": "90% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "note": "For injuries meeting the Schedule of Impairments, including certain cancers (Code of Virginia \u00a7 65.2-402(c))."
+        }
+      },
+      "cola": {
+        "type": "automatic_cpi",
+        "formula": "Lesser of 4.0% or Washington-Arlington-Alexandria CPI-U increase for 12 months ending March 31",
+        "cap": 4.0,
+        "adHocCola": "Additional 1.0% ad-hoc COLA at Board of Trustees discretion when system funding ratio exceeds 100%",
+        "effectiveDate": "July 1 each year",
+        "note": "Same COLA formula as ERS and PORS. First-year retirees receive prorated COLA. Pre-Social Security Benefits do NOT receive COLA.",
+        "source_url": "https://www.fairfaxcounty.gov/retirement/cost-living-adjustment-cola"
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "Must be eligible for normal retirement (age 55 with 6+ years or 25 years of service)",
+        "interestRate": 5.0,
+        "interestNote": "Pro-rated annual rate of 5% credited to DROP account",
+        "colaApplies": true,
+        "irrevocable": true,
+        "distributionOptions": [
+          "lump_sum",
+          "rollover_ira",
+          "rollover_qualified_plan",
+          "actuarial_equivalent_annuity_increase",
+          "combination"
+        ],
+        "note": "Election irrevocable after effective date. Employee remains active for all other purposes during DROP. Sick leave must be converted at DROP entry (option to retain 40 hours)."
+      },
+      "survivorOptions": {
+        "jointAndLastSurvivor": [
+          "50%",
+          "66.67%",
+          "75%",
+          "100%"
+        ],
+        "automaticDeathBenefit": true,
+        "automaticDeathBenefitNote": "Automatic death benefit payable to eligible surviving spouse and children. Benefit provisions vary for pre-retirement vs. post-retirement death and service-connected vs. non-service-connected."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "conversionRate": "172 hours equals one month of creditable service",
+        "usedForEligibility": true,
+        "usedForBenefitCalculation": true,
+        "shiftAdjustment": "24-hour shift personnel balances adjusted to 8-hour shift equivalent (4 hours per pay period credit)"
+      },
+      "vestingYears": 5,
+      "employeeContribution": {
+        "rate": 7.0,
+        "type": "percent_of_gross",
+        "note": "Approximately 7% of salary (actuarially determined, varies slightly). URS members also pay Social Security tax (6.2%).",
+        "preTax": true,
+        "socialSecurityParticipation": true,
+        "socialSecurityNote": "URS members participate in Social Security. Both the employee and the County pay the 6.2% Social Security tax in addition to URS contributions."
+      },
+      "membershipStats": {
+        "asOf": "2023-06-30",
+        "activeMembers": 1851,
+        "dropParticipants": 161,
+        "terminatedVested": 131,
+        "retirees": 1633,
+        "note": "As of June 30, 2023 per Fairfax County ACFR."
+      },
+      "source_url": "https://www.fairfaxcounty.gov/retirement/service-retirement-uniformed"
+    },
+    "urs_plan_d": {
+      "planId": "urs_plan_d",
+      "planName": "URS Plan D",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 1/1/2013. All new hires after 3/22/1997 entered Plan D.",
+      "eligibleEmployees": "Uniformed/sworn employees hired 7/1/1981 through 12/31/2012 (or who switched from Plan B).",
+      "finalAverageSalary": {
+        "periods": 78,
+        "periodUnit": "biweekly_pay_periods",
+        "periodMonths": 36,
+        "method": "highest_consecutive",
+        "note": "Average of highest 78 consecutive biweekly pay periods (36 months). FMLA/LWOP periods are excluded. 24-hour shift personnel sick leave balances adjusted to 8-hour shift equivalent for retirement purposes."
+      },
+      "benefitFormula": {
+        "multiplier": 2.5,
+        "multiplierNote": "2.5% per year of benefit service",
+        "escalator": 1.03,
+        "escalatorNote": "Total benefit increased by 3% (\u00d71.03)",
+        "formula": "2.5% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03",
+        "maxServiceYears": null,
+        "maxServiceNote": "No statutory cap on benefit service years."
+      },
+      "preSocialSecurityBenefit": {
+        "available": true,
+        "multiplier": 0.3,
+        "formula": "0.3% \u00d7 FAS \u00d7 Years of Benefit Service",
+        "payableUntilAge": 62,
+        "prorated": true,
+        "proratedNote": "Pro-rated for members with less than 25 years of service",
+        "colaApplies": false,
+        "note": "Based on Social Security benefit that would have been payable if member had been age 65 at retirement. Payable only until age 62."
+      },
+      "pre62Supplement": {
+        "available": true,
+        "hiredBefore19760701": "Equal to primary Social Security benefit at age 65, increased by 3%",
+        "hiredOnOrAfter19760701": "Percentage of Social Security benefit based on years of service (up to 100% at 25 years), increased by 3%",
+        "payableUntilAge": 62,
+        "note": "Pre-62 Supplemental Benefit applies to Plan D. Percentage of Social Security benefit based on years of service, increased by 3%. Payable until age 62."
+      },
+      "normalRetirement": {
+        "ageRequirement": 55,
+        "ageServiceRequirement": 6,
+        "serviceOnlyRequirement": 25,
+        "condition": "OR",
+        "note": "Age 55 with at least 6 years of creditable service OR 25 years of creditable service (including sick leave credit)."
+      },
+      "earlyRetirement": {
+        "serviceRequirement": 20,
+        "ageRequirement": null,
+        "condition": "20 or more years of creditable service (under normal retirement eligibility).",
+        "reductionNote": "Normal retirement formula applies with a reduction factor based on age and years of service. Supplemental benefits may or may not apply depending on plan."
+      },
+      "deferredVested": {
+        "vestingYears": 5,
+        "payableAge": 55,
+        "formula": "Normal retirement formula applied to service at termination",
+        "note": "Must leave contributions in the System. Deferred annuity payable at age 55. Deferred vested members are NOT eligible for Pre-62 Supplement or Pre-Social Security Benefit."
+      },
+      "disability": {
+        "nonServiceConnected": {
+          "formula": "Normal retirement formula or minimum benefit",
+          "serviceRequirement": "At least 5 years of creditable service",
+          "note": "Not fully documented in available sources for Plan B. Follows general URS disability provisions."
+        },
+        "serviceConnected": {
+          "formula": "40% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "serviceRequirement": "Any amount of service",
+          "note": "40% of salary at time of retirement less Workers' Compensation."
+        },
+        "severeServiceConnected": {
+          "formula": "90% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "note": "For injuries meeting the Schedule of Impairments, including certain cancers (Code of Virginia \u00a7 65.2-402(c))."
+        }
+      },
+      "cola": {
+        "type": "automatic_cpi",
+        "formula": "Lesser of 4.0% or Washington-Arlington-Alexandria CPI-U increase for 12 months ending March 31",
+        "cap": 4.0,
+        "adHocCola": "Additional 1.0% ad-hoc COLA at Board of Trustees discretion when system funding ratio exceeds 100%",
+        "effectiveDate": "July 1 each year",
+        "note": "Same COLA formula as ERS and PORS. First-year retirees receive prorated COLA. Pre-Social Security Benefits do NOT receive COLA.",
+        "source_url": "https://www.fairfaxcounty.gov/retirement/cost-living-adjustment-cola"
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "Must be eligible for normal retirement (age 55 with 6+ years or 25 years of service)",
+        "interestRate": 5.0,
+        "interestNote": "Pro-rated annual rate of 5% credited to DROP account",
+        "colaApplies": true,
+        "irrevocable": true,
+        "distributionOptions": [
+          "lump_sum",
+          "rollover_ira",
+          "rollover_qualified_plan",
+          "actuarial_equivalent_annuity_increase",
+          "combination"
+        ],
+        "note": "Election irrevocable after effective date. Employee remains active for all other purposes during DROP. Sick leave must be converted at DROP entry (option to retain 40 hours)."
+      },
+      "survivorOptions": {
+        "jointAndLastSurvivor": [
+          "50%",
+          "66.67%",
+          "75%",
+          "100%"
+        ],
+        "automaticDeathBenefit": true,
+        "automaticDeathBenefitNote": "Automatic death benefit payable to eligible surviving spouse and children. Benefit provisions vary for pre-retirement vs. post-retirement death and service-connected vs. non-service-connected."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "conversionRate": "172 hours equals one month of creditable service",
+        "usedForEligibility": true,
+        "usedForBenefitCalculation": true,
+        "shiftAdjustment": "24-hour shift personnel balances adjusted to 8-hour shift equivalent (4 hours per pay period credit)"
+      },
+      "vestingYears": 5,
+      "employeeContribution": {
+        "rate": 7.0,
+        "type": "percent_of_gross",
+        "note": "Approximately 7% of salary (actuarially determined, varies slightly). URS members also pay Social Security tax (6.2%).",
+        "preTax": true,
+        "socialSecurityParticipation": true,
+        "socialSecurityNote": "URS members participate in Social Security. Both the employee and the County pay the 6.2% Social Security tax in addition to URS contributions."
+      },
+      "membershipStats": {
+        "asOf": "2023-06-30",
+        "activeMembers": 1851,
+        "dropParticipants": 161,
+        "terminatedVested": 131,
+        "retirees": 1633,
+        "note": "As of June 30, 2023 per Fairfax County ACFR."
+      },
+      "source_url": "https://www.fairfaxcounty.gov/retirement/service-retirement-uniformed"
+    },
+    "urs_plan_e": {
+      "planId": "urs_plan_e",
+      "planName": "URS Plan E",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "closed",
+      "statusNote": "Closed to new members as of 7/1/2019. Members retain Plan E provisions.",
+      "eligibleEmployees": "Uniformed/sworn employees hired 1/1/2013 through 6/30/2019. Includes Public Safety Communications employees.",
+      "finalAverageSalary": {
+        "periods": 78,
+        "periodUnit": "biweekly_pay_periods",
+        "periodMonths": 36,
+        "method": "highest_consecutive",
+        "note": "Average of highest 78 consecutive biweekly pay periods (36 months). FMLA/LWOP periods are excluded. 24-hour shift personnel sick leave balances adjusted to 8-hour shift equivalent for retirement purposes."
+      },
+      "benefitFormula": {
+        "multiplier": 2.5,
+        "multiplierNote": "2.5% per year of benefit service",
+        "escalator": 1.03,
+        "escalatorNote": "Total benefit increased by 3% (\u00d71.03)",
+        "formula": "2.5% \u00d7 FAS \u00d7 Years of Benefit Service \u00d7 1.03",
+        "maxServiceYears": null,
+        "maxServiceNote": "No statutory cap on benefit service years."
+      },
+      "preSocialSecurityBenefit": {
+        "available": true,
+        "multiplier": 0.3,
+        "formula": "0.3% \u00d7 FAS \u00d7 Years of Benefit Service",
+        "payableUntilAge": 62,
+        "prorated": true,
+        "proratedNote": "Pro-rated for members with less than 25 years of service",
+        "colaApplies": false,
+        "note": "Based on Social Security benefit that would have been payable if member had been age 65 at retirement. Payable only until age 62."
+      },
+      "pre62Supplement": {
+        "available": false,
+        "note": "Pre-62 Supplemental Benefit does NOT apply to members of Plan E. This is a key difference from Plans B and D."
+      },
+      "normalRetirement": {
+        "ageRequirement": 55,
+        "ageServiceRequirement": 6,
+        "serviceOnlyRequirement": 25,
+        "condition": "OR",
+        "note": "Age 55 with at least 6 years of creditable service OR 25 years of creditable service (including sick leave credit)."
+      },
+      "earlyRetirement": {
+        "serviceRequirement": 20,
+        "ageRequirement": null,
+        "condition": "20 or more years of creditable service (under normal retirement eligibility).",
+        "reductionNote": "Normal retirement formula applies with a reduction factor based on age and years of service. Supplemental benefits may or may not apply depending on plan."
+      },
+      "deferredVested": {
+        "vestingYears": 5,
+        "payableAge": 55,
+        "formula": "Normal retirement formula applied to service at termination",
+        "note": "Must leave contributions in the System. Deferred annuity payable at age 55. Deferred vested members are NOT eligible for Pre-62 Supplement or Pre-Social Security Benefit."
+      },
+      "disability": {
+        "nonServiceConnected": {
+          "formula": "Normal retirement formula or minimum benefit",
+          "serviceRequirement": "At least 5 years of creditable service",
+          "note": "Not fully documented in available sources for Plan B. Follows general URS disability provisions."
+        },
+        "serviceConnected": {
+          "formula": "40% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "serviceRequirement": "Any amount of service",
+          "note": "40% of salary at time of retirement less Workers' Compensation."
+        },
+        "severeServiceConnected": {
+          "formula": "90% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "note": "For injuries meeting the Schedule of Impairments, including certain cancers (Code of Virginia \u00a7 65.2-402(c))."
+        }
+      },
+      "cola": {
+        "type": "automatic_cpi",
+        "formula": "Lesser of 4.0% or Washington-Arlington-Alexandria CPI-U increase for 12 months ending March 31",
+        "cap": 4.0,
+        "adHocCola": "Additional 1.0% ad-hoc COLA at Board of Trustees discretion when system funding ratio exceeds 100%",
+        "effectiveDate": "July 1 each year",
+        "note": "Same COLA formula as ERS and PORS. First-year retirees receive prorated COLA. Pre-Social Security Benefits do NOT receive COLA.",
+        "source_url": "https://www.fairfaxcounty.gov/retirement/cost-living-adjustment-cola"
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "Must be eligible for normal retirement (age 55 with 6+ years or 25 years of service)",
+        "interestRate": 5.0,
+        "interestNote": "Pro-rated annual rate of 5% credited to DROP account",
+        "colaApplies": true,
+        "irrevocable": true,
+        "distributionOptions": [
+          "lump_sum",
+          "rollover_ira",
+          "rollover_qualified_plan",
+          "actuarial_equivalent_annuity_increase",
+          "combination"
+        ],
+        "note": "Election irrevocable after effective date. Employee remains active for all other purposes during DROP. Sick leave must be converted at DROP entry (option to retain 40 hours)."
+      },
+      "survivorOptions": {
+        "jointAndLastSurvivor": [
+          "50%",
+          "66.67%",
+          "75%",
+          "100%"
+        ],
+        "automaticDeathBenefit": true,
+        "automaticDeathBenefitNote": "Automatic death benefit payable to eligible surviving spouse and children. Benefit provisions vary for pre-retirement vs. post-retirement death and service-connected vs. non-service-connected."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "conversionRate": "172 hours equals one month of creditable service",
+        "usedForEligibility": true,
+        "usedForBenefitCalculation": true,
+        "shiftAdjustment": "24-hour shift personnel balances adjusted to 8-hour shift equivalent (4 hours per pay period credit)",
+        "maxHours": 2080,
+        "maxHoursNote": "For employees hired on or after 1/1/2013, maximum sick leave credit for benefit computation is 2,080 hours."
+      },
+      "vestingYears": 5,
+      "employeeContribution": {
+        "rate": 7.0,
+        "type": "percent_of_gross",
+        "note": "Approximately 7% of salary (actuarially determined, varies slightly). URS members also pay Social Security tax (6.2%).",
+        "preTax": true,
+        "socialSecurityParticipation": true,
+        "socialSecurityNote": "URS members participate in Social Security. Both the employee and the County pay the 6.2% Social Security tax in addition to URS contributions."
+      },
+      "membershipStats": {
+        "asOf": "2023-06-30",
+        "activeMembers": 1851,
+        "dropParticipants": 161,
+        "terminatedVested": 131,
+        "retirees": 1633,
+        "note": "As of June 30, 2023 per Fairfax County ACFR."
+      },
+      "source_url": "https://www.fairfaxcounty.gov/retirement/service-retirement-uniformed"
+    },
+    "urs_plan_f": {
+      "planId": "urs_plan_f",
+      "planName": "URS Plan F",
+      "type": "defined_benefit",
+      "category": "independent_municipal_pension",
+      "employer": "Fairfax County",
+      "status": "open",
+      "statusNote": "OPEN to new members. All uniformed employees hired on or after 7/1/2019 are automatically enrolled in Plan F.",
+      "eligibleEmployees": "Uniformed/sworn employees of Fire and Rescue, Sheriff, Animal Control, Police Helicopter, and Public Safety Communications hired on or after 7/1/2019.",
+      "finalAverageSalary": {
+        "periods": 78,
+        "periodUnit": "biweekly_pay_periods",
+        "periodMonths": 36,
+        "method": "highest_consecutive",
+        "note": "Average of highest 78 consecutive biweekly pay periods (36 months). FMLA/LWOP periods are excluded. 24-hour shift personnel sick leave balances adjusted to 8-hour shift equivalent for retirement purposes."
+      },
+      "benefitFormula": {
+        "multiplier": 2.5,
+        "multiplierNote": "2.5% per year of benefit service",
+        "escalator": null,
+        "escalatorNote": "No 3% escalator for Plan F. This is a key difference from Plans B, D, and E.",
+        "formula": "2.5% \u00d7 FAS \u00d7 Years of Benefit Service",
+        "maxServiceYears": null,
+        "maxServiceNote": "No statutory cap on benefit service years."
+      },
+      "preSocialSecurityBenefit": {
+        "available": false,
+        "note": "Pre-Social Security Benefit does NOT apply to Plan F members."
+      },
+      "pre62Supplement": {
+        "available": false,
+        "note": "Pre-62 Supplemental Benefit does NOT apply to Plan F members."
+      },
+      "normalRetirement": {
+        "ageRequirement": 55,
+        "ageServiceRequirement": 6,
+        "serviceOnlyRequirement": 25,
+        "condition": "OR",
+        "note": "Age 55 with at least 6 years of creditable service OR 25 years of creditable service (including sick leave credit)."
+      },
+      "earlyRetirement": {
+        "serviceRequirement": 20,
+        "ageRequirement": null,
+        "condition": "20 or more years of creditable service (under normal retirement eligibility).",
+        "reductionNote": "Normal retirement formula applies with a reduction factor based on age and years of service. Supplemental benefits may or may not apply depending on plan."
+      },
+      "deferredVested": {
+        "vestingYears": 5,
+        "payableAge": 55,
+        "formula": "Normal retirement formula applied to service at termination",
+        "note": "Must leave contributions in the System. Deferred annuity payable at age 55. Deferred vested members are NOT eligible for Pre-62 Supplement or Pre-Social Security Benefit."
+      },
+      "disability": {
+        "nonServiceConnected": {
+          "formula": "Normal retirement formula or minimum benefit",
+          "serviceRequirement": "At least 5 years of creditable service",
+          "note": "Not fully documented in available sources for Plan B. Follows general URS disability provisions."
+        },
+        "serviceConnected": {
+          "formula": "40% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "serviceRequirement": "Any amount of service",
+          "note": "40% of salary at time of retirement less Workers' Compensation."
+        },
+        "severeServiceConnected": {
+          "formula": "90% of salary at time of disability",
+          "offset": "Less average monthly Virginia Workers' Compensation benefits",
+          "note": "For injuries meeting the Schedule of Impairments, including certain cancers (Code of Virginia \u00a7 65.2-402(c))."
+        }
+      },
+      "cola": {
+        "type": "automatic_cpi",
+        "formula": "Lesser of 4.0% or Washington-Arlington-Alexandria CPI-U increase for 12 months ending March 31",
+        "cap": 4.0,
+        "adHocCola": "Additional 1.0% ad-hoc COLA at Board of Trustees discretion when system funding ratio exceeds 100%",
+        "effectiveDate": "July 1 each year",
+        "note": "Same COLA formula as ERS and PORS. First-year retirees receive prorated COLA. Pre-Social Security Benefits do NOT receive COLA.",
+        "source_url": "https://www.fairfaxcounty.gov/retirement/cost-living-adjustment-cola"
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 3,
+        "eligibility": "Must be eligible for normal retirement (age 55 with 6+ years or 25 years of service)",
+        "interestRate": 5.0,
+        "interestNote": "Pro-rated annual rate of 5% credited to DROP account",
+        "colaApplies": true,
+        "irrevocable": true,
+        "distributionOptions": [
+          "lump_sum",
+          "rollover_ira",
+          "rollover_qualified_plan",
+          "actuarial_equivalent_annuity_increase",
+          "combination"
+        ],
+        "note": "Election irrevocable after effective date. Employee remains active for all other purposes during DROP. Sick leave must be converted at DROP entry (option to retain 40 hours)."
+      },
+      "survivorOptions": {
+        "jointAndLastSurvivor": [
+          "50%",
+          "66.67%",
+          "75%",
+          "100%"
+        ],
+        "automaticDeathBenefit": true,
+        "automaticDeathBenefitNote": "Automatic death benefit payable to eligible surviving spouse and children. Benefit provisions vary for pre-retirement vs. post-retirement death and service-connected vs. non-service-connected."
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "conversionRate": "172 hours equals one month of creditable service",
+        "usedForEligibility": true,
+        "usedForBenefitCalculation": true,
+        "shiftAdjustment": "24-hour shift personnel balances adjusted to 8-hour shift equivalent (4 hours per pay period credit)",
+        "maxHours": 2080,
+        "maxHoursNote": "For employees hired on or after 1/1/2013, maximum sick leave credit for benefit computation is 2,080 hours."
+      },
+      "vestingYears": 5,
+      "employeeContribution": {
+        "rate": 7.0,
+        "type": "percent_of_gross",
+        "note": "Approximately 7% of salary (actuarially determined, varies slightly). URS members also pay Social Security tax (6.2%).",
+        "preTax": true,
+        "socialSecurityParticipation": true,
+        "socialSecurityNote": "URS members participate in Social Security. Both the employee and the County pay the 6.2% Social Security tax in addition to URS contributions."
+      },
+      "membershipStats": {
+        "asOf": "2023-06-30",
+        "activeMembers": 1851,
+        "dropParticipants": 161,
+        "terminatedVested": 131,
+        "retirees": 1633,
+        "note": "As of June 30, 2023 per Fairfax County ACFR."
+      },
+      "source_url": "https://www.fairfaxcounty.gov/retirement/service-retirement-uniformed"
+    }
+  }
+}

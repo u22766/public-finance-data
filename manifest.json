@@ -394,6 +394,40 @@
       "source_url": "https://www.fairfaxcounty.gov/retirement/employees-retirement-system",
       "update_frequency": "annual",
       "schema_notes": "Independent municipal pension system (not VRS). Plan A/B (pre-2013), C/D (2013-2019), E (2019+). A/C use integrated SS contribution; B/D/E use flat rate."
+    },
+    "pors_plans_fairfax": {
+      "url": "states/virginia/fairfax-county/pors-plans.json",
+      "description": "Fairfax County Police Officers Retirement System (PORS) pension plan parameters \u2014 3 plan tiers (A-C) based on hire date",
+      "domain": "pension",
+      "scope": "county",
+      "jurisdiction": "VA-Fairfax-County",
+      "version": "2026.1",
+      "tags": [
+        "pension",
+        "police",
+        "fairfax-county",
+        "defined-benefit",
+        "virginia",
+        "municipal"
+      ]
+    },
+    "urs_plans_fairfax": {
+      "url": "states/virginia/fairfax-county/urs-plans.json",
+      "description": "Fairfax County Uniformed Retirement System (URS) pension plan parameters \u2014 4 modeled plan tiers (B, D, E, F) for fire/rescue, sheriff, animal control, public safety communications",
+      "domain": "pension",
+      "scope": "county",
+      "jurisdiction": "VA-Fairfax-County",
+      "version": "2026.1",
+      "tags": [
+        "pension",
+        "uniformed",
+        "fire",
+        "sheriff",
+        "fairfax-county",
+        "defined-benefit",
+        "virginia",
+        "municipal"
+      ]
     }
   }
 }
