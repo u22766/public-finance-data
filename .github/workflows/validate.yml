@@ -1,8 +1,9 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 17 validation suites
+# 18 validation suites
 #
+# Session 43: Added validate_federal_retirement.py (157 checks) for TSP Roth conversion, FERS SRS, CSRS rules, FEGLI, FEHB retirement eligibility
 # Session 42: Added validate_municipal.py (153 checks) for MCERP and FCPP municipal pension data
 # Session 31: Added validate_territories.py (129 checks) for US territory expansion (AS, GU, MP, PR, VI)
 # Session 30: Added validate_vehicle_audit.py (111 checks) for vehicle/personal property tax audit
@@ -80,6 +81,9 @@ jobs:
 
       - name: Validate municipal pension plans — MCERP and FCPP (153 checks)
         run: python tests/validate_municipal.py
+
+      - name: Validate federal retirement benefits gaps — TSP Roth, SRS, CSRS, FEGLI, FEHB (157 checks)
+        run: python tests/validate_federal_retirement.py
       
       - name: Validation summary
         if: success()
