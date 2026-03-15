@@ -1,6 +1,6 @@
 {
   "_schema_note": "Medicare Parts A, B, and D premium rates, IRMAA surcharges, deductibles, and coinsurance. Source: CMS official announcements.",
-  "version": "2026.1",
+  "version": "2026.2",
   "effective_date": "2026-01-01",
   "last_updated": "2026-03-09",
   "source_url": "https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles",

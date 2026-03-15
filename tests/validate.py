@@ -1323,7 +1323,7 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
         return
     data = json.loads(sb_path.read_text())
 
-    s.check("state-benefits version >= 2.5", data.get("version", "0") >= "2.5")
+    s.check("state-benefits version >= 2.6", data.get("version", "0") >= "2.6")
 
     states_by_code = {st["state_code"]: st for st in data.get("states", [])}
 
@@ -1419,6 +1419,75 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
                 abs(actual - expected) < 0.0001)
 
 
+def test_legislation_watch_session39(s: ValidationSuite):
+    """Validate pending legislation tracking updated in Session 39."""
+    sb_path = s.root / "states" / "state-benefits.json"
+    if not sb_path.exists():
+        s.check("state-benefits.json exists for legislation watch", False)
+        return
+    data = json.loads(sb_path.read_text())
+    states_by_code = {st["state_code"]: st for st in data.get("states", [])}
+
+    # MN HF194 — should have pending_legislation with current status
+    mn = states_by_code.get("MN", {})
+    mn_pl = mn.get("pending_legislation", [])
+    mn_hf194 = [p for p in mn_pl if "HF" in p.get("bill", "") and "194" in p.get("bill", "")]
+    s.check("MN HF194 tracked in pending_legislation", len(mn_hf194) > 0)
+    if mn_hf194:
+        s.check("MN HF194 status mentions Taxes Committee",
+                "Taxes" in mn_hf194[0].get("status", ""))
+        s.check("MN HF194 last_checked is 2026",
+                "2026" in mn_hf194[0].get("last_checked", ""))
+
+    # MA S.2046 — should show Ways and Means advancement
+    ma = states_by_code.get("MA", {})
+    ma_pl = ma.get("pending_legislation", [])
+    ma_s2046 = [p for p in ma_pl if "2046" in p.get("bill", "")]
+    s.check("MA S.2046 tracked in pending_legislation", len(ma_s2046) > 0)
+    if ma_s2046:
+        s.check("MA S.2046 status mentions Ways and Means",
+                "Ways and Means" in ma_s2046[0].get("status", ""))
+
+    # MD HB 857 — new bill should be tracked
+    md = states_by_code.get("MD", {})
+    md_pl = md.get("pending_legislation", [])
+    md_hb857 = [p for p in md_pl if "857" in p.get("bill", "")]
+    s.check("MD HB 857 tracked in pending_legislation", len(md_hb857) > 0)
+    if md_hb857:
+        s.check("MD HB 857 impact mentions $20,000",
+                "20,000" in md_hb857[0].get("impact", "")
+                or "20000" in str(md_hb857[0].get("impact", "")))
+
+    # NE LB272/LB425 — stored in nested pending_legislation_note
+    ne = states_by_code.get("NE", {})
+    ne_dvhe = ne.get("veteran_benefits", {}).get("disabled_veteran_homestead_exemption", {})
+    ne_pl_note = ne_dvhe.get("pending_legislation_note", "")
+    s.check("NE LB272 tracked in pending_legislation_note",
+            "LB 272" in ne_pl_note or "LB272" in ne_pl_note)
+    s.check("NE pending legislation mentions carryover or deficit",
+            "carryover" in ne_pl_note.lower() or "deficit" in ne_pl_note.lower())
+
+    # NC — S660 stored in nested pending_legislation dict
+    nc = states_by_code.get("NC", {})
+    nc_dvhe = nc.get("veteran_benefits", {}).get("disabled_veteran_homestead_exclusion", {})
+    nc_pl = nc_dvhe.get("pending_legislation", {})
+    s.check("NC S660 tracked in nested pending_legislation",
+            "660" in nc_pl.get("bill", ""))
+    s.check("NC pending legislation last_checked is 2026",
+            "2026" in nc_pl.get("last_checked", ""))
+
+    # Medicare version consistency
+    mr_path = s.root / "federal" / "healthcare" / "medicare-rates.json"
+    manifest_path = s.root / "manifest.json"
+    if mr_path.exists() and manifest_path.exists():
+        mr_data = json.loads(mr_path.read_text())
+        manifest = json.loads(manifest_path.read_text())
+        mr_manifest_ver = manifest.get("files", {}).get("medicare_rates", {}).get("version", "")
+        mr_file_ver = mr_data.get("version", "")
+        s.check("Medicare version: file matches manifest",
+                str(mr_manifest_ver) == str(mr_file_ver))
+
+
 # ── Main ──
 
 def main():
@@ -1449,6 +1518,7 @@ def main():
     test_mcerp_plans(s)
     test_fcpp_plans(s)
     test_state_benefits_critical_fixes(s)
+    test_legislation_watch_session39(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)

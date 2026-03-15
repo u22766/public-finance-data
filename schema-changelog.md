@@ -45,6 +45,25 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### state-benefits.json v2.6
+
+**Date:** 2026-03-14
+
+**Session 39 Legislation Watch — All pending bills checked and updated:**
+- MN HF194: Still in House Taxes Committee. Now has 11 authors (Gottfried added 3/12/2026). Bipartisan support but no floor vote.
+- MA S.2046: **ADVANCED** — Reported favorably by Revenue Committee, referred to Senate Ways and Means (12/22/2025). Most active bill in our watch list.
+- MD HB 857: **NEW** — Introduced 2/4/2026 with 25 co-sponsors. Would increase under-55 military retirement subtraction from $12,500 to $20,000. Hearing held 2/19/2026.
+- NC S660/H39/H728: All in initial committee referrals. No movement since 2025.
+- NE LB272/LB425: Carryover bills. 2026 short session (60 days) dominated by $471M budget deficit. Speaker prioritizing 2026 bills; neither designated as priority.
+
+**CI:** Added 12 legislation watch checks + 3 tier2 consistency checks. Total validate.py: 987 → 1,019.
+
+### medicare-rates.json v2026.2
+
+**Date:** 2026-03-14
+
+**Version field fix:** File version field was `2026.1` but content matched `2026.2` (26-year premium history merged in Session 21). Corrected version field to `2026.2` to match manifest entry. No data change.
+
 ### state-benefits.json v2.5
 
 **Date:** 2026-03-14

@@ -117,8 +117,8 @@ public-finance-data/
 │   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
 └── tests/
-    ├── validate.py                              ← Core validation (919 checks)
-    ├── validate_tier2.py                        ← State benefits validation (527 checks)
+    ├── validate.py                              ← Core validation (1,019 checks)
+    ├── validate_tier2.py                        ← State benefits validation (530 checks)
     ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
     ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
     ├── validate_tier3c.py                       ← Tier 3C state expansion validation (187 checks)
@@ -214,12 +214,12 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,832 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,847 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 1007 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit guard rails |
-| Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
+| Core | `validate.py` | 1,019 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit guard rails, legislation watch |
+| Tier 2 | `validate_tier2.py` | 530 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
 | Historical | `validate_historical.py` | 1,968 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
