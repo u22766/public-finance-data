@@ -45,6 +45,25 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### state-benefits.json v2.9
+
+**Date:** 2026-03-15
+
+**Session 40 Legislation Watch Refresh — all 8 tracked bills checked:**
+
+Routine monitoring update. No bills advanced since Session 39. All `last_checked` dates refreshed to 2026-03-15.
+
+**Updates:**
+- MN HF194: Author Rasmusson added 2/26/2026 (now 12 authors). Bipartisan support continues to grow but no hearing scheduled.
+- MD HB 857: MACo (Maryland Association of Counties) submitted opposing testimony at 2/19 hearing, citing local revenue impact. No committee vote reported.
+- MA S.2046: Still in Senate Ways and Means. No change since 12/22/2025 committee referral.
+- NC S660/H39/H728: No movement. All in Rules committees.
+- NE LB272/LB425: Carryover bills. 60-day session (Jan 7 – Apr 17, 2026) focused on $471M budget deficit. Neither designated priority.
+
+**Also completed:** March 2026 source link audit — inventoried 297 unique URLs across 49 JSON files. SSA, IRS, CMS URLs confirmed live. Full programmatic audit of government domains blocked by sandbox egress restrictions; recommend spot-checking remaining URLs in September audit window.
+
+**No schema changes. Non-breaking patch.**
+
 ### state-benefits.json v2.8
 
 **Date:** 2026-03-14

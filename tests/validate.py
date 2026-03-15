@@ -1488,6 +1488,59 @@ def test_legislation_watch_session39(s: ValidationSuite):
                 str(mr_manifest_ver) == str(mr_file_ver))
 
 
+def test_legislation_watch_session40(s: ValidationSuite):
+    """Validate Session 40 legislation watch refresh (2026-03-15)."""
+    sb_path = s.root / "states" / "state-benefits.json"
+    if not sb_path.exists():
+        s.check("state-benefits.json exists for session 40 legwatch", False)
+        return
+    data = json.loads(sb_path.read_text())
+    states_by_code = {st["state_code"]: st for st in data.get("states", [])}
+
+    # Version should be at least 2.9
+    ver = data.get("version", "0")
+    s.check("state-benefits version >= 2.9",
+            float(str(ver).replace("v", "")) >= 2.9)
+
+    # MN HF194 — should mention Rasmusson and have March 2026 date
+    mn = states_by_code.get("MN", {})
+    mn_pl = mn.get("pending_legislation", [])
+    mn_hf194 = [p for p in mn_pl if "HF" in p.get("bill", "") and "194" in p.get("bill", "")]
+    if mn_hf194:
+        s.check("MN HF194 status mentions 12 authors or Rasmusson",
+                "12 author" in mn_hf194[0].get("status", "")
+                or "Rasmusson" in mn_hf194[0].get("status", ""))
+        s.check("MN HF194 last_checked >= 2026-03-15",
+                mn_hf194[0].get("last_checked", "") >= "2026-03-15")
+
+    # MA S.2046 — still in Ways and Means, date refreshed
+    ma = states_by_code.get("MA", {})
+    ma_pl = ma.get("pending_legislation", [])
+    ma_s2046 = [p for p in ma_pl if "2046" in p.get("bill", "")]
+    if ma_s2046:
+        s.check("MA S.2046 last_checked >= 2026-03-15",
+                ma_s2046[0].get("last_checked", "") >= "2026-03-15")
+
+    # MD HB 857 — MACo opposition noted
+    md = states_by_code.get("MD", {})
+    md_pl = md.get("pending_legislation", [])
+    md_hb857 = [p for p in md_pl if "857" in p.get("bill", "")]
+    if md_hb857:
+        s.check("MD HB 857 status mentions MACo",
+                "MACo" in md_hb857[0].get("status", ""))
+        s.check("MD HB 857 last_checked >= 2026-03-15",
+                md_hb857[0].get("last_checked", "") >= "2026-03-15")
+
+    # NC pending_legislation date refreshed
+    nc = states_by_code.get("NC", {})
+    nc_pl = nc.get("veteran_benefits", {}).get(
+        "disabled_veteran_homestead_exclusion", {}).get(
+        "pending_legislation", {})
+    if isinstance(nc_pl, dict):
+        s.check("NC pending_legislation last_checked >= 2026-03-15",
+                nc_pl.get("last_checked", "") >= "2026-03-15")
+
+
 def test_partial_exemption_audit(s: ValidationSuite):
     """Validate Session 39 partial exemption audit fixes."""
     sb_path = s.root / "states" / "state-benefits.json"
@@ -1626,6 +1679,7 @@ def main():
     test_fcpp_plans(s)
     test_state_benefits_critical_fixes(s)
     test_legislation_watch_session39(s)
+    test_legislation_watch_session40(s)
     test_partial_exemption_audit(s)
     test_ss_taxation_audit(s)
 

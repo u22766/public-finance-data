@@ -117,7 +117,7 @@ public-finance-data/
 │   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
 └── tests/
-    ├── validate.py                              ← Core validation (1,151 checks)
+    ├── validate.py                              ← Core validation (1,158 checks)
     ├── validate_tier2.py                        ← State benefits validation (530 checks)
     ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
     ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
@@ -214,11 +214,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,979 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,986 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 1,151 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit guard rails, legislation watch, partial exemption audit, SS taxation audit |
+| Core | `validate.py` | 1,158 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit guard rails, legislation watch, partial exemption audit, SS taxation audit |
 | Tier 2 | `validate_tier2.py` | 530 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |

@@ -2,7 +2,7 @@
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.2",
   "schema_min_compatible": "2.2",
-  "last_updated": "2026-03-14",
+  "last_updated": "2026-03-15",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
@@ -64,7 +64,7 @@
       "changelog_2026_1": "Initial release. Complete 2026 CMS data with all IRMAA filing status brackets."
     },
     "state_benefits": {
-      "version": "2.8",
+      "version": "2.9",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/state-benefits.json",
@@ -72,7 +72,8 @@
       "last_updated": "2026-03-14",
       "changelog": [
         "v2.1: Added 5 US territories (AS, GU, MP, PR, VI) \u2014 territory expansion with income tax, real estate, and vehicle property tax separation"
-      ]
+      ],
+      "changelog_2_9": "v2.9: Legislation watch refresh (all 8 bills checked 2026-03-15). MN HF194 author Rasmusson added. MD HB 857 MACo opposition noted. No bills advanced since Session 39."
     },
     "vrs_plans": {
       "version": "2026.2",

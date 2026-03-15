@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
-  "version": "2.8",
+  "version": "2.9",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary \u2014 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -2204,7 +2204,7 @@
           "title": "Granting property tax exemptions to disabled veterans",
           "status": "Reported favorably by Revenue Committee; referred to Senate Ways and Means (12/22/2025). Active.",
           "impact": "Tiered property tax exemptions: $2,500 (30-50%), $5,000 (50-70%), full exemption (70%+)",
-          "last_checked": "2026-03-14"
+          "last_checked": "2026-03-15"
         }
       ]
     },
@@ -2351,9 +2351,9 @@
         {
           "bill": "HB 857",
           "title": "Income Tax - Subtraction Modification for Military Retirement Income - Individuals Under Age 55",
-          "status": "Introduced 2/4/2026. Hearing held 2/19/2026 in House Ways and Means. 25 co-sponsors.",
+          "status": "In House Ways and Means. Hearing held 2/19/2026. No committee vote reported. MACo (Maryland Association of Counties) submitted opposing testimony citing local revenue impact. 25 co-sponsors (bipartisan).",
           "impact": "Would increase under-55 military retirement subtraction from $12,500 to $20,000. Effective July 1, 2026.",
-          "last_checked": "2026-03-14"
+          "last_checked": "2026-03-15"
         }
       ]
     },
@@ -2595,9 +2595,9 @@
         {
           "bill": "HF 194",
           "title": "Exclusion amount increased for homesteads of veterans with a disability",
-          "status": "In House Taxes Committee (re-referred from Veterans Affairs Feb 2025). 11 authors as of Mar 2026 (latest added Gottfried 3/12/2026). No floor vote.",
+          "status": "In House Taxes Committee (re-referred from Veterans Affairs Feb 2025). 12 authors (Rasmusson added 2/26/2026, Gottfried added 3/12/2026). Bipartisan support growing but no hearing scheduled.",
           "impact": "Would increase disabled veteran property tax homestead exclusion amount",
-          "last_checked": "2026-03-14"
+          "last_checked": "2026-03-15"
         }
       ]
     },
@@ -3005,7 +3005,7 @@
             ],
             "vehicle_exemption_proposed": true,
             "vehicle_note": "Would also exclude primary motor vehicle owned by 100% disabled veteran from property tax",
-            "last_checked": "2026-03-14"
+            "last_checked": "2026-03-15"
           },
           "authority": "N.C.G.S. \u00a7 105-277.1C",
           "sources": [
@@ -3170,7 +3170,8 @@
             "kia_spouse_note": "Unremarried surviving spouse of service member who died from service-connected disability"
           },
           "authority": "Nebraska Revised Statute \u00a777-3506",
-          "pending_legislation_note": "LB 272 (2025) would extend partial homestead exemption to veterans with 10-99% disability proportional to rating. LB 425 would set threshold at 80%. Both carryover for 2026 short session (Jan 7 - Apr 17, 2026). Neither designated 2026 priority; session focused on $471M budget deficit. LB 650 (2025) vehicle tax exemption was enacted \u2014 see vehicle_tax_exemption entry. Last checked: 2026-03-14."
+          "pending_legislation_note": "LB 272 (2025) would extend partial homestead exemption to veterans with 10-99% disability proportional to rating. LB 425 would set threshold at 80%. Both carryover for 2026 short session (Jan 7 - Apr 17, 2026). Neither designated 2026 priority; session focused on $471M budget deficit. LB 650 (2025) vehicle tax exemption was enacted \u2014 see vehicle_tax_exemption entry. Last checked: 2026-03-14.",
+          "pending_legislation_last_checked": "2026-03-15"
         },
         "vehicle_tax_exemption": {
           "available": true,
@@ -5532,5 +5533,5 @@
       ]
     }
   },
-  "last_updated": "2026-03-14"
+  "last_updated": "2026-03-15"
 }
