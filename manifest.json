@@ -1,5 +1,5 @@
 {
-  "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
+  "_comment": "Public Finance Data — Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.2",
   "schema_min_compatible": "2.2",
   "last_updated": "2026-03-14",
@@ -19,7 +19,7 @@
       "effective_date": "2026-01-15",
       "update_frequency": "annual (January)",
       "url": "federal/pay-tables.json",
-      "description": "GS and DCIPS base pay tables \u2014 all grades, all steps, all OPM locality areas"
+      "description": "GS and DCIPS base pay tables — all grades, all steps, all OPM locality areas"
     },
     "dcips_pay_tables": {
       "version": "2026.1",
@@ -51,7 +51,7 @@
       "effective_date": "2026-01-01",
       "update_frequency": "annual (October)",
       "url": "federal/healthcare/fehb-rates.json",
-      "description": "FEHB premium rates \u2014 complete 132-plan dataset (19 nationwide FFS + 459 regional HMO entries) from OPM Excel files",
+      "description": "FEHB premium rates — complete 132-plan dataset (19 nationwide FFS + 459 regional HMO entries) from OPM Excel files",
       "last_updated": "2026-03-11"
     },
     "medicare_rates": {
@@ -64,14 +64,14 @@
       "changelog_2026_1": "Initial release. Complete 2026 CMS data with all IRMAA filing status brackets."
     },
     "state_benefits": {
-      "version": "2.2",
+      "version": "2.3",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/state-benefits.json",
       "description": "State and territory income tax treatment, veteran property tax benefits, and vehicle personal property tax exemptions for 56 jurisdictions (50 states + DC + 5 US territories: AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UT, VA, VI, VT, WA, WI, WV, WY)",
       "last_updated": "2026-03-14",
       "changelog": [
-        "v2.1: Added 5 US territories (AS, GU, MP, PR, VI) \u2014 territory expansion with income tax, real estate, and vehicle property tax separation"
+        "v2.1: Added 5 US territories (AS, GU, MP, PR, VI) — territory expansion with income tax, real estate, and vehicle property tax separation"
       ]
     },
     "vrs_plans": {
@@ -79,7 +79,7 @@
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/virginia/vrs-plans.json",
-      "description": "Virginia Retirement System (VRS) \u2014 Plan 1, Plan 2, Hybrid DB+DC, SPORS, VaLORS, enhanced hazardous duty, COLA formulas, health insurance credit, hazardous duty supplement",
+      "description": "Virginia Retirement System (VRS) — Plan 1, Plan 2, Hybrid DB+DC, SPORS, VaLORS, enhanced hazardous duty, COLA formulas, health insurance credit, hazardous duty supplement",
       "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. VRS plans only. All values unchanged.",
       "last_updated": "2026-03-14"
     },
@@ -154,7 +154,7 @@
     },
     "tricare_rates": {
       "version": "2026.3",
-      "description": "TRICARE premium, cost-share, pharmacy copay, and dental program schedule \u2014 Prime, Select, TFL, TDP, Reserve Select, Retired Reserve, TYA, CHCBP",
+      "description": "TRICARE premium, cost-share, pharmacy copay, and dental program schedule — Prime, Select, TFL, TDP, Reserve Select, Retired Reserve, TYA, CHCBP",
       "last_updated": "2026-03-12",
       "url": "federal/healthcare/tricare-rates.json",
       "effective_date": "2026-01-01",
@@ -162,7 +162,7 @@
     },
     "fehb_plan_benefits": {
       "version": "2026.1",
-      "description": "FEHB plan benefits \u2014 deductibles, OOP max, copays, pharmacy tiers, Medicare coordination for all 132 plans (in-network + out-of-network)",
+      "description": "FEHB plan benefits — deductibles, OOP max, copays, pharmacy tiers, Medicare coordination for all 132 plans (in-network + out-of-network)",
       "last_updated": "2026-03-11",
       "url": "federal/healthcare/fehb-plan-benefits.json",
       "effective_date": "2026-01-01",
@@ -170,7 +170,7 @@
     },
     "fedvip_rates": {
       "version": "2026.1",
-      "description": "FEDVIP dental and vision premium rates \u2014 11 dental carriers by rating region, 5 vision carriers nationwide",
+      "description": "FEDVIP dental and vision premium rates — 11 dental carriers by rating region, 5 vision carriers nationwide",
       "last_updated": "2026-03-11",
       "url": "federal/healthcare/fedvip-rates.json",
       "effective_date": "2026-01-01",
@@ -280,7 +280,7 @@
       "url": "states/arizona/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Maricopa County (AZ).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_co": {
       "version": "1.1",
@@ -289,7 +289,7 @@
       "url": "states/colorado/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: El Paso County (CO).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_fl": {
       "version": "1.1",
@@ -298,7 +298,7 @@
       "url": "states/florida/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Hillsborough County (FL).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_md": {
       "version": "1.1",
@@ -307,7 +307,7 @@
       "url": "states/maryland/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Prince George's County (MD).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_nc": {
       "version": "1.1",
@@ -316,7 +316,7 @@
       "url": "states/north-carolina/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Cumberland County (NC).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_nv": {
       "version": "1.1",
@@ -325,7 +325,7 @@
       "url": "states/nevada/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Clark County (NV).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_tx": {
       "version": "1.1",
@@ -334,7 +334,7 @@
       "url": "states/texas/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Bexar County (TX).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_va": {
       "version": "1.1",
@@ -343,7 +343,7 @@
       "url": "states/virginia/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Fairfax County, Virginia Beach (VA).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "county_property_tax_wa": {
       "version": "1.1",
@@ -352,7 +352,7 @@
       "url": "states/washington/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Pierce County (WA).",
       "last_updated": "2026-03-13",
-      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
+      "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes — structural reorganization only."
     },
     "military_pay_tables": {
       "version": "2026.1",
@@ -391,7 +391,7 @@
       "domain": "state_local_pension",
       "version": "2026.1",
       "effective_date": "2026-01-01",
-      "description": "Fairfax County ERS defined benefit pension plan parameters \u2014 5 plan tiers (A-E) for general county and FCPS non-teaching employees. Includes benefit formulas, eligibility rules, contributions, disability, DROP, survivor options.",
+      "description": "Fairfax County ERS defined benefit pension plan parameters — 5 plan tiers (A-E) for general county and FCPS non-teaching employees. Includes benefit formulas, eligibility rules, contributions, disability, DROP, survivor options.",
       "source": "Fairfax County Retirement Systems",
       "source_url": "https://www.fairfaxcounty.gov/retirement/employees-retirement-system",
       "update_frequency": "annual",
@@ -399,7 +399,7 @@
     },
     "pors_plans_fairfax": {
       "url": "states/virginia/fairfax-county/pors-plans.json",
-      "description": "Fairfax County Police Officers Retirement System (PORS) pension plan parameters \u2014 3 plan tiers (A-C) based on hire date",
+      "description": "Fairfax County Police Officers Retirement System (PORS) pension plan parameters — 3 plan tiers (A-C) based on hire date",
       "domain": "pension",
       "scope": "county",
       "jurisdiction": "VA-Fairfax-County",
@@ -415,7 +415,7 @@
     },
     "urs_plans_fairfax": {
       "url": "states/virginia/fairfax-county/urs-plans.json",
-      "description": "Fairfax County Uniformed Retirement System (URS) pension plan parameters \u2014 4 modeled plan tiers (B, D, E, F) for fire/rescue, sheriff, animal control, public safety communications",
+      "description": "Fairfax County Uniformed Retirement System (URS) pension plan parameters — 4 modeled plan tiers (B, D, E, F) for fire/rescue, sheriff, animal control, public safety communications",
       "domain": "pension",
       "scope": "county",
       "jurisdiction": "VA-Fairfax-County",
@@ -442,7 +442,7 @@
       "last_updated": "2026-03-14"
     },
     "mcerp_plans_montgomery": {
-      "description": "Montgomery County Employee Retirement Plans (MCERP) \u2014 ERS (3 DB sub-plans), public safety ERS, GRIP (cash balance), RSP (DC), EOP, DCP. $7.3B system, 16,000 members.",
+      "description": "Montgomery County Employee Retirement Plans (MCERP) — ERS (3 DB sub-plans), public safety ERS, GRIP (cash balance), RSP (DC), EOP, DCP. $7.3B system, 16,000 members.",
       "url": "states/maryland/montgomery-county/mcerp-plans.json",
       "category": "state_local_pension",
       "subcategory": "county_pension",
@@ -450,6 +450,13 @@
       "scope": "county",
       "version": "2026.1",
       "last_updated": "2026-03-14"
+    },
+    "fcpp_plans_falls_church": {
+      "version": "2026.1",
+      "url": "states/virginia/falls-church/fcpp-plans.json",
+      "description": "City of Falls Church Basic and Police Pension Plans — 2 DB plans (Basic: 1.8% multiplier, Rule of 90; Police: 2.8%/3.0% split multiplier, 2 tiers by hire date)",
+      "category": "pension",
+      "jurisdiction": "Falls Church, VA"
     }
   }
 }

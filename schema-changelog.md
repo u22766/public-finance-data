@@ -45,6 +45,36 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### state-benefits.json v2.3
+
+**Date:** 2026-03-14
+
+**Critical Correction — North Carolina military retirement:**
+- **Fixed:** `income_tax.military_retirement.exempt` changed from `false` to `true`. Military retirement pay has been fully exempt in NC since January 1, 2021 (Session Law 2021-180). The original data entry was incorrect.
+- **Fixed:** `income_tax.top_rate` updated from `0.0475` to `0.0399` (Session Law 2023-134, effective 2026 tax year). Rate schedule: 4.75% (2023), 4.50% (2024), 4.25% (2025), 3.99% (2026+).
+- Added SBP exemption status, TSP non-exemption, deduction line reference, and Bailey Decision note.
+- Updated pending legislation status for S 660 / H 39 / H 728.
+
+**Data Update — Georgia military retirement:**
+- Updated exemption structure from age-based tiers to flat $65,000 for all ages (HB 266, signed May 13, 2025, effective 2026 tax year).
+- Preserved prior tiers in `prior_tiers` for historical reference and prior-year filing.
+- Added SBP coverage clarification (not covered by military-specific exemption).
+
+**CI:** Added 23 new checks including NC/GA value assertions and multi-state military exemption guard rails.
+
+## Data Addition: FCPP Plans (City of Falls Church Pension Plans)
+
+**Date:** 2026-03-14
+**File:** `states/virginia/falls-church/fcpp-plans.json`
+**Manifest key:** `fcpp_plans_falls_church`
+**Version:** 2026.1
+
+- 2 defined benefit plans: Basic (general employees) and Police (sworn officers)
+- Basic: 1.8% multiplier, 5-year AFC, 5% EE contribution, Rule of 90 early retirement with $200/mo supplement
+- Police: 2.8%/3.0% split multiplier (first 20 years / excess), 7% EE contribution, 2 tiers by hire date (Dec 8, 1986)
+- Constitutional officers use VRS, not city pension
+- CI: 31 new FCPP-specific checks added
+
 ### rates-annual.json v2026.1
 
 **Date:** 2026-03-08

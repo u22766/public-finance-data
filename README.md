@@ -39,7 +39,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 50 entries)
+├── manifest.json                                ← Fetch this first (master version index, 51 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -100,6 +100,8 @@ public-finance-data/
 │   │   │   ├── pors-plans.json                  ← PORS Plans A-C (sworn police officers pension)
 │   │   │   ├── urs-plans.json                   ← URS Plans B/D/E/F (fire, sheriff, uniformed pension)
 │   │   │   └── plan-combinations.json           ← VRS + ERFC pension stacking patterns
+│   │   ├── falls-church/
+│   │   │   └── fcpp-plans.json                  ← Falls Church Basic + Police pension plans (independent city)
 │   │   └── richmond/
 │   │       └── rrs-plans.json                   ← RRS pension plans — 8 types (CLOSED 2024, VRS transition)
 │   └── washington/
@@ -169,7 +171,7 @@ Files are organized by jurisdiction and domain:
 | `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
 | `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
-| `state_benefits` | 2.2 | `states/state-benefits.json` |
+| `state_benefits` | 2.3 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
 | `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
 | `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
@@ -185,6 +187,7 @@ Files are organized by jurisdiction and domain:
 | `pors_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/pors-plans.json` |
 | `urs_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/urs-plans.json` |
 | `rrs_plans_richmond` | 2026.1 | `states/virginia/richmond/rrs-plans.json` |
+| `fcpp_plans_falls_church` | 2026.1 | `states/virginia/falls-church/fcpp-plans.json` |
 | `mcerp_plans_montgomery` | 2026.1 | `states/maryland/montgomery-county/mcerp-plans.json` |
 | `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
 | `plan_combinations_fairfax` | 2.0.0 | `states/virginia/fairfax-county/plan-combinations.json` |
@@ -211,11 +214,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,758 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,812 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 933 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS/ACERS/VRS/MCERP pension |
+| Core | `validate.py` | 987 | Manifest integrity, all federal/state/reference files, pension systems (PORS/URS/RRS/ACERS/VRS/MCERP/FCPP), state benefits critical fixes |
 | Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |

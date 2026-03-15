@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
-  "version": "2.2",
+  "version": "2.3",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary — 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -1166,12 +1166,19 @@
         "taxes_federal_pension": true,
         "military_retirement": {
           "exempt": true,
-          "under_62_exemption": 17500,
-          "age_62_to_64_exemption": 35000,
-          "age_65_plus_exemption": 65000,
-          "earned_income_requirement_under_62": true,
-          "earned_income_note": "Veterans under 62 must have at least $17,500 of earned income to claim the full $17,500 subtraction",
-          "note": "Georgia exempts military retirement pay with age-based tiers"
+          "exemption_amount": 65000,
+          "exemption_note": "Up to $65,000 of military retirement pay exempt for all ages (HB 266, signed May 13, 2025, effective tax year 2026). Prior age-based tiers ($17,500 under 62 / $35,000 ages 62-64 / $65,000 age 65+) replaced.",
+          "sbp_exempt": false,
+          "sbp_note": "Survivor Benefit Plan payments follow general retirement income exclusion rules, not the military-specific exemption. SBP recipients use the age-based general retirement exclusion.",
+          "prior_tiers": {
+            "_note": "Pre-2026 tiers retained for historical reference and prior-year filing",
+            "under_62_exemption": 17500,
+            "under_62_earned_income_additional": 17500,
+            "age_62_to_64_exemption": 35000,
+            "age_65_plus_exemption": 65000
+          },
+          "authority": "HB 266 (2025 session)",
+          "note": "Georgia exempts up to $65,000 of military retirement pay from state income tax for all ages effective 2026 tax year (HB 266, signed May 13, 2025 by Gov. Kemp). Removes prior age-based tier structure. Does not cover USPHS or NOAA commissioned corps retirement."
         },
         "va_compensation": {
           "exempt": true,
@@ -2805,8 +2812,16 @@
       "income_tax": {
         "taxes_federal_pension": true,
         "military_retirement": {
-          "exempt": false,
-          "note": "North Carolina taxes military retirement pay as regular income"
+          "exempt": true,
+          "effective_year": 2021,
+          "authority": "Session Law 2021-180",
+          "eligibility": "Retired members who served at least 20 years OR medically retired under 10 U.S.C. Chapter 61",
+          "sbp_exempt": true,
+          "sbp_note": "Survivor Benefit Plan payments to eligible beneficiaries are also deductible",
+          "tsp_exempt": false,
+          "tsp_note": "TSP distributions are NOT exempt and are subject to state income tax",
+          "deduction_line": "Form D-400 Schedule S, Line 20",
+          "note": "North Carolina fully exempts military retirement pay from state income tax (Session Law 2021-180, effective January 1, 2021). Applies to Armed Forces retirees with 20+ years of service or medical retirees. SBP payments to eligible beneficiaries also deductible. Bailey Decision retirees (vested before August 12, 1989) have broader exemption."
         },
         "va_compensation": {
           "exempt": true,
@@ -2817,8 +2832,8 @@
           "deduction_available": true,
           "note": "Social Security benefits taxed on federal return may be deducted from NC state return"
         },
-        "top_rate": 0.0475,
-        "note": "North Carolina has a flat income tax rate of 4.75% (2024)"
+        "top_rate": 0.0399,
+        "note": "North Carolina has a flat income tax rate of 3.99% (2026, Session Law 2023-134). Rate schedule: 4.75% (2023), 4.50% (2024), 4.25% (2025), 3.99% (2026+). Future reductions to 3.49% and below are revenue-trigger dependent."
       },
       "property_tax": {
         "exemptions": [
@@ -2839,7 +2854,9 @@
       "sources": [
         "https://www.milvets.nc.gov/benefits-services/veterans-property-tax-relief",
         "https://www.ncdor.gov/taxes-forms/property-tax/property-tax-forms/ncdva-9-certification-disabled-veterans-property-tax-exclusion",
-        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/North-Carolina"
+        "https://myarmybenefits.us.army.mil/Benefit-Library/State/Territory-Benefits/North-Carolina",
+        "https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules",
+        "https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/military-retirement"
       ],
       "veteran_benefits": {
         "_schema_note": "Veteran-specific property tax exclusions for North Carolina. All require certification from NC Department of Military and Veterans Affairs. Federal benefits (funding fee) are in the federal_veteran_benefits root section.",
@@ -2881,7 +2898,7 @@
           },
           "pending_legislation": {
             "bill": "S 660 / H 39 (Honoring Sacrifice: NC Veterans Relief Act)",
-            "status": "Under consideration in 2025-2026 session",
+            "status": "S 660 referred to Senate Rules (Mar 2025), H 39 referred to House Finance (Feb 2025); neither advanced in 2025 session. Companion bill H 728 also filed. All pending for 2026 session.",
             "proposed_changes": [
               {
                 "effective": "July 1, 2025",

@@ -1,0 +1,201 @@
+{
+  "_comment": "City of Falls Church Basic and Police Pension Plans",
+  "systemName": "City of Falls Church Pension Plans",
+  "systemAbbreviation": "FCPP",
+  "version": "2026.1",
+  "last_updated": "2026-03-14",
+  "jurisdiction": {
+    "level": "city",
+    "name": "City of Falls Church",
+    "state": "VA",
+    "fips": "51610",
+    "type": "independent_city",
+    "population_note": "Approximately 14,600 (smallest independent city in Virginia)"
+  },
+  "administeredBy": "Falls Church Retirement Board",
+  "boardComposition": "7 members: 3 appointed by City Council, 1 by City Manager, 1 Police Plan member (elected), 2 Basic Plan members (elected)",
+  "established": 1957,
+  "planDocument": "Amended and Restated effective January 1, 2016; further amended effective January 1, 2018 per Resolution 2018-54",
+  "socialSecurity": true,
+  "socialSecurityNote": "City participates in Social Security (OASDI 6.2% + Medicare 1.45% = 7.65% employer match)",
+  "supplementalPlans": {
+    "deferredComp457b": {
+      "available": true,
+      "recordkeeper": "MissionSquare (formerly ICMA-RC)",
+      "note": "457(b) deferred compensation available to all employees"
+    },
+    "employerMatch401a": {
+      "available": true,
+      "separatedFrom457b": "July 1, 2018",
+      "note": "401(a) employer match plan separated from 457(b) effective July 1, 2018 so employer funds do not count against employee maximum contribution limits"
+    }
+  },
+  "vrsParticipants": {
+    "note": "Constitutional officers and their full-time employees must join VRS (not the city pension). City makes contributions on their behalf.",
+    "coveredPositions": [
+      "Constitutional officers",
+      "Full-time employees of constitutional officers"
+    ]
+  },
+  "plans": {
+    "basic": {
+      "planName": "City of Falls Church Basic Pension Plan",
+      "planType": "defined_benefit",
+      "status": "OPEN",
+      "coverageGroup": "All permanent regular employees working 20+ hours/week (except sworn police and constitutional officers)",
+      "multiplier": 0.018,
+      "multiplierNote": "1.8% per year of credited service",
+      "afc": {
+        "method": "highest_consecutive",
+        "years": 5,
+        "description": "Highest consecutive five-year salary"
+      },
+      "employeeContribution": {
+        "rate": 0.05,
+        "note": "5% of salary"
+      },
+      "contributionInterest": {
+        "pre1987": 0.05,
+        "post1987": 0.055,
+        "note": "Contributions accrue interest at 5% per annum compounded annually to Dec 31, 1986; 5.5% per annum from Jan 1, 1987"
+      },
+      "vesting": {
+        "years": 5,
+        "note": "Fully vested after 5 years of credited service"
+      },
+      "normalRetirement": {
+        "age": "Social Security retirement age",
+        "ageNote": "Normal retirement date is first day of calendar month coinciding with or following attainment of Social Security retirement age (currently 67 for those born 1960+)",
+        "formula": "1.8% x years of credited service x final average compensation (highest consecutive 5 years)"
+      },
+      "earlyRetirement": {
+        "ruleOf90": {
+          "available": true,
+          "requirement": "Age + years of credited service >= 90, minimum age 50",
+          "reduction": "none",
+          "reductionNote": "Unreduced early retirement",
+          "supplement": {
+            "amount": 200,
+            "frequency": "monthly",
+            "duration": "Until normal retirement date",
+            "note": "Additional $200/month paid until member reaches normal retirement date (Social Security retirement age)"
+          }
+        },
+        "reducedEarly": {
+          "available": true,
+          "requirement": "Age 52 with at least 10 years in plan",
+          "reduction": "Actuarial reduction applied to benefit",
+          "supplement": "Not eligible for $200/month supplement"
+        }
+      },
+      "disability": {
+        "nonServiceRelated": {
+          "available": true,
+          "reference": "Plan Document Article XI, Section 11.02"
+        },
+        "serviceRelated": {
+          "available": true,
+          "reference": "Plan Document Article XI, Section 11.03"
+        },
+        "determinedBy": "Retirement Board"
+      },
+      "cola": {
+        "_note": "COLA provisions exist per Plan Document Section 5.04 but specific formula not published on city website. Verify with HR or plan document.",
+        "reference": "Plan Document Article V, Section 5.04"
+      },
+      "annuityForms": {
+        "normalForm": "Single life annuity",
+        "joint100Survivor": true,
+        "optionalForms": true,
+        "reference": "Plan Document Article VI"
+      },
+      "deathBenefits": {
+        "preEarlyRetirementEligibility": true,
+        "postEarlyRetirementEligibility": true,
+        "postAnnuityStartDate": true,
+        "reference": "Plan Document Article IX"
+      },
+      "terminationOptions": {
+        "refund": "May withdraw accumulated contributions plus interest",
+        "deferredBenefit": "May leave contributions in plan and take deferred benefit at retirement eligibility"
+      }
+    },
+    "police": {
+      "planName": "City of Falls Church Police Pension Plan",
+      "planType": "defined_benefit",
+      "status": "OPEN",
+      "coverageGroup": "Sworn police officers",
+      "multiplier": {
+        "first20Years": 0.028,
+        "over20Years": 0.03,
+        "note": "2.8% per year for first 20 years of credited service; 3.0% per year for all years in excess of 20"
+      },
+      "afc": {
+        "method": "highest_consecutive",
+        "years": 5,
+        "description": "Highest consecutive five-year salary"
+      },
+      "employeeContribution": {
+        "rate": 0.07,
+        "note": "7% of salary"
+      },
+      "vesting": {
+        "years": 5,
+        "note": "Fully vested after 5 years of credited service"
+      },
+      "tiers": {
+        "pre19861208": {
+          "tierName": "Pre-December 8, 1986 Hires",
+          "hireDate": "On or before December 8, 1986",
+          "normalRetirement": {
+            "rule": "Earlier of age 62 OR completion of 25 years in Police Pension Plan",
+            "formula": "2.8% x first 20 years + 3.0% x years over 20, applied to final average compensation"
+          },
+          "earlyRetirement": {
+            "requirement": "20 years of service",
+            "reduction": "none",
+            "note": "Unreduced retirement after 20 years of service"
+          }
+        },
+        "post19861208": {
+          "tierName": "Post-December 8, 1986 Hires",
+          "hireDate": "After December 8, 1986",
+          "normalRetirement": {
+            "rule": "Earlier of age 55 OR (age 50 AND completion of 25 years in Police Pension Plan)",
+            "formula": "2.8% x first 20 years + 3.0% x years over 20, applied to final average compensation"
+          },
+          "earlyRetirement": {
+            "note": "Normal retirement criteria serve as the early retirement threshold for post-1986 tier"
+          }
+        }
+      },
+      "cola": {
+        "_note": "COLA provisions not published on city website for Police Plan. Verify with HR or plan document."
+      },
+      "disability": {
+        "available": true,
+        "note": "Disability retirement available; details in Police Pension Plan document"
+      }
+    }
+  },
+  "maxBenefitExamples": {
+    "basic_30yr": "1.8% x 30 x FAC = 54% of final average compensation",
+    "basic_35yr_rule90": "1.8% x 35 x FAC = 63% of final average compensation",
+    "police_20yr": "2.8% x 20 x FAC = 56% of final average compensation",
+    "police_25yr": "(2.8% x 20 + 3.0% x 5) x FAC = 71% of final average compensation",
+    "police_30yr": "(2.8% x 20 + 3.0% x 10) x FAC = 86% of final average compensation"
+  },
+  "researchGaps": [
+    "COLA formula and rate (Plan Document Section 5.04 exists but full content not extracted)",
+    "Specific actuarial reduction factors for reduced early retirement",
+    "Police Plan detailed survivor options and death benefits",
+    "Post-retirement medical benefits eligibility and contribution details",
+    "Current plan assets and funded status"
+  ],
+  "sources": [
+    "https://www.fallschurchva.gov/357/Pension-and-Retirement-Plans",
+    "https://www.fallschurchva.gov/DocumentCenter/View/16219",
+    "https://www.fallschurchva.gov/377/Retirement-Board",
+    "https://www.fallschurchva.gov/355/Benefits"
+  ]
+}

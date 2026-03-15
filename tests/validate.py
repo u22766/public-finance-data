@@ -1243,6 +1243,136 @@ def test_mcerp_plans(s):
                 data.get("jurisdiction", {}).get("state") != rrs.get("jurisdiction", {}).get("state"))
 
 
+# ── Falls Church Pension Plans (Session 38) ──
+
+def test_fcpp_plans(s: ValidationSuite):
+    """Validate Falls Church Basic and Police Pension Plans."""
+    path = s.root / "states" / "virginia" / "falls-church" / "fcpp-plans.json"
+    if not path.exists():
+        s.check("fcpp-plans.json exists", False)
+        return
+    data = json.loads(path.read_text())
+
+    # System-level
+    s.check("FCPP abbreviation", data.get("systemAbbreviation") == "FCPP")
+    s.check("FCPP established 1957", data.get("established") == 1957)
+    s.check("FCPP jurisdiction Falls Church VA",
+            data.get("jurisdiction", {}).get("state") == "VA")
+    s.check("FCPP independent city", data.get("jurisdiction", {}).get("type") == "independent_city")
+    s.check("FCPP Social Security", data.get("socialSecurity") is True)
+
+    plans = data.get("plans", {})
+    s.check("FCPP has basic plan", "basic" in plans)
+    s.check("FCPP has police plan", "police" in plans)
+
+    # Basic Plan
+    basic = plans.get("basic", {})
+    s.check("FCPP Basic is DB", basic.get("planType") == "defined_benefit")
+    s.check("FCPP Basic OPEN", basic.get("status") == "OPEN")
+    s.check("FCPP Basic multiplier 1.8%", abs(basic.get("multiplier", 0) - 0.018) < 0.0001)
+    s.check("FCPP Basic AFC 5 years", basic.get("afc", {}).get("years") == 5)
+    s.check("FCPP Basic EE contribution 5%",
+            abs(basic.get("employeeContribution", {}).get("rate", 0) - 0.05) < 0.001)
+    s.check("FCPP Basic vesting 5 years", basic.get("vesting", {}).get("years") == 5)
+
+    # Rule of 90
+    r90 = basic.get("earlyRetirement", {}).get("ruleOf90", {})
+    s.check("FCPP Basic Rule of 90 available", r90.get("available") is True)
+    s.check("FCPP Basic Rule of 90 unreduced", r90.get("reduction") == "none")
+    s.check("FCPP Basic Rule of 90 supplement $200/mo",
+            r90.get("supplement", {}).get("amount") == 200)
+
+    # Reduced early
+    red = basic.get("earlyRetirement", {}).get("reducedEarly", {})
+    s.check("FCPP Basic reduced early available", red.get("available") is True)
+
+    # Police Plan
+    police = plans.get("police", {})
+    s.check("FCPP Police is DB", police.get("planType") == "defined_benefit")
+    s.check("FCPP Police OPEN", police.get("status") == "OPEN")
+    mult = police.get("multiplier", {})
+    s.check("FCPP Police 2.8% first 20yr", abs(mult.get("first20Years", 0) - 0.028) < 0.0001)
+    s.check("FCPP Police 3.0% over 20yr", abs(mult.get("over20Years", 0) - 0.030) < 0.0001)
+    s.check("FCPP Police EE contribution 7%",
+            abs(police.get("employeeContribution", {}).get("rate", 0) - 0.07) < 0.001)
+    s.check("FCPP Police vesting 5 years", police.get("vesting", {}).get("years") == 5)
+
+    # Police tiers
+    tiers = police.get("tiers", {})
+    s.check("FCPP Police has pre-1986 tier", "pre19861208" in tiers)
+    s.check("FCPP Police has post-1986 tier", "post19861208" in tiers)
+    pre = tiers.get("pre19861208", {})
+    s.check("FCPP Police pre-1986 20yr early unreduced",
+            pre.get("earlyRetirement", {}).get("reduction") == "none")
+
+    # Cross-system: FCPP is different from RRS
+    rrs_path = s.root / "states" / "virginia" / "richmond" / "rrs-plans.json"
+    if rrs_path.exists():
+        rrs = json.loads(rrs_path.read_text())
+        s.check("FCPP and RRS are different systems",
+                data.get("systemAbbreviation") != rrs.get("systemAbbreviation"))
+
+
+# ── State Benefits Critical Fixes (Session 38) ──
+
+def test_state_benefits_critical_fixes(s: ValidationSuite):
+    """Validate critical state-benefits.json corrections from Session 38."""
+    sb_path = s.root / "states" / "state-benefits.json"
+    if not sb_path.exists():
+        s.check("state-benefits.json exists", False)
+        return
+    data = json.loads(sb_path.read_text())
+
+    s.check("state-benefits version >= 2.3", data.get("version", "0") >= "2.3")
+
+    states_by_code = {st["state_code"]: st for st in data.get("states", [])}
+
+    # ── NC Critical Fix: Military retirement EXEMPT since 2021 ──
+    nc = states_by_code.get("NC", {})
+    nc_it = nc.get("income_tax", {})
+    nc_mr = nc_it.get("military_retirement", {})
+    s.check("NC military retirement exempt=True", nc_mr.get("exempt") is True)
+    s.check("NC military retirement effective 2021", nc_mr.get("effective_year") == 2021)
+    s.check("NC military retirement cites Session Law 2021-180",
+            "2021-180" in nc_mr.get("authority", ""))
+    s.check("NC SBP also exempt", nc_mr.get("sbp_exempt") is True)
+    s.check("NC TSP NOT exempt", nc_mr.get("tsp_exempt") is False)
+
+    # NC tax rate: 3.99% for 2026
+    nc_rate = nc_it.get("top_rate", 0)
+    s.check("NC top_rate is 3.99% (2026)", abs(nc_rate - 0.0399) < 0.0001)
+
+    # NC pending legislation status updated
+    nc_vb = nc.get("veteran_benefits", {})
+    nc_dvhe = nc_vb.get("disabled_veteran_homestead_exclusion", {})
+    nc_pl = nc_dvhe.get("pending_legislation", {})
+    s.check("NC pending legislation status updated for 2026 session",
+            "2026" in nc_pl.get("status", ""))
+
+    # ── GA Fix: HB 266 all-ages $65K exemption ──
+    ga = states_by_code.get("GA", {})
+    ga_it = ga.get("income_tax", {})
+    ga_mr = ga_it.get("military_retirement", {})
+    s.check("GA military retirement exempt=True", ga_mr.get("exempt") is True)
+    s.check("GA exemption amount $65,000", ga_mr.get("exemption_amount") == 65000)
+    s.check("GA cites HB 266", "HB 266" in ga_mr.get("authority", ""))
+    s.check("GA prior tiers preserved for reference",
+            ga_mr.get("prior_tiers", {}).get("under_62_exemption") == 17500)
+
+    # ── Guard rails: states that MUST be exempt ──
+    must_exempt = ["NC", "NE", "AZ", "UT", "MN", "PA", "OH", "IN", "MI"]
+    for code in must_exempt:
+        st = states_by_code.get(code, {})
+        mr = st.get("income_tax", {}).get("military_retirement", {})
+        s.check(f"{code} military retirement exempt", mr.get("exempt") is True)
+
+    # ── PR military exemption (signed Aug 2024, effective 2025) ──
+    pr = states_by_code.get("PR", {})
+    pr_mr = pr.get("income_tax", {}).get("military_retirement", {})
+    s.check("PR military retirement exempt", pr_mr.get("exempt") is True)
+    s.check("PR military retirement effective 2025", pr_mr.get("effective_year") == 2025)
+
+
 # ── Main ──
 
 def main():
@@ -1271,6 +1401,8 @@ def main():
     test_acers_post2025(s)
     test_vrs_consolidated(s)
     test_mcerp_plans(s)
+    test_fcpp_plans(s)
+    test_state_benefits_critical_fixes(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)
