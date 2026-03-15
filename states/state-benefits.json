@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
-  "version": "2.7",
+  "version": "2.8",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary \u2014 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -568,7 +568,19 @@
         "ss_income": {
           "exempt": false,
           "subtraction_available": true,
-          "note": "Colorado allows subtraction of Social Security benefits from taxable income with limits"
+          "note": "Colorado allows age-based subtraction of Social Security benefits: up to $15,000 (under 55), $20,000 (55-64), $24,000 (65+). Part of general retirement income subtraction. Flat tax rate 4.4%. One of 8 states still taxing SS in 2026.",
+          "partial_exemption": true,
+          "age_based_tiers": {
+            "under_55": {
+              "max_exclusion": 15000
+            },
+            "age_55_to_64": {
+              "max_exclusion": 20000
+            },
+            "age_65_plus": {
+              "max_exclusion": 24000
+            }
+          }
         },
         "top_rate": 0.044,
         "note": "Colorado has a flat income tax rate of 4.4% (2024)"
@@ -684,7 +696,13 @@
         },
         "ss_income": {
           "exempt": false,
-          "note": "Connecticut taxes Social Security for higher-income filers; AGI threshold phase-out applies"
+          "note": "Connecticut exempts Social Security for single filers with AGI under $75,000 and joint filers under $100,000. Above those thresholds, no more than 25% of benefits are taxed. Tax rates range 2% to 6.99%. One of 8 states still taxing SS in 2026.",
+          "partial_exemption": true,
+          "agi_threshold": {
+            "single_full_exemption_below": 75000,
+            "joint_full_exemption_below": 100000,
+            "max_taxable_pct": 25
+          }
         },
         "top_rate": 0.0699,
         "rate_type": "graduated",
@@ -1880,8 +1898,9 @@
           "note": "VA disability compensation conforms to federal exemption"
         },
         "ss_income": {
-          "exempt": false,
-          "ss_note": "Kansas taxes Social Security benefits for filers with federal AGI above $75,000"
+          "exempt": true,
+          "ss_note": "Kansas taxes Social Security benefits for filers with federal AGI above $75,000",
+          "note": "Kansas fully exempts Social Security benefits from state income tax (effective 2024 tax year). Prior law taxed SS for filers with federal AGI above $75,000."
         },
         "top_rate": 0.057,
         "rate_type": "graduated",
@@ -2491,7 +2510,8 @@
         },
         "ss_income": {
           "exempt": false,
-          "note": "Minnesota taxes Social Security benefits for higher-income filers; partial subtraction available based on income"
+          "note": "Minnesota taxes Social Security benefits following federal rules but provides a state subtraction that reduces or eliminates tax for many retirees. Subtraction amount based on provisional income thresholds that differ from federal calculations. One of 8 states still taxing SS in 2026.",
+          "partial_exemption": true
         },
         "top_rate": 0.0985,
         "rate_type": "graduated",
@@ -2814,8 +2834,9 @@
           "note": "VA disability compensation conforms to federal exemption"
         },
         "ss_income": {
-          "exempt": true,
-          "note": "Montana exempts Social Security benefits from state income tax"
+          "exempt": false,
+          "note": "Montana taxes Social Security benefits. Taxpayers age 65+ receive a $5,500 subtraction from federal taxable income. Several income deductions including partial interest income deduction for 65+ were repealed in recent years. One of 8 states still taxing SS in 2026.",
+          "partial_exemption": true
         },
         "sbp_annuities": {
           "exempt": false,
@@ -3362,8 +3383,13 @@
           "note": "VA disability compensation conforms to federal exemption"
         },
         "ss_income": {
-          "exempt": true,
-          "note": "New Mexico exempts Social Security benefits from state income tax (effective 2022+)"
+          "exempt": false,
+          "note": "New Mexico taxes Social Security for higher-income filers. Full exemption for single filers with AGI up to $100,000 and joint filers up to $150,000. Above those thresholds, benefits taxed under standard state rates. One of 8 states still taxing SS in 2026.",
+          "partial_exemption": true,
+          "agi_threshold": {
+            "single_full_exemption_below": 100000,
+            "joint_full_exemption_below": 150000
+          }
         },
         "sbp_annuities": {
           "exempt": false,
@@ -4189,8 +4215,9 @@
           "note": "VA disability compensation conforms to federal exemption"
         },
         "ss_income": {
-          "exempt": "partial",
-          "note": "Social Security benefits exempt for taxpayers with federal AGI below state threshold. Higher-income filers may owe state tax on a portion of benefits."
+          "exempt": false,
+          "note": "Rhode Island exempts Social Security benefits for retirees who have reached full retirement age and meet income thresholds. Higher-income filers owe state tax on a portion of benefits. One of 8 states still taxing SS in 2026.",
+          "partial_exemption": true
         },
         "sbp_annuities": {
           "exempt": false,
@@ -4694,7 +4721,14 @@
         },
         "ss_income": {
           "exempt": false,
-          "ss_note": "Utah provides income-based Social Security Benefits Credit; phase-out begins at $54,000 single / $90,000 MFJ (2025)"
+          "ss_note": "Utah provides income-based Social Security Benefits Credit; phase-out begins at $54,000 single / $90,000 MFJ (2025)",
+          "partial_exemption": true,
+          "mechanism": "nonrefundable_credit",
+          "agi_threshold": {
+            "single_full_credit_below": 45000,
+            "joint_full_credit_below": 75000
+          },
+          "note": "Utah taxes all income at flat 4.5% but provides a nonrefundable tax credit for Social Security benefits. Full credit for single filers with AGI below $45,000 / joint below $75,000. Credit phases out at 25 cents per dollar above thresholds. One of 8 states still taxing SS in 2026."
         },
         "sbp_annuities": {
           "exempt": true,
@@ -5042,8 +5076,15 @@
           "note": "VA disability compensation conforms to federal exemption"
         },
         "ss_income": {
-          "exempt": "partial",
-          "note": "Vermont taxes Social Security benefits following federal rules, but provides a state credit to reduce the tax burden for lower-income recipients"
+          "exempt": false,
+          "note": "Vermont exempts Social Security income for retirees below AGI thresholds. 2026: Full exemption if AGI \u2264 $55,000 (single) / $70,000 (joint). Partial exemption for AGI up to $64,999 (single) / $79,999 (joint). No exemption above those levels. One of 8 states still taxing SS in 2026.",
+          "partial_exemption": true,
+          "agi_threshold": {
+            "single_full_exemption_below": 55000,
+            "joint_full_exemption_below": 70000,
+            "single_partial_up_to": 64999,
+            "joint_partial_up_to": 79999
+          }
         },
         "sbp_annuities": {
           "exempt": "partial",

@@ -45,6 +45,31 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### state-benefits.json v2.8
+
+**Date:** 2026-03-14
+
+**Session 39 Social Security Taxation Audit — 3 critical fixes, 2 string-to-boolean fixes, 4 enrichments:**
+
+Cross-referenced all 56 jurisdictions against the confirmed 2026 list of 8 states that tax Social Security (CO, CT, MN, MT, NM, RI, UT, VT). Found 3 states with wrong exemption status.
+
+**Critical Fixes:**
+- KS: `exempt` changed from `false` to `true`. Kansas fully exempted Social Security starting 2024 tax year. **Impact:** A KS retiree receiving $25K/year SS would have incorrectly calculated ~$1,000+ in phantom state tax.
+- MT: `exempt` changed from `true` to `false`. Montana still taxes Social Security. Added `partial_exemption: true` with $5,500 subtraction for 65+. **Impact:** A MT retiree could have assumed $0 state tax on SS when they may owe.
+- NM: `exempt` changed from `true` to `false`. New Mexico taxes SS for higher-income filers (above $100K single / $150K joint). Added AGI thresholds. **Impact:** Higher-income NM retirees could have assumed $0 SS tax.
+
+**String-to-Boolean Fixes:**
+- RI: `exempt` changed from string `"partial"` to boolean `false` + `partial_exemption: true`
+- VT: `exempt` changed from string `"partial"` to boolean `false` + `partial_exemption: true` with AGI thresholds ($55K single / $70K joint for full exemption)
+
+**Enrichments:**
+- CO: Added `partial_exemption: true` + age-based tiers ($15K/$20K/$24K)
+- CT: Added `partial_exemption: true` + AGI thresholds ($75K single / $100K joint, max 25% taxed)
+- UT: Added credit mechanism + AGI thresholds ($45K single / $75K joint)
+- MN: Added `partial_exemption: true` with subtraction details
+
+**CI:** Added `test_ss_taxation_audit` (99 new checks: 8 taxing-state validations, 32 must-exempt guard rails, 59 boolean-type checks). Total: 5,979 checks across 15 suites.
+
 ### state-benefits.json v2.7
 
 **Date:** 2026-03-14

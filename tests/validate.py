@@ -1323,7 +1323,7 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
         return
     data = json.loads(sb_path.read_text())
 
-    s.check("state-benefits version >= 2.7", data.get("version", "0") >= "2.7")
+    s.check("state-benefits version >= 2.8", data.get("version", "0") >= "2.8")
 
     states_by_code = {st["state_code"]: st for st in data.get("states", [])}
 
@@ -1556,6 +1556,45 @@ def test_partial_exemption_audit(s: ValidationSuite):
             ind_mr.get("sunset_date") == "2028-07-01")
 
 
+def test_ss_taxation_audit(s: ValidationSuite):
+    """Validate Social Security taxation status across all states (Session 39)."""
+    sb_path = s.root / "states" / "state-benefits.json"
+    if not sb_path.exists():
+        return
+    data = json.loads(sb_path.read_text())
+    states_by_code = {st["state_code"]: st for st in data.get("states", [])}
+
+    # 8 states that MUST tax SS (exempt=False) in 2026
+    ss_taxing_states = ["CO", "CT", "MN", "MT", "NM", "RI", "UT", "VT"]
+    for code in ss_taxing_states:
+        st = states_by_code.get(code, {})
+        ss = st.get("income_tax", {}).get("ss_income", {})
+        s.check(f"{code} SS exempt is False (taxes SS in 2026)",
+                ss.get("exempt") is False)
+        s.check(f"{code} SS partial_exemption is True",
+                ss.get("partial_exemption") is True)
+
+    # States that MUST be exempt (critical guard rails)
+    ss_must_exempt = ["KS", "MO", "NE", "ND", "WV", "AL", "AZ", "CA",
+                      "DE", "GA", "HI", "IA", "ID", "IL", "IN", "KY",
+                      "LA", "MA", "MD", "ME", "MI", "MS", "NC", "NJ",
+                      "NY", "OH", "OK", "OR", "PA", "SC", "VA", "WI"]
+    for code in ss_must_exempt:
+        st = states_by_code.get(code, {})
+        ss = st.get("income_tax", {}).get("ss_income", {})
+        s.check(f"{code} SS exempt is True",
+                ss.get("exempt") is True)
+
+    # No string "partial" values allowed (must be boolean)
+    for st in data.get("states", []):
+        code = st.get("state_code", "")
+        ss = st.get("income_tax", {}).get("ss_income", {})
+        exempt_val = ss.get("exempt")
+        if exempt_val is not None:
+            s.check(f"{code} SS exempt is boolean (not string)",
+                    isinstance(exempt_val, bool))
+
+
 # ── Main ──
 
 def main():
@@ -1588,6 +1627,7 @@ def main():
     test_state_benefits_critical_fixes(s)
     test_legislation_watch_session39(s)
     test_partial_exemption_audit(s)
+    test_ss_taxation_audit(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)
