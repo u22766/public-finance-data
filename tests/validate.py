@@ -1013,6 +1013,30 @@ def test_rrs_plans(s):
     s.check("RRS COLA differs from VRS automatic", cola.get("type") == "ad_hoc")
 
 
+def test_acers_post2025(s):
+    """Validate ACERS post-2025 tier (Ord. No. 24-13)."""
+    path = s.root / "states" / "virginia" / "arlington-county" / "acers-plans.json"
+    if not path.exists():
+        return
+    data = json.loads(path.read_text())
+    p25 = data.get("plans", {}).get("acers_ch46_general_post2025", {})
+    s.check("ACERS post-2025 exists", bool(p25))
+    f = p25.get("formula", {})
+    s.check("ACERS post-2025 multiplier 1.0%", abs(f.get("multiplier", 0) - 0.01) < 0.001)
+    s.check("ACERS post-2025 max 30 years", f.get("maxYearsOfService") == 30)
+    s.check("ACERS post-2025 FAC 3 years", f.get("facPeriod") == 3)
+    s.check("ACERS post-2025 EE contrib 4%", abs(p25.get("contributions", {}).get("employee", 0) - 4.0) < 0.1)
+    dc = p25.get("supplementalDC", {})
+    s.check("ACERS post-2025 DC 7.5%", abs(dc.get("county401aContribution", 0) - 7.5) < 0.1)
+    s.check("ACERS post-2025 vesting 5 years", p25.get("vesting", {}).get("years") == 5)
+    s.check("ACERS post-2025 has applicability", "applicability" in p25)
+    s.check("ACERS post-2025 not for bargaining unit",
+            "NOT" in str(p25.get("applicability", {}).get("employeeType", "")))
+    s.check("ACERS post-2025 DROP 4 years", p25.get("drop", {}).get("maxYears") == 4)
+    s.check("ACERS post-2025 has SS leveling", p25.get("ssLeveling") is True)
+    s.check("ACERS post-2025 has survivor options", len(p25.get("survivorOptions", [])) >= 3)
+
+
 def test_vrs_consolidated(s):
     """Validate consolidated VRS plan data."""
     path = s.root / "states" / "virginia" / "vrs-plans.json"
@@ -1244,6 +1268,7 @@ def main():
     test_pors_plans(s)
     test_urs_plans(s)
     test_rrs_plans(s)
+    test_acers_post2025(s)
     test_vrs_consolidated(s)
     test_mcerp_plans(s)
 

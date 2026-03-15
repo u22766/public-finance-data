@@ -378,11 +378,12 @@
       "description": "VRS + ERFC pension stacking patterns for Fairfax County employees. County-level data under states/virginia/fairfax-county/."
     },
     "acers_plans_arlington": {
-      "version": "2026.1",
+      "version": "2026.2",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/virginia/arlington-county/acers-plans.json",
-      "description": "ACERS pension plan parameters for Arlington County employees. Independent DB system (not VRS). Covers general, school board, and public safety employees under Chapters 21, 35, and 46 of Arlington County Code."
+      "description": "ACERS pension plan parameters for Arlington County employees. Independent DB system (not VRS). Covers general, school board, and public safety employees under Chapters 21, 35, and 46 of Arlington County Code.",
+      "last_updated": "2026-03-14"
     },
     "fcers_plans_fairfax": {
       "name": "Fairfax County Employees' Retirement System (FCERS) Plans",

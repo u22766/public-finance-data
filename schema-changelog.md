@@ -75,6 +75,16 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Data Update: ACERS Post-2025 Tier Verified (v2026.2)
+
+- **Date:** March 14, 2026 (Session 37)
+- **File:** `states/virginia/arlington-county/acers-plans.json` (UPDATED)
+- **Manifest ID:** `acers_plans_arlington`
+- **Version:** 2026.2 (was 2026.1)
+- **Schema version unchanged** (2.2)
+
+Verified Ord. No. 24-13 (October 19, 2024) post-2025 tier for General Members. Key findings: 1.0% DB multiplier (down from 1.5%) for non-bargaining-unit general members hired on/after Jan 12, 2025, offset by 7.5% county 401(a) DC contribution (up from 4.2%). Collective bargaining unit members retain the pre-2025 1.5% formula options. DROP extended to 4 years per Ord. No. 23-10 (July 2023). MAP opt-in provision documented.
+
 ## Data Update: VRS Plans Consolidated (Virginia Retirement System v2026.2)
 
 - **Date:** March 14, 2026 (Session 37)

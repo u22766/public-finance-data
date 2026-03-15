@@ -211,11 +211,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,744 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,758 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 919 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS/VRS/MCERP pension |
+| Core | `validate.py` | 933 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS/ACERS/VRS/MCERP pension |
 | Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |

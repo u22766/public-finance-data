@@ -1,6 +1,6 @@
 {
   "_comment": "Arlington County Employees' Retirement System (ACERS). Fully independent defined benefit pension system (not VRS). Covers county employees under three code chapters: Ch.21 (pre-1969 general/uniform), Ch.35 (school board, 1969+), Ch.46 (all hired 2/8/1981+). $3.28B assets, 111% funded (FY2024). Update as Arlington County Code changes.",
-  "version": "2026.1",
+  "version": "2026.2",
   "effective_date": "2026-01-01",
   "employer": "Arlington County Employees' Retirement System",
   "scope": "county",
@@ -15,7 +15,7 @@
       "planId": "acers_ch21",
       "label": "ACERS Chapter 21 (Legacy General/Uniform)",
       "hiredBefore": "1969-01-01",
-      "note": "Pre-1969 general and uniform employees — legacy chapter. Very few if any active members remain."
+      "note": "Pre-1969 general and uniform employees \u2014 legacy chapter. Very few if any active members remain."
     },
     {
       "planId": "acers_ch35",
@@ -62,7 +62,7 @@
       "formula": {
         "multiplier": null,
         "facPeriod": null,
-        "description": "Legacy formula — pre-1969 hires. Very few if any active members remain. User enters estimated monthly benefit."
+        "description": "Legacy formula \u2014 pre-1969 hires. Very few if any active members remain. User enters estimated monthly benefit."
       },
       "inputMode": "estimated_benefit",
       "note": "Chapter 21 members have legacy provisions. Consumer applications typically accept a user-provided monthly estimate.",
@@ -72,7 +72,7 @@
       },
       "cola": {
         "method": "formula",
-        "description": "Varies by chapter — consult Arlington County Code",
+        "description": "Varies by chapter \u2014 consult Arlington County Code",
         "note": "COLA provisions differ from Chapter 46"
       }
     },
@@ -89,12 +89,12 @@
         "facMethod": "highest_consecutive",
         "facUnit": "years",
         "facDefinition": "average_annual_creditable_compensation_36_months",
-        "description": "0.625% × Average Final Compensation (highest 36 consecutive months) × Years of Creditable Service"
+        "description": "0.625% \u00d7 Average Final Compensation (highest 36 consecutive months) \u00d7 Years of Creditable Service"
       },
       "eligibility": {
         "normalRetirementAge": null,
         "normalService": null,
-        "note": "Consult Chapter 35 provisions — generally mirrors Chapter 21 eligibility"
+        "note": "Consult Chapter 35 provisions \u2014 generally mirrors Chapter 21 eligibility"
       },
       "contributions": {
         "employee": null,
@@ -107,7 +107,7 @@
       },
       "cola": {
         "method": "formula",
-        "description": "Varies — consult Chapter 35 of Arlington County Code"
+        "description": "Varies \u2014 consult Chapter 35 of Arlington County Code"
       },
       "note": "School Board employees hired 1/1/1969 through 2/7/1981. Supplemental to VRS for covered positions."
     },
@@ -117,7 +117,7 @@
       "type": "defined_benefit",
       "category": "independent_municipal_pension",
       "employer": "Arlington County",
-      "codeChapter": "Chapter 46, § 46-38",
+      "codeChapter": "Chapter 46, \u00a7 46-38",
       "formula": {
         "multiplier": 0.015,
         "facPeriod": 3,
@@ -125,7 +125,7 @@
         "facUnit": "years",
         "facDefinition": "average_final_compensation_3_highest_26_consecutive_pay_periods",
         "maxServiceYears": 30,
-        "description": "1.5% × Average Final Compensation × Years of Creditable Service (max 30 years). AFC = average of 3 highest 12 consecutive months (26 consecutive pay periods) using creditable compensation as defined prior to 1/4/2009."
+        "description": "1.5% \u00d7 Average Final Compensation \u00d7 Years of Creditable Service (max 30 years). AFC = average of 3 highest 12 consecutive months (26 consecutive pay periods) using creditable compensation as defined prior to 1/4/2009."
       },
       "eligibility": {
         "normalRetirementAge": 62,
@@ -161,7 +161,7 @@
       "drop": {
         "available": true,
         "maxYears": 4,
-        "note": "Deferred Retirement Option Program — up to 4 years"
+        "note": "Deferred Retirement Option Program \u2014 up to 4 years"
       },
       "lumpSum": {
         "available": true,
@@ -186,7 +186,7 @@
           "option": "66pct",
           "memberPct": null,
           "survivorPct": 66.67,
-          "label": "66⅔% Joint and Last Survivor"
+          "label": "66\u2154% Joint and Last Survivor"
         },
         {
           "option": "100pct",
@@ -202,7 +202,7 @@
       "type": "defined_benefit",
       "category": "independent_municipal_pension",
       "employer": "Arlington County",
-      "codeChapter": "Chapter 46, § 46-38.B",
+      "codeChapter": "Chapter 46, \u00a7 46-38.B",
       "formula": {
         "multiplier": 0.015,
         "facPeriod": 3,
@@ -211,7 +211,7 @@
         "facDefinition": "average_final_compensation_3_highest_26_consecutive_pay_periods",
         "maxServiceYears": 30,
         "elective": true,
-        "description": "On retirement, member irrevocably elects benefit option. Base formula: 1.5% × AFC × Years (max 30). Members may elect between options specified in § 46-38.B. Uses creditable compensation as defined on or after 1/4/2009."
+        "description": "On retirement, member irrevocably elects benefit option. Base formula: 1.5% \u00d7 AFC \u00d7 Years (max 30). Members may elect between options specified in \u00a7 46-38.B. Uses creditable compensation as defined on or after 1/4/2009."
       },
       "eligibility": {
         "normalRetirementAge": 62,
@@ -265,7 +265,7 @@
           "option": "66pct",
           "memberPct": null,
           "survivorPct": 66.67,
-          "label": "66⅔% Joint and Last Survivor"
+          "label": "66\u2154% Joint and Last Survivor"
         },
         {
           "option": "100pct",
@@ -281,31 +281,77 @@
       "type": "defined_benefit",
       "category": "independent_municipal_pension",
       "employer": "Arlington County",
-      "codeChapter": "Chapter 46 (Ord. No. 24-13)",
+      "codeChapter": "Chapter 46 (Ord. No. 24-13, 10-19-2024)",
+      "effectiveDate": "2025-01-12",
       "formula": {
-        "multiplier": null,
-        "facPeriod": null,
-        "description": "New tier for General Members hired on or after January 12, 2025 per Ord. No. 24-13 (10-19-2024). Specific formula parameters require verification against latest Arlington County Code update."
+        "multiplier": 0.01,
+        "maxYearsOfService": 30,
+        "facPeriod": 3,
+        "facMethod": "highest_consecutive",
+        "facUnit": "years",
+        "facNote": "Average of highest 3 consecutive 12-month periods using creditable compensation as defined January 4, 2009",
+        "description": "1.0% x AFC x years of creditable service (max 30 years)"
       },
-      "inputMode": "estimated_benefit",
-      "note": "New tier established October 2024. Consumer applications should accept user-provided estimate until full parameters are verified from updated County Code.",
+      "applicability": {
+        "hiredOnOrAfter": "2025-01-12",
+        "employeeType": "General Member NOT in a collective bargaining unit",
+        "collectiveBargainingNote": "General Members who ARE in a collective bargaining unit remain on the pre-2025 formula (1.5% election options per \u00a7 46-38.A)",
+        "mapOptIn": "Management Accountability Program employees hired 2012-01-12 to 2025-01-12 who only had Article IX (DC) access and opted into full Chapter 46 before January 12, 2025. Their original hire date used for vesting only."
+      },
       "eligibility": {
-        "note": "Per Ord. No. 24-13, effective 12-12-2024. Verify against current County Code."
+        "unreducedAge": 62,
+        "unreducedService": 5,
+        "earlyAge": 55,
+        "earlyService": 5,
+        "earlyPenalty": "0.5% per month before normal retirement",
+        "note": "Same age/service rules as other Chapter 46 general members"
       },
       "contributions": {
-        "employee": null,
+        "employee": 4.0,
         "employer": "actuarially_determined",
-        "note": "Verify against Ord. No. 24-13 provisions"
+        "note": "4% of creditable compensation + accrued vacation and comp time at retirement. Same rate as pre-2025 general members."
+      },
+      "supplementalDC": {
+        "county401aContribution": 7.5,
+        "note": "County contributes 7.5% of base pay to 401(a) DC plan for post-2025 non-bargaining general employees (vs 4.2% for all other general employees). This higher DC contribution offsets the lower DB multiplier.",
+        "matchingContribution": "County also matches 457 plan contributions",
+        "vestedAfter": 5,
+        "source": "https://arlingtoncounty.beready2retire.com/plan/401a-deferred-compensation-plan"
       },
       "vesting": {
         "years": 5,
-        "note": "Presumed 5 years — verify against Ord. No. 24-13"
+        "note": "5 years of creditable service"
       },
       "cola": {
         "method": "formula",
         "formula": "first_3pct_CPI_plus_half_3_to_12",
-        "description": "Presumed same as other Chapter 46 tiers — verify"
-      }
+        "description": "First 3% of CPI increase plus half of each percentage from 3% to 12%",
+        "note": "Same COLA as all other Chapter 46 tiers. Based on U.S. Average CPI."
+      },
+      "survivorOptions": [
+        {
+          "option": "50%",
+          "label": "50% Joint and Survivor"
+        },
+        {
+          "option": "66.67%",
+          "label": "66\u2154% Joint and Survivor"
+        },
+        {
+          "option": "100%",
+          "label": "100% Joint and Survivor"
+        }
+      ],
+      "lumpSum": {
+        "description": "Lesser of 10% of actuarial value of lifetime allowance or $20,000"
+      },
+      "ssLeveling": true,
+      "drop": {
+        "available": true,
+        "maxYears": 4,
+        "note": "DROP extended to 4 years per Ord. No. 23-10 (effective July 1, 2023)"
+      },
+      "keyChange": "Reduced DB multiplier (1.0% vs 1.5%) with higher DC employer contribution (7.5% vs 4.2%). Shifts retirement income structure toward DC savings."
     },
     "acers_ch46_public_safety": {
       "planId": "acers_ch46_public_safety",
@@ -320,7 +366,7 @@
         "facMethod": "highest_consecutive",
         "facUnit": "years",
         "facDefinition": "average_final_compensation_3_highest_26_consecutive_pay_periods",
-        "description": "Public safety formula — multiplier and max service years differ from general members. Disability benefit minimum: 66⅔% of AFC."
+        "description": "Public safety formula \u2014 multiplier and max service years differ from general members. Disability benefit minimum: 66\u2154% of AFC."
       },
       "eligibility": {
         "normalRetirementAge": 52,
@@ -353,7 +399,7 @@
       "disability": {
         "serviceConnected": {
           "minimumBenefit": "66.67% of AFC",
-          "note": "Service-connected disability: minimum 66⅔% of AFC"
+          "note": "Service-connected disability: minimum 66\u2154% of AFC"
         },
         "ordinary": {
           "serviceRequirement": 2,
@@ -377,7 +423,7 @@
           "option": "66pct",
           "memberPct": null,
           "survivorPct": 66.67,
-          "label": "66⅔% Joint and Last Survivor"
+          "label": "66\u2154% Joint and Last Survivor"
         },
         {
           "option": "100pct",
@@ -389,8 +435,9 @@
       "lineOfDutyDeath": {
         "benefitPct": 100,
         "serviceWaived": true,
-        "note": "Line of duty death: 100% of § 46-38.A calculation, service requirements waived. Benefit ≥ 5% of AFC."
+        "note": "Line of duty death: 100% of \u00a7 46-38.A calculation, service requirements waived. Benefit \u2265 5% of AFC."
       }
     }
-  }
+  },
+  "lastUpdated": "2026-03-14"
 }
