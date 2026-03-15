@@ -1,0 +1,608 @@
+{
+  "_comment": "Montgomery County Employee Retirement Plans (MCERP) pension plan parameters",
+  "systemName": "Montgomery County Employee Retirement Plans",
+  "systemAbbreviation": "MCERP",
+  "established": 1965,
+  "status": "PARTIALLY_OPEN",
+  "statusNote": "ERS closed to non-public-safety hired on/after Oct 1, 1994. Public safety and GRIP remain open. RSP open for post-1994 non-public-safety hires.",
+  "socialSecurityParticipation": true,
+  "jurisdiction": {
+    "state": "maryland",
+    "county": "montgomery-county",
+    "note": "Montgomery County Government employees and 8 participating agencies/subdivisions"
+  },
+  "scope": "county",
+  "version": "2026.1",
+  "lastUpdated": "2026-03-14",
+  "sources": [
+    "https://www.montgomerycountymd.gov/mcerp/about.html",
+    "https://www.montgomerycountymd.gov/mcerp/Resources/Files/pdfs/HRpdfs/ers/Group_AH_2015-10.pdf",
+    "https://www.montgomerycountymd.gov/mcerp/resources/files/pdfs/HRpdfs/ERS/G_SD.pdf",
+    "https://publicplansdata.org/quick-facts/by-pension-plan/plan/?ppd_id=166"
+  ],
+  "participatingAgencies": [
+    "Montgomery County Government",
+    "Montgomery County Revenue Authority",
+    "Housing Opportunities Commission of Montgomery County",
+    "Town of Chevy Chase",
+    "Strathmore Hall Foundation Inc",
+    "Washington Suburban Transit Commission",
+    "SkyPoint Federal Credit Union",
+    "State Department of Assessments and Taxation (certain employees)",
+    "District Court of Maryland (certain employees)"
+  ],
+  "membershipStats": {
+    "asOf": "2025",
+    "totalAssets": 7300000000,
+    "totalAssetsNote": "Nearly $7.3 billion",
+    "activeEmployees": 9500,
+    "retirees": 6500
+  },
+  "hireDateMapping": [
+    {
+      "hireStart": null,
+      "hireEnd": "1978-06-30",
+      "employeeType": "general_non_bargaining",
+      "planIds": [
+        "ers_optional_nonintegrated"
+      ],
+      "group": "A",
+      "note": "Non-public-safety, non-bargaining unit. Optional non-integrated plan. Could elect integrated."
+    },
+    {
+      "hireStart": null,
+      "hireEnd": "1978-06-30",
+      "employeeType": "general_bargaining",
+      "planIds": [
+        "ers_optional_nonintegrated"
+      ],
+      "group": "H",
+      "note": "Non-public-safety, bargaining unit. Optional non-integrated plan. Could elect integrated."
+    },
+    {
+      "hireStart": "1978-07-01",
+      "hireEnd": "1994-09-30",
+      "employeeType": "general_non_bargaining",
+      "planIds": [
+        "ers_mandatory_integrated"
+      ],
+      "group": "AK",
+      "note": "Mandatory integrated plan for non-public-safety hired Jul 1, 1978 - Sep 30, 1994."
+    },
+    {
+      "hireStart": "1978-07-01",
+      "hireEnd": "1994-09-30",
+      "employeeType": "general_bargaining",
+      "planIds": [
+        "ers_mandatory_integrated"
+      ],
+      "group": "HK",
+      "note": "Mandatory integrated plan for bargaining unit hired Jul 1, 1978 - Sep 30, 1994."
+    },
+    {
+      "hireStart": "1994-10-01",
+      "hireEnd": null,
+      "employeeType": "general",
+      "planIds": [
+        "rsp"
+      ],
+      "note": "Non-public-safety hired Oct 1, 1994+. Not eligible for ERS. Go to RSP (401a DC) or GRIP if eligible."
+    },
+    {
+      "hireStart": "2009-01-01",
+      "hireEnd": null,
+      "employeeType": "general_grip_eligible",
+      "planIds": [
+        "grip"
+      ],
+      "note": "GRIP (cash balance) established FY2009. Available to non-public-safety employees as alternative to RSP."
+    },
+    {
+      "hireStart": null,
+      "hireEnd": null,
+      "employeeType": "public_safety",
+      "planIds": [
+        "ers_public_safety"
+      ],
+      "groups": [
+        "E",
+        "F",
+        "G"
+      ],
+      "note": "Public safety bargaining unit employees remain eligible for ERS regardless of hire date. Group E (police/corrections pre-Oct 1994), F (fire/rescue pre-Oct 1994), G (public safety Oct 1994+)."
+    }
+  ],
+  "plans": {
+    "ers_optional_nonintegrated": {
+      "planName": "ERS Optional Non-Integrated Plan",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "1978-07-01",
+      "closedNote": "Members hired before Jul 1, 1978 who did not elect integrated. Could transfer to integrated but not back.",
+      "groups": [
+        "A",
+        "H"
+      ],
+      "formula": {
+        "type": "defined_benefit",
+        "multiplier": 0.02,
+        "maxYearsOfService": 36,
+        "sickLeaveCredit": {
+          "maxMonths": 24,
+          "hoursPerMonth": 176,
+          "maxHours": 4136
+        },
+        "averageFinalEarnings": {
+          "months": 12,
+          "method": "highest_consecutive_12_months",
+          "includes": [
+            "base_salary",
+            "differentials"
+          ],
+          "excludes": [
+            "overtime"
+          ],
+          "note": "Highest consecutive 12-month period"
+        },
+        "benefitCalc": "0.02 * AFE * years (max 36) + sick leave (max 2 years)",
+        "socialSecurityIntegration": false
+      },
+      "benefitAsPercentOfAFE": {
+        "20_years": 40.0,
+        "25_years": 50.0,
+        "30_years": 60.0,
+        "35_years": 70.0,
+        "36_years": 72.0,
+        "38_years_max": 76.0
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 60,
+          "serviceYears": 5,
+          "or": "age 55 with 30 years"
+        },
+        "earlyRetirement": {
+          "age": 50,
+          "serviceYears": 15,
+          "or": "age 45 with 20 years"
+        },
+        "rule85": "age + credited service >= 85 with at least 35 years; no reduction",
+        "earlyReduction": {
+          "1_year": 0.02,
+          "2_years": 0.05,
+          "3_years": 0.09,
+          "4_years": 0.14,
+          "5_years": 0.2,
+          "6_years": 0.28,
+          "7_years": 0.36,
+          "8_years": 0.44,
+          "9_years": 0.52,
+          "10_years": 0.6
+        }
+      },
+      "contributions": {
+        "employee": {
+          "current": 0.08,
+          "history": [
+            {
+              "period": "before Jul 1, 2011",
+              "rate": 0.06
+            },
+            {
+              "period": "Jul 1, 2011 - Jun 30, 2012",
+              "rate": 0.07
+            },
+            {
+              "period": "after Jun 30, 2012",
+              "rate": 0.08
+            }
+          ],
+          "note": "Flat rate on all regular earnings"
+        },
+        "employer": "actuarially determined",
+        "interestOnContributions": 0.04
+      },
+      "vesting": {
+        "years": 5
+      },
+      "cola": {
+        "preJuly2011Service": "100% of CPI-W Washington-Baltimore",
+        "postJuly2011Service": "max 2.5%",
+        "note": "COLA calculated separately for pre/post July 2011 service credit"
+      },
+      "benefitPayoutOptions": [
+        {
+          "name": "10-Year Certain and Continuous",
+          "default": true
+        },
+        {
+          "name": "Modified Cash Refund Annuity"
+        },
+        {
+          "name": "Social Security Adjustment (Age 62 or 65)"
+        },
+        {
+          "name": "Joint and Survivor Annuity",
+          "percentages": "10% to 100%"
+        },
+        {
+          "name": "Joint and Survivor Pop-Up"
+        },
+        {
+          "name": "SS Adjustment + Joint and Survivor"
+        },
+        {
+          "name": "SS Adjustment + Joint and Survivor Pop-Up"
+        }
+      ],
+      "disability": {
+        "serviceConnected": {
+          "minimumBenefit": "66.67% of final earnings (pre-Jul 2012), 52.5% (post-Jul 2012)"
+        },
+        "nonServiceConnected": {
+          "minimumBenefit": "33.33% of final earnings",
+          "requirement": "must be vested"
+        }
+      }
+    },
+    "ers_optional_integrated": {
+      "planName": "ERS Optional Integrated Plan",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "1978-07-01",
+      "closedNote": "Members hired before Jul 1, 1978 who elected integrated. Transfer from non-integrated allowed (one-way).",
+      "groups": [
+        "AZ",
+        "HZ"
+      ],
+      "formula": {
+        "type": "defined_benefit_integrated",
+        "beforeSSAge": {
+          "multiplier": 0.02,
+          "maxYears": 36,
+          "benefitCalc": "0.02 * AFE * years (max 36) + sick leave (max 2 years)"
+        },
+        "afterSSAge": {
+          "belowSSCoveredComp": 0.0125,
+          "aboveSSCoveredComp": 0.02,
+          "maxYears": 36,
+          "benefitCalc": "(0.0125 * AFE_below_SS_covered_comp + 0.02 * AFE_above) * years",
+          "note": "SS Covered Compensation is average of 35 wage bases before SS normal retirement age"
+        },
+        "averageFinalEarnings": {
+          "months": 12,
+          "method": "highest_consecutive_12_months",
+          "excludes": [
+            "overtime"
+          ]
+        },
+        "socialSecurityIntegration": true
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 60,
+          "serviceYears": 5,
+          "or": "age 55 with 30 years"
+        },
+        "earlyRetirement": {
+          "age": 50,
+          "serviceYears": 15,
+          "or": "age 45 with 20 years"
+        },
+        "rule85": "age + service >= 85 with 35+ years; no reduction"
+      },
+      "contributions": {
+        "employee": {
+          "current": {
+            "belowSSWageBase": 0.06,
+            "aboveSSWageBase": 0.08
+          },
+          "history": [
+            {
+              "period": "before Jul 1, 2011",
+              "below": 0.04,
+              "above": 0.06
+            },
+            {
+              "period": "Jul 1, 2011 - Jun 30, 2012",
+              "below": 0.05,
+              "above": 0.07
+            },
+            {
+              "period": "after Jun 30, 2012",
+              "below": 0.06,
+              "above": 0.08
+            }
+          ]
+        },
+        "interestOnContributions": 0.04
+      },
+      "vesting": {
+        "years": 5
+      },
+      "cola": {
+        "preJuly2011Service": "100% of CPI-W Washington-Baltimore",
+        "postJuly2011Service": "max 2.5%"
+      },
+      "benefitPayoutOptions": [
+        {
+          "name": "10-Year Certain and Continuous",
+          "default": true
+        },
+        {
+          "name": "Modified Cash Refund Annuity"
+        },
+        {
+          "name": "Social Security Adjustment (Age 62 or 65)"
+        },
+        {
+          "name": "Joint and Survivor Annuity"
+        },
+        {
+          "name": "Joint and Survivor Pop-Up"
+        },
+        {
+          "name": "SS Adjustment + Joint and Survivor"
+        },
+        {
+          "name": "SS Adjustment + Joint and Survivor Pop-Up"
+        }
+      ]
+    },
+    "ers_mandatory_integrated": {
+      "planName": "ERS Mandatory Integrated Plan",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "1994-10-01",
+      "closedNote": "Non-public-safety hired Jul 1, 1978 - Sep 30, 1994. Closed to new non-public-safety after Oct 1, 1994.",
+      "groups": [
+        "AK",
+        "HK"
+      ],
+      "formula": {
+        "type": "defined_benefit_integrated",
+        "beforeSSAge": {
+          "multiplier": 0.02,
+          "maxYears": 36,
+          "benefitCalc": "0.02 * AFE * years (max 36) + sick leave (max 2 years)"
+        },
+        "afterSSAge": {
+          "belowSSCoveredComp": 0.0125,
+          "aboveSSCoveredComp": 0.02,
+          "maxYears": 36,
+          "benefitCalc": "(0.0125 * AFE_below_SS + 0.02 * AFE_above_SS) * years"
+        },
+        "averageFinalEarnings": {
+          "months": 36,
+          "method": "highest_consecutive_36_months",
+          "excludes": [
+            "overtime"
+          ],
+          "note": "36-month average (vs 12 months for optional plans)"
+        },
+        "socialSecurityIntegration": true
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 60,
+          "serviceYears": 5,
+          "or": "age 55 with 30 years"
+        },
+        "earlyRetirement": {
+          "age": 50,
+          "serviceYears": 15,
+          "or": "age 45 with 20 years"
+        },
+        "rule85": "age + service >= 85 with 35+ years; no reduction"
+      },
+      "contributions": {
+        "employee": {
+          "current": {
+            "belowSSWageBase": 0.06,
+            "aboveSSWageBase": 0.08
+          },
+          "history": [
+            {
+              "period": "before Jul 1, 2011",
+              "below": 0.04,
+              "above": 0.06
+            },
+            {
+              "period": "Jul 1, 2011 - Jun 30, 2012",
+              "below": 0.05,
+              "above": 0.07
+            },
+            {
+              "period": "after Jun 30, 2012",
+              "below": 0.06,
+              "above": 0.08
+            }
+          ]
+        },
+        "interestOnContributions": 0.04
+      },
+      "vesting": {
+        "years": 5
+      },
+      "cola": {
+        "preJuly2011Service": "100% CPI Washington-Baltimore up to 3%, plus 60% of CPI above 3% (max 7.5% total). No 7.5% cap for disability retirees or retirees over 65.",
+        "postJuly2011Service": "max 2.5%"
+      },
+      "benefitPayoutOptions": [
+        {
+          "name": "Modified Cash Refund Annuity",
+          "default": true
+        },
+        {
+          "name": "10-Year Certain and Continuous"
+        },
+        {
+          "name": "Social Security Adjustment (Age 62 or 65)"
+        },
+        {
+          "name": "Joint and Survivor Annuity"
+        },
+        {
+          "name": "Joint and Survivor Pop-Up"
+        },
+        {
+          "name": "SS Adjustment + Joint and Survivor"
+        },
+        {
+          "name": "SS Adjustment + Joint and Survivor Pop-Up"
+        }
+      ]
+    },
+    "ers_public_safety": {
+      "planName": "ERS Public Safety Plans",
+      "planType": "defined_benefit",
+      "status": "OPEN",
+      "groups": [
+        "E",
+        "F",
+        "G"
+      ],
+      "groupDescriptions": {
+        "E": "Police and corrections (pre-Oct 1, 1994)",
+        "F": "Fire and rescue (pre-Oct 1, 1994)",
+        "G": "Public safety bargaining unit (Oct 1, 1994+)"
+      },
+      "formula": {
+        "type": "defined_benefit",
+        "multiplier": 0.02,
+        "maxYearsOfService": 36,
+        "note": "Public safety plans use 2% multiplier. Groups E/F may have different sub-provisions. Detailed group-specific formulas require further research from MCERP Group E/F/G plan documents.",
+        "averageFinalEarnings": {
+          "months": 36,
+          "method": "highest_consecutive",
+          "excludes": [
+            "overtime"
+          ],
+          "note": "Group G uses 36-month AFE. Groups E/F may use 12-month if optional plan members."
+        }
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "note": "Public safety groups have different retirement ages than general. Specific ages vary by group \u2014 further research needed."
+        }
+      },
+      "contributions": {
+        "employee": {
+          "note": "Contribution rates range from 6% to 11.25% depending on group and plan. Public safety rates generally higher than general."
+        },
+        "interestOnContributions": 0.04
+      },
+      "vesting": {
+        "years": 5
+      },
+      "researchNeeded": "Detailed Group E, F, G plan documents needed for specific retirement ages, contribution rates, and eligibility rules. MCERP public safety SPDs not found in public web search."
+    },
+    "grip": {
+      "planName": "Guaranteed Retirement Income Plan (GRIP)",
+      "planType": "cash_balance",
+      "status": "OPEN",
+      "establishedFY": 2009,
+      "note": "Cash balance plan established by MC Council FY2009. Part of ERS trust but separate benefit structure.",
+      "formula": {
+        "type": "cash_balance",
+        "accountBalance": "Employee contributions + employer contributions + guaranteed interest credits",
+        "interestCredits": "Guaranteed rate set annually by Board of Trustees",
+        "benefitAtRetirement": "Account balance converted to annuity or taken as lump sum"
+      },
+      "contributions": {
+        "employee": {
+          "nonPublicSafety": {
+            "belowSSWageBase": 0.04,
+            "aboveSSWageBase": 0.08
+          },
+          "publicSafety": {
+            "belowSSWageBase": 0.03,
+            "aboveSSWageBase": 0.06
+          }
+        },
+        "employer": {
+          "nonPublicSafety": 0.08,
+          "publicSafety": 0.1
+        }
+      },
+      "vesting": {
+        "employeeContributions": "immediate",
+        "employerContributions": {
+          "years": 3,
+          "or": "death, disability, or reaching retirement age"
+        }
+      },
+      "distributions": [
+        "lump_sum",
+        "lifetime_annuity",
+        "direct_rollover_to_IRA_or_qualified_plan"
+      ],
+      "taxWithholding": {
+        "federal": 0.2,
+        "marylandResident": 0.0775
+      }
+    },
+    "rsp": {
+      "planName": "Retirement Savings Plan (RSP)",
+      "planType": "defined_contribution",
+      "status": "OPEN",
+      "planCode": "401(a)",
+      "note": "DC plan for non-public-safety employees hired Oct 1, 1994+. Administered by Fidelity.",
+      "administeredBy": "Fidelity",
+      "contributions": {
+        "note": "Employer and employee contribution rates per County Code. Specific current rates require verification from MCERP."
+      },
+      "vesting": {
+        "note": "Per County Code provisions"
+      }
+    },
+    "eop": {
+      "planName": "Elected Officials Plan (EOP)",
+      "planType": "defined_contribution",
+      "status": "OPEN",
+      "note": "DC plan for elected officials. Separate from ERS."
+    },
+    "dcp": {
+      "planName": "Deferred Compensation Plan (DCP)",
+      "planType": "deferred_compensation",
+      "status": "OPEN",
+      "planCode": "457(b)",
+      "note": "Tax-deferred 457 plan. Voluntary supplemental savings. Administered by Fidelity.",
+      "administeredBy": "Fidelity",
+      "irsLimits": {
+        "note": "Subject to annual IRS 457 limits"
+      }
+    }
+  },
+  "creditableService": {
+    "fullTime": "1 year = 1 year",
+    "partTime": "Hours worked / 176 per fiscal year = months of credit",
+    "sickLeave": {
+      "hoursPerMonth": 176,
+      "maxHours": 4136,
+      "maxMonths": 24
+    },
+    "militaryService": {
+      "maxYears": 5,
+      "mustReturnWithin": "1 year of leaving military (2 years for injury)"
+    },
+    "transferredService": "From Maryland public retirement systems; must request within 1 year of hire",
+    "purchasedService": [
+      "prior_military_up_to_48_months",
+      "federal_government",
+      "state_government",
+      "municipal_government",
+      "prior_MC_service",
+      "prior_MD_service",
+      "sick_leave_without_pay_up_to_1_year"
+    ]
+  },
+  "drop": {
+    "note": "DROP available for ERS members. Specific provisions vary by group."
+  },
+  "preRetirementSurvivorBenefits": {
+    "vestedMember": "Spouse/children eligible for monthly lifetime benefit if member eligible for retirement",
+    "nonVestedMember": "Beneficiary receives lump sum of contributions + 4% interest",
+    "noSurvivor": "50% of average annual earnings + contributions with interest to beneficiary"
+  }
+}

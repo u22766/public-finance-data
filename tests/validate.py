@@ -1013,6 +1013,124 @@ def test_rrs_plans(s):
     s.check("RRS COLA differs from VRS automatic", cola.get("type") == "ad_hoc")
 
 
+def test_mcerp_plans(s):
+    """Validate Montgomery County Employee Retirement Plans (MCERP) data."""
+    path = s.root / "states" / "maryland" / "montgomery-county" / "mcerp-plans.json"
+    s.check("MCERP file exists", path.exists())
+    if not path.exists():
+        return
+
+    data = json.loads(path.read_text())
+
+    # Top-level structure
+    s.check("MCERP has systemName", data.get("systemName") == "Montgomery County Employee Retirement Plans")
+    s.check("MCERP abbreviation is MCERP", data.get("systemAbbreviation") == "MCERP")
+    s.check("MCERP established 1965", data.get("established") == 1965)
+    s.check("MCERP has version", "version" in data)
+    s.check("MCERP participates in SS", data.get("socialSecurityParticipation") is True)
+    s.check("MCERP jurisdiction state maryland", data.get("jurisdiction", {}).get("state") == "maryland")
+    s.check("MCERP scope is county", data.get("scope") == "county")
+    s.check("MCERP has participating agencies", len(data.get("participatingAgencies", [])) >= 5)
+
+    # Membership stats
+    stats = data.get("membershipStats", {})
+    s.check("MCERP assets >= $7B", stats.get("totalAssets", 0) >= 7000000000)
+    s.check("MCERP active >= 9000", stats.get("activeEmployees", 0) >= 9000)
+    s.check("MCERP retirees >= 6000", stats.get("retirees", 0) >= 6000)
+
+    # Plans structure
+    plans = data.get("plans", {})
+    s.check("MCERP has 8 plans", len(plans) == 8)
+    expected = {"ers_optional_nonintegrated", "ers_optional_integrated", "ers_mandatory_integrated",
+                "ers_public_safety", "grip", "rsp", "eop", "dcp"}
+    s.check("MCERP plan IDs correct", set(plans.keys()) == expected)
+
+    # ERS Optional Non-Integrated
+    oni = plans.get("ers_optional_nonintegrated", {})
+    s.check("MCERP oni multiplier 2%", abs(oni.get("formula", {}).get("multiplier", 0) - 0.02) < 0.001)
+    s.check("MCERP oni max years 36", oni.get("formula", {}).get("maxYearsOfService") == 36)
+    s.check("MCERP oni AFE 12 months", oni.get("formula", {}).get("averageFinalEarnings", {}).get("months") == 12)
+    s.check("MCERP oni not SS integrated", oni.get("formula", {}).get("socialSecurityIntegration") is False)
+    s.check("MCERP oni normal ret age 60", oni.get("eligibility", {}).get("normalRetirement", {}).get("age") == 60)
+    s.check("MCERP oni early ret age 50", oni.get("eligibility", {}).get("earlyRetirement", {}).get("age") == 50)
+    s.check("MCERP oni vesting 5 years", oni.get("vesting", {}).get("years") == 5)
+    s.check("MCERP oni current EE contrib 8%", abs(oni.get("contributions", {}).get("employee", {}).get("current", 0) - 0.08) < 0.001)
+    s.check("MCERP oni interest 4%", abs(oni.get("contributions", {}).get("interestOnContributions", 0) - 0.04) < 0.001)
+    s.check("MCERP oni has 7 payout options", len(oni.get("benefitPayoutOptions", [])) == 7)
+    s.check("MCERP oni has rule85", "rule85" in oni.get("eligibility", {}))
+    s.check("MCERP oni sick leave max 24 months", oni.get("formula", {}).get("sickLeaveCredit", {}).get("maxMonths") == 24)
+
+    # Early reduction schedule
+    er = oni.get("eligibility", {}).get("earlyReduction", {})
+    s.check("MCERP oni 1yr reduction 2%", abs(er.get("1_year", 0) - 0.02) < 0.001)
+    s.check("MCERP oni 5yr reduction 20%", abs(er.get("5_years", 0) - 0.20) < 0.001)
+    s.check("MCERP oni 10yr reduction 60%", abs(er.get("10_years", 0) - 0.60) < 0.001)
+
+    # COLA
+    cola = oni.get("cola", {})
+    s.check("MCERP oni has pre/post July 2011 COLA", "preJuly2011Service" in cola and "postJuly2011Service" in cola)
+    s.check("MCERP oni post-2011 COLA max 2.5%", "2.5%" in str(cola.get("postJuly2011Service", "")))
+
+    # Disability
+    dis = oni.get("disability", {})
+    s.check("MCERP oni has service-connected disability", "serviceConnected" in dis)
+    s.check("MCERP oni has non-service disability", "nonServiceConnected" in dis)
+
+    # ERS Optional Integrated
+    oi = plans.get("ers_optional_integrated", {})
+    s.check("MCERP oi is SS integrated", oi.get("formula", {}).get("type") == "defined_benefit_integrated")
+    s.check("MCERP oi before SS multiplier 2%", abs(oi.get("formula", {}).get("beforeSSAge", {}).get("multiplier", 0) - 0.02) < 0.001)
+    s.check("MCERP oi after SS below comp 1.25%", abs(oi.get("formula", {}).get("afterSSAge", {}).get("belowSSCoveredComp", 0) - 0.0125) < 0.001)
+    s.check("MCERP oi after SS above comp 2%", abs(oi.get("formula", {}).get("afterSSAge", {}).get("aboveSSCoveredComp", 0) - 0.02) < 0.001)
+    s.check("MCERP oi AFE 12 months", oi.get("formula", {}).get("averageFinalEarnings", {}).get("months") == 12)
+
+    # ERS Mandatory Integrated
+    mi = plans.get("ers_mandatory_integrated", {})
+    s.check("MCERP mi AFE 36 months", mi.get("formula", {}).get("averageFinalEarnings", {}).get("months") == 36)
+    s.check("MCERP mi is SS integrated", mi.get("formula", {}).get("type") == "defined_benefit_integrated")
+    s.check("MCERP mi closed Oct 1994", mi.get("closedToNewEntrants") == "1994-10-01")
+    mi_cola = mi.get("cola", {})
+    s.check("MCERP mi has complex pre-2011 COLA", "7.5%" in str(mi_cola.get("preJuly2011Service", "")))
+
+    # Public Safety
+    ps = plans.get("ers_public_safety", {})
+    s.check("MCERP public safety OPEN", ps.get("status") == "OPEN")
+    s.check("MCERP public safety has groups E/F/G", set(ps.get("groups", [])) == {"E", "F", "G"})
+    s.check("MCERP public safety vesting 5 years", ps.get("vesting", {}).get("years") == 5)
+
+    # GRIP
+    grip = plans.get("grip", {})
+    s.check("MCERP GRIP is cash_balance", grip.get("planType") == "cash_balance")
+    s.check("MCERP GRIP OPEN", grip.get("status") == "OPEN")
+    gc = grip.get("contributions", {})
+    s.check("MCERP GRIP non-PS EE below SS 4%", abs(gc.get("employee", {}).get("nonPublicSafety", {}).get("belowSSWageBase", 0) - 0.04) < 0.001)
+    s.check("MCERP GRIP non-PS EE above SS 8%", abs(gc.get("employee", {}).get("nonPublicSafety", {}).get("aboveSSWageBase", 0) - 0.08) < 0.001)
+    s.check("MCERP GRIP PS EE below SS 3%", abs(gc.get("employee", {}).get("publicSafety", {}).get("belowSSWageBase", 0) - 0.03) < 0.001)
+    s.check("MCERP GRIP non-PS ER 8%", abs(gc.get("employer", {}).get("nonPublicSafety", 0) - 0.08) < 0.001)
+    s.check("MCERP GRIP PS ER 10%", abs(gc.get("employer", {}).get("publicSafety", 0) - 0.10) < 0.001)
+    gv = grip.get("vesting", {})
+    s.check("MCERP GRIP EE vest immediate", gv.get("employeeContributions") == "immediate")
+    s.check("MCERP GRIP ER vest 3 years", gv.get("employerContributions", {}).get("years") == 3)
+
+    # RSP
+    rsp = plans.get("rsp", {})
+    s.check("MCERP RSP is DC", rsp.get("planType") == "defined_contribution")
+    s.check("MCERP RSP OPEN", rsp.get("status") == "OPEN")
+
+    # DCP
+    dcp = plans.get("dcp", {})
+    s.check("MCERP DCP is 457", dcp.get("planCode") == "457(b)")
+
+    # Cross-system: MCERP is different from RRS
+    rrs_path = s.root / "states" / "virginia" / "richmond" / "rrs-plans.json"
+    if rrs_path.exists():
+        rrs = json.loads(rrs_path.read_text())
+        s.check("MCERP and RRS are different systems",
+                data.get("systemAbbreviation") != rrs.get("systemAbbreviation"))
+        s.check("MCERP in MD, RRS in VA",
+                data.get("jurisdiction", {}).get("state") != rrs.get("jurisdiction", {}).get("state"))
+
+
 # ── Main ──
 
 def main():
@@ -1038,6 +1156,7 @@ def main():
     test_pors_plans(s)
     test_urs_plans(s)
     test_rrs_plans(s)
+    test_mcerp_plans(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)

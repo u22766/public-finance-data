@@ -75,6 +75,16 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Data Addition: MCERP Plans (Montgomery County MD Employee Retirement Plans)
+
+- **Date:** March 14, 2026 (Session 37)
+- **File:** `states/maryland/montgomery-county/mcerp-plans.json` (NEW)
+- **Manifest ID:** `mcerp_plans_montgomery`
+- **Version:** 2026.1
+- **Schema version unchanged** (2.2) — file addition is non-breaking
+
+Adds Montgomery County MD Employee Retirement Plans data — the first Maryland pension system modeled. $7.3B system with 9,500 active employees and 6,500 retirees. 8 plan types: ERS Optional Non-Integrated (2% × AFE × years, 12-mo AFE), ERS Optional Integrated (SS-integrated with 1.25%/2% split after SS age), ERS Mandatory Integrated (36-mo AFE), ERS Public Safety (Groups E/F/G, OPEN), GRIP cash balance (FY2009), RSP 401(a) DC, Elected Officials Plan, and 457 DCP. ERS closed to non-public-safety hired after Oct 1, 1994. Key features: Rule of 85 unreduced retirement, complex COLA with pre/post July 2011 split (100% CPI vs 2.5% cap), SS-integrated benefit reduction after SS age.
+
 ## Data Addition: RRS Plans (Richmond Retirement System)
 
 - **Date:** March 14, 2026 (Session 37)

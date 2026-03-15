@@ -18,7 +18,7 @@ A structured, version-controlled library of government-published financial data 
 - **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
 - **County property tax** — Effective rates and veteran exemptions for 10 counties
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes)
-- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC, FCERS, PORS, and URS plans, Arlington County ACERS plans, Richmond RRS plans, pension stacking patterns
+- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC, FCERS, PORS, and URS plans, Arlington County ACERS plans, Richmond RRS plans, Montgomery County MD MCERP plans, pension stacking patterns
 
 Designed as a generic data source that any application, tool, or analysis can consume — no authentication, no API keys, no tracking.
 
@@ -39,7 +39,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 49 entries)
+├── manifest.json                                ← Fetch this first (master version index, 50 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -80,7 +80,9 @@ public-finance-data/
 │   ├── florida/
 │   │   └── county-property-tax.json             ← Hillsborough County
 │   ├── maryland/
-│   │   └── county-property-tax.json             ← Prince George's County
+│   │   ├── county-property-tax.json             ← Prince George's County
+│   │   └── montgomery-county/
+│   │       └── mcerp-plans.json                 ← MCERP pension plans — 8 types ($7.3B system)
 │   ├── nevada/
 │   │   └── county-property-tax.json             ← Clark County
 │   ├── north-carolina/
@@ -113,7 +115,7 @@ public-finance-data/
 │   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
 └── tests/
-    ├── validate.py                              ← Core validation (810 checks)
+    ├── validate.py                              ← Core validation (873 checks)
     ├── validate_tier2.py                        ← State benefits validation (527 checks)
     ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
     ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
@@ -183,6 +185,7 @@ Files are organized by jurisdiction and domain:
 | `pors_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/pors-plans.json` |
 | `urs_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/urs-plans.json` |
 | `rrs_plans_richmond` | 2026.1 | `states/virginia/richmond/rrs-plans.json` |
+| `mcerp_plans_montgomery` | 2026.1 | `states/maryland/montgomery-county/mcerp-plans.json` |
 | `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
 | `plan_combinations_fairfax` | 2.0.0 | `states/virginia/fairfax-county/plan-combinations.json` |
 | `static_refs` | 1.0.1 | `reference/static-refs.json` |
@@ -208,11 +211,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,635 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,698 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 810 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS pension |
+| Core | `validate.py` | 873 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS/MCERP pension |
 | Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
@@ -284,6 +287,7 @@ All data in this repository is drawn from official U.S. government sources:
 | PORS plan parameters | Fairfax County Retirement Systems | https://www.fairfaxcounty.gov/retirement/police-officers-retirement-system |
 | URS plan parameters | Fairfax County Retirement Systems | https://www.fairfaxcounty.gov/retirement/uniformed-retirement-system |
 | RRS plan parameters | City of Richmond Retirement System | https://www.rva.gov/retirement-system/employees |
+| MCERP plan parameters | Montgomery County MD Employee Retirement Plans | https://www.montgomerycountymd.gov/mcerp/about.html |
 | Military basic pay tables | DFAS / navycs.com | https://militarypay.defense.gov/Pay/Basic-Pay/ |
 | Military retirement rules | Defense.gov / USC | https://militarypay.defense.gov/Pay/Retirement/ |
 

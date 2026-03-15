@@ -438,6 +438,16 @@
       "scope": "city",
       "version": "2026.1",
       "last_updated": "2026-03-14"
+    },
+    "mcerp_plans_montgomery": {
+      "description": "Montgomery County Employee Retirement Plans (MCERP) \u2014 ERS (3 DB sub-plans), public safety ERS, GRIP (cash balance), RSP (DC), EOP, DCP. $7.3B system, 16,000 members.",
+      "url": "states/maryland/montgomery-county/mcerp-plans.json",
+      "category": "state_local_pension",
+      "subcategory": "county_pension",
+      "state": "maryland",
+      "scope": "county",
+      "version": "2026.1",
+      "last_updated": "2026-03-14"
     }
   }
 }
