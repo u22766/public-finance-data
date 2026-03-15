@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "name": "CSRS Retirement System Rules",
+    "description": "Comprehensive rules for the Civil Service Retirement System (CSRS) including tiered annuity formula, eligibility, survivor benefits, CSRS Offset, voluntary contributions, sick leave credit, COLA rules, and special category provisions.",
+    "version": "1.0",
+    "last_updated": "2026-03-15",
+    "sources": [
+      "https://www.opm.gov/retirement-center/csrs-information/computation/",
+      "5 U.S.C. Chapter 83 — Civil Service Retirement System",
+      "Congressional Research Service: Federal Employees' Retirement System (RL30387)",
+      "OPM CSRS/FERS Handbook, Chapter 50 — Computation",
+      "https://www.fedweek.com/experts-view/calculating-a-csrs-annuity-i/"
+    ],
+    "notes": [
+      "CSRS was closed to new entrants effective January 1, 1987 (replaced by FERS).",
+      "Approximately 100,000+ CSRS annuitants remain as of 2026.",
+      "CSRS employees generally are NOT covered by Social Security for their federal service.",
+      "CSRS provides a more generous annuity than FERS but has no TSP agency match and generally no Social Security.",
+      "CSRS Offset employees are the exception — they are covered by both CSRS and Social Security."
+    ]
+  },
+  "system_status": "CLOSED",
+  "closed_date": "1987-01-01",
+  "closed_note": "Closed to new entrants. Employees hired on or after January 1, 1987 are covered by FERS.",
+  "social_security_participation": false,
+  "social_security_note": "CSRS employees do not pay Social Security (OASDI) tax on their federal earnings and generally do not earn SS credits for that service. WEP and GPO may apply if they have SS credits from non-federal employment.",
+  "employee_contribution_rate_pct": 7.0,
+  "employee_contribution_note": "CSRS employees contribute 7.0% of basic pay toward their pension. This is higher than FERS (0.8%–4.4%) because CSRS provides a more generous benefit and no SS coverage.",
+  "congressional_rate_pct": 7.5,
+  "law_enforcement_rate_pct": 7.5,
+  "annuity_formula": {
+    "description": "CSRS uses a tiered (weighted) formula that increases the accrual rate with years of service",
+    "tiers": [
+      {
+        "years": "First 5 years of service",
+        "multiplier_pct": 1.5,
+        "formula": "0.015 × high-3 × years (up to 5)"
+      },
+      {
+        "years": "Next 5 years (years 6–10)",
+        "multiplier_pct": 1.75,
+        "formula": "0.0175 × high-3 × years (5 through 10)"
+      },
+      {
+        "years": "All years beyond 10",
+        "multiplier_pct": 2.0,
+        "formula": "0.02 × high-3 × remaining years and full months"
+      }
+    ],
+    "maximum_annuity_pct": 80.0,
+    "maximum_annuity_note": "The basic annuity cannot exceed 80% of the high-3 average salary, except for amounts attributable to unused sick leave credit. This cap is typically reached at about 41 years and 11 months of service.",
+    "example": {
+      "high_3": 100000,
+      "years_of_service": 30,
+      "tier_1": "0.015 × $100,000 × 5 = $7,500",
+      "tier_2": "0.0175 × $100,000 × 5 = $8,750",
+      "tier_3": "0.02 × $100,000 × 20 = $40,000",
+      "total_annual": 56250,
+      "effective_rate_pct": 56.25,
+      "note": "56.25% of high-3 — compare to FERS at 30% (1% × 30) for the same service"
+    }
+  },
+  "high_3_average_pay": {
+    "description": "Highest average basic pay earned during any 3 consecutive years of service",
+    "includes": [
+      "Base salary (GS/WG/SES etc.)",
+      "Locality pay",
+      "Annual premiums for standby duty or availability"
+    ],
+    "excludes": [
+      "Overtime pay",
+      "Bonuses and awards",
+      "Differentials (except certain retained pay situations)",
+      "Allowances",
+      "Holiday premium pay"
+    ],
+    "note": "Usually the final 3 years before retirement, but can be an earlier period if pay was higher then"
+  },
+  "eligibility": {
+    "optional_retirement": [
+      {
+        "category": "55/30",
+        "age": 55,
+        "years_of_service": 30,
+        "annuity": "Unreduced"
+      },
+      {
+        "category": "60/20",
+        "age": 60,
+        "years_of_service": 20,
+        "annuity": "Unreduced"
+      },
+      {
+        "category": "62/5",
+        "age": 62,
+        "years_of_service": 5,
+        "annuity": "Unreduced"
+      }
+    ],
+    "early_retirement": {
+      "description": "Under Voluntary Early Retirement Authority (VERA) or discontinued service",
+      "age_50_with_20": true,
+      "any_age_with_25": true,
+      "reduction": "2% per year under age 55 (1/6 of 1% per month)",
+      "reduction_note": "This is a permanent reduction — it does not go away when the retiree turns 55"
+    },
+    "deferred_retirement": {
+      "description": "Separated before meeting immediate retirement eligibility",
+      "eligibility": "At least 5 years of creditable civilian service",
+      "annuity_begins": "Age 62",
+      "note": "Must not have withdrawn retirement contributions. If contributions were refunded, rights are forfeited unless redeposit is made."
+    }
+  },
+  "sick_leave_credit": {
+    "description": "Unused sick leave is added to creditable service for annuity computation purposes",
+    "applies_to": "Immediate retirements only (not deferred)",
+    "conversion": "2,087 hours = 1 year of service. Fractional months are dropped.",
+    "hours_per_month": 174,
+    "example": {
+      "unused_sick_leave_hours": 1044,
+      "additional_service_months": 6,
+      "calculation": "1,044 ÷ 174 = 6.0 months",
+      "impact": "At 2% tier, 6 months adds 1% of high-3 to the annuity"
+    },
+    "note": "Sick leave credit can push the annuity above the 80% cap. This is the only exception to the 80% maximum."
+  },
+  "survivor_annuity": {
+    "full_survivor": {
+      "benefit_pct": 55,
+      "cost_pct_of_annuity": 10,
+      "cost_note": "Annuity is reduced by approximately 10% to provide full survivor benefit. Actual reduction is 2.5% of the first $3,600 plus 10% of the remainder.",
+      "actual_formula": "2.5% × (first $3,600 of annuity) + 10% × (annuity above $3,600)",
+      "benefit": "55% of the unreduced annuity"
+    },
+    "partial_survivor": {
+      "benefit_pct_note": "Retiree can elect a survivor annuity based on any amount between $1 and the full annuity",
+      "cost": "Proportionally reduced from the full survivor cost"
+    },
+    "no_survivor": {
+      "benefit_pct": 0,
+      "cost_pct": 0,
+      "note": "Requires spouse's notarized consent (SF 2801-2) to waive survivor annuity"
+    },
+    "former_spouse": "Court orders can require survivor annuity for former spouse. This reduces the amount available for current spouse survivor election."
+  },
+  "csrs_offset": {
+    "description": "CSRS Offset applies to employees who returned to federal service after a break and became covered by both CSRS and Social Security",
+    "contribution_rate_pct": {
+      "csrs_component": 0.2,
+      "social_security": 6.2,
+      "total": 6.4,
+      "note": "CSRS Offset employees pay the full 6.2% Social Security tax plus a reduced CSRS contribution (0.2%) for a total of 6.4% — less than regular CSRS (7.0%)"
+    },
+    "annuity_calculation": "Calculated the same way as regular CSRS until age 62 (or retirement if later)",
+    "offset_at_62": {
+      "description": "At age 62, the CSRS annuity is reduced by the amount of Social Security benefit attributable to CSRS Offset service",
+      "formula": "Offset = lesser of: (a) SS benefit with federal earnings minus SS benefit without federal earnings, or (b) SS benefit × (Offset service years / 40)",
+      "net_effect": "Generally a wash — total income from OPM + SSA roughly equals the pre-offset CSRS annuity",
+      "automatic": true,
+      "note": "The offset occurs whether or not the retiree applies for Social Security. Therefore, retirees should apply for SS at 62."
+    }
+  },
+  "voluntary_contributions": {
+    "description": "CSRS employees may make voluntary contributions to earn additional annuity",
+    "eligibility": "Active CSRS employees only (not available to FERS)",
+    "minimum_per_pay_period": "No minimum per pay period; total must be at least $25",
+    "maximum_pct_of_pay": 10,
+    "interest_rate_pct": "Variable — set by Treasury annually",
+    "additional_annuity_rate": "An additional annuity of $7 per year for every $100 in the voluntary contribution account (including interest)",
+    "withdrawal": "Can be withdrawn at any time as a lump sum (loses additional annuity)",
+    "rollover": "Can be rolled over to a Traditional IRA upon separation",
+    "note": "This is essentially a tax-deferred savings vehicle within CSRS. It is separate from TSP."
+  },
+  "cola_rules": {
+    "full_cpi": true,
+    "description": "CSRS retirees receive full CPI-W COLA — the same as Social Security",
+    "formula": {
+      "if_cpi_lte_2pct": "Full CPI-W",
+      "if_cpi_2_to_3pct": "Full CPI-W",
+      "if_cpi_gt_3pct": "Full CPI-W"
+    },
+    "comparison_to_fers": "FERS COLA is capped (CPI-1% if CPI > 3%). CSRS gets the full COLA regardless of the CPI amount.",
+    "first_year_proration": "The first COLA after retirement is prorated based on the number of months since retirement"
+  },
+  "special_category_employees": {
+    "description": "CSRS law enforcement officers and firefighters have enhanced provisions",
+    "eligibility": {
+      "age": 50,
+      "years_of_covered_service": 20
+    },
+    "formula": {
+      "first_20_years_multiplier_pct": 2.5,
+      "beyond_20_years_multiplier_pct": 2.0,
+      "example": {
+        "high_3": 80000,
+        "years": 25,
+        "tier_1": "0.025 × $80,000 × 20 = $40,000",
+        "tier_2": "0.02 × $80,000 × 5 = $8,000",
+        "total_annual": 48000,
+        "effective_rate_pct": 60.0
+      }
+    },
+    "contribution_rate_pct": 7.5,
+    "note": "Special category includes law enforcement officers (LEO), firefighters (FF), and nuclear materials couriers. Air traffic controllers under CSRS have separate provisions."
+  },
+  "deposit_and_redeposit": {
+    "deposit_service": {
+      "description": "Service for which no retirement contributions were withheld (pre-1989 temporary or certain intermittent service)",
+      "effect_if_unpaid": "Service counts for eligibility but annuity is reduced for each unpaid deposit period",
+      "interest": "Accrues after the deposit has been owed for more than 2 years"
+    },
+    "redeposit_service": {
+      "description": "Service for which retirement contributions were refunded upon separation",
+      "effect_if_unpaid": "Service counts for eligibility but cannot be used in annuity computation unless redeposit is made",
+      "interest": "Accrues from date of refund"
+    }
+  },
+  "tsp_access": {
+    "description": "CSRS employees may contribute to the TSP but receive NO agency automatic or matching contributions",
+    "agency_auto_pct": 0,
+    "agency_match": false,
+    "contribution_limits": "Same IRC § 402(g) limits as FERS employees",
+    "note": "This is a significant disadvantage compared to FERS, where the government contributes up to 5% of pay via auto + match"
+  },
+  "no_srs": {
+    "description": "CSRS retirees do NOT receive the FERS Special Retirement Supplement",
+    "reason": "CSRS was designed as a standalone pension without Social Security integration. The SRS was created specifically for FERS to bridge the gap to SS at age 62."
+  },
+  "wep_gpo_impact": {
+    "description": "CSRS retirees who also have Social Security credits from non-federal employment may be affected by WEP and GPO",
+    "wep": {
+      "description": "Windfall Elimination Provision reduces the Social Security benefit of workers who also receive a pension from non-covered employment",
+      "applies_to": "CSRS retirees who earned enough Social Security credits from private-sector or other covered employment",
+      "reference": "See social-security-claiming.json for WEP details"
+    },
+    "gpo": {
+      "description": "Government Pension Offset reduces Social Security spousal/survivor benefits by 2/3 of the government pension",
+      "applies_to": "CSRS retirees who would otherwise be eligible for SS spousal or survivor benefits",
+      "reference": "See social-security-claiming.json for GPO details"
+    },
+    "repeal_status": "As of March 2026, WEP and GPO have been repealed under the Social Security Fairness Act (P.L. 118-219), signed January 5, 2025. Repeal is retroactive to benefits payable after December 2023.",
+    "reference": "See social-security-claiming.json"
+  }
+}

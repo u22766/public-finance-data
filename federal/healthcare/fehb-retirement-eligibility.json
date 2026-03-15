@@ -1,0 +1,112 @@
+{
+  "metadata": {
+    "name": "FEHB Retirement Eligibility Rules",
+    "description": "Rules governing Federal Employees Health Benefits (FEHB) continuation into retirement, including the 5-year enrollment requirement, premium payment mechanics, Medicare coordination, and special situations.",
+    "version": "1.0",
+    "last_updated": "2026-03-15",
+    "sources": [
+      "https://www.opm.gov/healthcare-insurance/healthcare/eligibility/",
+      "5 U.S.C. § 8905(b) — FEHB Eligibility for Annuitants",
+      "OPM FEHB Handbook, Chapter 3 — Eligibility",
+      "https://www.opm.gov/healthcare-insurance/life-events/retirement/"
+    ],
+    "notes": [
+      "FEHB is one of the most valuable federal retirement benefits — no age-out, no medical underwriting.",
+      "Unlike private employer health insurance, FEHB coverage continues for life if eligibility is met.",
+      "The government continues to pay its share of FEHB premiums for retirees (same percentage as active employees).",
+      "FEHB does NOT automatically coordinate with Medicare — retirees must make active enrollment decisions."
+    ]
+  },
+  "five_year_rule": {
+    "description": "To continue FEHB into retirement, the annuitant must have been continuously enrolled in FEHB (or TRICARE/CHAMPVA equivalent in some cases) for the 5 years of service immediately preceding retirement",
+    "statutory_reference": "5 U.S.C. § 8905(b)",
+    "alternatives": [
+      {
+        "condition": "Employed fewer than 5 years",
+        "rule": "Must have been enrolled since the first opportunity to enroll"
+      },
+      {
+        "condition": "Break in FEHB enrollment during the 5 years",
+        "rule": "Breaks for any reason (including temporary waiver) may disqualify the retiree from continuing FEHB",
+        "exceptions": [
+          "Break due to covered-by-TRICARE (military spouse or own TRICARE entitlement) may be counted as continuous enrollment",
+          "Break due to CHAMPVA coverage may be counted",
+          "Transfer between agencies with no enrollment gap"
+        ]
+      }
+    ],
+    "critical_planning_note": "This is the single most important FEHB eligibility rule. Employees who waive FEHB for any reason (e.g., to use a spouse's insurance) during the final 5 years risk losing FEHB in retirement permanently."
+  },
+  "who_can_continue": {
+    "immediate_retirees": {
+      "eligible": true,
+      "description": "Employees who retire on an immediate annuity (FERS or CSRS) and meet the 5-year rule"
+    },
+    "disability_retirees": {
+      "eligible": true,
+      "description": "FERS or CSRS disability retirees who meet the 5-year rule"
+    },
+    "deferred_retirees": {
+      "eligible": "Generally no — deferred annuitants lose FEHB eligibility at separation",
+      "exception": "If receiving an annuity based on a discontinued service retirement or early retirement, may retain eligibility",
+      "note": "This is a significant gap — employees who separate before retirement age and defer their annuity typically cannot continue FEHB"
+    },
+    "survivor_annuitants": {
+      "eligible": true,
+      "description": "Spouses (or former spouses with court-ordered coverage) receiving a survivor annuity may continue FEHB if the deceased annuitant was enrolled at death",
+      "requirement": "The deceased annuitant must have been enrolled in FEHB (self + family or self + one) at the time of death"
+    }
+  },
+  "premium_mechanics_in_retirement": {
+    "government_share": {
+      "description": "The government continues to pay its share of FEHB premiums for retirees",
+      "pct_of_total": "The government pays the lesser of: 72% of the weighted average premium of all FEHB plans, or 75% of the specific plan's total premium",
+      "note": "In practice, this means the government pays roughly 70-75% of the premium, same as for active employees"
+    },
+    "annuitant_share": {
+      "description": "The retiree's share is deducted directly from their monthly annuity payment",
+      "pre_tax": false,
+      "note": "Unlike active employees (who can use premium conversion for pre-tax deductions), retiree FEHB premiums are paid with after-tax dollars from the annuity. This is a meaningful tax difference."
+    },
+    "no_age_increase": "FEHB premiums are NOT age-rated. A 90-year-old retiree pays the same as a 30-year-old active employee for the same plan.",
+    "plan_changes": "Retirees can change plans during FEHB Open Season (November–December each year), just like active employees"
+  },
+  "medicare_coordination": {
+    "enrollment_at_65": {
+      "description": "When an FEHB-enrolled retiree becomes eligible for Medicare at age 65, they have choices to make",
+      "medicare_part_a": {
+        "recommended": true,
+        "cost": "Premium-free if 40+ quarters of Medicare-covered employment",
+        "note": "Almost all federal retirees should enroll in Part A (free). FERS employees paid Medicare tax and qualify. Some long-career CSRS employees may not have 40 quarters."
+      },
+      "medicare_part_b": {
+        "optional": true,
+        "note": "Not required to keep FEHB. However, if the retiree wants FEHB to act as secondary insurance (Medicare pays first), Part B enrollment is beneficial.",
+        "penalty": "If not enrolled at 65 and no special enrollment period, late enrollment penalty of 10% per 12-month delay applies to Part B premiums permanently.",
+        "special_enrollment": "Federal retirees do NOT get a special enrollment period for Part B after retirement — the standard enrollment windows apply."
+      }
+    },
+    "fehb_as_secondary": {
+      "description": "When a retiree has both FEHB and Medicare, Medicare typically pays first (primary) and FEHB pays second (secondary)",
+      "benefit": "This combination often results in very low out-of-pocket costs, as FEHB covers most remaining expenses after Medicare",
+      "note": "Some FEHB plans waive copays, deductibles, or coinsurance when Medicare is the primary payer"
+    },
+    "suspend_fehb": {
+      "description": "Retirees can suspend FEHB enrollment to enroll in Medicare Advantage or other coverage",
+      "reinstatement": "Can reinstate FEHB within specified timeframes without losing eligibility",
+      "caution": "Suspending FEHB has risks — reinstatement rules are strict and may limit plan choices"
+    }
+  },
+  "temporary_continuation_of_coverage": {
+    "description": "Former employees who do not meet the 5-year rule may be eligible for TCC — the federal equivalent of COBRA",
+    "duration_months": 18,
+    "duration_for_former_spouse_months": 36,
+    "cost": "102% of the total premium (employee share + government share + 2% administrative fee)",
+    "note": "TCC is expensive because the separating employee pays the full premium. It is a bridge, not a long-term solution."
+  },
+  "postal_service_note": {
+    "description": "Effective January 2025, the Postal Service Health Benefits (PSHB) Program was established for Postal Service employees and retirees",
+    "reference": "Postal Service Reform Act of 2022 (P.L. 117-108)",
+    "note": "Postal employees and retirees transitioned to PSHB plans. Non-postal federal employees and retirees remain in FEHB."
+  }
+}

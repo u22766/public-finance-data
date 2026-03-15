@@ -1,0 +1,190 @@
+{
+  "metadata": {
+    "name": "TSP Roth In-Plan Conversion Rules",
+    "description": "Rules and mechanics for converting traditional (pre-tax) TSP balances to Roth (after-tax) within the Thrift Savings Plan. Effective January 28, 2026 per FRTIB final rule (91 FR 2583). Includes eligibility, limits, tax treatment, five-year rules, and strategic planning interactions.",
+    "version": "1.0",
+    "last_updated": "2026-03-15",
+    "sources": [
+      "https://www.federalregister.gov/documents/2026/01/15/2026-00765/roth-in-plan-conversions",
+      "https://www.tsp.gov/plan_news/2025-09-05-roth-in-plan-conversions-coming-to-the-tsp-in-january-2026/",
+      "5 CFR Part 1650 Subpart F — Roth In-Plan Conversions",
+      "SECURE 2.0 Act of 2022 (P.L. 117-328)",
+      "26 U.S.C. § 402A — Optional treatment of elective deferrals as Roth contributions"
+    ],
+    "notes": [
+      "TSP in-plan Roth conversions are distinct from rollover conversions to external Roth IRAs.",
+      "No income limits apply to Roth conversions (unlike direct Roth IRA contributions).",
+      "Conversions are irrevocable — no recharacterization allowed since TCJA 2018.",
+      "TSP will NOT withhold taxes on conversions. Participant must pay via estimated tax payments.",
+      "This file covers rules only. Current contribution limits are in rates-annual.json and tsp-limits.json."
+    ]
+  },
+  "effective_date": "2026-01-28",
+  "authority": "FRTIB final rule published January 15, 2026 (91 FR 2583), amending 5 CFR Part 1650",
+  "eligibility": {
+    "description": "Who may request a Roth in-plan conversion within the TSP",
+    "eligible_participants": [
+      {
+        "category": "active_employees",
+        "description": "Current federal civilian employees and uniformed service members with a traditional TSP balance"
+      },
+      {
+        "category": "separated_participants",
+        "description": "Former federal employees or service members who have not withdrawn their entire TSP balance"
+      },
+      {
+        "category": "spousal_beneficiaries",
+        "description": "Spousal beneficiary participants who have inherited a TSP account with a traditional balance"
+      }
+    ],
+    "requirement": "Must have a vested traditional (pre-tax) TSP balance to convert",
+    "creates_roth_balance": "If participant does not have an existing Roth TSP balance, the first conversion creates one"
+  },
+  "conversion_mechanics": {
+    "minimum_amount": 500,
+    "minimum_amount_note": "Each conversion request must be at least $500",
+    "maximum_per_year": 26,
+    "maximum_per_year_note": "Aligns with biweekly pay schedule — allows one conversion per pay period",
+    "balance_retention": {
+      "rule": "Participant must generally retain at least $500 in each applicable tax-deferred contribution source after converting",
+      "sources_affected": [
+        "employee_contributions_pretax",
+        "tax_exempt_contributions",
+        "agency_automatic_contributions",
+        "agency_matching_contributions"
+      ]
+    },
+    "how_to_request": "Through My Account section at tsp.gov, as a dollar amount or percentage of eligible balance",
+    "mutual_fund_window": "Funds in the TSP mutual fund window must be transferred back into core TSP funds before conversion",
+    "no_cap_on_total": "There is no annual dollar limit on total conversion amount — limited only by available traditional balance",
+    "irrevocable": true,
+    "irrevocable_note": "Conversions cannot be undone. Recharacterization was eliminated by the Tax Cuts and Jobs Act (P.L. 115-97), effective for tax year 2018 and later."
+  },
+  "tax_treatment": {
+    "general_rule": "The converted amount is treated as taxable ordinary income in the year the conversion occurs",
+    "withholding": {
+      "tsp_withholds": false,
+      "note": "TSP does NOT withhold federal or state income taxes on conversions. Participant must pay taxes from personal funds."
+    },
+    "estimated_tax_payments": {
+      "required": "Generally yes — to avoid underpayment penalties",
+      "schedule": [
+        {
+          "quarter": "Q1",
+          "conversion_period": "January 1 – March 31",
+          "payment_due": "April 15"
+        },
+        {
+          "quarter": "Q2",
+          "conversion_period": "April 1 – May 31",
+          "payment_due": "June 15"
+        },
+        {
+          "quarter": "Q3",
+          "conversion_period": "June 1 – August 31",
+          "payment_due": "September 15"
+        },
+        {
+          "quarter": "Q4",
+          "conversion_period": "September 1 – December 31",
+          "payment_due": "January 15 of following year"
+        }
+      ],
+      "note": "Cannot use converted TSP funds to pay the tax — must use external funds (savings, checking, etc.)"
+    },
+    "tax_exempt_contributions": {
+      "description": "Tax-exempt contributions (e.g., combat zone pay) retain their tax-free status when converted",
+      "note": "Only the earnings on tax-exempt contributions are taxable upon conversion"
+    },
+    "pro_rata_rule": {
+      "description": "Conversions pull proportionally from all tax-deferred contribution sources",
+      "note": "If your traditional balance includes both pre-tax and tax-exempt (combat zone) money, the conversion amount is allocated proportionally between taxable and non-taxable portions"
+    },
+    "state_tax": {
+      "description": "Most states that impose income tax will also tax the conversion amount",
+      "note": "Some states exempt retirement income but may not exempt conversion income — check state-specific rules in state-benefits.json"
+    }
+  },
+  "five_year_rules": {
+    "_comment": "Roth TSP has two distinct five-year rules that affect tax-free withdrawal of earnings",
+    "participation_rule": {
+      "description": "The five-year participation clock starts January 1 of the year you first made ANY Roth TSP contribution (or first conversion)",
+      "note": "If you made your first Roth TSP contribution in 2020, the five-year rule was satisfied on January 1, 2025",
+      "applies_to": "Tax-free withdrawal of EARNINGS (contributions can always be withdrawn tax-free)"
+    },
+    "conversion_rule": {
+      "description": "Each Roth conversion has its own five-year holding period before the converted principal can be withdrawn penalty-free if under age 59½",
+      "example": "A conversion made in 2026 has penalty-free access to converted principal starting January 1, 2031 (for those under 59½)",
+      "note": "This rule primarily affects participants under age 59½. Those 59½ or older with the five-year participation rule satisfied can withdraw all Roth funds tax-free and penalty-free."
+    },
+    "qualified_distribution": {
+      "description": "A qualified Roth distribution (entirely tax-free and penalty-free) requires BOTH: (1) five-year participation rule met AND (2) participant is age 59½ or older, disabled, or deceased",
+      "note": "Most federal retirees near retirement age who have had Roth TSP for 5+ years will meet both conditions"
+    }
+  },
+  "withdrawal_ordering": {
+    "description": "How Roth TSP withdrawals are sourced",
+    "order": [
+      {
+        "source": "Roth contributions (employee)",
+        "tax_treatment": "Always tax-free"
+      },
+      {
+        "source": "Roth conversions (in chronological order)",
+        "tax_treatment": "Tax-free (already taxed at conversion)"
+      },
+      {
+        "source": "Roth earnings",
+        "tax_treatment": "Tax-free if qualified distribution; otherwise taxable + possible 10% penalty"
+      }
+    ]
+  },
+  "rmd_exemption": {
+    "description": "Roth TSP balances are NOT subject to Required Minimum Distributions for the original participant",
+    "effective_date": "2024-01-01",
+    "authority": "SECURE 2.0 Act § 325",
+    "note": "This is a major advantage of Roth TSP (and in-plan conversions) — converted funds grow tax-free indefinitely with no forced distributions. Inherited Roth TSP accounts may still have RMD requirements for non-spouse beneficiaries."
+  },
+  "mandatory_roth_catchup": {
+    "_comment": "Separate from conversions — this is a contribution rule that took effect January 1, 2026",
+    "description": "Federal employees age 50+ whose prior-year Medicare wages exceeded the threshold must make all catch-up contributions as Roth",
+    "threshold_2026": 150000,
+    "threshold_basis": "Box 5 (Medicare wages) of prior-year W-2",
+    "threshold_indexed": true,
+    "authority": "SECURE 2.0 Act § 603",
+    "catchup_limits": {
+      "age_50_59": 8000,
+      "age_60_63": 11250,
+      "age_64_plus": 8000
+    },
+    "note": "Only catch-up contributions are affected. Regular contributions up to $24,500 can still be split between traditional and Roth as the employee chooses."
+  },
+  "planning_interactions": {
+    "_comment": "Key interactions between Roth conversions and other federal retirement benefits",
+    "irmaa_impact": {
+      "description": "Conversion income counts toward Modified Adjusted Gross Income (MAGI), which determines Medicare Part B/D IRMAA surcharges",
+      "timing": "IRMAA is based on MAGI from two years prior. A 2026 conversion affects 2028 IRMAA.",
+      "reference": "See medicare-rates.json for IRMAA bracket thresholds"
+    },
+    "fers_srs_interaction": {
+      "description": "Conversion income counts as taxable income but NOT as earned income for the FERS Special Retirement Supplement earnings test",
+      "note": "TSP conversions, IRA withdrawals, and pension income do not trigger the SRS earnings test. Only wages and self-employment income count.",
+      "reference": "See fers-srs-rules.json"
+    },
+    "social_security_taxation": {
+      "description": "Conversion income increases combined income, which can make more Social Security benefits taxable",
+      "note": "Up to 85% of SS benefits can be taxed. Large conversions in a single year can push the combined income formula above the 85% threshold."
+    },
+    "aca_subsidy_impact": {
+      "description": "For pre-Medicare retirees using ACA marketplace coverage, conversion income increases MAGI and may reduce premium tax credits",
+      "note": "Relevant for separated employees under age 65 who are not yet Medicare-eligible"
+    },
+    "ladder_strategy": {
+      "description": "A Roth conversion ladder involves strategic partial conversions over multiple years to manage tax bracket impact",
+      "optimal_window": "Between retirement and age 72-75 (when RMDs begin), when taxable income is typically lowest",
+      "goal": "Fill up lower tax brackets each year with conversions rather than doing one large taxable conversion",
+      "reference": "See federal-tax-brackets.json for current bracket thresholds"
+    },
+    "agency_contributions_note": "Agency automatic (1%) and matching contributions are ALWAYS deposited as traditional/pre-tax, regardless of the employee's Roth election. These can be converted to Roth via in-plan conversion."
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "metadata": {
+    "name": "Federal Employees' Group Life Insurance (FEGLI)",
+    "description": "FEGLI coverage structure, premium rates by age band, retirement reduction elections, Extra Benefit schedule, and coverage calculation rules. Current rates effective October 1, 2021 per OPM Federal Register notice (86 FR 50382).",
+    "version": "1.0",
+    "last_updated": "2026-03-15",
+    "sources": [
+      "https://www.opm.gov/healthcare-insurance/life-insurance/program-information/",
+      "https://www.opm.gov/frequently-asked-questions/insure-faq/life/how-much-do-i-pay-for-my-fegli-coverage/",
+      "Federal Register 86 FR 50382 (September 8, 2021) — FEGLI Premium Rate Changes",
+      "5 U.S.C. Chapter 87 — Life Insurance",
+      "https://www.opm.gov/retirement-center/calculators/fegli-calculator/"
+    ],
+    "notes": [
+      "FEGLI is the largest group life insurance program in the world — over 4 million enrollees.",
+      "Administered by OPM, underwritten by Metropolitan Life Insurance Company (MetLife).",
+      "FEGLI is term life insurance — no cash value, no loan value, no paid-up value.",
+      "Rates shown are current as of October 2021. OPM periodically adjusts rates based on actuarial experience.",
+      "Rate changes require a Federal Register notice — not annual like FEHB."
+    ]
+  },
+  "rate_effective_date": "2021-10-01",
+  "rate_effective_note": "First pay period on or after October 1, 2021. These are the most recent rates as of March 2026.",
+  "coverage_types": {
+    "basic": {
+      "description": "Automatic coverage for eligible employees unless waived",
+      "formula": "Annual basic pay rounded up to next $1,000, plus $2,000",
+      "example": {
+        "annual_salary": 85500,
+        "rounded_up": 86000,
+        "plus_2000": 88000,
+        "basic_insurance_amount": 88000
+      },
+      "minimum_bia": 10000,
+      "minimum_bia_note": "Basic coverage is at least $10,000 regardless of salary",
+      "cost_sharing": {
+        "employee_share": "Two-thirds of total premium",
+        "government_share": "One-third of total premium"
+      },
+      "accidental_death": "Basic includes Accidental Death & Dismemberment (AD&D) benefit equal to the BIA, payable in addition to the life insurance"
+    },
+    "option_a_standard": {
+      "description": "Additional $10,000 of coverage on the employee",
+      "face_value": 10000,
+      "enrollment": "Must be elected — not automatic. Requires Basic coverage.",
+      "cost_sharing": "Employee pays 100%",
+      "ad_d": "$10,000 AD&D included"
+    },
+    "option_b_additional": {
+      "description": "Additional coverage in multiples (1–5) of annual basic pay",
+      "multiples_available": [1, 2, 3, 4, 5],
+      "multiple_basis": "Annual basic pay rounded up to next $1,000 (no $2,000 add-on)",
+      "enrollment": "Must be elected — not automatic. Requires Basic coverage.",
+      "cost_sharing": "Employee pays 100%",
+      "no_ad_d": true
+    },
+    "option_c_family": {
+      "description": "Coverage on spouse and eligible dependent children",
+      "multiples_available": [1, 2, 3, 4, 5],
+      "per_multiple": {
+        "spouse": 5000,
+        "each_eligible_child": 2500
+      },
+      "eligible_children": "Unmarried dependent children under age 22 (including stepchildren and adopted children)",
+      "enrollment": "Must be elected — not automatic. Requires Basic coverage.",
+      "cost_sharing": "Employee pays 100%",
+      "no_ad_d": true
+    }
+  },
+  "extra_benefit_under_45": {
+    "description": "Free additional Basic coverage for employees under age 45",
+    "schedule": [
+      {"age": "35 or under", "extra_coverage_pct": 100, "total_basic_pct": 200},
+      {"age": 36, "extra_coverage_pct": 90, "total_basic_pct": 190},
+      {"age": 37, "extra_coverage_pct": 80, "total_basic_pct": 180},
+      {"age": 38, "extra_coverage_pct": 70, "total_basic_pct": 170},
+      {"age": 39, "extra_coverage_pct": 60, "total_basic_pct": 160},
+      {"age": 40, "extra_coverage_pct": 50, "total_basic_pct": 150},
+      {"age": 41, "extra_coverage_pct": 40, "total_basic_pct": 140},
+      {"age": 42, "extra_coverage_pct": 30, "total_basic_pct": 130},
+      {"age": 43, "extra_coverage_pct": 20, "total_basic_pct": 120},
+      {"age": 44, "extra_coverage_pct": 10, "total_basic_pct": 110},
+      {"age": "45 or older", "extra_coverage_pct": 0, "total_basic_pct": 100}
+    ],
+    "note": "The Extra Benefit doubles Basic coverage at age 35 or under and decreases 10% per year until age 45. No additional premium is charged."
+  },
+  "employee_premium_rates": {
+    "_comment": "Rates effective first pay period on or after October 1, 2021",
+    "basic": {
+      "biweekly_per_1000": 0.16,
+      "monthly_per_1000": 0.3467,
+      "age_rated": false,
+      "note": "Same rate for all ages. Government pays additional ~$0.08/biweekly per $1,000 (one-third share)."
+    },
+    "option_a": {
+      "age_bands": [
+        {"age_group": "Under 35", "biweekly": 0.20, "monthly": 0.43},
+        {"age_group": "35-39",    "biweekly": 0.20, "monthly": 0.43},
+        {"age_group": "40-44",    "biweekly": 0.30, "monthly": 0.65},
+        {"age_group": "45-49",    "biweekly": 0.60, "monthly": 1.30},
+        {"age_group": "50-54",    "biweekly": 1.00, "monthly": 2.17},
+        {"age_group": "55-59",    "biweekly": 1.80, "monthly": 3.90},
+        {"age_group": "60+",      "biweekly": 6.00, "monthly": 13.00}
+      ],
+      "note": "Total premium for the flat $10,000 Option A coverage. Not per-$1,000."
+    },
+    "option_b": {
+      "age_bands": [
+        {"age_group": "Under 35", "biweekly_per_1000": 0.02, "monthly_per_1000": 0.043},
+        {"age_group": "35-39",    "biweekly_per_1000": 0.02, "monthly_per_1000": 0.043},
+        {"age_group": "40-44",    "biweekly_per_1000": 0.03, "monthly_per_1000": 0.065},
+        {"age_group": "45-49",    "biweekly_per_1000": 0.06, "monthly_per_1000": 0.130},
+        {"age_group": "50-54",    "biweekly_per_1000": 0.10, "monthly_per_1000": 0.217},
+        {"age_group": "55-59",    "biweekly_per_1000": 0.18, "monthly_per_1000": 0.390},
+        {"age_group": "60-64",    "biweekly_per_1000": 0.40, "monthly_per_1000": 0.867},
+        {"age_group": "65-69",    "biweekly_per_1000": 0.48, "monthly_per_1000": 1.040},
+        {"age_group": "70-74",    "biweekly_per_1000": 0.86, "monthly_per_1000": 1.863},
+        {"age_group": "75-79",    "biweekly_per_1000": 1.80, "monthly_per_1000": 3.900},
+        {"age_group": "80+",      "biweekly_per_1000": 2.88, "monthly_per_1000": 6.240}
+      ]
+    },
+    "option_c": {
+      "age_bands": [
+        {"age_group": "Under 35", "biweekly_per_multiple": 0.20, "monthly_per_multiple": 0.43},
+        {"age_group": "35-39",    "biweekly_per_multiple": 0.24, "monthly_per_multiple": 0.52},
+        {"age_group": "40-44",    "biweekly_per_multiple": 0.37, "monthly_per_multiple": 0.80},
+        {"age_group": "45-49",    "biweekly_per_multiple": 0.53, "monthly_per_multiple": 1.15},
+        {"age_group": "50-54",    "biweekly_per_multiple": 0.83, "monthly_per_multiple": 1.80},
+        {"age_group": "55-59",    "biweekly_per_multiple": 1.33, "monthly_per_multiple": 2.88},
+        {"age_group": "60-64",    "biweekly_per_multiple": 2.43, "monthly_per_multiple": 5.27},
+        {"age_group": "65-69",    "biweekly_per_multiple": 2.83, "monthly_per_multiple": 6.13},
+        {"age_group": "70-74",    "biweekly_per_multiple": 3.83, "monthly_per_multiple": 8.30},
+        {"age_group": "75-79",    "biweekly_per_multiple": 5.76, "monthly_per_multiple": 12.48},
+        {"age_group": "80+",      "biweekly_per_multiple": 7.80, "monthly_per_multiple": 16.90}
+      ],
+      "note": "Rate is based on the EMPLOYEE's age, not the spouse's or child's age"
+    }
+  },
+  "retirement_reduction_elections": {
+    "description": "At retirement (or age 65, whichever is later), retirees must choose a reduction schedule for Basic, Option A, Option B, and Option C",
+    "election_timing": "Must be made at retirement — cannot be changed later except to reduce coverage further",
+    "basic_options": [
+      {
+        "election": "75% Reduction (default)",
+        "description": "Coverage reduces 2% per month after age 65 until reaching 25% of pre-retirement BIA",
+        "final_coverage_pct": 25,
+        "post_65_premium": "Free — no further premiums",
+        "reduction_rate_monthly_pct": 2.0,
+        "months_to_minimum": 38,
+        "note": "This is the free option and the default if no election is made"
+      },
+      {
+        "election": "50% Reduction",
+        "description": "Coverage reduces 1% per month after age 65 until reaching 50% of pre-retirement BIA",
+        "final_coverage_pct": 50,
+        "post_65_premium_monthly_per_1000": 0.75,
+        "premium_note": "Premiums continue for life (unless cancelled or switched to 75% Reduction)",
+        "reduction_rate_monthly_pct": 1.0,
+        "months_to_minimum": 50
+      },
+      {
+        "election": "No Reduction",
+        "description": "Coverage remains at 100% of pre-retirement BIA for life",
+        "final_coverage_pct": 100,
+        "post_65_premium_monthly_per_1000": 2.25,
+        "premium_note": "Premiums continue for life (unless cancelled or switched to a reduction option)"
+      }
+    ],
+    "option_a_retirement": {
+      "with_75pct_reduction": "Reduces 2% per month after 65 to 25% of $10,000 ($2,500). Free after reaching minimum.",
+      "with_no_reduction": "Remains at full $10,000. Free after age 65.",
+      "note": "Option A only has 75% Reduction or No Reduction choices"
+    },
+    "option_b_retirement": {
+      "with_75pct_reduction": "Reduces 2% per month after 65 to 25% of elected multiple, then free",
+      "with_no_reduction": {
+        "description": "Retains full coverage at elected multiples. Premiums continue at post-retirement rates.",
+        "post_retirement_rates_monthly_per_1000": [
+          {"age_group": "65-69", "rate": 1.040},
+          {"age_group": "70-74", "rate": 1.863},
+          {"age_group": "75-79", "rate": 3.900},
+          {"age_group": "80+",   "rate": 6.240}
+        ],
+        "cost_warning": "Option B No Reduction becomes extremely expensive. For a retiree with $100,000 salary (5× = $500,000 coverage), monthly cost at age 80+ is $3,120."
+      }
+    },
+    "option_c_retirement": {
+      "with_75pct_reduction": "Reduces 2% per month after 65 to 25% of elected multiples, then free",
+      "with_no_reduction": {
+        "description": "Retains full coverage. Premiums continue at post-retirement rates.",
+        "post_retirement_rates_monthly_per_multiple": [
+          {"age_group": "65-69", "rate": 6.13},
+          {"age_group": "70-74", "rate": 8.30},
+          {"age_group": "75-79", "rate": 12.48},
+          {"age_group": "80+",   "rate": 16.90}
+        ]
+      }
+    }
+  },
+  "eligibility_to_continue_in_retirement": {
+    "requirement": "Must have been continuously enrolled in FEGLI for the 5 years immediately preceding retirement, OR from the earliest date coverage was available (if employed fewer than 5 years)",
+    "note": "If you waived or cancelled coverage during the 5 years before retirement, you may not be able to continue coverage into retirement",
+    "applies_to": "Basic and all Optional coverages"
+  },
+  "assignment_of_benefits": {
+    "description": "FEGLI coverage can be irrevocably assigned to another person, trust, or entity",
+    "effect": "Assignee becomes the owner of the policy — controls beneficiary designation and cannot be changed by the insured",
+    "form": "SF 2823 — Assignment of Federal Employees' Group Life Insurance",
+    "note": "Assignment is irrevocable. Once assigned, the insured cannot cancel or change the coverage."
+  },
+  "tax_treatment": {
+    "basic_premium": {
+      "taxable_income": "The government's share of the Basic premium (one-third) is tax-free for coverage up to $50,000. Coverage over $50,000 has imputed income for the government share.",
+      "over_50000_note": "IRS Table I applies to determine the taxable value of coverage over $50,000. This is reported as imputed income on the W-2."
+    },
+    "death_benefit": {
+      "federal_tax": "FEGLI death benefits are generally tax-free to beneficiaries under IRC § 101(a)",
+      "estate_tax": "May be included in the insured's gross estate if the insured retained incidents of ownership (unless assigned)"
+    }
+  },
+  "living_benefits": {
+    "description": "Terminally ill employees or retirees may elect a Living Benefit — an accelerated payment of Basic coverage",
+    "eligibility": "Medical prognosis of 9 months or less to live",
+    "amount": "Up to the full Basic Insurance Amount",
+    "effect": "Reduces the death benefit by the amount of the Living Benefit",
+    "tax_treatment": "Generally tax-free under IRC § 101(g)"
+  }
+}
