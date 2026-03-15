@@ -1323,7 +1323,7 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
         return
     data = json.loads(sb_path.read_text())
 
-    s.check("state-benefits version >= 2.3", data.get("version", "0") >= "2.3")
+    s.check("state-benefits version >= 2.4", data.get("version", "0") >= "2.4")
 
     states_by_code = {st["state_code"]: st for st in data.get("states", [])}
 
@@ -1371,6 +1371,31 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
     pr_mr = pr.get("income_tax", {}).get("military_retirement", {})
     s.check("PR military retirement exempt", pr_mr.get("exempt") is True)
     s.check("PR military retirement effective 2025", pr_mr.get("effective_year") == 2025)
+
+    # ── Guard rails: states that MUST be partial (not full) exemption ──
+    # VA: $40,000 subtraction, NOT full exemption
+    va = states_by_code.get("VA", {})
+    va_mr = va.get("income_tax", {}).get("military_retirement", {})
+    s.check("VA military retirement NOT fully exempt", va_mr.get("exempt") is False)
+    s.check("VA military retirement partial exemption",
+            va_mr.get("partial_exemption") is True)
+    s.check("VA subtraction amount $40,000",
+            va_mr.get("subtraction_amount") == 40000)
+    s.check("VA no age requirement", va_mr.get("age_requirement") is False)
+    s.check("VA TSP not eligible", va_mr.get("tsp_eligible") is False)
+    s.check("VA SBP eligible", va_mr.get("sbp_eligible") is True)
+
+    # MD: Partial exemption with age tiers ($12,500 under 55, $20,000 at 55+)
+    md = states_by_code.get("MD", {})
+    md_mr = md.get("income_tax", {}).get("military_retirement", {})
+    s.check("MD military retirement NOT fully exempt", md_mr.get("exempt") is False)
+    s.check("MD military retirement partial exemption",
+            md_mr.get("partial_exemption") is True)
+    md_tiers = md_mr.get("subtraction_tiers", {})
+    s.check("MD under-55 subtraction $12,500",
+            md_tiers.get("under_55", {}).get("amount") == 12500)
+    s.check("MD age-55+ subtraction $20,000",
+            md_tiers.get("age_55_plus", {}).get("amount") == 20000)
 
 
 # ── Main ──

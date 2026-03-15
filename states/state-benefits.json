@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income — State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance — user should verify current state law.",
-  "version": "2.3",
+  "version": "2.4",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary — 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -2169,11 +2169,25 @@
           "note": "Pension exclusion of up to $36,200 for taxpayers age 65+. Subject to income limits."
         },
         "military_retirement": {
-          "exempt": true,
-          "subtraction_under_55": 5000,
-          "subtraction_55_plus": 15000,
-          "full_exemption_note": "Maryland fully exempts military retirement pay effective 2023",
-          "note": "Prior subtraction system: up to $5,000 under age 55, up to $15,000 at age 55+"
+          "exempt": false,
+          "partial_exemption": true,
+          "subtraction_tiers": {
+            "under_55": {
+              "amount": 12500,
+              "note": "Up to $12,500 subtraction for military retirees under age 55"
+            },
+            "age_55_plus": {
+              "amount": 20000,
+              "note": "Up to $20,000 subtraction for military retirees age 55 and older"
+            }
+          },
+          "sbp_eligible": true,
+          "tsp_eligible": false,
+          "pending_legislation": {
+            "bills": "HB 761 (Keep Our Heroes Home Act: $25K for 2026, $40K thereafter), HB 857 ($20K all ages)",
+            "status": "Introduced in 2026 session; pending committee action"
+          },
+          "note": "Maryland allows a subtraction of up to $12,500 of military retirement pay (under age 55) or up to $20,000 (age 55+). Delaware-style age removal not yet enacted. HB 761 and HB 857 would increase amounts. USPHS and NOAA retirees not currently covered."
         },
         "va_compensation": {
           "exempt": true,
@@ -3725,13 +3739,7 @@
         "military_retirement": {
           "exempt": false,
           "partial_exemption": true,
-          "pre_1991_service_exempt": true,
-          "pre_1991_note": "Military retired pay attributable to service before October 1, 1991 is fully exempt. Post-1991 service is taxable.",
-          "proration_note": "For split service: divide months before Oct 1991 by total months to determine exempt percentage",
-          "pending_legislation": {
-            "sb_225": "Would exempt up to $17,500 for retirees under age 63 (did not pass 2025 session)",
-            "hb_2050": "Would exempt ALL military retirement pay for veterans (did not pass 2025 session)"
-          }
+          "note": "Military retirement pay is taxable in Oregon for service after October 1, 1991. Service before that date may qualify for a deduction. Oregon has no special military retirement exemption."
         },
         "va_compensation": {
           "exempt": true,
@@ -4684,9 +4692,32 @@
           "filing_status_note": "Per taxpayer — both spouses may each claim if both qualify"
         },
         "military_retirement": {
-          "exempt": true,
-          "effective_year": 2023,
-          "note": "Virginia fully exempts military retirement pay from state income tax"
+          "exempt": false,
+          "partial_exemption": true,
+          "subtraction_amount": 40000,
+          "effective_year": 2025,
+          "phase_in": {
+            "2022": 10000,
+            "2023": 20000,
+            "2024": 30000,
+            "2025_and_later": 40000
+          },
+          "age_requirement": false,
+          "age_note": "No age requirement (age 55 requirement removed effective 2023 tax year)",
+          "sbp_eligible": true,
+          "tsp_eligible": false,
+          "tsp_note": "TSP distributions do NOT qualify for the military benefits subtraction",
+          "medal_of_honor": "Full exemption (100% subtraction) for Medal of Honor recipients",
+          "surviving_spouse_eligible": false,
+          "surviving_spouse_note": "Surviving spouses do NOT qualify for the military benefits subtraction",
+          "deduction_line": "Virginia Form 760, Schedule ADJ",
+          "authority": "Va. Code § 58.1-322.03(18)(b), enacted via HB30 Conference Report 2022",
+          "pending_legislation": {
+            "bill": "HB 2700 / SB (2026 session)",
+            "proposal": "Remove $40,000 cap entirely for tax year 2026+",
+            "status": "HB tabled by House Finance subcommittee Jan 2026; SB continued to 2027"
+          },
+          "note": "Virginia allows a subtraction of up to $40,000 of military retirement pay from state taxable income (2025+). Phase-in: $10K (2022), $20K (2023), $30K (2024), $40K (2025+). No age requirement. TSP and CSRS/FERS do not qualify. SBP payments eligible. Surviving spouses not eligible."
         },
         "va_compensation": {
           "exempt": true,

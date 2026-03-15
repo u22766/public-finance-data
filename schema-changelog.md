@@ -45,6 +45,23 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### state-benefits.json v2.4
+
+**Date:** 2026-03-14
+
+**Critical Correction — Virginia military retirement:**
+- **Fixed:** `income_tax.military_retirement.exempt` changed from `true` to `false`. Virginia offers a **$40,000 subtraction** (partial exemption), NOT a full exemption. Phase-in: $10K (2022), $20K (2023), $30K (2024), $40K (2025+). No age requirement (removed 2023). TSP distributions do NOT qualify. SBP payments eligible. Surviving spouses NOT eligible. HB 2700 (full exemption for 2026+) did not pass; continued to 2027.
+- **Impact:** A military retiree in VA with $60K/year retirement would have incorrectly shown $0 state tax instead of ~$1,150 (5.75% × $20K over the subtraction cap).
+
+**Critical Correction — Maryland military retirement:**
+- **Fixed:** `income_tax.military_retirement.exempt` changed from `true` to `false`. Maryland offers a **partial exemption**: $12,500 under age 55, $20,000 at age 55+. The original data was incorrect.
+- Added pending legislation: HB 761 ($25K for 2026, $40K thereafter) and HB 857 ($20K all ages).
+
+**Oregon note added:**
+- Filled in empty note: military retirement taxable for service after Oct 1, 1991; pre-1991 service may qualify for deduction.
+
+**CI:** Added 10 new guard rail checks for VA and MD partial exemption values.
+
 ### state-benefits.json v2.3
 
 **Date:** 2026-03-14
