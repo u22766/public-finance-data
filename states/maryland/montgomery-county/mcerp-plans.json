@@ -12,7 +12,7 @@
     "note": "Montgomery County Government employees and 8 participating agencies/subdivisions"
   },
   "scope": "county",
-  "version": "2026.1",
+  "version": "2026.3",
   "lastUpdated": "2026-03-14",
   "sources": [
     "https://www.montgomerycountymd.gov/mcerp/about.html",
@@ -457,45 +457,542 @@
       "planName": "ERS Public Safety Plans",
       "planType": "defined_benefit",
       "status": "OPEN",
-      "groups": [
-        "E",
-        "F",
-        "G"
-      ],
-      "groupDescriptions": {
-        "E": "Police and corrections (pre-Oct 1, 1994)",
-        "F": "Fire and rescue (pre-Oct 1, 1994)",
-        "G": "Public safety bargaining unit (Oct 1, 1994+)"
-      },
-      "formula": {
-        "type": "defined_benefit",
-        "multiplier": 0.02,
-        "maxYearsOfService": 36,
-        "note": "Public safety plans use 2% multiplier. Groups E/F may have different sub-provisions. Detailed group-specific formulas require further research from MCERP Group E/F/G plan documents.",
-        "averageFinalEarnings": {
-          "months": 36,
-          "method": "highest_consecutive",
-          "excludes": [
-            "overtime"
-          ],
-          "note": "Group G uses 36-month AFE. Groups E/F may use 12-month if optional plan members."
-        }
-      },
-      "eligibility": {
-        "normalRetirement": {
-          "note": "Public safety groups have different retirement ages than general. Specific ages vary by group \u2014 further research needed."
-        }
-      },
-      "contributions": {
-        "employee": {
-          "note": "Contribution rates range from 6% to 11.25% depending on group and plan. Public safety rates generally higher than general."
+      "statusNote": "Open to public safety bargaining unit employees. Closed to non-represented employees hired on or after Oct 1, 1994.",
+      "groups": {
+        "E": {
+          "groupName": "Group E \u2014 Sheriffs & Corrections",
+          "description": "Sworn deputy sheriffs, uniformed correctional officers (CO I-III, Dietary Officers, Supervisors, Shift Commanders, Unit Commanders, Deputy Wardens, Wardens), Resident Supervisors, Public Safety Emergency Communications Specialists, and Emergency Communications Managers.",
+          "subgroups": {
+            "E": {
+              "enrollment": "Before 7/1/1978",
+              "plan": "Optional Non-Integrated"
+            },
+            "EZ": {
+              "enrollment": "Before 7/1/1978",
+              "plan": "Optional Integrated"
+            },
+            "EK": {
+              "enrollment": "On or after 7/1/1978",
+              "plan": "Mandatory Integrated"
+            }
+          },
+          "formula": {
+            "optional_nonintegrated": {
+              "tiers": [
+                {
+                  "years": "1-25",
+                  "multiplier": 0.026,
+                  "note": "2.6% per year for first 25 years"
+                },
+                {
+                  "years": "26-30",
+                  "multiplier": 0.0225,
+                  "note": "2.25% per year for years 26-30"
+                },
+                {
+                  "sickLeave": true,
+                  "maxYears": 2,
+                  "multiplierUnder25": 0.024,
+                  "multiplierOver25": 0.02
+                }
+              ],
+              "maxBenefitPct": 80.25,
+              "example": "28 years + 6 months sick leave at $60,000 AFE: (2.4% \u00d7 $60,000 \u00d7 25) + (2% \u00d7 $60,000 \u00d7 3.5) = $40,200/year"
+            },
+            "integrated": {
+              "beforeSSRA": "Same as optional non-integrated formula",
+              "afterSSRA": {
+                "belowCoveredComp": {
+                  "tiers": [
+                    {
+                      "years": "1-25",
+                      "multiplier": 0.01803,
+                      "note": "1.803% for years 1-25"
+                    },
+                    {
+                      "years": "26-30",
+                      "multiplier": 0.01569,
+                      "note": "1.569% for years 26-30"
+                    }
+                  ]
+                },
+                "aboveCoveredComp": {
+                  "tiers": [
+                    {
+                      "years": "1-25",
+                      "multiplier": 0.026,
+                      "note": "2.6% for years 1-25"
+                    },
+                    {
+                      "years": "26-30",
+                      "multiplier": 0.0225,
+                      "note": "2.25% for years 26-30"
+                    }
+                  ]
+                }
+              }
+            },
+            "averageFinalEarnings": {
+              "optional": {
+                "months": 12,
+                "method": "highest_consecutive",
+                "excludes": [
+                  "overtime"
+                ]
+              },
+              "mandatory": {
+                "months": 36,
+                "method": "highest_consecutive",
+                "excludes": [
+                  "overtime"
+                ]
+              },
+              "note": "Optional plan (E, EZ): highest 12 months. Mandatory (EK): highest 36 months."
+            }
+          },
+          "eligibility": {
+            "normalRetirement": [
+              {
+                "age": 55,
+                "service": 15
+              },
+              {
+                "age": 46,
+                "service": 25
+              }
+            ],
+            "earlyRetirement": [
+              {
+                "age": 45,
+                "service": 15
+              },
+              {
+                "age": 41,
+                "service": 20
+              }
+            ],
+            "earlyReductionSchedule": [
+              {
+                "yearsBefore": 1,
+                "reduction": 0.02
+              },
+              {
+                "yearsBefore": 2,
+                "reduction": 0.05
+              },
+              {
+                "yearsBefore": 3,
+                "reduction": 0.09
+              },
+              {
+                "yearsBefore": 4,
+                "reduction": 0.14
+              },
+              {
+                "yearsBefore": 5,
+                "reduction": 0.2
+              },
+              {
+                "yearsBefore": 6,
+                "reduction": 0.28
+              },
+              {
+                "yearsBefore": 7,
+                "reduction": 0.36
+              },
+              {
+                "yearsBefore": 8,
+                "reduction": 0.44
+              },
+              {
+                "yearsBefore": 9,
+                "reduction": 0.52
+              },
+              {
+                "yearsBefore": 10,
+                "reduction": 0.6
+              }
+            ],
+            "unreducedEarly": "Age + credited service >= 85 with at least 35 years of service"
+          },
+          "contributions": {
+            "E_nonintegrated": {
+              "rate": 0.105,
+              "note": "10.5% of regular earnings (as of July 1, 2012)"
+            },
+            "EZ_integrated": {
+              "belowSSWB": 0.0675,
+              "aboveSSWB": 0.105,
+              "note": "6.75% below SSWB / 10.5% above (as of July 1, 2012)"
+            },
+            "EK_integrated": {
+              "belowSSWB": 0.0675,
+              "aboveSSWB": 0.105,
+              "note": "6.75% below SSWB / 10.5% above (as of July 1, 2012)"
+            },
+            "interestOnContributions": 0.04
+          },
+          "drop": {
+            "available": true,
+            "maxYears": 3,
+            "eligibility": "Normal retirement eligible (age 55/15yrs or age 46/25yrs)",
+            "sickLeaveForEligibility": "Sick leave in excess of 80 hours credited toward DROP eligibility (up to 24-month max)",
+            "investmentType": "participant_directed",
+            "investmentNote": "Gains/losses based on Fidelity investment options selected by participant",
+            "contributionsDuringDROP": "Member stops making retirement contributions",
+            "colasDuringDROP": "COLAs granted during DROP applied to post-DROP monthly benefit"
+          },
+          "source": "MCERP Group E SPD, August 2023"
         },
-        "interestOnContributions": 0.04
+        "G": {
+          "groupName": "Group G \u2014 Fire & Rescue",
+          "description": "Sworn fire personnel: paid firefighters, fire officers, and rescue service personnel.",
+          "subgroups": {
+            "G": {
+              "enrollment": "Before 7/1/1978",
+              "plan": "Optional Non-Integrated"
+            },
+            "GZ": {
+              "enrollment": "Before 7/1/1978",
+              "plan": "Optional Integrated"
+            },
+            "GK": {
+              "enrollment": "On or after 7/1/1978",
+              "plan": "Mandatory Integrated"
+            }
+          },
+          "formula": {
+            "optional_nonintegrated": {
+              "tiers": [
+                {
+                  "years": "1-20",
+                  "multiplier": 0.025,
+                  "note": "2.5% per year for first 20 years"
+                },
+                {
+                  "years": "21-31",
+                  "multiplier": 0.02,
+                  "note": "2.0% per year for years 21-31"
+                },
+                {
+                  "sickLeave": true,
+                  "maxYears": 2,
+                  "multiplierUnder20": 0.025,
+                  "multiplierOver20": 0.02
+                }
+              ],
+              "example": "27 years at $50,000 AFE: (2.5% \u00d7 $50,000 \u00d7 20) + (2.0% \u00d7 $50,000 \u00d7 7) = $32,000/year"
+            },
+            "integrated": {
+              "beforeSSRA": "Same as optional non-integrated formula",
+              "afterSSRA": {
+                "belowCoveredComp": {
+                  "tiers": [
+                    {
+                      "years": "1-20",
+                      "multiplier": 0.0171875,
+                      "note": "1.71875% for years 1-20"
+                    },
+                    {
+                      "years": "21-31",
+                      "multiplier": 0.01375,
+                      "note": "1.375% for years 21-31"
+                    }
+                  ]
+                },
+                "aboveCoveredComp": {
+                  "tiers": [
+                    {
+                      "years": "1-20",
+                      "multiplier": 0.025
+                    },
+                    {
+                      "years": "21-31",
+                      "multiplier": 0.02
+                    }
+                  ]
+                }
+              }
+            },
+            "averageFinalEarnings": {
+              "optional": {
+                "months": 12,
+                "method": "highest_consecutive",
+                "excludes": [
+                  "overtime"
+                ]
+              },
+              "mandatory": {
+                "months": 36,
+                "method": "highest_consecutive",
+                "excludes": [
+                  "overtime"
+                ]
+              },
+              "note": "Optional plan (G, GZ): highest 12 months. Mandatory (GK): highest 36 months."
+            }
+          },
+          "eligibility": {
+            "normalRetirement": [
+              {
+                "age": 55,
+                "service": 15
+              },
+              {
+                "age": "any",
+                "service": 20
+              }
+            ],
+            "earlyRetirement": "Not available for Group G, GZ, GK"
+          },
+          "contributions": {
+            "G_nonintegrated": {
+              "rate": 0.105,
+              "note": "10.5% of regular earnings (as of July 1, 2012)"
+            },
+            "GZ_integrated": {
+              "belowSSWB": 0.075,
+              "aboveSSWB": 0.1125,
+              "note": "7.50% below SSWB / 11.25% above (as of July 1, 2012). Reduced after 25th year."
+            },
+            "GK_integrated": {
+              "belowSSWB": 0.075,
+              "aboveSSWB": 0.1125,
+              "note": "7.50% below SSWB / 11.25% above (as of July 1, 2012). Reduced after 25th year."
+            },
+            "interestOnContributions": 0.04
+          },
+          "drop": {
+            "available": true,
+            "maxYears": 3,
+            "eligibility": "20 years of credited service, any age",
+            "sickLeaveForEligibility": "Sick leave credited toward DROP eligibility (up to 24-month max)",
+            "investmentType": "fixed_rate",
+            "interestRate": 0.0825,
+            "interestCompounding": "quarterly",
+            "contributionsDuringDROP": "Member continues making biweekly retirement contributions into DROP account",
+            "colasDuringDROP": "COLAs applied to post-DROP monthly benefit (not to DROP account)"
+          },
+          "source": "MCERP Group G SPD, July 2011 (updated March 2012)"
+        },
+        "F": {
+          "groupName": "Group F \u2014 Police",
+          "description": "Sworn police personnel.",
+          "subgroups": {
+            "F": {
+              "enrollment": "Before 7/1/1978",
+              "plan": "Optional Non-Integrated"
+            },
+            "FZ": {
+              "enrollment": "Before 7/1/1978 (elected transfer)",
+              "plan": "Optional Integrated"
+            },
+            "FK": {
+              "enrollment": "On or after 7/1/1978",
+              "plan": "Mandatory Integrated"
+            }
+          },
+          "formula": {
+            "optional_nonintegrated": {
+              "multiplier": 0.024,
+              "maxYears": 36,
+              "maxBenefitPct": 86.4,
+              "sickLeave": {
+                "maxYears": 2,
+                "multiplier": 0.024
+              },
+              "description": "2.4% x AFE x years of credited service (up to 36 years including up to 2 years sick leave). Max 86.4% of AFE.",
+              "example": "25 years + 6 months sick leave at $86,000 AFE: ($86,000 x 2.4%) x 25.5 = $52,632/year"
+            },
+            "integrated": {
+              "beforeSSRA": {
+                "multiplier": 0.024,
+                "maxYears": 36,
+                "description": "Same as optional non-integrated: 2.4% x AFE x years"
+              },
+              "afterSSRA": {
+                "belowCoveredComp": {
+                  "multiplier": 0.0165,
+                  "description": "1.65% of AFE up to SS Covered Compensation x years (up to 36)"
+                },
+                "aboveCoveredComp": {
+                  "multiplier": 0.024,
+                  "description": "2.4% of AFE above SS Covered Compensation x years (up to 36)"
+                },
+                "maxBenefitPct": 86.4
+              }
+            },
+            "averageFinalEarnings": {
+              "optional": {
+                "months": 12,
+                "method": "highest_consecutive",
+                "excludes": [
+                  "overtime"
+                ],
+                "includes": [
+                  "differentials",
+                  "roll-call pay"
+                ]
+              },
+              "mandatory": {
+                "months": 36,
+                "method": "highest_consecutive",
+                "excludes": [
+                  "overtime"
+                ],
+                "includes": [
+                  "differentials",
+                  "roll-call pay"
+                ]
+              },
+              "note": "Optional plan (F, FZ): highest 12 months. Mandatory (FK): highest 36 months."
+            }
+          },
+          "eligibility": {
+            "normalRetirement": [
+              {
+                "age": 55,
+                "service": 15
+              },
+              {
+                "age": "any",
+                "service": 25
+              }
+            ],
+            "earlyRetirement": [
+              {
+                "age": 45,
+                "service": 15
+              },
+              {
+                "age": 41,
+                "service": 20
+              }
+            ],
+            "earlyReductionSchedule": [
+              {
+                "yearsBefore": 1,
+                "reduction": 0.02
+              },
+              {
+                "yearsBefore": 2,
+                "reduction": 0.05
+              },
+              {
+                "yearsBefore": 3,
+                "reduction": 0.09
+              },
+              {
+                "yearsBefore": 4,
+                "reduction": 0.14
+              },
+              {
+                "yearsBefore": 5,
+                "reduction": 0.2
+              },
+              {
+                "yearsBefore": 6,
+                "reduction": 0.28
+              },
+              {
+                "yearsBefore": 7,
+                "reduction": 0.36
+              },
+              {
+                "yearsBefore": 8,
+                "reduction": 0.44
+              },
+              {
+                "yearsBefore": 9,
+                "reduction": 0.52
+              },
+              {
+                "yearsBefore": 10,
+                "reduction": 0.6
+              }
+            ],
+            "unreducedEarly": "Age + credited service >= 85 with at least 35 years of service"
+          },
+          "contributions": {
+            "F_nonintegrated": {
+              "rate": 0.105,
+              "note": "10.5% of regular earnings (as of July 1, 2012)"
+            },
+            "FZ_integrated": {
+              "belowSSWB": 0.0675,
+              "aboveSSWB": 0.105,
+              "note": "6.75% below SSWB / 10.5% above (as of July 1, 2012)"
+            },
+            "FK_integrated": {
+              "belowSSWB": 0.0675,
+              "aboveSSWB": 0.105,
+              "note": "6.75% below SSWB / 10.5% above (as of July 1, 2012)"
+            },
+            "interestOnContributions": 0.04
+          },
+          "drsp": {
+            "programName": "Discontinued Retirement Service Program (DRSP)",
+            "available": true,
+            "maxYears": 3,
+            "eligibility": {
+              "age": 46,
+              "service": 25
+            },
+            "sickLeaveForEligibility": "Sick leave in excess of 80 hours credited toward DRSP eligibility (up to 24-month max)",
+            "investmentType": "participant_directed",
+            "investmentNote": "Self-directed Fidelity investment account. Gains/losses based on selected funds.",
+            "contributionsDuringDRSP": "Member stops making retirement contributions",
+            "colasDuringDRSP": "COLAs granted during DRSP applied to post-DRSP monthly benefit",
+            "note": "Group F uses DRSP (not DROP). Functionally similar but with participant-directed investments."
+          },
+          "source": "MCERP Group F SPD, July 2011 (updated March 2012)"
+        }
+      },
+      "cola": {
+        "optional_plans": {
+          "preJuly2011Service": {
+            "method": "100% CPI-W Washington-Baltimore",
+            "cap": "none"
+          },
+          "postJuly2011Service": {
+            "method": "100% CPI-W Washington-Baltimore",
+            "cap": 0.025
+          }
+        },
+        "mandatory_plan": {
+          "preJuly2011Service": {
+            "method": "100% of CPI up to 3%, plus 60% of CPI above 3%",
+            "cap": 0.075,
+            "note": "7.5% cap does not apply to disability retirees or retirees over 65 (for pre-7/1/2011 service)"
+          },
+          "postJuly2011Service": {
+            "method": "CPI-based",
+            "cap": 0.025
+          }
+        },
+        "index": "CPI-U All Urban Consumers, Washington-Baltimore DC-VA-WVA"
+      },
+      "sickLeaveCredit": {
+        "available": true,
+        "maxMonths": 24,
+        "conversionRate": "1 month per 176 hours",
+        "maxHours": 4136,
+        "postRetirementAdjustmentNote": "Sick leave credited as service after 7/1/2011 capped at 2.5% COLA"
       },
       "vesting": {
         "years": 5
       },
-      "researchNeeded": "Detailed Group E, F, G plan documents needed for specific retirement ages, contribution rates, and eligibility rules. MCERP public safety SPDs not found in public web search."
+      "disability": {
+        "nonServiceConnected": {
+          "serviceRequired": 5,
+          "minimumBenefit": "33.33% of final earnings",
+          "note": "Greater of regular formula or 33.33% of final earnings"
+        },
+        "serviceConnected": {
+          "minimumBenefit": "52.5% of final earnings (Group G), enhanced to 70% if meets SSA disability standard",
+          "note": "No service requirement for service-connected. Group E has 2/3 of average weekly pay (workers comp basis)."
+        }
+      }
     },
     "grip": {
       "planName": "Guaranteed Retirement Income Plan (GRIP)",
@@ -604,5 +1101,6 @@
     "vestedMember": "Spouse/children eligible for monthly lifetime benefit if member eligible for retirement",
     "nonVestedMember": "Beneficiary receives lump sum of contributions + 4% interest",
     "noSurvivor": "50% of average annual earnings + contributions with interest to beneficiary"
-  }
+  },
+  "last_updated": "2026-03-15"
 }

@@ -2,8 +2,8 @@
   "_comment": "City of Falls Church Basic and Police Pension Plans",
   "systemName": "City of Falls Church Pension Plans",
   "systemAbbreviation": "FCPP",
-  "version": "2026.1",
-  "last_updated": "2026-03-14",
+  "version": "2026.2",
+  "last_updated": "2026-03-15",
   "jurisdiction": {
     "level": "city",
     "name": "City of Falls Church",
@@ -15,7 +15,18 @@
   "administeredBy": "Falls Church Retirement Board",
   "boardComposition": "7 members: 3 appointed by City Council, 1 by City Manager, 1 Police Plan member (elected), 2 Basic Plan members (elected)",
   "established": 1957,
-  "planDocument": "Amended and Restated effective January 1, 2016; further amended effective January 1, 2018 per Resolution 2018-54",
+  "planDocument": {
+    "title": "The City of Falls Church Basic Pension Plan",
+    "restatedEffective": "2016-01-01",
+    "furtherAmended": "2018-01-01 per Resolution 2018-54",
+    "latestAmendment": {
+      "resolution": "TR25-42",
+      "adoptedDate": "2025-12-08",
+      "effectiveDate": "2026-05-01",
+      "scope": "Section 6.03 \u2014 Optional Forms of Annuity reduced from 8 to 5 options"
+    },
+    "established": "1957-01-01"
+  },
   "socialSecurity": true,
   "socialSecurityNote": "City participates in Social Security (OASDI 6.2% + Medicare 1.45% = 7.65% employer match)",
   "supplementalPlans": {
@@ -61,7 +72,8 @@
       },
       "vesting": {
         "years": 5,
-        "note": "Fully vested after 5 years of credited service"
+        "schedule": "cliff",
+        "authority": "Section 8.02"
       },
       "normalRetirement": {
         "age": "Social Security retirement age",
@@ -90,18 +102,32 @@
       },
       "disability": {
         "nonServiceRelated": {
-          "available": true,
-          "reference": "Plan Document Article XI, Section 11.02"
+          "serviceRequired": 5,
+          "formula": "2% of average highest 3-year compensation \u00d7 years of credited service, max 50% of that compensation",
+          "normalRetirementConversion": "At NRA, converted to normal retirement formula assuming continued employment at disability-date compensation",
+          "medicalReexam": "Annual for 5 years, then every 3 years until NRA",
+          "authority": "Section 11.02"
         },
         "serviceRelated": {
-          "available": true,
-          "reference": "Plan Document Article XI, Section 11.03"
-        },
-        "determinedBy": "Retirement Board"
+          "serviceRequired": 0,
+          "formula": "66\u2154% of average highest 3-year compensation, reduced by workers compensation awards",
+          "workerCompOffset": true,
+          "authority": "Section 11.03"
+        }
       },
       "cola": {
-        "_note": "COLA provisions exist per Plan Document Section 5.04 but specific formula not published on city website. Verify with HR or plan document.",
-        "reference": "Plan Document Article V, Section 5.04"
+        "method": "half_CPI",
+        "index": "CPI-U, U.S. City Average, All Items (Bureau of Labor Statistics)",
+        "formula": "50% of CPI-U increase, capped at 4% maximum per year",
+        "cap": 0.04,
+        "determinationDate": "January 1 each year",
+        "measurementPeriod": "September-to-September CPI comparison",
+        "effectiveDate": "January 1, 1987 (current formula)",
+        "colaStartDate": "First determined January 1, 1982",
+        "disabilityRetirees": "Pre-12/1/1979 disability retirees: COLA begins July 1, 1994 using October 1993 CPI baseline. Post-12/1/1979: same formula from retirement date.",
+        "note": "Half of CPI-U increase means if CPI rises 5%, retirees get 2.5%. If CPI rises 10%, retirees get max 4%. No COLA in deflationary years.",
+        "authority": "Plan Document Article V, Section 5.04",
+        "source": "City of Falls Church Basic Pension Plan, Amended and Restated January 1, 2016 (further amended January 1, 2018 per Resolution 2018-54)"
       },
       "annuityForms": {
         "normalForm": "Single life annuity",
@@ -118,6 +144,225 @@
       "terminationOptions": {
         "refund": "May withdraw accumulated contributions plus interest",
         "deferredBenefit": "May leave contributions in plan and take deferred benefit at retirement eligibility"
+      },
+      "annuityOptions": {
+        "defaultForm": {
+          "type": "life_annuity_120_guaranteed",
+          "description": "Life annuity with 120 monthly payments guaranteed. If participant dies before 120 payments, remainder paid to beneficiary.",
+          "authority": "Section 6.01"
+        },
+        "marriedDefault": {
+          "type": "joint_100pct_survivor",
+          "description": "Joint and 100% survivor annuity with spouse. Actuarial equivalent of normal form.",
+          "authority": "Section 6.02"
+        },
+        "optionalForms": {
+          "preMay2026": {
+            "effectiveThrough": "2026-04-30",
+            "options": [
+              {
+                "type": "life_annuity",
+                "description": "Life annuity for participant's life"
+              },
+              {
+                "type": "joint_66pct_survivor",
+                "description": "Joint and 66\u2154% survivor (reduction upon first death)"
+              },
+              {
+                "type": "joint_50pct_survivor_A",
+                "description": "Joint and 50% survivor (reduction upon first death)"
+              },
+              {
+                "type": "life_60_guaranteed",
+                "description": "Life annuity, 60 payment guarantee"
+              },
+              {
+                "type": "life_120_guaranteed",
+                "description": "Life annuity, 120 payment guarantee"
+              },
+              {
+                "type": "life_180_guaranteed",
+                "description": "Life annuity, 180 payment guarantee"
+              },
+              {
+                "type": "cash_refund",
+                "description": "Modified cash refund annuity"
+              },
+              {
+                "type": "installment_refund",
+                "description": "Installment refund annuity"
+              }
+            ]
+          },
+          "postMay2026": {
+            "effectiveFrom": "2026-05-01",
+            "authority": "TR25-42, adopted December 8, 2025",
+            "options": [
+              {
+                "type": "life_annuity",
+                "description": "Life annuity for participant's life"
+              },
+              {
+                "type": "joint_100pct_survivor",
+                "description": "Qualified Joint and 100% survivor annuity with spouse"
+              },
+              {
+                "type": "joint_50pct_survivor_B",
+                "description": "Joint and 50% survivor (reduction upon retiree death only \u2014 spouse predeceasing does not reduce benefit)"
+              },
+              {
+                "type": "life_120_guaranteed",
+                "description": "Life annuity, 120 payment guarantee"
+              },
+              {
+                "type": "life_180_guaranteed",
+                "description": "Life annuity, 180 payment guarantee"
+              }
+            ],
+            "keyChange": "Reduced from 8 options to 5. Joint 50% survivor redefined: reduction now only upon retiree death (not first death). Removed: 60-month guarantee, 66\u2154% survivor, cash refund, installment refund."
+          }
+        }
+      },
+      "formula": {
+        "hiredBefore2012": {
+          "activeAfterOct2003": {
+            "multiplier": 0.02,
+            "description": "2.0% of Final Average Compensation \u00d7 years of Credited Service",
+            "fac": {
+              "months": 36,
+              "method": "highest_consecutive",
+              "excludes": [
+                "overtime",
+                "bonuses"
+              ]
+            },
+            "authority": "Section 5.01(a)(3)"
+          }
+        },
+        "hiredOnOrAfter2012": {
+          "multiplier": 0.018,
+          "description": "1.8% of Final Average Compensation \u00d7 years of Credited Service",
+          "fac": {
+            "months": 60,
+            "method": "highest_consecutive",
+            "excludes": [
+              "overtime",
+              "bonuses"
+            ]
+          },
+          "authority": "Section 5.01(a)(4)"
+        },
+        "historicFormulas": {
+          "note": "Pre-2003 participants had tiered formulas with SS integration. See Plan sections 5.01(a)(1) and 5.01(a)(2) for details."
+        }
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "hiredBefore2012": {
+            "age": 62
+          },
+          "hiredOnOrAfter2012": {
+            "age": "Social Security Retirement Age"
+          },
+          "authority": "Section 4.01"
+        },
+        "earlyRetirement": {
+          "ageAndService": [
+            {
+              "age": 52,
+              "service": 10,
+              "note": "Standard early retirement"
+            },
+            {
+              "age": 50,
+              "ruleOf": 80,
+              "note": "Age + service >= 80 (hired before 2012 only)"
+            },
+            {
+              "age": 50,
+              "ruleOf": 90,
+              "note": "Age + service >= 90 (hired on/after 2012)"
+            }
+          ],
+          "authority": "Section 4.02"
+        },
+        "earlyReduction": {
+          "hiredBefore2012": "1/3 of 1% per month before earlier of NRA or Rule of 80",
+          "hiredOnOrAfter2012": "5/8 of 1% per month for first 60 months, then 1/3 of 1% per month, before earlier of NRA or Rule of 90",
+          "authority": "Section 5.02"
+        }
+      },
+      "contributions": {
+        "employee": {
+          "currentRate": 0.05,
+          "effectiveDate": "2011-07-01",
+          "history": [
+            {
+              "period": "1996-04-21 to 1996-06-22",
+              "rate": 0.0
+            },
+            {
+              "period": "1996-06-23 to 1998-06-21",
+              "rate": 0.03
+            },
+            {
+              "period": "1998-06-22 to 2000-06-30",
+              "rate": 0.015
+            },
+            {
+              "period": "2000-07-01 to 2010-06-30",
+              "rate": 0.0
+            },
+            {
+              "period": "2010-07-01 to 2011-06-30",
+              "rate": 0.016
+            },
+            {
+              "period": "2011-07-01 onward",
+              "rate": 0.05
+            }
+          ],
+          "type": "pick_up_contribution",
+          "note": "Pre-tax pick-up contributions under IRC \u00a7414(h)(2)",
+          "interestRate": {
+            "to1986": 0.05,
+            "from1987": 0.055
+          },
+          "authority": "Section 7.01 and Exhibit II"
+        },
+        "employer": {
+          "method": "actuarially_determined",
+          "note": "Includes special 2014 one-time $6.3M contribution from water system sale. Annual earnings on that contribution (up to $565K) used in required contribution calculation.",
+          "authority": "Section 7.02"
+        }
+      },
+      "sickLeaveCredit": {
+        "method": "75% of unused sick leave above threshold",
+        "thresholds": {
+          "hiredBefore1999_04_26": {
+            "dollarThreshold": 15000,
+            "note": "100% of sick leave above $15,000 value, then 75% applied"
+          },
+          "hiredOnOrAfter1999_04_26": {
+            "dollarThreshold": 2500,
+            "note": "100% of sick leave above $2,500 value, then 75% applied"
+          }
+        },
+        "appliedTo": "Highest percentage benefit tier",
+        "authority": "Section 2.12(b)"
+      },
+      "servicePurchase": {
+        "military": {
+          "maxYears": 4
+        },
+        "priorGovernment": {
+          "maxYears": 4,
+          "note": "Federal, state, or local government with public pension participation"
+        },
+        "combined": "Military + prior government can stack beyond 4 years each",
+        "costBasis": "Actuarial equivalent rate",
+        "notCountedFor": "Early retirement eligibility (Section 7.05(e))",
+        "authority": "Section 7.05"
       }
     },
     "police": {

@@ -449,15 +449,18 @@
       "subcategory": "county_pension",
       "state": "maryland",
       "scope": "county",
-      "version": "2026.1",
-      "last_updated": "2026-03-14"
+      "version": "2026.3",
+      "last_updated": "2026-03-14",
+      "changelog_2026_2": "v2026.2: Public safety Groups E and G fully detailed from SPDs. Group F partial. COLA, DROP, early retirement, contributions, disability.",
+      "changelog_2026_3": "v2026.3: Group F (Police) fully detailed from SPD. All three public safety groups (E, F, G) now complete. Formula: 2.4% x 36 years, max 86.4%. DRSP (not DROP): age 46/25yrs, participant-directed Fidelity."
     },
     "fcpp_plans_falls_church": {
-      "version": "2026.1",
+      "version": "2026.2",
       "url": "states/virginia/falls-church/fcpp-plans.json",
       "description": "City of Falls Church Basic and Police Pension Plans \u2014 2 DB plans (Basic: 1.8% multiplier, Rule of 90; Police: 2.8%/3.0% split multiplier, 2 tiers by hire date)",
       "category": "pension",
-      "jurisdiction": "Falls Church, VA"
+      "jurisdiction": "Falls Church, VA",
+      "changelog_2026_2": "v2026.2: Section 5.04 COLA (half CPI-U, 4% cap). TR25-42 annuity amendment (8 to 5 options, eff. May 2026). Full formula, eligibility, contributions, disability from plan document."
     }
   }
 }
