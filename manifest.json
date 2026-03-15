@@ -428,6 +428,16 @@
         "virginia",
         "municipal"
       ]
+    },
+    "rrs_plans_richmond": {
+      "description": "Richmond Retirement System (RRS) pension plan parameters - 8 plan types covering general, sworn, executive, and DC plans. System CLOSED to new members Jan 1, 2024 (VRS transition).",
+      "url": "states/virginia/richmond/rrs-plans.json",
+      "category": "state_local_pension",
+      "subcategory": "city_pension",
+      "state": "virginia",
+      "scope": "city",
+      "version": "2026.1",
+      "last_updated": "2026-03-14"
     }
   }
 }

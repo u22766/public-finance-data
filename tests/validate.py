@@ -778,6 +778,241 @@ def test_urs_plans(s):
         s.check("PORS no SS, URS yes SS", pors_ss == False and urs_ss == True)
 
 
+def test_rrs_plans(s):
+    """Validate Richmond Retirement System (RRS) pension data."""
+    path = s.root / "states" / "virginia" / "richmond" / "rrs-plans.json"
+    s.check("RRS file exists", path.exists())
+    if not path.exists():
+        return
+
+    data = json.loads(path.read_text())
+
+    # Top-level structure
+    s.check("RRS has systemName", data.get("systemName") == "Richmond Retirement System")
+    s.check("RRS has systemAbbreviation", data.get("systemAbbreviation") == "RRS")
+    s.check("RRS established 1945", data.get("established") == 1945)
+    s.check("RRS status is CLOSED", data.get("status") == "CLOSED")
+    s.check("RRS closedDate is 2024-01-01", data.get("closedDate") == "2024-01-01")
+    s.check("RRS participates in SS", data.get("socialSecurityParticipation") is True)
+    s.check("RRS has version", "version" in data)
+    s.check("RRS has lastUpdated", "lastUpdated" in data)
+    s.check("RRS has sources list", isinstance(data.get("sources"), list) and len(data["sources"]) >= 2)
+    s.check("RRS has jurisdiction", "jurisdiction" in data)
+    s.check("RRS jurisdiction state is virginia", data.get("jurisdiction", {}).get("state") == "virginia")
+    s.check("RRS jurisdiction city is richmond", data.get("jurisdiction", {}).get("city") == "richmond")
+    s.check("RRS scope is city", data.get("scope") == "city")
+
+    # Membership stats
+    stats = data.get("membershipStats", {})
+    s.check("RRS has membershipStats", bool(stats))
+    s.check("RRS totalMembers >= 10000", stats.get("totalMembers", 0) >= 10000)
+    s.check("RRS activeRetirees >= 4000", stats.get("activeRetirees", 0) >= 4000)
+
+    # Portability agreements
+    port = data.get("portabilityAgreements", [])
+    s.check("RRS has portability agreements", len(port) >= 5)
+    s.check("RRS has VRS portability", "VRS" in port)
+
+    # Hire date mapping
+    hdm = data.get("hireDateMapping", [])
+    s.check("RRS has 8 hireDateMapping entries", len(hdm) == 8)
+    emp_types = {m.get("employeeType") for m in hdm}
+    s.check("RRS mapping has general/sworn/executive", {"general", "sworn", "executive"}.issubset(emp_types))
+
+    # Check VRS transition mappings (2024+)
+    vrs_mappings = [m for m in hdm if m.get("hireStart") == "2024-01-01"]
+    s.check("RRS has VRS transition mappings", len(vrs_mappings) >= 2)
+    for vm in vrs_mappings:
+        s.check(f"RRS {vm.get('employeeType')} post-2024 has empty planIds",
+                vm.get("planIds") == [])
+
+    # Plans structure
+    plans = data.get("plans", {})
+    s.check("RRS has plans dict", isinstance(plans, dict))
+    s.check("RRS has 8 plans", len(plans) == 8)
+
+    expected_plan_ids = {
+        "general_db_basic", "general_db_enhanced",
+        "sworn_db_basic", "sworn_db_enhanced",
+        "general_dc",
+        "executive_db_basic", "executive_db_enhanced", "executive_2to1"
+    }
+    actual_plan_ids = set(plans.keys())
+    s.check("RRS plan IDs correct", actual_plan_ids == expected_plan_ids,
+            f"expected {expected_plan_ids}, got {actual_plan_ids}")
+
+    # All plans should be CLOSED
+    for pid, plan in plans.items():
+        s.check(f"RRS {pid} is CLOSED", plan.get("status") == "CLOSED")
+        s.check(f"RRS {pid} has planName", "planName" in plan)
+        s.check(f"RRS {pid} has planType", "planType" in plan)
+
+    # ── General DB Basic ──
+    gdb = plans.get("general_db_basic", {})
+    gf = gdb.get("formula", {})
+    s.check("RRS general_db_basic multiplier is 1.75%", abs(gf.get("multiplier", 0) - 0.0175) < 0.0001)
+    s.check("RRS general_db_basic max years is 35", gf.get("maxYearsOfService") == 35)
+    afc = gf.get("averageFinalCompensation", {})
+    s.check("RRS general_db_basic AFC 36 months", afc.get("months") == 36)
+    s.check("RRS general_db_basic AFC is highest consecutive", afc.get("method") == "highest_consecutive")
+    s.check("RRS general_db_basic AFC excludes overtime", "overtime" in afc.get("excludes", []))
+
+    gelig = gdb.get("eligibility", {})
+    s.check("RRS general_db_basic normal ret age 65", gelig.get("normalRetirement", {}).get("age") == 65)
+    s.check("RRS general_db_basic early ret age 55", gelig.get("earlyRetirement", {}).get("minimumAge") == 55)
+    s.check("RRS general_db_basic vesting 5 years", gdb.get("vesting", {}).get("years") == 5)
+    s.check("RRS general_db_basic EE contrib 5%", abs(gdb.get("contributions", {}).get("employee", {}).get("rate", 0) - 0.05) < 0.001)
+
+    # Benefit % of AFC checks
+    bpct = gdb.get("benefitAsPercentOfAFC", {})
+    s.check("RRS general_db_basic 35yr = 61.25%", abs(bpct.get("35_years", 0) - 61.25) < 0.01)
+    s.check("RRS general_db_basic 30yr = 52.5%", abs(bpct.get("30_years", 0) - 52.5) < 0.01)
+    s.check("RRS general_db_basic 20yr = 35.0%", abs(bpct.get("20_years", 0) - 35.0) < 0.01)
+
+    # Payout options
+    opts = gdb.get("benefitPayoutOptions", [])
+    s.check("RRS general_db_basic has 4 payout options", len(opts) == 4)
+    opt_names = {o.get("name") for o in opts}
+    s.check("RRS general_db_basic has Basic Benefit option", "Basic Benefit" in opt_names)
+    s.check("RRS general_db_basic has J&LS option", "Joint and Last Survivor" in opt_names)
+    jls = [o for o in opts if o.get("name") == "Joint and Last Survivor"]
+    if jls:
+        s.check("RRS general J&LS has 4 sub-options", len(jls[0].get("subOptions", [])) == 4)
+
+    # Creditable service
+    cs = gdb.get("creditableService", [])
+    s.check("RRS general_db_basic has creditable service list", len(cs) >= 5)
+    s.check("RRS general_db_basic includes sick leave", any("sick" in c for c in cs))
+
+    # ── General DB Enhanced ──
+    gde = plans.get("general_db_enhanced", {})
+    gef = gde.get("formula", {})
+    s.check("RRS general_db_enhanced multiplier is 2.0%", abs(gef.get("multiplier", 0) - 0.02) < 0.0001)
+    s.check("RRS general_db_enhanced max years is 35", gef.get("maxYearsOfService") == 35)
+    s.check("RRS general_db_enhanced EE contrib 8.57%",
+            abs(gde.get("contributions", {}).get("employee", {}).get("rate", 0) - 0.0857) < 0.001)
+    s.check("RRS general_db_enhanced min enhanced years 3",
+            gde.get("contributions", {}).get("employee", {}).get("minimumEnhancedYears") == 3)
+
+    bpct_e = gde.get("benefitAsPercentOfAFC", {})
+    s.check("RRS general_db_enhanced 35yr = 70%", abs(bpct_e.get("35_years", 0) - 70.0) < 0.01)
+    s.check("RRS general_db_enhanced 25yr = 50%", abs(bpct_e.get("25_years", 0) - 50.0) < 0.01)
+
+    # ── Sworn DB Basic ──
+    sdb = plans.get("sworn_db_basic", {})
+    sf = sdb.get("formula", {})
+    s.check("RRS sworn_db_basic multiplier is 1.65%", abs(sf.get("multiplier", 0) - 0.0165) < 0.0001)
+    s.check("RRS sworn_db_basic max years is 35", sf.get("maxYearsOfService") == 35)
+
+    # Pre-65 supplement
+    supp = sf.get("pre65Supplement", {})
+    s.check("RRS sworn supplement multiplier is 0.75%", abs(supp.get("multiplier", 0) - 0.0075) < 0.0001)
+    s.check("RRS sworn supplement max years 25", supp.get("maxYears") == 25)
+    s.check("RRS sworn supplement payable until age 65", supp.get("payableUntil") == "age 65")
+    s.check("RRS sworn supplement not for deferred vested", supp.get("deferredVestedEligible") is False)
+
+    selig = sdb.get("eligibility", {})
+    s.check("RRS sworn_db_basic normal ret age 60", selig.get("normalRetirement", {}).get("age") == 60)
+    s.check("RRS sworn_db_basic unreduced at 25 years",
+            "25" in str(selig.get("normalRetirement", {}).get("or", "")))
+    s.check("RRS sworn_db_basic early ret age 50", selig.get("earlyRetirement", {}).get("minimumAge") == 50)
+    s.check("RRS sworn_db_basic mandatory ret 73", selig.get("mandatoryRetirementAge") == 73)
+    s.check("RRS sworn_db_basic EE contrib 5%",
+            abs(sdb.get("contributions", {}).get("employee", {}).get("rate", 0) - 0.05) < 0.001)
+
+    # Benefit % with and without supplement
+    sbpct = sdb.get("benefitAsPercentOfAFC", {})
+    s.check("RRS sworn with supplement 25yr = 60%",
+            abs(sbpct.get("withSupplement", {}).get("25_years", 0) - 60.0) < 0.01)
+    s.check("RRS sworn after65 25yr = 41.25%",
+            abs(sbpct.get("afterAge65", {}).get("25_years", 0) - 41.25) < 0.01)
+    s.check("RRS sworn with supplement 35yr = 76.5%",
+            abs(sbpct.get("withSupplement", {}).get("35_years", 0) - 76.5) < 0.01)
+
+    # DROP
+    drop = sdb.get("drop", {})
+    s.check("RRS sworn_db_basic DROP available", drop.get("available") is True)
+    s.check("RRS sworn_db_basic DROP max 6 years", drop.get("maxYears") == 6)
+
+    # 5 payout options for sworn (includes Level)
+    sworn_opts = sdb.get("benefitPayoutOptions", [])
+    s.check("RRS sworn_db_basic has 5 payout options", len(sworn_opts) == 5)
+    sworn_opt_names = {o.get("name") for o in sworn_opts}
+    s.check("RRS sworn has Level option", "Level" in sworn_opt_names)
+
+    # ── Sworn DB Enhanced ──
+    sde = plans.get("sworn_db_enhanced", {})
+    sef = sde.get("formula", {})
+    s.check("RRS sworn_db_enhanced multiplier is 1.65%", abs(sef.get("multiplier", 0) - 0.0165) < 0.0001)
+    s.check("RRS sworn_db_enhanced has pre65 supplement", "pre65Supplement" in sef)
+    seelig = sde.get("eligibility", {})
+    s.check("RRS sworn_enhanced unreduced at 20 years",
+            "20" in str(seelig.get("normalRetirement", {}).get("or", "")))
+    s.check("RRS sworn_enhanced EE contrib 8.95%",
+            abs(sde.get("contributions", {}).get("employee", {}).get("rate", 0) - 0.0895) < 0.001)
+    s.check("RRS sworn_enhanced min enhanced years 3",
+            sde.get("contributions", {}).get("employee", {}).get("minimumEnhancedYears") == 3)
+    s.check("RRS sworn_enhanced DROP available", sde.get("drop", {}).get("available") is True)
+
+    # ── General DC ──
+    dc = plans.get("general_dc", {})
+    s.check("RRS DC planType is defined_contribution", dc.get("planType") == "defined_contribution")
+    s.check("RRS DC administered by Mission Square", dc.get("administeredBy") == "Mission Square Retirement")
+    dc_rates = dc.get("contributions", {}).get("employer", {}).get("rates", [])
+    s.check("RRS DC has 4 employer tiers", len(dc_rates) == 4)
+    if dc_rates:
+        s.check("RRS DC first tier is 5%", abs(dc_rates[0].get("rate", 0) - 0.05) < 0.001)
+        s.check("RRS DC last tier is 10%", abs(dc_rates[-1].get("rate", 0) - 0.10) < 0.001)
+    s.check("RRS DC vesting 5 years", dc.get("vesting", {}).get("years") == 5)
+
+    # ── Executive plans ──
+    exb = plans.get("executive_db_basic", {})
+    s.check("RRS executive_db_basic multiplier 1.75%",
+            abs(exb.get("formula", {}).get("multiplier", 0) - 0.0175) < 0.0001)
+    exe = plans.get("executive_db_enhanced", {})
+    s.check("RRS executive_db_enhanced multiplier 2.0%",
+            abs(exe.get("formula", {}).get("multiplier", 0) - 0.02) < 0.0001)
+
+    ex21 = plans.get("executive_2to1", {})
+    s.check("RRS executive_2to1 has service multiplier", "serviceMultiplier" in ex21)
+    s.check("RRS executive_2to1 ratio is 2:1", ex21.get("serviceMultiplier", {}).get("ratio") == "2:1")
+    s.check("RRS executive_2to1 max doubled 15 years",
+            ex21.get("serviceMultiplier", {}).get("maxDoubledYears") == 15)
+    s.check("RRS executive_2to1 min exec years 10",
+            ex21.get("serviceMultiplier", {}).get("minimumExecYears") == 10)
+    s.check("RRS executive_2to1 additional contrib 3.06%",
+            abs(ex21.get("additionalContribution", {}).get("rate", 0) - 0.0306) < 0.001)
+
+    # ── COLA ──
+    cola = data.get("cola", {})
+    s.check("RRS COLA type is ad_hoc", cola.get("type") == "ad_hoc")
+
+    # ── OPEB ──
+    opeb = data.get("opeb", {})
+    health = opeb.get("retireeHealth", {})
+    s.check("RRS has retiree health info", bool(health))
+    ec = health.get("employerContributions", [])
+    s.check("RRS health has 4 contribution tiers", len(ec) == 4)
+    if ec:
+        s.check("RRS health max monthly is $400", ec[-1].get("monthly") == 400)
+    s.check("RRS health assessment bonus $25", health.get("healthAssessmentBonus") == 25)
+
+    # ── VRS Transition ──
+    vrs = data.get("vrsTransition", {})
+    s.check("RRS VRS transition date 2024-01-01", vrs.get("effectiveDate") == "2024-01-01")
+    s.check("RRS VRS election deadline 2024-12-31", vrs.get("electionDeadline") == "2024-12-31")
+
+    # ── Cross-system checks ──
+    # RRS is distinct from Fairfax County systems
+    fcers_path = s.root / "states" / "virginia" / "fairfax-county" / "fcers-plans.json"
+    if fcers_path.exists():
+        fcers = json.loads(fcers_path.read_text())
+        s.check("RRS and FCERS are different systems",
+                data.get("systemAbbreviation") != fcers.get("systemAbbreviation", ""))
+    # RRS COLA is ad hoc unlike VRS formula-based
+    s.check("RRS COLA differs from VRS automatic", cola.get("type") == "ad_hoc")
+
+
 # ── Main ──
 
 def main():
@@ -802,6 +1037,7 @@ def main():
     test_overlay_compatibility(s)
     test_pors_plans(s)
     test_urs_plans(s)
+    test_rrs_plans(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)

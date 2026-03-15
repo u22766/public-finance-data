@@ -75,6 +75,16 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Data Addition: RRS Plans (Richmond Retirement System)
+
+- **Date:** March 14, 2026 (Session 37)
+- **File:** `states/virginia/richmond/rrs-plans.json` (NEW)
+- **Manifest ID:** `rrs_plans_richmond`
+- **Version:** 2026.1
+- **Schema version unchanged** (2.2) — file addition is non-breaking
+
+Adds Richmond Retirement System pension data with 8 plan types: General DB Basic (1.75%), General DB Enhanced (2.0%), Sworn P&F Basic (1.65% + 0.75% pre-65 supplement), Sworn P&F Enhanced (same formula, 20-year unreduced), General DC 401(a) with tiered employer contributions (5-10%), Executive DB Basic, Executive DB Enhanced, and Executive 2:1 Service Credit. RRS is CLOSED to new members effective January 1, 2024 (city transitioned to VRS). System continues serving 10,000+ legacy members and retirees. Key features: ad hoc COLA only (no automatic formula), 6-year DROP for sworn, portability with VRS and 6 other VA localities.
+
 ## Data Addition: PORS Plans (Fairfax County Police Officers Retirement System)
 
 - **Date:** March 14, 2026

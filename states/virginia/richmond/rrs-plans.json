@@ -1,0 +1,626 @@
+{
+  "_comment": "Richmond Retirement System (RRS) pension plan parameters",
+  "systemName": "Richmond Retirement System",
+  "systemAbbreviation": "RRS",
+  "established": 1945,
+  "status": "CLOSED",
+  "closedDate": "2024-01-01",
+  "closedNote": "City of Richmond transitioned to VRS effective January 1, 2024. New hires enrolled in VRS. Existing employees had until December 31, 2024 to elect RRS or VRS. RRS continues for members who remained and all retirees/deferred vested members.",
+  "socialSecurityParticipation": true,
+  "jurisdiction": {
+    "state": "virginia",
+    "city": "richmond",
+    "note": "Independent city; all full-time permanent City of Richmond employees (general and sworn)"
+  },
+  "scope": "city",
+  "version": "2026.1",
+  "lastUpdated": "2026-03-14",
+  "sources": [
+    "https://www.rva.gov/retirement-system/employees",
+    "https://www.rva.gov/retirement-transition/my-options",
+    "https://www.rva.gov/sites/default/files/2023-10/RRS%20vs.%20VRS%20Full%20Matrix%20Revised_10-11-23.pdf",
+    "https://rva.gov/sites/default/files/2024-01/GENERAL_2024%20Member%20Handbook_RRS.pdf"
+  ],
+  "membershipStats": {
+    "asOf": "2024",
+    "totalMembers": 10000,
+    "note": "Approximate; includes active, deferred vested, and retirees. System had approximately $700M in net assets per 2024 handbook.",
+    "activeRetirees": 4000,
+    "activeRetireesNote": "Over 4,000 members receiving retirement, disability retirement, and survivor benefits"
+  },
+  "portabilityAgreements": [
+    "VRS",
+    "Charlottesville",
+    "Danville",
+    "Newport News",
+    "Norfolk",
+    "Roanoke",
+    "Fairfax County"
+  ],
+  "hireDateMapping": [
+    {
+      "hireStart": null,
+      "hireEnd": "2003-09-30",
+      "employeeType": "general",
+      "planIds": [
+        "general_db_basic"
+      ],
+      "note": "General employees hired before Oct 1, 2003. DB Basic only."
+    },
+    {
+      "hireStart": "2003-10-01",
+      "hireEnd": "2006-06-30",
+      "employeeType": "general",
+      "planIds": [
+        "general_db_basic",
+        "general_db_enhanced"
+      ],
+      "note": "General employees hired Oct 2003 - Jun 2006. Could elect DB Basic or DB Enhanced, or DC during election windows."
+    },
+    {
+      "hireStart": "2006-07-01",
+      "hireEnd": "2023-12-31",
+      "employeeType": "general",
+      "planIds": [
+        "general_dc"
+      ],
+      "note": "General employees hired Jul 1, 2006 - Dec 31, 2023. Mandatory DC plan except senior executive group."
+    },
+    {
+      "hireStart": "2024-01-01",
+      "hireEnd": null,
+      "employeeType": "general",
+      "planIds": [],
+      "note": "New general employees go to VRS. No new RRS enrollment."
+    },
+    {
+      "hireStart": null,
+      "hireEnd": "2003-09-30",
+      "employeeType": "sworn",
+      "planIds": [
+        "sworn_db_basic"
+      ],
+      "note": "Sworn police/firefighters hired before Oct 1, 2003. DB Basic only."
+    },
+    {
+      "hireStart": "2003-10-01",
+      "hireEnd": "2023-12-31",
+      "employeeType": "sworn",
+      "planIds": [
+        "sworn_db_basic",
+        "sworn_db_enhanced"
+      ],
+      "note": "Sworn police/firefighters hired Oct 2003 - Dec 2023. Could elect DB Basic or DB Enhanced."
+    },
+    {
+      "hireStart": "2024-01-01",
+      "hireEnd": null,
+      "employeeType": "sworn",
+      "planIds": [],
+      "note": "New sworn employees go to VRS Enhanced Hazardous Duty plans."
+    },
+    {
+      "hireStart": null,
+      "hireEnd": "2023-12-31",
+      "employeeType": "executive",
+      "planIds": [
+        "executive_db_basic",
+        "executive_db_enhanced",
+        "executive_2to1"
+      ],
+      "note": "Senior executive group. DB plans remained available after Jul 1, 2006 (unlike general employees)."
+    }
+  ],
+  "plans": {
+    "general_db_basic": {
+      "planName": "Defined Benefit Plan (Basic) - General",
+      "abbreviation": "RRS DB-B",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2006-07-01",
+      "closedNote": "New general hires after Jul 1, 2006 go to DC. Entirely closed Jan 1, 2024.",
+      "formula": {
+        "type": "defined_benefit",
+        "multiplier": 0.0175,
+        "maxYearsOfService": 35,
+        "averageFinalCompensation": {
+          "months": 36,
+          "method": "highest_consecutive",
+          "includes": [
+            "base_salary",
+            "differential_pay",
+            "educational",
+            "bonuses",
+            "severance"
+          ],
+          "excludes": [
+            "overtime"
+          ]
+        },
+        "benefitCalc": "0.0175 * AFC * years (max 35)"
+      },
+      "benefitAsPercentOfAFC": {
+        "10_years": 17.5,
+        "15_years": 26.25,
+        "20_years": 35.0,
+        "25_years": 43.75,
+        "30_years": 52.5,
+        "35_years": 61.25
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 65,
+          "or": "30 years of creditable service"
+        },
+        "earlyRetirement": {
+          "minimumAge": 55,
+          "requirement": "vested",
+          "reduction": "5% per year before age 65 or 30 years, whichever smaller"
+        },
+        "deferredVested": {
+          "vestingYears": 5,
+          "payableAt": "age 65 unreduced or age 55 reduced"
+        }
+      },
+      "contributions": {
+        "employee": {
+          "rate": 0.05,
+          "note": "5% of creditable compensation"
+        },
+        "employer": "actuarially determined"
+      },
+      "vesting": {
+        "years": 5,
+        "or": "active at age 65, or job-related disability, or death while active"
+      },
+      "creditableService": [
+        "years_worked",
+        "military_while_employed",
+        "part_time_converted",
+        "ported",
+        "purchased",
+        "severance",
+        "50pct_unused_sick_leave"
+      ],
+      "benefitPayoutOptions": [
+        {
+          "name": "Basic Benefit",
+          "description": "Equal monthly payments for lifetime. Stop upon death."
+        },
+        {
+          "name": "Smooth Out",
+          "description": "Higher before 65, lower after 65. Stop upon death."
+        },
+        {
+          "name": "Joint and Last Survivor",
+          "subOptions": [
+            "100%",
+            "75%",
+            "50%",
+            "25%"
+          ]
+        },
+        {
+          "name": "Pop-Up Joint and Last Survivor",
+          "subOptions": [
+            "100%",
+            "75%",
+            "50%",
+            "25%"
+          ]
+        }
+      ],
+      "disability": {
+        "eligibility": "Active, under age 65",
+        "jobRelated": "compensable",
+        "nonJobRelated": "must be vested"
+      },
+      "refundOnSeparation": {
+        "unvested": "contributions + 3% interest",
+        "vested": "deferred vested member"
+      }
+    },
+    "general_db_enhanced": {
+      "planName": "Defined Benefit Plan (Enhanced) - General",
+      "abbreviation": "RRS DB-E",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2006-07-01",
+      "availableFrom": "2003-10-01",
+      "formula": {
+        "type": "defined_benefit",
+        "multiplier": 0.02,
+        "maxYearsOfService": 35,
+        "averageFinalCompensation": {
+          "months": 36,
+          "method": "highest_consecutive",
+          "includes": [
+            "base_salary",
+            "differential_pay",
+            "educational",
+            "bonuses",
+            "severance"
+          ],
+          "excludes": [
+            "overtime"
+          ]
+        },
+        "benefitCalc": "0.02 * AFC * years (max 35)"
+      },
+      "benefitAsPercentOfAFC": {
+        "10_years": 20.0,
+        "15_years": 30.0,
+        "20_years": 40.0,
+        "25_years": 50.0,
+        "30_years": 60.0,
+        "35_years": 70.0
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 65,
+          "or": "30 years of creditable service"
+        },
+        "earlyRetirement": {
+          "minimumAge": 55,
+          "requirement": "vested",
+          "reduction": "5% per year before age 65 or 30 years"
+        },
+        "deferredVested": {
+          "vestingYears": 5
+        }
+      },
+      "contributions": {
+        "employee": {
+          "rate": 0.0857,
+          "breakdown": "5.00% base + 3.57% enhanced",
+          "minimumEnhancedYears": 3,
+          "note": "Enhanced contributions required until retirement/termination. Refunded if not vested or min years not met."
+        },
+        "employer": "actuarially determined"
+      },
+      "vesting": {
+        "years": 5
+      }
+    },
+    "sworn_db_basic": {
+      "planName": "Defined Benefit Plan (Basic) - Police & Fire",
+      "abbreviation": "RRS P&F-B",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2024-01-01",
+      "closedNote": "Available since RRS inception. Closed Jan 1, 2024.",
+      "formula": {
+        "type": "defined_benefit",
+        "multiplier": 0.0165,
+        "maxYearsOfService": 35,
+        "pre65Supplement": {
+          "multiplier": 0.0075,
+          "maxYears": 25,
+          "payableUntil": "age 65",
+          "deferredVestedEligible": false
+        },
+        "averageFinalCompensation": {
+          "months": 36,
+          "method": "highest_consecutive",
+          "includes": [
+            "base_salary",
+            "differential_pay",
+            "educational",
+            "bonuses",
+            "severance"
+          ],
+          "excludes": [
+            "overtime"
+          ]
+        },
+        "benefitCalc": "Base: 0.0165 * AFC * years (max 35) + Supplement: 0.0075 * AFC * years (max 25) until age 65"
+      },
+      "benefitAsPercentOfAFC": {
+        "withSupplement": {
+          "10_years": 24.0,
+          "15_years": 36.0,
+          "20_years": 48.0,
+          "25_years": 60.0,
+          "30_years": 68.25,
+          "35_years": 76.5
+        },
+        "afterAge65": {
+          "10_years": 16.5,
+          "15_years": 24.75,
+          "20_years": 33.0,
+          "25_years": 41.25,
+          "30_years": 49.5,
+          "35_years": 57.75
+        }
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 60,
+          "or": "25 years of creditable service"
+        },
+        "earlyRetirement": {
+          "minimumAge": 50,
+          "requirement": "vested",
+          "reduction": "5% per year before age 60 or 25 years"
+        },
+        "deferredVested": {
+          "vestingYears": 5,
+          "payableAt": "age 60 unreduced or age 50 reduced",
+          "supplementEligible": false
+        },
+        "mandatoryRetirementAge": 73
+      },
+      "contributions": {
+        "employee": {
+          "rate": 0.05,
+          "note": "5% of creditable compensation"
+        },
+        "employer": "actuarially determined"
+      },
+      "vesting": {
+        "years": 5,
+        "or": "active at age 60, or job-related disability, or death while active"
+      },
+      "creditableService": [
+        "years_worked",
+        "military_while_employed",
+        "part_time_converted",
+        "ported",
+        "purchased",
+        "severance",
+        "50pct_unused_sick_leave"
+      ],
+      "drop": {
+        "available": true,
+        "maxYears": 6,
+        "eligibility": "Unreduced benefits: age 60, or 25 years (basic)"
+      },
+      "benefitPayoutOptions": [
+        {
+          "name": "Basic",
+          "description": "Higher before 65 (includes supplement), lower after 65. Stop upon death."
+        },
+        {
+          "name": "Level",
+          "description": "Equal monthly payments for lifetime."
+        },
+        {
+          "name": "Smooth Out",
+          "description": "Higher than Basic before 65, lower after. Stop upon death."
+        },
+        {
+          "name": "Joint and Last Survivor",
+          "subOptions": [
+            "100%",
+            "75%",
+            "50%",
+            "25%"
+          ]
+        },
+        {
+          "name": "Pop-Up Joint and Last Survivor",
+          "subOptions": [
+            "100%",
+            "75%",
+            "50%",
+            "25%"
+          ]
+        }
+      ],
+      "disability": {
+        "eligibility": "Active, under age 60",
+        "jobRelated": "compensable",
+        "nonJobRelated": "must be vested",
+        "dropNote": "In DROP: only job-related"
+      }
+    },
+    "sworn_db_enhanced": {
+      "planName": "Defined Benefit Plan (Enhanced) - Police & Fire",
+      "abbreviation": "RRS P&F-E",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2024-01-01",
+      "availableFrom": "2003-10-01",
+      "formula": {
+        "type": "defined_benefit",
+        "multiplier": 0.0165,
+        "maxYearsOfService": 35,
+        "pre65Supplement": {
+          "multiplier": 0.0075,
+          "maxYears": 25,
+          "payableUntil": "age 65",
+          "deferredVestedEligible": false
+        },
+        "benefitCalc": "Same formula as P&F Basic. Enhanced = reduced service for unreduced retirement (20 yrs vs 25).",
+        "note": "Unlike general enhanced (2.0% multiplier), P&F enhanced keeps 1.65% but allows unreduced at 20 years."
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 60,
+          "or": "20 years of creditable service"
+        },
+        "earlyRetirement": {
+          "minimumAge": 50,
+          "requirement": "vested",
+          "reduction": "5% per year before age 60 or 20 years"
+        },
+        "deferredVested": {
+          "vestingYears": 5,
+          "supplementEligible": false
+        },
+        "mandatoryRetirementAge": 73
+      },
+      "contributions": {
+        "employee": {
+          "rate": 0.0895,
+          "breakdown": "5.00% base + 3.95% enhanced",
+          "minimumEnhancedYears": 3
+        },
+        "employer": "actuarially determined"
+      },
+      "vesting": {
+        "years": 5
+      },
+      "drop": {
+        "available": true,
+        "maxYears": 6,
+        "eligibility": "Unreduced benefits: age 60, or 20 years (enhanced)"
+      }
+    },
+    "general_dc": {
+      "planName": "Defined Contribution 401(a) Plan",
+      "abbreviation": "RRS DC",
+      "planType": "defined_contribution",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2024-01-01",
+      "availableFrom": "2006-07-01",
+      "administeredBy": "Mission Square Retirement",
+      "contributions": {
+        "employer": {
+          "tiered": true,
+          "rates": [
+            {
+              "yearsOfService": "0-4",
+              "rate": 0.05
+            },
+            {
+              "yearsOfService": "5-9",
+              "rate": 0.06
+            },
+            {
+              "yearsOfService": "10-14",
+              "rate": 0.08
+            },
+            {
+              "yearsOfService": "15+",
+              "rate": 0.1
+            }
+          ]
+        },
+        "employee": "not required"
+      },
+      "vesting": {
+        "years": 5,
+        "or": "active at age 65, or job-related disability, or death while active"
+      },
+      "distributions": [
+        "lump_sum",
+        "installment",
+        "rollover",
+        "annuity_purchase"
+      ],
+      "deathBenefit": "Account balance to designated beneficiary"
+    },
+    "executive_db_basic": {
+      "planName": "Defined Benefit Plan (Basic) - Executive",
+      "abbreviation": "RRS EX DB-B",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2024-01-01",
+      "note": "Senior executive group. Same formula as general DB basic. DB plans available after Jul 1, 2006 unlike general employees.",
+      "formula": {
+        "multiplier": 0.0175,
+        "maxYearsOfService": 35,
+        "afc_months": 36
+      },
+      "eligibility": {
+        "normalRetirement": {
+          "age": 65
+        },
+        "earlyRetirement": {
+          "minimumAge": 55,
+          "reduction": "5% per year"
+        }
+      },
+      "contributions": {
+        "employee": {
+          "rate": 0.05
+        }
+      }
+    },
+    "executive_db_enhanced": {
+      "planName": "Defined Benefit Plan (Enhanced) - Executive",
+      "abbreviation": "RRS EX DB-E",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2024-01-01",
+      "note": "Senior executive group. 2.0% multiplier.",
+      "formula": {
+        "multiplier": 0.02,
+        "maxYearsOfService": 35
+      },
+      "contributions": {
+        "employee": {
+          "rate": 0.0857,
+          "breakdown": "5.00% base + 3.57% enhanced",
+          "minimumEnhancedYears": 3
+        }
+      }
+    },
+    "executive_2to1": {
+      "planName": "Executive 2:1 Service Credit",
+      "abbreviation": "RRS EX 2:1",
+      "planType": "defined_benefit_supplement",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2024-01-01",
+      "note": "2:1 service credit for first 15 years if 10+ years in senior exec position.",
+      "serviceMultiplier": {
+        "ratio": "2:1",
+        "maxDoubledYears": 15,
+        "minimumExecYears": 10
+      },
+      "additionalContribution": {
+        "rate": 0.0306,
+        "combinedBasic": 0.0806,
+        "combinedEnhanced": 0.1163
+      }
+    }
+  },
+  "cola": {
+    "type": "ad_hoc",
+    "description": "No automatic annual COLAs. Adjustments granted by City Council action. Must be retired one full year to be eligible.",
+    "note": "Lack of regular COLAs was a major factor in the VRS transition decision."
+  },
+  "opeb": {
+    "retireeHealth": {
+      "eligibility": "Ages 55-64, 10+ years employed with 5 consecutive years health coverage",
+      "employerContributions": [
+        {
+          "years": "10-14",
+          "monthly": 100
+        },
+        {
+          "years": "15-19",
+          "monthly": 200
+        },
+        {
+          "years": "20-24",
+          "monthly": 300
+        },
+        {
+          "years": "25+",
+          "monthly": 400
+        }
+      ],
+      "healthAssessmentBonus": 25,
+      "lineOfDuty": "City pays 100%",
+      "survivingSpouse": "36 months after retiree death"
+    },
+    "retireeDental": "Eligible if active at retirement"
+  },
+  "deathBenefitPreRetirement": {
+    "formula": "$16.67 * months_of_service (max $1000)",
+    "eligibility": "Hired before June 13, 1988 with 1+ years",
+    "survivorBenefits": {
+      "general_marriedWith27Plus": "Surviving spouse can purchase up to 3 additional years",
+      "sworn_basic_marriedWith22Plus": "Surviving spouse can purchase up to 3 additional years",
+      "sworn_enhanced_marriedWith17Plus": "Surviving spouse can purchase up to 3 additional years"
+    }
+  },
+  "vrsTransition": {
+    "effectiveDate": "2024-01-01",
+    "electionDeadline": "2024-12-31",
+    "bondIssuance": "$100 million to shore up RRS funding to 80%+ ratio",
+    "councilApproval": "September 2023"
+  }
+}

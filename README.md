@@ -18,7 +18,7 @@ A structured, version-controlled library of government-published financial data 
 - **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
 - **County property tax** — Effective rates and veteran exemptions for 10 counties
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes)
-- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC, FCERS, PORS, and URS plans, Arlington County ACERS plans, pension stacking patterns
+- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC, FCERS, PORS, and URS plans, Arlington County ACERS plans, Richmond RRS plans, pension stacking patterns
 
 Designed as a generic data source that any application, tool, or analysis can consume — no authentication, no API keys, no tracking.
 
@@ -39,7 +39,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 48 entries)
+├── manifest.json                                ← Fetch this first (master version index, 49 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -92,12 +92,14 @@ public-finance-data/
 │   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid (state-level)
 │   │   ├── arlington-county/
 │   │   │   └── acers-plans.json                  ← ACERS pension plans (independent, not VRS)
-│   │   └── fairfax-county/
-│   │       ├── erfc-plans.json                  ← ERFC Legacy, Tier 1, Tier 2 (county-level pension)
-│   │       ├── fcers-plans.json                 ← FCERS Plans A-E (county general employees pension)
-│   │       ├── pors-plans.json                  ← PORS Plans A-C (sworn police officers pension)
-│   │       ├── urs-plans.json                   ← URS Plans B/D/E/F (fire, sheriff, uniformed pension)
-│   │       └── plan-combinations.json           ← VRS + ERFC pension stacking patterns
+│   │   ├── fairfax-county/
+│   │   │   ├── erfc-plans.json                  ← ERFC Legacy, Tier 1, Tier 2 (county-level pension)
+│   │   │   ├── fcers-plans.json                 ← FCERS Plans A-E (county general employees pension)
+│   │   │   ├── pors-plans.json                  ← PORS Plans A-C (sworn police officers pension)
+│   │   │   ├── urs-plans.json                   ← URS Plans B/D/E/F (fire, sheriff, uniformed pension)
+│   │   │   └── plan-combinations.json           ← VRS + ERFC pension stacking patterns
+│   │   └── richmond/
+│   │       └── rrs-plans.json                   ← RRS pension plans — 8 types (CLOSED 2024, VRS transition)
 │   └── washington/
 │       └── county-property-tax.json             ← Pierce County
 │
@@ -111,7 +113,7 @@ public-finance-data/
 │   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
 └── tests/
-    ├── validate.py                              ← Core validation (315 checks)
+    ├── validate.py                              ← Core validation (810 checks)
     ├── validate_tier2.py                        ← State benefits validation (527 checks)
     ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
     ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
@@ -180,6 +182,7 @@ Files are organized by jurisdiction and domain:
 | `fcers_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/fcers-plans.json` |
 | `pors_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/pors-plans.json` |
 | `urs_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/urs-plans.json` |
+| `rrs_plans_richmond` | 2026.1 | `states/virginia/richmond/rrs-plans.json` |
 | `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
 | `plan_combinations_fairfax` | 2.0.0 | `states/virginia/fairfax-county/plan-combinations.json` |
 | `static_refs` | 1.0.1 | `reference/static-refs.json` |
@@ -205,11 +208,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,510 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,635 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 685 | Manifest integrity, all federal/state/reference files, PORS/URS pension |
+| Core | `validate.py` | 810 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS pension |
 | Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
@@ -280,6 +283,7 @@ All data in this repository is drawn from official U.S. government sources:
 | FCERS plan parameters | Fairfax County Retirement Systems | https://www.fairfaxcounty.gov/retirement/employees-retirement-system |
 | PORS plan parameters | Fairfax County Retirement Systems | https://www.fairfaxcounty.gov/retirement/police-officers-retirement-system |
 | URS plan parameters | Fairfax County Retirement Systems | https://www.fairfaxcounty.gov/retirement/uniformed-retirement-system |
+| RRS plan parameters | City of Richmond Retirement System | https://www.rva.gov/retirement-system/employees |
 | Military basic pay tables | DFAS / navycs.com | https://militarypay.defense.gov/Pay/Basic-Pay/ |
 | Military retirement rules | Defense.gov / USC | https://militarypay.defense.gov/Pay/Retirement/ |
 
