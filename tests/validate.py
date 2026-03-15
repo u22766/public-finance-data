@@ -1323,7 +1323,7 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
         return
     data = json.loads(sb_path.read_text())
 
-    s.check("state-benefits version >= 2.6", data.get("version", "0") >= "2.6")
+    s.check("state-benefits version >= 2.7", data.get("version", "0") >= "2.7")
 
     states_by_code = {st["state_code"]: st for st in data.get("states", [])}
 
@@ -1488,6 +1488,74 @@ def test_legislation_watch_session39(s: ValidationSuite):
                 str(mr_manifest_ver) == str(mr_file_ver))
 
 
+def test_partial_exemption_audit(s: ValidationSuite):
+    """Validate Session 39 partial exemption audit fixes."""
+    sb_path = s.root / "states" / "state-benefits.json"
+    if not sb_path.exists():
+        return
+    data = json.loads(sb_path.read_text())
+    states_by_code = {st["state_code"]: st for st in data.get("states", [])}
+
+    # States that MUST have partial_exemption=true
+    partial_states = {
+        "CO": "age-based tiers",
+        "DE": "$12,500 exclusion",
+        "ID": "conditional (age 62+ or disabled)",
+        "MT": "50% deduction for 5 years",
+        "NM": "$40,000 exclusion",
+        "VT": "AGI-based threshold",
+        "CA": "$20,000 exclusion",
+        "GA": "$65,000 cap",
+        "KY": "$31,110 cap",
+        "MD": "age-tiered subtraction",
+        "OR": "pre-1991 service only",
+        "UT": "credit mechanism",
+        "VA": "$40,000 subtraction",
+    }
+    for code, desc in partial_states.items():
+        st = states_by_code.get(code, {})
+        mr = st.get("income_tax", {}).get("military_retirement", {})
+        s.check(f"{code} partial_exemption=true ({desc})",
+                mr.get("partial_exemption") is True)
+        s.check(f"{code} exempt is not True (partial, not full)",
+                mr.get("exempt") is not True)
+
+    # VT: exempt must be False (not "partial")
+    vt = states_by_code.get("VT", {})
+    vt_mr = vt.get("income_tax", {}).get("military_retirement", {})
+    s.check("VT exempt is boolean False (not string 'partial')",
+            vt_mr.get("exempt") is False)
+
+    # CO age-based tiers exist
+    co = states_by_code.get("CO", {})
+    co_mr = co.get("income_tax", {}).get("military_retirement", {})
+    co_tiers = co_mr.get("age_based_tiers", {})
+    s.check("CO has age_based_tiers", len(co_tiers) >= 3)
+
+    # NM max_exclusion is $40,000
+    nm = states_by_code.get("NM", {})
+    nm_mr = nm.get("income_tax", {}).get("military_retirement", {})
+    s.check("NM max_exclusion is 40000", nm_mr.get("max_exclusion") == 40000)
+
+    # DE max_exclusion is $12,500
+    de = states_by_code.get("DE", {})
+    de_mr = de.get("income_tax", {}).get("military_retirement", {})
+    s.check("DE max_exclusion is 12500", de_mr.get("max_exclusion") == 12500)
+
+    # VT AGI threshold exists
+    vt_agi = vt_mr.get("agi_threshold", {})
+    s.check("VT has AGI threshold for full exemption",
+            vt_agi.get("full_exemption_below") == 125000)
+
+    # IN includes USPHS/NOAA
+    ind = states_by_code.get("IN", {})
+    ind_mr = ind.get("income_tax", {}).get("military_retirement", {})
+    s.check("IN includes USPHS/NOAA expansion",
+            ind_mr.get("includes_usphs_noaa") is True)
+    s.check("IN sunset date documented",
+            ind_mr.get("sunset_date") == "2028-07-01")
+
+
 # ── Main ──
 
 def main():
@@ -1519,6 +1587,7 @@ def main():
     test_fcpp_plans(s)
     test_state_benefits_critical_fixes(s)
     test_legislation_watch_session39(s)
+    test_partial_exemption_audit(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)

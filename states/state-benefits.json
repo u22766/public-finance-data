@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
-  "version": "2.6",
+  "version": "2.7",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary \u2014 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -547,7 +547,19 @@
           "subtraction_under_55": 15000,
           "subtraction_55_to_64": 20000,
           "subtraction_65_plus": 24000,
-          "note": "Colorado allows subtraction of military retirement pay from taxable income with age-based limits"
+          "note": "Colorado allows subtraction of military retirement pay from taxable income with age-based limits: up to $15,000 (under 55), $20,000 (55-64), or $24,000 (65+). These are part of the general pension/annuity subtraction. No special military-only exemption statute.",
+          "partial_exemption": true,
+          "age_based_tiers": {
+            "under_55": {
+              "max_exclusion": 15000
+            },
+            "age_55_to_64": {
+              "max_exclusion": 20000
+            },
+            "age_65_plus": {
+              "max_exclusion": 24000
+            }
+          }
         },
         "va_compensation": {
           "exempt": true,
@@ -903,7 +915,9 @@
         "military_retirement": {
           "exempt": false,
           "exempt_note": "Partial exclusion up to $12,500",
-          "note": "Delaware allows $12,500 pension exclusion for military retired pay (no age requirement as of 2025). Pending legislation would increase to $25,000."
+          "note": "Delaware allows $12,500 pension exclusion for military retired pay (no age requirement as of 2025). Pending legislation would increase to $25,000. This is part of the general pension/retirement income exclusion, not a military-specific statute.",
+          "partial_exemption": true,
+          "max_exclusion": 12500
         },
         "va_compensation": {
           "exempt": true,
@@ -1593,7 +1607,10 @@
         "military_retirement": {
           "exempt": false,
           "exempt_note": "Tax-free for disabled retirees and retirees 62+",
-          "note": "Idaho exempts military retirement pay for disabled retirees and retirees age 62 or older. Deduction amounts updated annually in Idaho income tax instructions."
+          "note": "Idaho exempts military retirement pay for disabled retirees, retirees age 62 or older, or those with sufficient earned income to require federal filing. Exemption capped at the annual maximum Social Security benefit. Expanded by law signed March 2025 (Gov. Little).",
+          "partial_exemption": true,
+          "conditional_exemption": true,
+          "conditions": "Exempt if disabled OR age 62+ by end of tax year OR had enough earned income to be required to file a federal return. Limited to maximum Social Security benefit amount for the year."
         },
         "va_compensation": {
           "exempt": true,
@@ -1755,7 +1772,9 @@
         "taxes_federal_pension": false,
         "military_retirement": {
           "exempt": true,
-          "note": "Military retired pay is exempt from Indiana income tax. Active-duty pay also exempt starting 2024."
+          "note": "Military retired pay is exempt from Indiana income tax. Active-duty pay also exempt starting 2024. Expanded April 2025 (Gov. Braun) to include Space Force, USPHS, and NOAA Corps retirees and their survivors. Covers 2025 tax year; expires July 1, 2028 unless renewed.",
+          "includes_usphs_noaa": true,
+          "sunset_date": "2028-07-01"
         },
         "va_compensation": {
           "exempt": true,
@@ -2787,7 +2806,8 @@
         "military_retirement": {
           "exempt": false,
           "exempt_note": "Partial exemption for working Montana residents",
-          "note": "Starting 2024, working Montana residents may deduct up to 50% of military retirement income or Montana-source wage income (whichever is less) for 5 consecutive years. Expires tax year 2033. Retirees 65+ may use $5,500 general retirement deduction instead."
+          "note": "Starting 2024, working Montana residents may deduct up to 50% of military retirement income or Montana-source wage income (whichever is less) for up to 5 consecutive years. Expires tax year 2033. Separately, taxpayers age 65+ receive a $5,500 subtraction from federal taxable income. No full military retirement exemption.",
+          "partial_exemption": true
         },
         "va_compensation": {
           "exempt": true,
@@ -3333,7 +3353,9 @@
         "military_retirement": {
           "exempt": false,
           "exempt_note": "Partial exemption up to $40,000",
-          "note": "New Mexico offers partial tax exemption of military retired pay up to $40,000 (2025+, increased from $30,000)"
+          "note": "New Mexico exempts up to $40,000 of military retired pay (2025+, increased from $30,000 in 2024). All income exempt for taxpayers age 100+. Low-income taxpayers 65+ may also qualify for separate $8,000 exclusion (phases out above $28,500 single / $51,000 joint).",
+          "partial_exemption": true,
+          "max_exclusion": 40000
         },
         "va_compensation": {
           "exempt": true,
@@ -5005,9 +5027,15 @@
         "taxes_federal_pension": true,
         "taxes_federal_pension_note": "Federal civilian pensions generally taxable in Vermont.",
         "military_retirement": {
-          "exempt": "partial",
+          "exempt": false,
           "exempt_note": "Income-based tiered exemption (Act 71, effective 2025 tax year)",
-          "note": "Act 71 (signed June 25, 2025): Full exemption for taxpayers with federal AGI of $125,000 or less. Partial exemption for AGI between $125,000 and $175,000 (calculated as ($175,000 - AGI) / $50,000 \u00d7 retirement pay). No exemption for AGI of $175,000 or more. Applies to all filing statuses."
+          "note": "Act 71 (signed June 25, 2025): Full exemption for taxpayers with federal AGI of $125,000 or less. Partial exemption for AGI between $125,000 and $175,000 (calculated as ($175,000 - AGI) / $50,000 \u00d7 retirement income). No exemption above $175,000 AGI. Covers USPHS and NOAA uniformed retirees. Effective 2025 tax year.",
+          "partial_exemption": true,
+          "agi_threshold": {
+            "full_exemption_below": 125000,
+            "partial_exemption_up_to": 175000,
+            "phase_out_formula": "($175,000 - AGI) / $50,000 \u00d7 retirement income"
+          }
         },
         "va_compensation": {
           "exempt": true,

@@ -103,8 +103,9 @@ for code in ["NE", "ND", "RI"]:
 # Vermont — partial exemption (income-based)
 if "VT" in states_by_code:
     vt_it = states_by_code["VT"]["income_tax"]
-    check("T3D-030-VT-mil-partial", vt_it["military_retirement"]["exempt"] == "partial",
-          f"VT should be 'partial', got {vt_it['military_retirement']['exempt']}")
+    check("T3D-030-VT-mil-partial",
+          vt_it["military_retirement"]["exempt"] is False and vt_it["military_retirement"].get("partial_exemption") is True,
+          f"VT should have exempt=False and partial_exemption=True, got exempt={vt_it['military_retirement']['exempt']}")
     check("T3D-031-VT-act71", "act 71" in vt_it["military_retirement"]["note"].lower() or
           "125,000" in vt_it["military_retirement"]["note"],
           "VT should reference Act 71 or $125,000 threshold")
@@ -402,13 +403,15 @@ for code in TIER3D:
     check(f"T3D-420-survivor-{code}", has_survivor,
           f"{code} should have survivor_transfer documented in at least one benefit")
 
-# All military retirement exempt (either True or 'partial')
+# All military retirement exempt (either True, or partial_exemption=True)
 for code in TIER3D:
     if code not in states_by_code:
         continue
-    mil = states_by_code[code]["income_tax"]["military_retirement"]["exempt"]
-    check(f"T3D-430-mil-exempt-{code}", mil in [True, "partial"],
-          f"{code} military retirement exempt should be True or 'partial', got {mil}")
+    mr = states_by_code[code]["income_tax"]["military_retirement"]
+    mil = mr.get("exempt")
+    partial = mr.get("partial_exemption", False)
+    check(f"T3D-430-mil-exempt-{code}", mil is True or partial is True,
+          f"{code} military retirement should be exempt=True or partial_exemption=True, got exempt={mil}, partial={partial}")
 
 # ══════════════════════════════════════════════════════════
 # SECTION 6 — Manifest checks

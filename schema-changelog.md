@@ -45,6 +45,26 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### state-benefits.json v2.7
+
+**Date:** 2026-03-14
+
+**Session 39 Partial Exemption Audit — 6 states corrected, 1 expansion added:**
+
+Schema consistency fix: Several states had notes describing partial military retirement exemptions but were missing the `partial_exemption: true` flag. A consumer querying `partial_exemption` would have missed these states entirely.
+
+- CO: Added `partial_exemption: true` + `age_based_tiers` ($15K under-55 / $20K 55-64 / $24K 65+)
+- DE: Added `partial_exemption: true` + `max_exclusion: 12500`
+- ID: Added `partial_exemption: true` + `conditional_exemption` (disabled OR age 62+ OR earned income sufficient for federal filing; capped at max SS benefit)
+- MT: Added `partial_exemption: true` (50% deduction for 5 years for working residents; $5,500 subtraction for 65+)
+- NM: Added `partial_exemption: true` + `max_exclusion: 40000` (increased from $30K in 2024)
+- VT: **Fixed** `exempt` from string `"partial"` to boolean `false`; added `partial_exemption: true` + `agi_threshold` ($125K full / $125-175K phased / $175K+ none)
+
+Data enrichment:
+- IN: Added `includes_usphs_noaa: true` and `sunset_date: 2028-07-01` (April 2025 expansion to Space Force, USPHS, NOAA Corps retirees and survivors)
+
+**CI:** Added `test_partial_exemption_audit` (33 new checks). Fixed 2 tier3d checks that expected VT's old `exempt: "partial"` string. Total: 5,880 checks across 15 suites.
+
 ### state-benefits.json v2.6
 
 **Date:** 2026-03-14
