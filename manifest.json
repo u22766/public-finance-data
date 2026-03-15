@@ -75,12 +75,13 @@
       ]
     },
     "vrs_plans": {
-      "version": "2.0.0",
+      "version": "2026.2",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/virginia/vrs-plans.json",
-      "description": "Virginia Retirement System plan parameters: VRS Plan 1, Plan 2, Hybrid. Hire date auto-derive mapping.",
-      "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. VRS plans only. All values unchanged."
+      "description": "Virginia Retirement System (VRS) \u2014 Plan 1, Plan 2, Hybrid DB+DC, SPORS, VaLORS, enhanced hazardous duty, COLA formulas, health insurance credit, hazardous duty supplement",
+      "changelog_2_0_0": "Split from plan-library.json during schema 2.0 restructure. VRS plans only. All values unchanged.",
+      "last_updated": "2026-03-14"
     },
     "other_db_template": {
       "version": "1.0.0",

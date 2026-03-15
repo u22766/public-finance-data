@@ -91,7 +91,7 @@ public-finance-data/
 │   │   └── county-property-tax.json             ← Bexar County
 │   ├── virginia/
 │   │   ├── county-property-tax.json             ← Fairfax County, Virginia Beach
-│   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid (state-level)
+│   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid, SPORS, VaLORS, hazardous duty
 │   │   ├── arlington-county/
 │   │   │   └── acers-plans.json                  ← ACERS pension plans (independent, not VRS)
 │   │   ├── fairfax-county/
@@ -115,7 +115,7 @@ public-finance-data/
 │   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │
 └── tests/
-    ├── validate.py                              ← Core validation (873 checks)
+    ├── validate.py                              ← Core validation (919 checks)
     ├── validate_tier2.py                        ← State benefits validation (527 checks)
     ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
     ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
@@ -211,11 +211,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,698 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,744 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 873 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS/MCERP pension |
+| Core | `validate.py` | 919 | Manifest integrity, all federal/state/reference files, PORS/URS/RRS/VRS/MCERP pension |
 | Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |

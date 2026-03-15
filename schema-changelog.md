@@ -75,6 +75,16 @@ All corresponding `min` values on adjacent brackets adjusted accordingly. 10% an
 
 ---
 
+## Data Update: VRS Plans Consolidated (Virginia Retirement System v2026.2)
+
+- **Date:** March 14, 2026 (Session 37)
+- **File:** `states/virginia/vrs-plans.json` (UPDATED)
+- **Manifest ID:** `vrs_plans`
+- **Version:** 2026.2 (was 2.0.0)
+- **Schema version unchanged** (2.2)
+
+Major consolidation of VRS reference data. Previous file had skeleton data with incomplete Plan 2/Hybrid parameters. Now includes: comprehensive COLA formulas (Plan 1 max 5%, Plan 2/Hybrid max 3% with CPI-U calculation details), full eligibility rules for all 3 plans, Hybrid DC contribution structure (mandatory 1% + voluntary 4% with employer match up to 2.5%, DC vesting schedule), PLOP details, hazardous duty section covering SPORS (1.85%), VaLORS (2.0%/1.7%), and political subdivision enhanced benefits (1.7%/1.85%), hazardous duty supplement ($17,856/yr as of Jul 2025), health insurance credit ($4.25/yr state, $1.50/yr political subdivision), portability agreements, and group life insurance.
+
 ## Data Addition: MCERP Plans (Montgomery County MD Employee Retirement Plans)
 
 - **Date:** March 14, 2026 (Session 37)

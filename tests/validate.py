@@ -257,8 +257,8 @@ def test_referential_integrity(s):
 
         # Each plan has required fields
         for pid, plan in vrs_plans.items():
-            # Hybrid plans use dbComponent/dcComponent instead of formula
-            has_benefit_structure = "formula" in plan or "dbComponent" in plan
+            # Hybrid plans use dbComponent/dcComponent or definedBenefit/definedContribution instead of formula
+            has_benefit_structure = "formula" in plan or "dbComponent" in plan or "definedBenefit" in plan
             s.check(f"VRS {pid} has formula or dbComponent", has_benefit_structure)
             s.check(f"VRS {pid} has vesting", "vesting" in plan)
     else:
@@ -1013,6 +1013,94 @@ def test_rrs_plans(s):
     s.check("RRS COLA differs from VRS automatic", cola.get("type") == "ad_hoc")
 
 
+def test_vrs_consolidated(s):
+    """Validate consolidated VRS plan data."""
+    path = s.root / "states" / "virginia" / "vrs-plans.json"
+    s.check("VRS file exists", path.exists())
+    if not path.exists():
+        return
+
+    data = json.loads(path.read_text())
+
+    # Top-level
+    s.check("VRS systemName", data.get("systemName") == "Virginia Retirement System")
+    s.check("VRS abbreviation", data.get("systemAbbreviation") == "VRS")
+    s.check("VRS established 1942", data.get("established") == 1942)
+    s.check("VRS OPEN", data.get("status") == "OPEN")
+    s.check("VRS SS participation", data.get("socialSecurityParticipation") is True)
+    s.check("VRS has sources", len(data.get("sources", [])) >= 3)
+
+    # Plans
+    plans = data.get("plans", {})
+    s.check("VRS has 3 plans", len(plans) == 3)
+    s.check("VRS has plan1/plan2/hybrid", {"vrs_plan1", "vrs_plan2", "vrs_hybrid"} == set(plans.keys()))
+
+    # Plan 1
+    p1 = plans.get("vrs_plan1", {})
+    s.check("VRS P1 multiplier 1.7%", abs(p1.get("formula", {}).get("multiplier", 0) - 0.017) < 0.0001)
+    s.check("VRS P1 AFC 36 months", p1.get("formula", {}).get("averageFinalCompensation", {}).get("months") == 36)
+    s.check("VRS P1 EE contrib 5%", abs(p1.get("contributions", {}).get("employee", {}).get("rate", 0) - 0.05) < 0.001)
+    s.check("VRS P1 vesting 5 years", p1.get("vesting", {}).get("years") == 5)
+    s.check("VRS P1 COLA max 5%", abs(p1.get("cola", {}).get("maximum", 0) - 0.05) < 0.001)
+    s.check("VRS P1 normal ret age 65", p1.get("eligibility", {}).get("normalRetirementAge") == 65)
+    s.check("VRS P1 has PLOP", "plop" in p1)
+    s.check("VRS P1 has 5 payout options", len(p1.get("benefitPayoutOptions", [])) == 5)
+
+    # Plan 2
+    p2 = plans.get("vrs_plan2", {})
+    s.check("VRS P2 multiplier post-2013 1.65%", abs(p2.get("formula", {}).get("multiplier_post_2013", 0) - 0.0165) < 0.0001)
+    s.check("VRS P2 multiplier pre-2013 1.7%", abs(p2.get("formula", {}).get("multiplier_pre_2013", 0) - 0.017) < 0.0001)
+    s.check("VRS P2 AFC 60 months", p2.get("formula", {}).get("averageFinalCompensation", {}).get("months") == 60)
+    s.check("VRS P2 COLA max 3%", abs(p2.get("cola", {}).get("maximum", 0) - 0.03) < 0.001)
+    s.check("VRS P2 reduced ret age 60", p2.get("eligibility", {}).get("reducedRetirement", [{}])[0].get("age") == 60)
+    s.check("VRS P2 mandatory ret 73", p2.get("eligibility", {}).get("mandatoryRetirementAge") == 73)
+
+    # Hybrid
+    hyb = plans.get("vrs_hybrid", {})
+    s.check("VRS Hybrid is hybrid_db_dc", hyb.get("planType") == "hybrid_db_dc")
+    s.check("VRS Hybrid OPEN", hyb.get("status") == "OPEN")
+    db = hyb.get("definedBenefit", {})
+    s.check("VRS Hybrid DB multiplier 1.0%", abs(db.get("multiplier", 0) - 0.01) < 0.001)
+    s.check("VRS Hybrid DB AFC 60 months", db.get("averageFinalCompensation", {}).get("months") == 60)
+    dc = hyb.get("definedContribution", {})
+    s.check("VRS Hybrid DC has mandatory", "mandatory" in dc)
+    s.check("VRS Hybrid DC has voluntary", "voluntary" in dc)
+    s.check("VRS Hybrid DC EE mandatory 1%", abs(dc.get("mandatory", {}).get("employee", {}).get("rate", 0) - 0.01) < 0.001)
+    s.check("VRS Hybrid DC ER match max 2.5%", abs(dc.get("voluntary", {}).get("employerMatch", {}).get("maxRate", 0) - 0.025) < 0.001)
+    dcv = dc.get("vesting", {})
+    s.check("VRS Hybrid DC 4yr full vest", abs(dcv.get("4_years", 0) - 1.0) < 0.001)
+    s.check("VRS Hybrid COLA max 3%", abs(hyb.get("cola", {}).get("maximum", 0) - 0.03) < 0.001)
+
+    # Hazardous duty
+    hd = data.get("hazardousDuty", {})
+    s.check("VRS has hazardousDuty section", bool(hd))
+    systems = hd.get("systems", {})
+    s.check("VRS has SPORS/VaLORS/polSub", {"SPORS", "VaLORS", "politicalSubdivisionEnhanced"} == set(systems.keys()))
+
+    spors = systems.get("SPORS", {})
+    s.check("VRS SPORS multiplier 1.85%", abs(spors.get("multiplier", 0) - 0.0185) < 0.0001)
+    s.check("VRS SPORS mandatory ret 70", spors.get("eligibility", {}).get("mandatoryRetirementAge") == 70)
+
+    valors = systems.get("VaLORS", {})
+    s.check("VRS VaLORS post-2001 multiplier 2.0%", abs(valors.get("multiplier_post_2001", 0) - 0.02) < 0.001)
+
+    supp = hd.get("hazardousDutySupplement", {})
+    s.check("VRS HD supplement $17,856/yr", supp.get("currentAmount", {}).get("annual") == 17856)
+    s.check("VRS HD supplement $1,488/mo", supp.get("currentAmount", {}).get("monthly") == 1488)
+    s.check("VRS HD supplement requires 20 years", "20" in str(supp.get("eligibility", "")))
+
+    # Health insurance credit
+    hic = data.get("healthInsuranceCredit", {})
+    s.check("VRS health credit requires 15 years", "15" in str(hic.get("eligibility", "")))
+    s.check("VRS health credit tax free", hic.get("taxFree") is True)
+    s.check("VRS state $4.25/yr", abs(hic.get("stateEmployees", {}).get("perYearOfService", 0) - 4.25) < 0.01)
+
+    # Portability
+    port = data.get("portabilityAgreements", [])
+    s.check("VRS has 7 portability agreements", len(port) == 7)
+    s.check("VRS portability includes Richmond", "Richmond" in port)
+
+
 def test_mcerp_plans(s):
     """Validate Montgomery County Employee Retirement Plans (MCERP) data."""
     path = s.root / "states" / "maryland" / "montgomery-county" / "mcerp-plans.json"
@@ -1156,6 +1244,7 @@ def main():
     test_pors_plans(s)
     test_urs_plans(s)
     test_rrs_plans(s)
+    test_vrs_consolidated(s)
     test_mcerp_plans(s)
 
     success = s.summary()

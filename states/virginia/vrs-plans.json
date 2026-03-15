@@ -1,242 +1,409 @@
 {
-  "_comment": "Virginia Retirement System (VRS) pension plan parameters. State-level defined benefit plans covering all Virginia public employees. Update as VRS rules change.",
-  "version": "2.0.0",
-  "effective_date": "2026-01-01",
-  "employer": "Virginia Retirement System",
+  "_comment": "Virginia Retirement System (VRS) pension plan parameters. Comprehensive state-level reference covering Plan 1, Plan 2, Hybrid, SPORS, VaLORS, and enhanced hazardous duty.",
+  "systemName": "Virginia Retirement System",
+  "systemAbbreviation": "VRS",
+  "established": 1942,
+  "status": "OPEN",
+  "socialSecurityParticipation": true,
   "scope": "state",
+  "version": "2026.2",
+  "lastUpdated": "2026-03-14",
+  "sources": [
+    "https://www.varetire.org/media/shared/pdf/publications/vrs-plans-comparison.pdf",
+    "https://www.varetire.org/retirees/cola/",
+    "https://www.varetire.org/retirees/receiving-your-benefit/hazardous-duty-supplement/",
+    "https://www.varetire.org/media/shared/pdf/publications/hazardous-duty-faqs-member.pdf",
+    "https://www.varetire.org/media/shared/pdf/publications/hazardous-duty-plan-1.pdf",
+    "https://employers.varetire.org/benefits/hazardous-duty/"
+  ],
+  "membershipNote": "VRS is the 14th largest US public/private pension fund and 42nd largest worldwide. Over 832 participating employers including state agencies, public schools, political subdivisions, colleges/universities, state police, law officers, and judiciary.",
   "hireDateMapping": [
     {
       "planId": "vrs_plan1",
       "label": "VRS Plan 1",
       "hiredBefore": "2010-07-01",
-      "note": "Must be vested (5 yrs service) by 1/1/2013 to retain Plan 1"
+      "vestedBefore": "2013-01-01",
+      "note": "Membership date prior to Jul 1, 2010 AND vested (5 yrs) before Jan 1, 2013 AND no refund taken"
     },
     {
       "planId": "vrs_plan2",
       "label": "VRS Plan 2",
       "hiredOnOrAfter": "2010-07-01",
       "hiredBefore": "2014-01-01",
-      "note": "Hired 7/1/2010 through 12/31/2013"
+      "note": "Membership date Jul 1, 2010 - Dec 31, 2013. Also: pre-Jul 2010 members NOT vested by Jan 1, 2013."
     },
     {
       "planId": "vrs_hybrid",
-      "label": "VRS Hybrid",
+      "label": "VRS Hybrid Retirement Plan",
       "hiredOnOrAfter": "2014-01-01",
-      "note": "Hired on or after 1/1/2014 \u2014 DB + DC components"
+      "note": "Membership date on/after Jan 1, 2014. Also Plan 1/2 members who opted in during 2014 election window. NOT eligible: SPORS, VaLORS, or political subdivision enhanced hazardous duty employees."
     }
   ],
   "plans": {
     "vrs_plan1": {
-      "planId": "vrs_plan1",
-      "planName": "Virginia VRS Plan 1",
-      "type": "defined_benefit",
-      "category": "state_pension",
-      "employer": "Virginia Retirement System",
+      "planName": "VRS Plan 1",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2010-07-01",
+      "closedNote": "Closed to new members. Existing Plan 1 members who were vested by Jan 1, 2013 remain.",
       "formula": {
         "multiplier": 0.017,
-        "facPeriod": 3,
-        "facMethod": "highest_consecutive",
-        "facUnit": "years",
-        "description": "1.7% \u00d7 Average Final Compensation (highest 36 months) \u00d7 Years of Service"
+        "description": "1.7% x AFC x years of service",
+        "averageFinalCompensation": {
+          "months": 36,
+          "method": "highest_consecutive_36_months"
+        }
       },
       "eligibility": {
-        "unreducedAge": 65,
-        "unreducedService": 5,
-        "earlyAge": 55,
-        "earlyService": 5,
-        "earlyPenalty": "actuarial_reduction",
-        "ruleOf90": false,
-        "note": "Age 65 with 5 yrs, OR age 50 with 30 yrs for unreduced"
+        "normalRetirementAge": 65,
+        "unreducedRetirement": [
+          {
+            "age": 65,
+            "serviceYears": 5
+          },
+          {
+            "age": 50,
+            "serviceYears": 30
+          }
+        ],
+        "reducedRetirement": [
+          {
+            "age": 55,
+            "serviceYears": 5
+          },
+          {
+            "age": 50,
+            "serviceYears": 10
+          }
+        ]
       },
       "contributions": {
-        "employee": 5.0,
-        "employer": "actuarially_determined",
-        "note": "5% employee mandatory contribution"
+        "employee": {
+          "rate": 0.05,
+          "note": "5% pretax salary reduction"
+        },
+        "employer": "actuarially determined"
       },
       "vesting": {
-        "years": 5,
-        "note": "5 years of creditable service"
+        "years": 5
       },
       "cola": {
-        "method": "annual",
-        "note": "Annual COLA applies in retirement \u2014 amount varies by Board action"
+        "formula": "First 3% of CPI-U + half of any additional increase up to 4%",
+        "maximum": 0.05,
+        "effectiveDate": "July 1 after one full calendar year from retirement date",
+        "note": "Max 5%. CPI-U = Consumer Price Index for All Urban Consumers."
+      },
+      "disability": {
+        "multiplier": 0.017,
+        "note": "1.7% on all service credit regardless of when earned. Most state employees covered under VSDP."
+      },
+      "benefitPayoutOptions": [
+        "Basic Benefit",
+        "Survivor Option (10-100%)",
+        "Basic Benefit with PLOP",
+        "Survivor Option with PLOP",
+        "Advance Pension Option"
+      ],
+      "plop": {
+        "eligibility": "Work at least 1 year beyond unreduced retirement eligibility",
+        "amounts": "1x, 2x, or 3x annual benefit depending on years worked beyond eligibility"
       },
       "survivorOptions": [
         {
-          "option": "basic",
+          "option": "Basic",
           "memberPct": 100,
           "survivorPct": 0,
-          "label": "Basic (no survivor)"
+          "note": "No survivor benefit"
         },
         {
-          "option": "A",
-          "memberPct": 85,
-          "survivorPct": 100,
-          "label": "Option A \u2014 100% survivor"
-        },
-        {
-          "option": "B",
-          "memberPct": null,
-          "survivorPct": 50,
-          "label": "Option B \u2014 50% survivor"
-        },
-        {
-          "option": "C",
-          "memberPct": 96,
-          "survivorPct": null,
-          "label": "Option C \u2014 120 guaranteed payments"
+          "option": "Survivor",
+          "survivorPct": "10-100%",
+          "note": "Member benefit reduced; survivor receives elected percentage for life"
         }
-      ],
-      "sickLeaveCredit": true,
-      "dcComponent": false
+      ]
     },
     "vrs_plan2": {
-      "planId": "vrs_plan2",
-      "planName": "Virginia VRS Plan 2",
-      "type": "defined_benefit",
-      "category": "state_pension",
-      "employer": "Virginia Retirement System",
+      "planName": "VRS Plan 2",
+      "planType": "defined_benefit",
+      "status": "CLOSED",
+      "closedToNewEntrants": "2014-01-01",
+      "closedNote": "Closed to new members hired on/after Jan 1, 2014 (those go to Hybrid). Existing Plan 2 members remain.",
       "formula": {
-        "multiplier": 0.0165,
-        "facPeriod": 5,
-        "facMethod": "highest_consecutive",
-        "facUnit": "years",
-        "description": "1.65% \u00d7 Average Final Compensation (highest 60 months) \u00d7 Years of Service"
+        "multiplier_post_2013": 0.0165,
+        "multiplier_pre_2013": 0.017,
+        "description": "1.65% on service earned/purchased/granted on/after Jan 1, 2013; 1.7% on service before Jan 1, 2013",
+        "averageFinalCompensation": {
+          "months": 60,
+          "method": "highest_consecutive_60_months"
+        }
       },
       "eligibility": {
-        "unreducedRule": "normal_ss_age_with_5_yrs",
-        "earlyAge": 60,
-        "earlyService": 5,
-        "earlyPenalty": "actuarial_reduction",
-        "ruleOf90": false,
-        "note": "Social Security normal retirement age with 5 yrs service for unreduced"
+        "normalRetirementAge": "Social Security normal retirement age (66-67 based on birth year)",
+        "unreducedRetirement": [
+          {
+            "age": "SS_normal_age",
+            "serviceYears": 5
+          },
+          {
+            "rule": "age + service >= 90",
+            "example": "age 60 with 30 years"
+          }
+        ],
+        "reducedRetirement": [
+          {
+            "age": 60,
+            "serviceYears": 5
+          }
+        ],
+        "mandatoryRetirementAge": 73
       },
       "contributions": {
-        "employee": 5.0,
-        "employer": "actuarially_determined",
-        "note": "5% employee mandatory contribution"
+        "employee": {
+          "rate": 0.05,
+          "note": "5% pretax salary reduction"
+        },
+        "employer": "actuarially determined"
       },
       "vesting": {
-        "years": 5,
-        "note": "5 years of creditable service"
+        "years": 5
       },
       "cola": {
-        "method": "annual",
-        "note": "Annual COLA applies in retirement \u2014 amount varies by Board action"
+        "formula": "First 2% of CPI-U + half of any additional increase up to 2%",
+        "maximum": 0.03,
+        "effectiveDate": "July 1 after one full calendar year from retirement date",
+        "note": "Max 3%."
       },
-      "survivorOptions": [
-        {
-          "option": "basic",
-          "memberPct": 100,
-          "survivorPct": 0,
-          "label": "Basic (no survivor)"
-        },
-        {
-          "option": "A",
-          "memberPct": 85,
-          "survivorPct": 100,
-          "label": "Option A \u2014 100% survivor"
-        },
-        {
-          "option": "B",
-          "memberPct": null,
-          "survivorPct": 50,
-          "label": "Option B \u2014 50% survivor"
-        },
-        {
-          "option": "C",
-          "memberPct": 96,
-          "survivorPct": null,
-          "label": "Option C \u2014 120 guaranteed payments"
-        }
+      "disability": {
+        "multiplier": 0.0165,
+        "note": "1.65% on all service credit regardless of when earned."
+      },
+      "benefitPayoutOptions": [
+        "Basic Benefit",
+        "Survivor Option (10-100%)",
+        "Basic Benefit with PLOP",
+        "Survivor Option with PLOP",
+        "Advance Pension Option"
       ],
-      "sickLeaveCredit": true,
-      "dcComponent": false
+      "plop": {
+        "eligibility": "Work at least 1 year beyond unreduced retirement eligibility",
+        "amounts": "1x, 2x, or 3x annual benefit"
+      }
     },
     "vrs_hybrid": {
-      "planId": "vrs_hybrid",
-      "planName": "Virginia VRS Hybrid",
-      "type": "hybrid",
-      "category": "state_pension",
-      "employer": "Virginia Retirement System",
-      "dbComponent": {
+      "planName": "VRS Hybrid Retirement Plan",
+      "planType": "hybrid_db_dc",
+      "status": "OPEN",
+      "availableFrom": "2014-01-01",
+      "note": "Combines DB pension + DC investment account. Not available to SPORS, VaLORS, or enhanced hazardous duty employees.",
+      "definedBenefit": {
         "multiplier": 0.01,
-        "facPeriod": 5,
-        "facMethod": "highest_consecutive",
-        "facUnit": "years",
-        "description": "1.0% \u00d7 Average Final Compensation (highest 60 months) \u00d7 Years of Service"
-      },
-      "dcComponent": {
-        "employeeDefault": 4.0,
-        "employerAuto": 1.0,
-        "employerMatch": 2.5,
-        "matchVehicle": "457b",
-        "matchNote": "Employer matches up to 2.5% of employee 457(b) voluntary contribution",
-        "accounts": {
-          "vrs401a": {
-            "label": "VRS 401(a)",
-            "fundedBy": "employer",
-            "employeeContrib": false,
-            "note": "Employer-funded DC account \u2014 auto 1% + match deposited here"
-          },
-          "hybrid457b": {
-            "label": "VRS Hybrid 457(b)",
-            "fundedBy": "employee",
-            "defaultContrib": 4.0,
-            "note": "Voluntary employee deferrals \u2014 employer matches up to 2.5%"
-          }
+        "description": "1.0% x AFC x years of service (for service on/after Jan 1, 2014)",
+        "multiplierNote": "Members who opted in from Plan 1/2: prior service uses original multiplier (1.7%/1.65%)",
+        "averageFinalCompensation": {
+          "months": 60,
+          "method": "highest_consecutive_60_months"
         }
       },
+      "definedContribution": {
+        "mandatory": {
+          "employee": {
+            "rate": 0.01,
+            "account": "401(a)"
+          },
+          "employer": {
+            "rate": 0.01,
+            "account": "401(a)"
+          }
+        },
+        "voluntary": {
+          "employee": {
+            "maxRate": 0.04,
+            "account": "457"
+          },
+          "employerMatch": {
+            "maxRate": 0.025,
+            "note": "Employer matches voluntary contributions up to 2.5%"
+          }
+        },
+        "totalPossible": {
+          "employee": "1% mandatory + up to 4% voluntary = 5%",
+          "employer": "1% mandatory + up to 2.5% match = 3.5%"
+        },
+        "vesting": {
+          "2_years": 0.5,
+          "3_years": 0.75,
+          "4_years": 1.0,
+          "note": "Employer contributions vest on schedule. Employee contributions always 100% vested."
+        },
+        "distributionRequiredBy": "age 73"
+      },
       "eligibility": {
-        "unreducedRule": "normal_ss_age_with_5_yrs",
-        "earlyAge": 60,
-        "earlyService": 5,
-        "earlyPenalty": "actuarial_reduction",
-        "ruleOf90": false,
-        "note": "Social Security normal retirement age with 5 yrs service for unreduced DB benefit"
+        "normalRetirementAge": "Social Security normal retirement age",
+        "unreducedRetirement": [
+          {
+            "age": "SS_normal_age",
+            "serviceYears": 5
+          },
+          {
+            "rule": "age + service >= 90"
+          }
+        ],
+        "reducedRetirement": [
+          {
+            "age": 60,
+            "serviceYears": 5
+          }
+        ],
+        "mandatoryRetirementAge": 73
       },
       "contributions": {
-        "employee_db": 4.0,
-        "employee_dc_default": 4.0,
-        "employer_dc_auto": 1.0,
-        "employer_dc_match_max": 2.5,
-        "note": "4% mandatory DB + 4% default DC voluntary (adjustable). Employer: 1% auto + up to 2.5% match on 457b."
+        "employee_db": {
+          "rate": 0.04,
+          "note": "4% to defined benefit component"
+        },
+        "employee_dc_mandatory": {
+          "rate": 0.01,
+          "note": "1% mandatory to 401(a)"
+        },
+        "employee_dc_voluntary": {
+          "maxRate": 0.04,
+          "note": "Up to 4% voluntary to 457"
+        },
+        "employer": "actuarially determined (DB) + 1% mandatory + up to 2.5% match (DC)"
       },
       "vesting": {
         "years": 5,
-        "note": "5 years for both DB and DC employer contributions"
+        "note": "DB component. DC has separate vesting schedule."
       },
       "cola": {
-        "method": "annual",
-        "note": "DB component receives annual COLA in retirement"
+        "formula": "Same as Plan 2: first 2% of CPI-U + half of additional up to 2%",
+        "maximum": 0.03,
+        "note": "Applies to DB component only. DC component has no COLA.",
+        "effectiveDate": "July 1 after one full calendar year from retirement date"
       },
-      "survivorOptions": [
-        {
-          "option": "basic",
-          "memberPct": 100,
-          "survivorPct": 0,
-          "label": "Basic (no survivor)"
-        },
-        {
-          "option": "A",
-          "memberPct": 85,
-          "survivorPct": 100,
-          "label": "Option A \u2014 100% survivor"
-        },
-        {
-          "option": "B",
-          "memberPct": null,
-          "survivorPct": 50,
-          "label": "Option B \u2014 50% survivor"
-        },
-        {
-          "option": "C",
-          "memberPct": 96,
-          "survivorPct": null,
-          "label": "Option C \u2014 120 guaranteed payments"
-        }
-      ],
-      "sickLeaveCredit": true
+      "disability": {
+        "note": "State employees in Hybrid covered under VSDP. Political subdivision/school members covered under VLDP or comparable employer plan. Hybrid members not eligible for disability retirement."
+      }
     }
+  },
+  "hazardousDuty": {
+    "_comment": "Enhanced retirement benefits for law enforcement, state police, fire/rescue, and other eligible hazardous duty positions",
+    "systems": {
+      "SPORS": {
+        "name": "State Police Officers' Retirement System",
+        "multiplier": 0.0185,
+        "eligibility": {
+          "unreducedRetirement": [
+            {
+              "age": 60,
+              "serviceYears": 5
+            },
+            {
+              "age": 50,
+              "serviceYears": 25
+            }
+          ],
+          "reducedRetirement": [
+            {
+              "age": 50,
+              "serviceYears": 5
+            }
+          ],
+          "mandatoryRetirementAge": 70
+        },
+        "note": "State Police officers only. 1.85% multiplier on all service."
+      },
+      "VaLORS": {
+        "name": "Virginia Law Officers' Retirement System",
+        "multiplier_post_2001": 0.02,
+        "multiplier_pre_2001_retained": 0.017,
+        "eligibility": {
+          "unreducedRetirement": [
+            {
+              "age": 60,
+              "serviceYears": 5
+            },
+            {
+              "age": 50,
+              "serviceYears": 25
+            }
+          ],
+          "reducedRetirement": [
+            {
+              "age": 50,
+              "serviceYears": 5
+            }
+          ],
+          "mandatoryRetirementAge": 70
+        },
+        "note": "Members hired/rehired after Jul 1, 2001 get 2.0% multiplier but NO hazardous duty supplement. Pre-7/1/2001 members could elect 1.7% + supplement or 2.0% without."
+      },
+      "politicalSubdivisionEnhanced": {
+        "name": "Enhanced Benefits for Political Subdivision Hazardous Duty Employees",
+        "multiplier": "1.7% or 1.85% (employer election)",
+        "sheriffs": "1.85% (mandatory for sheriffs and regional jail superintendents)",
+        "eligibility": {
+          "unreducedRetirement": [
+            {
+              "age": 60,
+              "serviceYears": 5
+            },
+            {
+              "age": 50,
+              "serviceYears": 25
+            }
+          ],
+          "reducedRetirement": [
+            {
+              "age": 50,
+              "serviceYears": 5
+            }
+          ],
+          "mandatoryRetirementAge": 70
+        },
+        "coveredPositions": "Sheriffs, deputy sheriffs, firefighters, fire medics, regional jail superintendents, and other eligible positions as elected by employer",
+        "note": "Political subdivisions make irrevocable election to provide enhanced benefits. Members are Plan 1 or Plan 2 (NOT eligible for Hybrid)."
+      }
+    },
+    "hazardousDutySupplement": {
+      "currentAmount": {
+        "annual": 17856,
+        "monthly": 1488,
+        "asOf": "2025-07-01"
+      },
+      "eligibility": "20+ years of hazardous duty service credit in SPORS, VaLORS (with 1.7% election), or political subdivision enhanced position",
+      "payableUntil": "Social Security normal retirement age (or age 65 for VaLORS members)",
+      "adjustmentSchedule": "Reviewed every 2 years; increased by applicable Social Security COLAs",
+      "notEligible": "VaLORS members with 2.0% multiplier (hired/rehired after Jul 1, 2001)",
+      "history": "First established 1966 at $1,620/year for SPORS. Extended to local law enforcement in 1970 and VaLORS in 1999."
+    }
+  },
+  "healthInsuranceCredit": {
+    "eligibility": "15+ years of creditable service at retirement",
+    "stateEmployees": {
+      "perYearOfService": 4.25,
+      "note": "$4.25/month per year of service. Increased from $4.00 effective Jul 1, 2024."
+    },
+    "politicalSubdivision": {
+      "perYearOfService": 1.5,
+      "maximum": 45.0,
+      "note": "$1.50/month per year of service, max $45/month. Higher if employer elected $1.00 enhancement."
+    },
+    "taxFree": true,
+    "note": "Assists with single health insurance premiums. Applied to benefit payment."
+  },
+  "portabilityAgreements": [
+    "Charlottesville",
+    "Danville",
+    "Newport News",
+    "Norfolk",
+    "Richmond",
+    "Roanoke",
+    "Fairfax County"
+  ],
+  "groupLifeInsurance": {
+    "activeCoverage": "Salary rounded to next $1,000 then doubled (natural death) or quadrupled (accidental death)",
+    "retireeCoverage": "Reduces 25% per year to minimum of 25% of original. Minimum for 30+ years service: $9,768/year (as of Jul 1, 2025).",
+    "note": "Optional Group Life Insurance also available for purchase."
   }
 }
