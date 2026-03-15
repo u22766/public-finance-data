@@ -45,6 +45,28 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### state-benefits.json v2.5
+
+**Date:** 2026-03-14
+
+**Phase 2 Audit — 10 stale tax rates updated to 2026:**
+- GA: 5.49% → 5.09% (phase-down continues)
+- IN: 3.05% → 2.95% (HB1001)
+- KY: 4.0% → 3.5% (revenue-trigger phasedown)
+- MS: 5.0% → 4.0% (path to 3.0% by 2030)
+- MT: 5.9% → 5.65% (HB337)
+- NE: 5.2% → 4.55% (path to 3.99% by 2027)
+- OH: 3.57% → 2.75% flat (HB96, bracket consolidation)
+- OK: 4.75% → 4.5% (HB2764, 6→3 brackets)
+- SC: 6.4% → 6.0% (FY2026 budget)
+- IA: 3.8% → 3.9% (completed flat transition)
+
+**Exemption classification corrections:**
+- GA: Changed `exempt: true` to `exempt: false, partial_exemption: true` — $65K cap means partial, not full
+- UT: Changed to credit mechanism model — nonrefundable 4.5% credit (equals tax rate), effectively full but technically a credit
+
+**CI:** Added 10 rate spot-checks and UT credit mechanism validation.
+
 ### state-benefits.json v2.4
 
 **Date:** 2026-03-14

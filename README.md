@@ -171,7 +171,7 @@ Files are organized by jurisdiction and domain:
 | `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
 | `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
-| `state_benefits` | 2.4 | `states/state-benefits.json` |
+| `state_benefits` | 2.5 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
 | `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
 | `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
@@ -214,11 +214,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,822 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,832 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 997 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit guard rails |
+| Core | `validate.py` | 1007 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit guard rails |
 | Tier 2 | `validate_tier2.py` | 527 | State benefits — field structure, exemption types, IU eligibility |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |

@@ -1323,7 +1323,7 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
         return
     data = json.loads(sb_path.read_text())
 
-    s.check("state-benefits version >= 2.4", data.get("version", "0") >= "2.4")
+    s.check("state-benefits version >= 2.5", data.get("version", "0") >= "2.5")
 
     states_by_code = {st["state_code"]: st for st in data.get("states", [])}
 
@@ -1349,18 +1349,20 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
     s.check("NC pending legislation status updated for 2026 session",
             "2026" in nc_pl.get("status", ""))
 
-    # ── GA Fix: HB 266 all-ages $65K exemption ──
+    # ── GA Fix: HB 266 all-ages $65K exemption (partial, not full) ──
     ga = states_by_code.get("GA", {})
     ga_it = ga.get("income_tax", {})
     ga_mr = ga_it.get("military_retirement", {})
-    s.check("GA military retirement exempt=True", ga_mr.get("exempt") is True)
+    s.check("GA military retirement NOT fully exempt", ga_mr.get("exempt") is False)
+    s.check("GA military retirement partial exemption",
+            ga_mr.get("partial_exemption") is True)
     s.check("GA exemption amount $65,000", ga_mr.get("exemption_amount") == 65000)
     s.check("GA cites HB 266", "HB 266" in ga_mr.get("authority", ""))
     s.check("GA prior tiers preserved for reference",
             ga_mr.get("prior_tiers", {}).get("under_62_exemption") == 17500)
 
     # ── Guard rails: states that MUST be exempt ──
-    must_exempt = ["NC", "NE", "AZ", "UT", "MN", "PA", "OH", "IN", "MI"]
+    must_exempt = ["NC", "NE", "AZ", "PA", "OH", "IN", "MI", "MN"]
     for code in must_exempt:
         st = states_by_code.get(code, {})
         mr = st.get("income_tax", {}).get("military_retirement", {})
@@ -1396,6 +1398,25 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
             md_tiers.get("under_55", {}).get("amount") == 12500)
     s.check("MD age-55+ subtraction $20,000",
             md_tiers.get("age_55_plus", {}).get("amount") == 20000)
+
+    # UT: Credit mechanism (effectively full but technically partial)
+    ut = states_by_code.get("UT", {})
+    ut_mr = ut.get("income_tax", {}).get("military_retirement", {})
+    s.check("UT military retirement uses credit mechanism",
+            ut_mr.get("mechanism") == "nonrefundable_credit")
+    s.check("UT credit rate equals tax rate (4.5%)",
+            abs(ut_mr.get("credit_rate", 0) - 0.045) < 0.001)
+
+    # ── Rate spot-checks for 2026 ──
+    rate_checks = {
+        "NC": 0.0399, "GA": 0.0509, "IN": 0.0295, "KY": 0.035,
+        "NE": 0.0455, "OH": 0.0275, "OK": 0.045, "MT": 0.0565,
+    }
+    for code, expected in rate_checks.items():
+        st = states_by_code.get(code, {})
+        actual = st.get("income_tax", {}).get("top_rate", 0)
+        s.check(f"{code} 2026 rate is {expected}",
+                abs(actual - expected) < 0.0001)
 
 
 # ── Main ──
