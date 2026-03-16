@@ -1,7 +1,8 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 18 validation suites
+# 19 validation suites
+# Session 44: Added validate_sdcera.py for SDCERA (San Diego County) pension plans
 #
 # Session 43: Added validate_federal_retirement.py (157 checks) for TSP Roth conversion, FERS SRS, CSRS rules, FEGLI, FEHB retirement eligibility
 # Session 42: Added validate_municipal.py (153 checks) for MCERP and FCPP municipal pension data
@@ -84,6 +85,9 @@ jobs:
 
       - name: Validate federal retirement benefits gaps — TSP Roth, SRS, CSRS, FEGLI, FEHB (157 checks)
         run: python tests/validate_federal_retirement.py
+
+      - name: Validate SDCERA San Diego County pension plans (9 tiers)
+        run: python tests/validate_sdcera.py
       
       - name: Validation summary
         if: success()
