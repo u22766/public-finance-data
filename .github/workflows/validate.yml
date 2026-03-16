@@ -1,7 +1,8 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 19 validation suites
+# 20 validation suites
+# Session 40: Added validate_filing_status.py (816 checks) for filing-status-thresholds.json
 # Session 44: Added validate_sdcera.py for SDCERA (San Diego County) pension plans
 #
 # Session 43: Added validate_federal_retirement.py (157 checks) for TSP Roth conversion, FERS SRS, CSRS rules, FEGLI, FEHB retirement eligibility
@@ -88,6 +89,9 @@ jobs:
 
       - name: Validate SDCERA San Diego County pension plans (9 tiers)
         run: python tests/validate_sdcera.py
+
+      - name: Validate filing status thresholds (816 checks)
+        run: python tests/validate_filing_status.py
       
       - name: Validation summary
         if: success()
