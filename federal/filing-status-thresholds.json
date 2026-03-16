@@ -1,0 +1,6086 @@
+{
+  "metadata": {
+    "name": "Filing Status Threshold Matrix",
+    "description": "Consolidated filing-status-dependent thresholds for all five IRS filing statuses. Single lookup point for threshold-dependent calculations \u2014 federal tax, Social Security taxation, IRMAA, IRA eligibility, and SALT caps all keyed by filing status.",
+    "version": "2026.1",
+    "effective_date": "2026-01-01",
+    "last_updated": "2026-03-16",
+    "update_frequency": "annual (January, after IRS Rev. Proc. published)",
+    "sources": [
+      "IRS Rev. Proc. 2025-32 (2026 inflation adjustments)",
+      "CMS CMS-8089-N (2026 IRMAA thresholds)",
+      "SSA (SS taxation provisional income thresholds \u2014 unchanged since 1993)",
+      "IRS Notice 2025-67 (IRA/Roth limits)",
+      "OBBBA P.L. 119-21 (senior deduction)",
+      "26 U.S.C. \u00a7 1(a)-(d) (tax rate tables by filing status)",
+      "Tax Foundation historical bracket data (CRS Report RL34498)",
+      "CMS annual IRMAA announcements (2016-2025)"
+    ],
+    "notes": [
+      "Five IRS filing statuses: single, married_filing_jointly (MFJ), married_filing_separately (MFS), head_of_household (HoH), qualifying_surviving_spouse (QSS).",
+      "QSS uses MFJ rates and thresholds for up to 2 tax years after spouse's death, if dependent child.",
+      "MFS is the most restrictive status \u2014 collapses Roth IRA access, SS taxation thresholds, and IRMAA thresholds.",
+      "HoH requires maintaining a home for a qualifying dependent. Brackets are wider than single, narrower than MFJ.",
+      "Cross-references: federal-tax-brackets.json (historical brackets), rates-annual.json (current-year constants), ira-limits.json (Roth phase-outs), obbba-tax-provisions.json (senior deduction), medicare-rates.json (IRMAA).",
+      "Historical data covers 2016-2025. Pre-TCJA years (2016-2017) use the 7-rate structure (10/15/25/28/33/35/39.6%). TCJA years (2018-2025) use the 7-rate structure (10/12/22/24/32/35/37%). OBBBA senior deduction and expanded SALT caps only apply starting 2025."
+    ]
+  },
+  "year": 2026,
+  "filing_statuses": {
+    "single": {
+      "status_code": "S",
+      "description": "Unmarried, or legally separated/divorced with no qualifying dependents for HoH",
+      "eligibility": "Default for unmarried individuals not qualifying for HoH",
+      "tax": {
+        "standard_deduction": 16100,
+        "additional_deduction_age_65": 2050,
+        "additional_deduction_blind": 2050,
+        "obbba_senior_deduction": {
+          "amount": 6000,
+          "phase_out_magi": 75000,
+          "effective_years": [
+            2025,
+            2026,
+            2027,
+            2028
+          ],
+          "stacks_with_standard": true,
+          "stacks_with_additional_65": true
+        },
+        "brackets": [
+          {
+            "rate": 0.1,
+            "min": 0,
+            "max": 12400
+          },
+          {
+            "rate": 0.12,
+            "min": 12401,
+            "max": 50400
+          },
+          {
+            "rate": 0.22,
+            "min": 50401,
+            "max": 105700
+          },
+          {
+            "rate": 0.24,
+            "min": 105701,
+            "max": 201775
+          },
+          {
+            "rate": 0.32,
+            "min": 201776,
+            "max": 256225
+          },
+          {
+            "rate": 0.35,
+            "min": 256226,
+            "max": 640600
+          },
+          {
+            "rate": 0.37,
+            "min": 640601,
+            "max": null
+          }
+        ],
+        "capital_gains_0pct_max": 50400,
+        "capital_gains_15pct_max": 555850,
+        "capital_gains_20pct_above": 555850,
+        "amt_exemption": 88100,
+        "amt_phaseout_start": 626350
+      },
+      "social_security_taxation": {
+        "provisional_income_50pct_threshold": 25000,
+        "provisional_income_85pct_threshold": 34000,
+        "_note": "Combined income = AGI + tax-exempt interest + 50% of SS benefits. Thresholds unchanged since 1993 \u2014 not indexed."
+      },
+      "irmaa": {
+        "part_b_standard_premium": 202.9,
+        "tiers": [
+          {
+            "tier": 0,
+            "magi_min": 0,
+            "magi_max": 109000,
+            "part_b": 202.9,
+            "part_d_surcharge": 0
+          },
+          {
+            "tier": 1,
+            "magi_min": 109001,
+            "magi_max": 137000,
+            "part_b": 284.1,
+            "part_d_surcharge": 14.5
+          },
+          {
+            "tier": 2,
+            "magi_min": 137001,
+            "magi_max": 171000,
+            "part_b": 405.8,
+            "part_d_surcharge": 37.4
+          },
+          {
+            "tier": 3,
+            "magi_min": 171001,
+            "magi_max": 205000,
+            "part_b": 527.5,
+            "part_d_surcharge": 60.3
+          },
+          {
+            "tier": 4,
+            "magi_min": 205001,
+            "magi_max": 500000,
+            "part_b": 649.3,
+            "part_d_surcharge": 83.3
+          },
+          {
+            "tier": 5,
+            "magi_min": 500001,
+            "magi_max": null,
+            "part_b": 689.9,
+            "part_d_surcharge": 91.0
+          }
+        ],
+        "lookback_years": 2
+      },
+      "roth_ira": {
+        "contribution_limit": 7500,
+        "catchup_age_50": 1100,
+        "full_contribution_below_magi": 153000,
+        "ineligible_at_magi": 168000,
+        "_note": "Linear phase-out between thresholds. Rounded down to nearest $10."
+      },
+      "traditional_ira_deductibility": {
+        "active_participant_full_below": 81000,
+        "active_participant_ineligible_at": 91000,
+        "_note": "If person is active participant in employer plan (TSP counts). Non-active-participant has no income limit."
+      },
+      "salt_deduction_cap": {
+        "cap": 40400,
+        "phase_out_magi": 250000,
+        "phase_out_rate_pct": 30,
+        "minimum_cap": 10000,
+        "_note": "OBBBA SALT cap. Effective 2025-2029."
+      }
+    },
+    "married_filing_jointly": {
+      "status_code": "MFJ",
+      "description": "Married couple filing a joint return, or QSS (qualifying surviving spouse) during the 2-year bridge",
+      "eligibility": "Married as of Dec 31 of tax year. QSS: up to 2 years after spouse's death if dependent child.",
+      "tax": {
+        "standard_deduction": 32200,
+        "additional_deduction_age_65_per_spouse": 1650,
+        "additional_deduction_blind_per_spouse": 1650,
+        "obbba_senior_deduction": {
+          "amount_per_person": 6000,
+          "amount_both_qualifying": 12000,
+          "phase_out_magi": 150000,
+          "effective_years": [
+            2025,
+            2026,
+            2027,
+            2028
+          ],
+          "stacks_with_standard": true,
+          "stacks_with_additional_65": true
+        },
+        "brackets": [
+          {
+            "rate": 0.1,
+            "min": 0,
+            "max": 24800
+          },
+          {
+            "rate": 0.12,
+            "min": 24801,
+            "max": 100800
+          },
+          {
+            "rate": 0.22,
+            "min": 100801,
+            "max": 211400
+          },
+          {
+            "rate": 0.24,
+            "min": 211401,
+            "max": 403550
+          },
+          {
+            "rate": 0.32,
+            "min": 403551,
+            "max": 512450
+          },
+          {
+            "rate": 0.35,
+            "min": 512451,
+            "max": 768450
+          },
+          {
+            "rate": 0.37,
+            "min": 768451,
+            "max": null
+          }
+        ],
+        "capital_gains_0pct_max": 100800,
+        "capital_gains_15pct_max": 555850,
+        "capital_gains_20pct_above": 555850,
+        "amt_exemption": 137000,
+        "amt_phaseout_start": 1252700
+      },
+      "social_security_taxation": {
+        "provisional_income_50pct_threshold": 32000,
+        "provisional_income_85pct_threshold": 44000,
+        "_note": "NOT double the single thresholds. This asymmetry creates the marriage penalty for SS taxation."
+      },
+      "irmaa": {
+        "part_b_standard_premium": 202.9,
+        "tiers": [
+          {
+            "tier": 0,
+            "magi_min": 0,
+            "magi_max": 218000,
+            "part_b": 202.9,
+            "part_d_surcharge": 0
+          },
+          {
+            "tier": 1,
+            "magi_min": 218001,
+            "magi_max": 274000,
+            "part_b": 284.1,
+            "part_d_surcharge": 14.5
+          },
+          {
+            "tier": 2,
+            "magi_min": 274001,
+            "magi_max": 342000,
+            "part_b": 405.8,
+            "part_d_surcharge": 37.4
+          },
+          {
+            "tier": 3,
+            "magi_min": 342001,
+            "magi_max": 410000,
+            "part_b": 527.5,
+            "part_d_surcharge": 60.3
+          },
+          {
+            "tier": 4,
+            "magi_min": 410001,
+            "magi_max": 750000,
+            "part_b": 649.3,
+            "part_d_surcharge": 83.3
+          },
+          {
+            "tier": 5,
+            "magi_min": 750001,
+            "magi_max": null,
+            "part_b": 689.9,
+            "part_d_surcharge": 91.0
+          }
+        ],
+        "lookback_years": 2
+      },
+      "roth_ira": {
+        "contribution_limit": 7500,
+        "catchup_age_50": 1100,
+        "full_contribution_below_magi": 242000,
+        "ineligible_at_magi": 252000,
+        "spousal_ira": {
+          "available": true,
+          "requirement": "Non-working spouse can contribute using working spouse's earned income",
+          "same_income_limits": true,
+          "_note": "Spousal IRA uses same MFJ MAGI thresholds. Both spouses can contribute $7,500 each ($8,600 each if 50+)."
+        }
+      },
+      "traditional_ira_deductibility": {
+        "active_participant_full_below": 129000,
+        "active_participant_ineligible_at": 149000,
+        "non_participant_spouse_full_below": 242000,
+        "non_participant_spouse_ineligible_at": 252000,
+        "_note": "If NEITHER spouse is active participant, no income limit for deductibility."
+      },
+      "salt_deduction_cap": {
+        "cap": 40400,
+        "phase_out_magi": 500000,
+        "phase_out_rate_pct": 30,
+        "minimum_cap": 10000
+      }
+    },
+    "married_filing_separately": {
+      "status_code": "MFS",
+      "description": "Married couple electing to file separate returns. Most restrictive status for retirement planning.",
+      "eligibility": "Married as of Dec 31 of tax year, electing separate filing.",
+      "_warning": "MFS collapses most benefit thresholds. Roth IRA effectively unavailable. SS fully taxable. IRMAA uses single-equivalent thresholds with accelerated surcharges. Use only when strategic (medical deductions, income-driven repayment, IRMAA management).",
+      "tax": {
+        "standard_deduction": 16100,
+        "additional_deduction_age_65": 1650,
+        "additional_deduction_blind": 1650,
+        "obbba_senior_deduction": {
+          "amount": 6000,
+          "phase_out_magi": 75000,
+          "effective_years": [
+            2025,
+            2026,
+            2027,
+            2028
+          ],
+          "stacks_with_standard": true,
+          "stacks_with_additional_65": true
+        },
+        "brackets": [
+          {
+            "rate": 0.1,
+            "min": 0,
+            "max": 12400
+          },
+          {
+            "rate": 0.12,
+            "min": 12401,
+            "max": 50400
+          },
+          {
+            "rate": 0.22,
+            "min": 50401,
+            "max": 105700
+          },
+          {
+            "rate": 0.24,
+            "min": 105701,
+            "max": 201775
+          },
+          {
+            "rate": 0.32,
+            "min": 201776,
+            "max": 256225
+          },
+          {
+            "rate": 0.35,
+            "min": 256226,
+            "max": 384225
+          },
+          {
+            "rate": 0.37,
+            "min": 384226,
+            "max": null
+          }
+        ],
+        "_bracket_note": "MFS brackets are exactly half of MFJ through the 35% bracket, then compressed at the 37% threshold.",
+        "capital_gains_0pct_max": 50400,
+        "capital_gains_15pct_max": 277925,
+        "capital_gains_20pct_above": 277925,
+        "amt_exemption": 68500,
+        "amt_phaseout_start": 626350
+      },
+      "social_security_taxation": {
+        "provisional_income_50pct_threshold": 0,
+        "provisional_income_85pct_threshold": 0,
+        "_note": "MFS filers who lived with spouse at any time during the year: ALL Social Security benefits are potentially taxable from dollar one. The 50%/85% thresholds are effectively zero."
+      },
+      "irmaa": {
+        "part_b_standard_premium": 202.9,
+        "tiers": [
+          {
+            "tier": 0,
+            "magi_min": 0,
+            "magi_max": 109000,
+            "part_b": 202.9,
+            "part_d_surcharge": 0
+          },
+          {
+            "tier": 4,
+            "magi_min": 109001,
+            "magi_max": 390999,
+            "part_b": 649.3,
+            "part_d_surcharge": 83.3
+          },
+          {
+            "tier": 5,
+            "magi_min": 391000,
+            "magi_max": null,
+            "part_b": 689.9,
+            "part_d_surcharge": 91.0
+          }
+        ],
+        "_note": "MFS has only 3 IRMAA tiers. Jumps directly from tier 0 to tier 4 \u2014 skipping 3 intermediate tiers. This is the most punitive IRMAA schedule.",
+        "lookback_years": 2
+      },
+      "roth_ira": {
+        "contribution_limit": 7500,
+        "catchup_age_50": 1100,
+        "full_contribution_below_magi": 0,
+        "ineligible_at_magi": 10000,
+        "_note": "If lived with spouse at any time during year, phase-out is $0 to $10,000. Effectively zero Roth IRA access. If lived apart ALL year, single limits apply instead."
+      },
+      "traditional_ira_deductibility": {
+        "active_participant_full_below": 0,
+        "active_participant_ineligible_at": 10000,
+        "_note": "Same $0-$10,000 restriction as Roth IRA if lived with spouse."
+      },
+      "salt_deduction_cap": {
+        "cap": 20200,
+        "phase_out_magi": 250000,
+        "phase_out_rate_pct": 30,
+        "minimum_cap": 5000,
+        "_note": "MFS SALT cap is half of MFJ cap."
+      }
+    },
+    "head_of_household": {
+      "status_code": "HoH",
+      "description": "Unmarried person who pays more than half the cost of maintaining a home for a qualifying dependent.",
+      "eligibility": "Must be unmarried (or considered unmarried) on Dec 31. Must pay >50% of home costs. Qualifying dependent must live in home >50% of year.",
+      "qualifying_dependents": [
+        "Qualifying child (son, daughter, stepchild, foster child, sibling, or descendant of any of these)",
+        "Qualifying relative who is a dependent and lived in the home all year (parent exception: parent need not live with you)"
+      ],
+      "tax": {
+        "standard_deduction": 24150,
+        "additional_deduction_age_65": 2050,
+        "additional_deduction_blind": 2050,
+        "obbba_senior_deduction": {
+          "amount": 6000,
+          "phase_out_magi": 75000,
+          "effective_years": [
+            2025,
+            2026,
+            2027,
+            2028
+          ],
+          "stacks_with_standard": true,
+          "stacks_with_additional_65": true,
+          "_note": "HoH phase-out uses single threshold, not MFJ."
+        },
+        "brackets": [
+          {
+            "rate": 0.1,
+            "min": 0,
+            "max": 17650
+          },
+          {
+            "rate": 0.12,
+            "min": 17651,
+            "max": 67450
+          },
+          {
+            "rate": 0.22,
+            "min": 67451,
+            "max": 105700
+          },
+          {
+            "rate": 0.24,
+            "min": 105701,
+            "max": 201775
+          },
+          {
+            "rate": 0.32,
+            "min": 201776,
+            "max": 256225
+          },
+          {
+            "rate": 0.35,
+            "min": 256226,
+            "max": 640600
+          },
+          {
+            "rate": 0.37,
+            "min": 640601,
+            "max": null
+          }
+        ],
+        "_bracket_note": "10% and 12% brackets are wider than single. 22% and above match single thresholds.",
+        "capital_gains_0pct_max": 67450,
+        "capital_gains_15pct_max": 555850,
+        "capital_gains_20pct_above": 555850,
+        "amt_exemption": 88100,
+        "amt_phaseout_start": 626350
+      },
+      "social_security_taxation": {
+        "provisional_income_50pct_threshold": 25000,
+        "provisional_income_85pct_threshold": 34000,
+        "_note": "Same thresholds as single filing."
+      },
+      "irmaa": {
+        "_note": "HoH uses the same IRMAA tiers as single filers.",
+        "part_b_standard_premium": 202.9,
+        "tiers": [
+          {
+            "tier": 0,
+            "magi_min": 0,
+            "magi_max": 109000,
+            "part_b": 202.9,
+            "part_d_surcharge": 0
+          },
+          {
+            "tier": 1,
+            "magi_min": 109001,
+            "magi_max": 137000,
+            "part_b": 284.1,
+            "part_d_surcharge": 14.5
+          },
+          {
+            "tier": 2,
+            "magi_min": 137001,
+            "magi_max": 171000,
+            "part_b": 405.8,
+            "part_d_surcharge": 37.4
+          },
+          {
+            "tier": 3,
+            "magi_min": 171001,
+            "magi_max": 205000,
+            "part_b": 527.5,
+            "part_d_surcharge": 60.3
+          },
+          {
+            "tier": 4,
+            "magi_min": 205001,
+            "magi_max": 500000,
+            "part_b": 649.3,
+            "part_d_surcharge": 83.3
+          },
+          {
+            "tier": 5,
+            "magi_min": 500001,
+            "magi_max": null,
+            "part_b": 689.9,
+            "part_d_surcharge": 91.0
+          }
+        ],
+        "lookback_years": 2
+      },
+      "roth_ira": {
+        "contribution_limit": 7500,
+        "catchup_age_50": 1100,
+        "full_contribution_below_magi": 153000,
+        "ineligible_at_magi": 168000,
+        "_note": "Same thresholds as single filers."
+      },
+      "traditional_ira_deductibility": {
+        "active_participant_full_below": 81000,
+        "active_participant_ineligible_at": 91000,
+        "_note": "Same as single if active participant in employer plan."
+      },
+      "salt_deduction_cap": {
+        "cap": 40400,
+        "phase_out_magi": 250000,
+        "phase_out_rate_pct": 30,
+        "minimum_cap": 10000,
+        "_note": "Same SALT cap as single filers."
+      }
+    },
+    "qualifying_surviving_spouse": {
+      "status_code": "QSS",
+      "description": "Surviving spouse for up to 2 tax years after year of spouse's death, if maintaining home for dependent child.",
+      "eligibility": "Must not have remarried. Must have a dependent child who lived in the home all year. Available only for the 2 tax years following the year of death.",
+      "_note": "Uses MFJ rates and thresholds. This is the 2-year bridge before dropping to single or HoH.",
+      "tax": {
+        "_inherits": "married_filing_jointly",
+        "standard_deduction": 32200,
+        "additional_deduction_age_65": 2050,
+        "additional_deduction_blind": 2050,
+        "obbba_senior_deduction": {
+          "amount": 6000,
+          "phase_out_magi": 150000,
+          "effective_years": [
+            2025,
+            2026,
+            2027,
+            2028
+          ],
+          "stacks_with_standard": true,
+          "stacks_with_additional_65": true
+        },
+        "brackets": [
+          {
+            "rate": 0.1,
+            "min": 0,
+            "max": 24800
+          },
+          {
+            "rate": 0.12,
+            "min": 24801,
+            "max": 100800
+          },
+          {
+            "rate": 0.22,
+            "min": 100801,
+            "max": 211400
+          },
+          {
+            "rate": 0.24,
+            "min": 211401,
+            "max": 403550
+          },
+          {
+            "rate": 0.32,
+            "min": 403551,
+            "max": 512450
+          },
+          {
+            "rate": 0.35,
+            "min": 512451,
+            "max": 768450
+          },
+          {
+            "rate": 0.37,
+            "min": 768451,
+            "max": null
+          }
+        ]
+      },
+      "social_security_taxation": {
+        "provisional_income_50pct_threshold": 32000,
+        "provisional_income_85pct_threshold": 44000,
+        "_note": "Same as MFJ."
+      },
+      "irmaa": {
+        "_note": "QSS uses MFJ IRMAA tiers.",
+        "part_b_standard_premium": 202.9,
+        "tiers": [
+          {
+            "tier": 0,
+            "magi_min": 0,
+            "magi_max": 218000,
+            "part_b": 202.9,
+            "part_d_surcharge": 0
+          },
+          {
+            "tier": 1,
+            "magi_min": 218001,
+            "magi_max": 274000,
+            "part_b": 284.1,
+            "part_d_surcharge": 14.5
+          },
+          {
+            "tier": 2,
+            "magi_min": 274001,
+            "magi_max": 342000,
+            "part_b": 405.8,
+            "part_d_surcharge": 37.4
+          },
+          {
+            "tier": 3,
+            "magi_min": 342001,
+            "magi_max": 410000,
+            "part_b": 527.5,
+            "part_d_surcharge": 60.3
+          },
+          {
+            "tier": 4,
+            "magi_min": 410001,
+            "magi_max": 750000,
+            "part_b": 649.3,
+            "part_d_surcharge": 83.3
+          },
+          {
+            "tier": 5,
+            "magi_min": 750001,
+            "magi_max": null,
+            "part_b": 689.9,
+            "part_d_surcharge": 91.0
+          }
+        ],
+        "lookback_years": 2
+      },
+      "roth_ira": {
+        "contribution_limit": 7500,
+        "catchup_age_50": 1100,
+        "full_contribution_below_magi": 242000,
+        "ineligible_at_magi": 252000,
+        "_note": "Same as MFJ. Spousal IRA no longer applies (spouse deceased)."
+      },
+      "traditional_ira_deductibility": {
+        "active_participant_full_below": 129000,
+        "active_participant_ineligible_at": 149000,
+        "_note": "Same as MFJ for active participants."
+      },
+      "salt_deduction_cap": {
+        "cap": 40400,
+        "phase_out_magi": 500000,
+        "phase_out_rate_pct": 30,
+        "minimum_cap": 10000,
+        "_note": "Same as MFJ."
+      }
+    }
+  },
+  "transition_rules": {
+    "_description": "State machine transitions for filing status determination. Each event changes the filing status for the current and/or subsequent tax years.",
+    "marriage": {
+      "from": [
+        "single",
+        "head_of_household"
+      ],
+      "to": "married_filing_jointly",
+      "alternative": "married_filing_separately",
+      "effective": "Year of marriage (married as of Dec 31 = MFJ for full year)",
+      "notes": "MFS is an annual election \u2014 couple can switch between MFJ and MFS each year."
+    },
+    "divorce": {
+      "from": [
+        "married_filing_jointly",
+        "married_filing_separately"
+      ],
+      "to_with_dependents": "head_of_household",
+      "to_without_dependents": "single",
+      "effective": "Year of final divorce decree (if finalized by Dec 31)"
+    },
+    "death_of_spouse": {
+      "from": [
+        "married_filing_jointly",
+        "married_filing_separately"
+      ],
+      "year_of_death": "married_filing_jointly",
+      "year_1_with_dependent_child": "qualifying_surviving_spouse",
+      "year_2_with_dependent_child": "qualifying_surviving_spouse",
+      "year_3_plus_with_dependents": "head_of_household",
+      "year_3_plus_without_dependents": "single",
+      "_note": "The QSS bridge provides 2 years of MFJ-equivalent treatment. Then status drops \u2014 this is the widow's tax cliff."
+    },
+    "dependent_ages_out": {
+      "from": [
+        "head_of_household",
+        "qualifying_surviving_spouse"
+      ],
+      "to": "single",
+      "trigger": "Last qualifying dependent no longer meets dependency test (age 19, or 24 if student)",
+      "_note": "Loss of last dependent can trigger HoH \u2192 single, losing $8,050 in standard deduction."
+    },
+    "remarriage": {
+      "from": [
+        "single",
+        "head_of_household",
+        "qualifying_surviving_spouse"
+      ],
+      "to": "married_filing_jointly",
+      "alternative": "married_filing_separately",
+      "notes": "QSS status terminates upon remarriage. VA DIC/CHAMPVA remarriage rules are separate \u2014 see federal_veteran_benefits."
+    }
+  },
+  "historical_years": [
+    {
+      "year": 2016,
+      "source": "IRS Rev. Proc. 2015; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 6300,
+            "additional_deduction_age_65": 1550,
+            "additional_deduction_blind": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9274
+              },
+              {
+                "rate": 0.15,
+                "min": 9275,
+                "max": 37649
+              },
+              {
+                "rate": 0.25,
+                "min": 37650,
+                "max": 91149
+              },
+              {
+                "rate": 0.28,
+                "min": 91150,
+                "max": 190149
+              },
+              {
+                "rate": 0.33,
+                "min": 190150,
+                "max": 413349
+              },
+              {
+                "rate": 0.35,
+                "min": 413350,
+                "max": 415049
+              },
+              {
+                "rate": 0.396,
+                "min": 415050,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 37650,
+            "capital_gains_15pct_max": 415050,
+            "capital_gains_20pct_above": 415050,
+            "amt_exemption": 53900,
+            "amt_phaseout_start": 119700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 121.8,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 121.8,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 170.5,
+                "part_d_surcharge": 12.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 160000,
+                "part_b": 243.6,
+                "part_d_surcharge": 32.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 160001,
+                "magi_max": 214000,
+                "part_b": 316.7,
+                "part_d_surcharge": 52.8
+              },
+              {
+                "tier": 4,
+                "magi_min": 214001,
+                "magi_max": null,
+                "part_b": 389.8,
+                "part_d_surcharge": 72.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 117000,
+            "ineligible_at_magi": 132000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 61000,
+            "active_participant_ineligible_at": 71000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 12600,
+            "additional_deduction_age_65_per_spouse": 1250,
+            "additional_deduction_blind_per_spouse": 1250,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 18549
+              },
+              {
+                "rate": 0.15,
+                "min": 18550,
+                "max": 75299
+              },
+              {
+                "rate": 0.25,
+                "min": 75300,
+                "max": 151899
+              },
+              {
+                "rate": 0.28,
+                "min": 151900,
+                "max": 231449
+              },
+              {
+                "rate": 0.33,
+                "min": 231450,
+                "max": 413349
+              },
+              {
+                "rate": 0.35,
+                "min": 413350,
+                "max": 466949
+              },
+              {
+                "rate": 0.396,
+                "min": 466950,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 75300,
+            "capital_gains_15pct_max": 466950,
+            "capital_gains_20pct_above": 466950,
+            "amt_exemption": 83800,
+            "amt_phaseout_start": 159700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 121.8,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 121.8,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 170.5,
+                "part_d_surcharge": 12.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 320000,
+                "part_b": 243.6,
+                "part_d_surcharge": 32.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 320001,
+                "magi_max": 428000,
+                "part_b": 316.7,
+                "part_d_surcharge": 52.8
+              },
+              {
+                "tier": 4,
+                "magi_min": 428001,
+                "magi_max": null,
+                "part_b": 389.8,
+                "part_d_surcharge": 72.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 184000,
+            "ineligible_at_magi": 194000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 98000,
+            "active_participant_ineligible_at": 118000,
+            "non_participant_spouse_full_below": 184000,
+            "non_participant_spouse_ineligible_at": 194000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 6300,
+            "additional_deduction_age_65": 1250,
+            "additional_deduction_blind": 1250,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9274
+              },
+              {
+                "rate": 0.15,
+                "min": 9275,
+                "max": 37649
+              },
+              {
+                "rate": 0.25,
+                "min": 37650,
+                "max": 75949
+              },
+              {
+                "rate": 0.28,
+                "min": 75950,
+                "max": 115724
+              },
+              {
+                "rate": 0.33,
+                "min": 115725,
+                "max": 206674
+              },
+              {
+                "rate": 0.35,
+                "min": 206675,
+                "max": 233474
+              },
+              {
+                "rate": 0.396,
+                "min": 233475,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 37650,
+            "capital_gains_15pct_max": 415050,
+            "capital_gains_20pct_above": 415050,
+            "amt_exemption": 41900,
+            "amt_phaseout_start": 119700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 121.8,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 9300,
+            "additional_deduction_age_65": 1550,
+            "additional_deduction_blind": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 13249
+              },
+              {
+                "rate": 0.15,
+                "min": 13250,
+                "max": 50399
+              },
+              {
+                "rate": 0.25,
+                "min": 50400,
+                "max": 130149
+              },
+              {
+                "rate": 0.28,
+                "min": 130150,
+                "max": 210799
+              },
+              {
+                "rate": 0.33,
+                "min": 210800,
+                "max": 413349
+              },
+              {
+                "rate": 0.35,
+                "min": 413350,
+                "max": 440999
+              },
+              {
+                "rate": 0.396,
+                "min": 441000,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 50400,
+            "capital_gains_15pct_max": 441000,
+            "capital_gains_20pct_above": 441000,
+            "amt_exemption": 53900,
+            "amt_phaseout_start": 119700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 121.8,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 121.8,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 170.5,
+                "part_d_surcharge": 12.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 160000,
+                "part_b": 243.6,
+                "part_d_surcharge": 32.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 160001,
+                "magi_max": 214000,
+                "part_b": 316.7,
+                "part_d_surcharge": 52.8
+              },
+              {
+                "tier": 4,
+                "magi_min": 214001,
+                "magi_max": null,
+                "part_b": 389.8,
+                "part_d_surcharge": 72.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 117000,
+            "ineligible_at_magi": 132000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 61000,
+            "active_participant_ineligible_at": 71000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 12600,
+            "additional_deduction_age_65": 1550,
+            "additional_deduction_blind": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 18549
+              },
+              {
+                "rate": 0.15,
+                "min": 18550,
+                "max": 75299
+              },
+              {
+                "rate": 0.25,
+                "min": 75300,
+                "max": 151899
+              },
+              {
+                "rate": 0.28,
+                "min": 151900,
+                "max": 231449
+              },
+              {
+                "rate": 0.33,
+                "min": 231450,
+                "max": 413349
+              },
+              {
+                "rate": 0.35,
+                "min": 413350,
+                "max": 466949
+              },
+              {
+                "rate": 0.396,
+                "min": 466950,
+                "max": null
+              }
+            ],
+            "amt_exemption": 83800,
+            "amt_phaseout_start": 159700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 121.8,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 121.8,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 170.5,
+                "part_d_surcharge": 12.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 320000,
+                "part_b": 243.6,
+                "part_d_surcharge": 32.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 320001,
+                "magi_max": 428000,
+                "part_b": 316.7,
+                "part_d_surcharge": 52.8
+              },
+              {
+                "tier": 4,
+                "magi_min": 428001,
+                "magi_max": null,
+                "part_b": 389.8,
+                "part_d_surcharge": 72.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 184000,
+            "ineligible_at_magi": 194000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 98000,
+            "active_participant_ineligible_at": 118000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2017,
+      "source": "IRS Rev. Proc. 2016; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 6350,
+            "additional_deduction_age_65": 1550,
+            "additional_deduction_blind": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9324
+              },
+              {
+                "rate": 0.15,
+                "min": 9325,
+                "max": 37949
+              },
+              {
+                "rate": 0.25,
+                "min": 37950,
+                "max": 91899
+              },
+              {
+                "rate": 0.28,
+                "min": 91900,
+                "max": 191649
+              },
+              {
+                "rate": 0.33,
+                "min": 191650,
+                "max": 416699
+              },
+              {
+                "rate": 0.35,
+                "min": 416700,
+                "max": 418399
+              },
+              {
+                "rate": 0.396,
+                "min": 418400,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 37950,
+            "capital_gains_15pct_max": 418400,
+            "capital_gains_20pct_above": 418400,
+            "amt_exemption": 54300,
+            "amt_phaseout_start": 120700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 160000,
+                "part_b": 267.9,
+                "part_d_surcharge": 34.2
+              },
+              {
+                "tier": 3,
+                "magi_min": 160001,
+                "magi_max": 214000,
+                "part_b": 348.3,
+                "part_d_surcharge": 55.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 214001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 76.2
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 118000,
+            "ineligible_at_magi": 133000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 62000,
+            "active_participant_ineligible_at": 72000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 12700,
+            "additional_deduction_age_65_per_spouse": 1250,
+            "additional_deduction_blind_per_spouse": 1250,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 18649
+              },
+              {
+                "rate": 0.15,
+                "min": 18650,
+                "max": 75899
+              },
+              {
+                "rate": 0.25,
+                "min": 75900,
+                "max": 153099
+              },
+              {
+                "rate": 0.28,
+                "min": 153100,
+                "max": 233349
+              },
+              {
+                "rate": 0.33,
+                "min": 233350,
+                "max": 416699
+              },
+              {
+                "rate": 0.35,
+                "min": 416700,
+                "max": 470699
+              },
+              {
+                "rate": 0.396,
+                "min": 470700,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 75900,
+            "capital_gains_15pct_max": 470700,
+            "capital_gains_20pct_above": 470700,
+            "amt_exemption": 84500,
+            "amt_phaseout_start": 160900
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 320000,
+                "part_b": 267.9,
+                "part_d_surcharge": 34.2
+              },
+              {
+                "tier": 3,
+                "magi_min": 320001,
+                "magi_max": 428000,
+                "part_b": 348.3,
+                "part_d_surcharge": 55.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 428001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 76.2
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 186000,
+            "ineligible_at_magi": 196000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 99000,
+            "active_participant_ineligible_at": 119000,
+            "non_participant_spouse_full_below": 186000,
+            "non_participant_spouse_ineligible_at": 196000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 6350,
+            "additional_deduction_age_65": 1250,
+            "additional_deduction_blind": 1250,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9324
+              },
+              {
+                "rate": 0.15,
+                "min": 9325,
+                "max": 37949
+              },
+              {
+                "rate": 0.25,
+                "min": 37950,
+                "max": 76549
+              },
+              {
+                "rate": 0.28,
+                "min": 76550,
+                "max": 116674
+              },
+              {
+                "rate": 0.33,
+                "min": 116675,
+                "max": 208349
+              },
+              {
+                "rate": 0.35,
+                "min": 208350,
+                "max": 235349
+              },
+              {
+                "rate": 0.396,
+                "min": 235350,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 37950,
+            "capital_gains_15pct_max": 418400,
+            "capital_gains_20pct_above": 418400,
+            "amt_exemption": 42250,
+            "amt_phaseout_start": 120700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 134.0,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 9350,
+            "additional_deduction_age_65": 1550,
+            "additional_deduction_blind": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 13349
+              },
+              {
+                "rate": 0.15,
+                "min": 13350,
+                "max": 50799
+              },
+              {
+                "rate": 0.25,
+                "min": 50800,
+                "max": 131199
+              },
+              {
+                "rate": 0.28,
+                "min": 131200,
+                "max": 212499
+              },
+              {
+                "rate": 0.33,
+                "min": 212500,
+                "max": 416699
+              },
+              {
+                "rate": 0.35,
+                "min": 416700,
+                "max": 444549
+              },
+              {
+                "rate": 0.396,
+                "min": 444550,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 50800,
+            "capital_gains_15pct_max": 444550,
+            "capital_gains_20pct_above": 444550,
+            "amt_exemption": 54300,
+            "amt_phaseout_start": 120700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 160000,
+                "part_b": 267.9,
+                "part_d_surcharge": 34.2
+              },
+              {
+                "tier": 3,
+                "magi_min": 160001,
+                "magi_max": 214000,
+                "part_b": 348.3,
+                "part_d_surcharge": 55.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 214001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 76.2
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 118000,
+            "ineligible_at_magi": 133000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 62000,
+            "active_participant_ineligible_at": 72000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 12700,
+            "additional_deduction_age_65": 1550,
+            "additional_deduction_blind": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 18649
+              },
+              {
+                "rate": 0.15,
+                "min": 18650,
+                "max": 75899
+              },
+              {
+                "rate": 0.25,
+                "min": 75900,
+                "max": 153099
+              },
+              {
+                "rate": 0.28,
+                "min": 153100,
+                "max": 233349
+              },
+              {
+                "rate": 0.33,
+                "min": 233350,
+                "max": 416699
+              },
+              {
+                "rate": 0.35,
+                "min": 416700,
+                "max": 470699
+              },
+              {
+                "rate": 0.396,
+                "min": 470700,
+                "max": null
+              }
+            ],
+            "amt_exemption": 84500,
+            "amt_phaseout_start": 160900
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 320000,
+                "part_b": 267.9,
+                "part_d_surcharge": 34.2
+              },
+              {
+                "tier": 3,
+                "magi_min": 320001,
+                "magi_max": 428000,
+                "part_b": 348.3,
+                "part_d_surcharge": 55.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 428001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 76.2
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 186000,
+            "ineligible_at_magi": 196000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 99000,
+            "active_participant_ineligible_at": 119000
+          },
+          "salt_deduction_cap": {
+            "cap": null,
+            "_note": "No federal SALT cap prior to TCJA (2018)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2018,
+      "source": "IRS Rev. Proc. 2017; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 12000,
+            "additional_deduction_age_65": 1600,
+            "additional_deduction_blind": 1600,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9524
+              },
+              {
+                "rate": 0.12,
+                "min": 9525,
+                "max": 38699
+              },
+              {
+                "rate": 0.22,
+                "min": 38700,
+                "max": 82499
+              },
+              {
+                "rate": 0.24,
+                "min": 82500,
+                "max": 157499
+              },
+              {
+                "rate": 0.32,
+                "min": 157500,
+                "max": 199999
+              },
+              {
+                "rate": 0.35,
+                "min": 200000,
+                "max": 499999
+              },
+              {
+                "rate": 0.37,
+                "min": 500000,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 38600,
+            "capital_gains_15pct_max": 425800,
+            "capital_gains_20pct_above": 425800,
+            "amt_exemption": 70300,
+            "amt_phaseout_start": 500000
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.0
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 133500,
+                "part_b": 267.9,
+                "part_d_surcharge": 33.6
+              },
+              {
+                "tier": 3,
+                "magi_min": 133501,
+                "magi_max": 160000,
+                "part_b": 348.3,
+                "part_d_surcharge": 54.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 160001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 74.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 120000,
+            "ineligible_at_magi": 135000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 63000,
+            "active_participant_ineligible_at": 73000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 24000,
+            "additional_deduction_age_65_per_spouse": 1300,
+            "additional_deduction_blind_per_spouse": 1300,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19049
+              },
+              {
+                "rate": 0.12,
+                "min": 19050,
+                "max": 77399
+              },
+              {
+                "rate": 0.22,
+                "min": 77400,
+                "max": 164999
+              },
+              {
+                "rate": 0.24,
+                "min": 165000,
+                "max": 314999
+              },
+              {
+                "rate": 0.32,
+                "min": 315000,
+                "max": 399999
+              },
+              {
+                "rate": 0.35,
+                "min": 400000,
+                "max": 599999
+              },
+              {
+                "rate": 0.37,
+                "min": 600000,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 77200,
+            "capital_gains_15pct_max": 479000,
+            "capital_gains_20pct_above": 479000,
+            "amt_exemption": 109400,
+            "amt_phaseout_start": 1000000
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.0
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 267000,
+                "part_b": 267.9,
+                "part_d_surcharge": 33.6
+              },
+              {
+                "tier": 3,
+                "magi_min": 267001,
+                "magi_max": 320000,
+                "part_b": 348.3,
+                "part_d_surcharge": 54.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 320001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 74.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 189000,
+            "ineligible_at_magi": 199000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 101000,
+            "active_participant_ineligible_at": 121000,
+            "non_participant_spouse_full_below": 189000,
+            "non_participant_spouse_ineligible_at": 199000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 12000,
+            "additional_deduction_age_65": 1300,
+            "additional_deduction_blind": 1300,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9524
+              },
+              {
+                "rate": 0.12,
+                "min": 9525,
+                "max": 38699
+              },
+              {
+                "rate": 0.22,
+                "min": 38700,
+                "max": 82499
+              },
+              {
+                "rate": 0.24,
+                "min": 82500,
+                "max": 157499
+              },
+              {
+                "rate": 0.32,
+                "min": 157500,
+                "max": 199999
+              },
+              {
+                "rate": 0.35,
+                "min": 200000,
+                "max": 299999
+              },
+              {
+                "rate": 0.37,
+                "min": 300000,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 38600,
+            "capital_gains_15pct_max": 239500,
+            "capital_gains_20pct_above": 239500,
+            "amt_exemption": 54700,
+            "amt_phaseout_start": 500000
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 134.0,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap is half of MFJ ($5,000)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 18000,
+            "additional_deduction_age_65": 1600,
+            "additional_deduction_blind": 1600,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 13599
+              },
+              {
+                "rate": 0.12,
+                "min": 13600,
+                "max": 51799
+              },
+              {
+                "rate": 0.22,
+                "min": 51800,
+                "max": 82499
+              },
+              {
+                "rate": 0.24,
+                "min": 82500,
+                "max": 157499
+              },
+              {
+                "rate": 0.32,
+                "min": 157500,
+                "max": 199999
+              },
+              {
+                "rate": 0.35,
+                "min": 200000,
+                "max": 499999
+              },
+              {
+                "rate": 0.37,
+                "min": 500000,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 51700,
+            "capital_gains_15pct_max": 452400,
+            "capital_gains_20pct_above": 452400,
+            "amt_exemption": 70300,
+            "amt_phaseout_start": 500000
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.0
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 133500,
+                "part_b": 267.9,
+                "part_d_surcharge": 33.6
+              },
+              {
+                "tier": 3,
+                "magi_min": 133501,
+                "magi_max": 160000,
+                "part_b": 348.3,
+                "part_d_surcharge": 54.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 160001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 74.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 120000,
+            "ineligible_at_magi": 135000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 63000,
+            "active_participant_ineligible_at": 73000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 24000,
+            "additional_deduction_age_65": 1600,
+            "additional_deduction_blind": 1600,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19049
+              },
+              {
+                "rate": 0.12,
+                "min": 19050,
+                "max": 77399
+              },
+              {
+                "rate": 0.22,
+                "min": 77400,
+                "max": 164999
+              },
+              {
+                "rate": 0.24,
+                "min": 165000,
+                "max": 314999
+              },
+              {
+                "rate": 0.32,
+                "min": 315000,
+                "max": 399999
+              },
+              {
+                "rate": 0.35,
+                "min": 400000,
+                "max": 599999
+              },
+              {
+                "rate": 0.37,
+                "min": 600000,
+                "max": null
+              }
+            ],
+            "amt_exemption": 109400,
+            "amt_phaseout_start": 1000000
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 134.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 134.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 187.5,
+                "part_d_surcharge": 13.0
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 267000,
+                "part_b": 267.9,
+                "part_d_surcharge": 33.6
+              },
+              {
+                "tier": 3,
+                "magi_min": 267001,
+                "magi_max": 320000,
+                "part_b": 348.3,
+                "part_d_surcharge": 54.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 320001,
+                "magi_max": null,
+                "part_b": 428.6,
+                "part_d_surcharge": 74.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 5500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 189000,
+            "ineligible_at_magi": 199000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 101000,
+            "active_participant_ineligible_at": 121000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2019,
+      "source": "IRS Rev. Proc. 2018; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 12200,
+            "additional_deduction_age_65": 1650,
+            "additional_deduction_blind": 1650,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9699
+              },
+              {
+                "rate": 0.12,
+                "min": 9700,
+                "max": 39474
+              },
+              {
+                "rate": 0.22,
+                "min": 39475,
+                "max": 84199
+              },
+              {
+                "rate": 0.24,
+                "min": 84200,
+                "max": 160724
+              },
+              {
+                "rate": 0.32,
+                "min": 160725,
+                "max": 204099
+              },
+              {
+                "rate": 0.35,
+                "min": 204100,
+                "max": 510299
+              },
+              {
+                "rate": 0.37,
+                "min": 510300,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 39375,
+            "capital_gains_15pct_max": 434550,
+            "capital_gains_20pct_above": 434550,
+            "amt_exemption": 71700,
+            "amt_phaseout_start": 510300
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 135.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 135.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 189.6,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 133500,
+                "part_b": 270.9,
+                "part_d_surcharge": 31.9
+              },
+              {
+                "tier": 3,
+                "magi_min": 133501,
+                "magi_max": 160000,
+                "part_b": 352.2,
+                "part_d_surcharge": 51.4
+              },
+              {
+                "tier": 4,
+                "magi_min": 160001,
+                "magi_max": 500000,
+                "part_b": 433.4,
+                "part_d_surcharge": 70.9
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 460.5,
+                "part_d_surcharge": 77.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 122000,
+            "ineligible_at_magi": 137000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 64000,
+            "active_participant_ineligible_at": 74000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 24400,
+            "additional_deduction_age_65_per_spouse": 1300,
+            "additional_deduction_blind_per_spouse": 1300,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19399
+              },
+              {
+                "rate": 0.12,
+                "min": 19400,
+                "max": 78949
+              },
+              {
+                "rate": 0.22,
+                "min": 78950,
+                "max": 168399
+              },
+              {
+                "rate": 0.24,
+                "min": 168400,
+                "max": 321449
+              },
+              {
+                "rate": 0.32,
+                "min": 321450,
+                "max": 408199
+              },
+              {
+                "rate": 0.35,
+                "min": 408200,
+                "max": 612349
+              },
+              {
+                "rate": 0.37,
+                "min": 612350,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 78750,
+            "capital_gains_15pct_max": 488850,
+            "capital_gains_20pct_above": 488850,
+            "amt_exemption": 111700,
+            "amt_phaseout_start": 1020600
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 135.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 135.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 189.6,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 267000,
+                "part_b": 270.9,
+                "part_d_surcharge": 31.9
+              },
+              {
+                "tier": 3,
+                "magi_min": 267001,
+                "magi_max": 320000,
+                "part_b": 352.2,
+                "part_d_surcharge": 51.4
+              },
+              {
+                "tier": 4,
+                "magi_min": 320001,
+                "magi_max": 750000,
+                "part_b": 433.4,
+                "part_d_surcharge": 70.9
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 460.5,
+                "part_d_surcharge": 77.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 193000,
+            "ineligible_at_magi": 203000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 103000,
+            "active_participant_ineligible_at": 123000,
+            "non_participant_spouse_full_below": 193000,
+            "non_participant_spouse_ineligible_at": 203000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 12200,
+            "additional_deduction_age_65": 1300,
+            "additional_deduction_blind": 1300,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9699
+              },
+              {
+                "rate": 0.12,
+                "min": 9700,
+                "max": 39474
+              },
+              {
+                "rate": 0.22,
+                "min": 39475,
+                "max": 84199
+              },
+              {
+                "rate": 0.24,
+                "min": 84200,
+                "max": 160724
+              },
+              {
+                "rate": 0.32,
+                "min": 160725,
+                "max": 204099
+              },
+              {
+                "rate": 0.35,
+                "min": 204100,
+                "max": 306174
+              },
+              {
+                "rate": 0.37,
+                "min": 306175,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 39375,
+            "capital_gains_15pct_max": 244425,
+            "capital_gains_20pct_above": 244425,
+            "amt_exemption": 55850,
+            "amt_phaseout_start": 510300
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 135.5,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap is half of MFJ ($5,000)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 18350,
+            "additional_deduction_age_65": 1650,
+            "additional_deduction_blind": 1650,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 13849
+              },
+              {
+                "rate": 0.12,
+                "min": 13850,
+                "max": 52849
+              },
+              {
+                "rate": 0.22,
+                "min": 52850,
+                "max": 84199
+              },
+              {
+                "rate": 0.24,
+                "min": 84200,
+                "max": 160699
+              },
+              {
+                "rate": 0.32,
+                "min": 160700,
+                "max": 204099
+              },
+              {
+                "rate": 0.35,
+                "min": 204100,
+                "max": 510299
+              },
+              {
+                "rate": 0.37,
+                "min": 510300,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 52750,
+            "capital_gains_15pct_max": 461700,
+            "capital_gains_20pct_above": 461700,
+            "amt_exemption": 71700,
+            "amt_phaseout_start": 510300
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 135.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 85000,
+                "part_b": 135.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 85001,
+                "magi_max": 107000,
+                "part_b": 189.6,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 107001,
+                "magi_max": 133500,
+                "part_b": 270.9,
+                "part_d_surcharge": 31.9
+              },
+              {
+                "tier": 3,
+                "magi_min": 133501,
+                "magi_max": 160000,
+                "part_b": 352.2,
+                "part_d_surcharge": 51.4
+              },
+              {
+                "tier": 4,
+                "magi_min": 160001,
+                "magi_max": 500000,
+                "part_b": 433.4,
+                "part_d_surcharge": 70.9
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 460.5,
+                "part_d_surcharge": 77.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 122000,
+            "ineligible_at_magi": 137000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 64000,
+            "active_participant_ineligible_at": 74000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 24400,
+            "additional_deduction_age_65": 1650,
+            "additional_deduction_blind": 1650,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19399
+              },
+              {
+                "rate": 0.12,
+                "min": 19400,
+                "max": 78949
+              },
+              {
+                "rate": 0.22,
+                "min": 78950,
+                "max": 168399
+              },
+              {
+                "rate": 0.24,
+                "min": 168400,
+                "max": 321449
+              },
+              {
+                "rate": 0.32,
+                "min": 321450,
+                "max": 408199
+              },
+              {
+                "rate": 0.35,
+                "min": 408200,
+                "max": 612349
+              },
+              {
+                "rate": 0.37,
+                "min": 612350,
+                "max": null
+              }
+            ],
+            "amt_exemption": 111700,
+            "amt_phaseout_start": 1020600
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 135.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 170000,
+                "part_b": 135.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 170001,
+                "magi_max": 214000,
+                "part_b": 189.6,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 214001,
+                "magi_max": 267000,
+                "part_b": 270.9,
+                "part_d_surcharge": 31.9
+              },
+              {
+                "tier": 3,
+                "magi_min": 267001,
+                "magi_max": 320000,
+                "part_b": 352.2,
+                "part_d_surcharge": 51.4
+              },
+              {
+                "tier": 4,
+                "magi_min": 320001,
+                "magi_max": 750000,
+                "part_b": 433.4,
+                "part_d_surcharge": 70.9
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 460.5,
+                "part_d_surcharge": 77.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 193000,
+            "ineligible_at_magi": 203000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 103000,
+            "active_participant_ineligible_at": 123000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2020,
+      "source": "IRS Rev. Proc. 2019; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 12400,
+            "additional_deduction_age_65": 1650,
+            "additional_deduction_blind": 1650,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9874
+              },
+              {
+                "rate": 0.12,
+                "min": 9875,
+                "max": 40124
+              },
+              {
+                "rate": 0.22,
+                "min": 40125,
+                "max": 85524
+              },
+              {
+                "rate": 0.24,
+                "min": 85525,
+                "max": 163299
+              },
+              {
+                "rate": 0.32,
+                "min": 163300,
+                "max": 207349
+              },
+              {
+                "rate": 0.35,
+                "min": 207350,
+                "max": 518399
+              },
+              {
+                "rate": 0.37,
+                "min": 518400,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 40000,
+            "capital_gains_15pct_max": 441450,
+            "capital_gains_20pct_above": 441450,
+            "amt_exemption": 72900,
+            "amt_phaseout_start": 518400
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 144.6,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 87000,
+                "part_b": 144.6,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 87001,
+                "magi_max": 109000,
+                "part_b": 202.4,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 109001,
+                "magi_max": 136000,
+                "part_b": 289.2,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 136001,
+                "magi_max": 163000,
+                "part_b": 376.0,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 163001,
+                "magi_max": 500000,
+                "part_b": 462.7,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 491.6,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 124000,
+            "ineligible_at_magi": 139000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 65000,
+            "active_participant_ineligible_at": 75000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 24800,
+            "additional_deduction_age_65_per_spouse": 1300,
+            "additional_deduction_blind_per_spouse": 1300,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19749
+              },
+              {
+                "rate": 0.12,
+                "min": 19750,
+                "max": 80249
+              },
+              {
+                "rate": 0.22,
+                "min": 80250,
+                "max": 171049
+              },
+              {
+                "rate": 0.24,
+                "min": 171050,
+                "max": 326599
+              },
+              {
+                "rate": 0.32,
+                "min": 326600,
+                "max": 414699
+              },
+              {
+                "rate": 0.35,
+                "min": 414700,
+                "max": 622049
+              },
+              {
+                "rate": 0.37,
+                "min": 622050,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 80000,
+            "capital_gains_15pct_max": 496600,
+            "capital_gains_20pct_above": 496600,
+            "amt_exemption": 113400,
+            "amt_phaseout_start": 1036800
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 144.6,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 174000,
+                "part_b": 144.6,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 174001,
+                "magi_max": 218000,
+                "part_b": 202.4,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 218001,
+                "magi_max": 272000,
+                "part_b": 289.2,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 272001,
+                "magi_max": 326000,
+                "part_b": 376.0,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 326001,
+                "magi_max": 750000,
+                "part_b": 462.7,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 491.6,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 196000,
+            "ineligible_at_magi": 206000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 104000,
+            "active_participant_ineligible_at": 124000,
+            "non_participant_spouse_full_below": 196000,
+            "non_participant_spouse_ineligible_at": 206000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 12400,
+            "additional_deduction_age_65": 1300,
+            "additional_deduction_blind": 1300,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9874
+              },
+              {
+                "rate": 0.12,
+                "min": 9875,
+                "max": 40124
+              },
+              {
+                "rate": 0.22,
+                "min": 40125,
+                "max": 85524
+              },
+              {
+                "rate": 0.24,
+                "min": 85525,
+                "max": 163299
+              },
+              {
+                "rate": 0.32,
+                "min": 163300,
+                "max": 207349
+              },
+              {
+                "rate": 0.35,
+                "min": 207350,
+                "max": 311024
+              },
+              {
+                "rate": 0.37,
+                "min": 311025,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 40000,
+            "capital_gains_15pct_max": 248300,
+            "capital_gains_20pct_above": 248300,
+            "amt_exemption": 56700,
+            "amt_phaseout_start": 518400
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 144.6,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap is half of MFJ ($5,000)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 18650,
+            "additional_deduction_age_65": 1650,
+            "additional_deduction_blind": 1650,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 14099
+              },
+              {
+                "rate": 0.12,
+                "min": 14100,
+                "max": 53699
+              },
+              {
+                "rate": 0.22,
+                "min": 53700,
+                "max": 85499
+              },
+              {
+                "rate": 0.24,
+                "min": 85500,
+                "max": 163299
+              },
+              {
+                "rate": 0.32,
+                "min": 163300,
+                "max": 207349
+              },
+              {
+                "rate": 0.35,
+                "min": 207350,
+                "max": 518399
+              },
+              {
+                "rate": 0.37,
+                "min": 518400,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 53600,
+            "capital_gains_15pct_max": 469050,
+            "capital_gains_20pct_above": 469050,
+            "amt_exemption": 72900,
+            "amt_phaseout_start": 518400
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 144.6,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 87000,
+                "part_b": 144.6,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 87001,
+                "magi_max": 109000,
+                "part_b": 202.4,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 109001,
+                "magi_max": 136000,
+                "part_b": 289.2,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 136001,
+                "magi_max": 163000,
+                "part_b": 376.0,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 163001,
+                "magi_max": 500000,
+                "part_b": 462.7,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 491.6,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 124000,
+            "ineligible_at_magi": 139000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 65000,
+            "active_participant_ineligible_at": 75000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 24800,
+            "additional_deduction_age_65": 1650,
+            "additional_deduction_blind": 1650,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19749
+              },
+              {
+                "rate": 0.12,
+                "min": 19750,
+                "max": 80249
+              },
+              {
+                "rate": 0.22,
+                "min": 80250,
+                "max": 171049
+              },
+              {
+                "rate": 0.24,
+                "min": 171050,
+                "max": 326599
+              },
+              {
+                "rate": 0.32,
+                "min": 326600,
+                "max": 414699
+              },
+              {
+                "rate": 0.35,
+                "min": 414700,
+                "max": 622049
+              },
+              {
+                "rate": 0.37,
+                "min": 622050,
+                "max": null
+              }
+            ],
+            "amt_exemption": 113400,
+            "amt_phaseout_start": 1036800
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 144.6,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 174000,
+                "part_b": 144.6,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 174001,
+                "magi_max": 218000,
+                "part_b": 202.4,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 218001,
+                "magi_max": 272000,
+                "part_b": 289.2,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 272001,
+                "magi_max": 326000,
+                "part_b": 376.0,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 326001,
+                "magi_max": 750000,
+                "part_b": 462.7,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 491.6,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 196000,
+            "ineligible_at_magi": 206000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 104000,
+            "active_participant_ineligible_at": 124000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2021,
+      "source": "IRS Rev. Proc. 2020; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 12550,
+            "additional_deduction_age_65": 1700,
+            "additional_deduction_blind": 1700,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9949
+              },
+              {
+                "rate": 0.12,
+                "min": 9950,
+                "max": 40524
+              },
+              {
+                "rate": 0.22,
+                "min": 40525,
+                "max": 86374
+              },
+              {
+                "rate": 0.24,
+                "min": 86375,
+                "max": 164924
+              },
+              {
+                "rate": 0.32,
+                "min": 164925,
+                "max": 209424
+              },
+              {
+                "rate": 0.35,
+                "min": 209425,
+                "max": 523599
+              },
+              {
+                "rate": 0.37,
+                "min": 523600,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 40400,
+            "capital_gains_15pct_max": 445850,
+            "capital_gains_20pct_above": 445850,
+            "amt_exemption": 73600,
+            "amt_phaseout_start": 523600
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 148.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 88000,
+                "part_b": 148.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 88001,
+                "magi_max": 111000,
+                "part_b": 207.9,
+                "part_d_surcharge": 12.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 111001,
+                "magi_max": 138000,
+                "part_b": 297.0,
+                "part_d_surcharge": 31.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 138001,
+                "magi_max": 165000,
+                "part_b": 386.1,
+                "part_d_surcharge": 51.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 165001,
+                "magi_max": 500000,
+                "part_b": 475.2,
+                "part_d_surcharge": 70.7
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 504.9,
+                "part_d_surcharge": 77.1
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 125000,
+            "ineligible_at_magi": 140000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 66000,
+            "active_participant_ineligible_at": 76000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 25100,
+            "additional_deduction_age_65_per_spouse": 1350,
+            "additional_deduction_blind_per_spouse": 1350,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19899
+              },
+              {
+                "rate": 0.12,
+                "min": 19900,
+                "max": 81049
+              },
+              {
+                "rate": 0.22,
+                "min": 81050,
+                "max": 172749
+              },
+              {
+                "rate": 0.24,
+                "min": 172750,
+                "max": 329849
+              },
+              {
+                "rate": 0.32,
+                "min": 329850,
+                "max": 418849
+              },
+              {
+                "rate": 0.35,
+                "min": 418850,
+                "max": 628299
+              },
+              {
+                "rate": 0.37,
+                "min": 628300,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 80800,
+            "capital_gains_15pct_max": 501600,
+            "capital_gains_20pct_above": 501600,
+            "amt_exemption": 114600,
+            "amt_phaseout_start": 1047200
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 148.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 176000,
+                "part_b": 148.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 176001,
+                "magi_max": 222000,
+                "part_b": 207.9,
+                "part_d_surcharge": 12.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 222001,
+                "magi_max": 276000,
+                "part_b": 297.0,
+                "part_d_surcharge": 31.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 276001,
+                "magi_max": 330000,
+                "part_b": 386.1,
+                "part_d_surcharge": 51.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 330001,
+                "magi_max": 750000,
+                "part_b": 475.2,
+                "part_d_surcharge": 70.7
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 504.9,
+                "part_d_surcharge": 77.1
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 198000,
+            "ineligible_at_magi": 208000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 105000,
+            "active_participant_ineligible_at": 125000,
+            "non_participant_spouse_full_below": 198000,
+            "non_participant_spouse_ineligible_at": 208000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 12550,
+            "additional_deduction_age_65": 1350,
+            "additional_deduction_blind": 1350,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 9949
+              },
+              {
+                "rate": 0.12,
+                "min": 9950,
+                "max": 40524
+              },
+              {
+                "rate": 0.22,
+                "min": 40525,
+                "max": 86374
+              },
+              {
+                "rate": 0.24,
+                "min": 86375,
+                "max": 164924
+              },
+              {
+                "rate": 0.32,
+                "min": 164925,
+                "max": 209424
+              },
+              {
+                "rate": 0.35,
+                "min": 209425,
+                "max": 314149
+              },
+              {
+                "rate": 0.37,
+                "min": 314150,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 40400,
+            "capital_gains_15pct_max": 250800,
+            "capital_gains_20pct_above": 250800,
+            "amt_exemption": 57300,
+            "amt_phaseout_start": 523600
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 148.5,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap is half of MFJ ($5,000)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 18800,
+            "additional_deduction_age_65": 1700,
+            "additional_deduction_blind": 1700,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 14199
+              },
+              {
+                "rate": 0.12,
+                "min": 14200,
+                "max": 54199
+              },
+              {
+                "rate": 0.22,
+                "min": 54200,
+                "max": 86349
+              },
+              {
+                "rate": 0.24,
+                "min": 86350,
+                "max": 164899
+              },
+              {
+                "rate": 0.32,
+                "min": 164900,
+                "max": 209399
+              },
+              {
+                "rate": 0.35,
+                "min": 209400,
+                "max": 523599
+              },
+              {
+                "rate": 0.37,
+                "min": 523600,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 54100,
+            "capital_gains_15pct_max": 473750,
+            "capital_gains_20pct_above": 473750,
+            "amt_exemption": 73600,
+            "amt_phaseout_start": 523600
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 148.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 88000,
+                "part_b": 148.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 88001,
+                "magi_max": 111000,
+                "part_b": 207.9,
+                "part_d_surcharge": 12.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 111001,
+                "magi_max": 138000,
+                "part_b": 297.0,
+                "part_d_surcharge": 31.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 138001,
+                "magi_max": 165000,
+                "part_b": 386.1,
+                "part_d_surcharge": 51.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 165001,
+                "magi_max": 500000,
+                "part_b": 475.2,
+                "part_d_surcharge": 70.7
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 504.9,
+                "part_d_surcharge": 77.1
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 125000,
+            "ineligible_at_magi": 140000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 66000,
+            "active_participant_ineligible_at": 76000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 25100,
+            "additional_deduction_age_65": 1700,
+            "additional_deduction_blind": 1700,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 19899
+              },
+              {
+                "rate": 0.12,
+                "min": 19900,
+                "max": 81049
+              },
+              {
+                "rate": 0.22,
+                "min": 81050,
+                "max": 172749
+              },
+              {
+                "rate": 0.24,
+                "min": 172750,
+                "max": 329849
+              },
+              {
+                "rate": 0.32,
+                "min": 329850,
+                "max": 418849
+              },
+              {
+                "rate": 0.35,
+                "min": 418850,
+                "max": 628299
+              },
+              {
+                "rate": 0.37,
+                "min": 628300,
+                "max": null
+              }
+            ],
+            "amt_exemption": 114600,
+            "amt_phaseout_start": 1047200
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 148.5,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 176000,
+                "part_b": 148.5,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 176001,
+                "magi_max": 222000,
+                "part_b": 207.9,
+                "part_d_surcharge": 12.3
+              },
+              {
+                "tier": 2,
+                "magi_min": 222001,
+                "magi_max": 276000,
+                "part_b": 297.0,
+                "part_d_surcharge": 31.8
+              },
+              {
+                "tier": 3,
+                "magi_min": 276001,
+                "magi_max": 330000,
+                "part_b": 386.1,
+                "part_d_surcharge": 51.2
+              },
+              {
+                "tier": 4,
+                "magi_min": 330001,
+                "magi_max": 750000,
+                "part_b": 475.2,
+                "part_d_surcharge": 70.7
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 504.9,
+                "part_d_surcharge": 77.1
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 198000,
+            "ineligible_at_magi": 208000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 105000,
+            "active_participant_ineligible_at": 125000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2022,
+      "source": "IRS Rev. Proc. 2021; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 12950,
+            "additional_deduction_age_65": 1750,
+            "additional_deduction_blind": 1750,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 10274
+              },
+              {
+                "rate": 0.12,
+                "min": 10275,
+                "max": 41774
+              },
+              {
+                "rate": 0.22,
+                "min": 41775,
+                "max": 89074
+              },
+              {
+                "rate": 0.24,
+                "min": 89075,
+                "max": 170049
+              },
+              {
+                "rate": 0.32,
+                "min": 170050,
+                "max": 215949
+              },
+              {
+                "rate": 0.35,
+                "min": 215950,
+                "max": 539899
+              },
+              {
+                "rate": 0.37,
+                "min": 539900,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 41675,
+            "capital_gains_15pct_max": 459750,
+            "capital_gains_20pct_above": 459750,
+            "amt_exemption": 75900,
+            "amt_phaseout_start": 539900
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 170.1,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 91000,
+                "part_b": 170.1,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 91001,
+                "magi_max": 114000,
+                "part_b": 238.1,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 114001,
+                "magi_max": 142000,
+                "part_b": 340.2,
+                "part_d_surcharge": 32.1
+              },
+              {
+                "tier": 3,
+                "magi_min": 142001,
+                "magi_max": 170000,
+                "part_b": 442.3,
+                "part_d_surcharge": 51.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 170001,
+                "magi_max": 500000,
+                "part_b": 544.3,
+                "part_d_surcharge": 71.3
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 578.3,
+                "part_d_surcharge": 77.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 129000,
+            "ineligible_at_magi": 144000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 68000,
+            "active_participant_ineligible_at": 78000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 25900,
+            "additional_deduction_age_65_per_spouse": 1400,
+            "additional_deduction_blind_per_spouse": 1400,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 20549
+              },
+              {
+                "rate": 0.12,
+                "min": 20550,
+                "max": 83549
+              },
+              {
+                "rate": 0.22,
+                "min": 83550,
+                "max": 178149
+              },
+              {
+                "rate": 0.24,
+                "min": 178150,
+                "max": 340099
+              },
+              {
+                "rate": 0.32,
+                "min": 340100,
+                "max": 431899
+              },
+              {
+                "rate": 0.35,
+                "min": 431900,
+                "max": 647849
+              },
+              {
+                "rate": 0.37,
+                "min": 647850,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 83350,
+            "capital_gains_15pct_max": 517200,
+            "capital_gains_20pct_above": 517200,
+            "amt_exemption": 118100,
+            "amt_phaseout_start": 1079800
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 170.1,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 182000,
+                "part_b": 170.1,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 182001,
+                "magi_max": 228000,
+                "part_b": 238.1,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 228001,
+                "magi_max": 284000,
+                "part_b": 340.2,
+                "part_d_surcharge": 32.1
+              },
+              {
+                "tier": 3,
+                "magi_min": 284001,
+                "magi_max": 340000,
+                "part_b": 442.3,
+                "part_d_surcharge": 51.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 340001,
+                "magi_max": 750000,
+                "part_b": 544.3,
+                "part_d_surcharge": 71.3
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 578.3,
+                "part_d_surcharge": 77.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 204000,
+            "ineligible_at_magi": 214000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 109000,
+            "active_participant_ineligible_at": 129000,
+            "non_participant_spouse_full_below": 204000,
+            "non_participant_spouse_ineligible_at": 214000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 12950,
+            "additional_deduction_age_65": 1400,
+            "additional_deduction_blind": 1400,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 10274
+              },
+              {
+                "rate": 0.12,
+                "min": 10275,
+                "max": 41774
+              },
+              {
+                "rate": 0.22,
+                "min": 41775,
+                "max": 89074
+              },
+              {
+                "rate": 0.24,
+                "min": 89075,
+                "max": 170049
+              },
+              {
+                "rate": 0.32,
+                "min": 170050,
+                "max": 215949
+              },
+              {
+                "rate": 0.35,
+                "min": 215950,
+                "max": 323924
+              },
+              {
+                "rate": 0.37,
+                "min": 323925,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 41675,
+            "capital_gains_15pct_max": 258600,
+            "capital_gains_20pct_above": 258600,
+            "amt_exemption": 59050,
+            "amt_phaseout_start": 539900
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 170.1,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap is half of MFJ ($5,000)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 19400,
+            "additional_deduction_age_65": 1750,
+            "additional_deduction_blind": 1750,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 14649
+              },
+              {
+                "rate": 0.12,
+                "min": 14650,
+                "max": 55899
+              },
+              {
+                "rate": 0.22,
+                "min": 55900,
+                "max": 89049
+              },
+              {
+                "rate": 0.24,
+                "min": 89050,
+                "max": 170049
+              },
+              {
+                "rate": 0.32,
+                "min": 170050,
+                "max": 215949
+              },
+              {
+                "rate": 0.35,
+                "min": 215950,
+                "max": 539899
+              },
+              {
+                "rate": 0.37,
+                "min": 539900,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 55800,
+            "capital_gains_15pct_max": 488500,
+            "capital_gains_20pct_above": 488500,
+            "amt_exemption": 75900,
+            "amt_phaseout_start": 539900
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 170.1,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 91000,
+                "part_b": 170.1,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 91001,
+                "magi_max": 114000,
+                "part_b": 238.1,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 114001,
+                "magi_max": 142000,
+                "part_b": 340.2,
+                "part_d_surcharge": 32.1
+              },
+              {
+                "tier": 3,
+                "magi_min": 142001,
+                "magi_max": 170000,
+                "part_b": 442.3,
+                "part_d_surcharge": 51.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 170001,
+                "magi_max": 500000,
+                "part_b": 544.3,
+                "part_d_surcharge": 71.3
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 578.3,
+                "part_d_surcharge": 77.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 129000,
+            "ineligible_at_magi": 144000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 68000,
+            "active_participant_ineligible_at": 78000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 25900,
+            "additional_deduction_age_65": 1750,
+            "additional_deduction_blind": 1750,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 20549
+              },
+              {
+                "rate": 0.12,
+                "min": 20550,
+                "max": 83549
+              },
+              {
+                "rate": 0.22,
+                "min": 83550,
+                "max": 178149
+              },
+              {
+                "rate": 0.24,
+                "min": 178150,
+                "max": 340099
+              },
+              {
+                "rate": 0.32,
+                "min": 340100,
+                "max": 431899
+              },
+              {
+                "rate": 0.35,
+                "min": 431900,
+                "max": 647849
+              },
+              {
+                "rate": 0.37,
+                "min": 647850,
+                "max": null
+              }
+            ],
+            "amt_exemption": 118100,
+            "amt_phaseout_start": 1079800
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 170.1,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 182000,
+                "part_b": 170.1,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 182001,
+                "magi_max": 228000,
+                "part_b": 238.1,
+                "part_d_surcharge": 12.4
+              },
+              {
+                "tier": 2,
+                "magi_min": 228001,
+                "magi_max": 284000,
+                "part_b": 340.2,
+                "part_d_surcharge": 32.1
+              },
+              {
+                "tier": 3,
+                "magi_min": 284001,
+                "magi_max": 340000,
+                "part_b": 442.3,
+                "part_d_surcharge": 51.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 340001,
+                "magi_max": 750000,
+                "part_b": 544.3,
+                "part_d_surcharge": 71.3
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 578.3,
+                "part_d_surcharge": 77.9
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 204000,
+            "ineligible_at_magi": 214000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 109000,
+            "active_participant_ineligible_at": 129000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2023,
+      "source": "IRS Rev. Proc. 2022; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 13850,
+            "additional_deduction_age_65": 1850,
+            "additional_deduction_blind": 1850,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 10999
+              },
+              {
+                "rate": 0.12,
+                "min": 11000,
+                "max": 44724
+              },
+              {
+                "rate": 0.22,
+                "min": 44725,
+                "max": 95374
+              },
+              {
+                "rate": 0.24,
+                "min": 95375,
+                "max": 182099
+              },
+              {
+                "rate": 0.32,
+                "min": 182100,
+                "max": 231249
+              },
+              {
+                "rate": 0.35,
+                "min": 231250,
+                "max": 578124
+              },
+              {
+                "rate": 0.37,
+                "min": 578125,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 44625,
+            "capital_gains_15pct_max": 492300,
+            "capital_gains_20pct_above": 492300,
+            "amt_exemption": 81300,
+            "amt_phaseout_start": 578150
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 164.9,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 97000,
+                "part_b": 164.9,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 97001,
+                "magi_max": 123000,
+                "part_b": 230.8,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 123001,
+                "magi_max": 153000,
+                "part_b": 329.7,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 153001,
+                "magi_max": 183000,
+                "part_b": 428.6,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 183001,
+                "magi_max": 500000,
+                "part_b": 527.5,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 560.5,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 138000,
+            "ineligible_at_magi": 153000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 73000,
+            "active_participant_ineligible_at": 83000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 27700,
+            "additional_deduction_age_65_per_spouse": 1500,
+            "additional_deduction_blind_per_spouse": 1500,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 21999
+              },
+              {
+                "rate": 0.12,
+                "min": 22000,
+                "max": 89449
+              },
+              {
+                "rate": 0.22,
+                "min": 89450,
+                "max": 190749
+              },
+              {
+                "rate": 0.24,
+                "min": 190750,
+                "max": 364199
+              },
+              {
+                "rate": 0.32,
+                "min": 364200,
+                "max": 462499
+              },
+              {
+                "rate": 0.35,
+                "min": 462500,
+                "max": 693749
+              },
+              {
+                "rate": 0.37,
+                "min": 693750,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 89250,
+            "capital_gains_15pct_max": 553850,
+            "capital_gains_20pct_above": 553850,
+            "amt_exemption": 126500,
+            "amt_phaseout_start": 1156300
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 164.9,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 194000,
+                "part_b": 164.9,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 194001,
+                "magi_max": 246000,
+                "part_b": 230.8,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 246001,
+                "magi_max": 306000,
+                "part_b": 329.7,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 306001,
+                "magi_max": 366000,
+                "part_b": 428.6,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 366001,
+                "magi_max": 750000,
+                "part_b": 527.5,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 560.5,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 218000,
+            "ineligible_at_magi": 228000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 116000,
+            "active_participant_ineligible_at": 136000,
+            "non_participant_spouse_full_below": 218000,
+            "non_participant_spouse_ineligible_at": 228000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 13850,
+            "additional_deduction_age_65": 1500,
+            "additional_deduction_blind": 1500,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 10999
+              },
+              {
+                "rate": 0.12,
+                "min": 11000,
+                "max": 44724
+              },
+              {
+                "rate": 0.22,
+                "min": 44725,
+                "max": 95374
+              },
+              {
+                "rate": 0.24,
+                "min": 95375,
+                "max": 182099
+              },
+              {
+                "rate": 0.32,
+                "min": 182100,
+                "max": 231249
+              },
+              {
+                "rate": 0.35,
+                "min": 231250,
+                "max": 346874
+              },
+              {
+                "rate": 0.37,
+                "min": 346875,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 44625,
+            "capital_gains_15pct_max": 276925,
+            "capital_gains_20pct_above": 276925,
+            "amt_exemption": 63250,
+            "amt_phaseout_start": 578150
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 164.9,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap is half of MFJ ($5,000)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 20800,
+            "additional_deduction_age_65": 1850,
+            "additional_deduction_blind": 1850,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 15699
+              },
+              {
+                "rate": 0.12,
+                "min": 15700,
+                "max": 59849
+              },
+              {
+                "rate": 0.22,
+                "min": 59850,
+                "max": 95349
+              },
+              {
+                "rate": 0.24,
+                "min": 95350,
+                "max": 182099
+              },
+              {
+                "rate": 0.32,
+                "min": 182100,
+                "max": 231249
+              },
+              {
+                "rate": 0.35,
+                "min": 231250,
+                "max": 578099
+              },
+              {
+                "rate": 0.37,
+                "min": 578100,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 59750,
+            "capital_gains_15pct_max": 523050,
+            "capital_gains_20pct_above": 523050,
+            "amt_exemption": 81300,
+            "amt_phaseout_start": 578150
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 164.9,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 97000,
+                "part_b": 164.9,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 97001,
+                "magi_max": 123000,
+                "part_b": 230.8,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 123001,
+                "magi_max": 153000,
+                "part_b": 329.7,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 153001,
+                "magi_max": 183000,
+                "part_b": 428.6,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 183001,
+                "magi_max": 500000,
+                "part_b": 527.5,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 560.5,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 138000,
+            "ineligible_at_magi": 153000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 73000,
+            "active_participant_ineligible_at": 83000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 27700,
+            "additional_deduction_age_65": 1850,
+            "additional_deduction_blind": 1850,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 21999
+              },
+              {
+                "rate": 0.12,
+                "min": 22000,
+                "max": 89449
+              },
+              {
+                "rate": 0.22,
+                "min": 89450,
+                "max": 190749
+              },
+              {
+                "rate": 0.24,
+                "min": 190750,
+                "max": 364199
+              },
+              {
+                "rate": 0.32,
+                "min": 364200,
+                "max": 462499
+              },
+              {
+                "rate": 0.35,
+                "min": 462500,
+                "max": 693749
+              },
+              {
+                "rate": 0.37,
+                "min": 693750,
+                "max": null
+              }
+            ],
+            "amt_exemption": 126500,
+            "amt_phaseout_start": 1156300
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 164.9,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 194000,
+                "part_b": 164.9,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 194001,
+                "magi_max": 246000,
+                "part_b": 230.8,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 246001,
+                "magi_max": 306000,
+                "part_b": 329.7,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 306001,
+                "magi_max": 366000,
+                "part_b": 428.6,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 366001,
+                "magi_max": 750000,
+                "part_b": 527.5,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 560.5,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 6500,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 218000,
+            "ineligible_at_magi": 228000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 116000,
+            "active_participant_ineligible_at": 136000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2024,
+      "source": "IRS Rev. Proc. 2023; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 14600,
+            "additional_deduction_age_65": 1950,
+            "additional_deduction_blind": 1950,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 11599
+              },
+              {
+                "rate": 0.12,
+                "min": 11600,
+                "max": 47149
+              },
+              {
+                "rate": 0.22,
+                "min": 47150,
+                "max": 100524
+              },
+              {
+                "rate": 0.24,
+                "min": 100525,
+                "max": 191949
+              },
+              {
+                "rate": 0.32,
+                "min": 191950,
+                "max": 243724
+              },
+              {
+                "rate": 0.35,
+                "min": 243725,
+                "max": 609349
+              },
+              {
+                "rate": 0.37,
+                "min": 609350,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 47025,
+            "capital_gains_15pct_max": 518900,
+            "capital_gains_20pct_above": 518900,
+            "amt_exemption": 85700,
+            "amt_phaseout_start": 609350
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 174.7,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 103000,
+                "part_b": 174.7,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 103001,
+                "magi_max": 129000,
+                "part_b": 244.6,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 129001,
+                "magi_max": 161000,
+                "part_b": 349.4,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 161001,
+                "magi_max": 193000,
+                "part_b": 454.2,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 193001,
+                "magi_max": 500000,
+                "part_b": 559.0,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 594.0,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 146000,
+            "ineligible_at_magi": 161000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 77000,
+            "active_participant_ineligible_at": 87000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 29200,
+            "additional_deduction_age_65_per_spouse": 1550,
+            "additional_deduction_blind_per_spouse": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 23199
+              },
+              {
+                "rate": 0.12,
+                "min": 23200,
+                "max": 94299
+              },
+              {
+                "rate": 0.22,
+                "min": 94300,
+                "max": 201049
+              },
+              {
+                "rate": 0.24,
+                "min": 201050,
+                "max": 383899
+              },
+              {
+                "rate": 0.32,
+                "min": 383900,
+                "max": 487449
+              },
+              {
+                "rate": 0.35,
+                "min": 487450,
+                "max": 731199
+              },
+              {
+                "rate": 0.37,
+                "min": 731200,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 94050,
+            "capital_gains_15pct_max": 583750,
+            "capital_gains_20pct_above": 583750,
+            "amt_exemption": 133300,
+            "amt_phaseout_start": 1218700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 174.7,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 206000,
+                "part_b": 174.7,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 206001,
+                "magi_max": 258000,
+                "part_b": 244.6,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 258001,
+                "magi_max": 322000,
+                "part_b": 349.4,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 322001,
+                "magi_max": 386000,
+                "part_b": 454.2,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 386001,
+                "magi_max": 750000,
+                "part_b": 559.0,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 594.0,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 230000,
+            "ineligible_at_magi": 240000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 123000,
+            "active_participant_ineligible_at": 143000,
+            "non_participant_spouse_full_below": 230000,
+            "non_participant_spouse_ineligible_at": 240000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 14600,
+            "additional_deduction_age_65": 1550,
+            "additional_deduction_blind": 1550,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 11599
+              },
+              {
+                "rate": 0.12,
+                "min": 11600,
+                "max": 47149
+              },
+              {
+                "rate": 0.22,
+                "min": 47150,
+                "max": 100524
+              },
+              {
+                "rate": 0.24,
+                "min": 100525,
+                "max": 191949
+              },
+              {
+                "rate": 0.32,
+                "min": 191950,
+                "max": 243724
+              },
+              {
+                "rate": 0.35,
+                "min": 243725,
+                "max": 365599
+              },
+              {
+                "rate": 0.37,
+                "min": 365600,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 47025,
+            "capital_gains_15pct_max": 291875,
+            "capital_gains_20pct_above": 291875,
+            "amt_exemption": 66650,
+            "amt_phaseout_start": 609350
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 174.7,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap is half of MFJ ($5,000)."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 21900,
+            "additional_deduction_age_65": 1950,
+            "additional_deduction_blind": 1950,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 16549
+              },
+              {
+                "rate": 0.12,
+                "min": 16550,
+                "max": 63099
+              },
+              {
+                "rate": 0.22,
+                "min": 63100,
+                "max": 100499
+              },
+              {
+                "rate": 0.24,
+                "min": 100500,
+                "max": 191949
+              },
+              {
+                "rate": 0.32,
+                "min": 191950,
+                "max": 243699
+              },
+              {
+                "rate": 0.35,
+                "min": 243700,
+                "max": 609349
+              },
+              {
+                "rate": 0.37,
+                "min": 609350,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 63000,
+            "capital_gains_15pct_max": 551350,
+            "capital_gains_20pct_above": 551350,
+            "amt_exemption": 85700,
+            "amt_phaseout_start": 609350
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 174.7,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 103000,
+                "part_b": 174.7,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 103001,
+                "magi_max": 129000,
+                "part_b": 244.6,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 129001,
+                "magi_max": 161000,
+                "part_b": 349.4,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 161001,
+                "magi_max": 193000,
+                "part_b": 454.2,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 193001,
+                "magi_max": 500000,
+                "part_b": 559.0,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 594.0,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 146000,
+            "ineligible_at_magi": 161000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 77000,
+            "active_participant_ineligible_at": 87000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 29200,
+            "additional_deduction_age_65": 1950,
+            "additional_deduction_blind": 1950,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 23199
+              },
+              {
+                "rate": 0.12,
+                "min": 23200,
+                "max": 94299
+              },
+              {
+                "rate": 0.22,
+                "min": 94300,
+                "max": 201049
+              },
+              {
+                "rate": 0.24,
+                "min": 201050,
+                "max": 383899
+              },
+              {
+                "rate": 0.32,
+                "min": 383900,
+                "max": 487449
+              },
+              {
+                "rate": 0.35,
+                "min": 487450,
+                "max": 731199
+              },
+              {
+                "rate": 0.37,
+                "min": 731200,
+                "max": null
+              }
+            ],
+            "amt_exemption": 133300,
+            "amt_phaseout_start": 1218700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 174.7,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 206000,
+                "part_b": 174.7,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 206001,
+                "magi_max": 258000,
+                "part_b": 244.6,
+                "part_d_surcharge": 12.2
+              },
+              {
+                "tier": 2,
+                "magi_min": 258001,
+                "magi_max": 322000,
+                "part_b": 349.4,
+                "part_d_surcharge": 31.5
+              },
+              {
+                "tier": 3,
+                "magi_min": 322001,
+                "magi_max": 386000,
+                "part_b": 454.2,
+                "part_d_surcharge": 50.7
+              },
+              {
+                "tier": 4,
+                "magi_min": 386001,
+                "magi_max": 750000,
+                "part_b": 559.0,
+                "part_d_surcharge": 70.0
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 594.0,
+                "part_d_surcharge": 76.4
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 230000,
+            "ineligible_at_magi": 240000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 123000,
+            "active_participant_ineligible_at": 143000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap (2018-2024)."
+          }
+        }
+      }
+    },
+    {
+      "year": 2025,
+      "source": "IRS Rev. Proc. 2024; CMS IRMAA announcement",
+      "filing_statuses": {
+        "single": {
+          "tax": {
+            "standard_deduction": 15000,
+            "additional_deduction_age_65": 2000,
+            "additional_deduction_blind": 2000,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 11924
+              },
+              {
+                "rate": 0.12,
+                "min": 11925,
+                "max": 48474
+              },
+              {
+                "rate": 0.22,
+                "min": 48475,
+                "max": 103349
+              },
+              {
+                "rate": 0.24,
+                "min": 103350,
+                "max": 197299
+              },
+              {
+                "rate": 0.32,
+                "min": 197300,
+                "max": 250524
+              },
+              {
+                "rate": 0.35,
+                "min": 250525,
+                "max": 626349
+              },
+              {
+                "rate": 0.37,
+                "min": 626350,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 48350,
+            "capital_gains_15pct_max": 533400,
+            "capital_gains_20pct_above": 533400,
+            "amt_exemption": 88100,
+            "amt_phaseout_start": 626350
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 185.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 106000,
+                "part_b": 185.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 106001,
+                "magi_max": 133000,
+                "part_b": 259.0,
+                "part_d_surcharge": 13.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 133001,
+                "magi_max": 167000,
+                "part_b": 370.0,
+                "part_d_surcharge": 35.3
+              },
+              {
+                "tier": 3,
+                "magi_min": 167001,
+                "magi_max": 200000,
+                "part_b": 480.9,
+                "part_d_surcharge": 57.0
+              },
+              {
+                "tier": 4,
+                "magi_min": 200001,
+                "magi_max": 500000,
+                "part_b": 591.9,
+                "part_d_surcharge": 78.6
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 628.9,
+                "part_d_surcharge": 85.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 150000,
+            "ineligible_at_magi": 165000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 79000,
+            "active_participant_ineligible_at": 89000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap. OBBBA changes effective 2025 (see 2026 current year for details)."
+          }
+        },
+        "married_filing_jointly": {
+          "tax": {
+            "standard_deduction": 30000,
+            "additional_deduction_age_65_per_spouse": 1600,
+            "additional_deduction_blind_per_spouse": 1600,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 23849
+              },
+              {
+                "rate": 0.12,
+                "min": 23850,
+                "max": 96949
+              },
+              {
+                "rate": 0.22,
+                "min": 96950,
+                "max": 206699
+              },
+              {
+                "rate": 0.24,
+                "min": 206700,
+                "max": 394599
+              },
+              {
+                "rate": 0.32,
+                "min": 394600,
+                "max": 501049
+              },
+              {
+                "rate": 0.35,
+                "min": 501050,
+                "max": 751599
+              },
+              {
+                "rate": 0.37,
+                "min": 751600,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 96700,
+            "capital_gains_15pct_max": 600050,
+            "capital_gains_20pct_above": 600050,
+            "amt_exemption": 137000,
+            "amt_phaseout_start": 1252700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "part_b_standard_premium": 185.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 212000,
+                "part_b": 185.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 212001,
+                "magi_max": 266000,
+                "part_b": 259.0,
+                "part_d_surcharge": 13.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 266001,
+                "magi_max": 334000,
+                "part_b": 370.0,
+                "part_d_surcharge": 35.3
+              },
+              {
+                "tier": 3,
+                "magi_min": 334001,
+                "magi_max": 400000,
+                "part_b": 480.9,
+                "part_d_surcharge": 57.0
+              },
+              {
+                "tier": 4,
+                "magi_min": 400001,
+                "magi_max": 750000,
+                "part_b": 591.9,
+                "part_d_surcharge": 78.6
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 628.9,
+                "part_d_surcharge": 85.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 236000,
+            "ineligible_at_magi": 246000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 126000,
+            "active_participant_ineligible_at": 146000,
+            "non_participant_spouse_full_below": 236000,
+            "non_participant_spouse_ineligible_at": 246000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap. OBBBA changes effective 2025 (see 2026 current year for details)."
+          }
+        },
+        "married_filing_separately": {
+          "tax": {
+            "standard_deduction": 15000,
+            "additional_deduction_age_65": 1600,
+            "additional_deduction_blind": 1600,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 11924
+              },
+              {
+                "rate": 0.12,
+                "min": 11925,
+                "max": 48474
+              },
+              {
+                "rate": 0.22,
+                "min": 48475,
+                "max": 103349
+              },
+              {
+                "rate": 0.24,
+                "min": 103350,
+                "max": 197299
+              },
+              {
+                "rate": 0.32,
+                "min": 197300,
+                "max": 250524
+              },
+              {
+                "rate": 0.35,
+                "min": 250525,
+                "max": 375799
+              },
+              {
+                "rate": 0.37,
+                "min": 375800,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 48350,
+            "capital_gains_15pct_max": 300025,
+            "capital_gains_20pct_above": 300025,
+            "amt_exemption": 68500,
+            "amt_phaseout_start": 626350
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 0,
+            "provisional_income_85pct_threshold": 0,
+            "_note": "MFS filers who lived with spouse: all SS benefits potentially taxable from dollar one."
+          },
+          "irmaa": {
+            "_note": "MFS has compressed IRMAA schedule \u2014 see current year for details.",
+            "part_b_standard_premium": 185.0,
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 0,
+            "ineligible_at_magi": 10000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 0,
+            "active_participant_ineligible_at": 10000
+          },
+          "salt_deduction_cap": {
+            "cap": 5000,
+            "_note": "MFS cap remains $5,000 for 2025."
+          }
+        },
+        "head_of_household": {
+          "tax": {
+            "standard_deduction": 22500,
+            "additional_deduction_age_65": 2000,
+            "additional_deduction_blind": 2000,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 16999
+              },
+              {
+                "rate": 0.12,
+                "min": 17000,
+                "max": 64849
+              },
+              {
+                "rate": 0.22,
+                "min": 64850,
+                "max": 103349
+              },
+              {
+                "rate": 0.24,
+                "min": 103350,
+                "max": 197299
+              },
+              {
+                "rate": 0.32,
+                "min": 197300,
+                "max": 250499
+              },
+              {
+                "rate": 0.35,
+                "min": 250500,
+                "max": 626349
+              },
+              {
+                "rate": 0.37,
+                "min": 626350,
+                "max": null
+              }
+            ],
+            "capital_gains_0pct_max": 64750,
+            "capital_gains_15pct_max": 566700,
+            "capital_gains_20pct_above": 566700,
+            "amt_exemption": 88100,
+            "amt_phaseout_start": 626350
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 25000,
+            "provisional_income_85pct_threshold": 34000
+          },
+          "irmaa": {
+            "_note": "HoH uses single IRMAA tiers.",
+            "part_b_standard_premium": 185.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 106000,
+                "part_b": 185.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 106001,
+                "magi_max": 133000,
+                "part_b": 259.0,
+                "part_d_surcharge": 13.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 133001,
+                "magi_max": 167000,
+                "part_b": 370.0,
+                "part_d_surcharge": 35.3
+              },
+              {
+                "tier": 3,
+                "magi_min": 167001,
+                "magi_max": 200000,
+                "part_b": 480.9,
+                "part_d_surcharge": 57.0
+              },
+              {
+                "tier": 4,
+                "magi_min": 200001,
+                "magi_max": 500000,
+                "part_b": 591.9,
+                "part_d_surcharge": 78.6
+              },
+              {
+                "tier": 5,
+                "magi_min": 500001,
+                "magi_max": null,
+                "part_b": 628.9,
+                "part_d_surcharge": 85.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 150000,
+            "ineligible_at_magi": 165000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 79000,
+            "active_participant_ineligible_at": 89000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap. OBBBA changes effective 2025 (see 2026 current year for details)."
+          }
+        },
+        "qualifying_surviving_spouse": {
+          "_note": "QSS uses MFJ rates and thresholds.",
+          "tax": {
+            "standard_deduction": 30000,
+            "additional_deduction_age_65": 2000,
+            "additional_deduction_blind": 2000,
+            "brackets": [
+              {
+                "rate": 0.1,
+                "min": 0,
+                "max": 23849
+              },
+              {
+                "rate": 0.12,
+                "min": 23850,
+                "max": 96949
+              },
+              {
+                "rate": 0.22,
+                "min": 96950,
+                "max": 206699
+              },
+              {
+                "rate": 0.24,
+                "min": 206700,
+                "max": 394599
+              },
+              {
+                "rate": 0.32,
+                "min": 394600,
+                "max": 501049
+              },
+              {
+                "rate": 0.35,
+                "min": 501050,
+                "max": 751599
+              },
+              {
+                "rate": 0.37,
+                "min": 751600,
+                "max": null
+              }
+            ],
+            "amt_exemption": 137000,
+            "amt_phaseout_start": 1252700
+          },
+          "social_security_taxation": {
+            "provisional_income_50pct_threshold": 32000,
+            "provisional_income_85pct_threshold": 44000
+          },
+          "irmaa": {
+            "_note": "QSS uses MFJ IRMAA tiers.",
+            "part_b_standard_premium": 185.0,
+            "tiers": [
+              {
+                "tier": 0,
+                "magi_min": 0,
+                "magi_max": 212000,
+                "part_b": 185.0,
+                "part_d_surcharge": 0
+              },
+              {
+                "tier": 1,
+                "magi_min": 212001,
+                "magi_max": 266000,
+                "part_b": 259.0,
+                "part_d_surcharge": 13.7
+              },
+              {
+                "tier": 2,
+                "magi_min": 266001,
+                "magi_max": 334000,
+                "part_b": 370.0,
+                "part_d_surcharge": 35.3
+              },
+              {
+                "tier": 3,
+                "magi_min": 334001,
+                "magi_max": 400000,
+                "part_b": 480.9,
+                "part_d_surcharge": 57.0
+              },
+              {
+                "tier": 4,
+                "magi_min": 400001,
+                "magi_max": 750000,
+                "part_b": 591.9,
+                "part_d_surcharge": 78.6
+              },
+              {
+                "tier": 5,
+                "magi_min": 750001,
+                "magi_max": null,
+                "part_b": 628.9,
+                "part_d_surcharge": 85.8
+              }
+            ],
+            "lookback_years": 2
+          },
+          "roth_ira": {
+            "contribution_limit": 7000,
+            "catchup_age_50": 1000,
+            "full_contribution_below_magi": 236000,
+            "ineligible_at_magi": 246000
+          },
+          "traditional_ira_deductibility": {
+            "active_participant_full_below": 126000,
+            "active_participant_ineligible_at": 146000
+          },
+          "salt_deduction_cap": {
+            "cap": 10000,
+            "_note": "TCJA $10,000 cap. OBBBA changes effective 2025 (see 2026 current year for details)."
+          }
+        }
+      }
+    }
+  ]
+}
