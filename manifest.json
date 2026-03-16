@@ -501,6 +501,14 @@
       "url": "federal/healthcare/fehb-retirement-eligibility.json",
       "description": "FEHB retirement eligibility: 5-year rule, who can continue, premium mechanics, Medicare coordination (Part A/B, FEHB as secondary), TCC (COBRA equivalent)",
       "last_updated": "2026-03-15"
+    },
+    "sdcera_plans": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "annual (actuarial valuation)",
+      "url": "states/california/san-diego-county/sdcera-plans.json",
+      "description": "SDCERA (San Diego County) \u2014 9-tier defined benefit pension system under 1937 Act, covering General and Safety members",
+      "last_updated": "2026-03-15"
     }
   }
 }

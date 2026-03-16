@@ -1,0 +1,530 @@
+{
+  "version": "1.0",
+  "effective_date": "2026-01-01",
+  "description": "San Diego County Employees Retirement Association (SDCERA) \u2014 defined benefit pension plans under the California County Employees Retirement Law of 1937 (CERL), covering General and Safety members across 9 benefit tiers",
+  "source": "SDCERA GASB 68 Actuarial Valuation (FY2021), 2024 ACFR, SDCERA FAQ and member resources",
+  "source_urls": [
+    "https://www.sdcera.org/members/benefits",
+    "https://content.sdcera.org/wp-content/uploads/2023/01/2021_GASB_68.pdf",
+    "https://content.sdcera.org/wp-content/uploads/2024/11/2024-ACFR-FINAL.pdf",
+    "https://content.sdcera.org/wp-content/uploads/2025/07/FAQs-for-AI-Search.pdf",
+    "https://www.sdcera.org/members/benefits/excess-benefit-plan"
+  ],
+  "system_overview": {
+    "name": "San Diego County Employees Retirement Association",
+    "abbreviation": "SDCERA",
+    "established": "1939-07-01",
+    "governing_law": "California County Employees Retirement Law of 1937 (CERL)",
+    "plan_type": "defined_benefit",
+    "irc_qualification": "401(a)",
+    "classifications": [
+      "general",
+      "safety"
+    ],
+    "participating_employers": [
+      "County of San Diego",
+      "San Diego Local Agency Formation Commission (LAFCO)",
+      "San Dieguito River Park Joint Powers Authority",
+      "San Diego County Office of Education",
+      "Superior Court of California \u2014 County of San Diego"
+    ],
+    "membership_as_of_fy2024": {
+      "active": 20100,
+      "deferred": 8900,
+      "retired_and_beneficiaries": 22100,
+      "total": 51100
+    },
+    "assets_billions": 17.7,
+    "funded_ratio_pct": 77.5,
+    "valuation_date": "2024-06-30",
+    "address": "2275 Rio Bonito Way, Suite 200, San Diego, CA 92108",
+    "phone": "(619) 515-6800",
+    "website": "https://www.sdcera.org"
+  },
+  "membership_rules": {
+    "eligibility": "Appointed to permanent position, working at least half-time (20+ hours/week)",
+    "effective_date": "First full payroll period in the month following appointment",
+    "mandatory": true,
+    "elected_officials": "Optional",
+    "excluded": "Part-time under 20 hours/week, emergency, temporary, hourly, provisional, seasonal employees",
+    "vesting_years": 5,
+    "safety_membership": "Active law enforcement, court service officers (added 1998), probation officers (added 1999)"
+  },
+  "plans": {
+    "general_tier_I": {
+      "classification": "general",
+      "government_code": "\u00a731676.12",
+      "membership_dates": {
+        "description": "Members hired before March 8, 2002 who made irrevocable election to opt out of General Tier A",
+        "note": "Also includes General members in deferred status on March 8, 2002 who opted out"
+      },
+      "benefit_formula": {
+        "name": "2.62% at 62",
+        "max_age_factor_pct": 2.62,
+        "max_age_factor_age": 62,
+        "description": "Age factor increases with age at retirement; maximum 2.62% per year of service at age 62"
+      },
+      "final_average_compensation": {
+        "period": "highest_1_year",
+        "pay_periods": 26,
+        "description": "Highest 26 consecutive pay periods of earnings"
+      },
+      "social_security_integration": true,
+      "max_benefit_pct_of_fac": 100,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "full_service": {
+          "years_of_service": 30,
+          "note": "Any age with 30 years"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 3.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "contribution_cessation_years": 30,
+      "compensation_limit_2026": 360000,
+      "compensation_limit_authority": "IRC \u00a7401(a)(17)",
+      "excess_benefit_plan_eligible": true,
+      "irc_415b_limit_2026_at_62": 290000
+    },
+    "general_tier_A": {
+      "classification": "general",
+      "government_code": "\u00a731676.17",
+      "membership_dates": {
+        "start": "2002-03-08",
+        "end": "2009-08-27",
+        "description": "Members hired March 8, 2002 to August 27, 2009, plus Tier I and Tier II members converted to Tier A on March 8, 2002"
+      },
+      "benefit_formula": {
+        "name": "3.0% at 60",
+        "max_age_factor_pct": 3.0,
+        "max_age_factor_age": 60,
+        "description": "Age factor increases with age; maximum 3.0% per year of service at age 60"
+      },
+      "final_average_compensation": {
+        "period": "highest_1_year",
+        "pay_periods": 26,
+        "description": "Highest 26 consecutive pay periods of earnings"
+      },
+      "social_security_integration": true,
+      "max_benefit_pct_of_fac": 100,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "full_service": {
+          "years_of_service": 30,
+          "note": "Any age with 30 years"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 3.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "contribution_cessation_years": 30,
+      "compensation_limit_2026": 360000,
+      "compensation_limit_authority": "IRC \u00a7401(a)(17)",
+      "excess_benefit_plan_eligible": true,
+      "irc_415b_limit_2026_at_62": 290000
+    },
+    "general_tier_B": {
+      "classification": "general",
+      "government_code": "\u00a731676.12",
+      "membership_dates": {
+        "start": "2009-08-28",
+        "end": "2012-12-31",
+        "description": "Members hired August 28, 2009 to December 31, 2012"
+      },
+      "benefit_formula": {
+        "name": "2.62% at 62",
+        "max_age_factor_pct": 2.62,
+        "max_age_factor_age": 62,
+        "description": "Same formula as General Tier I; age factor increases with age at retirement"
+      },
+      "final_average_compensation": {
+        "period": "highest_3_year",
+        "pay_periods": 78,
+        "description": "Highest 78 consecutive pay periods of earnings"
+      },
+      "social_security_integration": true,
+      "max_benefit_pct_of_fac": 100,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 55,
+          "years_of_service": 10
+        },
+        "full_service": {
+          "years_of_service": 30,
+          "note": "Any age with 30 years"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "contribution_cessation_years": 30,
+      "compensation_limit_2026": 360000,
+      "compensation_limit_authority": "IRC \u00a7401(a)(17)",
+      "excess_benefit_plan_eligible": true,
+      "irc_415b_limit_2026_at_62": 290000
+    },
+    "general_tier_C": {
+      "classification": "general",
+      "government_code": "\u00a77522.20(a)",
+      "pepra": true,
+      "membership_dates": {
+        "start": "2013-01-01",
+        "end": "2018-06-30",
+        "description": "General members hired January 1, 2013 to June 30, 2018 (PEPRA)"
+      },
+      "benefit_formula": {
+        "name": "2.5% at 67",
+        "max_age_factor_pct": 2.5,
+        "max_age_factor_age": 67,
+        "description": "PEPRA formula; age factor increases with age, maximum 2.5% per year at age 67"
+      },
+      "final_average_compensation": {
+        "period": "highest_3_year",
+        "pay_periods": 78,
+        "description": "Highest 78 consecutive pay periods of earnings"
+      },
+      "social_security_integration": false,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 52,
+          "years_of_service": 5
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "compensation_limit_note": "PEPRA limit: 100% of 2013 Social Security taxable wage base, adjusted for CPI-U",
+      "excess_benefit_plan_eligible": false
+    },
+    "general_tier_D": {
+      "classification": "general",
+      "government_code": "\u00a731676.01",
+      "pepra": false,
+      "membership_dates": {
+        "start": "2018-07-01",
+        "end": null,
+        "description": "General members hired on or after July 1, 2018"
+      },
+      "benefit_formula": {
+        "name": "1.62% at 65",
+        "max_age_factor_pct": 1.62,
+        "max_age_factor_age": 65,
+        "description": "Lower-tier 1937 Act formula; age factor increases with age, maximum 1.62% per year at age 65"
+      },
+      "final_average_compensation": {
+        "period": "highest_3_year",
+        "pay_periods": 78,
+        "description": "Highest 78 consecutive pay periods of earnings"
+      },
+      "social_security_integration": false,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 52,
+          "years_of_service": 5
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "compensation_limit_note": "PEPRA limits apply per Gov Code \u00a77522 et seq.",
+      "excess_benefit_plan_eligible": false
+    },
+    "safety_tier_A": {
+      "classification": "safety",
+      "government_code": "\u00a731664.1",
+      "membership_dates": {
+        "end": "2009-08-27",
+        "description": "Safety members hired before August 28, 2009"
+      },
+      "benefit_formula": {
+        "name": "3.0% at 50",
+        "max_age_factor_pct": 3.0,
+        "max_age_factor_age": 50,
+        "description": "Age factor reaches maximum 3.0% per year of service at age 50"
+      },
+      "final_average_compensation": {
+        "period": "highest_1_year",
+        "pay_periods": 26,
+        "description": "Highest 26 consecutive pay periods of earnings"
+      },
+      "social_security_integration": false,
+      "max_benefit_pct_of_fac": 100,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "full_service": {
+          "years_of_service": 20,
+          "note": "Any age with 20 years"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 3.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "contribution_cessation_years": 30,
+      "compensation_limit_2026": 360000,
+      "compensation_limit_authority": "IRC \u00a7401(a)(17)",
+      "excess_benefit_plan_eligible": true,
+      "irc_415b_limit_2026_at_62": 290000,
+      "irc_415b_sheriff_exception": "15+ years Sheriff service exempts from early retirement reduction"
+    },
+    "safety_tier_B": {
+      "classification": "safety",
+      "government_code": "\u00a731664.2",
+      "membership_dates": {
+        "start": "2009-08-28",
+        "end": "2012-12-31",
+        "description": "Safety members hired August 28, 2009 to December 31, 2012"
+      },
+      "benefit_formula": {
+        "name": "3.0% at 55",
+        "max_age_factor_pct": 3.0,
+        "max_age_factor_age": 55,
+        "description": "Age factor reaches maximum 3.0% per year of service at age 55"
+      },
+      "final_average_compensation": {
+        "period": "highest_3_year",
+        "pay_periods": 78,
+        "description": "Highest 78 consecutive pay periods of earnings"
+      },
+      "social_security_integration": false,
+      "max_benefit_pct_of_fac": 100,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "full_service": {
+          "years_of_service": 20,
+          "note": "Any age with 20 years"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "contribution_cessation_years": 30,
+      "compensation_limit_2026": 360000,
+      "compensation_limit_authority": "IRC \u00a7401(a)(17)",
+      "excess_benefit_plan_eligible": true,
+      "irc_415b_limit_2026_at_62": 290000
+    },
+    "safety_tier_C": {
+      "classification": "safety",
+      "government_code": "\u00a77522.25(d)",
+      "pepra": true,
+      "membership_dates": {
+        "start": "2013-01-01",
+        "end": "2020-06-30",
+        "description": "Safety members hired January 1, 2013 to June 30, 2020 (PEPRA)"
+      },
+      "benefit_formula": {
+        "name": "2.7% at 57",
+        "max_age_factor_pct": 2.7,
+        "max_age_factor_age": 57,
+        "description": "PEPRA safety formula; age factor reaches maximum 2.7% per year at age 57"
+      },
+      "final_average_compensation": {
+        "period": "highest_3_year",
+        "pay_periods": 78,
+        "description": "Highest 78 consecutive pay periods of earnings"
+      },
+      "social_security_integration": false,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 5
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "compensation_limit_note": "PEPRA limit: 120% of 2013 Social Security taxable wage base, adjusted for CPI-U",
+      "excess_benefit_plan_eligible": false
+    },
+    "safety_tier_D": {
+      "classification": "safety",
+      "government_code": "\u00a77522.25(c)",
+      "pepra": true,
+      "membership_dates": {
+        "start": "2020-07-01",
+        "end": null,
+        "description": "Safety members hired on or after July 1, 2020 (PEPRA)"
+      },
+      "benefit_formula": {
+        "name": "2.5% at 57",
+        "max_age_factor_pct": 2.5,
+        "max_age_factor_age": 57,
+        "description": "PEPRA safety formula; age factor reaches maximum 2.5% per year at age 57"
+      },
+      "final_average_compensation": {
+        "period": "highest_3_year",
+        "pay_periods": 78,
+        "description": "Highest 78 consecutive pay periods of earnings"
+      },
+      "social_security_integration": false,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 5
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Any service (including non-vested)"
+        }
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI San Diego-Carlsbad Area (1982-84 base)",
+        "guaranteed": false,
+        "cola_bank": true
+      },
+      "compensation_limit_note": "PEPRA limit: 120% of 2013 Social Security taxable wage base, adjusted for CPI-U",
+      "excess_benefit_plan_eligible": false
+    }
+  },
+  "benefit_options": {
+    "description": "5 retirement benefit options; most members choose unmodified",
+    "options": [
+      {
+        "name": "Unmodified",
+        "description": "Highest monthly benefit; 60% continuance to eligible surviving spouse or domestic partner",
+        "survivor_continuance_pct": 60,
+        "can_change_beneficiary_after_retirement": true
+      },
+      {
+        "name": "Option 1",
+        "description": "Reduced benefit with lump-sum death benefit to beneficiary",
+        "can_change_beneficiary_after_retirement": true
+      },
+      {
+        "name": "Option 2",
+        "description": "Reduced benefit; 100% of reduced amount continues to named beneficiary for life",
+        "survivor_continuance_pct": 100,
+        "can_change_beneficiary_after_retirement": false
+      },
+      {
+        "name": "Option 3",
+        "description": "Reduced benefit; 50% of reduced amount continues to named beneficiary for life",
+        "survivor_continuance_pct": 50,
+        "can_change_beneficiary_after_retirement": false
+      },
+      {
+        "name": "Option 4",
+        "description": "Reduced benefit; actuarially determined percentage continues to named beneficiary for life",
+        "can_change_beneficiary_after_retirement": false
+      }
+    ],
+    "surviving_spouse_eligibility": "Married to or registered domestic partner with member for at least 1 year prior to retirement effective date"
+  },
+  "service_credit_purchases": {
+    "types": [
+      "Military Leave Without Pay (USERRA)",
+      "Sick Leave Without Pay",
+      "Prior Public Agency (reciprocal)",
+      "Redeposit of withdrawn contributions",
+      "Industrial Disability Leave"
+    ],
+    "military_lwop_note": "Tier I/A/B: may receive credit at no cost; Tier C/D: may purchase interest-free",
+    "must_complete_before_retirement": true
+  },
+  "reciprocity": {
+    "available": true,
+    "description": "Members may link SDCERA pension with a pension from certain other California public retirement systems",
+    "effect_on_entry_age": "Entry age in SDCERA member portal reflects age when started at reciprocal agency"
+  },
+  "deferred_compensation": {
+    "plans": [
+      "401(a)",
+      "457(b)"
+    ],
+    "administrator": "Nationwide",
+    "website": "https://www.mydcplan.com/"
+  },
+  "health_benefits": {
+    "sdcera_sponsored": {
+      "status": "closed_to_new_enrollments",
+      "description": "SDCERA has closed its sponsored health insurance plans to new enrollments; existing enrollees cannot add dependents or change coverage, only drop"
+    },
+    "health_insurance_allowance": {
+      "eligibility": "Tier I or Tier II retirees with at least 10 years of service credit",
+      "description": "Monthly reimbursement for health, dental, or prescription insurance premiums up to maximum amount",
+      "survivor_eligible": true
+    }
+  },
+  "post_retirement_employment": {
+    "waiting_period_days": 180,
+    "max_hours_per_fiscal_year": 960,
+    "description": "Retirees may work part-time for an SDCERA employer without pension impact if under 960 hours/fiscal year, after 180-day wait"
+  },
+  "notes": [
+    "General Tier I and B share the same Government Code section (\u00a731676.12) and age factor formula (2.62% at 62) but differ in FAC period, COLA cap, and minimum retirement age",
+    "General Tier D (\u00a731676.01, 1.62% at 65) uses a lower 1937 Act formula adopted as cost-saving measure, not a PEPRA formula despite post-2013 implementation",
+    "Contribution rates are entry-age-based and vary by individual member; rates are actuarially determined and adopted annually by the Board of Retirement",
+    "COLA banking allows accumulation of unused COLA in years when CPI exceeds the tier cap, for future use when CPI is below the cap",
+    "The excess benefit plan (funded by County Board of Supervisors) covers Tier I/A/B members whose benefit exceeds IRC \u00a7415(b) limits; Tier C/D members are not eligible"
+  ]
+}
