@@ -461,46 +461,46 @@
       "category": "pension",
       "jurisdiction": "Falls Church, VA",
       "changelog_2026_2": "v2026.2: Section 5.04 COLA (half CPI-U, 4% cap). TR25-42 annuity amendment (8 to 5 options, eff. May 2026). Full formula, eligibility, contributions, disability from plan document."
+    },
+    "tsp_roth_conversion": {
+      "version": "1.0",
+      "effective_date": "2026-01-28",
+      "update_frequency": "as enacted",
+      "url": "reference/tsp-roth-conversion.json",
+      "description": "TSP Roth in-plan conversion rules: eligibility, mechanics (min $500, max 26/yr), tax treatment, five-year rules, mandatory Roth catch-up, planning interactions (IRMAA, SRS, ladder strategy)",
+      "last_updated": "2026-03-15"
+    },
+    "fers_srs_rules": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as enacted",
+      "url": "reference/fers-srs-rules.json",
+      "description": "FERS Special Retirement Supplement (SRS) rules: eligibility, formula (SS estimate x FERS years/40), earnings test, COLA (none), tax treatment, planning interactions",
+      "last_updated": "2026-03-15"
+    },
+    "csrs_retirement_rules": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as enacted",
+      "url": "reference/csrs-retirement-rules.json",
+      "description": "CSRS retirement system rules: tiered formula (1.5%/1.75%/2.0%), eligibility, 80% cap, sick leave credit, survivor annuity (55%), CSRS Offset, voluntary contributions, special category (LEO/FF), COLA (full CPI)",
+      "last_updated": "2026-03-15"
+    },
+    "fegli_rates": {
+      "version": "1.0",
+      "effective_date": "2021-10-01",
+      "update_frequency": "as adjusted (Federal Register notice)",
+      "url": "federal/fegli-rates.json",
+      "description": "FEGLI life insurance: Basic/Option A/B/C coverage, premium rates by age band, Extra Benefit schedule, retirement reduction elections (75%/50%/No Reduction), post-retirement rates",
+      "last_updated": "2026-03-15"
+    },
+    "fehb_retirement_eligibility": {
+      "version": "1.0",
+      "effective_date": "2026-01-01",
+      "update_frequency": "as enacted",
+      "url": "federal/healthcare/fehb-retirement-eligibility.json",
+      "description": "FEHB retirement eligibility: 5-year rule, who can continue, premium mechanics, Medicare coordination (Part A/B, FEHB as secondary), TCC (COBRA equivalent)",
+      "last_updated": "2026-03-15"
     }
-  },
-  "tsp_roth_conversion": {
-    "version": "1.0",
-    "effective_date": "2026-01-28",
-    "update_frequency": "as enacted",
-    "url": "reference/tsp-roth-conversion.json",
-    "description": "TSP Roth in-plan conversion rules: eligibility, mechanics (min $500, max 26/yr), tax treatment, five-year rules, mandatory Roth catch-up, planning interactions (IRMAA, SRS, ladder strategy)",
-    "last_updated": "2026-03-15"
-  },
-  "fers_srs_rules": {
-    "version": "1.0",
-    "effective_date": "2026-01-01",
-    "update_frequency": "as enacted",
-    "url": "reference/fers-srs-rules.json",
-    "description": "FERS Special Retirement Supplement (SRS) rules: eligibility, formula (SS estimate x FERS years/40), earnings test, COLA (none), tax treatment, planning interactions",
-    "last_updated": "2026-03-15"
-  },
-  "csrs_retirement_rules": {
-    "version": "1.0",
-    "effective_date": "2026-01-01",
-    "update_frequency": "as enacted",
-    "url": "reference/csrs-retirement-rules.json",
-    "description": "CSRS retirement system rules: tiered formula (1.5%/1.75%/2.0%), eligibility, 80% cap, sick leave credit, survivor annuity (55%), CSRS Offset, voluntary contributions, special category (LEO/FF), COLA (full CPI)",
-    "last_updated": "2026-03-15"
-  },
-  "fegli_rates": {
-    "version": "1.0",
-    "effective_date": "2021-10-01",
-    "update_frequency": "as adjusted (Federal Register notice)",
-    "url": "federal/fegli-rates.json",
-    "description": "FEGLI life insurance: Basic/Option A/B/C coverage, premium rates by age band, Extra Benefit schedule, retirement reduction elections (75%/50%/No Reduction), post-retirement rates",
-    "last_updated": "2026-03-15"
-  },
-  "fehb_retirement_eligibility": {
-    "version": "1.0",
-    "effective_date": "2026-01-01",
-    "update_frequency": "as enacted",
-    "url": "federal/healthcare/fehb-retirement-eligibility.json",
-    "description": "FEHB retirement eligibility: 5-year rule, who can continue, premium mechanics, Medicare coordination (Part A/B, FEHB as secondary), TCC (COBRA equivalent)",
-    "last_updated": "2026-03-15"
   }
 }
