@@ -10,15 +10,16 @@ This repository contains **no personal information of any kind**. All data is dr
 
 A structured, version-controlled library of government-published financial data useful for retirement planning, tax analysis, benefits estimation, and fiscal modeling. Coverage includes:
 
-- **Federal retirement systems** — FERS rates, TSP contribution limits, COLA history, Social Security bend points and taxable maximums
-- **Federal pay** — GS pay tables (all grades/steps/localities), DCIPS pay bands, and military basic pay (27 grades × 22 YOS, 2016–2026)
-- **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL), Medicare IRMAA
+- **Federal retirement systems** — FERS rates, FERS SRS rules, CSRS rules, TSP contribution limits, TSP Roth conversion rules, COLA history, Social Security bend points, taxable maximums, claiming strategy rules, and earnings test thresholds
+- **Federal pay** — GS pay tables (all grades/steps/localities), DCIPS pay bands, military basic pay (27 grades × 22 YOS, 2016–2026), federal pay raise history
+- **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEHB retirement eligibility, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL, pharmacy, dental), Medicare IRMAA
+- **Life insurance** — FEGLI rates (Basic + Options A/B/C, age-banded), VGLI premiums
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
-- **Tax data** — Federal brackets, standard deductions, IRA/Roth limits and phase-outs
+- **Tax data** — Federal brackets, standard deductions, capital gains rates, IRA/Roth limits and phase-outs, HSA limits, estate & gift tax, OBBBA tax provisions
 - **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
-- **County property tax** — Effective rates and veteran exemptions for 10 counties
-- **Actuarial tables** — SSA period life table (ages 0–119, both sexes)
-- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC, FCERS, PORS, and URS plans, Arlington County ACERS plans, Richmond RRS plans, Montgomery County MD MCERP plans, pension stacking patterns
+- **County property tax** — Effective rates and veteran exemptions for 10 counties across 9 states
+- **Actuarial tables** — SSA period life table (ages 0–119, both sexes), RMD rules history
+- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC/FCERS/PORS/URS plans, Arlington County ACERS plans, Richmond RRS plans, Falls Church FCPP plans, Montgomery County MD MCERP plans, San Diego County CA SDCERA plans, pension stacking patterns
 
 Designed as a generic data source that any application, tool, or analysis can consume — no authentication, no API keys, no tracking.
 
@@ -26,7 +27,7 @@ Designed as a generic data source that any application, tool, or analysis can co
 
 ## How to Use This Repo
 
-1. Fetch `manifest.json` first — it's the version index listing all 48 available data files.
+1. Fetch `manifest.json` first — it's the version index listing all 57 available data files.
 2. Compare each file's `version` to your locally cached copy.
 3. Fetch only the files that have newer versions.
 4. If GitHub is unreachable, fall back to your last cached fetch.
@@ -39,11 +40,11 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 51 entries)
+├── manifest.json                                ← Fetch this first (master version index, 57 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
-│   ├── rates-annual.json                        ← TSP, IRMAA, IRA, SS, FERS, tax brackets, COLA
+│   ├── rates-annual.json                        ← TSP, IRMAA, IRA, SS, FERS, tax brackets, COLA, earnings test
 │   ├── pay-tables.json                          ← GS pay tables — all grades/steps/localities
 │   ├── tsp-limits.json                          ← TSP contribution limits (1987–2026)
 │   ├── ss-bend-points.json                      ← SS bend points (1979–2026)
@@ -58,14 +59,16 @@ public-finance-data/
 │   ├── estate-gift-tax.json                     ← Estate & gift tax exemptions (1916–2026)
 │   ├── fers-contribution-rates.json             ← FERS employee contribution rates by hire cohort
 │   ├── fehb-premium-history.json                ← FEHB average premium history (1999–2025)
+│   ├── fegli-rates.json                         ← FEGLI life insurance — Basic + Options A/B/C, age-banded
 │   ├── military-pay-tables.json                 ← Military basic pay by grade/YOS (2016–2026, 27 grades)
 │   ├── dcips/
 │   │   └── dcips-pay-tables.json                ← DCIPS pay bands — all occupational categories
 │   ├── healthcare/
 │   │   ├── fehb-rates.json                      ← FEHB premiums — 478 plan entries (132 plans × enrollment types)
 │   │   ├── fehb-plan-benefits.json              ← FEHB plan benefit details (deductibles, copays, coverage)
+│   │   ├── fehb-retirement-eligibility.json     ← FEHB retirement eligibility — 5-year rule, TCC, LWOP
 │   │   ├── fedvip-rates.json                    ← FEDVIP dental + vision premiums
-│   │   ├── tricare-rates.json                   ← TRICARE costs — retiree, ADFM, reserve, TFL
+│   │   ├── tricare-rates.json                   ← TRICARE costs — retiree, ADFM, reserve, TFL, pharmacy, dental
 │   │   └── medicare-rates.json                  ← Medicare Part B/D premiums + IRMAA thresholds
 │   └── veterans-affairs/
 │       ├── compensation.json                    ← VA disability comp rates, DIC, VA COLA
@@ -75,6 +78,9 @@ public-finance-data/
 │   ├── state-benefits.json                      ← 56 jurisdictions (50 states + DC + 5 territories): income tax, property tax, veteran benefits
 │   ├── arizona/
 │   │   └── county-property-tax.json             ← Maricopa County
+│   ├── california/
+│   │   └── san-diego-county/
+│   │       └── sdcera-plans.json                ← SDCERA pension plans — 9 benefit tiers (51K+ members)
 │   ├── colorado/
 │   │   └── county-property-tax.json             ← El Paso County
 │   ├── florida/
@@ -93,7 +99,7 @@ public-finance-data/
 │   │   ├── county-property-tax.json             ← Fairfax County, Virginia Beach
 │   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid, SPORS, VaLORS, hazardous duty
 │   │   ├── arlington-county/
-│   │   │   └── acers-plans.json                  ← ACERS pension plans (independent, not VRS)
+│   │   │   └── acers-plans.json                 ← ACERS pension plans (independent, not VRS)
 │   │   ├── fairfax-county/
 │   │   │   ├── erfc-plans.json                  ← ERFC Legacy, Tier 1, Tier 2 (county-level pension)
 │   │   │   ├── fcers-plans.json                 ← FCERS Plans A-E (county general employees pension)
@@ -111,13 +117,16 @@ public-finance-data/
 │   ├── static-refs.json                         ← SS FRA table, RMD Uniform Lifetime Table, locality codes
 │   ├── ssa-life-table.json                      ← SSA period life table (ages 0–119, M/F/combined)
 │   ├── other-db-template.json                   ← Generic DB plan template for user-entered pensions
-│   ├── social-security-claiming.json            ← SS claiming strategy rules and reduction factors
-│   ├── military-retirement-rules.json           ← Military retirement rules (Legacy, Redux, BRS, Ch.61 disability, CRDP/CRSC)
+│   ├── social-security-claiming.json            ← SS claiming strategy rules, reduction factors, earnings test
+│   ├── military-retirement-rules.json           ← Military retirement (Legacy, Redux, BRS, Ch.61, CRDP/CRSC)
 │   ├── rmd-rules-history.json                   ← RMD age threshold history and SECURE Act changes
-│   └── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
+│   ├── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
+│   ├── tsp-roth-conversion.json                 ← TSP Roth conversion rules and tax treatment
+│   ├── fers-srs-rules.json                      ← FERS Special Retirement Supplement rules and earnings test
+│   └── csrs-retirement-rules.json               ← CSRS retirement computation and survivor annuity rules
 │
 └── tests/
-    ├── validate.py                              ← Core validation (1,158 checks)
+    ├── validate.py                              ← Core validation (1,209 checks)
     ├── validate_tier2.py                        ← State benefits validation (530 checks)
     ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
     ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
@@ -131,24 +140,27 @@ public-finance-data/
     ├── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
     ├── validate_military.py                     ← Military retirement rules + pay tables validation (705 checks)
     ├── validate_vehicle_audit.py                ← Vehicle personal property tax audit validation (123 checks)
-    └── validate_territories.py                  ← US territory expansion validation (129 checks)
+    ├── validate_territories.py                  ← US territory expansion validation (129 checks)
+    ├── validate_federal_retirement.py           ← Federal retirement rules validation (157 checks)
+    ├── validate_municipal.py                    ← Municipal pension validation (153 checks)
+    └── validate_sdcera.py                       ← SDCERA pension validation (178 checks)
 ```
 
 ### Domain Organization
 
 Files are organized by jurisdiction and domain:
 
-- **`federal/`** — Federal civilian data (OPM, IRS, SSA, CMS), healthcare plans (OPM, DoD, CMS), and Department of Veterans Affairs benefits
-- **`states/`** — State-level tax treatment, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`, `states/virginia/arlington-county/`)
-- **`reference/`** — Static lookup tables, actuarial data, and templates that rarely change
+- **`federal/`** — Federal civilian data (OPM, IRS, SSA, CMS), healthcare plans (OPM, DoD, CMS), life insurance (OPM), and Department of Veterans Affairs benefits
+- **`states/`** — State-level tax treatment, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`, `states/california/san-diego-county/`)
+- **`reference/`** — Static lookup tables, actuarial data, retirement system rules, and templates that rarely change
 
 ---
 
-## Manifest — Current Data Files (44 Entries)
+## Manifest — Current Data Files (57 Entries)
 
 | Key | Version | File |
 |-----|---------|------|
-| `rates_annual` | 2026.2 | `federal/rates-annual.json` |
+| `rates_annual` | 2026.3 | `federal/rates-annual.json` |
 | `pay_tables` | 2026 | `federal/pay-tables.json` |
 | `dcips_pay_tables` | 2026.1 | `federal/dcips/dcips-pay-tables.json` |
 | `tsp_limits` | 1.0 | `federal/tsp-limits.json` |
@@ -164,14 +176,17 @@ Files are organized by jurisdiction and domain:
 | `estate_gift_tax` | 1.0.1 | `federal/estate-gift-tax.json` |
 | `fers_contribution_rates` | 1.0 | `federal/fers-contribution-rates.json` |
 | `fehb_premium_history` | 1.0 | `federal/fehb-premium-history.json` |
+| `fegli_rates` | 1.0 | `federal/fegli-rates.json` |
+| `military_pay_tables` | 2026.1 | `federal/military-pay-tables.json` |
 | `fehb_rates` | 2026.3 | `federal/healthcare/fehb-rates.json` |
 | `fehb_plan_benefits` | 2026.1 | `federal/healthcare/fehb-plan-benefits.json` |
+| `fehb_retirement_eligibility` | 1.0 | `federal/healthcare/fehb-retirement-eligibility.json` |
 | `fedvip_rates` | 2026.1 | `federal/healthcare/fedvip-rates.json` |
 | `tricare_rates` | 2026.3 | `federal/healthcare/tricare-rates.json` |
 | `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
 | `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
-| `state_benefits` | 2.5 | `states/state-benefits.json` |
+| `state_benefits` | 2.9 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
 | `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
 | `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
@@ -181,24 +196,27 @@ Files are organized by jurisdiction and domain:
 | `county_property_tax_tx` | 1.1 | `states/texas/county-property-tax.json` |
 | `county_property_tax_va` | 1.1 | `states/virginia/county-property-tax.json` |
 | `county_property_tax_wa` | 1.1 | `states/washington/county-property-tax.json` |
-| `vrs_plans` | 2.0.0 | `states/virginia/vrs-plans.json` |
-| `acers_plans_arlington` | 2026.1 | `states/virginia/arlington-county/acers-plans.json` |
+| `vrs_plans` | 2026.2 | `states/virginia/vrs-plans.json` |
+| `acers_plans_arlington` | 2026.2 | `states/virginia/arlington-county/acers-plans.json` |
+| `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
 | `fcers_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/fcers-plans.json` |
 | `pors_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/pors-plans.json` |
 | `urs_plans_fairfax` | 2026.1 | `states/virginia/fairfax-county/urs-plans.json` |
-| `rrs_plans_richmond` | 2026.1 | `states/virginia/richmond/rrs-plans.json` |
-| `fcpp_plans_falls_church` | 2026.1 | `states/virginia/falls-church/fcpp-plans.json` |
-| `mcerp_plans_montgomery` | 2026.1 | `states/maryland/montgomery-county/mcerp-plans.json` |
-| `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
 | `plan_combinations_fairfax` | 2.0.0 | `states/virginia/fairfax-county/plan-combinations.json` |
-| `static_refs` | 1.0.1 | `reference/static-refs.json` |
+| `fcpp_plans_falls_church` | 2026.2 | `states/virginia/falls-church/fcpp-plans.json` |
+| `rrs_plans_richmond` | 2026.1 | `states/virginia/richmond/rrs-plans.json` |
+| `mcerp_plans_montgomery` | 2026.3 | `states/maryland/montgomery-county/mcerp-plans.json` |
+| `sdcera_plans` | 1.0 | `states/california/san-diego-county/sdcera-plans.json` |
+| `static_refs` | 1.0.2 | `reference/static-refs.json` |
 | `ssa_life_table` | 1.0 | `reference/ssa-life-table.json` |
 | `other_db_template` | 1.0.0 | `reference/other-db-template.json` |
-| `social_security_claiming` | 1.1 | `reference/social-security-claiming.json` |
+| `social_security_claiming` | 1.2 | `reference/social-security-claiming.json` |
 | `military_retirement_rules` | 2.0 | `reference/military-retirement-rules.json` |
-| `military_pay_tables` | 2026.1 | `federal/military-pay-tables.json` |
 | `rmd_rules_history` | 1.0 | `reference/rmd-rules-history.json` |
 | `obbba_tax_provisions` | 1.0 | `reference/obbba-tax-provisions.json` |
+| `tsp_roth_conversion` | 1.0 | `reference/tsp-roth-conversion.json` |
+| `fers_srs_rules` | 1.1 | `reference/fers-srs-rules.json` |
+| `csrs_retirement_rules` | 1.0 | `reference/csrs-retirement-rules.json` |
 
 ---
 
@@ -210,29 +228,37 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 **County property tax** (10 counties across 9 states, stored as per-state files under `states/{state}/county-property-tax.json`): Fairfax County VA, Virginia Beach VA, Prince George's County MD, Cumberland County NC, Bexar County TX, Hillsborough County FL, El Paso County CO, Pierce County WA, Maricopa County AZ, Clark County NV
 
+**Municipal/county pension systems** (4 states, 8 jurisdictions):
+- Virginia: VRS (state), Fairfax County (ERFC, FCERS, PORS, URS + stacking), Arlington County (ACERS), Falls Church (FCPP), Richmond (RRS)
+- Maryland: Montgomery County (MCERP)
+- California: San Diego County (SDCERA — 9 benefit tiers, first CA 1937 Act pension system)
+
 ---
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs fifteen test suites totaling **5,986 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **18 test suites** totaling **~6,525 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 1,158 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit guard rails, legislation watch, partial exemption audit, SS taxation audit |
+| Core | `validate.py` | 1,209 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit, legislation watch, partial exemption audit, SS taxation audit, SS 2026 data accuracy + cross-file checks |
 | Tier 2 | `validate_tier2.py` | 530 | State benefits — field structure, exemption types, IU eligibility |
+| Tier 3A | `validate_tier3.py` | 125 | Tier 3A state expansion — CA, NY, OH, IL, MI, TN, SC, AL, MO, IN |
+| Tier 3B | `validate_tier3b.py` | 172 | Tier 3B state expansion — NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS |
+| Tier 3C | `validate_tier3c.py` | 187 | Tier 3C state expansion — LA, MA, WV, NH, ME, UT, NM, ID, MT, DE |
+| Tier 3D | `validate_tier3d.py` | 179 | Tier 3D final expansion — NE, ND, RI, SD, VT, WY (50 states + DC) |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
 | Historical | `validate_historical.py` | 1,968 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
 | Pharmacy | `validate_pharmacy.py` | 92 | TRICARE pharmacy cost-share validation |
 | Dental | `validate_dental.py` | 116 | TRICARE dental premium validation |
 | OBBBA | `validate_obbba.py` | 71 | OBBBA tax provision structure and cross-references |
-| Tier 3A | `validate_tier3.py` | 125 | Tier 3A state expansion — CA, NY, OH, IL, MI, TN, SC, AL, MO, IN |
-| Tier 3B | `validate_tier3b.py` | 172 | Tier 3B state expansion — NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS |
-| Tier 3C | `validate_tier3c.py` | 187 | Tier 3C state expansion — LA, MA, WV, NH, ME, UT, NM, ID, MT, DE |
-| Tier 3D | `validate_tier3d.py` | 179 | Tier 3D final expansion — NE, ND, RI, SD, VT, WY (50 states + DC) |
+| Military | `validate_military.py` | 705 | Military retirement rules v2.0, pay tables 2016–2026 |
 | Vehicle Audit | `validate_vehicle_audit.py` | 123 | Vehicle personal property tax exemptions — MS, SC, CT, AL, AR, NC, NE |
 | Territories | `validate_territories.py` | 129 | US territory expansion — AS, GU, MP, PR, VI (56 jurisdictions) |
-| Military | `validate_military.py` | 705 | Military retirement rules v2.0, pay tables 2016–2026 |
+| Federal Retirement | `validate_federal_retirement.py` | 157 | FERS/CSRS rules, contribution rates, FEGLI, FEHB eligibility |
+| Municipal | `validate_municipal.py` | 153 | Municipal pension plans — MCERP, FCPP, RRS, ACERS |
+| SDCERA | `validate_sdcera.py` | 178 | SDCERA 9-tier pension system — formulas, eligibility, PEPRA flags |
 
 ---
 
@@ -248,6 +274,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | `federal/healthcare/fedvip-rates.json` | November–January | OPM publishes FEDVIP rates |
 | `federal/healthcare/tricare-rates.json` | October–January | DoD publishes TRICARE cost updates |
 | `federal/healthcare/medicare-rates.json` | November | CMS publishes new IRMAA thresholds |
+| `federal/fegli-rates.json` | As published | OPM periodic rate adjustment (last: Oct 2021) |
 | `federal/veterans-affairs/compensation.json` | December | VA publishes new COLA rates |
 | `federal/veterans-affairs/vgli.json` | As published | VA updates VGLI premium schedule |
 | `federal/military-pay-tables.json` | January | NDAA enacts annual pay raise |
@@ -272,11 +299,13 @@ All data in this repository is drawn from official U.S. government sources:
 | FEHB premiums | OPM | https://www.opm.gov/healthcare-insurance/healthcare/plan-information/premiums/ |
 | FEHB plan benefits | OPM | https://www.opm.gov/healthcare-insurance/healthcare/plan-information/ |
 | FEDVIP dental/vision | OPM BENEFEDS | https://www.benefeds.com/ |
+| FEGLI life insurance | OPM | https://www.opm.gov/healthcare-insurance/life-insurance/ |
 | TRICARE costs | TRICARE | https://www.tricare.mil/Costs/Compare |
 | IRMAA thresholds | CMS / Medicare.gov | https://www.medicare.gov/your-medicare-costs/part-b-costs |
 | IRA / tax limits | IRS | https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits |
 | Tax brackets | IRS | https://www.irs.gov/newsroom |
 | SS COLA + bend points | SSA | https://www.ssa.gov/oact/COLA/colasummary.html |
+| SS earnings test | SSA | https://www.ssa.gov/oact/cola/rtea.html |
 | SS Full Retirement Ages | SSA | https://www.ssa.gov/benefits/retirement/planner/agereduction.html |
 | SSA life tables | SSA | https://www.ssa.gov/oact/STATS/table4c6.html |
 | VA compensation rates | VA.gov | https://www.va.gov/disability/compensation-rates/veteran-rates/ |
@@ -290,7 +319,9 @@ All data in this repository is drawn from official U.S. government sources:
 | PORS plan parameters | Fairfax County Retirement Systems | https://www.fairfaxcounty.gov/retirement/police-officers-retirement-system |
 | URS plan parameters | Fairfax County Retirement Systems | https://www.fairfaxcounty.gov/retirement/uniformed-retirement-system |
 | RRS plan parameters | City of Richmond Retirement System | https://www.rva.gov/retirement-system/employees |
-| MCERP plan parameters | Montgomery County MD Employee Retirement Plans | https://www.montgomerycountymd.gov/mcerp/about.html |
+| FCPP plan parameters | City of Falls Church | https://www.fallschurchva.gov/ |
+| MCERP plan parameters | Montgomery County MD | https://www.montgomerycountymd.gov/mcerp/about.html |
+| SDCERA plan parameters | SDCERA | https://www.sdcera.org/ |
 | Military basic pay tables | DFAS / navycs.com | https://militarypay.defense.gov/Pay/Basic-Pay/ |
 | Military retirement rules | Defense.gov / USC | https://militarypay.defense.gov/Pay/Retirement/ |
 
@@ -338,6 +369,9 @@ When updating a file, always:
 - [ ] Traditional IRA deductibility phase-out (`ira.traditional_deductibility_*`)
 - [ ] SS COLA for the year (`social_security.cola_YEAR`)
 - [ ] SS bend points (`social_security.bend_points`)
+- [ ] SS earnings test thresholds (`social_security.earnings_test`)
+- [ ] SS taxable wage base (`social_security.taxable_wage_base_YEAR`)
+- [ ] SS quarter of coverage (`social_security.quarter_of_coverage_YEAR`)
 - [ ] Standard deductions (`tax.standard_deduction_*`)
 - [ ] Tax brackets — all rates, both single and MFJ (`tax.brackets_*`) — verify cutoffs against IRS Rev. Proc. source tables, not computed values
 - [ ] Update `"version"` to new year
@@ -359,6 +393,8 @@ When updating a file, always:
 - [ ] FEHB plan benefits — deductibles, copays, coverage details
 - [ ] FEDVIP dental and vision premiums
 - [ ] TRICARE enrollment fees, deductibles, catastrophic caps
+- [ ] TRICARE pharmacy copays (January effective)
+- [ ] TRICARE dental premiums (March effective)
 - [ ] Medicare Part B/D premiums and IRMAA thresholds
 - [ ] Update all healthcare file versions
 - [ ] Update `manifest.json` for all healthcare entries
@@ -377,6 +413,12 @@ When updating a file, always:
 - [ ] Append new year's data point to `ss-taxable-max.json`
 - [ ] Append new year's data point to `ira-limits.json`
 - [ ] Append new year's COLA values to `cola-history.json`
+
+### Cross-file consistency (January)
+- [ ] `social-security-claiming.json` earnings test thresholds match `rates-annual.json`
+- [ ] `fers-srs-rules.json` exempt amount matches SS under-FRA threshold
+- [ ] `ss-bend-points.json` current_year matches `rates-annual.json` bend_points
+- [ ] `ss-taxable-max.json` current_year matches `rates-annual.json` taxable_wage_base
 
 ### `manifest.json`
 - [ ] Update `"last_updated"` date
