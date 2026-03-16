@@ -1648,6 +1648,153 @@ def test_ss_taxation_audit(s: ValidationSuite):
                     isinstance(exempt_val, bool))
 
 
+# ── Session 45: SS/SRS 2026 Data Accuracy ──
+
+def test_ss_2026_data_accuracy(s: ValidationSuite):
+    """Validate 2026 Social Security parameters are correct across all files.
+    SSA-published values: COLA 2.8%, bend points 1286/7749,
+    earnings test $24,480/$65,160, taxable max $184,500, QC $1,890.
+    """
+    print("\n--- SS 2026 Data Accuracy (Session 45) ---")
+
+    # --- rates-annual.json ---
+    ra = s.load_json("federal/rates-annual.json")
+    if ra:
+        ss = ra.get("social_security", {})
+
+        # COLA
+        s.check("rates-annual COLA 2026 = 2.8%",
+                ss.get("cola_2026") == 0.028,
+                f"got {ss.get('cola_2026')}")
+
+        # Bend points
+        bp = ss.get("bend_points", {})
+        s.check("rates-annual bend_points.first_bend = 1286",
+                bp.get("first_bend") == 1286,
+                f"got {bp.get('first_bend')}")
+        s.check("rates-annual bend_points.second_bend = 7749",
+                bp.get("second_bend") == 7749,
+                f"got {bp.get('second_bend')}")
+
+        # Formula array consistency
+        formula = bp.get("formula", [])
+        if len(formula) >= 3:
+            s.check("bend_points formula[0].aime_max matches first_bend",
+                    formula[0].get("aime_max") == bp.get("first_bend"))
+            s.check("bend_points formula[1].aime_max matches second_bend",
+                    formula[1].get("aime_max") == bp.get("second_bend"))
+
+        # Earnings test in rates-annual
+        et = ss.get("earnings_test", {})
+        s.check("rates-annual earnings_test.under_fra.annual = 24480",
+                et.get("under_fra", {}).get("annual") == 24480,
+                f"got {et.get('under_fra', {}).get('annual')}")
+        s.check("rates-annual earnings_test.year_of_fra.annual = 65160",
+                et.get("year_of_fra", {}).get("annual") == 65160,
+                f"got {et.get('year_of_fra', {}).get('annual')}")
+        s.check("rates-annual earnings_test.under_fra.monthly = 2040",
+                et.get("under_fra", {}).get("monthly") == 2040)
+        s.check("rates-annual earnings_test.year_of_fra.monthly = 5430",
+                et.get("year_of_fra", {}).get("monthly") == 5430)
+
+        # Taxable wage base
+        s.check("rates-annual taxable_wage_base_2026 = 184500",
+                ss.get("taxable_wage_base_2026") == 184500,
+                f"got {ss.get('taxable_wage_base_2026')}")
+
+        # Quarter of coverage
+        s.check("rates-annual quarter_of_coverage_2026 = 1890",
+                ss.get("quarter_of_coverage_2026") == 1890,
+                f"got {ss.get('quarter_of_coverage_2026')}")
+
+    # --- ss-bend-points.json cross-check ---
+    bp_file = s.load_json("federal/ss-bend-points.json")
+    if bp_file:
+        cy = bp_file.get("current_year", {})
+        s.check("ss-bend-points current_year.first_bend_point = 1286",
+                cy.get("first_bend_point") == 1286,
+                f"got {cy.get('first_bend_point')}")
+        s.check("ss-bend-points current_year.second_bend_point = 7749",
+                cy.get("second_bend_point") == 7749,
+                f"got {cy.get('second_bend_point')}")
+
+        # Cross-check rates-annual matches ss-bend-points
+        if ra:
+            ra_bp = ra.get("social_security", {}).get("bend_points", {})
+            s.check("CROSS-CHECK: rates-annual first_bend == ss-bend-points",
+                    ra_bp.get("first_bend") == cy.get("first_bend_point"))
+            s.check("CROSS-CHECK: rates-annual second_bend == ss-bend-points",
+                    ra_bp.get("second_bend") == cy.get("second_bend_point"))
+
+    # --- ss-taxable-max.json cross-check ---
+    tm_file = s.load_json("federal/ss-taxable-max.json")
+    if tm_file:
+        cy_tm = tm_file.get("current_year", {})
+        s.check("ss-taxable-max current_year.amount = 184500",
+                cy_tm.get("amount") == 184500,
+                f"got {cy_tm.get('amount')}")
+
+        # Cross-check
+        if ra:
+            s.check("CROSS-CHECK: rates-annual wage_base == ss-taxable-max",
+                    ra.get("social_security", {}).get("taxable_wage_base_2026") == cy_tm.get("amount"))
+
+    # --- social-security-claiming.json ---
+    sc = s.load_json("reference/social-security-claiming.json")
+    if sc:
+        et_sc = sc.get("earnings_test", {})
+        uf = et_sc.get("under_fra_all_year", {})
+        yf = et_sc.get("year_reaching_fra", {})
+
+        s.check("ss-claiming under_fra threshold_2026 = 24480",
+                uf.get("threshold_2026") == 24480,
+                f"got {uf.get('threshold_2026')}")
+        s.check("ss-claiming year_reaching_fra threshold_2026 = 65160",
+                yf.get("threshold_2026") == 65160,
+                f"got {yf.get('threshold_2026')}")
+        s.check("ss-claiming under_fra monthly_2026 = 2040",
+                uf.get("monthly_2026") == 2040)
+        s.check("ss-claiming year_reaching_fra monthly_2026 = 5430",
+                yf.get("monthly_2026") == 5430)
+
+    # --- fers-srs-rules.json ---
+    srs = s.load_json("reference/fers-srs-rules.json")
+    if srs:
+        srs_et = srs.get("earnings_test", {})
+        ea = srs_et.get("exempt_amounts", {})
+
+        s.check("srs exempt_amounts.2026 = 24480",
+                ea.get("2026") == 24480,
+                f"got {ea.get('2026')}")
+        s.check("srs exempt_amounts.2025 = 23400",
+                ea.get("2025") == 23400,
+                f"got {ea.get('2025')}")
+
+        # Cross-check SRS exempt == SS under-FRA earnings test
+        if sc:
+            ss_threshold = sc.get("earnings_test", {}).get("under_fra_all_year", {}).get("threshold_2026")
+            s.check("CROSS-CHECK: SRS exempt_2026 == SS under_fra threshold_2026",
+                    ea.get("2026") == ss_threshold,
+                    f"SRS={ea.get('2026')}, SS={ss_threshold}")
+
+        # Example uses correct 2026 exempt amount
+        example = srs_et.get("reduction_formula", {}).get("example", {})
+        s.check("srs example uses 2026 exempt amount",
+                example.get("exempt_amount") == 24480,
+                f"got {example.get('exempt_amount')}")
+        # Verify example math: excess = earned - exempt, reduction = excess / 2
+        earned = example.get("earned_income", 0)
+        exempt = example.get("exempt_amount", 0)
+        expected_excess = earned - exempt
+        expected_reduction = expected_excess / 2
+        s.check("srs example excess math correct",
+                example.get("excess") == expected_excess,
+                f"expected {expected_excess}, got {example.get('excess')}")
+        s.check("srs example reduction math correct",
+                example.get("annual_reduction") == expected_reduction,
+                f"expected {expected_reduction}, got {example.get('annual_reduction')}")
+
+
 # ── Main ──
 
 def main():
@@ -1682,6 +1829,7 @@ def main():
     test_legislation_watch_session40(s)
     test_partial_exemption_audit(s)
     test_ss_taxation_audit(s)
+    test_ss_2026_data_accuracy(s)
 
     success = s.summary()
     sys.exit(0 if success else 1)

@@ -1,7 +1,7 @@
 {
   "_comment": "Annual Rate Constants \u2014 2026. Federal civilian retirement, tax, and benefits data. All values are government-published public data. No PII. Update annually each January from OPM, IRS, SSA, and CMS sources. VA compensation and VGLI data moved to federal/veterans-affairs/.",
   "_corrected": "2026-03-08: 32+ corrections applied (IRA, IRMAA, deductions, TSP threshold, DIC). Tax bracket middle cutoffs (12%/22%/24%/32%/35%) corrected per IRS Rev. Proc. 2025-32 Tables 1 and 3. All values verified against IRS Notice 2025-67, CMS CMS-8089-N, TSP Bulletin 25-3, VA.gov.",
-  "version": "2026.2",
+  "version": "2026.3",
   "effective_date": "2026-01-01",
   "sources": {
     "tsp": "https://www.tsp.gov/bulletins/25-3/",
@@ -188,26 +188,26 @@
   },
   "social_security": {
     "_comment": "Social Security planning constants",
-    "cola_2026": 0.025,
+    "cola_2026": 0.028,
     "full_retirement_age_default": 67,
     "_fra_note": "FRA varies by birth year \u2014 see static_refs.json for full table",
     "bend_points": {
-      "_comment": "PIA formula bend points for 2026 cohort. Used to estimate SS benefit from AIME.",
-      "first_bend": 1174,
-      "second_bend": 7078,
+      "_comment": "PIA formula bend points for 2026 eligibility cohort (born 1964). Source: ssa.gov/oact/cola/bendpoints.html",
+      "first_bend": 1286,
+      "second_bend": 7749,
       "formula": [
         {
           "aime_min": 0,
-          "aime_max": 1174,
+          "aime_max": 1286,
           "pct": 0.9
         },
         {
-          "aime_min": 1175,
-          "aime_max": 7078,
+          "aime_min": 1287,
+          "aime_max": 7749,
           "pct": 0.32
         },
         {
-          "aime_min": 7079,
+          "aime_min": 7750,
           "aime_max": 999999,
           "pct": 0.15
         }
@@ -219,7 +219,28 @@
     "_delayed_note": "8% per year beyond FRA, up to age 70",
     "survivor_earliest_claim_age": 60,
     "survivor_disabled_earliest_claim_age": 50,
-    "windfall_elimination_note": "WEP may apply to federal workers with non-covered pension. Implemented separately."
+    "windfall_elimination_note": "WEP may apply to federal workers with non-covered pension. Implemented separately.",
+    "earnings_test": {
+      "_comment": "Social Security Retirement Earnings Test \u2014 2026. Source: ssa.gov/oact/cola/rtea.html",
+      "under_fra": {
+        "annual": 24480,
+        "monthly": 2040,
+        "reduction": "$1 withheld per $2 over limit"
+      },
+      "year_of_fra": {
+        "annual": 65160,
+        "monthly": 5430,
+        "reduction": "$1 withheld per $3 over limit (months before FRA only)"
+      },
+      "at_fra_and_above": "No earnings test \u2014 unlimited earnings",
+      "prior_year": {
+        "under_fra_annual_2025": 23400,
+        "year_of_fra_annual_2025": 62160
+      }
+    },
+    "taxable_wage_base_2026": 184500,
+    "_wage_base_note": "Also in ss-taxable-max.json with full history. Included here for projection convenience.",
+    "quarter_of_coverage_2026": 1890
   },
   "planning_assumption_defaults": {
     "_comment": "Common planning assumption baselines for projection engines. Consumer applications may allow user override. Not government-published figures.",

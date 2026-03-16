@@ -2,8 +2,8 @@
   "metadata": {
     "name": "Social Security Claiming Rules and FRA History",
     "description": "Social Security Full Retirement Age schedule, early filing reductions, delayed retirement credits, spousal benefits, and key rule changes. Supplements the FRA table in static-refs.json with claiming strategy data.",
-    "version": "1.1",
-    "last_updated": "2026-03-12",
+    "version": "1.2",
+    "last_updated": "2026-03-15",
     "sources": [
       "https://www.ssa.gov/benefits/retirement/planner/agereduction.html",
       "https://www.ssa.gov/benefits/retirement/planner/delayret.html",
@@ -17,7 +17,7 @@
       "For married couples: spousal benefit, survivor benefit, and filing strategies interact with claiming age.",
       "FERS Supplement bridges the gap between FERS MRA retirement and age 62 SS eligibility."
     ],
-    "last_verified": "2026-03-12"
+    "last_verified": "2026-03-15"
   },
   "fra_schedule": [
     {
@@ -174,16 +174,24 @@
     "description": "Benefits reduced if you work and earn above thresholds before FRA",
     "under_fra_all_year": {
       "rule": "$1 withheld for every $2 earned above threshold",
-      "threshold_2026": 23520
+      "threshold_2026": 24480,
+      "monthly_2026": 2040,
+      "threshold_2025": 23400
     },
     "year_reaching_fra": {
       "rule": "$1 withheld for every $3 earned above threshold (only months before FRA birthday)",
-      "threshold_2026": 62520
+      "threshold_2026": 65160,
+      "monthly_2026": 5430,
+      "threshold_2025": 62160
     },
     "at_and_above_fra": {
       "rule": "No earnings test \u2014 full benefit regardless of earnings"
     },
-    "notes": "Withheld benefits are not lost \u2014 they increase your benefit once you reach FRA."
+    "notes": [
+      "Withheld benefits are not lost \u2014 they increase your benefit once you reach FRA.",
+      "Only earned income counts: wages, salary, bonuses, commissions, net self-employment. Does NOT include pensions, annuities, investment income, VA benefits, or government retirement payments.",
+      "Monthly test applies in first year of benefits: benefits paid for any month earnings are below monthly threshold."
+    ]
   },
   "windfall_elimination_provision": {
     "description": "WEP reduces SS benefits for workers who also receive a pension from non-SS-covered employment (e.g., some state/local government, foreign).",

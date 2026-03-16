@@ -1,21 +1,21 @@
 {
   "metadata": {
     "name": "FERS Special Retirement Supplement (SRS) Rules",
-    "description": "Rules, eligibility, formula, earnings test, and tax treatment for the FERS Special Retirement Supplement — the bridge payment for FERS retirees who retire before age 62.",
-    "version": "1.0",
+    "description": "Rules, eligibility, formula, earnings test, and tax treatment for the FERS Special Retirement Supplement \u2014 the bridge payment for FERS retirees who retire before age 62.",
+    "version": "1.1",
     "last_updated": "2026-03-15",
     "sources": [
       "https://www.opm.gov/retirement-center/fers-information/computation/",
-      "5 U.S.C. § 8421 — FERS Annuity Supplement",
-      "5 U.S.C. § 8421a — Reductions on account of earnings from work",
+      "5 U.S.C. \u00a7 8421 \u2014 FERS Annuity Supplement",
+      "5 U.S.C. \u00a7 8421a \u2014 Reductions on account of earnings from work",
       "https://www.fedweek.com/retirement-financial-planning/how-to-estimate-a-fers-special-retirement-supplement/",
       "https://www.ssa.gov/oact/cola/rtea.html"
     ],
     "notes": [
-      "The SRS is NOT a Social Security benefit — it is a component of the FERS pension paid by OPM.",
+      "The SRS is NOT a Social Security benefit \u2014 it is a component of the FERS pension paid by OPM.",
       "It uses Social Security data to calculate the amount but is entirely separate from SSA.",
       "The SRS does NOT receive COLA adjustments.",
-      "OPM automatically calculates and pays the SRS — no application required.",
+      "OPM automatically calculates and pays the SRS \u2014 no application required.",
       "The SRS can be declined by notifying OPM."
     ]
   },
@@ -34,13 +34,13 @@
         "srs_begins": "Immediately upon retirement"
       },
       {
-        "category": "Special Provision — Age 50 + 20",
-        "description": "Law enforcement officers, firefighters, air traffic controllers — age 50 with 20 years of covered service",
+        "category": "Special Provision \u2014 Age 50 + 20",
+        "description": "Law enforcement officers, firefighters, air traffic controllers \u2014 age 50 with 20 years of covered service",
         "srs_begins": "Immediately upon retirement"
       },
       {
-        "category": "Special Provision — Any Age + 25",
-        "description": "Law enforcement officers, firefighters, air traffic controllers — any age with 25 years of covered service",
+        "category": "Special Provision \u2014 Any Age + 25",
+        "description": "Law enforcement officers, firefighters, air traffic controllers \u2014 any age with 25 years of covered service",
         "srs_begins": "Immediately upon retirement"
       },
       {
@@ -52,7 +52,7 @@
     "not_eligible": [
       {
         "category": "MRA + 10",
-        "reason": "Minimum Retirement Age with 10-29 years of service — reduced annuity, no SRS"
+        "reason": "Minimum Retirement Age with 10-29 years of service \u2014 reduced annuity, no SRS"
       },
       {
         "category": "Deferred retirement",
@@ -64,13 +64,13 @@
       },
       {
         "category": "Age 62+ at retirement",
-        "reason": "Already eligible for Social Security — no bridge needed"
+        "reason": "Already eligible for Social Security \u2014 no bridge needed"
       }
     ]
   },
   "formula": {
     "description": "The SRS approximates the portion of your Social Security benefit attributable to your federal FERS service",
-    "calculation": "SRS = (Estimated SS benefit at age 62) × (Years of FERS service / 40)",
+    "calculation": "SRS = (Estimated SS benefit at age 62) \u00d7 (Years of FERS service / 40)",
     "components": {
       "ss_benefit_estimate": {
         "description": "Your projected Social Security monthly benefit at age 62",
@@ -94,7 +94,7 @@
     "example": {
       "ss_estimate_annual": 20000,
       "fers_years": 25,
-      "calculation": "$20,000 × (25 / 40) = $12,500 per year ($1,041.67/month)",
+      "calculation": "$20,000 \u00d7 (25 / 40) = $12,500 per year ($1,041.67/month)",
       "note": "The closer to retirement you make this estimate, the more accurate it will be"
     }
   },
@@ -102,7 +102,7 @@
     "begins": "The month after retirement (or month after reaching MRA for VERA retirees)",
     "ends": "The last day of the month before the retiree turns 62",
     "end_note": "Ends at age 62 regardless of whether the retiree applies for Social Security at 62. The retiree may delay SS to 70 for higher benefits, but the SRS still stops at 62.",
-    "not_automatic_to_ss": "There is no automatic transition — the retiree must separately apply to SSA for Social Security benefits"
+    "not_automatic_to_ss": "There is no automatic transition \u2014 the retiree must separately apply to SSA for Social Security benefits"
   },
   "earnings_test": {
     "description": "The SRS is subject to a reduction if the retiree has earned income above an annual exempt amount",
@@ -118,18 +118,19 @@
     "exempt_amounts": {
       "2024": 22320,
       "2025": 23400,
-      "2026": "See SSA annual update — indexed to national average wage index",
-      "_note": "This is the same exempt amount used by SSA for the Social Security earnings test before FRA"
+      "2026": 24480,
+      "_note": "Same exempt amount as SSA earnings test (under FRA, all year). Indexed annually to national average wage index."
     },
     "reduction_formula": {
       "description": "SRS is reduced by $1 for every $2 earned above the annual exempt amount",
       "example": {
-        "earned_income": 30000,
-        "exempt_amount": 23400,
-        "excess": 6600,
-        "annual_reduction": 3300,
-        "monthly_reduction": 275,
-        "note": "Reduction applies only to the SRS — the FERS annuity itself is never reduced by the earnings test"
+        "year": 2026,
+        "earned_income": 32000,
+        "exempt_amount": 24480,
+        "excess": 7520,
+        "annual_reduction": 3760,
+        "monthly_reduction": 313.33,
+        "note": "Reduction applies only to the SRS \u2014 the FERS annuity itself is never reduced by the earnings test"
       }
     },
     "special_provision_exception": {
@@ -144,13 +145,13 @@
   },
   "cola": {
     "receives_cola": false,
-    "note": "The SRS does NOT receive cost-of-living adjustments. The amount is fixed from retirement until it ends at age 62. This is a meaningful planning consideration — the purchasing power of the SRS declines each year."
+    "note": "The SRS does NOT receive cost-of-living adjustments. The amount is fixed from retirement until it ends at age 62. This is a meaningful planning consideration \u2014 the purchasing power of the SRS declines each year."
   },
   "tax_treatment": {
     "federal": {
       "taxable": true,
       "treated_as": "Taxable as ordinary income, similar to the FERS annuity",
-      "not_fica": "Not subject to Social Security (FICA) or Medicare taxes — it is not earned income"
+      "not_fica": "Not subject to Social Security (FICA) or Medicare taxes \u2014 it is not earned income"
     },
     "state": {
       "description": "State taxation depends on each state's treatment of federal retirement income",
@@ -170,7 +171,7 @@
   },
   "planning_interactions": {
     "with_tsp_roth_conversions": {
-      "description": "TSP Roth conversions do NOT count as earned income — they do not trigger the SRS earnings test",
+      "description": "TSP Roth conversions do NOT count as earned income \u2014 they do not trigger the SRS earnings test",
       "note": "The years between retirement and age 62 can be an optimal window for Roth conversions because the SRS provides income while conversion taxes are managed through lower brackets",
       "reference": "See tsp-roth-conversion.json"
     },

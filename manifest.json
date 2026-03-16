@@ -7,12 +7,13 @@
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
     "rates_annual": {
-      "version": "2026.2",
+      "version": "2026.3",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (January)",
       "url": "federal/rates-annual.json",
       "description": "TSP limits, IRMAA tiers, IRA limits, SS bend points, pay cap, FERS parameters, federal tax brackets, planning assumption defaults",
-      "changelog_2026_2": "Restructure: removed va and vgli sections (moved to federal/veterans-affairs/). No data values changed."
+      "changelog_2026_2": "Restructure: removed va and vgli sections (moved to federal/veterans-affairs/). No data values changed.",
+      "last_updated": "2026-03-15"
     },
     "pay_tables": {
       "version": "2026",
@@ -251,12 +252,12 @@
       "last_updated": "2026-03-12"
     },
     "social_security_claiming": {
-      "version": "1.1",
+      "version": "1.2",
       "effective_date": "2026-01-01",
       "update_frequency": "as enacted",
       "url": "reference/social-security-claiming.json",
       "description": "SS FRA schedule, early filing reductions, delayed retirement credits, earnings test, WEP/GPO repeal status",
-      "last_updated": "2026-03-12"
+      "last_updated": "2026-03-15"
     },
     "military_retirement_rules": {
       "version": "2.0",
@@ -471,7 +472,7 @@
       "last_updated": "2026-03-15"
     },
     "fers_srs_rules": {
-      "version": "1.0",
+      "version": "1.1",
       "effective_date": "2026-01-01",
       "update_frequency": "as enacted",
       "url": "reference/fers-srs-rules.json",
