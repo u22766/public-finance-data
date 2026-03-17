@@ -1,7 +1,8 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 20 validation suites
+# 21 validation suites
+# Session 46: Added validate_county_property_tax.py (988 checks) for 12-state county property tax coverage
 # Session 40: Added validate_filing_status.py (816 checks) for filing-status-thresholds.json
 # Session 44: Added validate_sdcera.py for SDCERA (San Diego County) pension plans
 #
@@ -92,6 +93,9 @@ jobs:
 
       - name: Validate filing status thresholds (816 checks)
         run: python tests/validate_filing_status.py
+
+      - name: Validate county property tax — 12 states (988 checks)
+        run: python tests/validate_county_property_tax.py
       
       - name: Validation summary
         if: success()
