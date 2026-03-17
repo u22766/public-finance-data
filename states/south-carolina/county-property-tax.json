@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions — SC",
+    "description": "County-level property tax rates for top retirement destination counties in South Carolina.",
+    "state_code": "SC",
+    "version": "1.0",
+    "last_updated": "2026-03-17",
+    "sources": [
+      "County auditor/assessor offices",
+      "SC Department of Revenue",
+      "SC Association of Counties"
+    ],
+    "notes": {
+      "tax_rate_format": "SC uses millage rates. Rate per $100 provided for cross-state consistency.",
+      "assessment_ratio": "SC assesses primary residences at 4% of market value (legal residence). Other residential at 6%.",
+      "scope": "v1.0: Top retirement counties — Beaufort (Hilton Head), Charleston, Horry (Myrtle Beach), Greenville.",
+      "update_cycle": "Millage rates set annually by county councils."
+    }
+  },
+  "counties": [
+    {
+      "county": "Beaufort County",
+      "state_code": "SC",
+      "fips": "45013",
+      "retirement_destination": true,
+      "major_cities": ["Hilton Head Island", "Bluffton", "Beaufort"],
+      "military_installations": ["Marine Corps Air Station Beaufort", "Parris Island MCRD"],
+      "estimated_veteran_population": 24000,
+      "tax_year": 2025,
+      "property_tax": {
+        "total_millage_rate": 144.0,
+        "assessment_ratio_primary": 0.04,
+        "effective_rate_primary_pct": 0.576,
+        "rate_per_100": 0.576,
+        "homestead_exemption": 50000,
+        "_note": "SC assesses primary homes at 4% of market value. 144 mills × 4% = 0.576% effective rate. $50K exemption for 65+ or disabled."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or housebound; SC resident",
+          "applies_to": "Primary residence and up to 1 acre",
+          "surviving_spouse": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 50000,
+          "eligibility": "Veteran age 65+ or permanently disabled (any rating)",
+          "_note": "This is the general homestead exemption available to all qualifying seniors/disabled, including veterans."
+        }
+      },
+      "application": {
+        "office": "Beaufort County Auditor",
+        "url": "https://www.beaufortcountysc.gov/auditor/"
+      },
+      "source": "https://www.beaufortcountysc.gov/auditor/"
+    },
+    {
+      "county": "Charleston County",
+      "state_code": "SC",
+      "fips": "45019",
+      "retirement_destination": true,
+      "major_cities": ["Charleston", "Mount Pleasant", "Summerville"],
+      "military_installations": ["Joint Base Charleston"],
+      "estimated_veteran_population": 35000,
+      "tax_year": 2025,
+      "property_tax": {
+        "total_millage_rate": 218.0,
+        "assessment_ratio_primary": 0.04,
+        "effective_rate_primary_pct": 0.872,
+        "rate_per_100": 0.872,
+        "homestead_exemption": 50000,
+        "_note": "Higher millage reflects urban services. Effective rate ~0.87% on primary residence. Mount Pleasant and Daniel Island areas may vary."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; SC resident",
+          "applies_to": "Primary residence and up to 1 acre",
+          "surviving_spouse": true
+        }
+      },
+      "application": {
+        "office": "Charleston County Assessor",
+        "url": "https://www.charlestoncounty.org/departments/assessor/"
+      },
+      "source": "https://www.charlestoncounty.org/departments/assessor/"
+    },
+    {
+      "county": "Horry County",
+      "state_code": "SC",
+      "fips": "45051",
+      "retirement_destination": true,
+      "major_cities": ["Myrtle Beach", "Conway", "North Myrtle Beach"],
+      "tax_year": 2025,
+      "property_tax": {
+        "total_millage_rate": 195.0,
+        "assessment_ratio_primary": 0.04,
+        "effective_rate_primary_pct": 0.78,
+        "rate_per_100": 0.78,
+        "homestead_exemption": 50000,
+        "_note": "Popular retirement/snowbird area. Tourism revenue offsets some property tax burden. Effective ~0.78% primary."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; SC resident",
+          "applies_to": "Primary residence and up to 1 acre",
+          "surviving_spouse": true
+        }
+      },
+      "application": {
+        "office": "Horry County Auditor",
+        "url": "https://www.horrycounty.org/departments/auditor"
+      },
+      "source": "https://www.horrycounty.org/departments/auditor"
+    },
+    {
+      "county": "Greenville County",
+      "state_code": "SC",
+      "fips": "45045",
+      "retirement_destination": true,
+      "major_cities": ["Greenville", "Simpsonville", "Travelers Rest"],
+      "tax_year": 2025,
+      "property_tax": {
+        "total_millage_rate": 298.0,
+        "assessment_ratio_primary": 0.04,
+        "effective_rate_primary_pct": 1.192,
+        "rate_per_100": 1.192,
+        "homestead_exemption": 50000,
+        "_note": "Higher millage reflects urban services and school district. Effective rate ~1.19% on primary homes."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; SC resident",
+          "applies_to": "Primary residence and up to 1 acre",
+          "surviving_spouse": true
+        }
+      },
+      "application": {
+        "office": "Greenville County Auditor",
+        "url": "https://www.greenvillecounty.org/auditor/"
+      },
+      "source": "https://www.greenvillecounty.org/auditor/"
+    }
+  ]
+}

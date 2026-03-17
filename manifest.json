@@ -2,7 +2,7 @@
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.2",
   "schema_min_compatible": "2.2",
-  "last_updated": "2026-03-16",
+  "last_updated": "2026-03-17",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
@@ -298,12 +298,12 @@
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_fl": {
-      "version": "1.1",
+      "version": "1.2",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/florida/county-property-tax.json",
-      "description": "County-level property tax rates and veteran exemption details: Hillsborough County (FL).",
-      "last_updated": "2026-03-13",
+      "description": "County-level property tax rates, veteran exemptions, and application info for top retirement and military counties in Florida (Hillsborough, Sarasota, Lee, Collier).",
+      "last_updated": "2026-03-17",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_md": {
@@ -524,6 +524,27 @@
       "source": "IRS Rev. Proc. 2025-32, CMS CMS-8089-N, SSA, IRS Notice 2025-67, OBBBA P.L. 119-21",
       "last_updated": "2026-03-16",
       "changelog_2026_2": "v2026.2: Fixed 2026 HoH bracket thresholds per Rev. Proc. 2025-32 Table 2."
+    },
+    "county_property_tax_sc": {
+      "url": "states/south-carolina/county-property-tax.json",
+      "description": "County-level property tax rates, veteran exemptions, and application info for top retirement counties in South Carolina (Beaufort, Charleston, Horry, Greenville).",
+      "version": "1.0",
+      "last_updated": "2026-03-17",
+      "update_cycle": "annual"
+    },
+    "county_property_tax_tn": {
+      "url": "states/tennessee/county-property-tax.json",
+      "description": "County-level property tax rates, veteran exemptions, and application info for top retirement counties in Tennessee (Williamson, Knox, Hamilton).",
+      "version": "1.0",
+      "last_updated": "2026-03-17",
+      "update_cycle": "annual"
+    },
+    "county_property_tax_ga": {
+      "url": "states/georgia/county-property-tax.json",
+      "description": "County-level property tax rates, veteran exemptions, and application info for top retirement and military counties in Georgia (Chatham, Cobb, Liberty).",
+      "version": "1.0",
+      "last_updated": "2026-03-17",
+      "update_cycle": "annual"
     }
   }
 }

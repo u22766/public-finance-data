@@ -1,0 +1,133 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions — GA",
+    "description": "County-level property tax rates for top retirement destination and military counties in Georgia.",
+    "state_code": "GA",
+    "version": "1.0",
+    "last_updated": "2026-03-17",
+    "sources": [
+      "County tax assessor/commissioner offices",
+      "GA Department of Revenue",
+      "County budget documents"
+    ],
+    "notes": {
+      "tax_rate_format": "GA uses millage rates. Rate per $100 provided for cross-state consistency.",
+      "assessment_ratio": "GA assesses residential property at 40% of fair market value statewide.",
+      "scope": "v1.0: Chatham (Savannah/Hunter AAF), Cobb (Marietta), Forsyth, Liberty (Hinesville/Fort Stewart).",
+      "update_cycle": "Millage rates set annually. Digest finalized by county boards."
+    }
+  },
+  "counties": [
+    {
+      "county": "Chatham County",
+      "state_code": "GA",
+      "fips": "13051",
+      "retirement_destination": true,
+      "major_cities": ["Savannah", "Tybee Island", "Pooler"],
+      "military_installations": ["Hunter Army Airfield"],
+      "estimated_veteran_population": 22000,
+      "tax_year": 2025,
+      "property_tax": {
+        "county_millage": 11.574,
+        "school_millage": 16.35,
+        "total_millage_unincorporated": 34.0,
+        "assessment_ratio": 0.40,
+        "effective_rate_market_pct": 1.36,
+        "rate_per_100": 1.36,
+        "_note": "Total millage ~34 mills on 40% assessed value = ~1.36% effective. Savannah city adds additional millage."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% service-connected disability; GA resident. Veterans receiving VA pension for 100% P&T disability.",
+          "applies_to": "Homestead property",
+          "max_exemption_value": "Unlimited on homestead",
+          "surviving_spouse": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 109986,
+          "eligibility": "Veteran with any service-connected disability rating as of 2025",
+          "_note": "GA SB 123 (2023) expanded exemption. $109,986 indexed; applies to all service-connected veterans."
+        }
+      },
+      "application": {
+        "office": "Chatham County Board of Assessors",
+        "url": "https://boa.chathamcountyga.gov/"
+      },
+      "source": "https://boa.chathamcountyga.gov/"
+    },
+    {
+      "county": "Cobb County",
+      "state_code": "GA",
+      "fips": "13067",
+      "retirement_destination": true,
+      "major_cities": ["Marietta", "Kennesaw", "Smyrna", "Acworth"],
+      "military_installations": ["Dobbins ARB"],
+      "tax_year": 2025,
+      "property_tax": {
+        "county_millage": 8.46,
+        "school_millage": 18.9,
+        "total_millage_unincorporated": 29.0,
+        "assessment_ratio": 0.40,
+        "effective_rate_market_pct": 1.16,
+        "rate_per_100": 1.16,
+        "_note": "Moderate metro-Atlanta area rate. ~29 mills × 40% = ~1.16% effective on market value."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; GA resident",
+          "applies_to": "Homestead property",
+          "surviving_spouse": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 109986,
+          "eligibility": "Any service-connected disability"
+        }
+      },
+      "application": {
+        "office": "Cobb County Tax Assessor",
+        "url": "https://www.cobbassessor.org/"
+      },
+      "source": "https://www.cobbassessor.org/"
+    },
+    {
+      "county": "Liberty County",
+      "state_code": "GA",
+      "fips": "13179",
+      "major_cities": ["Hinesville", "Midway"],
+      "military_installations": ["Fort Stewart"],
+      "estimated_veteran_population": 18000,
+      "tax_year": 2025,
+      "property_tax": {
+        "county_millage": 13.65,
+        "school_millage": 16.4,
+        "total_millage_unincorporated": 30.05,
+        "assessment_ratio": 0.40,
+        "effective_rate_market_pct": 1.202,
+        "rate_per_100": 1.202,
+        "_note": "High military population. ~30 mills × 40% = ~1.2% effective."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; GA resident",
+          "applies_to": "Homestead property",
+          "surviving_spouse": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 109986,
+          "eligibility": "Any service-connected disability"
+        }
+      },
+      "application": {
+        "office": "Liberty County Tax Assessor",
+        "url": "https://www.libertycountyga.com/tax-assessors"
+      },
+      "source": "https://www.libertycountyga.com/tax-assessors"
+    }
+  ]
+}

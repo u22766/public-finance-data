@@ -1,0 +1,124 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions — TN",
+    "description": "County-level property tax rates for top retirement destination counties in Tennessee.",
+    "state_code": "TN",
+    "version": "1.0",
+    "last_updated": "2026-03-17",
+    "sources": [
+      "County trustee/assessor offices",
+      "TN Comptroller of the Treasury",
+      "TN Division of Property Assessments"
+    ],
+    "notes": {
+      "tax_rate_format": "TN uses rates per $100 of assessed value. Assessment ratio is 25% for residential.",
+      "assessment_ratio": "Residential property assessed at 25% of appraised value statewide.",
+      "income_tax": "TN has no state income tax (Hall Tax on investment income repealed 2021).",
+      "scope": "v1.0: Top retirement counties — Williamson (Franklin), Davidson (Nashville metro), Knox (Knoxville), Hamilton (Chattanooga).",
+      "update_cycle": "Rates set annually by county legislative bodies. Reappraisals every 4-6 years."
+    }
+  },
+  "counties": [
+    {
+      "county": "Williamson County",
+      "state_code": "TN",
+      "fips": "47187",
+      "retirement_destination": true,
+      "major_cities": ["Franklin", "Brentwood", "Nolensville", "Spring Hill"],
+      "tax_year": 2025,
+      "property_tax": {
+        "county_rate_per_100": 0.39,
+        "city_franklin_rate_per_100": 0.3261,
+        "total_rate_per_100_unincorporated": 0.39,
+        "total_rate_per_100_franklin": 0.7161,
+        "assessment_ratio": 0.25,
+        "rate_per_100": 0.39,
+        "effective_rate_market_pct": 0.0975,
+        "_note": "Very low county rate. One of the wealthiest counties in TN. Unincorporated effective ~0.10% of market value. Franklin city adds ~0.33/100."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or service-connected permanent housebound",
+          "applies_to": "Primary residence",
+          "max_value": 175000,
+          "surviving_spouse": true,
+          "_note": "TN exempts first $175,000 of property value for 100% disabled veterans. State reimburses county."
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 100000,
+          "eligibility": "Certain disabled veterans below 100%",
+          "_note": "Check with county trustee for specific eligibility criteria."
+        }
+      },
+      "application": {
+        "office": "Williamson County Trustee",
+        "url": "https://www.williamsoncounty-tn.gov/277/Trustee"
+      },
+      "source": "https://www.williamsoncounty-tn.gov/"
+    },
+    {
+      "county": "Knox County",
+      "state_code": "TN",
+      "fips": "47093",
+      "retirement_destination": true,
+      "major_cities": ["Knoxville", "Farragut"],
+      "tax_year": 2025,
+      "property_tax": {
+        "county_rate_per_100": 2.12,
+        "city_knoxville_rate_per_100": 2.4638,
+        "total_rate_per_100_unincorporated": 2.12,
+        "assessment_ratio": 0.25,
+        "rate_per_100": 2.12,
+        "effective_rate_market_pct": 0.53,
+        "_note": "Moderate county rate. Knoxville city adds ~$2.46 per $100 assessed. Effective ~0.53% unincorporated, ~1.15% city."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Primary residence",
+          "max_value": 175000,
+          "surviving_spouse": true
+        }
+      },
+      "application": {
+        "office": "Knox County Trustee",
+        "url": "https://www.knoxcounty.org/trustee/"
+      },
+      "source": "https://www.knoxcounty.org/trustee/"
+    },
+    {
+      "county": "Hamilton County",
+      "state_code": "TN",
+      "fips": "47065",
+      "retirement_destination": true,
+      "major_cities": ["Chattanooga", "Signal Mountain", "Lookout Mountain"],
+      "tax_year": 2025,
+      "property_tax": {
+        "county_rate_per_100": 2.205,
+        "city_chattanooga_rate_per_100": 2.0326,
+        "total_rate_per_100_unincorporated": 2.205,
+        "assessment_ratio": 0.25,
+        "rate_per_100": 2.205,
+        "effective_rate_market_pct": 0.551,
+        "_note": "Chattanooga city adds ~$2.03 per $100 assessed on top of county rate. Scenic areas popular for retirement."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Primary residence",
+          "max_value": 175000,
+          "surviving_spouse": true
+        }
+      },
+      "application": {
+        "office": "Hamilton County Trustee",
+        "url": "https://trustee.hamiltontn.gov/"
+      },
+      "source": "https://trustee.hamiltontn.gov/"
+    }
+  ]
+}

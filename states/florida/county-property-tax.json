@@ -1,19 +1,21 @@
 {
   "metadata": {
-    "title": "County Property Tax Rates and Veteran Exemptions \u2014 FL",
-    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
+    "title": "County Property Tax Rates and Veteran Exemptions — FL",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for top retirement destination and high-veteran-population counties.",
     "state_code": "FL",
-    "version": "1.1",
-    "last_updated": "2026-03-13",
+    "version": "1.2",
+    "last_updated": "2026-03-17",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
-      "State comptroller/tax authority publications"
+      "State comptroller/tax authority publications",
+      "Florida Department of Revenue millage rate reports"
     ],
     "notes": {
       "tax_rate_format": "Rate per $100 of assessed value unless otherwise noted.",
-      "scope": "Initial release covers counties with major military installations from states in state-benefits.json.",
-      "update_cycle": "Tax rates typically set annually by county boards."
+      "scope": "v1.2 expands to top retirement destination counties (Sarasota, Lee, Collier) plus original military-installation county.",
+      "update_cycle": "Tax rates typically set annually by county boards.",
+      "homestead_exemption": "Florida provides up to $50,000 homestead exemption on primary residences statewide."
     }
   },
   "counties": [
@@ -21,9 +23,7 @@
       "county": "Hillsborough County",
       "state_code": "FL",
       "fips": "12057",
-      "military_installations": [
-        "MacDill AFB (CENTCOM/SOCOM)"
-      ],
+      "military_installations": ["MacDill AFB (CENTCOM/SOCOM)"],
       "estimated_veteran_population": 87000,
       "tax_year": 2025,
       "property_tax": {
@@ -50,6 +50,106 @@
         "url": "https://www.hcpafl.org/"
       },
       "source": "https://floridarevenue.com/property/Pages/Taxpayers_Exemptions.aspx"
+    },
+    {
+      "county": "Sarasota County",
+      "state_code": "FL",
+      "fips": "12115",
+      "retirement_destination": true,
+      "tax_year": 2025,
+      "property_tax": {
+        "total_millage_rate": 11.4737,
+        "rate_per_100": 1.147,
+        "county_general_millage": 3.2273,
+        "school_millage": 6.095,
+        "homestead_exemption": 50000,
+        "_note": "Total county-wide rate excluding municipal millage. Unincorporated areas include 0.73 mills EMS."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; FL resident",
+          "applies_to": "Homestead property",
+          "surviving_spouse": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 5000,
+          "eligibility": "10%+ service-connected disability",
+          "combat_65_plus_discount": "Additional percentage discount based on disability rating"
+        }
+      },
+      "application": {
+        "office": "Sarasota County Property Appraiser",
+        "url": "https://www.sc-pa.com/"
+      },
+      "source": "https://www.sarasotataxcollector.gov/services/tax-services/property-tax/millage-rates"
+    },
+    {
+      "county": "Lee County",
+      "state_code": "FL",
+      "fips": "12071",
+      "retirement_destination": true,
+      "major_cities": ["Fort Myers", "Cape Coral", "Estero", "Bonita Springs"],
+      "tax_year": 2025,
+      "property_tax": {
+        "county_bcc_millage": 3.7623,
+        "total_millage_rate": 17.5,
+        "rate_per_100": 1.75,
+        "homestead_exemption": 50000,
+        "_note": "County BCC rate 3.7623 mills; total includes schools, library, special districts. Effective rate ~1.04% of market value."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; FL resident",
+          "applies_to": "Homestead property",
+          "surviving_spouse": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 5000,
+          "eligibility": "10%+ service-connected disability"
+        }
+      },
+      "application": {
+        "office": "Lee County Property Appraiser",
+        "url": "https://www.leepa.org/"
+      },
+      "source": "https://leepa.org/TaxRoll/LeeTaxesLevyData.pdf"
+    },
+    {
+      "county": "Collier County",
+      "state_code": "FL",
+      "fips": "12021",
+      "retirement_destination": true,
+      "major_cities": ["Naples", "Marco Island", "Immokalee"],
+      "tax_year": 2025,
+      "property_tax": {
+        "county_general_millage": 3.5645,
+        "total_millage_rate": 12.3,
+        "rate_per_100": 1.23,
+        "homestead_exemption": 50000,
+        "_note": "Lower total millage than state average. Naples city adds ~1.1 mills for incorporated areas."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability; FL resident",
+          "applies_to": "Homestead property",
+          "surviving_spouse": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "exemption_amount": 5000,
+          "eligibility": "10%+ service-connected disability"
+        }
+      },
+      "application": {
+        "office": "Collier County Property Appraiser",
+        "url": "https://www.collierappraiser.com/"
+      },
+      "source": "https://www.collierappraiser.com/"
     }
   ]
 }
