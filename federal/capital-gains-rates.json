@@ -2,8 +2,8 @@
   "metadata": {
     "name": "Capital Gains Tax Rates History",
     "description": "Historical long-term capital gains and qualified dividend tax rates by income bracket. Essential for investment liquidation planning in retirement.",
-    "version": "1.0.1",
-    "last_updated": "2026-03-12",
+    "version": "1.2",
+    "last_updated": "2026-03-16",
     "sources": [
       "https://taxfoundation.org/data/all/federal/federal-capital-gains-tax-collections-historical-data/",
       "IRS Revenue Procedures (annual inflation adjustments)",
@@ -15,6 +15,24 @@
       "Net Investment Income Tax (NIIT) of 3.8% applies above $200K single / $250K MFJ since 2013 (ACA).",
       "0% rate is critical for retirement planning: retirees in lower brackets can harvest gains tax-free.",
       "Bracket thresholds shown are for taxable income (after deductions)."
+    ],
+    "corrections": [
+      {
+        "date": "2026-03-16",
+        "description": "Fixed 2026 capital gains thresholds: all values updated to IRS Rev. Proc. 2025-32 Section 4.03. Added HoH and MFS thresholds (previously missing). Prior values appeared to be pre-OBBBA projections.",
+        "source": "IRS Rev. Proc. 2025-32, Section 4.03"
+      },
+      {
+        "date": "2026-03-16",
+        "description": "Fixed 2026 capital gains thresholds per Rev. Proc. 2025-32: Single 15% 50600->49450, 20% 558600->545500; MFJ 15% 101200->98900, 20% 628300->613700. Added HoH and MFS thresholds."
+      }
+    ],
+    "cross_references": [
+      {
+        "file": "federal/filing-status-thresholds.json",
+        "manifest_key": "filing_status_thresholds",
+        "note": "Contains all 5 filing statuses with brackets, standard deductions, and other thresholds co-located. Use for tax computation; use this file for capital gains rate history."
+      }
     ]
   },
   "history": [
@@ -485,18 +503,28 @@
       ],
       "single_thresholds": [
         0,
-        50600,
-        558600
+        49450,
+        545500
       ],
       "mfj_thresholds": [
         0,
-        101200,
-        628300
+        98900,
+        613700
       ],
       "niit_threshold_single": 200000,
       "niit_threshold_mfj": 250000,
       "niit_rate": 3.8,
-      "notes": "Per IRS Rev. Proc. 2025-32 inflation adjustments."
+      "notes": "Per IRS Rev. Proc. 2025-32. HoH and MFS added. NIIT thresholds unchanged (not inflation-adjusted).",
+      "hoh_thresholds": [
+        0,
+        66200,
+        579600
+      ],
+      "mfs_thresholds": [
+        0,
+        49450,
+        306850
+      ]
     }
   ]
 }

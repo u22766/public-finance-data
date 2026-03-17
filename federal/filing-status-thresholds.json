@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Filing Status Threshold Matrix",
     "description": "Consolidated filing-status-dependent thresholds for all five IRS filing statuses. Single lookup point for threshold-dependent calculations \u2014 federal tax, Social Security taxation, IRMAA, IRA eligibility, and SALT caps all keyed by filing status.",
-    "version": "2026.1",
+    "version": "2026.2",
     "effective_date": "2026-01-01",
     "last_updated": "2026-03-16",
     "update_frequency": "annual (January, after IRS Rev. Proc. published)",
@@ -23,6 +23,26 @@
       "HoH requires maintaining a home for a qualifying dependent. Brackets are wider than single, narrower than MFJ.",
       "Cross-references: federal-tax-brackets.json (historical brackets), rates-annual.json (current-year constants), ira-limits.json (Roth phase-outs), obbba-tax-provisions.json (senior deduction), medicare-rates.json (IRMAA).",
       "Historical data covers 2016-2025. Pre-TCJA years (2016-2017) use the 7-rate structure (10/15/25/28/33/35/39.6%). TCJA years (2018-2025) use the 7-rate structure (10/12/22/24/32/35/37%). OBBBA senior deduction and expanded SALT caps only apply starting 2025."
+    ],
+    "corrections": [
+      {
+        "date": "2026-03-16",
+        "description": "Fixed 2026 HoH tax brackets and MFS 35%/37% bracket boundaries against IRS Rev. Proc. 2025-32 Tables 2 and 4. HoH brackets 10%/24%/32% had been incorrectly derived from Single brackets; MFS 35% max was 384225 instead of 384350 (half of MFJ 768700). Also corrected MFJ/QSS 35% max (768450->768700) and 37% min (768451->768701).",
+        "fields_corrected": 12,
+        "source": "IRS Rev. Proc. 2025-32, Tables 2 (HoH) and 4 (MFS)"
+      },
+      {
+        "date": "2026-03-16",
+        "description": "Fixed 2026 HoH bracket thresholds: 10% max 17650->17700, 24% max 201775->201750, 32% range 201776-256225->201751-256200, per IRS Rev. Proc. 2025-32 Table 2"
+      }
+    ],
+    "known_issues": [
+      {
+        "scope": "historical_years 2018-2025",
+        "issue": "HoH brackets from 22% and above may be incorrectly derived from Single bracket boundaries. HoH 10% bracket max values are systematically 1 less than IRS-published values. Requires per-year Rev. Proc. verification.",
+        "priority": "medium",
+        "identified": "2026-03-16"
+      }
     ]
   },
   "year": 2026,
@@ -213,11 +233,11 @@
           {
             "rate": 0.35,
             "min": 512451,
-            "max": 768450
+            "max": 768700
           },
           {
             "rate": 0.37,
-            "min": 768451,
+            "min": 768701,
             "max": null
           }
         ],
@@ -356,11 +376,11 @@
           {
             "rate": 0.35,
             "min": 256226,
-            "max": 384225
+            "max": 384350
           },
           {
             "rate": 0.37,
-            "min": 384226,
+            "min": 384351,
             "max": null
           }
         ],
@@ -453,11 +473,11 @@
           {
             "rate": 0.1,
             "min": 0,
-            "max": 17650
+            "max": 17700
           },
           {
             "rate": 0.12,
-            "min": 17651,
+            "min": 17701,
             "max": 67450
           },
           {
@@ -468,16 +488,16 @@
           {
             "rate": 0.24,
             "min": 105701,
-            "max": 201775
+            "max": 201750
           },
           {
             "rate": 0.32,
-            "min": 201776,
-            "max": 256225
+            "min": 201751,
+            "max": 256200
           },
           {
             "rate": 0.35,
-            "min": 256226,
+            "min": 256201,
             "max": 640600
           },
           {
@@ -618,11 +638,11 @@
           {
             "rate": 0.35,
             "min": 512451,
-            "max": 768450
+            "max": 768700
           },
           {
             "rate": 0.37,
-            "min": 768451,
+            "min": 768701,
             "max": null
           }
         ]

@@ -2,8 +2,8 @@
   "metadata": {
     "name": "Federal Income Tax Brackets",
     "description": "Historical federal marginal income tax brackets by filing status. Covers the modern bracket era from 2001 (EGTRRA) through 2026.",
-    "version": "1.1",
-    "last_updated": "2026-03-12",
+    "version": "1.2",
+    "last_updated": "2026-03-16",
     "sources": [
       "https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2026",
       "https://taxfoundation.org/data/all/federal/historical-income-tax-rates-brackets/",
@@ -15,7 +15,7 @@
       "2003-2012: EGTRRA/JGTRRA rates (10%, 15%, 25%, 28%, 33%, 35%).",
       "2013-2017: ATRA restored 39.6% top rate, added ACA 0.9% Medicare surtax.",
       "2018-2025: TCJA rates (10%, 12%, 22%, 24%, 32%, 35%, 37%).",
-      "2026: TCJA sunset \u2014 rates revert to pre-TCJA structure with inflation adjustments per IRS Rev. Proc. 2025-32.",
+      "2026: TCJA rates made permanent by OBBBA. Brackets per IRS Rev. Proc. 2025-32.",
       "All bracket thresholds are the START of each bracket (income at or above).",
       "Retirement planning use: Roth conversion analysis, tax-efficient withdrawal sequencing, IRMAA bracket awareness."
     ],
@@ -43,7 +43,14 @@
       ],
       "checks_passed": 218,
       "result": "All bracket thresholds, rates, and filing status values match IRS primary sources exactly"
-    }
+    },
+    "cross_references": [
+      {
+        "file": "federal/filing-status-thresholds.json",
+        "manifest_key": "filing_status_thresholds",
+        "note": "For tax computation requiring all 5 filing statuses (Single, MFJ, MFS, HoH, QSS) with co-located standard deductions, age 65+ additional deductions, and OBBBA senior deduction, use filing-status-thresholds. This file provides historical bracket evolution (2001-2026) for Single and MFJ only \u2014 suited for Roth conversion modeling and bracket trend analysis, not household-specific tax computation."
+      }
+    ]
   },
   "filing_statuses": [
     "single",

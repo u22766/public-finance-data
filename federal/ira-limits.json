@@ -2,8 +2,8 @@
   "metadata": {
     "title": "IRA Contribution and Income Limits",
     "description": "Historical IRA contribution limits, catch-up contributions, and Roth IRA income phase-out limits by filing status",
-    "version": "2.0",
-    "last_updated": "2026-03-09",
+    "version": "2.1",
+    "last_updated": "2026-03-16",
     "sources": [
       "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits",
       "https://www.irs.gov/publications/p590a",
@@ -14,7 +14,14 @@
       "roth_income_limits": "MAGI (Modified Adjusted Gross Income) thresholds for Roth IRA contribution eligibility",
       "phase_out": "Between full_contribution and ineligible thresholds, contribution is proportionally reduced",
       "married_separate": "If lived with spouse during year, very restrictive $0-$10K limit applies; if lived apart all year, single limits apply"
-    }
+    },
+    "cross_references": [
+      {
+        "file": "federal/filing-status-thresholds.json",
+        "manifest_key": "filing_status_thresholds",
+        "note": "For all 5 filing statuses with Roth phase-outs and traditional IRA deductibility (active participant + non-participant spouse), use filing-status-thresholds (2016-2026). This file provides deeper IRA contribution limit history (1975-2026) with Single/MFJ/MFS Roth phase-outs."
+      }
+    ]
   },
   "annual_limits": [
     {

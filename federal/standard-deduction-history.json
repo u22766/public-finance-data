@@ -2,8 +2,8 @@
   "metadata": {
     "name": "Standard Deduction History",
     "description": "Historical federal standard deduction amounts by filing status, including additional deductions for age 65+ and blind taxpayers.",
-    "version": "1.0.1",
-    "last_updated": "2026-03-12",
+    "version": "1.2",
+    "last_updated": "2026-03-16",
     "sources": [
       "https://www.irs.gov/newsroom/irs-provides-tax-inflation-adjustments-for-tax-year-2026",
       "https://taxfoundation.org/taxedu/glossary/standard-deduction/",
@@ -15,6 +15,13 @@
       "For retirees: standard deduction is critical for calculating taxable income from pensions, SS, and IRA distributions.",
       "TCJA (2018-2025) nearly doubled the standard deduction and eliminated personal exemptions.",
       "2026: If TCJA sunset occurred, personal exemption would return but standard deduction would decrease. Per Rev. Proc. 2025-32, TCJA rates continued."
+    ],
+    "cross_references": [
+      {
+        "file": "federal/filing-status-thresholds.json",
+        "manifest_key": "filing_status_thresholds",
+        "note": "For all 5 filing statuses including MFS and QSS, plus OBBBA senior deduction and blind additional deduction, use filing-status-thresholds. This file provides Single/MFJ/HoH standard deduction history (2001-2026) for trend analysis."
+      }
     ]
   },
   "history": [

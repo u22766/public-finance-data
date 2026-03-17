@@ -128,13 +128,14 @@
       "changelog_1_0": "Initial release. 90 years of taxable maximum history."
     },
     "ira_limits": {
-      "version": "2.0",
+      "version": "2.1",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/ira-limits.json",
       "description": "IRA contribution limits history 1975-2026: contribution limits, catch-up, Roth income phase-outs by filing status (single, married joint, married separate)",
       "source": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-ira-contribution-limits",
-      "changelog_2_0": "v2.0: Added Roth income phase-out thresholds by filing status for all years since 1998."
+      "changelog_2_0": "v2.0: Added Roth income phase-out thresholds by filing status for all years since 1998.",
+      "changelog_2_1": "v2.1: Added cross-reference to filing-status-thresholds.json."
     },
     "ssa_life_table": {
       "version": "1.0",
@@ -179,29 +180,32 @@
       "update_frequency": "annual"
     },
     "federal_tax_brackets": {
-      "version": "1.1",
+      "version": "1.2",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/federal-tax-brackets.json",
       "description": "Federal income tax bracket history 2001-2026: rates and thresholds by filing status (EGTRRA/JGTRRA/ATRA/TCJA eras)",
       "source": "IRS Revenue Procedures, Tax Foundation",
-      "last_updated": "2026-03-12"
+      "last_updated": "2026-03-12",
+      "changelog_1_2": "v1.2: Added cross-reference to filing-status-thresholds.json. Updated 2026 notes for OBBBA."
     },
     "standard_deduction_history": {
-      "version": "1.0.1",
+      "version": "1.2",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/standard-deduction-history.json",
       "description": "Standard deduction history 2001-2026 by filing status with age 65+ additional amounts",
-      "last_updated": "2026-03-13"
+      "last_updated": "2026-03-13",
+      "changelog_1_2": "v1.2: Added cross-reference to filing-status-thresholds.json."
     },
     "capital_gains_rates": {
-      "version": "1.0.1",
+      "version": "1.2",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (November)",
       "url": "federal/capital-gains-rates.json",
       "description": "Long-term capital gains tax rate history 2001-2026 with NIIT thresholds",
-      "last_updated": "2026-03-13"
+      "last_updated": "2026-03-13",
+      "changelog_1_2": "v1.2: Fixed 2026 capital gains thresholds per Rev. Proc. 2025-32. Added HoH and MFS filing statuses. Cross-reference added."
     },
     "hsa_limits": {
       "version": "1.0",
@@ -512,13 +516,14 @@
       "last_updated": "2026-03-15"
     },
     "filing_status_thresholds": {
-      "version": "2026.1",
+      "version": "2026.2",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (January, after IRS Rev. Proc. published)",
       "url": "federal/filing-status-thresholds.json",
       "description": "Consolidated filing-status-dependent thresholds for all five IRS filing statuses. Tax brackets, standard deductions, IRMAA, IRA limits, SS taxation, SALT caps. Includes 10-year history (2016-2025).",
       "source": "IRS Rev. Proc. 2025-32, CMS CMS-8089-N, SSA, IRS Notice 2025-67, OBBBA P.L. 119-21",
-      "last_updated": "2026-03-16"
+      "last_updated": "2026-03-16",
+      "changelog_2026_2": "v2026.2: Fixed 2026 HoH bracket thresholds per Rev. Proc. 2025-32 Table 2."
     }
   }
 }
