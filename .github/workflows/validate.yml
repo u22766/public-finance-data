@@ -1,7 +1,8 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 21 validation suites
+# 22 validation suites
+# Session 48: Added validate_leo_fers_comp.py (207 checks) for LEO premium pay + FERS computation rules
 # Session 46: Added validate_county_property_tax.py (988 checks) for 12-state county property tax coverage
 # Session 40: Added validate_filing_status.py (816 checks) for filing-status-thresholds.json
 # Session 44: Added validate_sdcera.py for SDCERA (San Diego County) pension plans
@@ -96,6 +97,9 @@ jobs:
 
       - name: Validate county property tax — 12 states (988 checks)
         run: python tests/validate_county_property_tax.py
+
+      - name: Validate LEO premium pay and FERS computation rules (207 checks)
+        run: python tests/validate_leo_fers_comp.py
       
       - name: Validation summary
         if: success()
