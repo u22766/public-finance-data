@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "County Property Tax Rates and Veteran Exemptions \u2014 TX",
-    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
+    "title": "County Property Tax Rates and Veteran Exemptions — TX",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population and retirement-destination counties in Texas.",
     "state_code": "TX",
-    "version": "1.1",
-    "last_updated": "2026-03-13",
+    "version": "1.2",
+    "last_updated": "2026-03-19",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -42,8 +42,8 @@
       "veteran_exemptions": {
         "disabled_veteran_100_pct": {
           "type": "full_exemption",
-          "eligibility": "100% service-connected or IU per TX Tax Code \u00a711.131",
-          "applies_to": "Residence homestead \u2014 total appraised value",
+          "eligibility": "100% service-connected or IU per TX Tax Code §11.131",
+          "applies_to": "Residence homestead — total appraised value",
           "surviving_spouse": true,
           "surviving_spouse_transfers_to_new_homestead": true
         },
@@ -87,6 +87,70 @@
         "deadline": "April 30 (late filing up to 5 years for veteran exemptions)"
       },
       "source": "https://www.bexar.org/2582/Property-Tax-Frequently-Asked-Questions"
+    },
+    {
+      "county": "Travis County",
+      "state_code": "TX",
+      "fips": "48453",
+      "military_installations": [
+        "Camp Mabry"
+      ],
+      "estimated_veteran_population": 58000,
+      "tax_year": 2025,
+      "property_tax": {
+        "approximate_total_rate_per_100": 1.82,
+        "rate_breakdown": {
+          "county": 0.3378,
+          "city_austin": 0.4146,
+          "austin_isd": 0.8781,
+          "travis_central_appraisal": 0.0,
+          "acc_community_college": 0.0949,
+          "central_health": 0.0966
+        },
+        "homestead_exemption_school": 140000,
+        "_note": "No state property tax. Total varies by taxing jurisdiction overlap. Austin city rate shown."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% service-connected or IU per TX Tax Code §11.131",
+          "applies_to": "Residence homestead — total appraised value",
+          "surviving_spouse": true,
+          "surviving_spouse_transfers_to_new_homestead": true
+        },
+        "disabled_veteran_partial": {
+          "type": "partial_exemption",
+          "tiers": [
+            {
+              "rating_min": 10,
+              "rating_max": 29,
+              "amount": 5000
+            },
+            {
+              "rating_min": 30,
+              "rating_max": 49,
+              "amount": 7500
+            },
+            {
+              "rating_min": 50,
+              "rating_max": 69,
+              "amount": 10000
+            },
+            {
+              "rating_min": 70,
+              "rating_max": 100,
+              "amount": 12000
+            }
+          ],
+          "eligibility": "VA disability rating 10%+",
+          "applies_to": "Residence homestead"
+        }
+      },
+      "application": {
+        "office": "Travis Central Appraisal District",
+        "url": "https://www.traviscad.org/exemptions/"
+      },
+      "source": "https://comptroller.texas.gov/taxes/property-tax/exemptions/"
     }
   ]
 }
