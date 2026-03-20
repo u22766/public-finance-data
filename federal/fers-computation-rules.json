@@ -1,0 +1,197 @@
+{
+  "metadata": {
+    "name": "FERS Annuity Computation Rules",
+    "description": "FERS annuity computation formulas including standard, enhanced, special category (SC), disability retirement, MRA+10 age reduction, CSRS-to-FERS transfer dual component, and congressional employee rules. Supplements rates-annual.json multipliers with detailed computation logic.",
+    "version": "2026.1",
+    "last_updated": "2026-03-20",
+    "schema_version": "2.2",
+    "sources": [
+      "https://www.opm.gov/retirement-center/fers-information/computation/",
+      "https://www.opm.gov/retirement-center/fers-information/eligibility/",
+      "https://www.opm.gov/retirement-center/fers-information/types-of-retirement/",
+      "5 USC §8415 — Computation of basic annuity (FERS)",
+      "5 USC §8412 — Immediate retirement (FERS eligibility)",
+      "5 USC §8452 — Disability retirement (FERS)",
+      "OPM CSRS/FERS Handbook, Chapters 42, 50, 51, 60, 61"
+    ]
+  },
+  "standard_formula": {
+    "description": "Standard FERS annuity formula for non-SC employees",
+    "formula": "high_3_avg_salary × multiplier × years_of_service",
+    "standard_multiplier": 0.01,
+    "enhanced_multiplier": 0.011,
+    "enhanced_condition": "Age 62 or older at retirement with 20 or more years of creditable service",
+    "_note": "The 1.1% enhanced multiplier applies to ALL years of service when the age/service threshold is met — it is not tiered."
+  },
+  "special_category": {
+    "description": "Special Category (SC) employees receive enhanced multipliers for qualifying service",
+    "fers_multiplier_first_20": 0.017,
+    "fers_multiplier_beyond_20": 0.01,
+    "formula": "(1.7% × high-3 × SC service up to 20 years) + (1.0% × high-3 × service beyond 20 years)",
+    "eligible_categories": [
+      {
+        "category": "law_enforcement_officer",
+        "title": "Law Enforcement Officer",
+        "statutory_reference": "5 USC §8412(d)",
+        "mandatory_retirement_age": 57,
+        "_note": "Includes criminal investigators, police officers meeting LEO definition. Must be in covered LEO position."
+      },
+      {
+        "category": "firefighter",
+        "title": "Firefighter",
+        "statutory_reference": "5 USC §8412(d)",
+        "mandatory_retirement_age": 57
+      },
+      {
+        "category": "nuclear_materials_courier",
+        "title": "Nuclear Materials Courier",
+        "series": "0084",
+        "statutory_reference": "5 USC §8412(d)",
+        "mandatory_retirement_age": 57,
+        "_note": "Department of Energy couriers responsible for secure transport of nuclear materials."
+      },
+      {
+        "category": "customs_border_protection_officer",
+        "title": "Customs and Border Protection Officer",
+        "statutory_reference": "5 USC §8412(d)",
+        "mandatory_retirement_age": 57,
+        "effective_date": "2008-07-06",
+        "_note": "CBP Officers became eligible for SC retirement coverage effective July 6, 2008 under P.L. 110-161."
+      },
+      {
+        "category": "capitol_police",
+        "title": "Member of the Capitol Police",
+        "statutory_reference": "5 USC §8412(d)",
+        "mandatory_retirement_age": 57
+      },
+      {
+        "category": "supreme_court_police",
+        "title": "Member of the Supreme Court Police",
+        "statutory_reference": "5 USC §8412(d)",
+        "mandatory_retirement_age": 57
+      },
+      {
+        "category": "air_traffic_controller",
+        "title": "Air Traffic Controller",
+        "statutory_reference": "5 USC §8412(e)",
+        "mandatory_retirement_age": 56,
+        "_note": "ATCs have a separate eligibility provision (§8412(e)) but use the same 1.7%/1.0% multiplier structure."
+      }
+    ],
+    "retirement_eligibility": {
+      "immediate_full": "Age 50 with 20 years of SC service, or any age with 25 years of SC service",
+      "mandatory_separation": "Generally age 57 (age 56 for ATCs) — agencies must separate employees who reach mandatory retirement age with 20+ years of SC service",
+      "_note": "SC eligibility and mandatory retirement ages are per 5 USC §8425."
+    },
+    "_note_enhancement_exclusion": "The 1.1% enhanced multiplier (age 62+, 20+ years) does NOT apply to SC employees. SC employees use 1.7%/1.0% regardless of age."
+  },
+  "mra_plus_10_reduction": {
+    "description": "Annuity reduced for early retirement under MRA+10 provision. Applies when employee has 10+ years of service and retires at MRA but does not meet unreduced retirement criteria.",
+    "reduction_per_month": 0.004167,
+    "reduction_per_year": 0.05,
+    "reduction_basis": "5/12 of 1% for each full month the commencing date precedes the retiree's 62nd birthday",
+    "applies_to": ["fers"],
+    "does_not_apply_if": [
+      "Completed 30 or more years of creditable service",
+      "Completed 20 or more years of creditable service and annuity begins at age 60 or later"
+    ],
+    "postponement": {
+      "description": "Employee may postpone annuity commencement to reduce or eliminate the age reduction",
+      "full_elimination": "Postpone until age 62 (if less than 20 years service) or age 60 (if 20+ years service)",
+      "_note": "If employee postpones but begins annuity before the elimination threshold, a partial reduction still applies."
+    },
+    "csrs_component_impact": "If the retiree has a CSRS component (transferred from CSRS to FERS), the age reduction applies to BOTH the CSRS and FERS components of the annuity.",
+    "source": "https://www.opm.gov/retirement-center/fers-information/computation/"
+  },
+  "fers_disability": {
+    "description": "FERS disability retirement provides income replacement computed differently from standard annuity. Benefits vary by phase: first 12 months, after 12 months, and recomputation at age 62.",
+    "eligibility": {
+      "minimum_service": "18 months of creditable civilian service",
+      "condition": "Must be disabled for useful and efficient service in current position due to disease or injury expected to last at least 1 year",
+      "accommodation": "Agency must certify it cannot reasonably accommodate the condition and employee has not declined reasonable reassignment offer"
+    },
+    "first_12_months": {
+      "rate": 0.60,
+      "ss_offset": 1.00,
+      "description": "60% of high-3 average salary minus 100% of any Social Security disability benefit for months entitled to SSDI",
+      "floor": "earned_annuity",
+      "floor_description": "If the standard FERS annuity formula (1% × high-3 × years of service) produces a higher amount, that 'earned annuity' is paid instead.",
+      "cola_eligibility": false,
+      "_cola_note": "COLAs are not payable during the first 12 months when receiving the 60% computation."
+    },
+    "after_12_months": {
+      "rate": 0.40,
+      "ss_offset": 0.60,
+      "description": "40% of high-3 average salary minus 60% of any Social Security disability benefit for months entitled to SSDI",
+      "floor": "earned_annuity",
+      "floor_description": "If the standard FERS annuity formula produces a higher amount, that earned annuity is paid instead.",
+      "cola_eligibility": true
+    },
+    "recomputation_at_62": {
+      "description": "At age 62, OPM recomputes the annuity as though the employee had continued working until the day before their 62nd birthday.",
+      "service_credit": "Total service includes actual FERS service plus the period of time receiving disability annuity",
+      "high_3_adjustment": "High-3 average salary is increased by all FERS COLAs received during the disability annuity period",
+      "standard_multiplier": 0.01,
+      "enhanced_multiplier": 0.011,
+      "enhanced_threshold_years": 20,
+      "enhanced_condition": "If actual service plus disability annuity period equals 20 or more years, the 1.1% multiplier applies to all years"
+    },
+    "earning_capacity_test": {
+      "description": "Disability annuitants under age 60 must report annual earnings to OPM",
+      "restoration_threshold": "Earning capacity considered restored if income from wages/self-employment equals or exceeds 80% of current salary for the position held at retirement",
+      "_note": "Annuity suspended if earnings test is met or if annuitant fails to report earnings."
+    },
+    "source": "https://www.opm.gov/retirement-center/fers-information/computation/"
+  },
+  "csrs_to_fers_transfer": {
+    "description": "Employees who transferred from CSRS to FERS receive a dual-component annuity computed partly under CSRS rules and partly under FERS rules.",
+    "eligibility": "At time of transfer to FERS, employee had at least 5 years of creditable civilian service covered by CSRS or Social Security (but not both). Excludes service during which partial CSRS deductions were withheld (CSRS Offset).",
+    "components": ["fers_component", "csrs_component"],
+    "fers_component": {
+      "description": "Standard FERS formula applied to service performed after transfer to FERS",
+      "standard_multiplier": 0.01,
+      "enhanced_multiplier": 0.011,
+      "enhanced_condition": "Age 62 or older with 20 or more years of total creditable service (CSRS + FERS combined)"
+    },
+    "csrs_component": {
+      "description": "CSRS tiered formula applied to service performed under CSRS coverage (before transfer)",
+      "first_5_years": 0.015,
+      "next_5_years": 0.0175,
+      "beyond_10_years": 0.02,
+      "formula": "(1.5% × high-3 × first 5 CSRS years) + (1.75% × high-3 × next 5 CSRS years) + (2.0% × high-3 × CSRS years beyond 10)"
+    },
+    "csrs_component_sc": {
+      "description": "CSRS formula for transferred employees who performed SC service (LEO/FF/NMC) under CSRS",
+      "first_20_years": 0.025,
+      "beyond_20_years": 0.02,
+      "formula": "(2.5% × high-3 × CSRS SC service up to 20 years) + (2.0% × high-3 × CSRS service beyond 20 years)",
+      "_note": "The 2.5% rate applies to CSRS-covered LEO, firefighter, and nuclear materials courier service. Does not apply to CBP officers (who were not SC-eligible under CSRS) or to Capitol/Supreme Court Police CSRS service prior to their respective coverage dates."
+    },
+    "mra_plus_10_impact": "If the transferred employee retires under MRA+10, the 5/12 of 1% per month age reduction applies to BOTH the CSRS and FERS components.",
+    "cola_treatment": {
+      "csrs_component": "Receives full CPI-W COLA (CSRS rules)",
+      "fers_component": "Receives FERS COLA (CPI-W with diet-COLA reduction for increases above 2%)"
+    },
+    "source": "https://www.opm.gov/retirement-center/fers-information/computation/"
+  },
+  "congressional_employee": {
+    "description": "Members of Congress and Congressional employees are eligible for enhanced FERS multipliers with 5+ years of qualifying service. Very small eligible population.",
+    "fers_multiplier_first_20": 0.017,
+    "fers_multiplier_beyond_20": 0.01,
+    "formula": "(1.7% × high-3 × Congressional service up to 20 years) + (1.0% × high-3 × service beyond 20 years)",
+    "eligibility": "5 or more years of service as a Member of Congress and/or Congressional Employee",
+    "includes_capitol_police": true,
+    "_note_capitol_police": "Service as a member of the Capitol Police counts toward Congressional Employee eligibility for the enhanced multiplier under 5 USC §8415(c).",
+    "csrs_component_if_transferred": {
+      "description": "CSRS formula for transferred Members of Congress",
+      "first_tier_rate": 0.025,
+      "first_tier_years": "Years as Member of Congress and/or Congressional Employee plus qualifying military service, up to combined total",
+      "second_tier_rate": 0.0175,
+      "second_tier_description": "Other service which, combined with first-tier service, does not exceed 10 years",
+      "third_tier_rate": 0.02,
+      "third_tier_description": "Service beyond 10 years total"
+    },
+    "fers_rae_frae_exclusion": "Members of Congress or Congressional Employees covered by FERS-RAE or FERS-FRAE have their annuity computed under the general FERS formula (1.0%/1.1%) and are NOT eligible for the enhanced 1.7%/1.0% Congressional calculation.",
+    "source": "https://www.opm.gov/retirement-center/fers-information/computation/"
+  }
+}

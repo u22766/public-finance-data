@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "name": "LEO Premium Pay Reference Data",
+    "description": "Law enforcement premium pay rules: LEAP (availability pay) and AUO (administratively uncontrollable overtime). Includes eligible series, rate schedules, and retirement treatment for federal law enforcement positions.",
+    "version": "2026.1",
+    "last_updated": "2026-03-20",
+    "schema_version": "2.2",
+    "sources": [
+      "5 USC §5545a — Availability pay for criminal investigators",
+      "5 USC §5545(c)(2) — Administratively uncontrollable overtime",
+      "5 CFR 550.151–164 — AUO pay regulations",
+      "5 CFR 550.181–186 — Availability pay regulations",
+      "OPM Fact Sheet: Availability Pay",
+      "OPM Fact Sheet: Premium Pay (Title 5)"
+    ]
+  },
+  "leap": {
+    "name": "Law Enforcement Availability Pay",
+    "acronym": "LEAP",
+    "statutory_authority": "5 USC §5545a",
+    "regulation": "5 CFR 550.181–186",
+    "rate": 0.25,
+    "rate_type": "flat",
+    "description": "Flat 25% premium on basic pay (base + locality). Mandatory for criminal investigators meeting substantial hours requirement. Compensates unscheduled duty in excess of 40-hour workweek.",
+    "base_pay_definition": "Rate of basic pay including locality-based comparability payment under 5 USC §5304, before any deductions, exclusive of additional pay of any kind.",
+    "substantial_hours_requirement": "Average of at least 2 hours of unscheduled duty per regular workday over the annual certification period.",
+    "retirement_treatment": "Included in high-3 average salary for FERS/CSRS annuity computation for LEO positions",
+    "tsp_treatment": "Included in basic pay for TSP contribution percentage calculation for LEO positions",
+    "life_insurance_treatment": "Included in basic pay for FEGLI purposes for LEO positions",
+    "premium_pay_cap": "Subject to biweekly maximum earnings limitation for LEOs under 5 USC §5547(c)",
+    "exclusions": "Recipients may not receive AUO pay or standby duty pay for unscheduled duty hours. May receive regularly scheduled overtime, night, Sunday, and holiday premium pay for hours other than unscheduled duty.",
+    "eligible_series": [
+      {
+        "series": "1811",
+        "title": "Criminal Investigation",
+        "note": "Primary LEAP-eligible series. Includes FBI, DEA, ATF, Secret Service, HSI, NCIS, DCIS, IRS-CI, USMS, OIG investigators, and other federal criminal investigator positions."
+      },
+      {
+        "series": "1812",
+        "title": "Game Law Enforcement",
+        "note": "Eligible when position is classified as criminal investigator and employee meets LEO definition under 5 USC §5541(3)."
+      }
+    ],
+    "_note_eligibility": "LEAP eligibility is position-based, not purely series-based. An employee must be a 'criminal investigator' as defined in 5 CFR 550.103 AND meet the LEO definition under 5 USC §5541(3). Some 0083 Police Officers may receive LEAP if their position is designated as criminal investigator by their agency. Agency-specific designations vary."
+  },
+  "auo": {
+    "name": "Administratively Uncontrollable Overtime",
+    "acronym": "AUO",
+    "statutory_authority": "5 USC §5545(c)(2)",
+    "regulation": "5 CFR 550.151–164",
+    "min_rate": 0.10,
+    "max_rate": 0.25,
+    "rate_type": "tiered",
+    "description": "Variable premium (10–25%) for positions requiring substantial irregular or occasional overtime work that cannot be controlled administratively, with the employee generally responsible for recognizing circumstances requiring duty without supervision.",
+    "rate_tiers": [
+      {
+        "rate": 0.10,
+        "hours_per_week_min": 3,
+        "hours_per_week_max": 5,
+        "label": "3 to 5 hours per week"
+      },
+      {
+        "rate": 0.15,
+        "hours_per_week_min": 5,
+        "hours_per_week_max": 7,
+        "label": "Over 5 to 7 hours per week"
+      },
+      {
+        "rate": 0.20,
+        "hours_per_week_min": 7,
+        "hours_per_week_max": 9,
+        "label": "Over 7 to 9 hours per week"
+      },
+      {
+        "rate": 0.25,
+        "hours_per_week_min": 9,
+        "hours_per_week_max": null,
+        "label": "Over 9 hours per week"
+      }
+    ],
+    "rate_determination": "Set by employing agency head or designee; reviewed at least annually based on actual hours of irregular or occasional overtime work performed. Agency certifies annually that requirements are met per 5 CFR 550.164.",
+    "retirement_treatment": "Included in high-3 average salary for FERS/CSRS annuity computation for LEO positions only (5 USC §8331(3)(D) for CSRS; 5 USC §8401(4) for FERS)",
+    "tsp_treatment": "Included in basic pay for TSP contribution calculation for LEO positions only",
+    "life_insurance_treatment": "Included in basic pay for FEGLI purposes for LEO positions only",
+    "premium_pay_cap": "Subject to biweekly and annual premium pay caps under 5 USC §5547. LEO cap applies to law enforcement officers; lower GS-15 cap applies to non-LEOs.",
+    "exclusions": "AUO compensates all irregular overtime hours; recipients may also receive regularly scheduled overtime, night, Sunday, and holiday pay. May not receive LEAP (5 USC §5545a(g)).",
+    "_note_non_leo_retirement": "For non-LEO positions receiving AUO, the premium is NOT included in basic pay for retirement, TSP, or life insurance purposes. Only LEOs receiving AUO get the retirement treatment.",
+    "eligible_positions_description": "Not series-locked. Positions must require substantial amounts of irregular, unscheduled overtime that cannot be controlled administratively. Common recipients include but are not limited to Border Patrol Agents, certain CBP Officers, ICE positions, and other positions where work nature requires substantial irregular overtime."
+  },
+  "position_premium_map": [
+    {
+      "series": "1811",
+      "title": "Criminal Investigation",
+      "typical_premium": "leap",
+      "note": "Criminal investigators — nearly all receive LEAP. Not eligible for AUO while receiving LEAP."
+    },
+    {
+      "series": "1812",
+      "title": "Game Law Enforcement",
+      "typical_premium": "leap",
+      "note": "Eligible for LEAP when designated as criminal investigator."
+    },
+    {
+      "series": "1896",
+      "title": "Border Patrol Enforcement",
+      "typical_premium": "auo",
+      "note": "Border Patrol Agents — AUO at agency-set rate based on actual overtime patterns."
+    },
+    {
+      "series": "1895",
+      "title": "Customs and Border Protection",
+      "typical_premium": "auo",
+      "note": "Certain CBP Officers receive AUO. Some may receive LEAP if designated criminal investigator."
+    },
+    {
+      "series": "0083",
+      "title": "Police",
+      "typical_premium": "varies",
+      "note": "Some receive LEAP if designated as criminal investigator by agency. Others may receive AUO if position qualifies. Most receive neither."
+    },
+    {
+      "series": "1801",
+      "title": "General Inspection, Investigation, Enforcement, and Compliance",
+      "typical_premium": "none",
+      "note": "Typically no premium pay unless position is reclassified to criminal investigator duties."
+    }
+  ],
+  "_note_mutual_exclusivity": "LEAP and AUO are mutually exclusive. An employee receiving LEAP may not receive AUO (5 USC §5545a(g)). An employee receiving AUO who becomes eligible for LEAP must transition to LEAP."
+}
