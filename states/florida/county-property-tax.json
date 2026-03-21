@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "County Property Tax Rates and Veteran Exemptions — FL",
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 FL",
     "description": "County-level property tax rates, veteran exemption implementation details, and application information for top retirement destination and high-veteran-population counties.",
     "state_code": "FL",
-    "version": "1.2",
-    "last_updated": "2026-03-17",
+    "version": "1.3",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -23,7 +23,9 @@
       "county": "Hillsborough County",
       "state_code": "FL",
       "fips": "12057",
-      "military_installations": ["MacDill AFB (CENTCOM/SOCOM)"],
+      "military_installations": [
+        "MacDill AFB (CENTCOM/SOCOM)"
+      ],
       "estimated_veteran_population": 87000,
       "tax_year": 2025,
       "property_tax": {
@@ -90,7 +92,12 @@
       "state_code": "FL",
       "fips": "12071",
       "retirement_destination": true,
-      "major_cities": ["Fort Myers", "Cape Coral", "Estero", "Bonita Springs"],
+      "major_cities": [
+        "Fort Myers",
+        "Cape Coral",
+        "Estero",
+        "Bonita Springs"
+      ],
       "tax_year": 2025,
       "property_tax": {
         "county_bcc_millage": 3.7623,
@@ -123,7 +130,11 @@
       "state_code": "FL",
       "fips": "12021",
       "retirement_destination": true,
-      "major_cities": ["Naples", "Marco Island", "Immokalee"],
+      "major_cities": [
+        "Naples",
+        "Marco Island",
+        "Immokalee"
+      ],
       "tax_year": 2025,
       "property_tax": {
         "county_general_millage": 3.5645,
@@ -150,6 +161,84 @@
         "url": "https://www.collierappraiser.com/"
       },
       "source": "https://www.collierappraiser.com/"
+    },
+    {
+      "county": "Escambia County",
+      "state_code": "FL",
+      "fips": "12033",
+      "military_installations": [
+        "NAS Pensacola",
+        "Corry Station"
+      ],
+      "estimated_veteran_population": 38000,
+      "tax_year": 2026,
+      "property_tax": {
+        "total_millage_rate": 17.75,
+        "rate_per_100": 1.775,
+        "homestead_exemption": 50000,
+        "_note": "Naval aviation training center. Large retiree community. FL homestead exemption up to $50,000 for primary residence."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or confined to wheelchair",
+          "applies_to": "Primary residence \u2014 full ad valorem tax exemption",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "statutory_reference": "FL Statute \u00a7196.081"
+        },
+        "disabled_veteran_partial": {
+          "type": "assessed_value_reduction",
+          "reduction": 5000,
+          "eligibility": "Honorably discharged veteran with 10%+ service-connected disability",
+          "applies_to": "Primary residence",
+          "statutory_reference": "FL Statute \u00a7196.24"
+        }
+      },
+      "application": {
+        "office": "Escambia County Property Appraiser",
+        "url": "https://www.escpa.org/"
+      },
+      "source": "https://www.escpa.org/"
+    },
+    {
+      "county": "Duval County",
+      "state_code": "FL",
+      "fips": "12031",
+      "military_installations": [
+        "NAS Jacksonville",
+        "Naval Station Mayport"
+      ],
+      "estimated_veteran_population": 72000,
+      "tax_year": 2026,
+      "property_tax": {
+        "total_millage_rate": 18.1,
+        "rate_per_100": 1.81,
+        "homestead_exemption": 50000,
+        "_note": "Major Navy installation. Consolidated city-county government (Jacksonville). FL homestead exemption up to $50,000."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or confined to wheelchair",
+          "applies_to": "Primary residence \u2014 full ad valorem tax exemption",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "statutory_reference": "FL Statute \u00a7196.081"
+        },
+        "disabled_veteran_partial": {
+          "type": "assessed_value_reduction",
+          "reduction": 5000,
+          "eligibility": "Honorably discharged veteran with 10%+ service-connected disability",
+          "applies_to": "Primary residence",
+          "statutory_reference": "FL Statute \u00a7196.24"
+        }
+      },
+      "application": {
+        "office": "Duval County Property Appraiser",
+        "url": "https://www.coj.net/departments/property-appraiser"
+      },
+      "source": "https://www.coj.net/departments/property-appraiser"
     }
   ]
 }

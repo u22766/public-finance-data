@@ -2,7 +2,7 @@
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.2",
   "schema_min_compatible": "2.2",
-  "last_updated": "2026-03-19",
+  "last_updated": "2026-03-21",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
@@ -559,6 +559,12 @@
       "version": "2026.1",
       "last_updated": "2026-03-20",
       "update_cycle": "as enacted"
+    },
+    "county_property_tax_california": {
+      "url": "states/california/county-property-tax.json",
+      "description": "County-level property tax rates and veteran exemptions for California (Prop 13 constrained)",
+      "version": "1.0",
+      "last_updated": "2026-03-21"
     }
   }
 }

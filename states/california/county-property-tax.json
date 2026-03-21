@@ -1,0 +1,232 @@
+{
+  "metadata": {
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 CA",
+    "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-military-population counties in California.",
+    "state_code": "CA",
+    "version": "1.0",
+    "last_updated": "2026-03-21",
+    "sources": [
+      "County assessor offices",
+      "California State Board of Equalization",
+      "CalVet Veteran Services"
+    ],
+    "notes": {
+      "tax_rate_format": "California property tax is constrained by Proposition 13. Base rate is 1% of assessed value; voter-approved bonds and special assessments are additive. Assessed value increases capped at 2% annually.",
+      "prop_13": {
+        "base_rate_pct": 1.0,
+        "annual_increase_cap_pct": 2,
+        "reassessment_triggers": [
+          "Change of ownership",
+          "New construction"
+        ],
+        "homeowner_exemption_assessed_value": 7000
+      },
+      "disabled_veteran_exemption_statewide": {
+        "basic_assessed_value_reduction": 180671,
+        "low_income_assessed_value_reduction": 271009,
+        "low_income_household_limit": 81131,
+        "year": 2026,
+        "inflation_indexed": true,
+        "eligibility": "100% service-connected disability or IU at 100%, or blind in both eyes, or loss of use of two or more limbs",
+        "basic_filing": "One-time filing with county assessor",
+        "low_income_filing": "Annual filing by February 15",
+        "form": "BOE-261-G",
+        "source": "https://www.boe.ca.gov/proptaxes/dv_exemption.htm"
+      },
+      "scope": "Counties with major military installations and federal employment centers.",
+      "update_cycle": "Tax rates set annually by county; Prop 13 base is fixed statewide."
+    }
+  },
+  "counties": [
+    {
+      "county": "San Diego County",
+      "state_code": "CA",
+      "fips": "06073",
+      "military_installations": [
+        "Camp Pendleton",
+        "MCAS Miramar",
+        "Naval Base San Diego",
+        "Naval Base Point Loma",
+        "MCRD San Diego"
+      ],
+      "estimated_veteran_population": 238000,
+      "tax_year": 2026,
+      "property_tax": {
+        "rate_per_100": 1.0,
+        "typical_effective_rate_per_100": 1.16,
+        "rate_type": "prop_13",
+        "annual_increase_cap_pct": 2,
+        "voter_approved_bonds_typical_pct": 0.1,
+        "special_assessments_note": "Varies by tax rate area; Mello-Roos CFDs apply in some newer developments",
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "partial_exemption",
+          "basic_reduction": 180671,
+          "low_income_reduction": 271009,
+          "low_income_limit": 81131,
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Principal residence",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "inflation_indexed": true
+        }
+      },
+      "senior_disability_relief": {
+        "property_tax_postponement": {
+          "age_threshold": 62,
+          "eligibility": "Age 62+, blind, or disabled; household income \u2264 $51,762 (2026); at least 40% equity",
+          "benefit": "State lien postpones property tax payments until sale or change of ownership",
+          "administered_by": "California State Controller"
+        }
+      },
+      "application": {
+        "office": "San Diego County Assessor/Recorder/County Clerk",
+        "phone": "619-531-5773",
+        "url": "https://www.sdarcc.gov/dvets/"
+      },
+      "source": "https://www.sdttc.com/content/ttc/en/tax-collection/secured-property-taxes.html"
+    },
+    {
+      "county": "Sacramento County",
+      "state_code": "CA",
+      "fips": "06067",
+      "military_installations": [
+        "McClellan Park",
+        "Mather"
+      ],
+      "estimated_veteran_population": 85000,
+      "tax_year": 2026,
+      "property_tax": {
+        "rate_per_100": 1.0,
+        "typical_effective_rate_per_100": 1.2,
+        "rate_type": "prop_13",
+        "annual_increase_cap_pct": 2,
+        "voter_approved_bonds_typical_pct": 0.15,
+        "special_assessments_note": "Varies by tax rate area; Mello-Roos CFDs common in newer subdivisions (e.g., El Dorado Hills, Folsom)",
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "partial_exemption",
+          "basic_reduction": 180671,
+          "low_income_reduction": 271009,
+          "low_income_limit": 81131,
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Principal residence",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "inflation_indexed": true
+        }
+      },
+      "senior_disability_relief": {
+        "property_tax_postponement": {
+          "age_threshold": 62,
+          "eligibility": "Age 62+, blind, or disabled; household income \u2264 $51,762 (2026); at least 40% equity",
+          "benefit": "State lien postpones property tax payments until sale or change of ownership",
+          "administered_by": "California State Controller"
+        }
+      },
+      "application": {
+        "office": "Sacramento County Assessor",
+        "phone": "916-875-0720",
+        "url": "https://assessor.saccounty.gov/content/assessor/us/en/important-information/the-disabled-veterans--exemption--what-is-it--how-and-when-to-ap.html"
+      },
+      "source": "https://assessor.saccounty.gov/"
+    },
+    {
+      "county": "Riverside County",
+      "state_code": "CA",
+      "fips": "06065",
+      "military_installations": [
+        "March Air Reserve Base"
+      ],
+      "estimated_veteran_population": 110000,
+      "tax_year": 2026,
+      "property_tax": {
+        "rate_per_100": 1.0,
+        "typical_effective_rate_per_100": 1.25,
+        "rate_type": "prop_13",
+        "annual_increase_cap_pct": 2,
+        "voter_approved_bonds_typical_pct": 0.15,
+        "special_assessments_note": "Highest Mello-Roos concentration in California; newer developments can push effective rate to 1.55%+",
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "partial_exemption",
+          "basic_reduction": 180671,
+          "low_income_reduction": 271009,
+          "low_income_limit": 81131,
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Principal residence",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "inflation_indexed": true
+        }
+      },
+      "senior_disability_relief": {
+        "property_tax_postponement": {
+          "age_threshold": 62,
+          "eligibility": "Age 62+, blind, or disabled; household income \u2264 $51,762 (2026); at least 40% equity",
+          "benefit": "State lien postpones property tax payments until sale or change of ownership",
+          "administered_by": "California State Controller"
+        }
+      },
+      "application": {
+        "office": "Riverside County Assessor-County Clerk-Recorder",
+        "phone": "951-955-6200",
+        "url": "https://www.riversideassessor.com/"
+      },
+      "source": "https://www.riversideassessor.com/"
+    },
+    {
+      "county": "Los Angeles County",
+      "state_code": "CA",
+      "fips": "06037",
+      "military_installations": [
+        "Los Angeles Air Force Base",
+        "Fort MacArthur"
+      ],
+      "estimated_veteran_population": 290000,
+      "tax_year": 2026,
+      "property_tax": {
+        "rate_per_100": 1.0,
+        "typical_effective_rate_per_100": 1.2,
+        "rate_type": "prop_13",
+        "annual_increase_cap_pct": 2,
+        "voter_approved_bonds_typical_pct": 0.15,
+        "special_assessments_note": "Varies widely by city and tax rate area; school bonds and municipal assessments add 0.1%-0.35%",
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "partial_exemption",
+          "basic_reduction": 180671,
+          "low_income_reduction": 271009,
+          "low_income_limit": 81131,
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Principal residence",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "inflation_indexed": true
+        }
+      },
+      "senior_disability_relief": {
+        "property_tax_postponement": {
+          "age_threshold": 62,
+          "eligibility": "Age 62+, blind, or disabled; household income \u2264 $51,762 (2026); at least 40% equity",
+          "benefit": "State lien postpones property tax payments until sale or change of ownership",
+          "administered_by": "California State Controller"
+        }
+      },
+      "application": {
+        "office": "Los Angeles County Assessor",
+        "phone": "213-974-3211",
+        "url": "https://assessor.lacounty.gov/exemptions/disabled-veterans"
+      },
+      "source": "https://assessor.lacounty.gov/"
+    }
+  ]
+}

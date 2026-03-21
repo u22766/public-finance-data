@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "County Property Tax Rates and Veteran Exemptions — VA",
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 VA",
     "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population and retirement-destination counties in Virginia.",
     "state_code": "VA",
-    "version": "1.2",
-    "last_updated": "2026-03-19",
+    "version": "1.3",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -74,7 +74,7 @@
         "assessment_cap_pct_of_mean": 125
       },
       "application": {
-        "office": "Fairfax County DTA — Tax Relief Office",
+        "office": "Fairfax County DTA \u2014 Tax Relief Office",
         "email": "taxrelief@fairfaxcounty.gov",
         "url": "https://www.fairfaxcounty.gov/taxes/relief",
         "pre_certification_available": true
@@ -99,7 +99,7 @@
       "veteran_exemptions": {
         "disabled_veteran_100_pct": {
           "type": "full_exemption",
-          "eligibility": "100% P&T or IU at 100% per VA Code §58.1-3219.5",
+          "eligibility": "100% P&T or IU at 100% per VA Code \u00a758.1-3219.5",
           "applies_to": "Primary residence + up to 1 acre",
           "surviving_spouse": true
         }
@@ -180,6 +180,149 @@
         "url": "https://www.arlingtonva.us/Government/Programs/Taxes/Real-Estate-Tax-Relief"
       },
       "source": "https://www.arlingtonva.us/Government/Programs/Taxes/Tax-Rates"
+    },
+    {
+      "county": "Prince William County",
+      "state_code": "VA",
+      "fips": "51153",
+      "military_installations": [
+        "Quantico Marine Corps Base"
+      ],
+      "estimated_veteran_population": 35000,
+      "tax_year": 2026,
+      "property_tax": {
+        "real_estate_rate_per_100": 0.906,
+        "fire_levy_per_100": 0.072,
+        "total_effective_rate_per_100": 0.978,
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Primary residence + up to 1 acre",
+          "vehicle_relief": true,
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true
+        },
+        "kia_surviving_spouse": {
+          "type": "full_exemption",
+          "eligibility": "Unremarried surviving spouse of service member killed in action or died in line of duty",
+          "applies_to": "Primary residence + up to 1 acre"
+        }
+      },
+      "senior_disability_relief": {
+        "age_threshold": 65,
+        "max_income": 123903,
+        "asset_limit": 400000,
+        "asset_exclusion": "Primary residence + up to 25 acres",
+        "disability_income_exclusion": 7500,
+        "relative_income_exclusion": 10000,
+        "benefit": "Full or partial exemption from real estate tax, personal property on one vehicle, vehicle registration fee, and solid waste fee"
+      },
+      "application": {
+        "office": "Prince William County Real Estate Assessments Office",
+        "phone": "703-792-6780",
+        "url": "https://www.pwcva.gov/department/tax-administration/disabled-veterans"
+      },
+      "source": "https://www.pwcva.gov/department/tax-administration/tax-rates"
+    },
+    {
+      "county": "Henrico County",
+      "state_code": "VA",
+      "fips": "51087",
+      "military_installations": [
+        "Defense Supply Center Richmond",
+        "DISA"
+      ],
+      "estimated_veteran_population": 18000,
+      "tax_year": 2026,
+      "property_tax": {
+        "real_estate_rate_per_100": 0.83,
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Primary residence + up to 1 acre",
+          "vehicle_reduced_rate_per_100": 0.01,
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true
+        },
+        "kia_surviving_spouse": {
+          "type": "full_exemption",
+          "eligibility": "Unremarried surviving spouse of service member killed in action",
+          "applies_to": "Primary residence + up to 1 acre"
+        }
+      },
+      "senior_disability_relief": {
+        "programs": [
+          {
+            "name": "Real Estate Advantage Program (REAP)",
+            "age_threshold": 65,
+            "max_income": 75000,
+            "asset_limit": 500000,
+            "asset_exclusion": "Home + up to 10 acres",
+            "max_benefit": 3200,
+            "benefit": "Up to 100% real estate tax exemption, capped at $3,200"
+          },
+          {
+            "name": "Real Estate CAP Program (RECAP)",
+            "age_threshold": 65,
+            "max_income": 125000,
+            "asset_limit": 750000,
+            "asset_exclusion": "Home + up to 10 acres",
+            "benefit": "Tax bill frozen at entry year amount; assessment increases do not increase bill"
+          }
+        ]
+      },
+      "application": {
+        "office": "Henrico County Finance Department",
+        "url": "https://henrico.gov/finance/tax-credit-and-relief-program/"
+      },
+      "source": "https://henrico.gov/finance/approved-tax-fee-and-schedule/"
+    },
+    {
+      "county": "Chesterfield County",
+      "state_code": "VA",
+      "fips": "51041",
+      "military_installations": [
+        "Fort Gregg-Adams"
+      ],
+      "estimated_veteran_population": 23000,
+      "tax_year": 2026,
+      "property_tax": {
+        "real_estate_rate_per_100": 0.89,
+        "assessment_ratio": 1.0
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability or IU at 100%",
+          "applies_to": "Primary residence + up to 1 acre",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true
+        },
+        "kia_surviving_spouse": {
+          "type": "full_exemption",
+          "eligibility": "Unremarried surviving spouse of service member killed in action or died in line of duty",
+          "applies_to": "Primary residence + up to 1 acre"
+        }
+      },
+      "senior_disability_relief": {
+        "age_threshold": 65,
+        "max_income": 65400,
+        "asset_limit": 514000,
+        "asset_exclusion": "Home + up to 10 acres",
+        "benefit": "Full or partial exemption from real estate tax; annually adjusted thresholds"
+      },
+      "application": {
+        "office": "Chesterfield County Commissioner of the Revenue",
+        "phone": "804-748-1281",
+        "url": "https://www.chesterfield.gov/1143/Real-Estate-Tax-Relief-and-Exemptions"
+      },
+      "source": "https://www.chesterfield.gov/823/Real-Estate-Assessments"
     }
   ]
 }

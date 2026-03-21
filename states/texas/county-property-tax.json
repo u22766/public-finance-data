@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "County Property Tax Rates and Veteran Exemptions — TX",
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 TX",
     "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population and retirement-destination counties in Texas.",
     "state_code": "TX",
-    "version": "1.2",
-    "last_updated": "2026-03-19",
+    "version": "1.3",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -42,8 +42,8 @@
       "veteran_exemptions": {
         "disabled_veteran_100_pct": {
           "type": "full_exemption",
-          "eligibility": "100% service-connected or IU per TX Tax Code §11.131",
-          "applies_to": "Residence homestead — total appraised value",
+          "eligibility": "100% service-connected or IU per TX Tax Code \u00a711.131",
+          "applies_to": "Residence homestead \u2014 total appraised value",
           "surviving_spouse": true,
           "surviving_spouse_transfers_to_new_homestead": true
         },
@@ -113,8 +113,8 @@
       "veteran_exemptions": {
         "disabled_veteran_100_pct": {
           "type": "full_exemption",
-          "eligibility": "100% service-connected or IU per TX Tax Code §11.131",
-          "applies_to": "Residence homestead — total appraised value",
+          "eligibility": "100% service-connected or IU per TX Tax Code \u00a711.131",
+          "applies_to": "Residence homestead \u2014 total appraised value",
           "surviving_spouse": true,
           "surviving_spouse_transfers_to_new_homestead": true
         },
@@ -151,6 +151,127 @@
         "url": "https://www.traviscad.org/exemptions/"
       },
       "source": "https://comptroller.texas.gov/taxes/property-tax/exemptions/"
+    },
+    {
+      "county": "Bell County",
+      "state_code": "TX",
+      "fips": "48027",
+      "military_installations": [
+        "Fort Cavazos"
+      ],
+      "estimated_veteran_population": 52000,
+      "tax_year": 2026,
+      "property_tax": {
+        "approximate_total_rate_per_100": 1.98,
+        "rate_breakdown": {
+          "county": 0.3438,
+          "school_killeen_isd": 0.8778,
+          "city_killeen": 0.685,
+          "central_texas_college": 0.09
+        },
+        "homestead_exemption_school": 140000,
+        "_note": "Largest active-duty post in US. Rates shown for typical Killeen resident. TX school homestead exemption increases to $140,000 for 2026 under SB 4."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Primary residence \u2014 total exemption from all property taxes",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": false,
+          "surviving_spouse_conditions": "Must not remarry and must remain in the home"
+        },
+        "disabled_veteran_partial": {
+          "type": "assessed_value_reduction",
+          "tiers": [
+            {
+              "min_rating": 10,
+              "max_rating": 29,
+              "reduction": 5000
+            },
+            {
+              "min_rating": 30,
+              "max_rating": 49,
+              "reduction": 7500
+            },
+            {
+              "min_rating": 50,
+              "max_rating": 69,
+              "reduction": 10000
+            },
+            {
+              "min_rating": 70,
+              "max_rating": 100,
+              "reduction": 12000
+            }
+          ]
+        }
+      },
+      "application": {
+        "office": "Bell County Appraisal District",
+        "url": "https://bellcad.org/adopted-tax-rates-and-exemptions/"
+      },
+      "source": "https://bell.countytaxrates.com/"
+    },
+    {
+      "county": "El Paso County",
+      "state_code": "TX",
+      "fips": "48141",
+      "military_installations": [
+        "Fort Bliss"
+      ],
+      "estimated_veteran_population": 65000,
+      "tax_year": 2026,
+      "property_tax": {
+        "approximate_total_rate_per_100": 2.35,
+        "rate_breakdown": {
+          "county": 0.3636,
+          "school_el_paso_isd": 1.0432,
+          "city_el_paso": 0.7852
+        },
+        "homestead_exemption_school": 140000,
+        "_note": "Major Army installation. Rates shown for typical City of El Paso resident in EPISD. TX school homestead exemption $140,000 for 2026."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Primary residence \u2014 total exemption from all property taxes",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": false,
+          "surviving_spouse_conditions": "Must not remarry and must remain in the home"
+        },
+        "disabled_veteran_partial": {
+          "type": "assessed_value_reduction",
+          "tiers": [
+            {
+              "min_rating": 10,
+              "max_rating": 29,
+              "reduction": 5000
+            },
+            {
+              "min_rating": 30,
+              "max_rating": 49,
+              "reduction": 7500
+            },
+            {
+              "min_rating": 50,
+              "max_rating": 69,
+              "reduction": 10000
+            },
+            {
+              "min_rating": 70,
+              "max_rating": 100,
+              "reduction": 12000
+            }
+          ]
+        }
+      },
+      "application": {
+        "office": "El Paso Central Appraisal District",
+        "url": "https://www.epcad.org/"
+      },
+      "source": "https://www.epcad.org/"
     }
   ]
 }

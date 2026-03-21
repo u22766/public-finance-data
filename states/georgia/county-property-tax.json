@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "County Property Tax Rates and Veteran Exemptions — GA",
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 GA",
     "description": "County-level property tax rates for top retirement destination and military counties in Georgia.",
     "state_code": "GA",
-    "version": "1.0",
-    "last_updated": "2026-03-17",
+    "version": "1.1",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/commissioner offices",
       "GA Department of Revenue",
@@ -23,15 +23,21 @@
       "state_code": "GA",
       "fips": "13051",
       "retirement_destination": true,
-      "major_cities": ["Savannah", "Tybee Island", "Pooler"],
-      "military_installations": ["Hunter Army Airfield"],
+      "major_cities": [
+        "Savannah",
+        "Tybee Island",
+        "Pooler"
+      ],
+      "military_installations": [
+        "Hunter Army Airfield"
+      ],
       "estimated_veteran_population": 22000,
       "tax_year": 2025,
       "property_tax": {
         "county_millage": 11.574,
         "school_millage": 16.35,
         "total_millage_unincorporated": 34.0,
-        "assessment_ratio": 0.40,
+        "assessment_ratio": 0.4,
         "effective_rate_market_pct": 1.36,
         "rate_per_100": 1.36,
         "_note": "Total millage ~34 mills on 40% assessed value = ~1.36% effective. Savannah city adds additional millage."
@@ -62,17 +68,24 @@
       "state_code": "GA",
       "fips": "13067",
       "retirement_destination": true,
-      "major_cities": ["Marietta", "Kennesaw", "Smyrna", "Acworth"],
-      "military_installations": ["Dobbins ARB"],
+      "major_cities": [
+        "Marietta",
+        "Kennesaw",
+        "Smyrna",
+        "Acworth"
+      ],
+      "military_installations": [
+        "Dobbins ARB"
+      ],
       "tax_year": 2025,
       "property_tax": {
         "county_millage": 8.46,
         "school_millage": 18.9,
         "total_millage_unincorporated": 29.0,
-        "assessment_ratio": 0.40,
+        "assessment_ratio": 0.4,
         "effective_rate_market_pct": 1.16,
         "rate_per_100": 1.16,
-        "_note": "Moderate metro-Atlanta area rate. ~29 mills × 40% = ~1.16% effective on market value."
+        "_note": "Moderate metro-Atlanta area rate. ~29 mills \u00d7 40% = ~1.16% effective on market value."
       },
       "veteran_exemptions": {
         "disabled_veteran_100_pct": {
@@ -97,18 +110,23 @@
       "county": "Liberty County",
       "state_code": "GA",
       "fips": "13179",
-      "major_cities": ["Hinesville", "Midway"],
-      "military_installations": ["Fort Stewart"],
+      "major_cities": [
+        "Hinesville",
+        "Midway"
+      ],
+      "military_installations": [
+        "Fort Stewart"
+      ],
       "estimated_veteran_population": 18000,
       "tax_year": 2025,
       "property_tax": {
         "county_millage": 13.65,
         "school_millage": 16.4,
         "total_millage_unincorporated": 30.05,
-        "assessment_ratio": 0.40,
+        "assessment_ratio": 0.4,
         "effective_rate_market_pct": 1.202,
         "rate_per_100": 1.202,
-        "_note": "High military population. ~30 mills × 40% = ~1.2% effective."
+        "_note": "High military population. ~30 mills \u00d7 40% = ~1.2% effective."
       },
       "veteran_exemptions": {
         "disabled_veteran_100_pct": {
@@ -128,6 +146,46 @@
         "url": "https://www.libertycountyga.com/tax-assessors"
       },
       "source": "https://www.libertycountyga.com/tax-assessors"
+    },
+    {
+      "county": "Muscogee County",
+      "state_code": "GA",
+      "fips": "13215",
+      "military_installations": [
+        "Fort Moore"
+      ],
+      "estimated_veteran_population": 28000,
+      "tax_year": 2026,
+      "property_tax": {
+        "county_millage": 10.337,
+        "school_millage": 18.45,
+        "total_millage_unincorporated": 28.787,
+        "assessment_ratio": 0.4,
+        "effective_rate_market_pct": 1.15,
+        "rate_per_100": 1.15,
+        "_note": "Formerly Fort Benning. Consolidated city-county government (Columbus). GA assesses at 40% of fair market value."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "partial_exemption",
+          "reduction": 109986,
+          "eligibility": "100% P&T service-connected disability or loss/loss of use of two or more limbs",
+          "applies_to": "Primary residence \u2014 assessed value reduction (applies to 40% assessed value)",
+          "surviving_spouse": true,
+          "statutory_reference": "GA Code \u00a748-5-48"
+        },
+        "disabled_veteran_partial": {
+          "type": "assessed_value_reduction",
+          "reduction": 50000,
+          "eligibility": "VA letter documenting service-connected disability",
+          "applies_to": "Primary residence"
+        }
+      },
+      "application": {
+        "office": "Muscogee County Tax Assessor",
+        "url": "https://www.columbusga.gov/taxassessor/"
+      },
+      "source": "https://www.columbusga.gov/taxassessor/"
     }
   ]
 }

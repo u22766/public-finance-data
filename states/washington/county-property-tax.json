@@ -3,8 +3,8 @@
     "title": "County Property Tax Rates and Veteran Exemptions \u2014 WA",
     "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
     "state_code": "WA",
-    "version": "1.1",
-    "last_updated": "2026-03-13",
+    "version": "1.2",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -56,6 +56,51 @@
         "url": "https://www.piercecountywa.gov/1536/Property-Tax-Exemptions"
       },
       "source": "https://dor.wa.gov/taxes-rates/property-tax/property-tax-exemptions-and-deferrals"
+    },
+    {
+      "county": "Kitsap County",
+      "state_code": "WA",
+      "fips": "53035",
+      "military_installations": [
+        "Naval Base Kitsap",
+        "Bangor Submarine Base",
+        "Puget Sound Naval Shipyard"
+      ],
+      "estimated_veteran_population": 35000,
+      "tax_year": 2026,
+      "property_tax": {
+        "average_rate_per_1000": 10.5,
+        "rate_per_100": 1.05,
+        "_note": "Major Navy submarine base. WA rates expressed per $1,000 of assessed value. Rates vary by tax code area."
+      },
+      "veteran_exemptions": {
+        "income_based_exemption": {
+          "type": "income_based_reduction",
+          "eligibility": "Veterans with 80%+ service-connected disability rating; income-based",
+          "income_tiers": [
+            {
+              "max_income": 50000,
+              "benefit": "Exempt from all excess levies + frozen value"
+            },
+            {
+              "max_income": 65000,
+              "benefit": "Exempt from all excess levies"
+            },
+            {
+              "max_income": 75000,
+              "benefit": "Partial exemption from regular and excess levies"
+            }
+          ],
+          "applies_to": "Primary residence",
+          "surviving_spouse": true,
+          "statutory_reference": "RCW 84.36.381"
+        }
+      },
+      "application": {
+        "office": "Kitsap County Assessor",
+        "url": "https://www.kitsapgov.com/assessor/"
+      },
+      "source": "https://www.kitsapgov.com/assessor/"
     }
   ]
 }

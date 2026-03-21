@@ -3,8 +3,8 @@
     "title": "County Property Tax Rates and Veteran Exemptions \u2014 CO",
     "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
     "state_code": "CO",
-    "version": "1.1",
-    "last_updated": "2026-03-13",
+    "version": "1.2",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -48,6 +48,34 @@
         "url": "https://assessor.elpasoco.com/"
       },
       "source": "https://cdola.colorado.gov/disabled-veteran-property-tax-exemption"
+    },
+    {
+      "county": "Douglas County",
+      "state_code": "CO",
+      "fips": "08035",
+      "military_installations": [],
+      "estimated_veteran_population": 18000,
+      "tax_year": 2026,
+      "property_tax": {
+        "total_mill_levy": 41.298,
+        "residential_assessment_rate_pct": 6.8,
+        "_note": "Buckley SFB adjacent. Highest median property tax in Colorado. Mill levy reduced 18.6% in 2024 budget. Residential assessment rate is 6.8% after 10% reduction on first $700,000 (2026)."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_property_tax": {
+          "type": "state_exemption",
+          "exemption_pct": 50,
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "First $200,000 of actual value of primary residence",
+          "surviving_spouse": true,
+          "statutory_reference": "CO Rev. Stat. \u00a739-3-203"
+        }
+      },
+      "application": {
+        "office": "Douglas County Assessor",
+        "url": "https://www.douglas.co.us/assessor/"
+      },
+      "source": "https://www.douglas.co.us/assessor/taxing-authorities/mill-levy-calculation/"
     }
   ]
 }

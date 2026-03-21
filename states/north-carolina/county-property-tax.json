@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "County Property Tax Rates and Veteran Exemptions — NC",
+    "title": "County Property Tax Rates and Veteran Exemptions \u2014 NC",
     "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population and retirement-destination counties in North Carolina.",
     "state_code": "NC",
-    "version": "1.2",
-    "last_updated": "2026-03-19",
+    "version": "1.3",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -70,6 +70,38 @@
         "url": "https://www.wake.gov/departments-government/tax-administration"
       },
       "source": "https://www.ncdor.gov/taxes-forms/property-tax/property-tax-exemptions-exclusions"
+    },
+    {
+      "county": "Onslow County",
+      "state_code": "NC",
+      "fips": "37133",
+      "military_installations": [
+        "Camp Lejeune",
+        "MCAS New River"
+      ],
+      "estimated_veteran_population": 38000,
+      "tax_year": 2026,
+      "property_tax": {
+        "real_estate_rate_per_100": 0.65,
+        "assessment_ratio": 1.0,
+        "_note": "Major Marine base. NC assesses at 100% market value. Municipal rates additional if in Jacksonville."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "partial_exemption",
+          "reduction": 45000,
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Primary residence \u2014 first $45,000 of assessed value exempt",
+          "surviving_spouse": true,
+          "statutory_reference": "NC G.S. \u00a7105-277.1C"
+        }
+      },
+      "application": {
+        "office": "Onslow County Tax Department",
+        "phone": "910-989-2200",
+        "url": "https://www.onslowcountync.gov/278/Tax-Rates"
+      },
+      "source": "https://www.ncdor.gov/2025-2026-county-tax-rates-finalpdf/open"
     }
   ]
 }

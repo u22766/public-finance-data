@@ -3,8 +3,8 @@
     "title": "County Property Tax Rates and Veteran Exemptions \u2014 MD",
     "description": "County-level property tax rates, veteran exemption implementation details, and application information for high-veteran-population counties.",
     "state_code": "MD",
-    "version": "1.1",
-    "last_updated": "2026-03-13",
+    "version": "1.2",
+    "last_updated": "2026-03-21",
     "sources": [
       "County tax assessor/collector offices",
       "County appraisal district offices",
@@ -43,6 +43,74 @@
         "url": "https://www.princegeorgescountymd.gov/departments-offices/finance/taxes"
       },
       "source": "https://dat.maryland.gov/realproperty/Pages/Exemptions-and-Tax-Credits.aspx"
+    },
+    {
+      "county": "Anne Arundel County",
+      "state_code": "MD",
+      "fips": "24003",
+      "military_installations": [
+        "Fort Meade",
+        "NSA Headquarters",
+        "US Cyber Command",
+        "Defense Media Activity"
+      ],
+      "estimated_veteran_population": 42000,
+      "tax_year": 2026,
+      "property_tax": {
+        "real_estate_rate_per_100": 0.977,
+        "state_rate_per_100": 0.112,
+        "homestead_credit_cap_pct": 2,
+        "assessment_ratio": 1.0,
+        "_note": "Maryland assesses at 100% of market value. Homestead Credit limits taxable assessment increase to 2% per year for principal residence."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Primary residence",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "statutory_reference": "MD Tax-Property Code \u00a77-208"
+        }
+      },
+      "application": {
+        "office": "Anne Arundel County Finance Department",
+        "phone": "410-222-1144",
+        "url": "https://www.aacounty.org/finance/tax-information/current-tax-rates"
+      },
+      "source": "https://dat.maryland.gov/Documents/statistics/TaxRates2025-2026.pdf"
+    },
+    {
+      "county": "Howard County",
+      "state_code": "MD",
+      "fips": "24027",
+      "military_installations": [],
+      "estimated_veteran_population": 15000,
+      "tax_year": 2026,
+      "property_tax": {
+        "real_estate_rate_per_100": 1.044,
+        "fire_rescue_rate_per_100": 0.206,
+        "state_rate_per_100": 0.112,
+        "total_effective_rate_per_100": 1.362,
+        "assessment_ratio": 1.0,
+        "_note": "Fort Meade adjacent. Large federal commuter population. Howard County levies separate fire & rescue tax."
+      },
+      "veteran_exemptions": {
+        "disabled_veteran_100_pct": {
+          "type": "full_exemption",
+          "eligibility": "100% P&T service-connected disability",
+          "applies_to": "Primary residence",
+          "surviving_spouse": true,
+          "surviving_spouse_remarriage_disqualifies": true,
+          "statutory_reference": "MD Tax-Property Code \u00a77-208"
+        }
+      },
+      "application": {
+        "office": "Howard County Department of Finance",
+        "phone": "410-313-1160",
+        "url": "https://www.howardcountymd.gov/finance/real-property-tax"
+      },
+      "source": "https://www.howardcountymd.gov/budget/resource/frequently-asked-budget-questions"
     }
   ]
 }
