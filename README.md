@@ -1,27 +1,30 @@
 # public-finance-data
 
-Curated public finance reference data sourced from U.S. government publications.
+Curated public finance reference data for retirement planning, tax analysis, and benefits estimation — covering all retirement populations.
 
-This repository contains **no personal information of any kind**. All data is drawn from publicly available sources — OPM, IRS, SSA, VA, CMS, DoD, and state tax authorities. Anyone may fork or use this data freely.
+This repository contains **no personal information of any kind**. All data is drawn from publicly available sources — IRS, SSA, CMS, OPM, VA, DoD, and state/local government agencies. Anyone may fork or use this data freely.
 
 ---
 
 ## What This Is
 
-A structured, version-controlled library of government-published financial data useful for retirement planning, tax analysis, benefits estimation, and fiscal modeling. Coverage includes:
+A structured, version-controlled library of publicly available financial data useful for retirement planning, tax analysis, benefits estimation, and fiscal modeling. Covers universal retirement topics (Social Security, tax brackets, RMDs, Roth conversions, Medicare/IRMAA, state tax treatment) as well as sector-specific systems (federal civilian, military, state/local government pensions, veterans benefits). Coverage includes:
 
-- **Federal retirement systems** — FERS rates, FERS computation rules, FERS SRS rules, CSRS rules, TSP contribution limits, TSP Roth conversion rules, COLA history, Social Security bend points, taxable maximums, claiming strategy rules, earnings test thresholds, LEO premium pay
+- **Tax data** — Federal brackets, standard deductions, capital gains rates, IRA/Roth limits and phase-outs, HSA limits, estate & gift tax, filing status thresholds (10 years × 5 statuses), OBBBA tax provisions
+- **Social Security** — Bend points, taxable maximums, COLA history, claiming strategy rules, reduction factors, earnings test thresholds, FRA tables
+- **Retirement accounts** — TSP contribution limits, IRA/Roth limits and phase-outs, RMD rules history, Roth conversion rules
+- **Healthcare** — Medicare IRMAA thresholds and premiums, FEHB premiums (478 plan entries), FEHB plan benefits, FEHB retirement eligibility, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL, pharmacy, dental)
+- **State benefits** — Income tax treatment of retirement income, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
+- **County property tax** — Effective rates and exemptions for 44 counties across 13 states
+- **Federal retirement systems** — FERS rates, FERS computation rules, FERS SRS rules, CSRS rules, TSP limits, COLA history, LEO premium pay
 - **Federal pay** — GS pay tables (all grades/steps/localities), DCIPS pay bands, military basic pay (27 grades × 22 YOS, 2016–2026), federal pay raise history
-- **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEHB retirement eligibility, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL, pharmacy, dental), Medicare IRMAA
 - **Life insurance** — FEGLI rates (Basic + Options A/B/C, age-banded), VGLI premiums
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
-- **Tax data** — Federal brackets, standard deductions, capital gains rates, IRA/Roth limits and phase-outs, HSA limits, estate & gift tax, filing status thresholds (10 years × 5 statuses), OBBBA tax provisions
-- **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
-- **County property tax** — Effective rates and veteran exemptions for 44 counties across 13 states
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes), RMD rules history
 - **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC/FCERS/PORS/URS plans, Arlington County ACERS plans, Richmond RRS plans, Falls Church FCPP plans, Montgomery County MD MCERP plans, San Diego County CA SDCERA plans, pension stacking patterns
+- **Reference templates** — Generic defined-benefit pension template for manual-entry plans (any sector)
 
-Designed as a generic data source that any application, tool, or analysis can consume — no authentication, no API keys, no tracking.
+Designed as a generic data source for retirement planning applications, financial tools, or independent analysis — serving federal, military, state/local government, and private-sector retirement populations. No authentication, no API keys, no tracking.
 
 ---
 
@@ -163,9 +166,9 @@ public-finance-data/
 
 Files are organized by jurisdiction and domain:
 
-- **`federal/`** — Federal civilian data (OPM, IRS, SSA, CMS), healthcare plans (OPM, DoD, CMS), life insurance (OPM), and Department of Veterans Affairs benefits
-- **`states/`** — State-level tax treatment, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`, `states/california/san-diego-county/`)
-- **`reference/`** — Static lookup tables, actuarial data, retirement system rules, and templates that rarely change
+- **`federal/`** — Federal-level data: tax brackets and thresholds (IRS), Social Security (SSA), Medicare/IRMAA (CMS), retirement account limits (IRS), federal civilian pay and benefits (OPM), healthcare plans (OPM, DoD, CMS), life insurance (OPM), military pay, and veterans benefits (VA)
+- **`states/`** — State-level tax treatment of retirement income, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`, `states/california/san-diego-county/`)
+- **`reference/`** — Static lookup tables, actuarial data, retirement system rules, plan templates, and reference data that rarely changes
 
 ---
 
@@ -244,7 +247,7 @@ Files are organized by jurisdiction and domain:
 
 **State benefits** (50 states + DC + 5 US territories — 56 jurisdictions): AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UT, VA, VI, VT, WA, WI, WV, WY
 
-Each state entry includes income tax treatment of military/federal retirement pay, property tax exemptions for disabled veterans, additional veteran benefit programs, application procedures, survivor transfer conditions, and pending legislation flags.
+Each state entry includes income tax treatment of retirement income (Social Security, pension, military/federal pay), property tax exemptions (veteran, senior, disability), additional benefit programs, application procedures, survivor transfer conditions, and pending legislation flags.
 
 **County property tax** (44 counties across 13 states, stored as per-state files under `states/{state}/county-property-tax.json`):
 - Arizona: Maricopa County (1)
@@ -270,7 +273,7 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **22 test suites** totaling **~9,268 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **21 test suites** totaling **~9,268 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
