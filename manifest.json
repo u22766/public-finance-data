@@ -289,39 +289,39 @@
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_co": {
-      "version": "1.1",
+      "version": "1.2",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/colorado/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: El Paso County (CO).",
-      "last_updated": "2026-03-13",
+      "last_updated": "2026-03-21",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_fl": {
-      "version": "1.2",
+      "version": "1.3",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/florida/county-property-tax.json",
       "description": "County-level property tax rates, veteran exemptions, and application info for top retirement and military counties in Florida (Hillsborough, Sarasota, Lee, Collier).",
-      "last_updated": "2026-03-17",
+      "last_updated": "2026-03-21",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_md": {
-      "version": "1.1",
+      "version": "1.2",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/maryland/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Prince George's County (MD).",
-      "last_updated": "2026-03-13",
+      "last_updated": "2026-03-21",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_nc": {
-      "version": "1.2",
+      "version": "1.3",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/north-carolina/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Cumberland County (NC).",
-      "last_updated": "2026-03-13",
+      "last_updated": "2026-03-21",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_nv": {
@@ -334,30 +334,30 @@
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_tx": {
-      "version": "1.2",
+      "version": "1.3",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/texas/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Bexar County (TX).",
-      "last_updated": "2026-03-13",
+      "last_updated": "2026-03-21",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_va": {
-      "version": "1.2",
+      "version": "1.3",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/virginia/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Fairfax County, Virginia Beach (VA).",
-      "last_updated": "2026-03-13",
+      "last_updated": "2026-03-21",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "county_property_tax_wa": {
-      "version": "1.1",
+      "version": "1.2",
       "effective_date": "2025-01-01",
       "update_frequency": "annual (after county rate-setting)",
       "url": "states/washington/county-property-tax.json",
       "description": "County-level property tax rates and veteran exemption details: Pierce County (WA).",
-      "last_updated": "2026-03-13",
+      "last_updated": "2026-03-21",
       "changelog_1_1": "Restructured from flat states/counties/ into per-state directories. No data changes \u2014 structural reorganization only."
     },
     "military_pay_tables": {
@@ -542,8 +542,8 @@
     "county_property_tax_ga": {
       "url": "states/georgia/county-property-tax.json",
       "description": "County-level property tax rates, veteran exemptions, and application info for top retirement and military counties in Georgia (Chatham, Cobb, Liberty).",
-      "version": "1.0",
-      "last_updated": "2026-03-17",
+      "version": "1.1",
+      "last_updated": "2026-03-21",
       "update_cycle": "annual"
     },
     "leo_premium_pay": {

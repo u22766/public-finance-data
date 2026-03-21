@@ -10,14 +10,14 @@ This repository contains **no personal information of any kind**. All data is dr
 
 A structured, version-controlled library of government-published financial data useful for retirement planning, tax analysis, benefits estimation, and fiscal modeling. Coverage includes:
 
-- **Federal retirement systems** — FERS rates, FERS SRS rules, CSRS rules, TSP contribution limits, TSP Roth conversion rules, COLA history, Social Security bend points, taxable maximums, claiming strategy rules, and earnings test thresholds
+- **Federal retirement systems** — FERS rates, FERS computation rules, FERS SRS rules, CSRS rules, TSP contribution limits, TSP Roth conversion rules, COLA history, Social Security bend points, taxable maximums, claiming strategy rules, earnings test thresholds, LEO premium pay
 - **Federal pay** — GS pay tables (all grades/steps/localities), DCIPS pay bands, military basic pay (27 grades × 22 YOS, 2016–2026), federal pay raise history
 - **Healthcare** — FEHB premiums (478 plan entries), FEHB plan benefits, FEHB retirement eligibility, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL, pharmacy, dental), Medicare IRMAA
 - **Life insurance** — FEGLI rates (Basic + Options A/B/C, age-banded), VGLI premiums
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
-- **Tax data** — Federal brackets, standard deductions, capital gains rates, IRA/Roth limits and phase-outs, HSA limits, estate & gift tax, OBBBA tax provisions
+- **Tax data** — Federal brackets, standard deductions, capital gains rates, IRA/Roth limits and phase-outs, HSA limits, estate & gift tax, filing status thresholds (10 years × 5 statuses), OBBBA tax provisions
 - **State benefits** — Income tax treatment, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
-- **County property tax** — Effective rates and veteran exemptions for 10 counties across 9 states
+- **County property tax** — Effective rates and veteran exemptions for 44 counties across 13 states
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes), RMD rules history
 - **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC/FCERS/PORS/URS plans, Arlington County ACERS plans, Richmond RRS plans, Falls Church FCPP plans, Montgomery County MD MCERP plans, San Diego County CA SDCERA plans, pension stacking patterns
 
@@ -27,7 +27,7 @@ Designed as a generic data source that any application, tool, or analysis can co
 
 ## How to Use This Repo
 
-1. Fetch `manifest.json` first — it's the version index listing all 57 available data files.
+1. Fetch `manifest.json` first — it's the version index listing all 64 available data files.
 2. Compare each file's `version` to your locally cached copy.
 3. Fetch only the files that have newer versions.
 4. If GitHub is unreachable, fall back to your last cached fetch.
@@ -40,7 +40,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 57 entries)
+├── manifest.json                                ← Fetch this first (master version index, 64 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -60,6 +60,9 @@ public-finance-data/
 │   ├── fers-contribution-rates.json             ← FERS employee contribution rates by hire cohort
 │   ├── fehb-premium-history.json                ← FEHB average premium history (1999–2025)
 │   ├── fegli-rates.json                         ← FEGLI life insurance — Basic + Options A/B/C, age-banded
+│   ├── fers-computation-rules.json              ← FERS annuity computation — multipliers, MRA+10, deferred, disability
+│   ├── filing-status-thresholds.json            ← IRS filing status thresholds — 5 statuses × 6 domains (2016–2025)
+│   ├── leo-premium-pay.json                     ← LEO premium pay rates — availability, administratively uncontrollable overtime
 │   ├── military-pay-tables.json                 ← Military basic pay by grade/YOS (2016–2026, 27 grades)
 │   ├── dcips/
 │   │   └── dcips-pay-tables.json                ← DCIPS pay bands — all occupational categories
@@ -79,24 +82,31 @@ public-finance-data/
 │   ├── arizona/
 │   │   └── county-property-tax.json             ← Maricopa County
 │   ├── california/
+│   │   ├── county-property-tax.json             ← San Diego, Sacramento, Riverside, Los Angeles (4 counties)
 │   │   └── san-diego-county/
 │   │       └── sdcera-plans.json                ← SDCERA pension plans — 9 benefit tiers (51K+ members)
 │   ├── colorado/
-│   │   └── county-property-tax.json             ← El Paso County
+│   │   └── county-property-tax.json             ← El Paso, Douglas (2 counties)
 │   ├── florida/
-│   │   └── county-property-tax.json             ← Hillsborough County
+│   │   └── county-property-tax.json             ← Hillsborough, Orange, Brevard, Okaloosa, Escambia, Duval (6 counties)
+│   ├── georgia/
+│   │   └── county-property-tax.json             ← Liberty, Houston, Chatham, Muscogee (4 counties)
 │   ├── maryland/
-│   │   ├── county-property-tax.json             ← Prince George's County
+│   │   ├── county-property-tax.json             ← Prince George's, Anne Arundel, Howard (3 counties)
 │   │   └── montgomery-county/
 │   │       └── mcerp-plans.json                 ← MCERP pension plans — 8 types ($7.3B system)
 │   ├── nevada/
 │   │   └── county-property-tax.json             ← Clark County
 │   ├── north-carolina/
-│   │   └── county-property-tax.json             ← Cumberland County
+│   │   └── county-property-tax.json             ← Cumberland, Harnett, Onslow (3 counties)
+│   ├── south-carolina/
+│   │   └── county-property-tax.json             ← Richland, Berkeley, Beaufort, Horry (4 counties)
+│   ├── tennessee/
+│   │   └── county-property-tax.json             ← Montgomery, Blount, Knox (3 counties)
 │   ├── texas/
-│   │   └── county-property-tax.json             ← Bexar County
+│   │   └── county-property-tax.json             ← Bexar, Killeen, Bell, El Paso (4 counties)
 │   ├── virginia/
-│   │   ├── county-property-tax.json             ← Fairfax County, Virginia Beach
+│   │   ├── county-property-tax.json             ← Fairfax, Virginia Beach, Loudoun, Arlington, Prince William, Henrico, Chesterfield (7 counties)
 │   │   ├── vrs-plans.json                       ← VRS Plan 1, Plan 2, Hybrid, SPORS, VaLORS, hazardous duty
 │   │   ├── arlington-county/
 │   │   │   └── acers-plans.json                 ← ACERS pension plans (independent, not VRS)
@@ -111,7 +121,7 @@ public-finance-data/
 │   │   └── richmond/
 │   │       └── rrs-plans.json                   ← RRS pension plans — 8 types (CLOSED 2024, VRS transition)
 │   └── washington/
-│       └── county-property-tax.json             ← Pierce County
+│       └── county-property-tax.json             ← Pierce, Kitsap (2 counties)
 │
 ├── reference/
 │   ├── static-refs.json                         ← SS FRA table, RMD Uniform Lifetime Table, locality codes
@@ -126,7 +136,7 @@ public-finance-data/
 │   └── csrs-retirement-rules.json               ← CSRS retirement computation and survivor annuity rules
 │
 └── tests/
-    ├── validate.py                              ← Core validation (1,209 checks)
+    ├── validate.py                              ← Core validation (1,237 checks)
     ├── validate_tier2.py                        ← State benefits validation (530 checks)
     ├── validate_tier3.py                        ← Tier 3A state expansion validation (125 checks)
     ├── validate_tier3b.py                       ← Tier 3B state expansion validation (172 checks)
@@ -134,7 +144,7 @@ public-finance-data/
     ├── validate_tier3d.py                       ← Tier 3D final expansion validation (179 checks)
     ├── validate_medicare.py                     ← Medicare rates validation (7 checks)
     ├── validate_dcips.py                        ← DCIPS pay tables validation (424 checks)
-    ├── validate_historical.py                   ← Historical + healthcare + county validation (1,968 checks)
+    ├── validate_historical.py                   ← Historical + healthcare + county validation (2,025 checks)
     ├── validate_pharmacy.py                     ← TRICARE pharmacy validation (92 checks)
     ├── validate_dental.py                       ← TRICARE dental validation (116 checks)
     ├── validate_obbba.py                        ← OBBBA tax provisions validation (71 checks)
@@ -143,7 +153,10 @@ public-finance-data/
     ├── validate_territories.py                  ← US territory expansion validation (129 checks)
     ├── validate_federal_retirement.py           ← Federal retirement rules validation (157 checks)
     ├── validate_municipal.py                    ← Municipal pension validation (153 checks)
-    └── validate_sdcera.py                       ← SDCERA pension validation (178 checks)
+    ├── validate_sdcera.py                       ← SDCERA pension validation (178 checks)
+    ├── validate_filing_status.py                ← Filing status thresholds validation (816 checks)
+    ├── validate_county_property_tax.py          ← County property tax — 13 states, 44 counties (1,635 checks)
+    └── validate_leo_fers_comp.py                ← LEO premium pay + FERS computation validation (207 checks)
 ```
 
 ### Domain Organization
@@ -156,7 +169,7 @@ Files are organized by jurisdiction and domain:
 
 ---
 
-## Manifest — Current Data Files (57 Entries)
+## Manifest — Current Data Files (64 Entries)
 
 | Key | Version | File |
 |-----|---------|------|
@@ -166,17 +179,20 @@ Files are organized by jurisdiction and domain:
 | `tsp_limits` | 1.0 | `federal/tsp-limits.json` |
 | `ss_bend_points` | 1.0 | `federal/ss-bend-points.json` |
 | `ss_taxable_max` | 1.0 | `federal/ss-taxable-max.json` |
-| `ira_limits` | 2.0 | `federal/ira-limits.json` |
+| `ira_limits` | 2.1 | `federal/ira-limits.json` |
 | `cola_history` | 1.0 | `federal/cola-history.json` |
-| `federal_tax_brackets` | 1.1 | `federal/federal-tax-brackets.json` |
-| `standard_deduction_history` | 1.0.1 | `federal/standard-deduction-history.json` |
-| `capital_gains_rates` | 1.0.1 | `federal/capital-gains-rates.json` |
+| `federal_tax_brackets` | 1.2 | `federal/federal-tax-brackets.json` |
+| `standard_deduction_history` | 1.2 | `federal/standard-deduction-history.json` |
+| `capital_gains_rates` | 1.2 | `federal/capital-gains-rates.json` |
 | `hsa_limits` | 1.0 | `federal/hsa-limits.json` |
 | `federal_pay_raises` | 1.0 | `federal/federal-pay-raises.json` |
 | `estate_gift_tax` | 1.0.1 | `federal/estate-gift-tax.json` |
 | `fers_contribution_rates` | 1.0 | `federal/fers-contribution-rates.json` |
+| `fers_computation_rules` | 2026.1 | `federal/fers-computation-rules.json` |
 | `fehb_premium_history` | 1.0 | `federal/fehb-premium-history.json` |
 | `fegli_rates` | 1.0 | `federal/fegli-rates.json` |
+| `filing_status_thresholds` | 2026.2 | `federal/filing-status-thresholds.json` |
+| `leo_premium_pay` | 2026.1 | `federal/leo-premium-pay.json` |
 | `military_pay_tables` | 2026.1 | `federal/military-pay-tables.json` |
 | `fehb_rates` | 2026.3 | `federal/healthcare/fehb-rates.json` |
 | `fehb_plan_benefits` | 2026.1 | `federal/healthcare/fehb-plan-benefits.json` |
@@ -188,14 +204,18 @@ Files are organized by jurisdiction and domain:
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
 | `state_benefits` | 2.9 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
-| `county_property_tax_co` | 1.1 | `states/colorado/county-property-tax.json` |
-| `county_property_tax_fl` | 1.1 | `states/florida/county-property-tax.json` |
-| `county_property_tax_md` | 1.1 | `states/maryland/county-property-tax.json` |
-| `county_property_tax_nc` | 1.1 | `states/north-carolina/county-property-tax.json` |
+| `county_property_tax_california` | 1.0 | `states/california/county-property-tax.json` |
+| `county_property_tax_co` | 1.2 | `states/colorado/county-property-tax.json` |
+| `county_property_tax_fl` | 1.3 | `states/florida/county-property-tax.json` |
+| `county_property_tax_ga` | 1.1 | `states/georgia/county-property-tax.json` |
+| `county_property_tax_md` | 1.2 | `states/maryland/county-property-tax.json` |
+| `county_property_tax_nc` | 1.3 | `states/north-carolina/county-property-tax.json` |
 | `county_property_tax_nv` | 1.1 | `states/nevada/county-property-tax.json` |
-| `county_property_tax_tx` | 1.1 | `states/texas/county-property-tax.json` |
-| `county_property_tax_va` | 1.1 | `states/virginia/county-property-tax.json` |
-| `county_property_tax_wa` | 1.1 | `states/washington/county-property-tax.json` |
+| `county_property_tax_sc` | 1.0 | `states/south-carolina/county-property-tax.json` |
+| `county_property_tax_tn` | 1.0 | `states/tennessee/county-property-tax.json` |
+| `county_property_tax_tx` | 1.3 | `states/texas/county-property-tax.json` |
+| `county_property_tax_va` | 1.3 | `states/virginia/county-property-tax.json` |
+| `county_property_tax_wa` | 1.2 | `states/washington/county-property-tax.json` |
 | `vrs_plans` | 2026.2 | `states/virginia/vrs-plans.json` |
 | `acers_plans_arlington` | 2026.2 | `states/virginia/arlington-county/acers-plans.json` |
 | `erfc_plans_fairfax` | 2.0.0 | `states/virginia/fairfax-county/erfc-plans.json` |
@@ -226,7 +246,20 @@ Files are organized by jurisdiction and domain:
 
 Each state entry includes income tax treatment of military/federal retirement pay, property tax exemptions for disabled veterans, additional veteran benefit programs, application procedures, survivor transfer conditions, and pending legislation flags.
 
-**County property tax** (10 counties across 9 states, stored as per-state files under `states/{state}/county-property-tax.json`): Fairfax County VA, Virginia Beach VA, Prince George's County MD, Cumberland County NC, Bexar County TX, Hillsborough County FL, El Paso County CO, Pierce County WA, Maricopa County AZ, Clark County NV
+**County property tax** (44 counties across 13 states, stored as per-state files under `states/{state}/county-property-tax.json`):
+- Arizona: Maricopa County (1)
+- California: San Diego, Sacramento, Riverside, Los Angeles (4)
+- Colorado: El Paso, Douglas (2)
+- Florida: Hillsborough, Orange, Brevard, Okaloosa, Escambia, Duval (6)
+- Georgia: Liberty, Houston, Chatham, Muscogee (4)
+- Maryland: Prince George's, Anne Arundel, Howard (3)
+- Nevada: Clark County (1)
+- North Carolina: Cumberland, Harnett, Onslow (3)
+- South Carolina: Richland, Berkeley, Beaufort, Horry (4)
+- Tennessee: Montgomery, Blount, Knox (3)
+- Texas: Bexar, Killeen, Bell, El Paso (4)
+- Virginia: Fairfax, Virginia Beach, Loudoun, Arlington, Prince William, Henrico, Chesterfield (7)
+- Washington: Pierce, Kitsap (2)
 
 **Municipal/county pension systems** (4 states, 8 jurisdictions):
 - Virginia: VRS (state), Fairfax County (ERFC, FCERS, PORS, URS + stacking), Arlington County (ACERS), Falls Church (FCPP), Richmond (RRS)
@@ -237,11 +270,11 @@ Each state entry includes income tax treatment of military/federal retirement pa
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **18 test suites** totaling **~6,525 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **22 test suites** totaling **~9,268 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
-| Core | `validate.py` | 1,209 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit, legislation watch, partial exemption audit, SS taxation audit, SS 2026 data accuracy + cross-file checks |
+| Core | `validate.py` | 1,237 | Manifest integrity, all federal/state/reference files, pension systems, state benefits audit, legislation watch, partial exemption audit, SS taxation audit, SS 2026 data accuracy + cross-file checks |
 | Tier 2 | `validate_tier2.py` | 530 | State benefits — field structure, exemption types, IU eligibility |
 | Tier 3A | `validate_tier3.py` | 125 | Tier 3A state expansion — CA, NY, OH, IL, MI, TN, SC, AL, MO, IN |
 | Tier 3B | `validate_tier3b.py` | 172 | Tier 3B state expansion — NJ, MN, WI, KY, CT, OK, IA, AR, MS, KS |
@@ -249,7 +282,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Tier 3D | `validate_tier3d.py` | 179 | Tier 3D final expansion — NE, ND, RI, SD, VT, WY (50 states + DC) |
 | Medicare | `validate_medicare.py` | 7 | Medicare IRMAA thresholds and premium values |
 | DCIPS | `validate_dcips.py` | 424 | DCIPS pay bands — all occupational categories |
-| Historical | `validate_historical.py` | 1,968 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
+| Historical | `validate_historical.py` | 2,025 | Historical series, county property tax, FEHB, TRICARE, FEDVIP |
 | Pharmacy | `validate_pharmacy.py` | 92 | TRICARE pharmacy cost-share validation |
 | Dental | `validate_dental.py` | 116 | TRICARE dental premium validation |
 | OBBBA | `validate_obbba.py` | 71 | OBBBA tax provision structure and cross-references |
@@ -259,6 +292,9 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Federal Retirement | `validate_federal_retirement.py` | 157 | FERS/CSRS rules, contribution rates, FEGLI, FEHB eligibility |
 | Municipal | `validate_municipal.py` | 153 | Municipal pension plans — MCERP, FCPP, RRS, ACERS |
 | SDCERA | `validate_sdcera.py` | 178 | SDCERA 9-tier pension system — formulas, eligibility, PEPRA flags |
+| Filing Status | `validate_filing_status.py` | 816 | Filing status thresholds — 5 statuses × 6 domains (2016–2025) |
+| County Property Tax | `validate_county_property_tax.py` | 1,635 | County property tax — 13 states, 44 counties, rates + exemptions |
+| LEO/FERS Comp | `validate_leo_fers_comp.py` | 207 | LEO premium pay rates + FERS computation rules |
 
 ---
 
