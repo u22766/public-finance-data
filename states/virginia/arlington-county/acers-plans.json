@@ -72,8 +72,10 @@
       },
       "cola": {
         "method": "formula",
-        "description": "Varies by chapter \u2014 consult Arlington County Code",
-        "note": "COLA provisions differ from Chapter 46"
+        "formula": "first_3pct_CPI_plus_half_3_to_12",
+        "description": "First 3% of CPI increase plus half of each percentage increase from 3% to 12%",
+        "note": "Chapter 21 (pre-1981 general/uniform employees). Same COLA formula as Chapter 46 \u2014 all three chapters (21, 35, 46) share the same retirement trust fund and COLA provisions per Arlington County ACFR.",
+        "source": "Arlington County Employees' Retirement System ACFR FY2024; Arlington County Code Chapter 21"
       }
     },
     "acers_ch35": {
@@ -107,7 +109,10 @@
       },
       "cola": {
         "method": "formula",
-        "description": "Varies \u2014 consult Chapter 35 of Arlington County Code"
+        "formula": "first_3pct_CPI_plus_half_3_to_12",
+        "description": "First 3% of CPI increase plus half of each percentage increase from 3% to 12%",
+        "note": "Chapter 35 (school board employees). Same COLA formula as Chapter 46 \u2014 all three chapters (21, 35, 46) share the same retirement trust fund and COLA provisions per Arlington County ACFR.",
+        "source": "Arlington County Employees' Retirement System ACFR FY2024; Arlington County Code Chapter 35"
       },
       "note": "School Board employees hired 1/1/1969 through 2/7/1981. Supplemental to VRS for covered positions."
     },
