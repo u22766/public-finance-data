@@ -1,0 +1,415 @@
+{
+  "metadata": {
+    "name": "Foreign Service Retirement System Rules",
+    "description": "Comprehensive rules for all three Foreign Service retirement systems (FSRDS, FSRDS Offset, FSPS), including benefit formulas, eligibility requirements, COLA rules, survivor benefits, contribution rates, and annuity supplement provisions. Administered by the Department of State, not OPM.",
+    "version": "1.0",
+    "last_updated": "2026-03-23",
+    "sources": [
+      "3 FAM 6110 — Foreign Service Retirement General",
+      "3 FAM 6120 — Foreign Service Retirement Coverage",
+      "3 FAM 6130 — Foreign Service Retirement Contributions and Deductions",
+      "3 FAM 6180 — Computation of Benefits Under FSRDS, FSRDS Offset, and FSPS",
+      "22 U.S.C. Chapter 52, Subchapter VIII — Foreign Service Retirement and Disability",
+      "Foreign Service Act of 1980 (P.L. 96-465), Sections 806–862",
+      "Congressional Research Service R47084 — Federal Retirement Plans FAQ",
+      "NFC Appendix F (FSPS) and Appendix G (FSRDS) Computation Guides"
+    ],
+    "notes": [
+      "The Foreign Service retirement systems are the ONLY federal civilian DB pension systems administered outside OPM.",
+      "The Department of State's Office of Retirement (GTM/RET) adjudicates all Foreign Service retirement claims.",
+      "FSRDS is the Foreign Service equivalent of CSRS; FSPS is the equivalent of FERS — but with enhanced accrual rates.",
+      "All Foreign Service career members face mandatory retirement at age 65.",
+      "Virtual locality pay (Washington DC rate) is credited for overseas assignments in annuity calculations.",
+      "FSPS immediate retirees receive COLAs at ANY age — unlike regular FERS which delays COLAs to age 62.",
+      "As of FY2020: 33 active FSRDS employees, 15,208 active FSPS employees; 9,209 FSRDS annuitants, 7,220 FSPS annuitants."
+    ],
+    "covered_agencies": [
+      "Department of State",
+      "U.S. Agency for International Development (USAID)",
+      "U.S. Agency for Global Media (USAGM)",
+      "Department of Commerce (Foreign Service positions)",
+      "Peace Corps",
+      "Foreign Service Corps — USDA (Foreign Agricultural Service)"
+    ],
+    "administering_authority": {
+      "retirement_claims": "Bureau of Global Talent Management, Office of Retirement (GTM/RET), Department of State",
+      "financial_administration": "Bureau of the Comptroller and Global Financial Services (CGFS/C), Department of State",
+      "fund": "Foreign Service Retirement and Disability Fund"
+    }
+  },
+  "retirement_systems": [
+    {
+      "system": "FSRDS",
+      "full_name": "Foreign Service Retirement and Disability System",
+      "applies_to": "Foreign Service employees hired before January 1, 1984",
+      "status": "Closed to new entrants — 33 active employees remain (FY2020), ~9,209 annuitants",
+      "analogous_to": "CSRS (Civil Service Retirement System)",
+      "social_security_coverage": false,
+      "tsp_eligible": true,
+      "tsp_matching": false,
+      "formula": "high_3_average_salary × 2.0% × years_of_service",
+      "multiplier_per_year_pct": 2.0,
+      "pay_base": "Highest average basic pay over any 36 consecutive months",
+      "max_annuity_pct_of_high_3": 70.0,
+      "max_years_at_2_pct": 35,
+      "employee_contribution_rate_pct": 7.25,
+      "agency_contribution_rate_pct": 7.25,
+      "high_3_includes": [
+        "Basic pay",
+        "Domestic locality pay",
+        "Virtual locality pay (Washington DC rate for overseas assignments, effective December 29, 2002)"
+      ],
+      "high_3_excludes": [
+        "Allowances",
+        "Differentials",
+        "Overtime",
+        "Bonuses",
+        "Chargé pay"
+      ],
+      "cola_rule": {
+        "method": "Full CPI",
+        "description": "Full CPI-W increase with no cap — same as CSRS",
+        "payable_date": "December 1 each year",
+        "first_cola_prorated": true,
+        "age_restriction": "None — COLAs payable at any age for immediate annuitants"
+      },
+      "mandatory_retirement_age": 65,
+      "eligibility": {
+        "voluntary_immediate_unreduced": [
+          {
+            "rule": "50/20",
+            "min_age": 50,
+            "min_service_years": 20,
+            "description": "Age 50 with 20 years of creditable service"
+          },
+          {
+            "rule": "any_age/25",
+            "min_age": null,
+            "min_service_years": 25,
+            "description": "Any age with 25 years of creditable service"
+          }
+        ],
+        "voluntary_deferred": {
+          "min_service_years": 5,
+          "description": "Deferred annuity commencing at age 60 (or 50 with 20 years)"
+        },
+        "involuntary_immediate": {
+          "min_service_years": 5,
+          "description": "Available upon involuntary separation with at least 5 years of creditable service"
+        }
+      },
+      "survivor_benefits": {
+        "max_survivor_annuity_pct": 55,
+        "cost_to_retiree_pct": "Varies — see Foreign Service Act Section 806",
+        "former_spouse_entitlement": {
+          "description": "Pro rata share of 55% of annuity based on length of marriage during creditable service",
+          "marriage_during_service_requirement_years": 10,
+          "fs_membership_during_marriage_years": 5
+        },
+        "death_in_service": {
+          "min_civilian_service_months": 18,
+          "min_marriage_months": 9,
+          "accidental_death_exception": true
+        }
+      },
+      "example": {
+        "years": 25,
+        "high_3": 120000,
+        "multiplier_total_pct": 50.0,
+        "annual_annuity": 60000,
+        "description": "25 years × 2.0% = 50% of $120,000 high-3 = $60,000/year"
+      }
+    },
+    {
+      "system": "FSRDS Offset",
+      "full_name": "Foreign Service Retirement and Disability System — Offset",
+      "applies_to": "Foreign Service employees with CSRS coverage who had a break in service after 1983 exceeding 1 year and had 5+ years civilian service as of January 1, 1987",
+      "status": "Closed to new entrants — small legacy population",
+      "analogous_to": "CSRS Offset",
+      "social_security_coverage": true,
+      "tsp_eligible": true,
+      "tsp_matching": false,
+      "formula": "Same as FSRDS, but annuity is reduced (offset) when eligible for Social Security",
+      "multiplier_per_year_pct": 2.0,
+      "pay_base": "Highest average basic pay over any 36 consecutive months",
+      "max_annuity_pct_of_high_3": 70.0,
+      "employee_contribution_rate_pct": 7.25,
+      "employee_contribution_note": "7.25% minus OASDI tax rate on income below SS wage base; full 7.25% on income above SS wage base",
+      "agency_contribution_rate_pct": 7.25,
+      "offset_rule": {
+        "description": "When annuitant becomes eligible for Social Security (typically age 62), the FSRDS portion of the annuity is reduced by the Social Security benefit attributable to Foreign Service employment",
+        "trigger": "Eligibility for Social Security old age benefits (usually age 62)",
+        "note": "The offset applies only to the FS service portion — not pre-FS or post-FS Social Security credits"
+      },
+      "cola_rule": {
+        "method": "Full CPI",
+        "description": "Same as FSRDS — full CPI-W with no cap",
+        "payable_date": "December 1 each year"
+      },
+      "mandatory_retirement_age": 65,
+      "eligibility": "Same as FSRDS"
+    },
+    {
+      "system": "FSPS",
+      "full_name": "Foreign Service Pension System",
+      "applies_to": "Foreign Service employees hired on or after January 1, 1984",
+      "status": "Active — 15,208 active employees (FY2020), ~7,220 annuitants",
+      "analogous_to": "FERS (Federal Employees Retirement System) — but with enhanced accrual rates",
+      "social_security_coverage": true,
+      "tsp_eligible": true,
+      "tsp_matching": true,
+      "tsp_matching_note": "Same matching structure as FERS: 1% automatic + up to 4% match on employee contributions",
+      "three_tier_system": {
+        "tier_1": "FSPS defined benefit annuity (described below)",
+        "tier_2": "Social Security",
+        "tier_3": "Thrift Savings Plan (TSP)"
+      },
+      "formula": {
+        "standard_50_20": "(high_3 × 1.7% × first_20_years) + (high_3 × 1.0% × years_beyond_20)",
+        "involuntary_25_any_age": "high_3 × 1.0% × total_years",
+        "mra_plus_10_reduced": "Standard formula reduced by 5% per year under age 62"
+      },
+      "multiplier_first_20_years_pct": 1.7,
+      "multiplier_beyond_20_years_pct": 1.0,
+      "multiplier_involuntary_25yr_pct": 1.0,
+      "pay_base": "Highest average basic pay over any 36 consecutive months",
+      "max_annuity_cap": "None — FSPS has no percentage cap (unlike FSRDS 70% cap)",
+      "employee_contribution_rate_pct": 1.35,
+      "employee_contribution_note": "1.35% of basic pay to FSPS fund, plus OASDI taxes (6.2% up to SS wage base)",
+      "high_3_includes": [
+        "Basic pay",
+        "Domestic locality pay",
+        "Virtual locality pay (Washington DC rate for overseas assignments, effective December 29, 2002)",
+        "Law enforcement availability pay (for DSS special agents covered under 3 FAM 6150)"
+      ],
+      "high_3_excludes": [
+        "Allowances",
+        "Differentials",
+        "Overtime",
+        "Bonuses"
+      ],
+      "cola_rule": {
+        "method": "Tiered CPI — same formula as FERS",
+        "rules": [
+          {
+            "condition": "CPI increase ≤ 2.0%",
+            "cola": "Full CPI increase"
+          },
+          {
+            "condition": "CPI increase 2.0% to 3.0%",
+            "cola": "Capped at 2.0%"
+          },
+          {
+            "condition": "CPI increase > 3.0%",
+            "cola": "CPI increase minus 1.0 percentage point"
+          }
+        ],
+        "payable_date": "December 1 each year",
+        "first_cola_prorated": true,
+        "critical_difference_from_fers": "FSPS immediate retirees (50/20 or involuntary) receive COLAs at ANY age. Regular FERS delays COLAs until age 62. This is a major advantage for Foreign Service employees who retire at 50.",
+        "mra_plus_10_exception": "No COLA payable on MRA+10 annuity until age 62, unless annuity includes an FSRDS component",
+        "age_restriction_exceptions": [
+          "Immediate voluntary retirement (50/20)",
+          "Involuntary separation retirement",
+          "Disability retirement",
+          "Survivor annuities"
+        ]
+      },
+      "mandatory_retirement_age": 65,
+      "eligibility": {
+        "voluntary_immediate_unreduced": [
+          {
+            "rule": "50/20",
+            "min_age": 50,
+            "min_service_years": 20,
+            "multiplier": "1.7%/1.0% tiered",
+            "description": "Age 50 with 20 years of creditable service — standard Foreign Service retirement"
+          },
+          {
+            "rule": "any_age/25_involuntary",
+            "min_age": null,
+            "min_service_years": 25,
+            "multiplier": "1.0% flat",
+            "description": "Any age with 25 years — but annuity computed at 1.0% per year (not 1.7%)"
+          },
+          {
+            "rule": "62/5_fers_equivalent",
+            "min_age": 62,
+            "min_service_years": 5,
+            "multiplier": "1.0% flat",
+            "description": "Age 62 with 5 years of creditable service — FERS-equivalent provision"
+          }
+        ],
+        "voluntary_reduced": [
+          {
+            "rule": "MRA/10",
+            "min_age": "Minimum Retirement Age (same as FERS MRA table, based on birth year)",
+            "min_service_years": 10,
+            "reduction": "5% per year under age 62",
+            "description": "Immediate annuity at MRA with 10+ years, but permanently reduced"
+          }
+        ],
+        "voluntary_deferred": {
+          "min_service_years": 5,
+          "description": "Annuity commences at age 62 (or 60 with 20 years of service)"
+        },
+        "involuntary_immediate": [
+          {
+            "rule": "Mandatory separation (performance, selection out)",
+            "description": "FSPS participants at class FS-02 or below, age 50+ with 20 years — immediate unreduced at 1.7%/1.0% formula"
+          }
+        ]
+      },
+      "annuity_supplement": {
+        "description": "Monthly payment approximating the Social Security benefit earned during FS service, payable to FSPS retirees who retire before age 62 on an immediate unreduced annuity",
+        "eligibility": "FSPS immediate retirees under age 62",
+        "computation": "Calculated as if the retiree were a law enforcement officer retired under 5 U.S.C. 8412(d)",
+        "ends": "Last day of the month in which the annuitant reaches age 62",
+        "earnings_test": {
+          "description": "Reduced by $1 for every $2 of earned income exceeding the Social Security earnings test limit",
+          "note": "Applies to all earned income (government, private, contract, WAE). Does not count pensions or investment income."
+        }
+      },
+      "survivor_benefits": {
+        "max_survivor_annuity_pct": 50,
+        "full_survivor_cost_pct": 10,
+        "partial_survivor_annuity_pct": 25,
+        "partial_survivor_cost_pct": 5,
+        "former_spouse_entitlement": {
+          "description": "Pro rata share of 50% of annuity based on length of marriage during creditable service",
+          "marriage_during_service_requirement_years": 10,
+          "fs_membership_during_marriage_years": 5
+        },
+        "max_combined_survivor_annuities_pct": 50,
+        "max_combined_note": "Combined total of all current and former spouse survivor annuities cannot exceed 50% of FSPS annuity",
+        "death_in_service": {
+          "min_retirement_credit_years": 10,
+          "min_civilian_service_months": 18,
+          "min_marriage_months": 9,
+          "accidental_death_exception": true
+        }
+      },
+      "example": {
+        "years": 25,
+        "high_3": 120000,
+        "calculation": "(120000 × 0.017 × 20) + (120000 × 0.01 × 5)",
+        "first_20_years_annuity": 40800,
+        "beyond_20_years_annuity": 6000,
+        "total_annual_annuity": 46800,
+        "replacement_rate_pct": 39.0,
+        "description": "25 years at $120K high-3: (1.7% × 20 = 34%) + (1.0% × 5 = 5%) = 39% = $46,800/year"
+      }
+    }
+  ],
+  "transfer_provisions": {
+    "fsrds_to_fsps": {
+      "description": "FSRDS participants could elect FSPS during specific open windows (e.g., November 1, 1998 through April 30, 1999)",
+      "frozen_service_rule": "FSRDS service of 5+ years computed under FSRDS formula (2% per year, 70% cap); remaining FSPS service at 1.7%/1.0%",
+      "frozen_service_under_5_years": "Treated as FERS-to-FSPS transfer — all service computed under FSPS formula",
+      "election_irrevocable": true
+    },
+    "csrs_to_fsrds": {
+      "description": "CSRS contributions can be transferred to FSRDS fund when employee enters Foreign Service",
+      "no_special_contribution_required": true
+    },
+    "fers_to_fsps": {
+      "description": "FERS service is creditable under FSPS — combined service computed under FSPS formula"
+    }
+  },
+  "special_provisions": {
+    "diplomatic_security_special_agents": {
+      "description": "Bureau of Diplomatic Security (DSS) special agents in the Foreign Service (2501 series) are covered under FSPS with the same 50/20 eligibility",
+      "mandatory_retirement_age": 65,
+      "note": "DSS agents in the Foreign Service use FSPS rules. DSS agents in Civil Service (1811 series) use FERS Special Category (6c) rules with mandatory retirement at 57.",
+      "law_enforcement_availability_pay": "Included in high-3 calculation for FSPS"
+    },
+    "physicians_comparability_allowance": {
+      "description": "A percentage of PCA is treated as basic pay for annuity computation for participants with 15+ years as a U.S. Government physician"
+    },
+    "virtual_locality_pay": {
+      "effective_date": "2002-12-29",
+      "description": "Participants assigned overseas are credited the Washington DC locality pay rate (not their overseas basic pay) for retirement annuity calculation purposes",
+      "impact": "Significantly increases high-3 for employees who serve most of their career overseas"
+    }
+  },
+  "comparison_to_fers": {
+    "key_differences": [
+      {
+        "feature": "Accrual rate",
+        "fsps": "1.7% first 20 years / 1.0% thereafter",
+        "fers_standard": "1.0% (or 1.1% at age 62+ with 20+ years)",
+        "advantage": "FSPS — significantly higher replacement rate for careers of 20 years"
+      },
+      {
+        "feature": "COLA timing",
+        "fsps": "Immediate for all immediate retirees regardless of age",
+        "fers_standard": "Delayed until age 62 for non-disability retirees",
+        "advantage": "FSPS — critical for Foreign Service officers retiring at 50"
+      },
+      {
+        "feature": "Mandatory retirement",
+        "fsps": "Age 65",
+        "fers_standard": "None for standard; 57 for LEO/FF",
+        "advantage": "Context-dependent"
+      },
+      {
+        "feature": "Earliest voluntary retirement",
+        "fsps": "Age 50 with 20 years",
+        "fers_standard": "MRA (56-57) with 30 years, or 60 with 20 years",
+        "advantage": "FSPS — earlier access by ~6-10 years"
+      },
+      {
+        "feature": "Annuity supplement",
+        "fsps": "Available to all immediate retirees under 62",
+        "fers_standard": "Available to most immediate retirees under 62 (Special Retirement Supplement / SRS)",
+        "advantage": "Similar — but FSPS supplement computed as if LEO regardless of actual position"
+      },
+      {
+        "feature": "Employee contribution rate",
+        "fsps": "1.35% (plus 6.2% OASDI)",
+        "fers_standard": "0.8% / 3.1% / 4.4% by cohort (plus 6.2% OASDI)",
+        "advantage": "Context-dependent — FSPS rate is between FERS and FERS-RAE"
+      },
+      {
+        "feature": "Administering agency",
+        "fsps": "Department of State (GTM/RET)",
+        "fers_standard": "Office of Personnel Management (OPM)",
+        "advantage": "N/A — different bureaucratic processes"
+      },
+      {
+        "feature": "Survivor annuity maximum",
+        "fsps": "50% (cost: 10% reduction)",
+        "fers_standard": "50% (cost: 10% reduction)",
+        "advantage": "Same"
+      }
+    ],
+    "twenty_year_replacement_rate_comparison": {
+      "fsps_pct": 34.0,
+      "fers_standard_pct": 20.0,
+      "fers_leo_pct": 34.0,
+      "note": "FSPS matches FERS LEO/FF enhanced formula exactly"
+    },
+    "thirty_year_replacement_rate_comparison": {
+      "fsps_pct": 44.0,
+      "fers_standard_pct": 30.0,
+      "fers_leo_pct": 44.0,
+      "note": "At 30 years: (1.7% × 20) + (1.0% × 10) = 44%"
+    }
+  },
+  "population_statistics": {
+    "source": "FY2020 Actuarial Report of the Foreign Service Retirement and Disability Fund",
+    "as_of_date": "2020-06-30",
+    "fsrds": {
+      "active_employees": 33,
+      "annuitants": 9209,
+      "note": "Nearly extinct active population — virtually all FSRDS participants are now annuitants"
+    },
+    "fsps": {
+      "active_employees": 15208,
+      "annuitants": 7220
+    },
+    "total_active": 15241,
+    "total_annuitants": 16429,
+    "total_population": 31670
+  }
+}

@@ -184,6 +184,22 @@ Data enrichment:
 
 **CI:** Added 23 new checks including NC/GA value assertions and multi-state military exemption guard rails.
 
+## Data Addition: Foreign Service Retirement Rules (v1.0)
+
+**Date:** 2026-03-23
+**Schema version:** 2.2 (unchanged — non-breaking addition)
+**Manifest entries:** +2 new, 1 version bump (64 → 66 total)
+
+Added two new reference files and updated one existing file:
+
+1. **`reference/foreign-service-retirement-rules.json`** (v1.0) — Complete coverage of all three Foreign Service retirement systems (FSRDS, FSRDS Offset, FSPS) with benefit formulas, eligibility requirements, COLA rules (including the critical FSPS COLAs-at-any-age difference from FERS), survivor benefits, annuity supplement provisions, transfer rules, DSS special agent provisions, virtual locality pay rules, and a detailed FERS comparison section. Population: ~31,670 (active + annuitants). 94-check validation suite.
+
+2. **`reference/federal-retirement-systems-index.json`** (v1.0) — Master catalog of ALL known federal and uniformed services retirement systems. Covers FERS, CSRS, CSRS Offset, FSRDS/FSPS, CIARDS (catalog-only), TVARS, Federal Reserve System, 6 judicial retirement plans, all 8 uniformed services (with shutdown funding vulnerability notes for USPHS/NOAA), complete 6(c) special category position classification by agency (including DHS/DLA), and defined contribution plans (TSP, Fed Thrift Plan, TVA 401(k)). 118-check validation suite.
+
+3. **`reference/military-retirement-rules.json`** (v2.0 → v2.1) — Added explicit USPHS and NOAA Commissioned Corps coverage notes, funding source distinction (Military Retirement Fund vs. agency appropriations), BRS applicability to all uniformed services, and additional statutory authorities.
+
+---
+
 ## Data Addition: FCPP Plans (City of Falls Church Pension Plans)
 
 **Date:** 2026-03-14

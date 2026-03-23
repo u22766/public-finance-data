@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Validation suite for military retirement rules v2.0 and military pay tables.
+Validation suite for military retirement rules v2.1+ and military pay tables.
 Tests Gap 1 (Chapter 61 disability retirement), Gap 2 (concurrent receipt expansion),
 and Gap 3 (military basic pay tables 2016-2026).
 """
@@ -41,13 +41,13 @@ MANIFEST_PATH = os.path.join(BASE, "manifest.json")
 # ============================================================
 # SECTION 1: military-retirement-rules.json (v2.0)
 # ============================================================
-print("=== Military Retirement Rules v2.0 ===")
+print("=== Military Retirement Rules v2.1+ ===")
 
 rules = load_json(RULES_PATH)
 
 # Metadata checks
 print("  Metadata...")
-check(rules["metadata"]["version"] == "2.0", "Version should be 2.0")
+check(float(rules["metadata"]["version"]) >= 2.0, "Version should be >= 2.0")
 check("disability_retirement" in rules, "Top-level disability_retirement key exists")
 check("concurrent_receipt" in rules, "Top-level concurrent_receipt key exists")
 check("retirement_systems" in rules, "Top-level retirement_systems key exists")
@@ -294,7 +294,7 @@ files = manifest.get("files", {})
 # military_retirement_rules version bump
 check("military_retirement_rules" in files, "military_retirement_rules in manifest")
 if "military_retirement_rules" in files:
-    check(files["military_retirement_rules"]["version"] == "2.0", "military_retirement_rules version 2.0")
+    check(float(files["military_retirement_rules"]["version"]) >= 2.0, "military_retirement_rules version >= 2.0")
 
 # military_pay_tables entry
 check("military_pay_tables" in files, "military_pay_tables in manifest")

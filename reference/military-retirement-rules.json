@@ -1,9 +1,9 @@
 {
   "metadata": {
     "name": "Military Retirement System Rules",
-    "description": "Comprehensive rules for all four military retirement systems (Final Pay, High-3, REDUX/CSB, BRS), Chapter 61 disability retirement, SBP, and concurrent receipt (CRDP/CRSC) with tax treatment and election logic.",
-    "version": "2.0",
-    "last_updated": "2026-03-13",
+    "description": "Comprehensive rules for all four military retirement systems (Final Pay, High-3, REDUX/CSB, BRS), Chapter 61 disability retirement, SBP, and concurrent receipt (CRDP/CRSC) with tax treatment and election logic. Covers all eight uniformed services including USPHS and NOAA Corps.",
+    "version": "2.1",
+    "last_updated": "2026-03-23",
     "sources": [
       "https://militarypay.defense.gov/Pay/Retirement/",
       "https://www.dfas.mil/retiredmilitary/plan/",
@@ -15,14 +15,23 @@
       "26 U.S.C. \u00a7 104(a)(4) \u2014 Disability pay tax exclusion",
       "FY2008 NDAA \u2014 Chapter 61 CRSC expansion",
       "Congressional Research Service IF10594 (Concurrent Receipt primer)",
-      "DoD Financial Management Regulation, Volume 7B, Chapter 3"
+      "DoD Financial Management Regulation, Volume 7B, Chapter 3",
+      "42 U.S.C. §212 — USPHS Commissioned Corps Retirement",
+      "33 U.S.C. §853 — NOAA Corps Retirement",
+      "10 U.S.C. §101(a)(4) — Definition of uniformed services (all eight)",
+      "FY2021 NDAA — Coast Guard inclusion in Military Retirement Fund"
     ],
     "notes": [
       "Military retirement system is determined by date of initial entry into military service (DIEMS).",
       "All systems require 20+ years of active duty service for immediate retirement (or 20 qualifying years for reserve retirement).",
       "Disability retirement available with fewer than 20 years under different rules.",
       "Military retired pay is taxable as ordinary income at the federal level.",
-      "Chapter 61 disability retirees may have different formulas, concurrent receipt eligibility, and TRICARE cost structures than longevity retirees."
+      "Chapter 61 disability retirees may have different formulas, concurrent receipt eligibility, and TRICARE cost structures than longevity retirees.",
+      "These retirement systems apply to all eight uniformed services: Army, Marine Corps, Navy, Air Force, Space Force, Coast Guard, USPHS Commissioned Corps, and NOAA Commissioned Officer Corps.",
+      "USPHS and NOAA Corps officers use the same pay table (military-pay-tables.json) and the same retirement formulas as DoD service members.",
+      "USPHS (~6,000 active officers) and NOAA Corps (~350 active officers) retirement pay is processed by the U.S. Coast Guard Pay and Personnel Center (PPC).",
+      "Critical funding difference: DoD and Coast Guard retired pay comes from the Military Retirement Fund (protected during shutdowns). USPHS retired pay comes from HHS appropriations and NOAA from Commerce appropriations — both are vulnerable to payment disruption during government shutdowns (missed October 2025 payments).",
+      "BRS opt-in was available to all seven uniformed services (eight minus Space Force, which did not yet exist) from January 1 through December 31, 2018. All new USPHS accessions on or after January 1, 2018 are automatically enrolled in BRS."
     ]
   },
   "retirement_systems": [

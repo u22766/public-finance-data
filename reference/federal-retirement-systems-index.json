@@ -1,0 +1,438 @@
+{
+  "metadata": {
+    "name": "Federal Retirement Systems Index",
+    "description": "Comprehensive catalog of all federal government and uniformed services retirement systems. Includes systems fully modeled in this repository and reference-only entries for smaller or restricted-access systems. Covers defined benefit pensions, defined contribution plans, and special category provisions.",
+    "version": "1.0",
+    "last_updated": "2026-03-23",
+    "sources": [
+      "GAO Report AIMD-96-6 — Public Pensions: Summary of Federal Pension Plan Data",
+      "Congressional Research Service R47084 — Federal Retirement Plans FAQ",
+      "Congressional Research Service 98-810 — FERS Benefits and Financing",
+      "Congressional Research Service R42631 — Retirement Benefits for Federal Law Enforcement Personnel",
+      "Congressional Research Service RL30631 — Retirement Benefits for Members of Congress",
+      "5 U.S.C. Chapters 83 and 84 (CSRS and FERS)",
+      "22 U.S.C. Chapter 52, Subchapter VIII (Foreign Service)",
+      "10 U.S.C. Chapter 71 (Military Retired Pay)",
+      "42 U.S.C. §212 (USPHS Retirement)",
+      "33 U.S.C. §853 (NOAA Corps Retirement)",
+      "OPM Retirement Center publications",
+      "3 FAM 6110–6180 (Foreign Affairs Manual — Foreign Service Retirement)"
+    ],
+    "notes": [
+      "This index catalogs every known federal retirement system. Not all systems are fully modeled in this repository.",
+      "Each entry includes a 'repo_coverage' field indicating whether the system is 'fully_modeled', 'referenced', or 'catalog_only'.",
+      "Population figures are approximate and based on the most recent available actuarial reports.",
+      "Systems marked 'catalog_only' have data files that are either classified, not publicly available, or serve a population too small to justify full modeling."
+    ]
+  },
+  "civilian_retirement_systems": {
+    "fers": {
+      "full_name": "Federal Employees Retirement System",
+      "established": 1987,
+      "authority": "5 U.S.C. Chapter 84",
+      "administering_agency": "Office of Personnel Management (OPM)",
+      "type": "Three-tier: defined benefit + Social Security + TSP",
+      "active_employees_approx": 2474000,
+      "annuitants_approx": 966000,
+      "as_of": "FY2020",
+      "status": "Active — covers all federal civilian employees hired after December 31, 1983",
+      "employee_contribution_rates_pct": {
+        "fers_pre_2013": 0.8,
+        "fers_rae_2013": 3.1,
+        "fers_frae_2014_plus": 4.4
+      },
+      "standard_multiplier_pct": 1.0,
+      "enhanced_multiplier_pct": 1.1,
+      "enhanced_multiplier_condition": "Age 62+ with 20+ years of service",
+      "special_category_multiplier_pct": 1.7,
+      "special_category_applies_to": "LEO, FF, ATC, nuclear materials couriers, CBP Officers, Congressional members/staff (pre-2013)",
+      "cola": "Tiered CPI (full if ≤2%, capped at 2% if 2-3%, CPI−1% if >3%)",
+      "cola_delayed_to_age_62": true,
+      "repo_coverage": "fully_modeled",
+      "repo_files": [
+        "federal/fers-contribution-rates.json",
+        "federal/rates-annual.json (fers section)",
+        "federal/tsp-limits.json"
+      ]
+    },
+    "csrs": {
+      "full_name": "Civil Service Retirement System",
+      "established": 1920,
+      "authority": "5 U.S.C. Chapter 83",
+      "administering_agency": "Office of Personnel Management (OPM)",
+      "type": "Standalone defined benefit (no Social Security, no TSP matching)",
+      "active_employees_approx": 70000,
+      "annuitants_approx": 1717000,
+      "as_of": "FY2020",
+      "status": "Closed to new entrants since January 1, 1987 — declining active population, large annuitant base",
+      "employee_contribution_rate_pct": 7.0,
+      "multiplier_formula": "1.5% × first 5 years + 1.75% × years 6-10 + 2.0% × years 11+",
+      "max_annuity_pct": 80,
+      "cola": "Full CPI-W with no cap",
+      "cola_delayed_to_age_62": false,
+      "repo_coverage": "fully_modeled",
+      "repo_files": [
+        "federal/fers-contribution-rates.json (csrs_reference section)",
+        "federal/rates-annual.json",
+        "federal/cola-history.json"
+      ]
+    },
+    "csrs_offset": {
+      "full_name": "Civil Service Retirement System — Offset",
+      "established": 1987,
+      "authority": "5 U.S.C. Chapter 83",
+      "administering_agency": "Office of Personnel Management (OPM)",
+      "type": "CSRS with Social Security integration — annuity reduced at SS eligibility",
+      "active_employees_approx": "Small — declining",
+      "status": "Closed to new entrants — applies to employees who had CSRS coverage, broke service after 1983 for >1 year, and had 5+ years by January 1, 1987",
+      "employee_contribution_rate_pct": "0.8% (difference between CSRS 7% and OASDI 6.2%) below SS wage base; 7% above",
+      "multiplier_formula": "Same as CSRS",
+      "offset_rule": "Annuity reduced at age 62 (or later) by Social Security benefit earned during CSRS Offset service",
+      "cola": "Full CPI-W with no cap",
+      "repo_coverage": "referenced",
+      "repo_note": "CSRS Offset uses CSRS formulas with SS offset; noted in contribution rates file but offset mechanics not separately modeled"
+    },
+    "fsrds": {
+      "full_name": "Foreign Service Retirement and Disability System",
+      "established": 1924,
+      "authority": "22 U.S.C. Chapter 52, Subchapter VIII, Part I; Foreign Service Act of 1980",
+      "administering_agency": "Department of State (GTM/RET)",
+      "type": "Standalone defined benefit (no Social Security, no TSP matching)",
+      "active_employees_approx": 33,
+      "annuitants_approx": 9209,
+      "as_of": "FY2020",
+      "status": "Closed to new entrants — nearly extinct active population",
+      "employee_contribution_rate_pct": 7.25,
+      "multiplier_pct": 2.0,
+      "max_annuity_pct_of_high_3": 70,
+      "cola": "Full CPI — same as CSRS",
+      "mandatory_retirement_age": 65,
+      "covered_agencies": ["State", "USAID", "USAGM", "Commerce (FS)", "Peace Corps", "USDA (FAS)"],
+      "repo_coverage": "fully_modeled",
+      "repo_files": ["reference/foreign-service-retirement-rules.json"]
+    },
+    "fsrds_offset": {
+      "full_name": "Foreign Service Retirement and Disability System — Offset",
+      "authority": "22 U.S.C. Chapter 52",
+      "administering_agency": "Department of State (GTM/RET)",
+      "type": "FSRDS with Social Security integration",
+      "status": "Closed to new entrants — small legacy population",
+      "description": "Same as FSRDS but annuity offset by SS benefit at eligibility. Applies to FS employees who had break in service.",
+      "repo_coverage": "fully_modeled",
+      "repo_files": ["reference/foreign-service-retirement-rules.json"]
+    },
+    "fsps": {
+      "full_name": "Foreign Service Pension System",
+      "established": 1986,
+      "authority": "22 U.S.C. Chapter 52, Subchapter VIII, Part II; Foreign Service Act of 1980",
+      "administering_agency": "Department of State (GTM/RET)",
+      "type": "Three-tier: defined benefit + Social Security + TSP",
+      "active_employees_approx": 15208,
+      "annuitants_approx": 7220,
+      "as_of": "FY2020",
+      "status": "Active — covers Foreign Service employees hired 1984 or later",
+      "employee_contribution_rate_pct": 1.35,
+      "multiplier_formula": "1.7% × first 20 years + 1.0% × years beyond 20",
+      "cola": "Tiered CPI (same formula as FERS) BUT payable at any age for immediate retirees",
+      "mandatory_retirement_age": 65,
+      "earliest_voluntary_retirement": "Age 50 with 20 years",
+      "annuity_supplement": true,
+      "covered_agencies": ["State", "USAID", "USAGM", "Commerce (FS)", "Peace Corps", "USDA (FAS)"],
+      "repo_coverage": "fully_modeled",
+      "repo_files": ["reference/foreign-service-retirement-rules.json"]
+    },
+    "ciards": {
+      "full_name": "Central Intelligence Agency Retirement and Disability System",
+      "authority": "50 U.S.C. §2001 et seq.",
+      "administering_agency": "Central Intelligence Agency",
+      "type": "Standalone defined benefit",
+      "active_employees_approx": "Classified",
+      "status": "Active — closed-source plan documents",
+      "description": "Separate retirement system for CIA employees. Similar structure to CSRS/FSRDS but details are not publicly available. Referenced in OPM regulations for cross-system transfers and former spouse FEHB eligibility.",
+      "repo_coverage": "catalog_only",
+      "repo_note": "Plan documents classified. Cannot be sourced or validated. Existence documented for completeness."
+    },
+    "tvars": {
+      "full_name": "Tennessee Valley Authority Retirement System",
+      "established": 1939,
+      "authority": "TVA Act of 1933; TVA Retirement System Rules and Regulations",
+      "administering_agency": "TVA Retirement System Board of Directors",
+      "type": "Defined benefit pension + 401(k) plan (NOT TSP)",
+      "active_employees_approx": 10000,
+      "annuitants_approx": "Not publicly reported in detail",
+      "status": "Active — independent of OPM",
+      "key_features": [
+        "Rule of 80: age + creditable service ≥ 80 for unreduced retirement",
+        "Social Security offset: small reduction (~$52.50/month max) for post-1955 service",
+        "Separate 401(k) plan with TVA matching (25% of up to 6% of pay) — NOT the Thrift Savings Plan",
+        "Two benefit structures: Original Benefit Structure (OBS) and Cash Balance Plan",
+        "COLA determined by TVARS Board — not automatic CPI-based"
+      ],
+      "trust_fund_note": "Unlike most federal pension funds, TVARS invests in marketable securities (not special-issue Treasury bonds)",
+      "repo_coverage": "catalog_only",
+      "repo_note": "Unique quasi-federal system. Queued for potential future build pending plan document depth review."
+    },
+    "federal_reserve_system": {
+      "full_name": "Federal Reserve System Retirement Plan",
+      "authority": "Federal Reserve Act of 1913, Title 10 (P.L. 63-43)",
+      "administering_agency": "Federal Reserve System (Board of Governors / Office of Employee Benefits)",
+      "type": "Defined benefit pension + Thrift Plan (distinct from TSP)",
+      "active_employees_approx": 23000,
+      "status": "Active — independent of OPM",
+      "key_features": [
+        "No employee contributions required for the DB plan — fully employer-funded",
+        "Employees also participate in Social Security",
+        "Separate Thrift Plan (not TSP) with employer matching",
+        "Covers employees of Federal Reserve Banks, Board of Governors, OEB, and CFPB"
+      ],
+      "repo_coverage": "catalog_only",
+      "repo_note": "Operates as a private employer pension. Plan documents available through Fed HR but not structured like other federal systems."
+    },
+    "judicial_retirement_systems": {
+      "description": "Multiple small retirement systems covering federal judges and judicial officers",
+      "systems": [
+        {
+          "name": "Judicial Retirement System (Article III Judges)",
+          "authority": "28 U.S.C. §371",
+          "description": "Article III judges may retire at full salary after meeting the Rule of 80 (age + years of service ≥ 80, with minimum 10 years). Senior status allows continued service at full pay.",
+          "population": "~870 active Article III judges",
+          "unique_feature": "Retirement at full salary (not a formula-based annuity)"
+        },
+        {
+          "name": "U.S. Tax Court Retirement Plan",
+          "authority": "26 U.S.C. §7447",
+          "description": "Tax Court judges receive annuity after 15+ years of service",
+          "population": "~19 active judges"
+        },
+        {
+          "name": "Court of Federal Claims Judges' Retirement System",
+          "authority": "28 U.S.C. §178",
+          "population": "~16 active judges"
+        },
+        {
+          "name": "U.S. Court of Veterans Appeals Judges' Retirement Plan",
+          "authority": "38 U.S.C. §7296",
+          "population": "~9 active judges"
+        },
+        {
+          "name": "Judicial Officers' Retirement Fund",
+          "authority": "D.C. Code",
+          "description": "Covers bankruptcy judges and magistrate judges",
+          "population": "Small"
+        },
+        {
+          "name": "Judicial Survivors' Annuities System",
+          "authority": "28 U.S.C. §376",
+          "description": "Survivor annuity program for federal judiciary — separate from FERS/CSRS survivor benefits"
+        }
+      ],
+      "repo_coverage": "catalog_only",
+      "repo_note": "Total judicial system population in the low hundreds for active participants. Documented for completeness but not modeled."
+    },
+    "comptrollers_general_retirement_plan": {
+      "full_name": "Comptrollers General Retirement Plan",
+      "description": "Separate retirement provision for the Comptroller General of the United States (head of GAO)",
+      "population": "1 active position",
+      "repo_coverage": "catalog_only"
+    },
+    "nonappropriated_fund_plans": {
+      "description": "Retirement plans for employees of nonappropriated fund instrumentalities (NAFIs)",
+      "examples": [
+        "Army and Air Force Exchange Service (AAFES) Retirement Annuity Plan",
+        "Navy Exchange Service Command (NEXCOM) retirement plans",
+        "Defense Commissary Agency NAF employees"
+      ],
+      "note": "These operate similarly to private-sector pension plans under ERISA. Not covered by FERS/CSRS.",
+      "repo_coverage": "catalog_only"
+    }
+  },
+  "uniformed_services_retirement": {
+    "description": "The United States has eight uniformed services. All share the same basic pay table and retirement formula structure, though funding sources differ.",
+    "eight_uniformed_services": [
+      {
+        "service": "United States Army",
+        "department": "Department of Defense",
+        "retirement_fund": "Military Retirement Fund (DoD)",
+        "protected_during_shutdown": true
+      },
+      {
+        "service": "United States Marine Corps",
+        "department": "Department of Defense",
+        "retirement_fund": "Military Retirement Fund (DoD)",
+        "protected_during_shutdown": true
+      },
+      {
+        "service": "United States Navy",
+        "department": "Department of Defense",
+        "retirement_fund": "Military Retirement Fund (DoD)",
+        "protected_during_shutdown": true
+      },
+      {
+        "service": "United States Air Force",
+        "department": "Department of Defense",
+        "retirement_fund": "Military Retirement Fund (DoD)",
+        "protected_during_shutdown": true
+      },
+      {
+        "service": "United States Space Force",
+        "department": "Department of Defense",
+        "retirement_fund": "Military Retirement Fund (DoD)",
+        "protected_during_shutdown": true
+      },
+      {
+        "service": "United States Coast Guard",
+        "department": "Department of Homeland Security",
+        "retirement_fund": "Military Retirement Fund (since FY2021 NDAA)",
+        "protected_during_shutdown": true,
+        "note": "Added to MRF by FY2021 NDAA to protect pay during shutdowns"
+      },
+      {
+        "service": "United States Public Health Service Commissioned Corps (USPHS)",
+        "department": "Department of Health and Human Services",
+        "retirement_fund": "HHS appropriations — NOT the Military Retirement Fund",
+        "protected_during_shutdown": false,
+        "pay_processing": "U.S. Coast Guard Pay and Personnel Center (PPC)",
+        "note": "Officers only — no enlisted ranks. Same pay table and retirement formulas as DoD services. Vulnerable to missed payments during government shutdowns (missed October 2025 check). Legislative efforts ongoing to include in MRF.",
+        "population_note": "~6,000 active duty officers"
+      },
+      {
+        "service": "National Oceanic and Atmospheric Administration Commissioned Officer Corps (NOAA Corps)",
+        "department": "Department of Commerce",
+        "retirement_fund": "Commerce Department appropriations — NOT the Military Retirement Fund",
+        "protected_during_shutdown": false,
+        "pay_processing": "U.S. Coast Guard Pay and Personnel Center (PPC)",
+        "note": "Officers only — no enlisted ranks. Same pay table and retirement formulas as DoD services. Also missed October 2025 payment during shutdown.",
+        "population_note": "~350 active duty officers"
+      }
+    ],
+    "shared_retirement_systems": [
+      {
+        "system": "Final Pay",
+        "applies_to": "DIEMS before September 8, 1980",
+        "status": "Legacy — very few active members"
+      },
+      {
+        "system": "High-3",
+        "applies_to": "DIEMS September 8, 1980 through December 31, 2017 (who did not opt into BRS)",
+        "status": "Active — most current retirees"
+      },
+      {
+        "system": "REDUX / Career Status Bonus",
+        "applies_to": "DIEMS August 1, 1986 through December 31, 2017 (who elected CSB at 15 years)",
+        "status": "Legacy — election no longer available"
+      },
+      {
+        "system": "Blended Retirement System (BRS)",
+        "applies_to": "All uniformed services members entering on or after January 1, 2018; opt-in available for eligible members through December 31, 2018",
+        "status": "Active — all new accessions"
+      }
+    ],
+    "repo_coverage": "fully_modeled",
+    "repo_files": [
+      "reference/military-retirement-rules.json",
+      "federal/military-pay-tables.json"
+    ]
+  },
+  "special_category_positions_6c": {
+    "description": "Federal civilian positions eligible for enhanced FERS retirement provisions under 5 U.S.C. §8412(d)-(e), commonly called '6(c)' coverage. These positions receive the 1.7%/1.0% tiered multiplier, earlier retirement eligibility (50/20 or 25 at any age), mandatory retirement ages, and an additional 0.5% employee contribution.",
+    "authority": "5 U.S.C. §8412(d) (law enforcement officers and firefighters); 5 U.S.C. §8412(e) (air traffic controllers); various public laws for specific position expansions",
+    "enhanced_formula": "1.7% × high-3 × first 20 years of 6(c) service + 1.0% × high-3 × years beyond 20",
+    "additional_contribution_pct": 0.5,
+    "cola_exception": "COLAs payable at any age (not delayed to 62) for special category retirees",
+    "mandatory_retirement_ages": {
+      "law_enforcement_officers": 57,
+      "firefighters": 57,
+      "air_traffic_controllers": 56,
+      "nuclear_materials_couriers": 57,
+      "cbp_officers": 57,
+      "note": "Mandatory retirement age can be extended in some cases; varies by agency"
+    },
+    "eligible_position_categories": [
+      {
+        "category": "Law Enforcement Officers (LEO)",
+        "definition": "Employees whose duties are primarily investigation, apprehension, or detention of individuals suspected or convicted of criminal offenses",
+        "examples_by_agency": {
+          "DHS": ["CBP Border Patrol Agents", "ICE Criminal Investigators (1811)", "Secret Service Special Agents", "Federal Air Marshals (TSA)", "Federal Protective Service Officers", "DLA Police"],
+          "DOJ": ["FBI Special Agents", "DEA Special Agents", "ATF Special Agents", "U.S. Marshals Service Deputies", "BOP Correctional Officers"],
+          "Treasury": ["IRS Criminal Investigation Special Agents"],
+          "Interior": ["National Park Service Rangers (LE commissioned)", "Fish & Wildlife Service Special Agents", "BIA Law Enforcement"],
+          "USDA": ["Forest Service Law Enforcement Officers"],
+          "State": ["Diplomatic Security Service Special Agents (Civil Service 1811 — not Foreign Service 2501)"],
+          "VA": ["VA Police Officers"],
+          "DoD": ["Defense Criminal Investigative Service (DCIS) Agents", "Military Criminal Investigative Organizations civilian agents", "Pentagon Force Protection Agency", "DLA Police"]
+        }
+      },
+      {
+        "category": "Firefighters",
+        "definition": "Employees whose duties are primarily to perform work directly connected with the control and extinguishment of fires",
+        "examples_by_agency": {
+          "DoD": ["Military installation fire departments"],
+          "Interior": ["National Park Service firefighters", "Bureau of Land Management firefighters", "Fish & Wildlife Service firefighters"],
+          "USDA": ["Forest Service wildland firefighters"],
+          "VA": ["VA Medical Center firefighters"],
+          "NASA": ["Kennedy Space Center firefighters"]
+        }
+      },
+      {
+        "category": "Air Traffic Controllers (ATC)",
+        "definition": "Employees of the FAA or DoD whose duties include active separation, control, and sequencing of air traffic",
+        "agencies": ["FAA", "DoD (military installation control towers)"]
+      },
+      {
+        "category": "Nuclear Materials Couriers",
+        "definition": "Employees of the Department of Energy whose duties include transporting and protecting nuclear weapons and materials",
+        "agency": "Department of Energy / NNSA"
+      },
+      {
+        "category": "Customs and Border Protection Officers (CBPO)",
+        "definition": "GS-1895 series employees whose duties include arrival/departure processing at Ports of Entry",
+        "authority": "P.L. 110-161 (effective July 6, 2008)",
+        "agency": "DHS/CBP",
+        "note": "Separate from Border Patrol Agents (who have standard LEO coverage). CBPOs received their own enhanced coverage in 2008."
+      },
+      {
+        "category": "Members of Congress and Congressional Staff (pre-2013)",
+        "definition": "Members of Congress and designated congressional staff hired before 2013",
+        "authority": "5 U.S.C. §8412(g)-(h)",
+        "note": "Members and staff first covered by FERS in 2013 or later accrue at the standard 1.0% rate, not the enhanced rate"
+      },
+      {
+        "category": "Supreme Court Police",
+        "agency": "Supreme Court of the United States"
+      },
+      {
+        "category": "Capitol Police",
+        "agency": "United States Capitol Police"
+      }
+    ],
+    "repo_coverage": "referenced",
+    "repo_note": "Enhanced multiplier and contribution rates documented in rates-annual.json and fers-contribution-rates.json. This index provides the most complete listing of eligible positions."
+  },
+  "defined_contribution_plans": {
+    "tsp": {
+      "full_name": "Thrift Savings Plan",
+      "authority": "5 U.S.C. Chapter 84, Subchapter III",
+      "administering_agency": "Federal Retirement Thrift Investment Board (FRTIB)",
+      "type": "Defined contribution (401(k)-equivalent)",
+      "eligible_participants": "All FERS, CSRS, FSPS, FSRDS, and uniformed services members",
+      "fers_matching": "1% automatic + up to 4% match (5% total government contribution)",
+      "csrs_matching": "None",
+      "uniformed_services_matching": "BRS: 1% automatic + up to 4% match; Legacy systems: no matching",
+      "repo_coverage": "fully_modeled",
+      "repo_files": ["federal/tsp-limits.json"]
+    },
+    "federal_reserve_thrift_plan": {
+      "full_name": "Federal Reserve System Thrift Plan",
+      "description": "Separate defined contribution plan for Federal Reserve employees — NOT the TSP",
+      "eligible_participants": "Federal Reserve Bank employees, Board of Governors employees, OEB, CFPB",
+      "employer_matching": true,
+      "repo_coverage": "catalog_only"
+    },
+    "tva_401k": {
+      "full_name": "TVA 401(k) Plan",
+      "description": "Separate 401(k) plan for TVA employees — NOT the TSP",
+      "employer_matching": "25% match on up to 6% of employee contributions",
+      "repo_coverage": "catalog_only"
+    }
+  }
+}

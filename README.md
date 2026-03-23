@@ -16,7 +16,7 @@ A structured, version-controlled library of publicly available financial data us
 - **Healthcare** — Medicare IRMAA thresholds and premiums, FEHB premiums (478 plan entries), FEHB plan benefits, FEHB retirement eligibility, FEDVIP dental/vision, TRICARE (retiree, active duty family, reserve, TFL, pharmacy, dental)
 - **State benefits** — Income tax treatment of retirement income, real property tax exemptions, vehicle personal property tax exemptions, and veteran benefits for all 50 states + DC + 5 US territories (56 jurisdictions)
 - **County property tax** — Effective rates and exemptions for 44 counties across 13 states
-- **Federal retirement systems** — FERS rates, FERS computation rules, FERS SRS rules, CSRS rules, TSP limits, COLA history, LEO premium pay
+- **Federal retirement systems** — FERS rates, FERS computation rules, FERS SRS rules, CSRS rules, TSP limits, COLA history, LEO premium pay, Foreign Service retirement (FSRDS/FSPS), master index of all federal retirement systems and 6(c) special category positions
 - **Federal pay** — GS pay tables (all grades/steps/localities), DCIPS pay bands, military basic pay (27 grades × 22 YOS, 2016–2026), federal pay raise history
 - **Life insurance** — FEGLI rates (Basic + Options A/B/C, age-banded), VGLI premiums
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
@@ -30,7 +30,7 @@ Designed as a generic data source for retirement planning applications, financia
 
 ## How to Use This Repo
 
-1. Fetch `manifest.json` first — it's the version index listing all 64 available data files.
+1. Fetch `manifest.json` first — it's the version index listing all 66 available data files.
 2. Compare each file's `version` to your locally cached copy.
 3. Fetch only the files that have newer versions.
 4. If GitHub is unreachable, fall back to your last cached fetch.
@@ -43,7 +43,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 64 entries)
+├── manifest.json                                ← Fetch this first (master version index, 66 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -131,7 +131,9 @@ public-finance-data/
 │   ├── ssa-life-table.json                      ← SSA period life table (ages 0–119, M/F/combined)
 │   ├── other-db-template.json                   ← Generic DB plan template for user-entered pensions
 │   ├── social-security-claiming.json            ← SS claiming strategy rules, reduction factors, earnings test
-│   ├── military-retirement-rules.json           ← Military retirement (Legacy, Redux, BRS, Ch.61, CRDP/CRSC)
+│   ├── military-retirement-rules.json           ← Military retirement (Legacy, Redux, BRS, Ch.61, CRDP/CRSC) — all 8 uniformed services
+│   ├── foreign-service-retirement-rules.json    ← Foreign Service retirement (FSRDS, FSRDS Offset, FSPS)
+│   ├── federal-retirement-systems-index.json    ← Master catalog of ALL federal retirement systems + 6(c) positions
 │   ├── rmd-rules-history.json                   ← RMD age threshold history and SECURE Act changes
 │   ├── obbba-tax-provisions.json                ← One Big Beautiful Bill Act tax provisions (2025)
 │   ├── tsp-roth-conversion.json                 ← TSP Roth conversion rules and tax treatment
@@ -172,7 +174,7 @@ Files are organized by jurisdiction and domain:
 
 ---
 
-## Manifest — Current Data Files (64 Entries)
+## Manifest — Current Data Files (66 Entries)
 
 | Key | Version | File |
 |-----|---------|------|
@@ -234,7 +236,9 @@ Files are organized by jurisdiction and domain:
 | `ssa_life_table` | 1.0 | `reference/ssa-life-table.json` |
 | `other_db_template` | 1.0.0 | `reference/other-db-template.json` |
 | `social_security_claiming` | 1.2 | `reference/social-security-claiming.json` |
-| `military_retirement_rules` | 2.0 | `reference/military-retirement-rules.json` |
+| `military_retirement_rules` | 2.1 | `reference/military-retirement-rules.json` |
+| `foreign_service_retirement_rules` | 1.0 | `reference/foreign-service-retirement-rules.json` |
+| `federal_retirement_systems_index` | 1.0 | `reference/federal-retirement-systems-index.json` |
 | `rmd_rules_history` | 1.0 | `reference/rmd-rules-history.json` |
 | `obbba_tax_provisions` | 1.0 | `reference/obbba-tax-provisions.json` |
 | `tsp_roth_conversion` | 1.0 | `reference/tsp-roth-conversion.json` |
