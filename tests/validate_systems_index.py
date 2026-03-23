@@ -40,7 +40,7 @@ check("IX-013-dc-plans", "defined_contribution_plans" in data)
 
 # === Civilian systems completeness ===
 civ = data.get("civilian_retirement_systems", {})
-required_civilian = ["fers", "csrs", "csrs_offset", "fsrds", "fsrds_offset", "fsps", "ciards", "tvars",
+required_civilian = ["fers", "csrs", "csrs_offset", "fsrds", "fsrds_offset", "fsps", "tvars",
                       "federal_reserve_system", "judicial_retirement_systems"]
 for sys_key in required_civilian:
     check(f"IX-020-civ-{sys_key}", sys_key in civ, f"Missing civilian system: {sys_key}")
@@ -81,12 +81,6 @@ check("IX-060-fsps-contrib", fsps.get("employee_contribution_rate_pct") == 1.35)
 check("IX-061-fsps-mandatory", fsps.get("mandatory_retirement_age") == 65)
 check("IX-062-fsps-coverage", fsps.get("repo_coverage") == "fully_modeled")
 check("IX-063-fsps-supplement", fsps.get("annuity_supplement") == True)
-
-# === CIARDS entry ===
-ciards = civ.get("ciards", {})
-check("IX-070-ciards-catalog-only", ciards.get("repo_coverage") == "catalog_only")
-check("IX-071-ciards-classified", "classified" in ciards.get("description", "").lower() or
-      "classified" in ciards.get("repo_note", "").lower())
 
 # === TVARS entry ===
 tvars = civ.get("tvars", {})

@@ -107,9 +107,18 @@
       "max_annuity_pct_of_high_3": 70,
       "cola": "Full CPI — same as CSRS",
       "mandatory_retirement_age": 65,
-      "covered_agencies": ["State", "USAID", "USAGM", "Commerce (FS)", "Peace Corps", "USDA (FAS)"],
+      "covered_agencies": [
+        "State",
+        "USAID",
+        "USAGM",
+        "Commerce (FS)",
+        "Peace Corps",
+        "USDA (FAS)"
+      ],
       "repo_coverage": "fully_modeled",
-      "repo_files": ["reference/foreign-service-retirement-rules.json"]
+      "repo_files": [
+        "reference/foreign-service-retirement-rules.json"
+      ]
     },
     "fsrds_offset": {
       "full_name": "Foreign Service Retirement and Disability System — Offset",
@@ -119,7 +128,9 @@
       "status": "Closed to new entrants — small legacy population",
       "description": "Same as FSRDS but annuity offset by SS benefit at eligibility. Applies to FS employees who had break in service.",
       "repo_coverage": "fully_modeled",
-      "repo_files": ["reference/foreign-service-retirement-rules.json"]
+      "repo_files": [
+        "reference/foreign-service-retirement-rules.json"
+      ]
     },
     "fsps": {
       "full_name": "Foreign Service Pension System",
@@ -137,20 +148,18 @@
       "mandatory_retirement_age": 65,
       "earliest_voluntary_retirement": "Age 50 with 20 years",
       "annuity_supplement": true,
-      "covered_agencies": ["State", "USAID", "USAGM", "Commerce (FS)", "Peace Corps", "USDA (FAS)"],
+      "covered_agencies": [
+        "State",
+        "USAID",
+        "USAGM",
+        "Commerce (FS)",
+        "Peace Corps",
+        "USDA (FAS)"
+      ],
       "repo_coverage": "fully_modeled",
-      "repo_files": ["reference/foreign-service-retirement-rules.json"]
-    },
-    "ciards": {
-      "full_name": "Central Intelligence Agency Retirement and Disability System",
-      "authority": "50 U.S.C. §2001 et seq.",
-      "administering_agency": "Central Intelligence Agency",
-      "type": "Standalone defined benefit",
-      "active_employees_approx": "Classified",
-      "status": "Active — closed-source plan documents",
-      "description": "Separate retirement system for CIA employees. Similar structure to CSRS/FSRDS but details are not publicly available. Referenced in OPM regulations for cross-system transfers and former spouse FEHB eligibility.",
-      "repo_coverage": "catalog_only",
-      "repo_note": "Plan documents classified. Cannot be sourced or validated. Existence documented for completeness."
+      "repo_files": [
+        "reference/foreign-service-retirement-rules.json"
+      ]
     },
     "tvars": {
       "full_name": "Tennessee Valley Authority Retirement System",
@@ -352,31 +361,76 @@
         "category": "Law Enforcement Officers (LEO)",
         "definition": "Employees whose duties are primarily investigation, apprehension, or detention of individuals suspected or convicted of criminal offenses",
         "examples_by_agency": {
-          "DHS": ["CBP Border Patrol Agents", "ICE Criminal Investigators (1811)", "Secret Service Special Agents", "Federal Air Marshals (TSA)", "Federal Protective Service Officers", "DLA Police"],
-          "DOJ": ["FBI Special Agents", "DEA Special Agents", "ATF Special Agents", "U.S. Marshals Service Deputies", "BOP Correctional Officers"],
-          "Treasury": ["IRS Criminal Investigation Special Agents"],
-          "Interior": ["National Park Service Rangers (LE commissioned)", "Fish & Wildlife Service Special Agents", "BIA Law Enforcement"],
-          "USDA": ["Forest Service Law Enforcement Officers"],
-          "State": ["Diplomatic Security Service Special Agents (Civil Service 1811 — not Foreign Service 2501)"],
-          "VA": ["VA Police Officers"],
-          "DoD": ["Defense Criminal Investigative Service (DCIS) Agents", "Military Criminal Investigative Organizations civilian agents", "Pentagon Force Protection Agency", "DLA Police"]
+          "DHS": [
+            "CBP Border Patrol Agents",
+            "ICE Criminal Investigators (1811)",
+            "Secret Service Special Agents",
+            "Federal Air Marshals (TSA)",
+            "Federal Protective Service Officers",
+            "DLA Police"
+          ],
+          "DOJ": [
+            "FBI Special Agents",
+            "DEA Special Agents",
+            "ATF Special Agents",
+            "U.S. Marshals Service Deputies",
+            "BOP Correctional Officers"
+          ],
+          "Treasury": [
+            "IRS Criminal Investigation Special Agents"
+          ],
+          "Interior": [
+            "National Park Service Rangers (LE commissioned)",
+            "Fish & Wildlife Service Special Agents",
+            "BIA Law Enforcement"
+          ],
+          "USDA": [
+            "Forest Service Law Enforcement Officers"
+          ],
+          "State": [
+            "Diplomatic Security Service Special Agents (Civil Service 1811 — not Foreign Service 2501)"
+          ],
+          "VA": [
+            "VA Police Officers"
+          ],
+          "DoD": [
+            "Defense Criminal Investigative Service (DCIS) Agents",
+            "Military Criminal Investigative Organizations civilian agents",
+            "Pentagon Force Protection Agency",
+            "DLA Police"
+          ]
         }
       },
       {
         "category": "Firefighters",
         "definition": "Employees whose duties are primarily to perform work directly connected with the control and extinguishment of fires",
         "examples_by_agency": {
-          "DoD": ["Military installation fire departments"],
-          "Interior": ["National Park Service firefighters", "Bureau of Land Management firefighters", "Fish & Wildlife Service firefighters"],
-          "USDA": ["Forest Service wildland firefighters"],
-          "VA": ["VA Medical Center firefighters"],
-          "NASA": ["Kennedy Space Center firefighters"]
+          "DoD": [
+            "Military installation fire departments"
+          ],
+          "Interior": [
+            "National Park Service firefighters",
+            "Bureau of Land Management firefighters",
+            "Fish & Wildlife Service firefighters"
+          ],
+          "USDA": [
+            "Forest Service wildland firefighters"
+          ],
+          "VA": [
+            "VA Medical Center firefighters"
+          ],
+          "NASA": [
+            "Kennedy Space Center firefighters"
+          ]
         }
       },
       {
         "category": "Air Traffic Controllers (ATC)",
         "definition": "Employees of the FAA or DoD whose duties include active separation, control, and sequencing of air traffic",
-        "agencies": ["FAA", "DoD (military installation control towers)"]
+        "agencies": [
+          "FAA",
+          "DoD (military installation control towers)"
+        ]
       },
       {
         "category": "Nuclear Materials Couriers",
@@ -419,7 +473,9 @@
       "csrs_matching": "None",
       "uniformed_services_matching": "BRS: 1% automatic + up to 4% match; Legacy systems: no matching",
       "repo_coverage": "fully_modeled",
-      "repo_files": ["federal/tsp-limits.json"]
+      "repo_files": [
+        "federal/tsp-limits.json"
+      ]
     },
     "federal_reserve_thrift_plan": {
       "full_name": "Federal Reserve System Thrift Plan",
