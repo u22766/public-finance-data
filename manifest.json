@@ -65,16 +65,17 @@
       "changelog_2026_1": "Initial release. Complete 2026 CMS data with all IRMAA filing status brackets."
     },
     "state_benefits": {
-      "version": "2.9",
+      "version": "2.10",
       "effective_date": "2026-01-01",
       "update_frequency": "as needed",
       "url": "states/state-benefits.json",
       "description": "State and territory income tax treatment, veteran property tax benefits, and vehicle personal property tax exemptions for 56 jurisdictions (50 states + DC + 5 US territories: AK, AL, AR, AS, AZ, CA, CO, CT, DC, DE, FL, GA, GU, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MP, MS, MT, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, PR, RI, SC, SD, TN, TX, UT, VA, VI, VT, WA, WI, WV, WY)",
-      "last_updated": "2026-03-14",
+      "last_updated": "2026-03-23",
       "changelog": [
         "v2.1: Added 5 US territories (AS, GU, MP, PR, VI) \u2014 territory expansion with income tax, real estate, and vehicle property tax separation"
       ],
-      "changelog_2_9": "v2.9: Legislation watch refresh (all 8 bills checked 2026-03-15). MN HF194 author Rasmusson added. MD HB 857 MACo opposition noted. No bills advanced since Session 39."
+      "changelog_2_9": "v2.9: Legislation watch refresh (all 8 bills checked 2026-03-15). MN HF194 author Rasmusson added. MD HB 857 MACo opposition noted. No bills advanced since Session 39.",
+      "changelog_2_10": "v2.10: Session 56 legislation watch refresh. All 8 tracked bills checked. No bills advanced. MD HB 761 (Keep Our Heroes Home Act) added as companion to HB 857. MD session context added (sine die 4/13, $1.4B deficit). All last_checked dates refreshed to 2026-03-23."
     },
     "vrs_plans": {
       "version": "2026.2",

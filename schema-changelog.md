@@ -57,6 +57,25 @@ New file. Complete Foreign Service base pay schedule covering all 9 grades (FP-1
 
 **No schema changes. Non-breaking addition.**
 
+### state-benefits.json v2.10
+
+**Date:** 2026-03-23
+
+**Session 56 Legislation Watch Refresh — all 8 tracked bills checked:**
+
+Routine monitoring update. No bills advanced since Session 40. All `last_checked` dates refreshed to 2026-03-23.
+
+**Updates:**
+- MD HB 761 (Keep Our Heroes Home Act): **NEW bill added** to watch list. Would increase military retirement subtraction to $25K for 2026, $40K for 2027+, for all ages. Companion to recurring legislation (HB 554/2023, HB 952/2024). In House Ways and Means, no committee vote.
+- MD HB 857: Session context added — sine die April 13, state facing $1.4B structural deficit (primary obstacle to revenue-reducing bills). Hearing held 2/19 with MACo opposition; no committee vote.
+- MD HB 857 description corrected: bill applies to under-55 only (was incorrectly noted as "all ages" in inline reference).
+- MN HF194: No change. Still in House Taxes with 12 authors. No hearing scheduled.
+- MA S.2046: No change. Still in Senate Ways and Means since 12/22/2025.
+- NC S660/H39/H728: No movement. All in initial committees.
+- NE LB272/LB425: No movement. Session runs through April 17; neither designated priority.
+
+**No schema changes. Non-breaking patch.**
+
 ### pay-tables.json v2.0
 
 **Date:** 2026-03-23

@@ -1323,7 +1323,10 @@ def test_state_benefits_critical_fixes(s: ValidationSuite):
         return
     data = json.loads(sb_path.read_text())
 
-    s.check("state-benefits version >= 2.8", data.get("version", "0") >= "2.8")
+    def _ver_tuple(v):
+        return tuple(int(x) for x in str(v).replace("v", "").split("."))
+
+    s.check("state-benefits version >= 2.8", _ver_tuple(data.get("version", "0")) >= _ver_tuple("2.8"))
 
     states_by_code = {st["state_code"]: st for st in data.get("states", [])}
 
@@ -1498,9 +1501,10 @@ def test_legislation_watch_session40(s: ValidationSuite):
     states_by_code = {st["state_code"]: st for st in data.get("states", [])}
 
     # Version should be at least 2.9
-    ver = data.get("version", "0")
+    def _ver_tuple(v):
+        return tuple(int(x) for x in str(v).replace("v", "").split("."))
     s.check("state-benefits version >= 2.9",
-            float(str(ver).replace("v", "")) >= 2.9)
+            _ver_tuple(data.get("version", "0")) >= _ver_tuple("2.9"))
 
     # MN HF194 — should mention Rasmusson and have March 2026 date
     mn = states_by_code.get("MN", {})
