@@ -684,6 +684,14 @@
       "jurisdiction": "CA",
       "type": "state_pension",
       "url": "states/california/calpers-plans.json"
+    },
+    "copera_plans_colorado": {
+      "url": "states/colorado/copera-plans.json",
+      "description": "Colorado PERA \u2014 5-division hybrid DB pension (State, School, Local Government, Judicial, DPS). Uniform 2.5% \u00d7 HAS formula; retirement eligibility by HAS Table tier. Includes AAP shared-risk mechanism, 1.5% base AI, per-division funded ratios, SB 18-200 reform structure.",
+      "version": "2026.1",
+      "last_updated": "2026-03-24",
+      "jurisdiction": "CO",
+      "type": "state_pension"
     }
   }
 }

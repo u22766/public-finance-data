@@ -1,0 +1,439 @@
+{
+  "_comment": "Colorado Public Employees' Retirement Association (PERA) — Defined Benefit pension data. Consumer-agnostic data only. No Meridian-specific references. Five divisions: State, School, Local Government, Judicial, Denver Public Schools (DPS). Uniform 2.5% formula across all divisions; retirement eligibility differs by HAS Table (membership/vesting date tier).",
+  "systemName": "Colorado Public Employees' Retirement Association",
+  "systemAbbreviation": "COPERA",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "Colorado",
+    "state": "CO",
+    "type": "statewide_public_employee_pension"
+  },
+  "administeredBy": "Colorado PERA — governed by a 16-member Board of Trustees (12 elected, 3 Governor-appointed, 1 State Treasurer ex-officio). Established 1931 under Title 24, Article 51, Colorado Revised Statutes.",
+  "established": 1931,
+  "totalMembers": {
+    "approximate": 716000,
+    "note": "~402K active, inactive-eligible, and retirees/beneficiaries plus ~314K non-vested inactive members as of 2024 ACFR. Covers employees of 400+ government agencies in Colorado.",
+    "byDivision": {
+      "state": { "active": 55584, "inactiveEligible": 9890, "retireesAndBeneficiaries": 44999, "total": 110473 },
+      "school": { "active": 134080, "inactiveEligible": 24866, "retireesAndBeneficiaries": 79228, "total": 238174 },
+      "localGovernment": { "active": 12982, "inactiveEligible": 3134, "retireesAndBeneficiaries": 9404, "total": 25520 },
+      "judicial": { "active": 351, "inactiveEligible": 28, "retireesAndBeneficiaries": 476, "total": 855 },
+      "dps": { "active": 16207, "inactiveEligible": 3436, "retireesAndBeneficiaries": 7331, "total": 26974 }
+    },
+    "source": "PERA 2024 Annual Comprehensive Financial Report (ACFR), p. 50"
+  },
+  "coverage": {
+    "populations": [
+      "Colorado state employees (executive, legislative, judicial branches)",
+      "Public school district employees in 177 of 178 Colorado school districts (School Division)",
+      "Denver Public Schools employees (separate DPS Division, merged January 1, 2010)",
+      "Judges and justices in Colorado's court system (Judicial Division)",
+      "Employees of 145+ local government entities — counties, municipalities, special districts (Local Government Division)",
+      "Safety officers: state troopers, CBI agents, corrections officers, wildlife/parks officers, county sheriffs/deputies, detention officers, coroners"
+    ],
+    "excluded": [
+      "Denver Public School District (own DPS Division — included but separate trust fund)",
+      "University of Colorado employees with access to optional UC retirement plan",
+      "Student employees at colleges and universities (separate plan by federal requirement)",
+      "Non-covered private sector employment"
+    ],
+    "memberCategories": {
+      "general": "All non-safety public employees across all five divisions",
+      "safetyOfficers": "State troopers, CBI agents, certain corrections/public safety employees (State Division); county sheriffs, undersheriffs, deputy sheriffs, detention officers, coroners (Local Government Division). Higher contribution rates and earlier full retirement eligibility."
+    }
+  },
+  "socialSecurity": {
+    "covered": false,
+    "note": "PERA is a substitute for Social Security for most members. Members do not contribute to or receive Social Security from PERA-covered service. A Social Security benefit through a spouse or other employment may be reduced due to the Government Pension Offset (GPO) or Windfall Elimination Provision (WEP). Note: The Social Security Fairness Act (signed January 5, 2025) eliminated WEP and GPO for SS benefits payable after December 2023 — existing PERA pension benefits are unaffected.",
+    "source": "https://copera.org/"
+  },
+  "divisions": {
+    "_note": "PERA operates five separate divisional trust funds. Assets are held separately; benefit formulas are uniform (2.5% × HAS) but retirement eligibility and contribution rates vary by division. The State and Local Government Divisions include safety officer subdivisions.",
+    "state": {
+      "description": "Most Colorado state employees. Includes Colorado State Patrol, CBI, certain corrections and public safety, wildlife and parks officers. Has safety officer subdivision.",
+      "safetySubdivision": true,
+      "includes": ["Colorado State Patrol", "Colorado Bureau of Investigation (CBI)", "State corrections officers", "Division of Fire Prevention and Control", "Wildlife/parks officers (Colorado Parks and Wildlife)"]
+    },
+    "school": {
+      "description": "School district employees in 177 of 178 Colorado school districts. Does not include Denver Public Schools District (DPS Division). Largest PERA division by active membership.",
+      "safetySubdivision": false,
+      "schoolDistrictsCount": 177
+    },
+    "localGovernment": {
+      "description": "Employees of 145+ counties, municipalities, and special districts. Has safety officer subdivision covering county sheriffs, deputy sheriffs, undersheriffs, detention officers, coroners.",
+      "safetySubdivision": true,
+      "employerCount": 145
+    },
+    "judicial": {
+      "description": "Colorado Supreme Court justices, Court of Appeals judges, district judges, and county judges. Other Judicial Branch employees are classified as State Division employees. Highest employer contribution rate.",
+      "safetySubdivision": false,
+      "hasSpecialHASPeriod": "3-year HAS regardless of vesting date — exception to general 5-year HAS for post-2020 members"
+    },
+    "dps": {
+      "description": "Denver Public Schools employees. Separate division resulting from merger of Denver Public Schools Retirement System into PERA on January 1, 2010. Subject to periodic 5-year true-up of employer contribution rate relative to School Division funded ratio. DPS Division employer rate reduced from 10.4% to 7.4% effective July 2025 (HB 25-1105); DPS removed from AAP calculation July 2025–June 2030.",
+      "safetySubdivision": false,
+      "mergerDate": "2010-01-01"
+    }
+  },
+  "benefitFormula": {
+    "structure": "Years of Service Credit × 2.5% × Highest Average Salary (HAS) = Annual Benefit (Option 1)",
+    "multiplier": 0.025,
+    "multiplierNote": "2.5% per year of service credit is uniform across all divisions and all HAS tables. Maximum benefit is 100% of HAS at 40 years of service.",
+    "maximumBenefitPct": 1.00,
+    "maximumServiceYears": 40,
+    "earlyRetirement": {
+      "description": "Members who qualify for early (reduced) retirement receive a percentage of HAS less than the full 2.5% × years. The reduction factor is applied from the HAS table based on the member's age and years of service.",
+      "note": "HAS tables show the percentage of HAS payable at each age/service combination. The full 2.5% × years applies only at full retirement eligibility thresholds."
+    },
+    "retirementOptions": {
+      "option1": {
+        "name": "Single Life Annuity",
+        "description": "Full benefit calculated by formula. Payments stop at member's death. Small lump sum may be payable to beneficiary if death occurs shortly after retirement.",
+        "survivorBenefit": "none_ongoing"
+      },
+      "option2": {
+        "name": "Joint and 50% Survivor Annuity",
+        "description": "Reduced monthly benefit during member's lifetime. Co-beneficiary receives 50% of member's benefit after member's death. If co-beneficiary dies first, benefit 'pops up' to Option 1 amount.",
+        "reductionFactor": "actuarial — depends on member and co-beneficiary ages at retirement",
+        "survivorBenefit": "50% of member benefit"
+      },
+      "option3": {
+        "name": "Joint and 100% Survivor Annuity",
+        "description": "Further reduced monthly benefit. Co-beneficiary receives 100% of member's benefit after member's death. Pop-up provision applies.",
+        "reductionFactor": "actuarial — lower fraction than Option 2",
+        "survivorBenefit": "100% of member benefit"
+      }
+    }
+  },
+  "hasCalculation": {
+    "description": "Highest Average Salary (HAS) is the average of the highest consecutive 12-month salary periods. PERA uses the term 'HAS Tables' rather than 'tiers' — the table number determines retirement eligibility thresholds, not the HAS period length directly.",
+    "periods": {
+      "vested_before_2020": {
+        "description": "3 highest consecutive 12-month periods",
+        "appliesTo": "Members who earned 5 years of PERA service credit (vested) prior to January 1, 2020",
+        "period_count": 3
+      },
+      "not_vested_before_2020": {
+        "description": "5 highest consecutive 12-month periods",
+        "appliesTo": "Members who were not vested as of January 1, 2020 (SB 18-200 change). This is the standard for all new members joining after January 1, 2020.",
+        "period_count": 5
+      },
+      "judicial_division": {
+        "description": "3-year HAS regardless of vesting date — Judicial Division exception",
+        "period_count": 3
+      }
+    },
+    "antiSpikingCap": {
+      "annualCapPct": 0.08,
+      "description": "PERA caps salary increases in HAS years at 8% per year to prevent artificial inflation of benefits. Base year is 4th highest (for 3-year HAS) or 6th highest (for 5-year HAS) salary year."
+    },
+    "spikeCapNote": "Pre-2011 cap was 15%; reduced to 8% by SB 10-001 for members non-vested as of January 1, 2011.",
+    "source": "https://fischfinancial.org/2024/02/07/reading-interpreting-and-understanding-peras-highest-average-salary-has-tables/"
+  },
+  "hasTables": {
+    "_note": "PERA uses numbered HAS Tables (not 'tiers'). The table determines retirement eligibility thresholds. All tables use the same 2.5% formula. Key tables for current and recent members are summarized here; full table PDFs available at copera.org.",
+    "table_2": {
+      "tableName": "HAS Table 2 — Pre-Reform (Most Generous)",
+      "membershipCriteria": "Membership before July 1, 2005; vested (5 years) before January 1, 2011; and not eligible to retire as of January 1, 2011.",
+      "fullRetirement": {
+        "rule": "Rule of 80 (age + service ≥ 80) at age 55 or older, OR age 65 with 5 years",
+        "examples": [
+          {"age": 55, "service": 25, "benefit_pct_of_has": 62.5, "type": "full"},
+          {"age": 60, "service": 20, "benefit_pct_of_has": 50.0, "type": "full"},
+          {"age": 65, "service": 5, "benefit_pct_of_has": 12.5, "type": "full"}
+        ]
+      },
+      "earlyRetirement": {
+        "minimumAge": 55,
+        "minimumService": 20,
+        "note": "Reduced benefit available at age 55 with 20 years. Reduction based on age/service intersection in HAS table."
+      },
+      "has_period": "3 years (vested before 2020)"
+    },
+    "table_9": {
+      "tableName": "HAS Table 9 — Current Members (Post-January 1, 2020, SB 18-200)",
+      "membershipCriteria": "All new PERA members with first covered employment on or after January 1, 2020.",
+      "fullRetirement": {
+        "general": {
+          "option1": "Any age with 35 years of service",
+          "option2": "Age 64 with 30 years of service",
+          "option3": "Age 65 with 5 years of service"
+        },
+        "safetyOfficers": {
+          "option1": "Any age with 35 years of service",
+          "option2": "Age 55 with 25 years of service",
+          "option3": "Age 65 with 5 years of service"
+        }
+      },
+      "earlyRetirement": {
+        "general": [
+          {"minimumAge": 55, "minimumService": 25, "type": "reduced"},
+          {"minimumAge": 60, "minimumService": 5, "type": "reduced"}
+        ],
+        "safetyOfficers": [
+          {"minimumAge": 55, "minimumService": 20, "type": "reduced"}
+        ]
+      },
+      "has_period": "5 years (not vested before 2020)",
+      "comparisonToTable2": "Significantly less generous. Example: age 55 with 20 years receives no benefit (must age in to 60 for reduced benefit). Age 55 with 25 years receives reduced 28.5% vs. full 62.5% under Table 2.",
+      "source": "Section 24-51-604, C.R.S.; SB 18-200; Legislative Council Staff memo July 2025"
+    },
+    "intermediate_tables": {
+      "note": "Members who joined between July 1, 2005 and December 31, 2019 are on intermediate tables (3 through 8) depending on exact hire date, vesting date, and retirement eligibility as of various reform dates. Key reform cutoff dates: January 1, 2007 (SB 06-235, Rule of 85); January 1, 2011 (SB 10-001, Rules of 85/88/90 phased in); January 1, 2018 (SB 18-200, 3-year AI wait); January 1, 2020 (SB 18-200, full eligibility changes, 5-year HAS).",
+      "ruleOf85": "Members non-vested as of 1/1/2011 or hired 2011-2017: unreduced at age + service ≥ 85 with minimum age 55",
+      "ruleOf88": "Members hired 2011-2017 (certain groups): unreduced at age + service ≥ 88 with minimum age 55",
+      "ruleOf90": "Members hired 2017-2019: unreduced at age + service ≥ 90 with minimum age 55"
+    }
+  },
+  "vesting": {
+    "years": 5,
+    "schedule": "cliff",
+    "note": "5 years of PERA service credit required for vested status. Upon early separation before retirement age, vested members are eligible for a deferred benefit. Non-vested members may withdraw their contributions (with partial employer match under certain conditions).",
+    "withdrawalMatch": {
+      "vestidMembers": "50% match on member contributions for members with 5+ years (pre-retirement-age separation)",
+      "nonVested": "No employer match — members receive only their own contributions plus interest"
+    }
+  },
+  "contributionRates": {
+    "effectiveYear": 2025,
+    "note": "Rates are set in statute and subject to the Automatic Adjustment Provision (AAP). Employer rates include: Base Rate + Amortization Equalization Disbursement (AED) + Supplemental Amortization Equalization Disbursement (SAED) + Annual Increase Reserve (AP) + DC Supplement (where applicable). Member rates shown; Safety Officers pay higher member rates.",
+    "byDivision": {
+      "state_general": {
+        "memberRate": 0.1100,
+        "employerBase": 0.1040,
+        "employerAED": 0.0500,
+        "employerSAED": 0.0500,
+        "employerAP": 0.0100,
+        "employerDCSupplement": 0.0023,
+        "employerTotal": 0.2163,
+        "divisionTotal": 0.3263
+      },
+      "state_safety": {
+        "memberRate": 0.1300,
+        "employerBase": 0.1310,
+        "employerAED": 0.0500,
+        "employerSAED": 0.0500,
+        "employerAP": 0.0100,
+        "employerDCSupplement": 0.0023,
+        "employerTotal": 0.2433,
+        "divisionTotal": 0.3733
+      },
+      "school": {
+        "memberRate": 0.1100,
+        "employerBase": 0.1040,
+        "employerAED": 0.0450,
+        "employerSAED": 0.0550,
+        "employerAP": 0.0100,
+        "employerDCSupplement": null,
+        "employerTotal": 0.2140,
+        "divisionTotal": 0.3240
+      },
+      "localGovernment_general": {
+        "memberRate": 0.0900,
+        "employerBase": 0.1000,
+        "employerAED": 0.0220,
+        "employerSAED": 0.0150,
+        "employerAP": 0.0100,
+        "employerDCSupplement": 0.0011,
+        "employerTotal": 0.1481,
+        "divisionTotal": 0.2381
+      },
+      "localGovernment_safety": {
+        "memberRate": 0.1300,
+        "employerBase": 0.1310,
+        "employerAED": 0.0220,
+        "employerSAED": 0.0150,
+        "employerAP": 0.0100,
+        "employerDCSupplement": 0.0011,
+        "employerTotal": 0.1791,
+        "divisionTotal": 0.3091
+      },
+      "judicial": {
+        "memberRate": 0.1100,
+        "employerBase": 0.1391,
+        "employerAED": 0.0500,
+        "employerSAED": 0.0500,
+        "employerAP": 0.0100,
+        "employerDCSupplement": null,
+        "employerTotal": 0.2491,
+        "divisionTotal": 0.3591
+      },
+      "dps": {
+        "memberRate": 0.1100,
+        "employerBase_pre_july2025": 0.1040,
+        "employerBase_post_july2025": 0.0740,
+        "employerAED": 0.0450,
+        "employerSAED": 0.0550,
+        "employerAP": 0.0100,
+        "employerDCSupplement": null,
+        "employerTotal_post_july2025": 0.1840,
+        "divisionTotal_post_july2025": 0.2940,
+        "note": "HB 25-1105 reduced DPS employer base rate from 10.4% to 7.4% effective July 2025 as part of DPS true-up mechanism. DPS removed from AAP calculation July 2025–June 2030."
+      }
+    },
+    "source": "Section 24-51-401, C.R.S.; Colorado PERA Contribution Rates; Legislative Council Staff memo July 2025"
+  },
+  "automaticAdjustmentProvision": {
+    "name": "Automatic Adjustment Provision (AAP)",
+    "description": "Mechanism enacted by SB 18-200 (2018) to automatically adjust contribution rates, annual increases, and direct distribution when plan funding deviates from actuarial targets. Goal: ensure plan remains on path to pay off unfunded liability within 30 years.",
+    "triggerConditions": {
+      "lowTrigger": {
+        "condition": "Blended total contribution < 98% of blended total actuarially required contribution",
+        "adjustments": {
+          "annualIncrease": "Reduced up to 0.25%; floor 0.50%",
+          "employerRate": "Increased up to 0.50%; ceiling: statutory rate + 2.00%",
+          "memberRate": "Increased up to 0.50%; ceiling: statutory rate + 2.00%",
+          "directDistribution": "Increased up to $20M; ceiling $225M/year"
+        }
+      },
+      "highTrigger": {
+        "condition": "Blended total contribution > 120% of blended total actuarially required contribution",
+        "adjustments": {
+          "annualIncrease": "Increased up to 0.25%; ceiling 2.00%",
+          "employerRate": "Reduced up to 0.50%; floor: statutory rate",
+          "memberRate": "Reduced up to 0.50%; floor: statutory rate",
+          "directDistribution": "Reduced up to $20M/year"
+        }
+      }
+    },
+    "fy2026_assessment": {
+      "ratio": 1.0258,
+      "outcome": "No AAP adjustments triggered for July 1, 2026. Ratio of 102.58% falls between 98% and 120% thresholds.",
+      "annualIncrease_july2026": 0.010,
+      "note": "All eligible benefit recipients receive 1.0% annual increase in July 2026 (paid first business day of August)."
+    },
+    "source": "Legislative Council Staff memo July 2025; Colorado PERA AAP announcement 2025"
+  },
+  "annualIncrease": {
+    "description": "Annual Increase (AI) is PERA's cost-of-living adjustment for retirees, paid each July (first business day of August in practice). Different from Social Security COLA — PERA's AI is set by statute at 1.5% base, subject to the AAP.",
+    "baseRate": 0.015,
+    "baseRateNote": "Set at 1.5% by SB 18-200 (2018). Prior to SB 18-200: 2.0% (SB 10-001, 2010). Original historic rate was up to 3.5% compounded.",
+    "aapRange": {
+      "minimum": 0.005,
+      "maximum": 0.020,
+      "note": "AAP can reduce AI to as low as 0.5% or increase to max 2.0%"
+    },
+    "waitPeriod": {
+      "post2018members": "36-month waiting period before first AI adjustment. Members who retired on or after January 1, 2011 and had not received a COLA by May 1, 2018 must wait 36 months.",
+      "pre2011members": "First AI in second year of retirement (no 36-month wait for members with pre-2011 membership)"
+    },
+    "fy2026": {
+      "rate": 0.010,
+      "effectiveDate": "2026-07-01",
+      "note": "1.0% AI for July 2026. No AAP triggered (ratio 102.58% in range 98-120%)."
+    },
+    "source": "https://leg.colorado.gov/sites/default/files/pera_ip_memo_2025-accessible.pdf"
+  },
+  "directDistribution": {
+    "description": "Annual state appropriation to PERA divisional trust funds (State, School, Judicial, DPS — not Local Government) to help pay down unfunded liability. Established by SB 18-200 (2018).",
+    "baseAmount": 225000000,
+    "scheduledReduction": {
+      "startDate": "2027-07-01",
+      "reducedAmount": 190000000,
+      "reason": "SB 25-310: reduction to fund $350M transfer to Peace Officer Training and Support Fund for Proposition 130 implementation",
+      "floor": 15000000,
+      "note": "Reduction may be adjusted based on investment returns but cannot fall below $15M"
+    },
+    "oneTimePayment2025": {
+      "amount": 500000000,
+      "source": "State General Fund — SB 25-310. Amount remains in PERA but is accounted as a portion of the General Fund reserve."
+    },
+    "suspensionNote": "July 2020 direct distribution was suspended (HB 20-1379) due to COVID-19 budget cuts; compensated by subsequent appropriations in 2021-2023.",
+    "source": "SB 18-200, SB 25-310; Legislative Council Staff memo July 2025"
+  },
+  "fundingStatus": {
+    "combinedFundedRatio_2024": 0.692,
+    "combinedFundedRatio_2023": 0.696,
+    "netAssets_DB_billions_2024": 66.7,
+    "netAssets_DC_billions_2024": 6.7,
+    "discountRate": 0.0725,
+    "investmentReturn_2024": 0.108,
+    "benefitsPaid_2024_billions": 5.4,
+    "byDivision": {
+      "state": { "fundedRatio": 0.663, "yearsToFullFunding": 17 },
+      "school": { "fundedRatio": 0.661, "yearsToFullFunding": 28 },
+      "localGovernment": { "fundedRatio": 0.892, "yearsToFullFunding": 10 },
+      "judicial": { "fundedRatio": 0.906, "yearsToFullFunding": 4 },
+      "dps": { "fundedRatio": 0.912, "yearsToFullFunding": 10 }
+    },
+    "historicReturns": {
+      "2014": 0.058, "2015": 0.016, "2016": 0.073, "2017": 0.181,
+      "2018": 0.033, "2019": 0.204, "2020": 0.171, "2021": 0.161,
+      "2022": -0.135, "2023": 0.134, "2024": 0.108
+    },
+    "source": "PERA 2024 Annual Comprehensive Financial Report (ACFR); Legislative Council Staff memo July 2025"
+  },
+  "benefitsByDivision_2024": {
+    "state": { "totalBeneficiaries": 43924, "totalBenefitsPaid": 1835257644, "averageAnnualBenefit": 41784 },
+    "school": { "totalBeneficiaries": 77755, "totalBenefitsPaid": 2906363050, "averageAnnualBenefit": 37380 },
+    "localGovernment": { "totalBeneficiaries": 9190, "totalBenefitsPaid": 361512131, "averageAnnualBenefit": 39336 },
+    "judicial": { "totalBeneficiaries": 466, "totalBenefitsPaid": 36925557, "averageAnnualBenefit": 79236 },
+    "dps": { "totalBeneficiaries": 7193, "totalBenefitsPaid": 285783539, "averageAnnualBenefit": 39732 },
+    "combined": { "totalBeneficiaries": 138528, "totalBenefitsPaid": 5425841921, "averageAnnualBenefit": 39168 },
+    "source": "PERA 2024 ACFR, p. 224"
+  },
+  "dcPlan": {
+    "available": true,
+    "eligibleDivisions": ["State", "Local Government", "Certain community colleges", "State-classified colleges and universities", "District attorney offices"],
+    "description": "One-time irrevocable plan election within 60 days of hire (or within 13-72 months of DC enrollment for switch back). Investment risk borne by member. Comparable to a 401(k).",
+    "switchOption": "Members eligible for DC plan have a one-time option to switch between DB and DC within 13-72 months of participation.",
+    "dcSupplement": "Employers offering DC plan also pay a DC Supplement to partially fund DB plan for members who choose DC."
+  },
+  "peraPlus": {
+    "available": true,
+    "plans": ["PERAPlus 401(k)", "PERAPlus 457(b)"],
+    "contribution_limit_2024": 23000,
+    "note": "Both pre-tax and Roth contribution options. Available to members of both DB and DC plans. No 10% early withdrawal penalty on 457(b) plans upon separation from service."
+  },
+  "peraCare": {
+    "available": true,
+    "description": "Health benefit program (health, dental, vision) available to DB plan retirees and DC plan members who purchase a lifetime annuity.",
+    "note": "PERACare provides subsidized retiree health coverage — a significant ancillary benefit. PERA members do not have access to FEHB or comparable federal programs."
+  },
+  "workingAfterRetirement": {
+    "generalLimit": "110 days per calendar year without reduction in PERA benefit",
+    "criticalShortage": "School districts may hire retired teachers under critical shortage program (up to 10 retirees, or more for larger districts) without 110-day limit. Maximum 6 consecutive years under this program (HB 24-1044).",
+    "contributionRequirement": "Retirees who return to work for PERA employers must pay non-refundable contributions at the same rate as active members. Service does not count toward additional benefit accrual.",
+    "source": "Section 24-51-1101, C.R.S.; HB 24-1044"
+  },
+  "sources": [
+    {
+      "name": "Colorado PERA Overview — Legislative Council Staff Memo, July 14, 2025",
+      "url": "https://leg.colorado.gov/sites/default/files/pera_ip_memo_2025-accessible.pdf"
+    },
+    {
+      "name": "Colorado PERA 2024 Annual Comprehensive Financial Report (ACFR)",
+      "url": "https://secure.copera.org/staticcontent/digitalsnapshot/acfr-2024/"
+    },
+    {
+      "name": "Colorado PERA Highest Average Salary Tables",
+      "url": "https://copera.org/welcome-pera-members/benefit-basics/highest-average-salary-tables"
+    },
+    {
+      "name": "Colorado PERA Contribution Rates",
+      "url": "https://copera.org/employers/employer-resources/contribution-rates"
+    },
+    {
+      "name": "SB 18-200 — PERA Reform to Eliminate Unfunded Liability (2018)",
+      "url": "http://leg.colorado.gov/bills/sb18-200"
+    },
+    {
+      "name": "SB 25-310 — Proposition 130 Implementation (2025)",
+      "url": "https://leg.colorado.gov/bills/sb25-310"
+    },
+    {
+      "name": "HB 25-1105 — PERA DPS Division True-Up (2025)",
+      "url": "https://leg.colorado.gov/bills/hb25-1105"
+    },
+    {
+      "name": "Fisch Financial — HAS Table Explainer",
+      "url": "https://fischfinancial.org/2024/02/07/reading-interpreting-and-understanding-peras-highest-average-salary-has-tables/"
+    },
+    {
+      "name": "Colorado PERA Home",
+      "url": "https://copera.org"
+    }
+  ]
+}
