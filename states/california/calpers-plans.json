@@ -1,0 +1,587 @@
+{
+  "_comment": "California Public Employees' Retirement System (CalPERS) — Defined Benefit pension data. Consumer-agnostic data only. No Meridian-specific references. Representative formula set: Classic Misc 2%@55, Classic Misc 2%@60, PEPRA Misc 2%@62, Classic Safety 3%@50, PEPRA Safety 2.7%@57. CalPERS has 3,000+ contracting employers; this file models the most prevalent formulas across member categories.",
+  "systemName": "California Public Employees' Retirement System",
+  "systemAbbreviation": "CalPERS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "California",
+    "state": "CA",
+    "type": "statewide_public_employee_pension"
+  },
+  "administeredBy": "CalPERS — governed by the Board of Administration (13 members). Largest defined-benefit public pension in the United States.",
+  "established": 1932,
+  "totalMembers": {
+    "approximate": 2000000,
+    "note": "2M+ members in CalPERS retirement system as of 2025. Additionally administers health benefits for 1.5M+ members and families.",
+    "activeApproximate": 1000000,
+    "retiredAndBeneficiariesApproximate": 1000000,
+    "source": "https://www.calpers.ca.gov/newsroom/calpers-news/2025/calpers-announces-preliminary-116-return-for-2024-25-fiscal-year"
+  },
+  "coverage": {
+    "populations": [
+      "California state employees (executive, legislative, judicial branches)",
+      "California school classified staff and non-instructional employees",
+      "Employees of ~3,000 contracting public agencies (cities, counties, special districts)",
+      "Safety members: law enforcement officers, firefighters, and other designated safety positions"
+    ],
+    "excluded": [
+      "California public school teachers preK-12 (covered by CalSTRS)",
+      "University of California employees (covered by UCRP)",
+      "City of Los Angeles employees (covered by LACERS/LAFPP)",
+      "Some independent city/county pension systems (not contracted with CalPERS)"
+    ],
+    "memberCategories": {
+      "miscellaneous": "All non-safety members — most state and local government employees",
+      "safety": "Law enforcement, fire prevention, and other positions designated as safety by law or CalPERS determination"
+    }
+  },
+  "socialSecurity": {
+    "covered": "varies",
+    "note": "SS coverage varies by employer and bargaining unit. Most state miscellaneous members participate in Social Security. Many local agency members do not. Safety members generally do not participate in SS. Non-SS members pay a contribution rate 1% higher than SS-covered members under the same formula.",
+    "source": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-025-25"
+  },
+  "pepra": {
+    "effectiveDate": "2013-01-01",
+    "description": "Public Employees' Pension Reform Act (PEPRA) established new benefit formulas and pensionable compensation caps for 'new members' — employees first hired to a CalPERS-covered position on or after January 1, 2013, or those returning after a break in service of more than six months with a different employer.",
+    "membershipShare": "~68% of CalPERS active members are PEPRA members as of 2026; projected to reach 90% within a decade.",
+    "keyChanges": [
+      "Lower benefit factors for miscellaneous and safety formulas",
+      "Higher normal retirement age (62 misc, 57 safety)",
+      "Final compensation based on 36-month average (vs. 1-year option for some Classic formulas)",
+      "Pensionable compensation cap limiting salary used in benefit calculation",
+      "Employee contributions set at 50% of total normal cost (fluctuates annually)"
+    ],
+    "source": "https://news.calpers.ca.gov/pepra-explained-addressing-the-top-questions-from-members/"
+  },
+  "vesting": {
+    "years": 5,
+    "schedule": "cliff",
+    "note": "5 years of service credit required for vested retirement benefit under all CalPERS formulas.",
+    "source": "https://www.calpers.ca.gov/employers/contracts/new-pension-contracts"
+  },
+  "compensationLimits": {
+    "classic_irc_401a17": {
+      "limit_2025": 350000,
+      "description": "IRS section 401(a)(17) compensation limit for Classic members. Members with membership dates prior to July 1, 1996 are not subject to this limit.",
+      "source": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-001-25"
+    },
+    "pepra_with_ss_2026": {
+      "limit_2026": 159733,
+      "description": "PEPRA pensionable compensation cap for members who coordinate with Social Security — calendar year 2026.",
+      "source": "https://news.calpers.ca.gov/pepra-explained-addressing-the-top-questions-from-members/"
+    },
+    "pepra_without_ss_2026": {
+      "limit_2026": 191679,
+      "description": "PEPRA pensionable compensation cap for members who do not coordinate with Social Security — calendar year 2026.",
+      "source": "https://news.calpers.ca.gov/pepra-explained-addressing-the-top-questions-from-members/"
+    }
+  },
+  "cola": {
+    "mechanism": "compounded",
+    "description": "COLA is applied annually as a compounded percentage against the member's base allowance (gross benefit at retirement). The annual adjustment equals the lesser of the employer-contracted COLA percentage or the CPI rate of inflation since retirement.",
+    "firstEligibility": "Second calendar year of retirement. Example: retire in 2024, first COLA in May 2026.",
+    "paymentDate": "May 1 each year",
+    "contractedRates": [
+      {
+        "rate": 0.02,
+        "employers": "All state agencies and all school agencies; approximately 95% of all CalPERS retirees",
+        "note": "2% maximum compounded annual COLA — most common. If inflation is below 2%, the lower inflation rate applies."
+      },
+      {
+        "rate": 0.03,
+        "employers": "Select public agency employers by contract"
+      },
+      {
+        "rate": 0.04,
+        "employers": "Select public agency employers by contract"
+      },
+      {
+        "rate": 0.05,
+        "employers": "Select public agency employers by contract"
+      }
+    ],
+    "note": "Public agencies can contract for 2%, 3%, 4%, or 5% COLA. Retirees with 4% or 5% COLA provisions generally will not qualify for PPPA since higher COLAs maintain purchasing power above minimum thresholds.",
+    "source": "https://www.calpers.ca.gov/retirees/cost-of-living/cola"
+  },
+  "pppa": {
+    "name": "Purchasing Power Protection Allowance",
+    "description": "Supplemental benefit paid annually in the May 1 warrant. Activates when a retiree's cumulative COLA has not kept pace with inflation and their purchasing power falls below the threshold. PPPA is the difference between the retiree's current allowance and the minimum threshold amount.",
+    "thresholds": {
+      "state_and_schools": 0.75,
+      "public_agencies": 0.80
+    },
+    "note": "State and school retirees are protected at 75% of original purchasing power; public agency retirees at 80%. PPPA is only payable when gross benefit drops below threshold and is calculated after COLA. Retirees with 4% or 5% COLA contracts generally remain above PPPA thresholds.",
+    "source": "https://www.calpers.ca.gov/retirees/cost-of-living/pppa"
+  },
+  "representativeFormulas": {
+    "_note": "CalPERS has 3,000+ contracting employers with varying benefit tiers. This section models the five most prevalent formula types: two Classic miscellaneous, one PEPRA miscellaneous, one Classic safety, and one PEPRA safety. Additional Classic safety formulas (2%@50, State Safety 2.5%@55, State Safety B 2%@55) exist and are summarized in additionalFormulas.",
+    "classic_misc_2pct_at_55": {
+      "formulaName": "Classic Miscellaneous 2% at 55",
+      "category": "miscellaneous",
+      "pepra": false,
+      "membershipCutoff": "2012-12-31",
+      "prevalence": "Most common Classic miscellaneous formula for state employees and many local agency employees hired before January 1, 2013.",
+      "formula": {
+        "structure": "Age Factor × Years of Service Credit × Final Compensation = Annual Pension",
+        "ageFactor": {
+          "standardAtNormalRetirementAge": 0.02,
+          "normalRetirementAge": 55,
+          "minimumRetirementAge": 50,
+          "minimum": {
+            "factor": 0.01100,
+            "age": 50
+          },
+          "maximum": {
+            "factor": 0.02418,
+            "age": 63
+          },
+          "keyBreakpoints": [
+            { "age": 50, "factor": 0.01100 },
+            { "age": 51, "factor": 0.01280 },
+            { "age": 52, "factor": 0.01460 },
+            { "age": 53, "factor": 0.01640 },
+            { "age": 54, "factor": 0.01820 },
+            { "age": 55, "factor": 0.02000 },
+            { "age": 56, "factor": 0.02040 },
+            { "age": 57, "factor": 0.02080 },
+            { "age": 58, "factor": 0.02120 },
+            { "age": 59, "factor": 0.02160 },
+            { "age": 60, "factor": 0.02200 },
+            { "age": 61, "factor": 0.02260 },
+            { "age": 62, "factor": 0.02320 },
+            { "age": 63, "factor": 0.02418 }
+          ],
+          "note": "Age factor increases by quarter-year increments. Maximum benefit factor is 2.418% at age 63 and older. Full quarter-year tables available from CalPERS."
+        },
+        "finalCompensation": {
+          "state_members": {
+            "period": "highest_12_consecutive_months",
+            "description": "Highest single year (12 consecutive months) of average monthly pay rate",
+            "note": "Applies to state miscellaneous/industrial members. 1-year final compensation is a key Classic advantage vs PEPRA."
+          },
+          "local_members": {
+            "period": "highest_36_consecutive_months",
+            "description": "Average annual compensation over highest 36 consecutive months",
+            "note": "Most local agency contracts use 36-month final compensation."
+          }
+        }
+      },
+      "retirementEligibility": {
+        "normalRetirement": {
+          "minimumAge": 55,
+          "minimumService": 5,
+          "note": "Unreduced benefit available at age 55 with 5 years of service"
+        },
+        "earlyRetirement": {
+          "minimumAge": 50,
+          "minimumService": 5,
+          "reduction": "reduced_age_factor",
+          "note": "Members may retire at age 50 with 5 years of service, subject to reduced age factor"
+        }
+      },
+      "memberContribution": {
+        "state_ss_covered": {
+          "rate": 0.07,
+          "note": "7% of monthly pensionable compensation for state employees participating in Social Security — set by statute"
+        },
+        "state_non_ss": {
+          "rate": 0.08,
+          "note": "8% for state employees not participating in Social Security (1% higher than SS-covered rate)"
+        },
+        "local_varies": {
+          "note": "Local agency Classic member contribution rates vary by contract. Typical range 7-8% for miscellaneous members."
+        },
+        "source": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-025-25"
+      }
+    },
+    "classic_misc_2pct_at_60": {
+      "formulaName": "Classic Miscellaneous 2% at 60",
+      "category": "miscellaneous",
+      "pepra": false,
+      "membershipCutoff": "2012-12-31",
+      "prevalence": "Common second-tier Classic miscellaneous formula for local agency employees; also applicable to state employees hired January 15, 2011 through December 31, 2012 (State Misc Tier 2).",
+      "formula": {
+        "structure": "Age Factor × Years of Service Credit × Final Compensation = Annual Pension",
+        "ageFactor": {
+          "standardAtNormalRetirementAge": 0.02,
+          "normalRetirementAge": 60,
+          "minimumRetirementAge": 50,
+          "minimum": {
+            "factor": 0.01092,
+            "age": 50
+          },
+          "maximum": {
+            "factor": 0.02418,
+            "age": 63
+          },
+          "keyBreakpoints": [
+            { "age": 50, "factor": 0.01092 },
+            { "age": 52, "factor": 0.01200 },
+            { "age": 55, "factor": 0.01400 },
+            { "age": 57, "factor": 0.01600 },
+            { "age": 58, "factor": 0.01700 },
+            { "age": 59, "factor": 0.01800 },
+            { "age": 60, "factor": 0.02000 },
+            { "age": 61, "factor": 0.02100 },
+            { "age": 62, "factor": 0.02200 },
+            { "age": 63, "factor": 0.02418 }
+          ],
+          "note": "Age factor increases gradually from 50 to 63. Same maximum factor as 2%@55 formula (2.418% at 63)."
+        },
+        "finalCompensation": {
+          "period": "highest_36_consecutive_months",
+          "description": "Average annual compensation over highest 36 consecutive months"
+        }
+      },
+      "retirementEligibility": {
+        "normalRetirement": {
+          "minimumAge": 60,
+          "minimumService": 5
+        },
+        "earlyRetirement": {
+          "minimumAge": 50,
+          "minimumService": 5,
+          "reduction": "reduced_age_factor"
+        }
+      },
+      "memberContribution": {
+        "typical_local": {
+          "note": "Varies by employer contract. State Misc Tier 2 (hired 1/15/2011-12/31/2012): contribution rates set by collective bargaining, typically 7-8%."
+        }
+      }
+    },
+    "pepra_misc_2pct_at_62": {
+      "formulaName": "PEPRA Miscellaneous 2% at 62",
+      "category": "miscellaneous",
+      "pepra": true,
+      "membershipStart": "2013-01-01",
+      "prevalence": "Universal PEPRA miscellaneous formula — applies to all new CalPERS miscellaneous members hired on or after January 1, 2013. As of 2026, ~68% of active CalPERS members are PEPRA members.",
+      "formula": {
+        "structure": "Age Factor × Years of Service Credit × Final Compensation = Annual Pension",
+        "ageFactor": {
+          "standardAtNormalRetirementAge": 0.02,
+          "normalRetirementAge": 62,
+          "minimumRetirementAge": 52,
+          "minimum": {
+            "factor": 0.01000,
+            "age": 52
+          },
+          "maximum": {
+            "factor": 0.02500,
+            "age": 67
+          },
+          "keyBreakpoints": [
+            { "age": 52, "factor": 0.01000 },
+            { "age": 53, "factor": 0.01100 },
+            { "age": 54, "factor": 0.01200 },
+            { "age": 55, "factor": 0.01300 },
+            { "age": 56, "factor": 0.01400 },
+            { "age": 57, "factor": 0.01500 },
+            { "age": 58, "factor": 0.01600 },
+            { "age": 59, "factor": 0.01700 },
+            { "age": 60, "factor": 0.01800 },
+            { "age": 61, "factor": 0.01900 },
+            { "age": 62, "factor": 0.02000 },
+            { "age": 63, "factor": 0.02100 },
+            { "age": 64, "factor": 0.02200 },
+            { "age": 65, "factor": 0.02300 },
+            { "age": 66, "factor": 0.02400 },
+            { "age": 67, "factor": 0.02500 }
+          ],
+          "note": "Full benefit (2.0%) at 62. Members may retire at 52 with 5 years of service. Age factor reaches maximum 2.5% at age 67. Factor increases in quarter-year increments.",
+          "source": "https://www.calpers.ca.gov/documents/state-miscellaneous-industrial-member-2-at-62-benefit-factors-pdf/download?inline="
+        },
+        "finalCompensation": {
+          "period": "highest_36_consecutive_months",
+          "description": "Average annual pensionable compensation over highest 36 consecutive months. PEPRA always uses 3-year average — no 1-year option.",
+          "note": "Key distinction from Classic 2%@55 (state members): PEPRA requires 36-month average vs 12-month highest year for state members."
+        },
+        "compensationCap": {
+          "with_ss_2026": 159733,
+          "without_ss_2026": 191679,
+          "note": "Salary above cap not used in final compensation calculation. Caps adjust annually.",
+          "source": "https://news.calpers.ca.gov/pepra-explained-addressing-the-top-questions-from-members/"
+        }
+      },
+      "retirementEligibility": {
+        "normalRetirement": {
+          "minimumAge": 62,
+          "minimumService": 5
+        },
+        "earlyRetirement": {
+          "minimumAge": 52,
+          "minimumService": 5,
+          "reduction": "reduced_age_factor",
+          "note": "Reduced benefit from age 52. No retirement before 52 under PEPRA."
+        },
+        "combinedClassicPepra": {
+          "note": "Members with combined Classic and PEPRA service may retire at age 50 for Classic portion. Minimum PEPRA retirement age remains 52 for PEPRA service.",
+          "source": "https://www.calpers.ca.gov/documents/state-miscellaneous-industrial-member-2-at-62-benefit-factors-pdf/download?inline="
+        }
+      },
+      "memberContribution": {
+        "mechanism": "50% of total normal cost, set annually by CalPERS actuarial valuation",
+        "fy2025_26_school": {
+          "rate": 0.08,
+          "note": "8.00% for PEPRA school members in FY 2025-26 — unchanged because total normal cost did not change by more than 1%.",
+          "source": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-027-25"
+        },
+        "public_agency_varies": {
+          "note": "PEPRA public agency member contribution rates vary annually by plan actuarial valuation. Members should consult their agency's Rate Summary in myCalPERS.",
+          "source": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-026-25"
+        },
+        "rate_change_trigger": "If total normal cost changes by more than 1% of payroll from base rate, member contribution must be adjusted to 50% of new total normal cost, rounded to nearest 0.25%."
+      }
+    },
+    "classic_safety_3pct_at_50": {
+      "formulaName": "Classic Safety 3% at 50",
+      "category": "safety",
+      "pepra": false,
+      "membershipCutoff": "2012-12-31",
+      "prevalence": "Most generous Classic safety formula — historically available to local safety (police/fire) hired before January 1, 2013 at agencies contracting for this benefit. Many large California cities and counties use 3%@50.",
+      "formula": {
+        "structure": "Age Factor × Years of Service Credit × Final Compensation = Annual Pension",
+        "ageFactor": {
+          "standardAtNormalRetirementAge": 0.03,
+          "normalRetirementAge": 50,
+          "minimumRetirementAge": 50,
+          "minimum": {
+            "factor": 0.03000,
+            "age": 50
+          },
+          "maximum": {
+            "factor": 0.03000,
+            "age": 50,
+            "note": "3% is both the minimum and maximum age factor — flat rate regardless of age beyond 50. No benefit to delaying retirement beyond normal eligibility under this formula."
+          },
+          "keyBreakpoints": [
+            { "age": 50, "factor": 0.03000 }
+          ],
+          "note": "Flat 3% age factor at any eligible retirement age. There is no increase for retiring later."
+        },
+        "finalCompensation": {
+          "note": "Typically highest 1-year for state safety; local agencies may contract for 1-year or 3-year final compensation depending on their CalPERS contract."
+        }
+      },
+      "retirementEligibility": {
+        "normalRetirement": {
+          "minimumAge": 50,
+          "minimumService": 5
+        }
+      },
+      "exampleBenefit": {
+        "scenario": "Safety officer, age 50, 25 years service, $100,000 final compensation",
+        "calculation": "3.0% × 25 × $100,000 = $75,000/year ($6,250/month)",
+        "note": "25-year cap effectively reached at 83.33% (beyond 27.78 years at 3% → 83.3% of final comp). No statutory cap on benefit percentage under 3%@50."
+      },
+      "memberContribution": {
+        "typical_local": {
+          "note": "Classic local safety 3%@50 member contributions vary by employer contract. Common rates in the 9-12% range. Employer-paid member contributions (EPMC) have historically been negotiated in some agency contracts."
+        }
+      }
+    },
+    "pepra_safety_2_7pct_at_57": {
+      "formulaName": "PEPRA Safety 2.7% at 57",
+      "category": "safety",
+      "pepra": true,
+      "membershipStart": "2013-01-01",
+      "prevalence": "Most common PEPRA safety formula under Government Code 7522.25(d). Applies to the majority of new local safety members (police, fire) hired on or after January 1, 2013.",
+      "formula": {
+        "structure": "Age Factor × Years of Service Credit × Final Compensation = Annual Pension",
+        "ageFactor": {
+          "standardAtNormalRetirementAge": 0.027,
+          "normalRetirementAge": 57,
+          "minimumRetirementAge": 50,
+          "minimum": {
+            "factor": 0.02000,
+            "age": 50
+          },
+          "maximum": {
+            "factor": 0.02700,
+            "age": 57
+          },
+          "keyBreakpoints": [
+            { "age": 50, "factor": 0.02000 },
+            { "age": 51, "factor": 0.02100 },
+            { "age": 52, "factor": 0.02200 },
+            { "age": 53, "factor": 0.02300 },
+            { "age": 54, "factor": 0.02400 },
+            { "age": 55, "factor": 0.02500 },
+            { "age": 56, "factor": 0.02600 },
+            { "age": 57, "factor": 0.02700 }
+          ],
+          "note": "Factor reaches maximum 2.7% at age 57. No increase beyond 57.",
+          "source": "https://www.tustinca.org/DocumentCenter/View/355/CalPERS-Retirement-Contribution-Rates-PDF"
+        },
+        "finalCompensation": {
+          "period": "highest_36_consecutive_months",
+          "description": "Average annual pensionable compensation over highest 36 consecutive months — always 3 years for PEPRA.",
+          "compensationCap": {
+            "note": "PEPRA pensionable compensation cap applies. See compensationLimits section for annual figures."
+          }
+        }
+      },
+      "retirementEligibility": {
+        "normalRetirement": {
+          "minimumAge": 57,
+          "minimumService": 5
+        },
+        "earlyRetirement": {
+          "minimumAge": 50,
+          "minimumService": 5,
+          "reduction": "reduced_age_factor"
+        }
+      },
+      "memberContribution": {
+        "mechanism": "50% of total normal cost, determined annually",
+        "typical_rate": {
+          "note": "Typical PEPRA safety member contribution approximately 12-14% of pensionable compensation depending on plan and actuarial year. Example from City of Tustin FY2025-26: total normal cost 27.74%, employee rate = 13.87%.",
+          "source": "https://www.tustinca.org/DocumentCenter/View/355/CalPERS-Retirement-Contribution-Rates-PDF"
+        }
+      },
+      "pendingLegislation": {
+        "ab_1383": {
+          "description": "AB 1383 (2025-26) would establish new safety formulas effective January 1, 2027: 2.5%@55, 2.7%@55, and 3%@55 — replacing current PEPRA safety formulas at 2%@57, 2.5%@57, and 2.7%@57. Bill is in the California legislature as of March 2026.",
+          "status": "Pending — introduced in 2025-26 session",
+          "source": "https://calmatters.digitaldemocracy.org/bills/ca_202520260ab1383"
+        }
+      }
+    }
+  },
+  "additionalFormulas": {
+    "_note": "Less common formulas summarized here for reference. Not fully modeled.",
+    "classic_safety_2pct_at_50": {
+      "formulaName": "Classic Safety 2% at 50",
+      "category": "safety",
+      "pepra": false,
+      "note": "Second-tier Classic local safety formula. Age factor: 2.0% at 50, increasing to maximum 2.7% at 55. Final comp: typically 3 years. Available at local agencies contracting for this tier.",
+      "minimum": { "factor": 0.02000, "age": 50 },
+      "maximum": { "factor": 0.02700, "age": 55 }
+    },
+    "classic_state_safety_a_2_5pct_at_55": {
+      "formulaName": "State Safety A — 2.5% at 55",
+      "category": "safety",
+      "pepra": false,
+      "note": "Applies to state employees in safety classifications first employed prior to January 15, 2011. Normal retirement age 55. Contributions: 10% + 1% (state safety supplement).",
+      "source": "https://pecg.org/2025-2028-mou/article_11-6/"
+    },
+    "classic_state_safety_b_2pct_at_55": {
+      "formulaName": "State Safety B — 2% at 55",
+      "category": "safety",
+      "pepra": false,
+      "note": "Applies to state safety employees first hired January 15, 2011 through December 31, 2012.",
+      "source": "https://pecg.org/2025-2028-mou/article_11-6/"
+    },
+    "pepra_safety_2_5pct_at_57": {
+      "formulaName": "PEPRA Safety 2.5% at 57",
+      "category": "safety",
+      "pepra": true,
+      "note": "Intermediate PEPRA safety formula under Gov. Code 7522.25(c). Less common than 2.7%@57. Normal age 57, max factor 2.5%.",
+      "source": "https://calmatters.digitaldemocracy.org/bills/ca_202520260ab1383"
+    },
+    "pepra_safety_2pct_at_57": {
+      "formulaName": "PEPRA Safety 2% at 57",
+      "category": "safety",
+      "pepra": true,
+      "note": "Lowest PEPRA safety formula under Gov. Code 7522.25(b). Normal age 57, max factor 2.0%. Least common PEPRA safety formula.",
+      "source": "https://calmatters.digitaldemocracy.org/bills/ca_202520260ab1383"
+    }
+  },
+  "fundingStatus": {
+    "fundedRatio_fy2024_25_preliminary": 0.79,
+    "fundedRatio_fy2023_24": 0.75,
+    "fundedRatio_fy2022_23": 0.714,
+    "netAssets_fy2024_25_preliminary_billions": 556.2,
+    "discountRate": 0.068,
+    "investmentReturn_fy2024_25_preliminary": 0.116,
+    "investmentReturn_10yr_annualized": 0.071,
+    "note": "FY2024-25 preliminary net investment return of 11.6% increased funded status to ~79%. Employer contributions remain at elevated levels due to unfunded accrued liability from prior years.",
+    "source": "https://www.calpers.ca.gov/newsroom/calpers-news/2025/calpers-announces-preliminary-116-return-for-2024-25-fiscal-year"
+  },
+  "employerContributions": {
+    "note": "Employer contribution rates vary by agency and plan tier. State and school employer rates are set by CalPERS Board annually. Public agency rates are set through individual agency actuarial valuations.",
+    "schools_fy2025_26": {
+      "rate": 0.2681,
+      "note": "Schools employer pool rate for FY 2025-26: 26.81% of payroll. Decrease of 0.24% from FY 2024-25.",
+      "source": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-027-25"
+    },
+    "public_agency_normal_cost_examples": {
+      "note": "Example from City of Tustin FY2025-26 actuarial summary (representative): Classic Misc 2%@55 employer normal cost 27.38%; Classic Misc 2%@60 20.15%; PEPRA Misc 2%@62 13.99%; Classic Safety 3%@50 — not shown; PEPRA Safety 2.7%@57 ~27.74% total normal cost.",
+      "source": "https://www.tustinca.org/DocumentCenter/View/355/CalPERS-Retirement-Contribution-Rates-PDF"
+    }
+  },
+  "healthBenefits": {
+    "administered": true,
+    "description": "CalPERS also administers health benefits for active and retired members — the largest purchaser of public employee health services in the US outside the federal government. Health benefits are separate from the pension defined benefit plan.",
+    "retireeEligibility": {
+      "minimumService_state": 10,
+      "minimumService_csu": {
+        "fullContribution": 10,
+        "partialContribution": 5,
+        "note": "CSU retirees: 5 years = partial subsidy, 10 years = full state contribution"
+      },
+      "note": "Retirees must retire within 120 days of separation to qualify for health benefits in retirement."
+    },
+    "source": "https://www.calpers.ca.gov/members/health-benefits"
+  },
+  "reciprocity": {
+    "available": true,
+    "partners": [
+      "CalSTRS",
+      "University of California Retirement Plan (UCRP)",
+      "Other California public retirement systems"
+    ],
+    "note": "Reciprocity allows members who move between participating systems to retire concurrently and preserve benefit rights. Must file for reciprocity within six months of leaving one system and joining another.",
+    "source": "https://www.calpers.ca.gov/members/retirement-benefits/reciprocity"
+  },
+  "deathAndDisability": {
+    "industrialDisability": {
+      "description": "Industrial disability retirement available for members whose disability is job-related. No minimum age requirement. Benefit: greater of 50% of final compensation (miscellaneous) or 75% of final compensation (safety) or formula amount.",
+      "note": "CalPERS disability benefits are not modeled in detail here."
+    }
+  },
+  "sources": [
+    {
+      "name": "CalPERS Benefit Factor Charts",
+      "url": "https://www.calpers.ca.gov/members/retirement-benefits/benefit-factor-charts"
+    },
+    {
+      "name": "CalPERS PEPRA Information Page",
+      "url": "https://www.calpers.ca.gov/employers/policies-and-procedures/pension-reform-impacts"
+    },
+    {
+      "name": "CalPERS COLA Information",
+      "url": "https://www.calpers.ca.gov/retirees/cost-of-living/cola"
+    },
+    {
+      "name": "CalPERS PPPA Information",
+      "url": "https://www.calpers.ca.gov/retirees/cost-of-living/pppa"
+    },
+    {
+      "name": "CalPERS 2025 Compensation Limits Circular Letter 200-001-25",
+      "url": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-001-25"
+    },
+    {
+      "name": "CalPERS FY2025-26 State Employer/Employee Contribution Rates Circular Letter 200-025-25",
+      "url": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-025-25"
+    },
+    {
+      "name": "CalPERS FY2025-26 Schools Contribution Rates Circular Letter 200-027-25",
+      "url": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-027-25"
+    },
+    {
+      "name": "CalPERS FY2024-25 Preliminary Investment Return Announcement",
+      "url": "https://www.calpers.ca.gov/newsroom/calpers-news/2025/calpers-announces-preliminary-116-return-for-2024-25-fiscal-year"
+    },
+    {
+      "name": "CalPERS New Pension Contracts — Formula and Vesting Overview",
+      "url": "https://www.calpers.ca.gov/employers/contracts/new-pension-contracts"
+    },
+    {
+      "name": "PEPRA Blog Post — CalPERS PERSpective Feb 2026",
+      "url": "https://news.calpers.ca.gov/pepra-explained-addressing-the-top-questions-from-members/"
+    }
+  ]
+}

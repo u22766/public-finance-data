@@ -676,6 +676,14 @@
       "scope": "statewide",
       "version": "2026.1",
       "last_updated": "2026-03-24"
+    },
+    "calpers_plans_california": {
+      "description": "California Public Employees Retirement System (CalPERS) \u2014 representative benefit formula set: Classic Misc 2%@55, Classic Misc 2%@60, PEPRA Misc 2%@62, Classic Safety 3%@50, PEPRA Safety 2.7%@57. Includes COLA (2-5%), PPPA thresholds, PEPRA compensation caps, vesting, and funding status.",
+      "version": "2026.1",
+      "last_updated": "2026-03-24",
+      "jurisdiction": "CA",
+      "type": "state_pension",
+      "url": "states/california/calpers-plans.json"
     }
   }
 }

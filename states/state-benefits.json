@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
-  "version": "2.11",
+  "version": "2.12",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary \u2014 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -2236,7 +2236,7 @@
           "tsp_eligible": false,
           "pending_legislation": {
             "bills": "HB 761 (Keep Our Heroes Home Act: $25K for 2026, $40K thereafter, all ages), HB 857 ($20K for under-55)",
-            "status": "Both in House Ways and Means. HB 857 hearing held 2/19/2026. No committee votes. Session ends 4/13/2026. $1.4B state deficit is primary obstacle."
+            "status": "Both died in House Ways and Means. HB 857 had hearing 2/19/2026 but missed March 23 crossover deadline — effectively dead for 2026 session (sine die April 13, 2026). $1.4B state deficit primary obstacle. HB 761 also failed to advance."
           },
           "note": "Maryland allows a subtraction of up to $12,500 of military retirement pay (under age 55) or up to $20,000 (age 55+). Delaware-style age removal not yet enacted. HB 761 and HB 857 would increase amounts. USPHS and NOAA retirees not currently covered."
         },
