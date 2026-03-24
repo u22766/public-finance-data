@@ -1,7 +1,8 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 26 validation suites
+# 27 validation suites
+# Session 57: Added validate_lacera.py (532 checks) for LACERA (Los Angeles County) pension plans
 # Session 56: Added validate_fs_pay.py (1893 checks) for Foreign Service pay tables (FP-1 through FP-9, 2016-2026)
 # Session 54: Added validate_fers_eligibility.py (206 checks) for FERS eligibility rules + service credit rules
 # Session 53: Added validate_foreign_service.py (94 checks) and validate_systems_index.py (114 checks)
@@ -115,6 +116,9 @@ jobs:
 
       - name: Validate Foreign Service pay tables (1893 checks)
         run: python tests/validate_fs_pay.py
+
+      - name: Validate LACERA pension plans (532 checks)
+        run: python tests/validate_lacera.py
       
       - name: Validation summary
         if: success()
