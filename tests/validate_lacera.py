@@ -34,7 +34,7 @@ def main():
 
     # ── METADATA ──────────────────────────────────────────────────
     print("Metadata checks...")
-    check(data.get("version") == "2026.1", f"version is 2026.1, got {data.get('version')}")
+    check(data.get("version") == "2026.2", f"version is 2026.2, got {data.get('version')}")
     check("effective_date" in data, "effective_date present")
     check("description" in data, "description present")
     check("source" in data, "source present")
@@ -271,6 +271,150 @@ def main():
     check(abs(10 * factors.get("55", 0) - 13.0) < 0.01, "10yrs × 1.3% at 55 = 13.0%")
     # 20 years at age 57 should produce 30.0%
     check(abs(20 * factors.get("57", 0) - 30.0) < 0.01, "20yrs × 1.5% at 57 = 30.0%")
+
+    # ── BENEFIT FACTOR TABLE VERIFICATION (ALL PLANS) ─────────────
+    print("All-plan benefit factor table verification...")
+
+    # Helper: extract numeric factors from a plan's benefit_factor_table
+    def get_factors(plan_id):
+        tbl = plans[plan_id].get("benefit_factor_table", {})
+        return {k: v for k, v in tbl.items() if not k.startswith("_")}
+
+    # Every plan must have a benefit_factor_table
+    for pid in plans:
+        check("benefit_factor_table" in plans[pid],
+              f"{pid} has benefit_factor_table")
+
+    # -- Plan A: 13 ages (50-62), max 2.611 at 62 --
+    fa = get_factors("general_A")
+    check(len(fa) == 13, f"Plan A has 13 age entries (50-62), got {len(fa)}")
+    check(fa.get("50") == 1.475, f"Plan A factor at 50 = 1.475, got {fa.get('50')}")
+    check(fa.get("55") == 1.948, f"Plan A factor at 55 = 1.948, got {fa.get('55')}")
+    check(fa.get("62") == 2.611, f"Plan A factor at 62 = 2.611, got {fa.get('62')}")
+    # Cross-check: 20yr @ 60 = 48.80%
+    check(abs(20 * fa.get("60", 0) - 48.80) < 0.02, "Plan A: 20yrs × 2.44% at 60 ≈ 48.80%")
+
+    # -- Plan B: 16 ages (50-65), max 2.611 at 65 --
+    fb = get_factors("general_B")
+    check(len(fb) == 16, f"Plan B has 16 age entries (50-65), got {len(fb)}")
+    check(fb.get("50") == 1.242, f"Plan B factor at 50 = 1.242, got {fb.get('50')}")
+    check(fb.get("55") == 1.667, f"Plan B factor at 55 = 1.667, got {fb.get('55')}")
+    check(fb.get("65") == 2.611, f"Plan B factor at 65 = 2.611, got {fb.get('65')}")
+    # Cross-check: 30yr @ 65 = 78.33% (official table shows ~78.33 with rounding)
+    check(abs(30 * fb.get("65", 0) - 78.33) < 0.05, "Plan B: 30yrs × 2.611% at 65 ≈ 78.33%")
+
+    # -- Plan C = Plan B (same formula per LACERA basic provisions) --
+    fc = get_factors("general_C")
+    check(len(fc) == 16, f"Plan C has 16 age entries, got {len(fc)}")
+    for age_key in fb:
+        check(fc.get(age_key) == fb[age_key],
+              f"Plan C factor at {age_key} matches Plan B ({fb[age_key]})")
+
+    # -- Plan D = Plan B (same formula) --
+    fd = get_factors("general_D")
+    check(len(fd) == 16, f"Plan D has 16 age entries, got {len(fd)}")
+    for age_key in fb:
+        check(fd.get(age_key) == fb[age_key],
+              f"Plan D factor at {age_key} matches Plan B ({fb[age_key]})")
+
+    # -- Plan E: 11 ages (55-65), max 2.0 at 65, lower factors --
+    fe = get_factors("general_E")
+    check(len(fe) == 11, f"Plan E has 11 age entries (55-65), got {len(fe)}")
+    check(fe.get("55") == 0.75, f"Plan E factor at 55 = 0.75, got {fe.get('55')}")
+    check(fe.get("60") == 1.202, f"Plan E factor at 60 = 1.202, got {fe.get('60')}")
+    check(fe.get("65") == 2.0, f"Plan E factor at 65 = 2.0, got {fe.get('65')}")
+    # Cross-check: 20yr @ 60 = 24.04% (from official table)
+    check(abs(20 * fe.get("60", 0) - 24.04) < 0.01, "Plan E: 20yrs × 1.202% at 60 = 24.04%")
+    # Cross-check: 30yr @ 65 = 60.00% (from official table)
+    check(abs(30 * fe.get("65", 0) - 60.00) < 0.01, "Plan E: 30yrs × 2.0% at 65 = 60.00%")
+    # Plan E factors should be lower than Plan B at same ages (noncontributory)
+    for age in ["55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65"]:
+        check(fe.get(age, 99) < fb.get(age, 0),
+              f"Plan E factor at {age} ({fe.get(age)}) < Plan B ({fb.get(age)}) (noncontributory lower)")
+
+    # -- Safety A: 15 ages (41-55), max 2.62 at 55 --
+    fsa = get_factors("safety_A")
+    check(len(fsa) == 15, f"Safety A has 15 age entries (41-55), got {len(fsa)}")
+    check(fsa.get("41") == 1.2515, f"Safety A factor at 41 = 1.2515, got {fsa.get('41')}")
+    check(fsa.get("50") == 2.0, f"Safety A factor at 50 = 2.0, got {fsa.get('50')}")
+    check(fsa.get("55") == 2.62, f"Safety A factor at 55 = 2.62, got {fsa.get('55')}")
+    # Cross-check: 20yr @ 50 = 40.00% (from official table)
+    check(abs(20 * fsa.get("50", 0) - 40.00) < 0.01, "Safety A: 20yrs × 2.0% at 50 = 40.00%")
+    # Cross-check: 30yr @ 55 = 78.60% (from official table, 78.59 with rounding)
+    check(abs(30 * fsa.get("55", 0) - 78.60) < 0.02, "Safety A: 30yrs × 2.62% at 55 ≈ 78.60%")
+    # Cross-check early ages: 25yr @ 45 = 39.025 (official 39.03)
+    check(abs(25 * fsa.get("45", 0) - 39.03) < 0.02, "Safety A: 25yrs × 1.561% at 45 ≈ 39.03%")
+    # Cross-check: 21yr @ 41 = 26.28 (official)
+    check(abs(21 * fsa.get("41", 0) - 26.28) < 0.02, "Safety A: 21yrs × 1.2515% at 41 ≈ 26.28%")
+
+    # -- Safety B = Safety A (same benefit formula) --
+    fsb = get_factors("safety_B")
+    check(len(fsb) == 15, f"Safety B has 15 age entries, got {len(fsb)}")
+    for age_key in fsa:
+        check(fsb.get(age_key) == fsa[age_key],
+              f"Safety B factor at {age_key} matches Safety A ({fsa[age_key]})")
+
+    # -- Safety C (PEPRA): 8 ages (50-57), clean 0.1% increments --
+    fsc = get_factors("safety_C")
+    check(len(fsc) == 8, f"Safety C has 8 age entries (50-57), got {len(fsc)}")
+    check(fsc.get("50") == 2.0, f"Safety C factor at 50 = 2.0, got {fsc.get('50')}")
+    check(fsc.get("57") == 2.7, f"Safety C factor at 57 = 2.7, got {fsc.get('57')}")
+    # Cross-check: 25yr @ 55 = 62.50% (from official table)
+    check(abs(25 * fsc.get("55", 0) - 62.50) < 0.01, "Safety C: 25yrs × 2.5% at 55 = 62.50%")
+    # Increment consistency: 0.1 per year like Plan G
+    sc_ages = sorted([int(k) for k in fsc.keys()])
+    for i in range(1, len(sc_ages)):
+        prev = str(sc_ages[i-1])
+        curr = str(sc_ages[i])
+        diff = round(fsc[curr] - fsc[prev], 4)
+        check(abs(diff - 0.1) < 0.001,
+              f"Safety C factor increment age {prev}→{curr} = 0.1, got {diff}")
+
+    # -- Monotonicity for all factor tables --
+    print("Factor table monotonicity (all plans)...")
+    for pid in plans:
+        ft = get_factors(pid)
+        if not ft:
+            continue
+        ages_sorted = sorted([int(k) for k in ft.keys()])
+        for i in range(1, len(ages_sorted)):
+            prev = str(ages_sorted[i-1])
+            curr = str(ages_sorted[i])
+            check(ft[curr] > ft[prev],
+                  f"{pid} factor monotonic: age {curr} ({ft[curr]}) > age {prev} ({ft[prev]})")
+
+    # -- Cross-plan: Plan A 58-62 matches Plan B 55-59 (3yr offset in CERL curve) --
+    print("CERL curve cross-plan consistency...")
+    cerl_offset_checks = [
+        ("general_A", 58, "general_B", 55),
+        ("general_A", 59, "general_B", 56),
+        ("general_A", 60, "general_B", 57),
+        ("general_A", 61, "general_B", 58),
+        ("general_A", 62, "general_B", 59),
+    ]
+    for pa, age_a, pb, age_b in cerl_offset_checks:
+        va = get_factors(pa).get(str(age_a))
+        vb = get_factors(pb).get(str(age_b))
+        # These should differ due to being different formulas, but
+        # Session 57b discovered Plan B ages 58-65 = Plan A ages 55-62
+        pass  # cross-plan offset verified at research time
+
+    # Plan B@58-65 should equal Plan A@55-62 (confirmed session 57b)
+    for offset in range(8):
+        age_b = str(58 + offset)
+        age_a = str(55 + offset)
+        if age_b in fb and age_a in fa:
+            check(fb[age_b] == fa[age_a],
+                  f"CERL curve: Plan B@{age_b} ({fb[age_b]}) = Plan A@{age_a} ({fa[age_a]})")
+
+    # -- Safety factors > General factors at same ages (safety = higher risk premium) --
+    print("Safety vs general factor comparison...")
+    for age in ["50", "51", "52", "53", "54", "55"]:
+        if age in fsa and age in fb:
+            check(fsa[age] > fb[age],
+                  f"Safety A factor at {age} ({fsa[age]}) > General B ({fb[age]})")
+
+    # -- Version check updated for factor tables --
 
     # ── COLA CURRENT CHECKS ───────────────────────────────────────
     print("COLA current year checks...")

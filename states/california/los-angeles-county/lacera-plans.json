@@ -1,5 +1,5 @@
 {
-  "version": "2026.1",
+  "version": "2026.2",
   "effective_date": "2026-04-01",
   "description": "LACERA (Los Angeles County Employees Retirement Association) retirement plan data. Covers all 10 plans: General A/B/C/D/E/G and Safety A/B/C. Governed by the County Employees Retirement Law of 1937 (CERL) and PEPRA.",
   "source": "LACERA official plan books, basic provisions pages, COLA announcements, and actuarial reports",
@@ -19,11 +19,17 @@
     "name": "Los Angeles County Employees Retirement Association",
     "abbreviation": "LACERA",
     "established": 1938,
-    "governing_law": "County Employees Retirement Law of 1937 (CERL), California Government Code §31450-31899.10",
+    "governing_law": "County Employees Retirement Law of 1937 (CERL), California Government Code \u00a731450-31899.10",
     "plan_type": "defined_benefit",
     "irc_qualification": "401(a)",
-    "classifications": ["general", "safety"],
-    "participating_employers": ["Los Angeles County", "outside districts"],
+    "classifications": [
+      "general",
+      "safety"
+    ],
+    "participating_employers": [
+      "Los Angeles County",
+      "outside districts"
+    ],
     "membership_as_of_fy2024": {
       "total": 185000,
       "active": 105000,
@@ -109,6 +115,23 @@
         "applies_to_all_service": true,
         "effective_date_annual": "April 1",
         "star_cola_eligible": true
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, derived from 10-year row of LACERA Plan A official benefit table",
+        "_source": "https://www.lacera.gov/plan/general-abc/plan-book/calculating-your-retirement-allowance-2",
+        "50": 1.475,
+        "51": 1.567,
+        "52": 1.667,
+        "53": 1.741,
+        "54": 1.841,
+        "55": 1.948,
+        "56": 2.061,
+        "57": 2.182,
+        "58": 2.268,
+        "59": 2.354,
+        "60": 2.44,
+        "61": 2.526,
+        "62": 2.611
       }
     },
     "general_B": {
@@ -160,6 +183,26 @@
         "applies_to_all_service": true,
         "effective_date_annual": "April 1",
         "star_cola_eligible": true
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, derived from 10-year row of LACERA Plan B official benefit table",
+        "_source": "https://www.lacera.gov/plan/general-abc/plan-book/calculating-your-retirement-allowance-0",
+        "50": 1.242,
+        "51": 1.314,
+        "52": 1.391,
+        "53": 1.475,
+        "54": 1.566,
+        "55": 1.667,
+        "56": 1.741,
+        "57": 1.841,
+        "58": 1.948,
+        "59": 2.061,
+        "60": 2.182,
+        "61": 2.268,
+        "62": 2.354,
+        "63": 2.44,
+        "64": 2.526,
+        "65": 2.611
       }
     },
     "general_C": {
@@ -211,6 +254,26 @@
         "applies_to_all_service": true,
         "effective_date_annual": "April 1",
         "star_cola_eligible": true
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, same formula as Plan B per LACERA basic provisions",
+        "_source": "https://www.lacera.gov/plan/general-abc/plan-book/calculating-your-retirement-allowance-0",
+        "50": 1.242,
+        "51": 1.314,
+        "52": 1.391,
+        "53": 1.475,
+        "54": 1.566,
+        "55": 1.667,
+        "56": 1.741,
+        "57": 1.841,
+        "58": 1.948,
+        "59": 2.061,
+        "60": 2.182,
+        "61": 2.268,
+        "62": 2.354,
+        "63": 2.44,
+        "64": 2.526,
+        "65": 2.611
       }
     },
     "general_D": {
@@ -264,6 +327,26 @@
         "cola_note": "COLA increases apply only to service credit earned on and after June 4, 2002",
         "effective_date_annual": "April 1",
         "star_cola_eligible": true
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, same formula as Plan B per LACERA basic provisions",
+        "_source": "https://www.lacera.gov/plan/general-abc/plan-book/calculating-your-retirement-allowance-0",
+        "50": 1.242,
+        "51": 1.314,
+        "52": 1.391,
+        "53": 1.475,
+        "54": 1.566,
+        "55": 1.667,
+        "56": 1.741,
+        "57": 1.841,
+        "58": 1.948,
+        "59": 2.061,
+        "60": 2.182,
+        "61": 2.268,
+        "62": 2.354,
+        "63": 2.44,
+        "64": 2.526,
+        "65": 2.611
       }
     },
     "general_E": {
@@ -324,7 +407,22 @@
         "lacera_administered": false,
         "note": "County pays death benefits for active Plan E members who die in service"
       },
-      "county_life_insurance_active": 10000
+      "county_life_insurance_active": 10000,
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, derived from 10-year row of LACERA Plan E official benefit table; applies to first 35 years of service; years 36+ accrue at half rate; max benefit 80% FAC",
+        "_source": "https://www.lacera.gov/plan/general-e/plan-book/calculating-your-retirement-allowance",
+        "55": 0.75,
+        "56": 0.822,
+        "57": 0.902,
+        "58": 0.991,
+        "59": 1.091,
+        "60": 1.202,
+        "61": 1.326,
+        "62": 1.466,
+        "63": 1.623,
+        "64": 1.8,
+        "65": 2.0
+      }
     },
     "general_G": {
       "classification": "general",
@@ -347,9 +445,21 @@
       },
       "benefit_factor_table": {
         "_description": "Per-year-of-service factor by age at retirement, from LACERA Plan G official benefit table",
-        "52": 1.0, "53": 1.1, "54": 1.2, "55": 1.3, "56": 1.4,
-        "57": 1.5, "58": 1.6, "59": 1.7, "60": 1.8, "61": 1.9,
-        "62": 2.0, "63": 2.1, "64": 2.2, "65": 2.3, "66": 2.4,
+        "52": 1.0,
+        "53": 1.1,
+        "54": 1.2,
+        "55": 1.3,
+        "56": 1.4,
+        "57": 1.5,
+        "58": 1.6,
+        "59": 1.7,
+        "60": 1.8,
+        "61": 1.9,
+        "62": 2.0,
+        "63": 2.1,
+        "64": 2.2,
+        "65": 2.3,
+        "66": 2.4,
         "67": 2.5
       },
       "final_average_compensation": {
@@ -374,7 +484,7 @@
       "compensation_limit_2026": {
         "ss_covered": 159733,
         "non_ss_covered": 191679,
-        "authority": "PEPRA §7522.10"
+        "authority": "PEPRA \u00a77522.10"
       },
       "cola": {
         "max_pct": 2.0,
@@ -436,6 +546,25 @@
         "applies_to_all_service": true,
         "effective_date_annual": "April 1",
         "star_cola_eligible": true
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, derived from LACERA Safety Plans A/B official benefit table; ages 41-49 from 20-year row, ages 50-55 from 10-year row; Safety A and B share the same benefit formula",
+        "_source": "https://www.lacera.gov/plan/safety-ab/plan-book/calculating-your-retirement-allowance",
+        "41": 1.2515,
+        "42": 1.325,
+        "43": 1.401,
+        "44": 1.4795,
+        "45": 1.561,
+        "46": 1.645,
+        "47": 1.7355,
+        "48": 1.817,
+        "49": 1.9045,
+        "50": 2.0,
+        "51": 2.103,
+        "52": 2.216,
+        "53": 2.338,
+        "54": 2.473,
+        "55": 2.62
       }
     },
     "safety_B": {
@@ -487,6 +616,25 @@
         "applies_to_all_service": true,
         "effective_date_annual": "April 1",
         "star_cola_eligible": true
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, derived from LACERA Safety Plans A/B official benefit table; ages 41-49 from 20-year row, ages 50-55 from 10-year row; Safety A and B share the same benefit formula",
+        "_source": "https://www.lacera.gov/plan/safety-ab/plan-book/calculating-your-retirement-allowance",
+        "41": 1.2515,
+        "42": 1.325,
+        "43": 1.401,
+        "44": 1.4795,
+        "45": 1.561,
+        "46": 1.645,
+        "47": 1.7355,
+        "48": 1.817,
+        "49": 1.9045,
+        "50": 2.0,
+        "51": 2.103,
+        "52": 2.216,
+        "53": 2.338,
+        "54": 2.473,
+        "55": 2.62
       }
     },
     "safety_C": {
@@ -529,7 +677,7 @@
       "vesting_years": 5,
       "compensation_limit_2026": {
         "non_ss_covered": 191679,
-        "authority": "PEPRA §7522.10"
+        "authority": "PEPRA \u00a77522.10"
       },
       "cola": {
         "max_pct": 2.0,
@@ -544,6 +692,18 @@
       "healthcare_tier": {
         "default": "Tier 2",
         "exception": "Members with membership dates January 1, 2013 through June 30, 2014 have Tier 1 benefits"
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, from LACERA Safety Plan C official benefit table; PEPRA formula with clean 0.1% annual increments",
+        "_source": "https://www.lacera.gov/plan/safety-c/plan-book/calculating-your-retirement-allowance",
+        "50": 2.0,
+        "51": 2.1,
+        "52": 2.2,
+        "53": 2.3,
+        "54": 2.4,
+        "55": 2.5,
+        "56": 2.6,
+        "57": 2.7
       }
     }
   },
@@ -634,7 +794,7 @@
   "irc_limits": {
     "section_401a17_2026": 350000,
     "section_415b_2026": 280000,
-    "replacement_benefit_plan": "County-funded RB Plan pays the portion of the LACERA benefit that exceeds IRC §415(b) limits"
+    "replacement_benefit_plan": "County-funded RB Plan pays the portion of the LACERA benefit that exceeds IRC \u00a7415(b) limits"
   },
   "notes": [
     "LACERA is governed by the County Employees Retirement Law of 1937 (CERL) and is the largest county retirement system in the United States.",

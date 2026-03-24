@@ -45,6 +45,27 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### lacera-plans.json v2026.2
+
+**Date:** 2026-03-24
+
+**Session 58 — LACERA Benefit Factor Tables: Complete coverage for all 9 plans**
+
+Added `benefit_factor_table` to all 9 LACERA plans. Each table contains per-year-of-service factors by age at retirement, derived from 10-year rows of official LACERA Plan Book percentage tables and cross-verified against multiple service-year rows.
+
+- **General A:** 13 ages (50–62), factors 1.475–2.611%
+- **General B/C/D:** 16 ages (50–65), factors 1.242–2.611% (C and D share B's formula per LACERA basic provisions)
+- **General E:** 11 ages (55–65), factors 0.75–2.0% (noncontributory, lower factors; max benefit 80% FAC)
+- **General G:** Already present from v2026.1 — 16 ages (52–67), clean 0.1% increments (PEPRA)
+- **Safety A/B:** 15 ages (41–55), factors 1.2515–2.62% (A and B share same benefit formula; differ only in COLA cap)
+- **Safety C:** 8 ages (50–57), factors 2.0–2.7%, clean 0.1% increments (PEPRA)
+
+Cross-plan CERL curve consistency verified: Plan B ages 58–65 exactly match Plan A ages 55–62 (3-year offset). Safety factors confirmed higher than general factors at all overlapping ages.
+
+**CI:** Expanded `validate_lacera.py` from 532 to 768 checks (+236). Total: ~13,700 checks across 27 suites.
+
+**No schema changes. Non-breaking addition.**
+
 ### lacera-plans.json v2026.1
 
 **Date:** 2026-03-23
