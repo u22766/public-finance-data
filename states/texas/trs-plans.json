@@ -1,0 +1,296 @@
+{
+  "_comment": "Teacher Retirement System of Texas (TRS) — Defined Benefit Plan. Consumer-agnostic data only.",
+  "systemName": "Teacher Retirement System of Texas",
+  "systemAbbreviation": "TRS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "Texas",
+    "state": "TX",
+    "type": "statewide_educator_pension"
+  },
+  "administeredBy": "TRS — governed by a 9-member Board of Trustees appointed by the Governor with Senate approval",
+  "established": 1936,
+  "totalMembers": {
+    "approximate": 2000000,
+    "note": "~2 million total active members, retirees, and beneficiaries. Largest public pension fund in Texas; 6th largest in the nation by assets ($225B at end of FY2025).",
+    "source": "https://www.trs.texas.gov"
+  },
+  "coverage": {
+    "populations": [
+      "Public school employees (preK–12)",
+      "Higher education employees (universities, community colleges)",
+      "Other Texas public education employees"
+    ],
+    "minimumEmployment": "20 hours or more per week for 4.5 months or more in one school year",
+    "planYear": "September 1 through August 31"
+  },
+  "socialSecurity": {
+    "covered": false,
+    "note": "TRS members do not contribute to or receive Social Security from TRS-covered employment. Texas public educators are not covered under Social Security. The Social Security Fairness Act (H.R. 82, signed Jan 5 2025) eliminated WEP and GPO — may affect some members who have SS-covered employment outside TRS.",
+    "source": "https://www.trs.texas.gov/pension-benefits/know-benefits/understand-benefits"
+  },
+  "formula": {
+    "multiplier": 0.023,
+    "structure": "2.3% x Years of Service Credit x Final Average Salary",
+    "note": "Single multiplier applies to all tiers. Final Average Salary period (3 vs 5 years) varies by tier.",
+    "exampleCalculation": "30 years x $60,000 FAS x 2.3% = $41,400 annual / $3,450 monthly",
+    "authority": "Texas Government Code Chapter 824",
+    "source": "https://www.trs.texas.gov/learning-resources/faqs/estimates-and-benefit-calculator-faqs"
+  },
+  "vesting": {
+    "years": 5,
+    "schedule": "cliff",
+    "note": "5 years of service credit required for vested right to future annuity. Members who leave before vesting may withdraw accumulated contributions plus interest.",
+    "contributionInterestRate": 0.02,
+    "contributionInterestNote": "Contributions earn 2% interest per year (credited Aug 31). Rate was 5% for contributions made before Sept 1, 2014; reduced to 2% by the 83rd Legislature.",
+    "source": "https://www.trs.texas.gov/pension-benefits/know-benefits/understand-benefits/member-contributions"
+  },
+  "serviceCredit": {
+    "standardPerYear": 1.0,
+    "minimumDaysPerYear": 90,
+    "finalYearException": "In the final year before retirement, a member may earn a full year of credit by working the entire fall semester, even if fewer than 90 days.",
+    "planYearDates": "September 1 through August 31",
+    "source": "https://www.trs.texas.gov"
+  },
+  "tiers": {
+    "overview": "TRS has 6 membership tiers based on when a member first joined (or rejoined) the system, grandfathered status, and service credit as of August 31, 2014. All tiers use the same 2.3% benefit multiplier. Differences are in the Rule of 80 minimum age requirement, Final Average Salary period, and early-retirement reduction formula.",
+    "universalNormalRetirement": "Age 65 with 5+ years of service credit — applies to ALL tiers",
+    "tier_1": {
+      "tierName": "Tier 1",
+      "description": "Grandfathered members: Active TRS member on Aug 31, 2005 who was at least age 50, OR met the Rule of 70 (age + service = 70), OR had at least 25 years of service credit",
+      "membershipCriteria": "TRS member on or before Aug 31, 2005 meeting grandfathered criteria; must maintain continuous membership",
+      "finalAverageSalary": {
+        "years": 3,
+        "method": "highest_3_consecutive_annual_salaries"
+      },
+      "normalRetirement": [
+        {"rule": "age_65", "minimumAge": 65, "minimumService": 5, "ageMinimumForRule80": null},
+        {"rule": "rule_of_80", "minimumService": 5, "minimumAge": null, "note": "No minimum age requirement — any age plus service totaling 80"}
+      ],
+      "earlyRetirement": [
+        {"rule": "age_55_5yrs", "minimumAge": 55, "minimumService": 5, "condition": "does not meet Rule of 80"},
+        {"rule": "30yrs_any_age", "minimumService": 30, "minimumAge": null, "condition": "does not meet Rule of 80"}
+      ],
+      "earlyReductionNote": "Actuarial reduction per TRS Rule 29.12. Age 55–64 with 5–19 yrs: up to 53% reduction. Age 55–59 with 20–24 yrs: up to 10% reduction. 30+ yrs but not Rule of 80: 2% per year below age 50.",
+      "plsoEligibility": "Unreduced benefits required"
+    },
+    "tier_2": {
+      "tierName": "Tier 2",
+      "description": "Members who first joined or returned to TRS between Sept 1, 2005 and Aug 31, 2007 (not grandfathered, or grandfathered but returned in this window)",
+      "membershipCriteria": "First membership or return to membership Sept 1 2005 – Aug 31 2007",
+      "finalAverageSalary": {
+        "years": 5,
+        "method": "highest_5_annual_salaries"
+      },
+      "normalRetirement": [
+        {"rule": "age_65", "minimumAge": 65, "minimumService": 5, "ageMinimumForRule80": null},
+        {"rule": "rule_of_80", "minimumService": 5, "minimumAge": null, "note": "No minimum age — any age plus service totaling 80"}
+      ],
+      "earlyRetirement": [
+        {"rule": "age_55_5yrs", "minimumAge": 55, "minimumService": 5, "condition": "does not meet Rule of 80"},
+        {"rule": "30yrs_any_age", "minimumService": 30, "minimumAge": null, "condition": "does not meet Rule of 80"}
+      ],
+      "earlyReductionNote": "Actuarial reduction per TRS Rule 29.11. Age 55–64 with 5+ yrs but not Rule of 80: up to 53% reduction. 30+ yrs but not Rule of 80: 2% per year below age 50.",
+      "plsoEligibility": "Age plus service must total at least 90 and must meet standard or early-age retirement requirements"
+    },
+    "tier_3": {
+      "tierName": "Tier 3",
+      "description": "Members who first joined or returned to TRS on or after Sept 1, 2007, and had at least 5 years of service credit as of Aug 31, 2014, and maintained continuous membership",
+      "membershipCriteria": "First membership or return Sept 1 2007 or later; 5+ years of service by Aug 31 2014; continuous membership through retirement",
+      "finalAverageSalary": {
+        "years": 5,
+        "method": "highest_5_annual_salaries"
+      },
+      "normalRetirement": [
+        {"rule": "age_65", "minimumAge": 65, "minimumService": 5, "ageMinimumForRule80": null},
+        {"rule": "rule_of_80_age60", "minimumService": 5, "minimumAge": 60, "note": "Must be at least age 60 AND meet Rule of 80"}
+      ],
+      "earlyRetirement": [
+        {"rule": "age_55_5yrs", "minimumAge": 55, "minimumService": 5, "condition": "does not meet Rule of 80"},
+        {"rule": "30yrs_under_60", "minimumService": 30, "minimumAge": null, "condition": "does not meet Rule of 80 and is less than age 60"},
+        {"rule": "rule_of_80_under_60", "minimumAge": null, "minimumService": 5, "condition": "meets Rule of 80 but is less than age 60"}
+      ],
+      "earlyReductionNote": "5% reduction per year under age 60 for members who meet Rule of 80 but are under 60. Standard actuarial reductions per TRS rule tables for other early retirement.",
+      "plsoEligibility": "Age plus service must total at least 90"
+    },
+    "tier_4": {
+      "tierName": "Tier 4",
+      "description": "Grandfathered members who returned to TRS on or after Sept 1, 2007, had at least 5 years of service by Aug 31, 2014, and maintained continuous membership",
+      "membershipCriteria": "Grandfathered (met 2005 criteria) but returned after Aug 31 2007; 5+ years by Aug 31 2014; continuous membership",
+      "finalAverageSalary": {
+        "years": 3,
+        "method": "highest_3_consecutive_annual_salaries"
+      },
+      "normalRetirement": [
+        {"rule": "age_65", "minimumAge": 65, "minimumService": 5, "ageMinimumForRule80": null},
+        {"rule": "rule_of_80_age60", "minimumService": 5, "minimumAge": 60, "note": "Must be at least age 60 AND meet Rule of 80"},
+        {"rule": "rule_of_80_age55_20yrs", "minimumAge": 55, "minimumService": 20, "note": "Age 55+ with 20+ yrs and Rule of 80 — unreduced (grandfathered special provision)"}
+      ],
+      "earlyRetirement": [
+        {"rule": "age_55_5yrs", "minimumAge": 55, "minimumService": 5, "condition": "does not meet Rule of 80"},
+        {"rule": "30yrs_under_60", "minimumService": 30, "minimumAge": null, "condition": "does not meet Rule of 80 and is less than age 60"}
+      ],
+      "earlyReductionNote": "5% reduction per year under age 60 for certain scenarios. Standard actuarial tables for others.",
+      "plsoEligibility": "Unreduced benefits required"
+    },
+    "tier_5": {
+      "tierName": "Tier 5",
+      "description": "Members who first joined TRS on or after Sept 1, 2014, OR had less than 5 years of service credit as of Aug 31, 2014, OR had 5+ years by Aug 31 2014 but terminated and resumed membership after Aug 31 2014",
+      "membershipCriteria": "Any of: (1) first membership on/after Sept 1 2014; (2) <5 years service by Aug 31 2014; (3) had 5+ years by Aug 31 2014 but withdrew and resumed after Aug 31 2014",
+      "finalAverageSalary": {
+        "years": 5,
+        "method": "highest_5_annual_salaries"
+      },
+      "normalRetirement": [
+        {"rule": "age_65", "minimumAge": 65, "minimumService": 5, "ageMinimumForRule80": null},
+        {"rule": "rule_of_80_age62", "minimumService": 5, "minimumAge": 62, "note": "Must be at least age 62 AND meet Rule of 80"}
+      ],
+      "earlyRetirement": [
+        {"rule": "age_55_5yrs", "minimumAge": 55, "minimumService": 5, "condition": "does not meet Rule of 80"},
+        {"rule": "30yrs_under_62", "minimumService": 30, "minimumAge": null, "condition": "does not meet Rule of 80 and is less than age 62"},
+        {"rule": "rule_of_80_under_62", "minimumAge": null, "minimumService": 5, "condition": "meets Rule of 80 but is less than age 62"}
+      ],
+      "earlyReductionNote": "5% reduction per year under age 62 for members who meet Rule of 80 but are under 62, or who have 30+ years but don't meet Rule of 80.",
+      "plsoEligibility": "Age plus service must total at least 90"
+    },
+    "tier_6": {
+      "tierName": "Tier 6",
+      "description": "Grandfathered members who had 5+ years of service by Aug 31, 2014, but terminated membership by withdrawing contributions and resumed membership after Aug 31, 2014",
+      "membershipCriteria": "Grandfathered (met 2005 criteria); had 5+ years by Aug 31 2014; withdrew contributions and resumed TRS membership after Aug 31 2014",
+      "finalAverageSalary": {
+        "years": 3,
+        "method": "highest_3_consecutive_annual_salaries"
+      },
+      "normalRetirement": [
+        {"rule": "age_65", "minimumAge": 65, "minimumService": 5, "ageMinimumForRule80": null},
+        {"rule": "rule_of_80_age62", "minimumService": 5, "minimumAge": 62, "note": "Must be at least age 62 AND meet Rule of 80"},
+        {"rule": "rule_of_80_age55_20yrs", "minimumAge": 55, "minimumService": 20, "note": "Age 55–61 with 20+ years and Rule of 80 — special grandfathered provision"}
+      ],
+      "earlyRetirement": [
+        {"rule": "age_55_5yrs", "minimumAge": 55, "minimumService": 5, "condition": "does not meet Rule of 80"},
+        {"rule": "30yrs_under_62", "minimumService": 30, "minimumAge": null, "condition": "does not meet Rule of 80 and is less than age 62"}
+      ],
+      "earlyReductionNote": "5% reduction per year under age 62 for certain scenarios. Standard actuarial tables for others.",
+      "plsoEligibility": "Unreduced benefits required"
+    }
+  },
+  "contributions": {
+    "member": {
+      "rate_fy2026": 0.0825,
+      "note": "8.25% of eligible earnings, pre-tax. Rate set by Texas Legislature. Applies FY2026 (Sept 1 2025 – Aug 31 2026). Both member and employer contribute same rate.",
+      "source": "https://www.trs.texas.gov/pension-benefits/know-benefits/understand-benefits/member-contributions"
+    },
+    "employer": {
+      "rate_fy2026": 0.0825,
+      "note": "8.25% of eligible earnings. School districts also contribute 2.0% of salary on amounts above the state minimum salary (2024 onward), and on federal fund salary and first 90 days of new member employment.",
+      "schoolDistrictSurcharge_pct": 0.02,
+      "source": "https://www.tcta.org/professional-resources/publications/survival-guide/trs-survival-guide"
+    },
+    "trsCareFund": {
+      "memberRate": 0.0065,
+      "stateRate": 0.0125,
+      "schoolDistrictRate": 0.0075,
+      "note": "Separate TRS-Care (retiree health insurance) fund contributions — not part of pension trust fund.",
+      "source": "https://www.tcta.org/professional-resources/publications/survival-guide/trs-survival-guide"
+    },
+    "authority": "Texas Government Code 825.402; Texas Constitution Article 16, Section 67"
+  },
+  "cola": {
+    "type": "ad_hoc_legislative",
+    "automatic": false,
+    "note": "TRS does not provide automatic COLAs. COLAs require Texas Legislature authorization and constitutional voter approval when affecting trust fund solvency. COLAs are limited by Government Code 821.006 which prohibits benefit improvements that would extend the amortization period beyond 31 years.",
+    "recentCOLAs": [
+      {
+        "year": 2024,
+        "type": "permanent_cola",
+        "rate": "2% to 6% depending on length of retirement",
+        "authority": "SB 10 / HJR 2 (88th Legislature, 2023) — required voter approval Nov 2023",
+        "eligibility": "400,000+ eligible annuitants; tiered by how long retired",
+        "note": "Voter-approved constitutional amendment. First permanent COLA since 2001."
+      },
+      {
+        "year": 2024,
+        "type": "one_time_stipend",
+        "description": "One-time stipend based on retiree age",
+        "authority": "SB 10 (88th Legislature, 2023)",
+        "eligibility": "285,000+ stipends issued; some retirees ineligible"
+      },
+      {
+        "year": 2022,
+        "type": "one_time_cola",
+        "rate": 0.04,
+        "description": "4% one-time COLA",
+        "authority": "87th Texas Legislature"
+      },
+      {
+        "year": 2013,
+        "type": "one_time_cola",
+        "rate": 0.03,
+        "capPerMonth": 100,
+        "description": "3% COLA capped at $100/month for retirees before Aug 31 2004",
+        "authority": "SB 1458, 83rd Legislature"
+      }
+    ],
+    "legislativeConstraint": "Texas Government Code 821.006 — benefit improvements prohibited if they would increase amortization period beyond 31 years, or if period already exceeds 31 years",
+    "source": "https://en.wikipedia.org/wiki/Teacher_Retirement_System_of_Texas; https://www.trs.texas.gov"
+  },
+  "partialLumpSumOption": {
+    "available": true,
+    "description": "Member may elect to receive a lump sum at retirement in exchange for a reduced ongoing monthly annuity. Lump sum is 12, 24, or 36 months of the standard annuity amount.",
+    "eligibilityByTier": {
+      "tier_1": "Must be eligible for unreduced benefits",
+      "tier_2": "Age plus service must total at least 90; must meet standard or early-age retirement",
+      "tier_3": "Age plus service must total at least 90",
+      "tier_4": "Must be eligible for unreduced benefits",
+      "tier_5": "Age plus service must total at least 90",
+      "tier_6": "Must be eligible for unreduced benefits"
+    },
+    "source": "https://www.tcta.org/professional-resources/publications/survival-guide/trs-survival-guide"
+  },
+  "disabilityRetirement": {
+    "available": true,
+    "conditions": "Mentally or physically disabled from performing the job; disability is probably permanent; no minimum age",
+    "with10YearsService": {
+      "benefit": "Unreduced annuity calculated using standard retirement formula",
+      "minimum": "$150 per month"
+    },
+    "under10YearsService": {
+      "benefit": "$150 per month for the number of months worked in TRS-covered employment"
+    },
+    "source": "https://www.tcta.org/professional-resources/publications/survival-guide/trs-survival-guide"
+  },
+  "trsCareBenefits": {
+    "name": "TRS-Care",
+    "description": "Group retiree health benefits program administered separately from the pension. Subject to legislative funding and may change.",
+    "eligibility": {
+      "minimumService": 10,
+      "additionalRequirement": "Must meet Rule of 80 OR have 30+ years of service credit",
+      "exclusions": "Not eligible if entitled to health coverage through ERS, UT System, or Texas A&M System"
+    },
+    "medicareNote": "Effective January 1, 2026, all TRS-Care participants eligible for Medicare must enroll in and pay for Medicare Part B to remain in any TRS-Care health plan.",
+    "source": "https://www.trs.texas.gov"
+  },
+  "fundingStatus": {
+    "trustFundAssets_fy2025": 225000000000,
+    "investmentReturn_fy2024": 0.127,
+    "investmentReturnBenchmark": 0.07,
+    "note": "Trust fund market value $225B at end of FY2025. 12.7% return in FY2024, exceeding the 7% benchmark. Fund is actuarially sound.",
+    "source": "https://en.wikipedia.org/wiki/Teacher_Retirement_System_of_Texas; Texas AFT Sept 2024"
+  },
+  "sources": [
+    "https://www.trs.texas.gov/pension-benefits/know-benefits/understand-benefits/membership-tiers",
+    "https://www.trs.texas.gov/pension-benefits/active-member-resources/plan-retirement/retirement-eligibility-requirements",
+    "https://www.trs.texas.gov/pension-benefits/know-benefits/understand-benefits/member-contributions",
+    "https://www.trs.texas.gov/learning-resources/faqs/estimates-and-benefit-calculator-faqs",
+    "https://www.tcta.org/professional-resources/publications/survival-guide/trs-survival-guide",
+    "https://legalclarity.org/how-does-texas-teacher-retirement-work-trs-explained/"
+  ],
+  "researchGaps": [
+    "Full actuarial early-retirement reduction tables by tier (TRS Rules 29.11, 29.12 — available at trs.texas.gov)",
+    "Exact tier-by-tier PLSO monthly benefit reduction amounts",
+    "Proportionate Retirement Program details (service credit combining with ERS and other TX systems)",
+    "TRS-ActiveCare (active employee health) details — separate from pension"
+  ]
+}

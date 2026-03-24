@@ -1,0 +1,230 @@
+{
+  "_comment": "State Teachers Retirement System of Ohio (STRS Ohio) — Defined Benefit Plan. Consumer-agnostic data only.",
+  "systemName": "State Teachers Retirement System of Ohio",
+  "systemAbbreviation": "STRS Ohio",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "Ohio",
+    "state": "OH",
+    "type": "statewide_educator_pension"
+  },
+  "administeredBy": "STRS Ohio — governed by the 11-member State Teachers Retirement Board",
+  "boardComposition": "5 elected contributing teacher members, 2 elected retired teacher members, 3 appointed investment experts (by Governor, House Speaker/Senate President jointly, and Treasurer of State), 1 Director of Department of Education and Workforce",
+  "established": 1920,
+  "totalMembers": {
+    "approximate": 543000,
+    "note": "~543,000 total active, inactive, and benefit recipients as of FY2024. Largest public retirement system in Ohio. First statewide actuarially-based teacher retirement system in the United States.",
+    "source": "https://www.strsoh.org/about/strs-ohio-at-a-glance.html"
+  },
+  "coverage": {
+    "populations": [
+      "Ohio public school teachers and administrators (preK–12)",
+      "Public community college instructors",
+      "Certain university faculty",
+      "Employees of county boards of developmental disabilities",
+      "Community and charter school educators covered by statute"
+    ],
+    "employers": "1,139 school districts, vocational schools, colleges and universities, and other covered entities",
+    "planChoice": "New members have 180 days from first day of paid service to choose from three plans (DB, DC, Combined). Default enrollment is DB Plan if no election made within 180 days."
+  },
+  "socialSecurity": {
+    "covered": false,
+    "note": "Ohio public educators do not contribute to or receive Social Security from STRS Ohio-covered employment. Ohio is a non-SS state for public educators. The Social Security Fairness Act (H.R. 82, Jan 2025) eliminated WEP and GPO for SS benefits payable after Dec 2023.",
+    "source": "https://www.strsoh.org"
+  },
+  "plans": {
+    "overview": "STRS Ohio offers three plan choices: Defined Benefit (DB), Defined Contribution (DC), and Combined. This file models the DB Plan. DC and Combined Plans are scoped but not fully modeled.",
+    "definedBenefit": {
+      "planName": "STRS Ohio Defined Benefit Plan",
+      "planType": "defined_benefit",
+      "status": "OPEN — default enrollment",
+      "formula": {
+        "multiplier": 0.022,
+        "structure": "2.2% x Years of Service Credit x Final Average Salary",
+        "finalAverageSalary": {
+          "years": 5,
+          "method": "highest_5_years_Ohio_public_earnings",
+          "note": "Average of the member's five highest years of Ohio public earnings. If contributions were made for fewer years than the FAS period, total compensation is divided by total years of service credit."
+        },
+        "exampleCalculation": "30 years x $70,000 FAS x 2.2% = $46,200 annual / $3,850 monthly",
+        "authority": "Ohio Revised Code Chapter 3307",
+        "source": "https://www.strsoh.org/_pdfs/20-101.pdf"
+      },
+      "retirementEligibility": {
+        "overview": "Eligibility requirements vary by retirement window due to the Sustainable Benefit Plan (SBP) framework. Requirements change in 2030 and 2032 as the system phases toward its long-term standard.",
+        "windows": [
+          {
+            "window": "june_2025_to_may_2030",
+            "effectiveRetirementDates": "June 1, 2025 through May 1, 2030",
+            "unreduced": [
+              {"rule": "32_years_any_age", "service": 32, "age": null, "note": "32 years of service at any age"},
+              {"rule": "age_60_5_years", "service": 5, "age": 60},
+              {"rule": "age_65_5_years", "service": 5, "age": 65}
+            ],
+            "reduced": [
+              {"rule": "27_years_any_age", "service": 27, "age": null, "note": "Reduced benefit at 27 years at any age"},
+              {"rule": "age_55_25_years", "service": 25, "age": 55},
+              {"rule": "age_60_5_years", "service": 5, "age": 60, "note": "Eligible at age 60 with 5 years even if unreduced standard not met"}
+            ]
+          },
+          {
+            "window": "june_2030_to_may_2032",
+            "effectiveRetirementDates": "June 1, 2030 through May 1, 2032",
+            "unreduced": [
+              {"rule": "33_years_any_age", "service": 33, "age": null},
+              {"rule": "age_60_5_years", "service": 5, "age": 60},
+              {"rule": "age_65_5_years", "service": 5, "age": 65}
+            ],
+            "reduced": [
+              {"rule": "28_years_any_age", "service": 28, "age": null},
+              {"rule": "age_55_25_years", "service": 25, "age": 55},
+              {"rule": "age_60_5_years", "service": 5, "age": 60}
+            ]
+          },
+          {
+            "window": "june_2032_and_after",
+            "effectiveRetirementDates": "June 1, 2032 and later (long-term standard)",
+            "unreduced": [
+              {"rule": "34_years_any_age", "service": 34, "age": null},
+              {"rule": "age_60_5_years", "service": 5, "age": 60},
+              {"rule": "age_65_5_years", "service": 5, "age": 65}
+            ],
+            "reduced": [
+              {"rule": "29_years_any_age", "service": 29, "age": null},
+              {"rule": "age_55_25_years", "service": 25, "age": 55},
+              {"rule": "age_60_5_years", "service": 5, "age": 60}
+            ],
+            "note": "Long-term standard established by SBP framework. Board goal is to make 32-year unreduced the permanent standard, subject to actuarial approval."
+          }
+        ],
+        "source": "https://www.strsoh.org/newsroom/2025/april-board-news.html; https://www.strsoh.org/news/employer-rate-increase-initiative.html"
+      },
+      "vesting": {
+        "years": 5,
+        "schedule": "cliff",
+        "qualifyingServiceNote": "5 years of qualifying service credit includes: earned credit with STRS Ohio, OPERS, or SERS; restored withdrawn credit from those systems; interrupted Ohio public service due to military service; and credit transferred from OP&F, HPRS, or Cincinnati Retirement System.",
+        "source": "https://www.strsoh.org/_pdfs/20-101.pdf"
+      },
+      "contributions": {
+        "member": {
+          "rate": 0.14,
+          "note": "14% of annual salary. Rate set by Ohio Legislature. Has increased 9 times in 40 years, from 8.7% to 14%.",
+          "source": "https://www.strsoh.org/about/strs-ohio-at-a-glance.html"
+        },
+        "employer": {
+          "rate": 0.14,
+          "note": "14% of total teacher payroll to Employers' Trust Fund. Ohio employer rate is second-lowest among non-SS teacher pension states (median ~19.6%).",
+          "source": "https://www.strsoh.org/news/how-does-strs-ohios-employer-contribution-rate-compare-with-the-rate-in-other-states.html"
+        }
+      },
+      "cola": {
+        "type": "board_approved_annual",
+        "automatic": false,
+        "framework": "Sustainable Benefit Plan (SBP)",
+        "frameworkDescription": "Annual process under which the State Teachers Retirement Board and its actuaries evaluate potential benefit changes. COLAs may be granted if the change does not materially impair fiscal integrity of the system per Ohio law.",
+        "eligibility": {
+          "minimumWait": "5 years from retirement date (fifth anniversary)",
+          "note": "New benefit recipients first eligible for COLA on the 5th anniversary of their retirement date."
+        },
+        "method": "simple",
+        "note": "COLAs are simple (non-compounding) — calculated on the base benefit and added to the regular monthly check permanently.",
+        "recentCOLAs": [
+          {
+            "fiscalYear": 2027,
+            "rate": 0.016,
+            "description": "1.6% permanent COLA approved March 2026",
+            "eligibility": "Retirees who started benefits on June 1, 2022 or earlier",
+            "effectiveDate": "July 1, 2026 (on retirement date anniversary)",
+            "authority": "State Teachers Retirement Board, March 2026 board meeting",
+            "source": "https://www.strsoh.org/newsroom/2026/march-board-news.html"
+          },
+          {
+            "fiscalYear": 2026,
+            "rate": 0.015,
+            "description": "1.5% permanent COLA approved April 2025",
+            "eligibility": "Retirees who started benefits on June 1, 2021 or earlier",
+            "effectiveDate": "July 1, 2025 (on retirement date anniversary)",
+            "authority": "State Teachers Retirement Board, April 2025 board meeting",
+            "source": "https://www.strsoh.org/newsroom/2025/eligible-benefit-recipients-to-receive-cost-of-living-increase-in-fiscal-year-2026.html"
+          },
+          {
+            "fiscalYear": 2024,
+            "rate": 0.01,
+            "description": "1% permanent COLA",
+            "authority": "State Teachers Retirement Board"
+          },
+          {
+            "fiscalYear": 2023,
+            "rate": 0.03,
+            "description": "3% permanent COLA following 2022 board reforms",
+            "authority": "State Teachers Retirement Board, FY2023"
+          }
+        ],
+        "boardGoal": "The board's goal is to establish a permanent 1% annual COLA as part of the benefit structure, subject to the SBP framework and actuarial soundness.",
+        "legislativeWatch": "SB 69 (Sen. Romanchuk) — placeholder pension legislation pending in Ohio Senate. Action expected late summer/fall 2026 after state budget passage.",
+        "authority": "Ohio Revised Code 3307.67; Sustainable Benefit Plan framework",
+        "source": "https://www.strsoh.org/faq/cola.html"
+      },
+      "plop": {
+        "name": "Partial Lump Sum Option Payment",
+        "available": true,
+        "description": "Members may elect to receive a lump sum of 6, 12, 18, 24, 30, or 36 months of benefit at retirement in exchange for a reduced ongoing monthly benefit.",
+        "eligibility": "Must meet unreduced retirement requirements",
+        "source": "https://www.strsoh.org/_pdfs/20-101.pdf"
+      },
+      "disabilityBenefits": {
+        "available": true,
+        "programs": ["Disability retirement", "Disability allowance"],
+        "note": "Two separate disability programs under the DB Plan. Details in STRS Ohio Plan Summary.",
+        "source": "https://www.strsoh.org/_pdfs/20-101.pdf"
+      },
+      "healthCareCoverage": {
+        "available": true,
+        "note": "Optional health care coverage available to eligible benefit recipients and their eligible dependents. Eligibility requires 20+ years of service for full coverage options. Subject to change based on board decisions.",
+        "source": "https://www.strsoh.org"
+      }
+    },
+    "definedContribution": {
+      "planName": "STRS Ohio Defined Contribution Plan",
+      "planType": "defined_contribution",
+      "memberContribution": 0.14,
+      "employerContribution": 0.1109,
+      "totalContribution": 0.2509,
+      "vestingSchedule": "20% per year employer contributions; fully vested after 5 years. Member contributions immediately vested.",
+      "note": "DC Plan is portable. No disability, survivor benefits, or health care coverage through STRS Ohio under this plan. Member directs investments among 17 choices.",
+      "source": "https://www.strsoh.org/actives/new-members/higher-ed/dc-plan.html"
+    },
+    "combinedPlan": {
+      "planName": "STRS Ohio Combined Plan",
+      "planType": "combined_db_dc",
+      "dbFormula": "1.0% x years of service x FAS",
+      "memberContribution": 0.14,
+      "dbPortionOfMemberContrib": 0.02,
+      "employerContribution": 0.14,
+      "note": "Hybrid: 2% of the member's 14% contribution and all 14% employer contribution fund the DB portion. The remaining 12% of member contribution goes to a DC account. Provides survivor and disability benefits and health care coverage eligibility. DB formula is 1% (not 2.2%).",
+      "source": "https://www.strsoh.org/_pdfs/20-101.pdf"
+    }
+  },
+  "fundingStatus": {
+    "note": "STRS Ohio has undergone significant governance and benefit reform since 2022. Investment return for 10-year period ended June 30, 2024 was 8.1% (5th highest among 80+ public pension funds tracked by Pensions & Investments).",
+    "investmentReturn_10yr_thru_2024": 0.081,
+    "source": "https://www.strsoh.org/news/employer-rate-increase-initiative.html"
+  },
+  "sources": [
+    "https://www.strsoh.org/about/strs-ohio-at-a-glance.html",
+    "https://www.strsoh.org/_pdfs/20-101.pdf",
+    "https://www.strsoh.org/newsroom/2025/april-board-news.html",
+    "https://www.strsoh.org/newsroom/2026/march-board-news.html",
+    "https://www.strsoh.org/faq/cola.html",
+    "https://www.strsoh.org/news/employer-rate-increase-initiative.html"
+  ],
+  "researchGaps": [
+    "Combined Plan DB portion — full eligibility rules and survivor/disability details",
+    "Health care coverage eligibility tiers and premium details",
+    "Exact actuarial reduction factors for reduced early retirement",
+    "PLOP reduction table by lump sum months selected",
+    "Final SB 69 outcome — pending Ohio Senate action"
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "_comment": "Florida Retirement System (FRS) Pension Plan — Defined Benefit Plan. Consumer-agnostic data only.",
+  "systemName": "Florida Retirement System Pension Plan",
+  "systemAbbreviation": "FRS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "Florida",
+    "state": "FL",
+    "type": "statewide_public_employee_pension"
+  },
+  "administeredBy": "Florida Division of Retirement (Department of Management Services). Investments managed by State Board of Administration (SBA).",
+  "established": 1970,
+  "totalMembers": {
+    "approximate": 1100000,
+    "note": "~1.1 million total active members and benefit recipients. FRS is the largest public pension fund in Florida.",
+    "trustFundAssets_2024": 191500000000,
+    "source": "https://frs.fl.gov"
+  },
+  "coverage": {
+    "populations": [
+      "State government employees",
+      "County government employees (participating counties)",
+      "Public school teachers and administrators",
+      "Public university and community college employees",
+      "Special Risk employees (law enforcement, firefighters, corrections)",
+      "Senior management service employees",
+      "Elected officers"
+    ],
+    "planChoice": "New FRS members must choose between the FRS Pension Plan (defined benefit) and the FRS Investment Plan (defined contribution) within their election window. The Investment Plan is the default if no election is made within the window.",
+    "authority": "Chapter 121, Florida Statutes"
+  },
+  "socialSecurity": {
+    "covered": true,
+    "note": "FRS members participate in Social Security. Florida public employees pay into SS. Social Security Fairness Act (Jan 2025) eliminated WEP and GPO — not directly applicable since most FRS members already received full SS benefits.",
+    "source": "https://frs.fl.gov"
+  },
+  "tiers": {
+    "overview": "FRS Pension Plan members are divided into two tiers based on enrollment date: Tier 1 (enrolled before July 1, 2011) and Tier 2 (enrolled on or after July 1, 2011). The tiers differ in normal retirement age, vesting requirements, AFC period, and COLA eligibility.",
+    "tier_1": {
+      "tierName": "Tier 1",
+      "enrollmentCutoff": "Enrolled in FRS prior to July 1, 2011",
+      "vesting": {
+        "years": 6,
+        "schedule": "cliff",
+        "note": "6 years of creditable service for vested benefit right"
+      },
+      "averageFinalCompensation": {
+        "years": 5,
+        "method": "highest_5_consecutive_fiscal_years",
+        "note": "Average of member's highest 5 consecutive fiscal years of salary"
+      },
+      "normalRetirement": {
+        "regularClass": {
+          "ageWithVesting": 62,
+          "serviceAnyAge": 30,
+          "note": "Age 62 and vested, OR 30 years of creditable service regardless of age (before age 62)"
+        },
+        "specialRiskClass": {
+          "ageWithVesting": 55,
+          "specialCombination": {"age": 52, "specialRiskService": 25, "note": "Age 52 with 25 years of Special Risk service (including up to 4 years purchased wartime military)"},
+          "note": "Age 55 and vested, OR age 52 with 25 years of Special Risk service. Effective July 1, 2023: age 55 if vested or 25 years of service."
+        },
+        "seniorManagementClass": {
+          "ageWithVesting": 62,
+          "serviceAnyAge": 30
+        },
+        "electedOfficersClass": {
+          "ageWithVesting": 62,
+          "serviceAnyAge": 30
+        }
+      },
+      "cola": {
+        "available": true,
+        "type": "compounding_3pct_prorated",
+        "maxRate": 0.03,
+        "note": "3% compounding COLA annually each July, applicable only to FRS service earned prior to July 1, 2011. COLA is prorated for mixed-service careers: (pre-2011 service / total service at retirement) x 3%.",
+        "effectiveMonth": "July each year",
+        "example": "Member with 15 pre-2011 years and 30 total years receives: (15/30) x 3% = 1.5% annual COLA",
+        "source": "https://myfrs.com/FRSPro_Pension.htm"
+      }
+    },
+    "tier_2": {
+      "tierName": "Tier 2",
+      "enrollmentCutoff": "Enrolled in FRS on or after July 1, 2011",
+      "vesting": {
+        "years": 8,
+        "schedule": "cliff",
+        "note": "8 years of creditable service for vested benefit right"
+      },
+      "averageFinalCompensation": {
+        "years": 8,
+        "method": "highest_8_fiscal_years",
+        "note": "Average of member's highest 8 fiscal years of salary (not required to be consecutive)"
+      },
+      "normalRetirement": {
+        "regularClass": {
+          "ageWithVesting": 65,
+          "serviceAnyAge": 33,
+          "note": "Age 65 and vested, OR 33 years of creditable service regardless of age (before age 65)"
+        },
+        "specialRiskClass": {
+          "ageWithVesting": 55,
+          "specialCombination": {"age": 52, "specialRiskService": 25},
+          "note": "Age 55 and vested, OR age 52 with 25 years of Special Risk service. Same as Tier 1 Special Risk."
+        },
+        "seniorManagementClass": {
+          "ageWithVesting": 65,
+          "serviceAnyAge": 33
+        },
+        "electedOfficersClass": {
+          "ageWithVesting": 65,
+          "serviceAnyAge": 33
+        }
+      },
+      "cola": {
+        "available": false,
+        "note": "Tier 2 members enrolled on or after July 1, 2011 have NO cost-of-living adjustment. Benefits are fixed at retirement with no automatic annual increases."
+      }
+    }
+  },
+  "benefitFormula": {
+    "structure": "Years of Service x Membership Class Multiplier x Average Final Compensation",
+    "membershipClasses": {
+      "regular": {
+        "className": "Regular Class",
+        "description": "State and county employees, teachers, university/college staff, and most other public employees",
+        "multiplier": 0.016,
+        "note": "1.6% per year of service"
+      },
+      "special_risk": {
+        "className": "Special Risk Class",
+        "description": "Law enforcement officers, firefighters, correctional officers, and certain other public safety personnel",
+        "multiplier": 0.03,
+        "note": "3.0% per year of service — reflects demanding nature of public safety roles"
+      },
+      "special_risk_admin": {
+        "className": "Special Risk Administrative Support Class",
+        "description": "Administrative support staff who previously held Special Risk positions",
+        "multiplier": 0.016,
+        "note": "1.6% — same as Regular Class"
+      },
+      "senior_management": {
+        "className": "Senior Management Service Class",
+        "description": "Appointed senior managers and certain high-level state employees",
+        "multiplier": 0.02,
+        "note": "2.0% per year of service"
+      },
+      "elected_officers": {
+        "className": "Elected Officers' Class",
+        "description": "Statewide elected officials, legislators, justices, and certain judges",
+        "multiplier_justices_judges": 0.034,
+        "multiplier_other": 0.03,
+        "note": "3.0% to 3.4% depending on office. Highest multiplier class."
+      }
+    },
+    "exampleCalculation": "Regular Class: 30 years x 1.6% x $50,000 AFC = $24,000/year. Special Risk: 25 years x 3.0% x $80,000 AFC = $60,000/year.",
+    "earlyRetirement": {
+      "reduction": "5% per year for each year under normal retirement age",
+      "note": "Members who retire before reaching normal retirement date receive a 5% reduction in benefits for each year below normal retirement age. Reduction is permanent."
+    },
+    "source": "https://frs.fl.gov/forms/spd-pp.pdf; https://myfrs.com/FRSPro_Pension.htm"
+  },
+  "contributions": {
+    "member": {
+      "rate": 0.03,
+      "note": "3% of gross salary for all FRS members (both Pension Plan and Investment Plan), effective July 1, 2011. Members do not contribute while in DROP.",
+      "source": "https://frs.fl.gov/forms/plancomparison.pdf"
+    },
+    "employer": {
+      "note": "Employers make uniform contributions by membership class supporting both Pension Plan and Investment Plan. Rates include pension contribution, 2.00% HIS contribution, 0.06% administrative assessment, and unfunded actuarial liability (UAL) contribution. Rates are set by the Florida Legislature and vary by membership class.",
+      "rateStructure": "Uniform blended rates — employer pays same rate regardless of which plan (Pension or Investment) the employee chose",
+      "source": "https://frs.fl.gov/forms/ir25-239.pdf"
+    }
+  },
+  "drop": {
+    "name": "Deferred Retirement Option Program",
+    "available": true,
+    "description": "Members who have reached normal retirement may enter DROP, locking in their monthly benefit while continuing to work. The accrued benefit is deposited monthly into a DROP account earning interest rather than being paid out.",
+    "maximumParticipation": {
+      "generalMembers": "96 calendar months (8 years)",
+      "k12InstructionalPersonnel": "120 calendar months (10 years)",
+      "effectiveDate": "July 1, 2023 — increased from 60 months to 96 months for all classes; K-12 extended to 120 months",
+      "note": "Effective July 1, 2023, DROP also eliminated the restrictive entry window — eligible members may enter at any age once retirement eligibility is met."
+    },
+    "dropInterestRate": 0.04,
+    "dropInterestRateNote": "4% annual interest credited to DROP account. Increased from 1.3% effective July 1, 2023.",
+    "memberContributions": "Members do not contribute 3% while in DROP",
+    "authority": "Chapter 121.091, Florida Statutes",
+    "source": "https://hr.fsu.edu/article/legislative-updates-florida-retirement-system"
+  },
+  "his": {
+    "name": "Health Insurance Subsidy",
+    "available": true,
+    "description": "Monthly supplemental payment to help FRS retirees pay health insurance premiums. Separate from pension benefit.",
+    "formula": "$7.50 per year of service at retirement, up to a maximum of 30 years of service",
+    "maximum": 225,
+    "maximumNote": "$7.50 x 30 years = $225/month maximum",
+    "minimumServiceTier1": 6,
+    "minimumServiceTier2": 8,
+    "eligibility": "Must have minimum vesting service AND have health insurance coverage (Medicare and TRICARE accepted)",
+    "note": "Member must apply for HIS separately from retirement application.",
+    "fundingRate": 0.02,
+    "fundingNote": "2.00% of total payroll employer contribution dedicated to HIS fund",
+    "source": "https://myfrs.com/FRSPro_Pension.htm"
+  },
+  "investmentPlan": {
+    "name": "FRS Investment Plan",
+    "planType": "defined_contribution",
+    "description": "Alternative to Pension Plan. DC-style, member directs investments. Vests after 1 year. Portable — full account value available upon separation.",
+    "memberContribution": 0.03,
+    "employerContribution_regularClass": 0.063,
+    "totalContribution_regularClass": 0.093,
+    "vestingYears": 1,
+    "note": "Investment Plan is out of scope for DB modeling but included for context. DB modeling focuses on Pension Plan only.",
+    "source": "https://myfrs.com"
+  },
+  "annuityOptions": {
+    "available": true,
+    "options": [
+      "Option 1 — Life annuity (highest monthly benefit, no survivor continuation)",
+      "Option 2 — Life annuity with 10-year period certain guarantee",
+      "Option 3 — Joint and 100% survivor annuity (benefit continues to beneficiary at same amount)",
+      "Option 4 — Joint and 66-2/3% survivor annuity"
+    ],
+    "note": "Options 3 and 4 reduce the monthly benefit to provide survivor continuation. Only a qualified joint annuitant may be named under Option 4.",
+    "source": "https://frs.fl.gov"
+  },
+  "fundingStatus": {
+    "trustFundAssets_fy2024": 191500000000,
+    "note": "FRS Pension Plan Trust Fund assets $191.5B as of the July 1, 2024 actuarial report. Fund managed by State Board of Administration.",
+    "source": "https://www.floridaretirementresources.com/frs-pension-plan-special-risk"
+  },
+  "sources": [
+    "https://frs.fl.gov/forms/spd-pp.pdf",
+    "https://myfrs.com/FRSPro_Pension.htm",
+    "https://frs.fl.gov/forms/ir25-239.pdf",
+    "https://hr.fsu.edu/article/legislative-updates-florida-retirement-system",
+    "https://www.miamidade.gov/global/humanresources/benefits/frs-retirement-eligibility.page"
+  ],
+  "researchGaps": [
+    "Exact employer contribution rates by membership class for FY2025-26 (available at frs.fl.gov/forms/ir25-239.pdf)",
+    "Elected Officers' Class subclass multiplier details (3.0% vs 3.4% threshold)",
+    "Detailed early retirement reduction factor tables by class",
+    "Optional Retirement Plans (ORP/SUSORP) — alternative DC plans for university faculty, not modeled here",
+    "Teachers' Retirement System (TRS) — closed grandfathered system under FRS umbrella, not modeled"
+  ]
+}
