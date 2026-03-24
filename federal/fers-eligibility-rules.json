@@ -1,0 +1,211 @@
+{
+  "metadata": {
+    "name": "FERS Retirement Eligibility Rules",
+    "description": "FERS Minimum Retirement Age (MRA) schedule by birth year, complete eligibility matrix for all FERS retirement types, and VERA/VSIP early retirement provisions. Supplements fers-computation-rules.json (which covers annuity formulas) with the eligibility prerequisites.",
+    "version": "1.0",
+    "last_updated": "2026-03-23",
+    "schema_version": "2.2",
+    "sources": [
+      "https://www.opm.gov/retirement-center/fers-information/eligibility/",
+      "https://www.opm.gov/policy-data-oversight/workforce-restructuring/voluntary-early-retirement-authority/",
+      "5 U.S.C. § 8412 — Immediate retirement (FERS eligibility)",
+      "5 U.S.C. § 8413 — Deferred retirement",
+      "5 U.S.C. § 8414 — Early retirement",
+      "5 U.S.C. § 8425 — Mandatory retirement (LEO/FF/ATC)",
+      "OPM CSRS/FERS Handbook, Chapters 42, 44, 46"
+    ]
+  },
+  "mra_schedule": {
+    "_comment": "Minimum Retirement Age by birth year. MRA is the earliest age at which a FERS employee can retire with an immediate annuity (with sufficient service). Does NOT apply to CSRS.",
+    "authority": "5 U.S.C. § 8412(h)",
+    "schedule": [
+      { "birth_year_start": null, "birth_year_end": 1947, "mra_years": 55, "mra_months": 0, "mra_decimal": 55.0 },
+      { "birth_year_start": 1948, "birth_year_end": 1948, "mra_years": 55, "mra_months": 2, "mra_decimal": 55.167 },
+      { "birth_year_start": 1949, "birth_year_end": 1949, "mra_years": 55, "mra_months": 4, "mra_decimal": 55.333 },
+      { "birth_year_start": 1950, "birth_year_end": 1950, "mra_years": 55, "mra_months": 6, "mra_decimal": 55.5 },
+      { "birth_year_start": 1951, "birth_year_end": 1951, "mra_years": 55, "mra_months": 8, "mra_decimal": 55.667 },
+      { "birth_year_start": 1952, "birth_year_end": 1952, "mra_years": 55, "mra_months": 10, "mra_decimal": 55.833 },
+      { "birth_year_start": 1953, "birth_year_end": 1964, "mra_years": 56, "mra_months": 0, "mra_decimal": 56.0 },
+      { "birth_year_start": 1965, "birth_year_end": 1965, "mra_years": 56, "mra_months": 2, "mra_decimal": 56.167 },
+      { "birth_year_start": 1966, "birth_year_end": 1966, "mra_years": 56, "mra_months": 4, "mra_decimal": 56.333 },
+      { "birth_year_start": 1967, "birth_year_end": 1967, "mra_years": 56, "mra_months": 6, "mra_decimal": 56.5 },
+      { "birth_year_start": 1968, "birth_year_end": 1968, "mra_years": 56, "mra_months": 8, "mra_decimal": 56.667 },
+      { "birth_year_start": 1969, "birth_year_end": 1969, "mra_years": 56, "mra_months": 10, "mra_decimal": 56.833 },
+      { "birth_year_start": 1970, "birth_year_end": null, "mra_years": 57, "mra_months": 0, "mra_decimal": 57.0 }
+    ]
+  },
+  "immediate_retirement": {
+    "_comment": "Eligibility for immediate annuity — starts within 30 days of separation.",
+    "standard_pathways": [
+      {
+        "pathway": "mra_plus_30",
+        "description": "Minimum Retirement Age with 30+ years of service",
+        "age_requirement": "MRA (55-57 by birth year)",
+        "service_years_required": 30,
+        "annuity_reduction": false,
+        "srs_eligible": true,
+        "fehb_continues": true,
+        "_note": "Most favorable standard pathway — full unreduced annuity."
+      },
+      {
+        "pathway": "age_60_plus_20",
+        "description": "Age 60 with 20+ years of service",
+        "age_requirement": 60,
+        "service_years_required": 20,
+        "annuity_reduction": false,
+        "srs_eligible": false,
+        "fehb_continues": true,
+        "_note": "No SRS — employee is too close to age 62 SS eligibility."
+      },
+      {
+        "pathway": "age_62_plus_5",
+        "description": "Age 62 with 5+ years of service",
+        "age_requirement": 62,
+        "service_years_required": 5,
+        "annuity_reduction": false,
+        "srs_eligible": false,
+        "fehb_continues": true,
+        "_note": "Qualifies for 1.1% multiplier (enhanced formula) if 20+ years."
+      },
+      {
+        "pathway": "mra_plus_10",
+        "description": "Minimum Retirement Age with 10-29 years of service",
+        "age_requirement": "MRA (55-57 by birth year)",
+        "service_years_required": 10,
+        "annuity_reduction": true,
+        "reduction_rate_per_year": 0.05,
+        "reduction_basis": "5% per year under age 62 (5/12 of 1% per month)",
+        "reduction_elimination": "Reduction eliminated at age 62, or at age 60 if 20+ years of service",
+        "postponement_option": true,
+        "postponement_note": "Employee may separate and postpone annuity commencement to reduce or eliminate penalty. FEHB and FEGLI cannot be continued during postponement period.",
+        "srs_eligible": false,
+        "fehb_continues": true,
+        "_note": "Reduced annuity. Employee can also choose to postpone commencement."
+      }
+    ]
+  },
+  "special_category_retirement": {
+    "_comment": "Enhanced retirement provisions for law enforcement officers, firefighters, and air traffic controllers under 5 U.S.C. § 8412(d)-(e).",
+    "eligible_positions": [
+      "Law Enforcement Officers (LEOs)",
+      "Firefighters (FFs)",
+      "Air Traffic Controllers (ATCs)",
+      "Nuclear Materials Couriers",
+      "Customs and Border Protection Officers",
+      "Capitol Police",
+      "Supreme Court Police"
+    ],
+    "eligibility": {
+      "standard": {
+        "age": 50,
+        "service_years": 20,
+        "description": "Age 50 with 20 years of special category service"
+      },
+      "any_age": {
+        "age": "any",
+        "service_years": 25,
+        "description": "Any age with 25 years of special category service"
+      }
+    },
+    "mandatory_retirement": {
+      "age": 57,
+      "exception": "Agency head may approve extension to age 60 in public interest",
+      "authority": "5 U.S.C. § 8425"
+    },
+    "annuity_reduction": false,
+    "srs_eligible": true,
+    "_note": "Special category employees use the enhanced 1.7%/1.0% formula (see fers-computation-rules.json). The 1.1% age-62 enhancement does NOT apply."
+  },
+  "early_retirement": {
+    "vera": {
+      "full_name": "Voluntary Early Retirement Authority",
+      "authority": "5 U.S.C. § 8414(b)(1)(B)",
+      "description": "Agency-requested OPM authority to offer early retirement during major reorganization, reduction in force, or transfer of function.",
+      "eligibility": {
+        "pathway_1": { "age": 50, "service_years": 20 },
+        "pathway_2": { "age": "any", "service_years": 25 }
+      },
+      "annuity_reduction": false,
+      "srs_eligible": true,
+      "srs_note": "SRS payable once employee reaches MRA. If already at or past MRA, SRS begins immediately.",
+      "fehb_rule": "Must have been enrolled in FEHB for 5 years immediately preceding retirement (or since first opportunity). OPM may grant pre-approved waivers.",
+      "sick_leave_credit": "100% of unused sick leave credited for annuity computation (separations after 12/31/2013)",
+      "reemployment_note": "No restriction on non-federal employment. Federal reemployment as annuitant triggers salary offset rules.",
+      "_note": "VERA must be approved by OPM for the specific agency and situation. Not a standing authority."
+    },
+    "vsip": {
+      "full_name": "Voluntary Separation Incentive Payment",
+      "authority": "5 U.S.C. § 3521-3525",
+      "description": "Lump-sum payment (up to $25,000) offered to employees who voluntarily separate during agency restructuring. Can be combined with VERA.",
+      "maximum_payment": 25000,
+      "payment_type": "lump_sum",
+      "taxable": true,
+      "repayment_if_rehired": true,
+      "repayment_note": "Employee must repay VSIP if rehired by the federal government within 5 years of separation.",
+      "repayment_waiver": "Head of agency may waive repayment if individual possesses unique skills needed by the agency.",
+      "fehb_rule": "Same 5-year enrollment rule as VERA. OPM waivers available.",
+      "_note": "VSIP does not require VERA — can be offered to employees who are not retirement-eligible. Non-retirement-eligible employees who accept VSIP simply separate."
+    },
+    "involuntary_early": {
+      "description": "Early retirement for employees involuntarily separated (not for cause) during RIF, reorganization, or transfer of function.",
+      "eligibility": {
+        "pathway_1": { "age": 50, "service_years": 20 },
+        "pathway_2": { "age": "any", "service_years": 25 }
+      },
+      "annuity_reduction": false,
+      "srs_eligible": true,
+      "_note": "Same eligibility as VERA but triggered by involuntary separation rather than voluntary offer."
+    }
+  },
+  "deferred_retirement": {
+    "description": "Annuity payable at a future date for employees who separate before meeting immediate retirement eligibility.",
+    "eligibility": {
+      "minimum_service_years": 5,
+      "must_leave_contributions_in_fund": true
+    },
+    "commencement_options": [
+      {
+        "option": "age_62",
+        "description": "Deferred annuity commences at age 62 with 5+ years of service",
+        "annuity_reduction": false
+      },
+      {
+        "option": "mra",
+        "description": "Deferred annuity commences at MRA with 10+ years of service",
+        "annuity_reduction": true,
+        "reduction_rate_per_year": 0.05,
+        "reduction_note": "Same 5% per year under 62 reduction as MRA+10 immediate retirement"
+      }
+    ],
+    "fehb_note": "FEHB coverage does NOT continue during the deferral period. Coverage can resume when deferred annuity commences if the 5-year enrollment requirement was met before separation.",
+    "sick_leave_note": "Unused sick leave is NOT credited for deferred retirements. Lost at separation.",
+    "srs_note": "SRS is NOT payable with deferred retirement."
+  },
+  "disability_retirement": {
+    "_comment": "Eligibility only — computation rules are in fers-computation-rules.json.",
+    "minimum_service_years": 18,
+    "service_note": "18 months of creditable civilian service under FERS",
+    "requirements": [
+      "Must be disabled for useful and efficient service in current position",
+      "Disability expected to last at least one year",
+      "Agency must certify it cannot accommodate the disability in the current position or any vacant position at the same grade/pay within the same agency and commuting area",
+      "Must not have declined a reasonable offer of reassignment"
+    ],
+    "filing_deadline": "Application must be filed before separation or within one year after separation",
+    "fehb_continues": true,
+    "srs_eligible": false,
+    "_note": "See fers-computation-rules.json for the 60%/40% disability formula and age-62 recomputation."
+  },
+  "fehb_five_year_rule": {
+    "_comment": "Critical eligibility requirement for continuing FEHB into retirement.",
+    "description": "To continue FEHB coverage in retirement, an employee must have been continuously enrolled in any FEHB plan for the 5 years of service immediately preceding retirement, or since the employee's first opportunity to enroll (if less than 5 years).",
+    "authority": "5 U.S.C. § 8905(b)",
+    "exceptions": [
+      "OPM may waive the 5-year requirement for VERA/VSIP separations",
+      "Waiver automatically granted if employee was continuously enrolled since the start of the agency's approved VERA/VSIP authority"
+    ],
+    "applies_to": ["immediate retirement", "disability retirement"],
+    "does_not_apply_to": ["deferred retirement during deferral period"],
+    "_note": "Losing FEHB in retirement is one of the most financially significant oversights in federal retirement planning."
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "metadata": {
+    "name": "Federal Retirement Service Credit Rules",
+    "description": "Comprehensive rules for earning additional retirement service credit: civilian deposit and redeposit, military service credit buyback, sick leave conversion, and the annual interest rates applied to service credit payments. Covers both FERS and CSRS rules.",
+    "version": "1.0",
+    "last_updated": "2026-03-23",
+    "schema_version": "2.2",
+    "sources": [
+      "https://www.opm.gov/retirement-center/fers-information/service-credit/",
+      "https://www.opm.gov/retirement-center/fers-information/creditable-service/",
+      "https://www.opm.gov/retirement-center/publications-forms/benefits-administration-letters/2025/25-301.pdf",
+      "https://www.opm.gov/retirement-center/publications-forms/benefits-administration-letters/2026/26-301.pdf",
+      "https://www.opm.gov/retirement-center/publications-forms/pamphlets/ri83-8.pdf",
+      "5 U.S.C. § 8411 — Creditable service",
+      "5 U.S.C. § 8422 — Deposits; mandatory and voluntary",
+      "5 CFR Part 842 Subpart C — Credit for Service",
+      "OPM CSRS/FERS Handbook, Chapters 21, 22, 23"
+    ]
+  },
+  "civilian_deposit": {
+    "_comment": "Paying for civilian service time where retirement deductions were NOT withheld from pay.",
+    "fers_rules": {
+      "eligible_service": "Creditable federal civilian service performed before January 1, 1989, during which FERS retirement deductions were not withheld",
+      "post_1988_rule": "FERS employees generally cannot make deposits for non-deduction service performed on or after January 1, 1989",
+      "post_1988_exceptions": [
+        "Part-time, intermittent, or temporary service performed abroad after 12/31/1988 and before 5/24/1998 under Foreign Service Act sections 309/311",
+        "Service creditable under the Foreign Service Pension System",
+        "Peace Corps or VISTA volunteer service (any period)"
+      ],
+      "deposit_rate_pct": 1.3,
+      "deposit_rate_note": "1.3% of basic pay for the period of service, regardless of the actual FERS deduction rate that would have applied",
+      "interest_rule": "Interest begins accruing 2 years after the date the employee first becomes subject to FERS. Compounded annually.",
+      "interest_note": "No interest charged if deposit paid in full before the end of the year after interest begins accruing",
+      "effect_if_unpaid": "Service is NOT credited for eligibility or computation. No credit at all.",
+      "application_form": "SF 3108 (Application to Make Service Credit Payment for Civilian Service — FERS)"
+    },
+    "csrs_rules": {
+      "pre_october_1982_service": {
+        "description": "CSRS non-deduction service performed before October 1, 1982",
+        "deposit_rate_pct": 7.0,
+        "effect_if_unpaid": "Service IS credited for eligibility and computation. However, annuity is reduced by 10% of the deposit amount (plus interest) owed at retirement. Survivor annuity is NOT reduced.",
+        "interest_rule": "Interest from midpoint of service through billing date"
+      },
+      "post_october_1982_service": {
+        "description": "CSRS non-deduction service performed on or after October 1, 1982",
+        "deposit_rate_pct": 7.0,
+        "effect_if_unpaid": "Service is NOT credited for eligibility or computation.",
+        "interest_rule": "Interest from midpoint of service, compounded annually at variable Treasury rate"
+      }
+    }
+  },
+  "redeposit": {
+    "_comment": "Repaying retirement contributions that were previously withdrawn (refunded) at a break in service.",
+    "fers_rules": {
+      "eligible": "Employees who received a refund of FERS deductions and were covered by FERS on or after October 28, 2009",
+      "also_eligible": "Employees may also redeposit CSRS deductions previously refunded that covered CSRS service now credited under FERS rules",
+      "interest_rule": "Interest charged from the date of the refund, compounded annually at the variable Treasury rate, through the date of full payment or annuity commencement (whichever is earlier)",
+      "effect_if_unpaid": "Service counts for eligibility but is NOT used in annuity computation. Annuity and survivor annuity are reduced.",
+      "application_form": "SF 3108"
+    },
+    "csrs_rules": {
+      "refund_before_october_1982": {
+        "description": "Refund application received by OPM before October 1, 1982",
+        "effect_if_unpaid": "Service IS credited for eligibility and computation. Annuity is subject to permanent actuarial reduction based on unpaid amount and age at retirement. Survivor annuity is NOT reduced.",
+        "interest_rule": "Interest charged at 4% through 1947, 3% from 1948 through 1984, then variable Treasury rate from 1985 onward"
+      },
+      "refund_on_or_after_october_1982": {
+        "description": "Refund application received by OPM on or after October 1, 1982",
+        "effect_if_unpaid": "Service counts for eligibility but is NOT used in annuity computation.",
+        "interest_rule": "Interest compounded annually at variable Treasury rate through December 31 of the year before billing"
+      }
+    }
+  },
+  "military_service_credit": {
+    "_comment": "Buying back military service time for federal civilian retirement credit. Often called 'military buyback.'",
+    "general_rule": {
+      "description": "Active duty military service terminated under honorable conditions is creditable for FERS/CSRS retirement if a deposit is paid.",
+      "must_be_active_service": true,
+      "honorable_discharge_required": true,
+      "must_precede_civilian_retirement": true
+    },
+    "fers_deposit": {
+      "rate_pct": 3.0,
+      "rate_basis": "3% of military basic pay for the period of service",
+      "interest_rule": "Interest begins accruing 2 years after the date the employee first becomes subject to FERS (or October 28, 2009, for some cases). Compounded annually at the variable Treasury rate on the employee's Interest Accrual Date (IAD).",
+      "effect_if_unpaid_with_ss_entitlement": "If the employee does not pay the military deposit AND becomes entitled to Social Security benefits at age 62, the military service will be excluded from the FERS annuity computation at age 62",
+      "effect_if_unpaid_no_ss": "If the employee will never be entitled to Social Security (rare for FERS), the military service is still credited without deposit",
+      "waiver_for_combat_disabled": "Veterans who are 100% disabled due to combat or who received a Purple Heart are exempt from the age-62 catch provision"
+    },
+    "csrs_deposit": {
+      "rate_pct": 7.0,
+      "rate_basis": "7% of military basic pay (or estimated earnings if actual records unavailable)",
+      "interest_rule_pre_oct_1982_employee": "Employees first hired before October 1, 1982: no interest charged; however, if entitled to SS at 62, CSRS annuity is recomputed to exclude post-1956 military service (the 'catch')",
+      "interest_rule_post_oct_1982_employee": "Employees first hired on or after October 1, 1982: interest charged from the date the employee becomes covered by CSRS, compounded annually at variable Treasury rate"
+    },
+    "interaction_with_military_retirement": {
+      "general_rule": "An employee receiving military retired pay must waive that pay to receive civilian retirement credit for the same military service",
+      "exception_1": "Exception: combat-disabled veterans (receiving VA disability compensation instead of military retired pay) may receive credit without waiving",
+      "exception_2": "Exception: Reserve retirement at age 60 — credit is available for active duty periods only, not drill time",
+      "_note": "This waiver decision is complex. The military retired pay may be more or less valuable than the additional FERS annuity credit depending on years of service, high-3, and military pay grade."
+    },
+    "application_process": {
+      "forms": ["SF 3108 (FERS)", "SF 2803 (CSRS)"],
+      "supporting_documents": ["DD Form 214", "RI 20-97 (Estimated Earnings During Military Service)"],
+      "estimated_earnings_source": "DFAS (Defense Finance and Accounting Service)",
+      "payment_method": "Pay.gov or payroll deduction",
+      "minimum_payment": 50,
+      "payment_note": "Must begin application process as an employee. Payments can continue after separation (but not after retirement)."
+    }
+  },
+  "sick_leave_credit": {
+    "_comment": "Conversion of unused sick leave hours into additional service credit for annuity computation.",
+    "authority": "5 U.S.C. § 8415(g) (FERS); Section 1901, P.L. 111-84 (NDAA FY2010)",
+    "fers_rules": {
+      "effective_date": "2009-10-28",
+      "phase_in": {
+        "oct_28_2009_through_dec_31_2013": "50% of unused sick leave balance credited",
+        "jan_1_2014_onward": "100% of unused sick leave balance credited"
+      },
+      "applies_to": ["immediate retirement", "death in service (survivor annuity computation)"],
+      "does_not_apply_to": ["deferred retirement", "eligibility determination"],
+      "_note": "Sick leave adds to creditable service for annuity computation ONLY. It cannot be used to meet years-of-service eligibility thresholds."
+    },
+    "csrs_rules": {
+      "credit_pct": 100,
+      "always_full_credit": true,
+      "can_exceed_80pct_cap": true,
+      "_note": "CSRS has always credited 100% of unused sick leave. The 80% annuity cap does not include the sick leave credit — annuity can exceed 80% of high-3."
+    },
+    "conversion_formula": {
+      "hours_per_work_year": 2087,
+      "days_per_retirement_year": 360,
+      "hours_per_retirement_day": 5.797,
+      "hours_per_retirement_day_note": "2087 ÷ 360 = 5.7972... hours per day. OPM uses this ratio for conversion.",
+      "months_per_retirement_year": 12,
+      "days_per_retirement_month": 30,
+      "method": "Divide hours by 5.797 to get days. Convert days to months and days (30 days = 1 month). If hours exceed 2087, subtract 2087 (= 1 full year) and convert remainder."
+    },
+    "conversion_reference_table": {
+      "_comment": "OPM 2087-hour sick leave conversion chart. Selected reference points. For hours between listed values, round up to next higher value on the full chart.",
+      "samples": [
+        { "hours": 6, "months": 0, "days": 1 },
+        { "hours": 12, "months": 0, "days": 2 },
+        { "hours": 174, "months": 1, "days": 0 },
+        { "hours": 348, "months": 2, "days": 0 },
+        { "hours": 441, "months": 2, "days": 16 },
+        { "hours": 522, "months": 3, "days": 0 },
+        { "hours": 696, "months": 4, "days": 0 },
+        { "hours": 835, "months": 4, "days": 24 },
+        { "hours": 870, "months": 5, "days": 0 },
+        { "hours": 1044, "months": 6, "days": 0 },
+        { "hours": 1218, "months": 7, "days": 0 },
+        { "hours": 1392, "months": 8, "days": 0 },
+        { "hours": 1452, "months": 8, "days": 11 },
+        { "hours": 1566, "months": 9, "days": 0 },
+        { "hours": 1672, "months": 9, "days": 19 },
+        { "hours": 1740, "months": 10, "days": 0 },
+        { "hours": 1914, "months": 11, "days": 0 },
+        { "hours": 2087, "months": 12, "days": 0 }
+      ]
+    },
+    "csrs_fers_transferee_rule": "Sick leave hours up to the balance at the time of CSRS-to-FERS transfer are credited to the CSRS component. Hours above that balance are credited to the FERS component.",
+    "accrual_rate": {
+      "hours_per_pay_period": 4,
+      "pay_periods_per_year": 26,
+      "hours_per_year": 104,
+      "no_accumulation_limit": true
+    }
+  },
+  "interest_rates": {
+    "_comment": "Annual variable interest rates set by U.S. Treasury for civilian and military service credit deposits, redeposits, and CSRS voluntary contributions. Rate equals the average yield on retirement fund securities during the preceding fiscal year. Compounded annually.",
+    "pre_1985_rate": {
+      "through_1947": 4.0,
+      "1948_through_1984": 3.0,
+      "_note": "Fixed rates. Variable rate begins January 1, 1985."
+    },
+    "variable_rates": [
+      { "year": 1985, "rate_pct": 13.0 },
+      { "year": 1986, "rate_pct": 11.125 },
+      { "year": 1987, "rate_pct": 9.0 },
+      { "year": 1988, "rate_pct": 8.375 },
+      { "year": 1989, "rate_pct": 9.125 },
+      { "year": 1990, "rate_pct": 8.75 },
+      { "year": 1991, "rate_pct": 8.625 },
+      { "year": 1992, "rate_pct": 8.125 },
+      { "year": 1993, "rate_pct": 7.125 },
+      { "year": 1994, "rate_pct": 6.25 },
+      { "year": 1995, "rate_pct": 7.0 },
+      { "year": 1996, "rate_pct": 6.875 },
+      { "year": 1997, "rate_pct": 6.875 },
+      { "year": 1998, "rate_pct": 6.75 },
+      { "year": 1999, "rate_pct": 5.75 },
+      { "year": 2000, "rate_pct": 5.875 },
+      { "year": 2001, "rate_pct": 6.375 },
+      { "year": 2002, "rate_pct": 5.5 },
+      { "year": 2003, "rate_pct": 5.0 },
+      { "year": 2004, "rate_pct": 4.875 },
+      { "year": 2005, "rate_pct": 4.375 },
+      { "year": 2006, "rate_pct": 4.125 },
+      { "year": 2007, "rate_pct": 4.75 },
+      { "year": 2008, "rate_pct": 4.75 },
+      { "year": 2009, "rate_pct": 4.75 },
+      { "year": 2010, "rate_pct": 3.875 },
+      { "year": 2011, "rate_pct": 3.125 },
+      { "year": 2012, "rate_pct": 2.75 },
+      { "year": 2013, "rate_pct": 2.0 },
+      { "year": 2014, "rate_pct": 2.25 },
+      { "year": 2015, "rate_pct": 2.375 },
+      { "year": 2016, "rate_pct": 2.625 },
+      { "year": 2017, "rate_pct": 2.0 },
+      { "year": 2018, "rate_pct": 2.125 },
+      { "year": 2019, "rate_pct": 2.75 },
+      { "year": 2020, "rate_pct": 2.5 },
+      { "year": 2021, "rate_pct": 1.625 },
+      { "year": 2022, "rate_pct": 1.375 },
+      { "year": 2023, "rate_pct": 2.625 },
+      { "year": 2024, "rate_pct": 4.25 },
+      { "year": 2025, "rate_pct": 4.375 },
+      { "year": 2026, "rate_pct": 4.25 }
+    ],
+    "composite_rate_note": "The actual rate applied on a specific Interest Accrual Date (IAD) is a composite blending the current and prior year rates proportionally based on the IAD's position within the calendar year. See BAL 26-301 for the daily composite table.",
+    "source_bal_2026": "https://www.opm.gov/retirement-center/publications-forms/benefits-administration-letters/2026/26-301.pdf"
+  }
+}

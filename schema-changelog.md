@@ -184,6 +184,20 @@ Data enrichment:
 
 **CI:** Added 23 new checks including NC/GA value assertions and multi-state military exemption guard rails.
 
+## Data Addition: FERS Eligibility Rules and Service Credit Rules (v1.0)
+
+**Date:** 2026-03-23
+**Schema version:** 2.2 (unchanged — non-breaking addition)
+**Manifest entries:** +2 new (66 → 68 total)
+
+Added two new federal retirement data files closing key computational gaps:
+
+1. **`federal/fers-eligibility-rules.json`** (v1.0) — Complete FERS retirement eligibility: MRA schedule by birth year (13 bands, ages 55-57, per 5 U.S.C. § 8412(h)), all four immediate retirement pathways (MRA+30, age 60+20, age 62+5, MRA+10 with reduction formula), special category retirement (LEO/FF/ATC mandatory retirement at 57), VERA/VSIP early retirement provisions (including $25K VSIP cap and repayment rules), deferred and disability retirement eligibility, and FEHB 5-year continuation rule. 206-check validation suite (shared with service credit file).
+
+2. **`federal/fers-service-credit-rules.json`** (v1.0) — Comprehensive service credit rules: civilian deposit (FERS 1.3% rate, CSRS 7% rate, pre/post-October 1982 distinction), redeposit (FERS/CSRS, actuarial reduction provisions), military service credit buyback (3% FERS / 7% CSRS, military retirement pay waiver interaction, combat-disabled exception), sick leave conversion (OPM 2087-hour formula, 18-point reference table with OPM-verified examples, FERS phase-in from 50% to 100%), and 42 years of Treasury variable interest rate history (1985-2026, sourced from BAL letters).
+
+---
+
 ## Data Addition: Foreign Service Retirement Rules (v1.0)
 
 **Date:** 2026-03-23

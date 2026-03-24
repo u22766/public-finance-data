@@ -43,7 +43,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 66 entries)
+├── manifest.json                                ← Fetch this first (master version index, 68 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -64,6 +64,8 @@ public-finance-data/
 │   ├── fehb-premium-history.json                ← FEHB average premium history (1999–2025)
 │   ├── fegli-rates.json                         ← FEGLI life insurance — Basic + Options A/B/C, age-banded
 │   ├── fers-computation-rules.json              ← FERS annuity computation — multipliers, MRA+10, deferred, disability
+│   ├── fers-eligibility-rules.json              ← FERS retirement eligibility — MRA schedule, pathways, VERA/VSIP
+│   ├── fers-service-credit-rules.json           ← Service credit — deposit, redeposit, military buyback, sick leave
 │   ├── filing-status-thresholds.json            ← IRS filing status thresholds — 5 statuses × 6 domains (2016–2025)
 │   ├── leo-premium-pay.json                     ← LEO premium pay rates — availability, administratively uncontrollable overtime
 │   ├── military-pay-tables.json                 ← Military basic pay by grade/YOS (2016–2026, 27 grades)
@@ -194,6 +196,8 @@ Files are organized by jurisdiction and domain:
 | `estate_gift_tax` | 1.0.1 | `federal/estate-gift-tax.json` |
 | `fers_contribution_rates` | 1.0 | `federal/fers-contribution-rates.json` |
 | `fers_computation_rules` | 2026.1 | `federal/fers-computation-rules.json` |
+| `fers_eligibility_rules` | 1.0 | `federal/fers-eligibility-rules.json` |
+| `fers_service_credit_rules` | 1.0 | `federal/fers-service-credit-rules.json` |
 | `fehb_premium_history` | 1.0 | `federal/fehb-premium-history.json` |
 | `fegli_rates` | 1.0 | `federal/fegli-rates.json` |
 | `filing_status_thresholds` | 2026.2 | `federal/filing-status-thresholds.json` |
