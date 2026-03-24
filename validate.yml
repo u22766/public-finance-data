@@ -1,8 +1,9 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 25 validation suites
-# Session 55: Added validate_pay_tables.py (1,333 checks) for GS historical tables + VA compensation history
+# 26 validation suites
+# Session 56: Added validate_fs_pay.py (1893 checks) for Foreign Service pay tables (FP-1 through FP-9, 2016-2026)
+# Session 54: Added validate_fers_eligibility.py (206 checks) for FERS eligibility rules + service credit rules
 # Session 53: Added validate_foreign_service.py (94 checks) and validate_systems_index.py (114 checks)
 # Session 48: Added validate_leo_fers_comp.py (207 checks) for LEO premium pay + FERS computation rules
 # Session 46: Added validate_county_property_tax.py for county property tax coverage (auto-detects all states/counties)
@@ -112,8 +113,8 @@ jobs:
       - name: Validate federal retirement systems index (114 checks)
         run: python tests/validate_systems_index.py
 
-      - name: Validate GS pay tables and VA compensation history (1,333 checks)
-        run: python tests/validate_pay_tables.py
+      - name: Validate Foreign Service pay tables (1893 checks)
+        run: python tests/validate_fs_pay.py
       
       - name: Validation summary
         if: success()
