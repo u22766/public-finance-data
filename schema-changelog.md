@@ -45,6 +45,18 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### lacera-plans.json v2026.1
+
+**Date:** 2026-03-23
+
+**Session 57 — LACERA (Los Angeles County) Pension Plans: 9-plan build**
+
+New file. Complete LACERA retirement plan data covering all 9 plans: General A, B, C, D, E, G and Safety A, B, C. LACERA is the largest county retirement system in the United States (~185K members, $79.2B in assets). Covers both legacy plans (pre-1979), mid-era plans (1979–2012 including the Plan D/E contributory choice), and PEPRA plans (2013+). Includes benefit formulas with age factor tables, final average compensation rules, retirement eligibility, COLA provisions (with accumulation banking and STAR COLA), 2026 COLA awards (board-approved February 4, 2026), reciprocity agreements, healthcare tiers, IRC limits, and Plan G verified benefit factor table (16 age entries, cross-checked against official LACERA percentage tables).
+
+**CI:** Added `validate_lacera.py` (532 checks). Total: ~13,460 checks across 27 suites.
+
+**No schema changes. Non-breaking addition.**
+
 ### foreign-service-pay-tables.json v2026.1
 
 **Date:** 2026-03-24

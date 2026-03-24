@@ -21,7 +21,7 @@ A structured, version-controlled library of publicly available financial data us
 - **Life insurance** — FEGLI rates (Basic + Options A/B/C, age-banded), VGLI premiums
 - **Veterans Affairs** — VA disability compensation, DIC, VGLI premiums
 - **Actuarial tables** — SSA period life table (ages 0–119, both sexes), RMD rules history
-- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC/FCERS/PORS/URS plans, Arlington County ACERS plans, Richmond RRS plans, Falls Church FCPP plans, Montgomery County MD MCERP plans, San Diego County CA SDCERA plans, pension stacking patterns
+- **State/local pensions** — Virginia VRS plans (state-level), Fairfax County ERFC/FCERS/PORS/URS plans, Arlington County ACERS plans, Richmond RRS plans, Falls Church FCPP plans, Montgomery County MD MCERP plans, San Diego County CA SDCERA plans, Los Angeles County CA LACERA plans, pension stacking patterns
 - **Reference templates** — Generic defined-benefit pension template for manual-entry plans (any sector)
 
 Designed as a generic data source for retirement planning applications, financial tools, or independent analysis — serving federal, military, state/local government, and private-sector retirement populations. No authentication, no API keys, no tracking.
@@ -30,7 +30,7 @@ Designed as a generic data source for retirement planning applications, financia
 
 ## How to Use This Repo
 
-1. Fetch `manifest.json` first — it's the version index listing all 66 available data files.
+1. Fetch `manifest.json` first — it's the version index listing all 70 available data files.
 2. Compare each file's `version` to your locally cached copy.
 3. Fetch only the files that have newer versions.
 4. If GitHub is unreachable, fall back to your last cached fetch.
@@ -43,7 +43,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 69 entries)
+├── manifest.json                                ← Fetch this first (master version index, 70 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -89,6 +89,8 @@ public-finance-data/
 │   │   └── county-property-tax.json             ← Maricopa County
 │   ├── california/
 │   │   ├── county-property-tax.json             ← San Diego, Sacramento, Riverside, Los Angeles (4 counties)
+│   │   ├── los-angeles-county/
+│   │   │   └── lacera-plans.json                ← LACERA pension plans — 9 plans, general + safety (185K+ members)
 │   │   └── san-diego-county/
 │   │       └── sdcera-plans.json                ← SDCERA pension plans — 9 benefit tiers (51K+ members)
 │   ├── colorado/
@@ -162,6 +164,7 @@ public-finance-data/
     ├── validate_federal_retirement.py           ← Federal retirement rules validation (157 checks)
     ├── validate_municipal.py                    ← Municipal pension validation (153 checks)
     ├── validate_sdcera.py                       ← SDCERA pension validation (178 checks)
+    ├── validate_lacera.py                       ← LACERA pension validation (532 checks)
     ├── validate_filing_status.py                ← Filing status thresholds validation (816 checks)
     ├── validate_county_property_tax.py          ← County property tax — 13 states, 44 counties (1,635 checks)
     ├── validate_leo_fers_comp.py                ← LEO premium pay + FERS computation validation (207 checks)
@@ -177,7 +180,7 @@ public-finance-data/
 Files are organized by jurisdiction and domain:
 
 - **`federal/`** — Federal-level data: tax brackets and thresholds (IRS), Social Security (SSA), Medicare/IRMAA (CMS), retirement account limits (IRS), federal civilian pay and benefits (OPM), healthcare plans (OPM, DoD, CMS), life insurance (OPM), military pay, and veterans benefits (VA)
-- **`states/`** — State-level tax treatment of retirement income, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`, `states/california/san-diego-county/`)
+- **`states/`** — State-level tax treatment of retirement income, county property tax data, state pension plans (e.g., VRS), and county/municipal pension plans in subdirectories (e.g., `states/virginia/fairfax-county/`, `states/california/san-diego-county/`, `states/california/los-angeles-county/`)
 - **`reference/`** — Static lookup tables, actuarial data, retirement system rules, plan templates, and reference data that rarely changes
 
 ---
@@ -243,6 +246,7 @@ Files are organized by jurisdiction and domain:
 | `rrs_plans_richmond` | 2026.1 | `states/virginia/richmond/rrs-plans.json` |
 | `mcerp_plans_montgomery` | 2026.3 | `states/maryland/montgomery-county/mcerp-plans.json` |
 | `sdcera_plans` | 1.0 | `states/california/san-diego-county/sdcera-plans.json` |
+| `lacera_plans_los_angeles` | 2026.1 | `states/california/los-angeles-county/lacera-plans.json` |
 | `static_refs` | 1.0.2 | `reference/static-refs.json` |
 | `ssa_life_table` | 1.0 | `reference/ssa-life-table.json` |
 | `other_db_template` | 1.0.0 | `reference/other-db-template.json` |
@@ -282,7 +286,7 @@ Each state entry includes income tax treatment of retirement income (Social Secu
 **Municipal/county pension systems** (4 states, 8 jurisdictions):
 - Virginia: VRS (state), Fairfax County (ERFC, FCERS, PORS, URS + stacking), Arlington County (ACERS), Falls Church (FCPP), Richmond (RRS)
 - Maryland: Montgomery County (MCERP)
-- California: San Diego County (SDCERA — 9 benefit tiers, first CA 1937 Act pension system)
+- California: San Diego County (SDCERA — 9 benefit tiers, first CA 1937 Act pension system), Los Angeles County (LACERA — 9 plans, largest US county pension system)
 
 ---
 
@@ -310,6 +314,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Federal Retirement | `validate_federal_retirement.py` | 157 | FERS/CSRS rules, contribution rates, FEGLI, FEHB eligibility |
 | Municipal | `validate_municipal.py` | 153 | Municipal pension plans — MCERP, FCPP, RRS, ACERS |
 | SDCERA | `validate_sdcera.py` | 178 | SDCERA 9-tier pension system — formulas, eligibility, PEPRA flags |
+| LACERA | `validate_lacera.py` | 532 | LACERA 9-plan pension system — general/safety plans, COLA, benefit factors |
 | Filing Status | `validate_filing_status.py` | 816 | Filing status thresholds — 5 statuses × 6 domains (2016–2025) |
 | County Property Tax | `validate_county_property_tax.py` | 1,635 | County property tax — 13 states, 44 counties, rates + exemptions |
 | LEO/FERS Comp | `validate_leo_fers_comp.py` | 207 | LEO premium pay rates + FERS computation rules |
@@ -381,6 +386,7 @@ All data in this repository is drawn from official U.S. government sources:
 | FCPP plan parameters | City of Falls Church | https://www.fallschurchva.gov/ |
 | MCERP plan parameters | Montgomery County MD | https://www.montgomerycountymd.gov/mcerp/about.html |
 | SDCERA plan parameters | SDCERA | https://www.sdcera.org/ |
+| LACERA plan parameters | LACERA | https://www.lacera.gov/ |
 | Military basic pay tables | DFAS / navycs.com | https://militarypay.defense.gov/Pay/Basic-Pay/ |
 | Military retirement rules | Defense.gov / USC | https://militarypay.defense.gov/Pay/Retirement/ |
 

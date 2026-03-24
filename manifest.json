@@ -607,6 +607,14 @@
       "version": "2026.1",
       "last_updated": "2026-03-24",
       "update_cycle": "annual (January, after Executive Order)"
+    },
+    "lacera_plans_los_angeles": {
+      "version": "2026.1",
+      "effective_date": "2026-04-01",
+      "update_frequency": "annual (COLA in April, actuarial valuation)",
+      "url": "states/california/los-angeles-county/lacera-plans.json",
+      "description": "LACERA (Los Angeles County) retirement plan data \u2014 9 plans covering general (A/B/C/D/E/G) and safety (A/B/C) members",
+      "last_updated": "2026-03-23"
     }
   }
 }

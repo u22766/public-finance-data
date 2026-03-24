@@ -1,0 +1,651 @@
+{
+  "version": "2026.1",
+  "effective_date": "2026-04-01",
+  "description": "LACERA (Los Angeles County Employees Retirement Association) retirement plan data. Covers all 10 plans: General A/B/C/D/E/G and Safety A/B/C. Governed by the County Employees Retirement Law of 1937 (CERL) and PEPRA.",
+  "source": "LACERA official plan books, basic provisions pages, COLA announcements, and actuarial reports",
+  "source_urls": [
+    "https://www.lacera.gov/plan/general-abc/plans-abc-basic-provisions",
+    "https://www.lacera.gov/plan/general-d/plan-d-basic-provisions",
+    "https://www.lacera.gov/plan/general-e/plan-e-basic-provisions",
+    "https://www.lacera.gov/plan/general-g/plan-book/welcome",
+    "https://www.lacera.gov/plan/general-g/plan-book/calculating-your-retirement-allowance",
+    "https://www.lacera.gov/plan/safety-ab/welcome-plan-and-b-safety-members",
+    "https://www.lacera.gov/plan/safety-c/plan-safety-c-basic-provisions",
+    "https://www.lacera.gov/retirement-payments/cost-living",
+    "https://www.lacera.gov/retirement-planning/maximum-benefit-return-age",
+    "https://www.lacera.gov/plan/general-abc/plans-abc-current-cola"
+  ],
+  "system_overview": {
+    "name": "Los Angeles County Employees Retirement Association",
+    "abbreviation": "LACERA",
+    "established": 1938,
+    "governing_law": "County Employees Retirement Law of 1937 (CERL), California Government Code §31450-31899.10",
+    "plan_type": "defined_benefit",
+    "irc_qualification": "401(a)",
+    "classifications": ["general", "safety"],
+    "participating_employers": ["Los Angeles County", "outside districts"],
+    "membership_as_of_fy2024": {
+      "total": 185000,
+      "active": 105000,
+      "retirees_and_beneficiaries": 68000,
+      "deferred_vested": 12000,
+      "_note": "Approximate membership figures from LACERA annual reports"
+    },
+    "assets_billions": 79.2,
+    "funded_ratio_pct": 79.9,
+    "valuation_date": "2024-06-30",
+    "actuary": "Milliman",
+    "address": "300 N. Lake Ave., Pasadena, CA 91101",
+    "phone": "800-786-6464",
+    "website": "https://www.lacera.gov"
+  },
+  "membership_rules": {
+    "eligibility": "Permanent employees of Los Angeles County and participating outside districts",
+    "safety_classification": "Sheriff deputies, firefighters, and other safety positions as designated by LACERA",
+    "general_classification": "All other permanent County employees not classified as safety",
+    "plan_assignment": {
+      "general": {
+        "before_1979_06_01": "Plan A, B, or C (based on hire date and classification)",
+        "1979_06_01_to_1982_01_03": "Plan D",
+        "1982_01_04_to_2012_11_26": "Choice of Plan D or Plan E",
+        "2012_12_01_to_2012_12_31": "Plan D",
+        "on_or_after_2013_01_01": "Plan G (PEPRA)"
+      },
+      "safety": {
+        "before_1979_06_01": "Plan A",
+        "1979_06_01_to_2012_12_31": "Plan B",
+        "on_or_after_2013_01_01": "Plan C (PEPRA)"
+      }
+    },
+    "membership_effective_date": "First day of the month after permanent hire date"
+  },
+  "plans": {
+    "general_A": {
+      "classification": "general",
+      "pepra": false,
+      "membership_dates": {
+        "start": null,
+        "end": "1979-05-31",
+        "description": "General members with membership before June 1, 1979"
+      },
+      "contributory": true,
+      "contribution_basis": "Percentage of compensation earnable, based on LACERA entry age",
+      "benefit_formula": {
+        "name": "2.5% at 62 equivalent",
+        "max_age_factor_pct": 2.5,
+        "max_age_factor_age": 62,
+        "age_factor_increment": "quarter_year",
+        "description": "Age factor increases each quarter-year from age 50 to 62; at age 62 the factor produces 100% of FAC with 40 years of service"
+      },
+      "final_average_compensation": {
+        "period": "highest_12_month",
+        "months": 12,
+        "description": "Highest monthly average of compensation earnable during any 12-consecutive-month period of service"
+      },
+      "social_security_coverage": "mixed",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 62,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "service_only": {
+          "years_of_service": 30,
+          "note": "Any age with 30 years of County or combined reciprocal service credit"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "cola": {
+        "max_pct": 3.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      }
+    },
+    "general_B": {
+      "classification": "general",
+      "pepra": false,
+      "membership_dates": {
+        "start": null,
+        "end": "1979-05-31",
+        "description": "General members with membership before June 1, 1979"
+      },
+      "contributory": true,
+      "contribution_basis": "Percentage of compensation earnable, based on LACERA entry age",
+      "benefit_formula": {
+        "name": "2.0% at 65 equivalent",
+        "max_age_factor_pct": 2.0,
+        "max_age_factor_age": 65,
+        "age_factor_increment": "quarter_year",
+        "description": "Age factor increases each quarter-year from age 50 to 65; at age 65 the factor produces 100% of FAC with 50 years of service"
+      },
+      "final_average_compensation": {
+        "period": "highest_12_month",
+        "months": 12,
+        "description": "Highest monthly average of compensation earnable during any 12-consecutive-month period of service"
+      },
+      "social_security_coverage": "mixed",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 65,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "service_only": {
+          "years_of_service": 30,
+          "note": "Any age with 30 years of County or combined reciprocal service credit"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      }
+    },
+    "general_C": {
+      "classification": "general",
+      "pepra": false,
+      "membership_dates": {
+        "start": null,
+        "end": "1979-05-31",
+        "description": "General members with membership before June 1, 1979"
+      },
+      "contributory": true,
+      "contribution_basis": "Percentage of compensation earnable, based on LACERA entry age",
+      "benefit_formula": {
+        "name": "2.0% at 65 equivalent",
+        "max_age_factor_pct": 2.0,
+        "max_age_factor_age": 65,
+        "age_factor_increment": "quarter_year",
+        "description": "Same formula as Plan B; age factor increases each quarter-year from age 50 to 65"
+      },
+      "final_average_compensation": {
+        "period": "highest_12_month",
+        "months": 12,
+        "description": "Highest monthly average of compensation earnable during any 12-consecutive-month period of service"
+      },
+      "social_security_coverage": "mixed",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 65,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "service_only": {
+          "years_of_service": 30,
+          "note": "Any age with 30 years of County or combined reciprocal service credit"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      }
+    },
+    "general_D": {
+      "classification": "general",
+      "pepra": false,
+      "membership_dates": {
+        "start": "1979-06-01",
+        "end": "2012-12-31",
+        "description": "General members hired June 1, 1979 through December 31, 2012; members hired January 4, 1982 through November 26, 2012 could choose Plan D or Plan E"
+      },
+      "contributory": true,
+      "contribution_basis": "Percentage of compensation earnable, based on LACERA entry age",
+      "benefit_formula": {
+        "name": "2.0% at 65 equivalent",
+        "max_age_factor_pct": 2.0,
+        "max_age_factor_age": 65,
+        "age_factor_increment": "quarter_year",
+        "description": "Age factor increases each quarter-year from age 50 to 65"
+      },
+      "final_average_compensation": {
+        "period": "highest_12_month",
+        "months": 12,
+        "description": "Highest monthly average of compensation earnable during any 12-consecutive-month period of service"
+      },
+      "social_security_coverage": "mixed",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 65,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "service_only": {
+          "years_of_service": 30,
+          "note": "Any age with 30 years of County or combined reciprocal service credit"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": false,
+        "cola_service_start_date": "2002-06-04",
+        "cola_note": "COLA increases apply only to service credit earned on and after June 4, 2002",
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      }
+    },
+    "general_E": {
+      "classification": "general",
+      "pepra": false,
+      "membership_dates": {
+        "start": "1982-01-04",
+        "end": "2012-11-26",
+        "description": "General members hired January 4, 1982 through November 26, 2012 who elected Plan E (noncontributory option)"
+      },
+      "contributory": false,
+      "contribution_basis": "Employer only; no employee contributions",
+      "benefit_formula": {
+        "name": "1.6% at 65 equivalent",
+        "max_age_factor_pct": 1.6,
+        "max_age_factor_age": 65,
+        "age_factor_increment": "quarter_year",
+        "description": "Noncontributory plan; lower benefit factor than Plan D. Age factor increases each quarter-year from age 55 to 65"
+      },
+      "final_average_compensation": {
+        "period": "highest_three_12_month_periods",
+        "months": 36,
+        "description": "Highest monthly average of compensation earnable during any three 12-consecutive-month periods of service (need not be consecutive years)",
+        "fac_note": "Unlike Plans A-D and G, the three years need not be consecutive"
+      },
+      "social_security_coverage": "mixed",
+      "max_benefit_pct_of_fac": 80,
+      "max_benefit_age": 65,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 55,
+          "years_of_service": 10
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 10,
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": false,
+        "cola_service_start_date": "2002-06-04",
+        "cola_note": "COLA increases apply only to service credit earned on and after June 4, 2002 and any purchased Plan E Elective COLA",
+        "elective_cola_purchasable": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": false
+      },
+      "disability_retirement": {
+        "lacera_administered": false,
+        "note": "LACERA does not pay disability benefits for active Plan E members; County provides disability coverage"
+      },
+      "death_benefits_active_service": {
+        "lacera_administered": false,
+        "note": "County pays death benefits for active Plan E members who die in service"
+      },
+      "county_life_insurance_active": 10000
+    },
+    "general_G": {
+      "classification": "general",
+      "pepra": true,
+      "membership_dates": {
+        "start": "2013-01-01",
+        "end": null,
+        "description": "General members hired on or after January 1, 2013 (PEPRA)"
+      },
+      "contributory": true,
+      "contribution_basis": "Flat-rate semimonthly contribution through automatic payroll deductions",
+      "benefit_formula": {
+        "name": "2.5% at 67",
+        "max_age_factor_pct": 2.5,
+        "max_age_factor_age": 67,
+        "min_age_factor_pct": 1.0,
+        "min_age_factor_age": 52,
+        "age_factor_increment": "quarter_year",
+        "description": "PEPRA formula; age factor ranges from 1.0% at age 52 to 2.5% at age 67, increasing each quarter-year"
+      },
+      "benefit_factor_table": {
+        "_description": "Per-year-of-service factor by age at retirement, from LACERA Plan G official benefit table",
+        "52": 1.0, "53": 1.1, "54": 1.2, "55": 1.3, "56": 1.4,
+        "57": 1.5, "58": 1.6, "59": 1.7, "60": 1.8, "61": 1.9,
+        "62": 2.0, "63": 2.1, "64": 2.2, "65": 2.3, "66": 2.4,
+        "67": 2.5
+      },
+      "final_average_compensation": {
+        "period": "highest_36_month",
+        "months": 36,
+        "description": "Highest monthly average of pensionable compensation earned during any 36-consecutive-month period of service"
+      },
+      "social_security_coverage": "mixed",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 67,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 52,
+          "years_of_service": 5
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "compensation_limit_2026": {
+        "ss_covered": 159733,
+        "non_ss_covered": 191679,
+        "authority": "PEPRA §7522.10"
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      }
+    },
+    "safety_A": {
+      "classification": "safety",
+      "pepra": false,
+      "membership_dates": {
+        "start": null,
+        "end": "1979-05-31",
+        "description": "Safety members with membership before June 1, 1979"
+      },
+      "contributory": true,
+      "contribution_basis": "Percentage of compensation earnable, based on LACERA entry age",
+      "benefit_formula": {
+        "name": "3.0% at 55 equivalent",
+        "max_age_factor_pct": 3.0,
+        "max_age_factor_age": 55,
+        "age_factor_increment": "quarter_year",
+        "description": "Safety Plan A; age factor increases each quarter-year from age 50 to 55"
+      },
+      "final_average_compensation": {
+        "period": "highest_12_month",
+        "months": 12,
+        "description": "Highest monthly average of compensation earnable during any 12-consecutive-month period of service"
+      },
+      "social_security_coverage": "not_covered",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 55,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "service_only": {
+          "years_of_service": 20,
+          "note": "Any age with 20 years of service credit"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "cola": {
+        "max_pct": 3.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      }
+    },
+    "safety_B": {
+      "classification": "safety",
+      "pepra": false,
+      "membership_dates": {
+        "start": "1979-06-01",
+        "end": "2012-12-31",
+        "description": "Safety members hired June 1, 1979 through December 31, 2012"
+      },
+      "contributory": true,
+      "contribution_basis": "Percentage of compensation earnable, based on LACERA entry age",
+      "benefit_formula": {
+        "name": "3.0% at 55 equivalent",
+        "max_age_factor_pct": 3.0,
+        "max_age_factor_age": 55,
+        "age_factor_increment": "quarter_year",
+        "description": "Safety Plan B; same formula as Safety Plan A. Age factor increases each quarter-year from age 50 to 55"
+      },
+      "final_average_compensation": {
+        "period": "highest_12_month",
+        "months": 12,
+        "description": "Highest monthly average of compensation earnable during any 12-consecutive-month period of service"
+      },
+      "social_security_coverage": "not_covered",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 55,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 10
+        },
+        "service_only": {
+          "years_of_service": 20,
+          "note": "Any age with 20 years of service credit"
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      }
+    },
+    "safety_C": {
+      "classification": "safety",
+      "pepra": true,
+      "membership_dates": {
+        "start": "2013-01-01",
+        "end": null,
+        "description": "Safety members hired on or after January 1, 2013 (PEPRA)"
+      },
+      "contributory": true,
+      "contribution_basis": "Percentage of compensation earnable",
+      "benefit_formula": {
+        "name": "2.7% at 57",
+        "max_age_factor_pct": 2.7,
+        "max_age_factor_age": 57,
+        "min_age_factor_pct": 2.0,
+        "min_age_factor_age": 50,
+        "age_factor_increment": "quarter_year",
+        "description": "PEPRA safety formula; age factor ranges from 2.0% at age 50 to 2.7% at age 57, increasing each quarter-year"
+      },
+      "final_average_compensation": {
+        "period": "highest_36_month",
+        "months": 36,
+        "description": "Highest monthly average of pensionable compensation earned during any 36-consecutive-month period of service"
+      },
+      "social_security_coverage": "not_covered",
+      "max_benefit_pct_of_fac": 100,
+      "max_benefit_age": 57,
+      "retirement_eligibility": {
+        "normal": {
+          "age": 50,
+          "years_of_service": 5
+        },
+        "age_only": {
+          "age": 70,
+          "note": "Regardless of years of service credit"
+        }
+      },
+      "vesting_years": 5,
+      "compensation_limit_2026": {
+        "non_ss_covered": 191679,
+        "authority": "PEPRA §7522.10"
+      },
+      "cola": {
+        "max_pct": 2.0,
+        "index": "CPI-U Los Angeles-Long Beach-Anaheim",
+        "rounding": "nearest_half_percent",
+        "guaranteed": false,
+        "cola_bank": true,
+        "applies_to_all_service": true,
+        "effective_date_annual": "April 1",
+        "star_cola_eligible": true
+      },
+      "healthcare_tier": {
+        "default": "Tier 2",
+        "exception": "Members with membership dates January 1, 2013 through June 30, 2014 have Tier 1 benefits"
+      }
+    }
+  },
+  "cola_current": {
+    "year": 2026,
+    "cpi_change_pct": 3.0,
+    "applied_cola_rounded_pct": 3.0,
+    "cpi_area": "Los Angeles-Long Beach-Anaheim",
+    "cpi_period": "December 2024 to December 2025",
+    "effective_date": "2026-04-01",
+    "board_approval_date": "2026-02-04",
+    "plan_awards": {
+      "general_A": 3.0,
+      "general_B": 2.0,
+      "general_C": 2.0,
+      "general_D": 2.0,
+      "general_E": 2.0,
+      "general_G": 2.0,
+      "safety_A": 3.0,
+      "safety_B": 2.0,
+      "safety_C": 2.0
+    },
+    "cola_accumulation_addition": {
+      "general_A": 0.0,
+      "general_B": 1.0,
+      "general_C": 1.0,
+      "general_D": 1.0,
+      "general_E": 1.0,
+      "general_G": 1.0,
+      "safety_A": 0.0,
+      "safety_B": 1.0,
+      "safety_C": 1.0
+    }
+  },
+  "benefit_options": {
+    "unmodified": {
+      "description": "Highest monthly retirement allowance with a fixed eligible survivor allowance percentage"
+    },
+    "option_1": {
+      "description": "Reduced monthly retirement allowance with a customizable eligible survivor allowance percentage"
+    },
+    "option_2": {
+      "description": "Reduced monthly retirement allowance; named beneficiary receives 100% of reduced allowance upon member death"
+    },
+    "option_3": {
+      "description": "Reduced monthly retirement allowance; named beneficiary receives 50% of reduced allowance upon member death"
+    },
+    "option_4": {
+      "description": "Reduced monthly retirement allowance; named beneficiary receives a fixed percentage or dollar amount upon member death"
+    },
+    "option_lump_sum": {
+      "description": "Reduced monthly retirement allowance; named beneficiary receives lump-sum payment of member contributions upon member death"
+    }
+  },
+  "reciprocity": {
+    "description": "LACERA has reciprocal agreements with other California public retirement systems. Members who transfer between reciprocal systems can link their service for benefit calculation purposes.",
+    "reciprocal_systems": [
+      "CalPERS",
+      "CalSTRS",
+      "LACERS (Los Angeles City)",
+      "WPERP (Water and Power)",
+      "Other 1937 Act county systems",
+      "Other qualifying California public retirement systems"
+    ]
+  },
+  "health_benefits": {
+    "program_name": "LACERA Retiree Healthcare Benefits Program",
+    "tier_1": {
+      "eligibility": "County employees hired through June 30, 2014",
+      "subsidy": "Monthly premium subsidy covering member and dependents",
+      "minimum_service_for_county_subsidy_years": 10
+    },
+    "tier_2": {
+      "eligibility": "County employees hired on or after July 1, 2014",
+      "subsidy": "Monthly premium subsidy covering member only (retiree-only coverage)",
+      "minimum_service_for_county_subsidy_years": 10,
+      "medicare_requirement": "Medicare-eligible members must enroll in Medicare and a LACERA-administered Medicare healthcare plan"
+    }
+  },
+  "death_benefits": {
+    "burial_benefit": 5000,
+    "burial_benefit_note": "Payable upon death of retired member unless later employed by another CERL system",
+    "county_active_life_insurance": {
+      "general_plans_ABCDG": 2000,
+      "general_plan_E": 10000
+    }
+  },
+  "irc_limits": {
+    "section_401a17_2026": 350000,
+    "section_415b_2026": 280000,
+    "replacement_benefit_plan": "County-funded RB Plan pays the portion of the LACERA benefit that exceeds IRC §415(b) limits"
+  },
+  "notes": [
+    "LACERA is governed by the County Employees Retirement Law of 1937 (CERL) and is the largest county retirement system in the United States.",
+    "Plans A, B, and C are legacy plans closed to new members since 1979; very few active members remain.",
+    "Plan D and Plan E were available concurrently from January 4, 1982 through November 26, 2012; members chose between the contributory (D) and noncontributory (E) options.",
+    "Plan G (general PEPRA) and Safety Plan C (safety PEPRA) were created effective January 1, 2013 per the Public Employees Pension Reform Act of 2013.",
+    "Safety members are generally not covered by Social Security; general members have mixed SS coverage depending on their position and agency.",
+    "COLA is based on the CPI-U for Los Angeles-Long Beach-Anaheim metro area, rounded to the nearest half percent as prescribed by law.",
+    "The STAR COLA program provides supplemental benefits for long-retired members whose purchasing power has eroded beyond plan COLA caps.",
+    "Plan E COLA only applies to service credit earned on and after June 4, 2002, plus any purchased Elective COLA.",
+    "Members who were covered under Social Security as County employees prior to January 1983 may have their retirement allowance reduced by a fixed amount for each year of SS-covered service.",
+    "PEPRA compensation limits for 2026: $159,733 (SS-covered positions) and $191,679 (non-SS-covered positions)."
+  ]
+}
