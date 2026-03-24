@@ -1,7 +1,9 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 22 validation suites
+# 24 validation suites
+# Session 54: Added validate_fers_eligibility.py (206 checks) for FERS eligibility rules + service credit rules
+# Session 53: Added validate_foreign_service.py (94 checks) and validate_systems_index.py (114 checks)
 # Session 48: Added validate_leo_fers_comp.py (207 checks) for LEO premium pay + FERS computation rules
 # Session 46: Added validate_county_property_tax.py for county property tax coverage (auto-detects all states/counties)
 # Session 40: Added validate_filing_status.py (816 checks) for filing-status-thresholds.json
@@ -100,6 +102,15 @@ jobs:
 
       - name: Validate LEO premium pay and FERS computation rules (207 checks)
         run: python tests/validate_leo_fers_comp.py
+
+      - name: Validate FERS eligibility and service credit rules (206 checks)
+        run: python tests/validate_fers_eligibility.py
+
+      - name: Validate Foreign Service retirement rules (94 checks)
+        run: python tests/validate_foreign_service.py
+
+      - name: Validate federal retirement systems index (114 checks)
+        run: python tests/validate_systems_index.py
       
       - name: Validation summary
         if: success()
