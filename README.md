@@ -48,7 +48,7 @@ public-finance-data/
 │
 ├── federal/
 │   ├── rates-annual.json                        ← TSP, IRMAA, IRA, SS, FERS, tax brackets, COLA, earnings test
-│   ├── pay-tables.json                          ← GS pay tables — all grades/steps/localities
+│   ├── pay-tables.json                          ← GS pay tables — all grades/steps/localities (2016–2026, 11 years)
 │   ├── tsp-limits.json                          ← TSP contribution limits (1987–2026)
 │   ├── ss-bend-points.json                      ← SS bend points (1979–2026)
 │   ├── ss-taxable-max.json                      ← SS taxable maximum (1937–2026)
@@ -163,7 +163,11 @@ public-finance-data/
     ├── validate_sdcera.py                       ← SDCERA pension validation (178 checks)
     ├── validate_filing_status.py                ← Filing status thresholds validation (816 checks)
     ├── validate_county_property_tax.py          ← County property tax — 13 states, 44 counties (1,635 checks)
-    └── validate_leo_fers_comp.py                ← LEO premium pay + FERS computation validation (207 checks)
+    ├── validate_leo_fers_comp.py                ← LEO premium pay + FERS computation validation (207 checks)
+    ├── validate_foreign_service.py              ← Foreign service retirement rules validation (94 checks)
+    ├── validate_systems_index.py                ← Federal retirement systems index validation (114 checks)
+    ├── validate_fers_eligibility.py             ← FERS eligibility + service credit validation (206 checks)
+    └── validate_pay_tables.py                   ← GS pay tables (11yr) + VA comp history validation (1,333 checks)
 ```
 
 ### Domain Organization
@@ -181,7 +185,7 @@ Files are organized by jurisdiction and domain:
 | Key | Version | File |
 |-----|---------|------|
 | `rates_annual` | 2026.3 | `federal/rates-annual.json` |
-| `pay_tables` | 2026 | `federal/pay-tables.json` |
+| `pay_tables` | 2.0 | `federal/pay-tables.json` |
 | `dcips_pay_tables` | 2026.1 | `federal/dcips/dcips-pay-tables.json` |
 | `tsp_limits` | 1.0 | `federal/tsp-limits.json` |
 | `ss_bend_points` | 1.0 | `federal/ss-bend-points.json` |
@@ -209,7 +213,7 @@ Files are organized by jurisdiction and domain:
 | `fedvip_rates` | 2026.1 | `federal/healthcare/fedvip-rates.json` |
 | `tricare_rates` | 2026.3 | `federal/healthcare/tricare-rates.json` |
 | `medicare_rates` | 2026.2 | `federal/healthcare/medicare-rates.json` |
-| `va_compensation` | 2026.1 | `federal/veterans-affairs/compensation.json` |
+| `va_compensation` | 2026.2 | `federal/veterans-affairs/compensation.json` |
 | `vgli` | 2026 | `federal/veterans-affairs/vgli.json` |
 | `state_benefits` | 2.9 | `states/state-benefits.json` |
 | `county_property_tax_az` | 1.1 | `states/arizona/county-property-tax.json` |
@@ -281,7 +285,7 @@ Each state entry includes income tax treatment of retirement income (Social Secu
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **21 test suites** totaling **~9,268 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **25 test suites** totaling **~11,031 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
@@ -306,6 +310,10 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Filing Status | `validate_filing_status.py` | 816 | Filing status thresholds — 5 statuses × 6 domains (2016–2025) |
 | County Property Tax | `validate_county_property_tax.py` | 1,635 | County property tax — 13 states, 44 counties, rates + exemptions |
 | LEO/FERS Comp | `validate_leo_fers_comp.py` | 207 | LEO premium pay rates + FERS computation rules |
+| Foreign Service | `validate_foreign_service.py` | 94 | Foreign service retirement rules — FSRDS, FSPS, FSRDS Offset |
+| Systems Index | `validate_systems_index.py` | 114 | Federal retirement systems index — all known systems + 6(c) positions |
+| FERS Eligibility | `validate_fers_eligibility.py` | 206 | FERS eligibility rules + service credit rules + cross-file consistency |
+| Pay Tables Bundle | `validate_pay_tables.py` | 1,333 | GS pay tables (11yr, OPM-verified) + VA compensation history (11yr) |
 
 ---
 

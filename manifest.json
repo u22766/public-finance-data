@@ -16,11 +16,11 @@
       "last_updated": "2026-03-15"
     },
     "pay_tables": {
-      "version": "2026",
+      "version": "2.0",
       "effective_date": "2026-01-15",
       "update_frequency": "annual (January)",
       "url": "federal/pay-tables.json",
-      "description": "GS and DCIPS base pay tables \u2014 all grades, all steps, all OPM locality areas"
+      "description": "GS base pay tables \u2014 11-year history (2016-2026), locality percentages, DCIPS cross-reference"
     },
     "dcips_pay_tables": {
       "version": "2026.1",
@@ -32,7 +32,7 @@
       "changelog_2026_1": "Initial release. Complete 2026 DCIPS pay structure with all TLMS categories."
     },
     "va_compensation": {
-      "version": "2026.1",
+      "version": "2026.2",
       "effective_date": "2026-01-01",
       "update_frequency": "annual (December COLA)",
       "url": "federal/veterans-affairs/compensation.json",

@@ -45,6 +45,25 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### pay-tables.json v2.0
+
+**Date:** 2026-03-23
+
+**Session 55 — Pay Tables Bundle: GS Historical Walkback + VA Compensation History**
+
+**Non-breaking structural change:** `pay-tables.json` restructured from single-year to multi-year format (matching `military-pay-tables.json` pattern). All 11 years (2016–2026) of GS base pay tables sourced from official OPM Salary Table PDFs. 15 grades × 10 steps × 11 years = 1,650 data points.
+
+**Critical data fix:** The previous 2026 GS base pay values were incorrect (e.g., GS-1/Step 1 showed $22,026 instead of the official $22,584). All values now match OPM's published Salary Table 2026-GS exactly.
+
+**VA compensation history:** `compensation.json` v2026.2 adds `rate_history` section with 11 years (2016–2026) of base rates for all 10 disability ratings. Values derived from 2026 official rates using published VA COLA percentages, verified against VA.gov past rates.
+
+**New validation:** `validate_pay_tables.py` — 1,333 checks covering GS structure, OPM spot-check values, cross-year consistency, raise percentage verification, locality area integrity, cross-file consistency with `federal-pay-raises.json`, VA rate history structure, year-over-year increases, and VA.gov spot-check verification.
+
+**Files changed:**
+- `federal/pay-tables.json` — v2026 → v2.0 (restructured + corrected + 10 years added)
+- `federal/veterans-affairs/compensation.json` — v2026.1 → v2026.2 (rate_history added)
+- `tests/validate_pay_tables.py` — NEW (1,333 checks)
+
 ### state-benefits.json v2.9
 
 **Date:** 2026-03-15
