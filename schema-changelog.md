@@ -45,6 +45,28 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### lacera-plans.json v2026.3
+
+**Date:** 2026-03-24
+
+**Session 59 — LACERA COLA History: 25-year December-over-December CPI record (2002–2026)**
+
+Added `cola_history` section with year-by-year COLA data for all 25 years from 2002 through 2026. Each entry contains:
+
+- `cpi_change_pct`: Raw December-over-December CPI-U change for the LA-Long Beach-Anaheim metro area
+- `cola_rounded_pct`: CPI rounded to nearest 0.5% per CERL statute
+- `plan_awards`: Applied COLA awards capped at plan maximums (3% for Plan A, 2% for Plan B)
+- `accumulation_excess`: Raw CPI minus plan max — positive values add to COLA Accumulation, negative values are drawn from accumulation to fund the max COLA award
+- `effective_date`, `cpi_period`, `source` for each year
+
+Data sources by period: 2002–2019 derived from BLS CPI-U LA-LB-Anaheim December index values (1967=100 base); 2020–2021 derived from LACERA COLA Accumulation chart cross-referenced with California DIR CPI data; 2022–2026 from LACERA official COLA inserts and plan-specific pages.
+
+Cross-validated against LACERA's published 2026 COLA Accumulation chart for 11 retirement date cohorts. Recent cohorts (2018+) match exactly; older cohorts within 0.4% tolerance (expected from 1-decimal rounding over 20+ year spans).
+
+**CI:** Expanded `validate_lacera.py` from 775 to 1134 checks (+359). Total: ~14,100 checks across 27 suites.
+
+**No schema changes. Non-breaking addition.**
+
 ### lacera-plans.json v2026.2
 
 **Date:** 2026-03-24

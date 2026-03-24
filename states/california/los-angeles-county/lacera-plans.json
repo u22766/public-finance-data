@@ -1,5 +1,5 @@
 {
-  "version": "2026.2",
+  "version": "2026.3",
   "effective_date": "2026-04-01",
   "description": "LACERA (Los Angeles County Employees Retirement Association) retirement plan data. Covers all 10 plans: General A/B/C/D/E/G and Safety A/B/C. Governed by the County Employees Retirement Law of 1937 (CERL) and PEPRA.",
   "source": "LACERA official plan books, basic provisions pages, COLA announcements, and actuarial reports",
@@ -814,5 +814,415 @@
     "Plan E COLA only applies to service credit earned on and after June 4, 2002, plus any purchased Elective COLA.",
     "Members who were covered under Social Security as County employees prior to January 1983 may have their retirement allowance reduced by a fixed amount for each year of SS-covered service.",
     "PEPRA compensation limits for 2026: $159,733 (SS-covered positions) and $191,679 (non-SS-covered positions)."
-  ]
+  ],
+  "cola_history": {
+    "_comment": "Year-by-year COLA history for LACERA plans. cpi_change_pct is the raw December-over-December change in BLS CPI-U for LA-Long Beach-Anaheim. cola_rounded_pct is rounded to nearest 0.5% per CERL. Accumulation excess is the raw CPI change minus the plan max (positive = added to accumulation, negative = drawn from accumulation to fund max COLA award).",
+    "cpi_area": "Los Angeles-Long Beach-Anaheim",
+    "cpi_series": "CPI-U All Urban Consumers",
+    "rounding_method": "nearest_half_percent",
+    "first_cola_year": 1967,
+    "_first_cola_note": "LACERA's first COLA was granted July 1, 1967. This history covers 2002-2026.",
+    "years": [
+      {
+        "cola_year": 2002,
+        "cpi_period": "Dec 2000 to Dec 2001",
+        "cpi_change_pct": 2.1,
+        "cola_rounded_pct": 2.0,
+        "effective_date": "2002-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 2.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -0.9,
+          "plan_b_2pct_max": 0.1
+        }
+      },
+      {
+        "cola_year": 2003,
+        "cpi_period": "Dec 2001 to Dec 2002",
+        "cpi_change_pct": 3.7,
+        "cola_rounded_pct": 3.5,
+        "effective_date": "2003-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 0.7,
+          "plan_b_2pct_max": 1.7
+        }
+      },
+      {
+        "cola_year": 2004,
+        "cpi_period": "Dec 2002 to Dec 2003",
+        "cpi_change_pct": 1.8,
+        "cola_rounded_pct": 2.0,
+        "effective_date": "2004-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 2.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.2,
+          "plan_b_2pct_max": -0.2
+        }
+      },
+      {
+        "cola_year": 2005,
+        "cpi_period": "Dec 2003 to Dec 2004",
+        "cpi_change_pct": 4.4,
+        "cola_rounded_pct": 4.5,
+        "effective_date": "2005-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 1.4,
+          "plan_b_2pct_max": 2.4
+        }
+      },
+      {
+        "cola_year": 2006,
+        "cpi_period": "Dec 2004 to Dec 2005",
+        "cpi_change_pct": 4.4,
+        "cola_rounded_pct": 4.5,
+        "effective_date": "2006-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 1.4,
+          "plan_b_2pct_max": 2.4
+        }
+      },
+      {
+        "cola_year": 2007,
+        "cpi_period": "Dec 2005 to Dec 2006",
+        "cpi_change_pct": 3.3,
+        "cola_rounded_pct": 3.5,
+        "effective_date": "2007-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 0.3,
+          "plan_b_2pct_max": 1.3
+        }
+      },
+      {
+        "cola_year": 2008,
+        "cpi_period": "Dec 2006 to Dec 2007",
+        "cpi_change_pct": 4.2,
+        "cola_rounded_pct": 4.0,
+        "effective_date": "2008-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 1.2,
+          "plan_b_2pct_max": 2.2
+        }
+      },
+      {
+        "cola_year": 2009,
+        "cpi_period": "Dec 2007 to Dec 2008",
+        "cpi_change_pct": 0.1,
+        "cola_rounded_pct": 0.0,
+        "effective_date": "2009-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 0.0,
+          "plan_b_2pct_max": 0.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -2.9,
+          "plan_b_2pct_max": -1.9
+        }
+      },
+      {
+        "cola_year": 2010,
+        "cpi_period": "Dec 2008 to Dec 2009",
+        "cpi_change_pct": 1.8,
+        "cola_rounded_pct": 2.0,
+        "effective_date": "2010-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 2.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.2,
+          "plan_b_2pct_max": -0.2
+        }
+      },
+      {
+        "cola_year": 2011,
+        "cpi_period": "Dec 2009 to Dec 2010",
+        "cpi_change_pct": 1.3,
+        "cola_rounded_pct": 1.5,
+        "effective_date": "2011-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 1.5,
+          "plan_b_2pct_max": 1.5
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.7,
+          "plan_b_2pct_max": -0.7
+        }
+      },
+      {
+        "cola_year": 2012,
+        "cpi_period": "Dec 2010 to Dec 2011",
+        "cpi_change_pct": 2.2,
+        "cola_rounded_pct": 2.0,
+        "effective_date": "2012-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 2.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -0.8,
+          "plan_b_2pct_max": 0.2
+        }
+      },
+      {
+        "cola_year": 2013,
+        "cpi_period": "Dec 2011 to Dec 2012",
+        "cpi_change_pct": 1.9,
+        "cola_rounded_pct": 2.0,
+        "effective_date": "2013-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 2.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.1,
+          "plan_b_2pct_max": -0.1
+        }
+      },
+      {
+        "cola_year": 2014,
+        "cpi_period": "Dec 2012 to Dec 2013",
+        "cpi_change_pct": 1.1,
+        "cola_rounded_pct": 1.0,
+        "effective_date": "2014-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 1.0,
+          "plan_b_2pct_max": 1.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.9,
+          "plan_b_2pct_max": -0.9
+        }
+      },
+      {
+        "cola_year": 2015,
+        "cpi_period": "Dec 2013 to Dec 2014",
+        "cpi_change_pct": 0.7,
+        "cola_rounded_pct": 0.5,
+        "effective_date": "2015-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 0.5,
+          "plan_b_2pct_max": 0.5
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -2.3,
+          "plan_b_2pct_max": -1.3
+        }
+      },
+      {
+        "cola_year": 2016,
+        "cpi_period": "Dec 2014 to Dec 2015",
+        "cpi_change_pct": 2.0,
+        "cola_rounded_pct": 2.0,
+        "effective_date": "2016-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 2.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.0,
+          "plan_b_2pct_max": 0.0
+        }
+      },
+      {
+        "cola_year": 2017,
+        "cpi_period": "Dec 2015 to Dec 2016",
+        "cpi_change_pct": 2.0,
+        "cola_rounded_pct": 2.0,
+        "effective_date": "2017-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 2.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.0,
+          "plan_b_2pct_max": 0.0
+        }
+      },
+      {
+        "cola_year": 2018,
+        "cpi_period": "Dec 2016 to Dec 2017",
+        "cpi_change_pct": 3.6,
+        "cola_rounded_pct": 3.5,
+        "effective_date": "2018-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 0.6,
+          "plan_b_2pct_max": 1.6
+        }
+      },
+      {
+        "cola_year": 2019,
+        "cpi_period": "Dec 2017 to Dec 2018",
+        "cpi_change_pct": 3.2,
+        "cola_rounded_pct": 3.0,
+        "effective_date": "2019-04-01",
+        "source": "BLS CPI-U LA-LB-Anaheim (1967=100)",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 0.2,
+          "plan_b_2pct_max": 1.2
+        }
+      },
+      {
+        "cola_year": 2020,
+        "cpi_period": "Dec 2018 to Dec 2019",
+        "cpi_change_pct": 2.8,
+        "cola_rounded_pct": 3.0,
+        "effective_date": "2020-04-01",
+        "source": "Derived from LACERA COLA Accumulation chart and California DIR CPI",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -0.2,
+          "plan_b_2pct_max": 0.8
+        }
+      },
+      {
+        "cola_year": 2021,
+        "cpi_period": "Dec 2019 to Dec 2020",
+        "cpi_change_pct": 1.7,
+        "cola_rounded_pct": 1.5,
+        "effective_date": "2021-04-01",
+        "source": "Derived from LACERA COLA Accumulation chart and California DIR CPI",
+        "plan_awards": {
+          "plan_a_3pct_max": 1.5,
+          "plan_b_2pct_max": 1.5
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": -1.3,
+          "plan_b_2pct_max": -0.3
+        }
+      },
+      {
+        "cola_year": 2022,
+        "cpi_period": "Dec 2020 to Dec 2021",
+        "cpi_change_pct": 6.6,
+        "cola_rounded_pct": 6.5,
+        "effective_date": "2022-04-01",
+        "source": "LACERA 2022 COLA insert",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 3.6,
+          "plan_b_2pct_max": 4.6
+        }
+      },
+      {
+        "cola_year": 2023,
+        "cpi_period": "Dec 2021 to Dec 2022",
+        "cpi_change_pct": 4.9,
+        "cola_rounded_pct": 5.0,
+        "effective_date": "2023-04-01",
+        "source": "LACERA 2023 COLA insert",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 1.9,
+          "plan_b_2pct_max": 2.9
+        }
+      },
+      {
+        "cola_year": 2024,
+        "cpi_period": "Dec 2022 to Dec 2023",
+        "cpi_change_pct": 3.5,
+        "cola_rounded_pct": 3.5,
+        "effective_date": "2024-04-01",
+        "source": "Derived from LACERA COLA Accumulation chart",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 0.5,
+          "plan_b_2pct_max": 1.5
+        }
+      },
+      {
+        "cola_year": 2025,
+        "cpi_period": "Dec 2023 to Dec 2024",
+        "cpi_change_pct": 3.4,
+        "cola_rounded_pct": 3.5,
+        "effective_date": "2025-04-01",
+        "source": "LACERA plan-specific COLA pages",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 0.4,
+          "plan_b_2pct_max": 1.4
+        }
+      },
+      {
+        "cola_year": 2026,
+        "cpi_period": "Dec 2024 to Dec 2025",
+        "cpi_change_pct": 3.0,
+        "cola_rounded_pct": 3.0,
+        "effective_date": "2026-04-01",
+        "source": "LACERA Plans ABC Current COLA page",
+        "plan_awards": {
+          "plan_a_3pct_max": 3.0,
+          "plan_b_2pct_max": 2.0
+        },
+        "accumulation_excess": {
+          "plan_a_3pct_max": 0.0,
+          "plan_b_2pct_max": 1.0
+        }
+      }
+    ]
+  }
 }

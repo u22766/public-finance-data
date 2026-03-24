@@ -34,7 +34,7 @@ def main():
 
     # ── METADATA ──────────────────────────────────────────────────
     print("Metadata checks...")
-    check(data.get("version") == "2026.2", f"version is 2026.2, got {data.get('version')}")
+    check(data.get("version") == "2026.3", f"version is 2026.3, got {data.get('version')}")
     check("effective_date" in data, "effective_date present")
     check("description" in data, "description present")
     check("source" in data, "source present")
@@ -581,6 +581,162 @@ def main():
                   "manifest url correct")
     else:
         check(False, "manifest.json exists")
+
+    # ── COLA HISTORY ─────────────────────────────────────────────
+    print("COLA history checks...")
+    ch = data.get("cola_history", {})
+    check(isinstance(ch, dict), "cola_history is dict")
+    check(ch.get("cpi_area") == "Los Angeles-Long Beach-Anaheim", "CPI area correct")
+    check(ch.get("cpi_series") == "CPI-U All Urban Consumers", "CPI series correct")
+    check(ch.get("rounding_method") == "nearest_half_percent", "rounding method specified")
+
+    ch_years = ch.get("years", [])
+    check(len(ch_years) >= 25, f"at least 25 COLA history years, got {len(ch_years)}")
+
+    # Verify years are sorted ascending
+    cola_yrs = [y["cola_year"] for y in ch_years]
+    check(cola_yrs == sorted(cola_yrs), "COLA history years sorted ascending")
+    check(cola_yrs[0] == 2002, f"first COLA year is 2002, got {cola_yrs[0]}")
+    check(cola_yrs[-1] == 2026, f"last COLA year is 2026, got {cola_yrs[-1]}")
+
+    # No duplicates
+    check(len(cola_yrs) == len(set(cola_yrs)), "no duplicate COLA years")
+
+    # Per-year structural and range checks
+    for entry in ch_years:
+        yr = entry["cola_year"]
+        cpi = entry["cpi_change_pct"]
+        rounded = entry["cola_rounded_pct"]
+        eff = entry["effective_date"]
+        pa = entry["plan_awards"]
+        ae = entry["accumulation_excess"]
+
+        # Range checks
+        check(-3.0 <= cpi <= 12.0, f"{yr}: CPI {cpi} in plausible range [-3, 12]")
+        check(rounded >= 0.0, f"{yr}: rounded COLA {rounded} >= 0")
+        check(rounded % 0.5 == 0, f"{yr}: rounded COLA {rounded} is multiple of 0.5")
+
+        # Rounding: nearest 0.5
+        expected_rounded = round(cpi * 2) / 2
+        check(abs(rounded - expected_rounded) < 0.01,
+              f"{yr}: rounded {rounded} matches nearest-0.5 of CPI {cpi} (expected {expected_rounded})")
+
+        # Plan awards capped at plan max
+        check(pa["plan_a_3pct_max"] == min(rounded, 3.0),
+              f"{yr}: Plan A award = min(rounded, 3.0)")
+        check(pa["plan_b_2pct_max"] == min(rounded, 2.0),
+              f"{yr}: Plan B award = min(rounded, 2.0)")
+
+        # Accumulation excess = CPI - plan_max
+        check(abs(ae["plan_a_3pct_max"] - (cpi - 3.0)) < 0.05,
+              f"{yr}: Plan A excess = CPI - 3.0")
+        check(abs(ae["plan_b_2pct_max"] - (cpi - 2.0)) < 0.05,
+              f"{yr}: Plan B excess = CPI - 2.0")
+
+        # Plan A excess is always 1.0 less than Plan B excess
+        check(abs((ae["plan_b_2pct_max"] - ae["plan_a_3pct_max"]) - 1.0) < 0.05,
+              f"{yr}: Plan B excess - Plan A excess = 1.0")
+
+        # Effective date format
+        check(eff == f"{yr}-04-01", f"{yr}: effective date is April 1")
+
+        # CPI period format
+        period = entry["cpi_period"]
+        check(period.startswith("Dec "), f"{yr}: CPI period starts with 'Dec '")
+
+        # Source present
+        check(len(entry.get("source", "")) > 5, f"{yr}: source field present")
+
+    # ── COLA HISTORY - Known value spot checks ────────────────────
+    print("COLA history known-value spot checks...")
+    yr_map = {e["cola_year"]: e for e in ch_years}
+
+    # LACERA official values (from inserts/pages)
+    known_cpi = {
+        2022: 6.6, 2023: 4.9, 2024: 3.5, 2025: 3.4, 2026: 3.0
+    }
+    for yr, expected_cpi in known_cpi.items():
+        actual = yr_map[yr]["cpi_change_pct"]
+        check(abs(actual - expected_cpi) < 0.01,
+              f"{yr}: CPI {actual} matches LACERA official {expected_cpi}")
+
+    known_rounded = {
+        2022: 6.5, 2023: 5.0, 2025: 3.5, 2026: 3.0
+    }
+    for yr, expected_r in known_rounded.items():
+        actual = yr_map[yr]["cola_rounded_pct"]
+        check(abs(actual - expected_r) < 0.01,
+              f"{yr}: rounded {actual} matches LACERA official {expected_r}")
+
+    # 2009: near-zero CPI year (financial crisis)
+    check(yr_map[2009]["cpi_change_pct"] < 0.5,
+          f"2009: CPI < 0.5% (financial crisis year)")
+    check(yr_map[2009]["cola_rounded_pct"] == 0.0,
+          f"2009: rounded COLA = 0.0%")
+
+    # 2022: highest CPI in history (post-COVID inflation)
+    max_cpi_year = max(ch_years, key=lambda x: x["cpi_change_pct"])
+    check(max_cpi_year["cola_year"] == 2022,
+          f"2022 has highest CPI ({max_cpi_year['cpi_change_pct']}%)")
+
+    # ── COLA HISTORY - Accumulation chart cross-validation ────────
+    print("COLA history accumulation cross-validation...")
+    # Verify Plan B (2% max) accumulation sums match the 2025 LACERA chart
+    # Chart value = sum of (CPI - 2.0) for each COLA year in the cohort range
+    chart_cohorts = {
+        # cohort_label: (first_cola_year, last_cola_year, chart_accumulation_apr2025)
+        "4/1/06-3/31/18": (2018, 2025, 13.7),
+        "4/1/18-3/31/19": (2019, 2025, 12.1),
+        "4/1/19-3/31/20": (2020, 2025, 10.9),
+        "4/1/20-3/31/22": (2022, 2025, 10.4),
+        "4/1/22-3/31/23": (2023, 2025, 5.8),
+        "4/1/23-3/31/24": (2024, 2025, 2.9),
+        "4/1/24-3/31/25": (2025, 2025, 1.4),
+    }
+    for label, (start, end, expected_accum) in chart_cohorts.items():
+        computed = sum(yr_map[y]["accumulation_excess"]["plan_b_2pct_max"]
+                      for y in range(start, end + 1))
+        computed = round(computed, 1)
+        diff = abs(computed - expected_accum)
+        check(diff <= 0.5,
+              f"Cohort {label}: computed B accum {computed:.1f} vs chart {expected_accum} (diff {diff:.1f})")
+
+    # ── COLA HISTORY - Monotonicity and trend checks ──────────────
+    print("COLA history trend checks...")
+    # Plan B excess should be exactly 1.0 more than Plan A excess for every year
+    for entry in ch_years:
+        yr = entry["cola_year"]
+        a_ex = entry["accumulation_excess"]["plan_a_3pct_max"]
+        b_ex = entry["accumulation_excess"]["plan_b_2pct_max"]
+        check(abs(b_ex - a_ex - 1.0) < 0.05, f"{yr}: B excess - A excess == 1.0")
+
+    # STAR Program: accumulation stayed below 20% for 2010-2021 (per ACFR)
+    # For recent retirees (4/1/06-3/31/18), Plan B accum through 2021 should be < 20%
+    accum_thru_2021 = sum(yr_map[y]["accumulation_excess"]["plan_b_2pct_max"]
+                         for y in range(2018, 2022))
+    check(accum_thru_2021 < 20.0,
+          f"Plan B accum 2018-2021 = {accum_thru_2021:.1f} < 20% (STAR threshold)")
+
+    # ── COLA HISTORY - Consistency with cola_current ──────────────
+    print("COLA history / cola_current consistency...")
+    cc = data.get("cola_current", {})
+    latest = yr_map.get(2026, {})
+    check(abs(latest.get("cpi_change_pct", 0) - cc.get("cpi_change_pct", -1)) < 0.01,
+          "2026 history CPI matches cola_current CPI")
+    # Plan awards should match
+    cc_awards = cc.get("plan_awards", {})
+    if cc_awards:
+        check(abs(latest["plan_awards"]["plan_a_3pct_max"] - cc_awards.get("general_A", -1)) < 0.01,
+              "2026 Plan A award matches cola_current")
+        check(abs(latest["plan_awards"]["plan_b_2pct_max"] - cc_awards.get("general_B", -1)) < 0.01,
+              "2026 Plan B award matches cola_current")
+    # Accumulation additions should match
+    cc_accum = cc.get("cola_accumulation_addition", {})
+    if cc_accum:
+        check(abs(latest["accumulation_excess"]["plan_a_3pct_max"] - cc_accum.get("general_A", -1)) < 0.01,
+              "2026 Plan A accum excess matches cola_current")
+        check(abs(latest["accumulation_excess"]["plan_b_2pct_max"] - cc_accum.get("general_B", -1)) < 0.01,
+              "2026 Plan B accum excess matches cola_current")
 
     # ── NOTES ─────────────────────────────────────────────────────
     print("Notes checks...")

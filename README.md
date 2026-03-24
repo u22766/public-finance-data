@@ -164,7 +164,7 @@ public-finance-data/
     ├── validate_federal_retirement.py           ← Federal retirement rules validation (157 checks)
     ├── validate_municipal.py                    ← Municipal pension validation (153 checks)
     ├── validate_sdcera.py                       ← SDCERA pension validation (178 checks)
-    ├── validate_lacera.py                       ← LACERA pension validation (775 checks)
+    ├── validate_lacera.py                       ← LACERA pension validation (1134 checks)
     ├── validate_filing_status.py                ← Filing status thresholds validation (816 checks)
     ├── validate_county_property_tax.py          ← County property tax — 13 states, 44 counties (1,635 checks)
     ├── validate_leo_fers_comp.py                ← LEO premium pay + FERS computation validation (207 checks)
@@ -246,7 +246,7 @@ Files are organized by jurisdiction and domain:
 | `rrs_plans_richmond` | 2026.1 | `states/virginia/richmond/rrs-plans.json` |
 | `mcerp_plans_montgomery` | 2026.3 | `states/maryland/montgomery-county/mcerp-plans.json` |
 | `sdcera_plans` | 1.0 | `states/california/san-diego-county/sdcera-plans.json` |
-| `lacera_plans_los_angeles` | 2026.1 | `states/california/los-angeles-county/lacera-plans.json` |
+| `lacera_plans_los_angeles` | 2026.3 | `states/california/los-angeles-county/lacera-plans.json` |
 | `static_refs` | 1.0.2 | `reference/static-refs.json` |
 | `ssa_life_table` | 1.0 | `reference/ssa-life-table.json` |
 | `other_db_template` | 1.0.0 | `reference/other-db-template.json` |
@@ -292,7 +292,7 @@ Each state entry includes income tax treatment of retirement income (Social Secu
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **27 test suites** totaling **~13,700 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **27 test suites** totaling **~14,100 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
@@ -314,7 +314,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Federal Retirement | `validate_federal_retirement.py` | 157 | FERS/CSRS rules, contribution rates, FEGLI, FEHB eligibility |
 | Municipal | `validate_municipal.py` | 153 | Municipal pension plans — MCERP, FCPP, RRS, ACERS |
 | SDCERA | `validate_sdcera.py` | 178 | SDCERA 9-tier pension system — formulas, eligibility, PEPRA flags |
-| LACERA | `validate_lacera.py` | 775 | LACERA 9-plan pension system — general/safety plans, COLA, benefit factors |
+| LACERA | `validate_lacera.py` | 1134 | LACERA 9-plan pension system — general/safety plans, COLA, benefit factors, COLA history |
 | Filing Status | `validate_filing_status.py` | 816 | Filing status thresholds — 5 statuses × 6 domains (2016–2025) |
 | County Property Tax | `validate_county_property_tax.py` | 1,635 | County property tax — 13 states, 44 counties, rates + exemptions |
 | LEO/FERS Comp | `validate_leo_fers_comp.py` | 207 | LEO premium pay rates + FERS computation rules |
