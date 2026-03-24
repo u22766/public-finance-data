@@ -656,6 +656,26 @@
       "scope": "statewide",
       "version": "2026.1",
       "last_updated": "2026-03-24"
+    },
+    "nyslrs_plans_new_york": {
+      "description": "New York State and Local Retirement System (NYSLRS) \u2014 ERS (6 tiers) and PFRS (5 tiers, no T4). 1.2M members. SS-covered. COLA: 50% CPI, 1-3%, first $18K. Tier 6 income-based contributions 3-6%. 2024 law: FAE changed from 5 to 3 years for Tier 6.",
+      "url": "states/new-york/nyslrs-plans.json",
+      "category": "state_local_pension",
+      "subcategory": "state_pension",
+      "state": "new-york",
+      "scope": "statewide",
+      "version": "2026.1",
+      "last_updated": "2026-03-24"
+    },
+    "nystrs_plans_new_york": {
+      "description": "New York State Teachers Retirement System (NYSTRS) \u2014 460K members, educator-only. SS-covered. 6 tiers; Tier 4 largest (59%), Tier 6 36% growing. COLA: 50% CPI 1-3% first $18K (same law as NYSLRS). Tier 6 FAS = 5 years (NYSTRS did NOT get the 2024 3-year FAE law). 101.5% funded.",
+      "url": "states/new-york/nystrs-plans.json",
+      "category": "state_local_pension",
+      "subcategory": "state_pension",
+      "state": "new-york",
+      "scope": "statewide",
+      "version": "2026.1",
+      "last_updated": "2026-03-24"
     }
   }
 }

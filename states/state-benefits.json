@@ -1,6 +1,6 @@
 {
   "_comment": "State Tax Treatment of Retirement Income \u2014 State income tax treatment of federal retirement income, property tax exemptions, and veteran-specific benefits by state. Version 2.1. Expand with additional states as needed. Data is general guidance \u2014 user should verify current state law.",
-  "version": "2.10",
+  "version": "2.11",
   "effective_date": "2026-01-01",
   "_disclaimer": "State tax law changes frequently. This file provides general guidance for planning purposes only. Users should verify current rules with their state tax authority or a qualified tax advisor.",
   "_retiree_guidance": "Military retirees should reference both 'income_tax' (retirement pay treatment, Social Security, tax brackets) and 'veteran_benefits' (property tax exemptions, disability-based benefits) for a complete state-level picture. The two sections are complementary \u2014 'income_tax' covers all retirement income regardless of VA status, while 'veteran_benefits' covers VA disability-related property and housing exemptions.",
@@ -2351,9 +2351,9 @@
         {
           "bill": "HB 857",
           "title": "Income Tax - Subtraction Modification for Military Retirement Income - Individuals Under Age 55",
-          "status": "In House Ways and Means. Hearing held 2/19/2026. No committee vote reported. MACo (Maryland Association of Counties) submitted opposing testimony citing local revenue impact. 25 co-sponsors (bipartisan). Session ends April 13 (sine die). State facing $1.4B structural deficit — primary obstacle to revenue-reducing bills.",
+          "status": "Hearing held Feb 19, 2026 in House Ways and Means. MACo (Maryland Association of Counties) submitted opposing testimony citing local revenue impact. 25 co-sponsors (bipartisan). No committee vote. Critical: Maryland Crossover Date was March 23, 2026 \u2014 HB 857 did not cross over, effectively dead for 2026 session unless extraordinary action. Session ends April 13 (sine die). Primary obstacle: $1.4B structural deficit.",
           "impact": "Would increase under-55 military retirement subtraction from $12,500 to $20,000. Effective July 1, 2026.",
-          "last_checked": "2026-03-23"
+          "last_checked": "2026-03-24"
         },
         {
           "bill": "HB 761",
@@ -2602,9 +2602,9 @@
         {
           "bill": "HF 194",
           "title": "Exclusion amount increased for homesteads of veterans with a disability",
-          "status": "In House Taxes Committee (re-referred from Veterans Affairs Feb 2025). 12 authors (Rasmusson added 2/26/2026, Gottfried added 3/12/2026). Bipartisan support growing but no hearing scheduled.",
+          "status": "In House Taxes Committee. 12 authors as of March 12, 2026 (bipartisan, Rasmusson added 2/26, Gottfried added 3/12). No hearing scheduled. HF1297 (higher exclusion amounts) is a competing bill in the same committee. 2026 session started Feb 17; no committee votes on either bill through March 2026.",
           "impact": "Would increase disabled veteran property tax homestead exclusion amount",
-          "last_checked": "2026-03-23"
+          "last_checked": "2026-03-24"
         }
       ]
     },
@@ -5540,5 +5540,5 @@
       ]
     }
   },
-  "last_updated": "2026-03-23"
+  "last_updated": "2026-03-24"
 }

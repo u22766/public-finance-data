@@ -1,0 +1,340 @@
+{
+  "_comment": "New York State and Local Retirement System (NYSLRS) — ERS and PFRS. Consumer-agnostic data only.",
+  "systemName": "New York State and Local Retirement System",
+  "systemAbbreviation": "NYSLRS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "New York",
+    "state": "NY",
+    "type": "statewide_public_employee_pension"
+  },
+  "administeredBy": "New York State Office of the State Comptroller — Thomas P. DiNapoli, administrative head and trustee",
+  "established": 1920,
+  "totalMembers": {
+    "approximate": 1200000,
+    "note": "~1.2M total: 710,000+ current and former state/local employees plus 520,000+ retirees and beneficiaries. Nearly 3,000 participating employers.",
+    "source": "https://www.osc.ny.gov/press/releases/2024/09/dinapoli-nyslrs-announces-employer-contribution-rates-2025-26"
+  },
+  "systems": {
+    "ERS": {
+      "name": "Employees' Retirement System",
+      "description": "Covers most state and local government employees — general employees, correction officers, court officers, and other non-public-safety classifications"
+    },
+    "PFRS": {
+      "name": "Police and Fire Retirement System",
+      "description": "Covers police officers and paid firefighters for New York State and municipal employers. ~32,000 active members. Note: no Tier 4 in PFRS.",
+      "pfrs_tiers_note": "PFRS has 5 tiers: Tiers 1, 2, 3, 5, and 6 (no Tier 4 in PFRS)."
+    }
+  },
+  "socialSecurity": {
+    "covered": true,
+    "note": "NYSLRS members participate in Social Security. New York public employees pay into SS. Social Security Fairness Act (Jan 2025) eliminated WEP and GPO — NYSLRS members previously affected by WEP/GPO may receive higher SS benefits.",
+    "source": "https://www.osc.ny.gov/retirement"
+  },
+  "cola": {
+    "type": "automatic_annual",
+    "automatic": true,
+    "method": "50_pct_cpi",
+    "description": "50% of the CPI increase, with a minimum of 1% and a maximum of 3%, applied to the first $18,000 of the member's annual retirement benefit (Single Life Allowance equivalent).",
+    "floor": 0.01,
+    "cap": 0.03,
+    "appliesTo": "First $18,000 of annual Single Life Allowance benefit",
+    "maximumMonthlyIncrease": 45,
+    "maximumAnnualIncrease": 540,
+    "maximumMonthlyIncreaseNote": "$18,000 x 3% / 12 = $45/month maximum; $540/year maximum",
+    "eligibility": {
+      "option1": "Age 62 or older AND retired for 5 or more years",
+      "option2": "Age 55 or older AND retired for 10 or more years (generally applies to special plan members who can retire at any age after minimum service)",
+      "option3": "Receiving a disability pension for 5 or more years"
+    },
+    "survivorCola": "Surviving spouse receiving a lifetime benefit option gets half the COLA amount the member would have received",
+    "colaAnnouncement": "COLA effective each September; notice sent to retirees in late September",
+    "recentCOLA_fy2025_26": {
+      "rate": 0.012,
+      "effectiveSeptember": 2025,
+      "note": "2025-26 COLA is 1.2% (50% of CPI rounded). For a $18,000+ annual benefit: $18 per month / $216 per year maximum."
+    },
+    "authority": "New York State Retirement and Social Security Law",
+    "source": "https://www.osc.ny.gov/retirement/retirees/cost-living-adjustment"
+  },
+  "tier6_contribution_brackets": {
+    "note": "Tier 6 (ERS and PFRS) member contribution rates are income-based, recalculated annually on April 1 using earnings from 2 State fiscal years prior. New members: rate based on projected annualized wage for first 3 SFYs.",
+    "brackets": [
+      {"earningsUpTo": 45000, "rate": 0.03},
+      {"earningsFrom": 45000, "earningsUpTo": 55000, "rate": 0.035},
+      {"earningsFrom": 55000, "earningsUpTo": 75000, "rate": 0.045},
+      {"earningsFrom": 75000, "earningsUpTo": 100000, "rate": 0.0575},
+      {"earningsOver": 100000, "rate": 0.06, "note": "Up to NY Governor's salary cap (~$250,000)"}
+    ],
+    "minimum": 0.03,
+    "maximum": 0.06,
+    "governorSalaryCap": 250000,
+    "governorSalaryCapNote": "Pensionable earnings may not exceed the salary of the NY Governor (currently $250,000). Contributions and benefits not calculated on earnings above this cap.",
+    "updateCycle": "Annual — new rates effective April 1 each year",
+    "source": "https://www.osc.ny.gov/retirement/publications/1530/contributing-toward-your-retirement"
+  },
+  "ers": {
+    "tiers": {
+      "tier_1": {
+        "tierName": "ERS Tier 1",
+        "membershipDates": "Before July 27, 1976",
+        "note": "Legacy tier — very few active members. Most benefits mirror Tier 2.",
+        "vesting": {"years": 5, "schedule": "cliff"},
+        "memberContributions": {"rate": null, "note": "Tier 1 members generally not required to contribute; may make voluntary contributions."}
+      },
+      "tier_2": {
+        "tierName": "ERS Tier 2",
+        "membershipDates": "July 27, 1976 through August 31, 1983 (Note: Tier 3 spans July 27, 1976 – August 31, 1983 for ERS; see Tier 3 for overlap)",
+        "note": "Legacy tier. Most members are in plans covered under Articles 14 or 15.",
+        "vesting": {"years": 5, "schedule": "cliff"},
+        "memberContributions": {"rate": null, "note": "Tier 2 ERS members generally not required to contribute; may make voluntary contributions."}
+      },
+      "tier_3_and_4": {
+        "tierName": "ERS Tiers 3 & 4",
+        "tier3MembershipDates": "July 27, 1976 through August 31, 1983",
+        "tier4MembershipDates": "September 1, 1983 through December 31, 2009",
+        "vesting": {"years": 5, "schedule": "cliff"},
+        "memberContributions": {
+          "rate": 0.03,
+          "duration": "Until 10 years of membership OR 10 years of credited service — whichever occurs first",
+          "note": "3% contributions required until reaching the 10-year threshold, then contributions stop."
+        },
+        "retirementAge": {
+          "fullBenefits": 62,
+          "earlyRetirementFrom": 55,
+          "noReductionWith30YearsService": true
+        },
+        "earlyRetirementReduction": {
+          "at55": "27% permanent reduction (with less than 30 years of service)",
+          "note": "See full reduction chart at osc.ny.gov. Reduction is prorated by exact age."
+        },
+        "finalAverageEarnings": {
+          "years": 3,
+          "method": "highest_3_consecutive_years",
+          "limitation": "Earnings in any year cannot exceed average of previous 2 years by more than 10%"
+        },
+        "benefitFormula": {
+          "article15_coordinated": {
+            "under20years": {"multiplier": 0.0166, "structure": "1.66% x FAE x years of service"},
+            "20to30years": {"multiplier": 0.02, "structure": "2% x FAE x years of service"},
+            "over30years": {"structure": "2% x FAE x 30 years + 1.5% x FAE x years beyond 30"},
+            "exampleAt30yrs": "2% x 30 = 60% of FAE",
+            "exampleAt35yrs": "(2% x 30) + (1.5% x 5) = 67.5% of FAE"
+          },
+          "note": "Article 15 (Coordinated Plan) covers most ERS Tier 3/4 members. Other plans available for specific job titles."
+        },
+        "source": "https://www.osc.ny.gov/retirement/employers/comparison-ers-benefits"
+      },
+      "tier_5": {
+        "tierName": "ERS Tier 5",
+        "membershipDates": "January 1, 2010 through March 31, 2012",
+        "vesting": {"years": 5, "schedule": "cliff"},
+        "memberContributions": {
+          "rate": 0.03,
+          "duration": "For entire career",
+          "exceptions": "NY State Correction Officers not required to contribute after 30 years. Uniformed Court/Peace Officers (UCS) contribute 4% for all years."
+        },
+        "retirementAge": {
+          "fullBenefits": 62,
+          "earlyRetirementFrom": 55,
+          "noReductionException": "UCPOs with at least 30 years of service"
+        },
+        "earlyRetirementReduction": {
+          "at55": "38.33% permanent reduction (unless UCPO exception)",
+          "note": "See full reduction chart at osc.ny.gov."
+        },
+        "finalAverageEarnings": {
+          "years": 3,
+          "method": "highest_3_consecutive_years",
+          "limitation": "Earnings in any year cannot exceed average of previous 2 years by more than 10%",
+          "overtimeLimit": "Overtime above limit excluded from FAE; limit increases 3% per calendar year"
+        },
+        "benefitFormula": {
+          "article15_coordinated": {
+            "under20years": {"multiplier": 0.0166, "structure": "1.66% x FAE x years of service"},
+            "20to30years": {"multiplier": 0.02, "structure": "2% x FAE x years of service"},
+            "over30years": {"structure": "2% x FAE x 30 years + 1.5% x FAE x years beyond 30"},
+            "note": "Same formula as Tiers 3 & 4"
+          }
+        },
+        "source": "https://www.osc.ny.gov/retirement/employers/comparison-ers-benefits"
+      },
+      "tier_6": {
+        "tierName": "ERS Tier 6",
+        "membershipDates": "April 1, 2012 and after",
+        "vesting": {"years": 5, "schedule": "cliff", "note": "Vesting at 5 years established April 9, 2022 law (previously 10 years)."},
+        "memberContributions": {
+          "type": "income_based",
+          "brackets": "See tier6_contribution_brackets at top level",
+          "range": "3% to 6% based on annual earnings",
+          "duration": "For entire career (except Correction Officers after 30 years)"
+        },
+        "retirementAge": {
+          "fullBenefits": 63,
+          "earlyRetirementFrom": 55,
+          "vestedMemberNote": "Vested members who left payroll before retirement eligible at 55; full benefit at 63."
+        },
+        "earlyRetirementReduction": {
+          "at55": "52% permanent reduction",
+          "note": "See full reduction chart at osc.ny.gov. Significantly steeper than earlier tiers."
+        },
+        "finalAverageEarnings": {
+          "years": 3,
+          "method": "highest_3_consecutive_years",
+          "limitation": "Earnings in any year cannot exceed average of previous 2 years by more than 10%",
+          "overtimeLimit": "Overtime above annual limit excluded; limit adjusts annually by CPI as of September 30 prior year",
+          "additionalExclusions": "Lump sum vacation payments, earnings above Governor's salary (~$250K), earnings above primary+secondary employer",
+          "tier6FAEUpdateNote": "Effective April 20, 2024: FAE changed from 5 consecutive years to 3 consecutive years (2024 law). Applies to members retiring on or after April 20, 2024."
+        },
+        "benefitFormula": {
+          "article15_coordinated": {
+            "under20years": {"multiplier": 0.0166, "structure": "1.66% x FAE x years of service"},
+            "exactly20years": {"structure": "1.75% x FAE x 20 years = 35% of FAE"},
+            "over20years": {"structure": "1.75% x FAE x 20 years + 2% x FAE x years beyond 20"},
+            "exampleAt35yrs": "(1.75% x 20) + (2% x 15) = 35% + 30% = 65% of FAE",
+            "note": "Tier 6 uses 1.75% multiplier for first 20 years (slightly above 1.66% of other tiers) but no 2% multiplier until 20+ years is reached."
+          }
+        },
+        "source": "https://www.osc.ny.gov/retirement/employers/comparison-ers-benefits; https://www.osc.ny.gov/retirement/2024-laws"
+      }
+    }
+  },
+  "pfrs": {
+    "note": "PFRS has 5 tiers (1, 2, 3, 5, 6 — no Tier 4). ~98% of PFRS members are in special 20- or 25-year plans. Tier 2 is largest (~55% of PFRS members). Tier 6 is growing (~45%). Tiers 1 and 3 are legacy/small.",
+    "specialPlans": {
+      "overview": "Most PFRS members are in special retirement plans under Sections 384, 384-d, 384-e, or 384-f. These allow retirement after 20 or 25 years of creditable service, regardless of age.",
+      "section384_25year": {
+        "name": "25-Year Benefit (Section 384)",
+        "benefit": "50% of FAE after 25 years (2% x 25)",
+        "additionalYears": "1.66% x FAE per year beyond 25, maximum 61.67% of FAE (32 years max)"
+      },
+      "section384d_20year": {
+        "name": "20-Year Benefit (Section 384-d)",
+        "benefit": "50% of FAE after 20 years (2.5% x 20)",
+        "additionalYears": "1.66% x FAE per year beyond 20, maximum 70% of FAE (32 years max)"
+      }
+    },
+    "tiers": {
+      "tier_1_2": {
+        "tierName": "PFRS Tiers 1 & 2",
+        "tier1MembershipDates": "Before July 31, 1973",
+        "tier2MembershipDates": "July 31, 1973 through June 30, 2009",
+        "vesting": {"years": 5, "schedule": "cliff"},
+        "memberContributions": {
+          "note": "Tier 2: None if employer offers a non-contributory plan. Tier 1: not required to contribute. Both may make voluntary contributions."
+        },
+        "retirementAge": {
+          "specialPlan": "After completing minimum service (20 or 25 years), regardless of age",
+          "regularPlan": "Full benefits at 62; reduced benefits from age 55-62"
+        },
+        "finalAverageEarnings": {
+          "years": 3,
+          "limitation": "Earnings in any year cannot exceed average of previous 2 years by more than 20%"
+        },
+        "benefitFormula": "Special 20/25-year plans dominate. See specialPlans above.",
+        "source": "https://www.osc.ny.gov/retirement/employers/comparison-pfrs-benefits"
+      },
+      "tier_3": {
+        "tierName": "PFRS Tier 3",
+        "membershipDates": "July 1, 2009 through January 8, 2010",
+        "note": "Very small tier (6-month window). Covered by Article 11 or Article 14 of RSSL.",
+        "vesting": {"years": 5, "schedule": "cliff"},
+        "memberContributions": {
+          "article11": "None if employer offers non-contributory plan",
+          "article14": "3% for 25 years or until retirement, whichever is earlier"
+        },
+        "finalAverageEarnings": {
+          "years": 3,
+          "limitation": {
+            "article11": "Earnings in any year cannot exceed average of previous 2 years by more than 20%",
+            "article14": "Earnings in any year cannot exceed average of previous 2 years by more than 10%"
+          }
+        },
+        "source": "https://www.osc.ny.gov/retirement/employers/comparison-pfrs-benefits"
+      },
+      "tier_5": {
+        "tierName": "PFRS Tier 5",
+        "membershipDates": "January 9, 2010 through March 31, 2012",
+        "vesting": {"years": 5, "schedule": "cliff"},
+        "memberContributions": {
+          "rate": 0.03,
+          "duration": "Until retirement, unless plan limits creditable service to 20, 25, or 32 years (then contributions stop at the maximum)",
+          "collectiveBargainingException": "Members covered by union-negotiated CBA requiring non-contributory plan (if in effect Jan 9, 2010) may not be required to contribute"
+        },
+        "retirementAge": {
+          "specialPlan": "After completing minimum service (20 or 25 years), regardless of age",
+          "regularPlan": "Full benefits at 62; reduced benefits from 55-62"
+        },
+        "finalAverageEarnings": {
+          "years": 3,
+          "limitation": "Earnings in any year cannot exceed average of previous 2 years by more than 20%",
+          "overtimeLimit": "Overtime limited to 15% of calendar-year earnings per year"
+        },
+        "source": "https://www.osc.ny.gov/retirement/employers/comparison-pfrs-benefits"
+      },
+      "tier_6": {
+        "tierName": "PFRS Tier 6",
+        "membershipDates": "April 1, 2012 and after",
+        "note": "~45% of PFRS members as of 2023. Fastest-growing tier.",
+        "vesting": {"years": 5, "schedule": "cliff", "note": "5-year vesting established by 2022 law."},
+        "memberContributions": {
+          "type": "income_based",
+          "brackets": "See tier6_contribution_brackets at top level — same brackets as ERS Tier 6",
+          "range": "3% to 6%",
+          "duration": "Until retirement unless plan limits creditable service (20, 25, or 32 years)",
+          "collectiveBargainingException": "Same as Tier 5 exception if CBA was in effect Jan 9, 2010"
+        },
+        "retirementAge": {
+          "specialPlan": "After completing minimum service (20 or 25 years), regardless of age",
+          "regularPlan": "Full benefits at 62 (63 for vested members not on payroll); reduced benefits from 55-62",
+          "note": "PFRS Tier 6 regular plan full retirement age is 62 (not 63 as in ERS Tier 6)"
+        },
+        "earlyRetirementReduction": {
+          "regularPlan": "Prorated reduction; at age 55 approximately 27%. See full chart at osc.ny.gov."
+        },
+        "finalAverageEarnings": {
+          "years": 3,
+          "limitation": "Earnings in any year cannot exceed average of previous 2 years by more than 10%",
+          "overtimeLimit": "Overtime limited to 15% of calendar-year earnings per year",
+          "additionalExclusions": "Lump sum vacation payments, earnings above Governor's salary, earnings from more than primary+secondary employers",
+          "tier6FAEUpdateNote": "Effective April 1, 2024: FAE changed from 5 consecutive years to 3 consecutive years. Applies to PFRS Tier 6 members retiring on or after April 1, 2024."
+        },
+        "benefitFormula": {
+          "specialPlans": "Same as PFRS Tier 2 special plans — 50% of FAE at 20 or 25 years with 1.66% per additional year. See specialPlans above.",
+          "regularPlan": "Follows Article 15 or comparable plan provision for regular retirement."
+        },
+        "source": "https://www.osc.ny.gov/retirement/employers/comparison-pfrs-benefits; https://www.osc.ny.gov/retirement/2024-laws"
+      }
+    }
+  },
+  "employerContributions": {
+    "ers_average_sfy2025_26": 0.165,
+    "pfrs_average_sfy2025_26": 0.337,
+    "note": "Employer average contribution rates for SFY 2025-26: ERS 16.5% of payroll (up from 15.2%); PFRS 33.7% (up from 31.2%). Rates vary by employer based on plan types, salary levels, and member tier distribution. Determined annually by Comptroller based on investment performance and actuarial assumptions.",
+    "assumedReturnRate": 0.059,
+    "fundedRatio": 0.932,
+    "fundedRatioDate": "2024-03-31",
+    "source": "https://www.osc.ny.gov/press/releases/2024/09/dinapoli-nyslrs-announces-employer-contribution-rates-2025-26"
+  },
+  "vesting": {
+    "note": "All tiers (ERS and PFRS): 5 years of credited service required for vested benefit. Law change effective April 9, 2022 reduced Tier 6 vesting from 10 to 5 years. Tiers 1-5 were already 5-year vesting.",
+    "withdrawalOption": "Members with less than 10 years credited service may withdraw accumulated contributions with 5% compound interest if they end membership"
+  },
+  "sources": [
+    "https://www.osc.ny.gov/retirement/employers/comparison-ers-benefits",
+    "https://www.osc.ny.gov/retirement/employers/comparison-pfrs-benefits",
+    "https://www.osc.ny.gov/retirement/members/final-average-earnings",
+    "https://www.osc.ny.gov/retirement/retirees/cost-living-adjustment",
+    "https://www.osc.ny.gov/retirement/2024-laws",
+    "https://www.osc.ny.gov/press/releases/2024/09/dinapoli-nyslrs-announces-employer-contribution-rates-2025-26"
+  ],
+  "researchGaps": [
+    "Full early retirement reduction tables by tier and age (available at osc.ny.gov/retirement/members/about-benefit-reductions)",
+    "Special plan details for specific job titles (correction officers, sheriffs, court officers — different formulas)",
+    "Tier 1 and 2 ERS detailed benefit structure (legacy, minimal active members)",
+    "PFRS Tier 3 Article 11 vs Article 14 detailed formula differences",
+    "Proportionate retirement and reciprocal service rules with NYC retirement systems"
+  ]
+}

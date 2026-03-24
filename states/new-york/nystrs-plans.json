@@ -1,0 +1,287 @@
+{
+  "_comment": "New York State Teachers' Retirement System (NYSTRS) — Defined Benefit Plan. Consumer-agnostic data only.",
+  "systemName": "New York State Teachers' Retirement System",
+  "systemAbbreviation": "NYSTRS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "New York",
+    "state": "NY",
+    "type": "statewide_educator_pension"
+  },
+  "administeredBy": "NYSTRS — governed by 10-member Board of Trustees",
+  "boardComposition": "10 members including elected teacher representatives, appointed investment experts, and the Commissioner of Education",
+  "established": 1921,
+  "totalMembers": {
+    "approximate": 460000,
+    "activeApproximate": 275000,
+    "retiredAndBeneficiariesApproximate": 185000,
+    "note": "~460K total. Tier distribution: Tiers 1-3 <1%; Tier 4 ~59%; Tier 5 ~4%; Tier 6 ~36% (and growing). Tier 6 now has 100,000+ members.",
+    "source": "https://www.nystrs.org"
+  },
+  "coverage": {
+    "populations": [
+      "New York State public school teachers and administrators (preK–12)",
+      "BOCES instructional staff",
+      "Certain participating charter school educators",
+      "Community college and SUNY faculty may elect NYSTRS or Optional Retirement Program"
+    ],
+    "excluded": [
+      "New York City teachers and administrators (NYC TRS — separate system)",
+      "School classified/non-instructional staff (covered by NYSLRS ERS)"
+    ]
+  },
+  "socialSecurity": {
+    "covered": true,
+    "note": "NYSTRS members participate in Social Security. NY public school teachers pay into SS. Tier 3 has a SS offset provision reducing pension by half of SS benefit earned during NYS public service — but most Tier 3 members elected into Tier 4, which does not have the offset.",
+    "tier3SSOffset": "Tier 3 (original): pension reduced by 50% of SS benefit earned during NYS public service. Tier 4 (which most Tier 3 members elected to join) does NOT have this offset.",
+    "source": "https://www.nystrs.org"
+  },
+  "tiers": {
+    "overview": "NYSTRS has 6 tiers based on membership date. Tiers 1, 2, 3 are legacy (<1% of members). Tier 4 (joined 1983–2009) is the largest tier (59%). Tier 5 (joined 2010–2012) is 4%. Tier 6 (joined April 1, 2012+) is 36% and growing.",
+    "tier_1": {
+      "tierName": "Tier 1",
+      "membershipDates": "Before June 17, 1971",
+      "percentOfMembers": "<1%",
+      "note": "Legacy tier. Most generous benefits. Can retire at any age with sufficient service. No required contributions.",
+      "vesting": {"years": 5, "schedule": "cliff"},
+      "memberContributions": {"required": false, "note": "Tier 1 members not required to contribute."},
+      "normalRetirement": "Any age with sufficient service credit; full benefit at any age.",
+      "benefitFormula": {
+        "note": "Tier 1 formula: 1.8% per year for pre-1959 NYS service + 2% per year for post-1959 service + 1% per year for eligible out-of-state service (max 10 years, total service not exceeding 35 years).",
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      },
+      "finalAverageSalary": {
+        "years": 3,
+        "note": "Tier 1 may also use 5-year FAS (if pre-June 17, 1971 membership), including termination pay and non-regular compensation in certain cases.",
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      }
+    },
+    "tier_2": {
+      "tierName": "Tier 2",
+      "membershipDates": "June 17, 1971 through June 26, 1976",
+      "percentOfMembers": "<1%",
+      "note": "Legacy tier.",
+      "vesting": {"years": 5, "schedule": "cliff"},
+      "memberContributions": {"required": false, "note": "Tier 2 members not required to contribute."},
+      "normalRetirement": "Age 62 with 5+ years of service; or age 55 with 30+ years (no reduction).",
+      "earlyRetirementReduction": "If retiring before 62 with less than 30 years, pension factor reduced based on age at retirement.",
+      "benefitFormula": {
+        "under20years": {"multiplier": 0.0167, "structure": "1⅔% per year of service"},
+        "20to30years": {"multiplier": 0.02, "structure": "2% per year of service"},
+        "over30years": {"structure": "2% per year for first 30 years + 1.5% per year beyond 30"},
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      },
+      "finalAverageSalary": {
+        "years": 3,
+        "method": "highest_3_consecutive_school_years"
+      }
+    },
+    "tier_3": {
+      "tierName": "Tier 3",
+      "membershipDates": "June 27, 1976 through August 31, 1983",
+      "percentOfMembers": "<1%",
+      "note": "Most Tier 3 members elected to join Tier 4 — only those who did not make that election remain in Tier 3. Tier 3 has a Social Security offset: pension reduced by 50% of SS benefit earned during NYS public service.",
+      "vesting": {"years": 5, "schedule": "cliff"},
+      "memberContributions": {"rate": 0.03, "duration": "Until 10 years of credit or membership"},
+      "normalRetirement": "Same as Tier 4.",
+      "ssOffset": "Pension reduced by half of Social Security benefit earned during NYS public service — does not apply to Tier 4.",
+      "benefitFormula": "Same structure as Tier 4 but with SS offset applied."
+    },
+    "tier_4": {
+      "tierName": "Tier 4",
+      "membershipDates": "September 1, 1983 through December 31, 2009",
+      "percentOfMembers": "~59%",
+      "note": "Largest tier. Also covers most former Tier 3 members who elected Tier 4 status. No SS offset.",
+      "vesting": {"years": 5, "schedule": "cliff"},
+      "memberContributions": {
+        "rate": 0.03,
+        "duration": "Until 10 years of credit or membership, whichever occurs first",
+        "note": "Contributions stop at 10-year threshold."
+      },
+      "normalRetirement": {
+        "ageWithService": {"age": 62, "minimumService": 5},
+        "earlyUnreduced": {"age": 55, "service": 30, "note": "Age 55 with 30+ years — no age reduction"},
+        "minimumRetirementAge": 55
+      },
+      "earlyRetirementReduction": {
+        "note": "If retiring before age 62 with less than 30 years of service, pension factor is reduced based on exact age at retirement.",
+        "at55_less30yrs": "73% of pension factor (27% reduction)",
+        "at61_less30yrs": "94% of pension factor (6% reduction)",
+        "source": "https://www.nystrs.org/getmedia/0b2d370d-692b-4d51-8cb5-7bc7f578d78d/nystrs-benefits-pt-3_transcript.pdf"
+      },
+      "benefitFormula": {
+        "under20years": {"multiplier": 0.0167, "structure": "1⅔% (1.67%) per year of service"},
+        "20to30years": {"multiplier": 0.02, "structure": "2% per year of service"},
+        "over30years": {"structure": "2% per year for first 30 years + 1.5% per year beyond 30"},
+        "exampleAt30yrs": "2% x 30 = 60% of FAS",
+        "exampleAt35yrs": "(2% x 30) + (1.5% x 5) = 67.5% of FAS",
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      },
+      "finalAverageSalary": {
+        "years": 3,
+        "method": "highest_3_consecutive_school_years",
+        "earningsCap": "No single year's salary may exceed the average of the previous two years by more than 10% (for most members)"
+      }
+    },
+    "tier_5": {
+      "tierName": "Tier 5",
+      "membershipDates": "January 1, 2010 through March 31, 2012",
+      "percentOfMembers": "~4%",
+      "vesting": {"years": 5, "schedule": "cliff"},
+      "memberContributions": {
+        "rate": 0.035,
+        "duration": "For entire career",
+        "note": "3.5% for all years. Unlike Tier 4, contributions do not stop at 10 years."
+      },
+      "normalRetirement": {
+        "ageWithService": {"age": 62, "minimumService": 5},
+        "earlyUnreduced": {"age": 57, "service": 30, "note": "Age 57 (not 55) with 30+ years — no reduction"},
+        "minimumRetirementAge": 55
+      },
+      "earlyRetirementReduction": {
+        "note": "Retiring before age 62 with less than 30 years, OR before age 57 with 30+ years: pension factor reduced by age. Tier 5 reduction factors differ from Tier 4.",
+        "source": "https://www.nystrs.org/active-members/service-milestones/"
+      },
+      "benefitFormula": {
+        "under20years": {"multiplier": 0.0167, "structure": "1.67% per year of service"},
+        "at20years": {
+          "multiplier": 0.02,
+          "structure": "2% per year for all years of service (multiplier increases to 2% at 20 years)",
+          "note": "Unlike Tier 4, Tier 5 gains the 2% multiplier applied to ALL service at 20 years — not just years 20–30."
+        },
+        "over30years": {"structure": "2% per year for all years; no 1.5% extension tier (benefit continues at 2%)"},
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      },
+      "finalAverageSalary": {
+        "years": 3,
+        "method": "highest_3_consecutive_school_years"
+      }
+    },
+    "tier_6": {
+      "tierName": "Tier 6",
+      "membershipDates": "April 1, 2012 and after",
+      "percentOfMembers": "~36% (growing)",
+      "note": "FixTier6 campaign (NYSUT) is actively pushing for reform — specifically reducing early retirement penalties and changing contribution structure. Political pressure significant but no reform enacted as of March 2026.",
+      "vesting": {
+        "years": 5,
+        "schedule": "cliff",
+        "vestedDeferredNote": "Vested-deferred Tier 6 members (inactive membership — no service credit for 7 years) cannot retire until age 63 UNLESS they reactivate membership by earning at least 1 month of service credit."
+      },
+      "memberContributions": {
+        "type": "income_based",
+        "brackets": [
+          {"earningsUpTo": 45000, "rate": 0.03},
+          {"earningsFrom": 45000, "earningsUpTo": 55000, "rate": 0.035},
+          {"earningsFrom": 55000, "earningsUpTo": 75000, "rate": 0.045},
+          {"earningsFrom": 75000, "earningsUpTo": 100000, "rate": 0.0575},
+          {"earningsOver": 100000, "rate": 0.06, "note": "Up to NY Governor's salary cap"}
+        ],
+        "duration": "For entire career",
+        "rateDetermination": "Rates recalculated annually. New members: based on projected salary for first 3 years. Thereafter: based on base wages from 2 school years prior.",
+        "baseWagesOnlyNote": "Effective for school years ending June 30, 2025 and June 30, 2026: only base wages (not supplemental earnings) used to determine contribution rate.",
+        "interestOnContributions": 0.05,
+        "interestNote": "Member contributions earn 5% compound interest annually.",
+        "source": "https://www.nystrs.org/getmedia/28a8ee1f-e619-42cc-97cf-0c321cb5a67e/contribution-rate-information-for-tier-6-members.pdf"
+      },
+      "normalRetirement": {
+        "ageWithService": {"age": 63, "minimumService": 5},
+        "minimumRetirementAge": 55,
+        "noReductionAge": 63,
+        "note": "Unlike Tier 4 (age 62) and Tier 5 (age 57/30), Tier 6 has no early unreduced retirement option — full benefits ONLY at age 63 or later."
+      },
+      "earlyRetirementReduction": {
+        "note": "Any retirement before age 63 results in a permanent reduction — no exception for 30+ years of service. Reduction applies based on exact age and service credit. Significantly steeper than earlier tiers.",
+        "at55": "Substantial reduction; exact percentages in NYSTRS publications.",
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      },
+      "benefitFormula": {
+        "under20years": {"multiplier": 0.0167, "structure": "1.67% per year of service"},
+        "at20years": {
+          "structure": "1.75% x 20 years = 35% of FAS",
+          "note": "At exactly 20 years: multiplier increases to 1.75% applied to all 20 years"
+        },
+        "over20years": {
+          "structure": "35% of FAS for first 20 years + 2% x FAS x years beyond 20",
+          "note": "Once 20 years is exceeded, each additional year adds 2% of FAS"
+        },
+        "exampleAt35yrs": "35% + (2% x 15) = 35% + 30% = 65% of FAS",
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      },
+      "finalAverageSalary": {
+        "years": 5,
+        "method": "highest_5_consecutive_school_years",
+        "earningsCap": "No single year may exceed the previous year by more than 10% for inclusion in FAS calculation (10% cap applies in FAS period)",
+        "exclusions": [
+          "Termination pay (retirement incentives, unused leave payments)",
+          "Earnings above the NY Governor's salary",
+          "Overtime above the annual overtime limit",
+          "Earnings from more than primary employer (for multi-employer members)"
+        ],
+        "nystrsVsNYSLRSNote": "NYSTRS Tier 6 FAS remains 5 years — the 2024 law changing FAE to 3 years applied ONLY to NYSLRS (ERS and PFRS), NOT to NYSTRS.",
+        "source": "https://www.nystrs.org/active-members/benefits/service-retirement/"
+      }
+    }
+  },
+  "cola": {
+    "type": "automatic_annual",
+    "automatic": true,
+    "method": "50_pct_cpi",
+    "description": "50% of the CPI increase, minimum 1%, maximum 3%, applied to the first $18,000 of annual retirement benefit.",
+    "floor": 0.01,
+    "cap": 0.03,
+    "appliesTo": "First $18,000 of annual benefit",
+    "maximumAnnualIncrease": 540,
+    "eligibility": {
+      "option1": "Age 62 or older AND retired for 5 or more years",
+      "option2": "Age 55 or older AND retired for 10 or more years"
+    },
+    "recentCOLA_fy2025_26": {
+      "rate": 0.012,
+      "note": "2025-26 COLA is 1.2%. For a $18,000+ annual benefit: $18 per month maximum increase."
+    },
+    "authority": "New York State Retirement and Social Security Law (same statute as NYSLRS COLA)",
+    "note": "Same COLA law as NYSLRS ($18,000 cap, 50% CPI, 1-3%). Administered separately by NYSTRS.",
+    "source": "https://www.nystrs.org/receiving-benefits/post-retirement-increase/"
+  },
+  "employerContributions": {
+    "note": "NYSTRS employer contribution rates (paid by school districts) are set by the Board of Trustees annually. Rates vary by tier distribution. 101.5% funded on market value basis as of June 30, 2024 — one of the best-funded public pension systems in the US.",
+    "fundedRatioMarketValue": 1.015,
+    "fundedRatioActuarial": 0.991,
+    "fundedRatioDate": "2024-06-30",
+    "netAssets_fy2025": 154200000000,
+    "source": "https://www.nystrs.org"
+  },
+  "fundingStatus": {
+    "note": "NYSTRS is among the best-funded public pension plans in the nation. 99.1% funded on actuarial basis; 101.5% on market value (June 30, 2024). Investment returns generate ~85% of NYSTRS income. 10-member Board of Trustees.",
+    "investmentIncomePctOfRevenue": 0.85,
+    "source": "https://www.nystrs.org"
+  },
+  "reciprocity": {
+    "note": "NYSTRS members may transfer service credit to/from NYSLRS and other NY public retirement systems under the proportionate retirement program. Members who leave NY teaching for other NY public employment may transfer membership.",
+    "source": "https://www.nystrs.org"
+  },
+  "legislativeWatch": {
+    "fixTier6Campaign": {
+      "sponsor": "NYSUT (New York State United Teachers)",
+      "goal": "Reform Tier 6 to reduce early retirement penalties, change contribution structure, and improve benefit adequacy",
+      "specificBill": "S.6638 / similar — would increase Tier 6 benefit from 35% FAS to 40% FAS after 20 years of service",
+      "status": "Ongoing advocacy. No reform enacted as of March 2026.",
+      "source": "https://fixtier6.org/why-fix-tier-6"
+    }
+  },
+  "sources": [
+    "https://www.nystrs.org/active-members/benefits/service-retirement/",
+    "https://www.nystrs.org/active-members/service-milestones/",
+    "https://www.nystrs.org/getmedia/28a8ee1f-e619-42cc-97cf-0c321cb5a67e/contribution-rate-information-for-tier-6-members.pdf",
+    "https://www.nystrs.org/receiving-benefits/post-retirement-increase/",
+    "https://fixtier6.org/why-fix-tier-6"
+  ],
+  "researchGaps": [
+    "Exact age-factor reduction tables for each tier (available in NYSTRS publications/Benefit Comparison Table)",
+    "Tier 6 FAS earnings cap specifics for multi-employer teachers",
+    "Disability retirement benefit formulas and eligibility thresholds by tier",
+    "Community college/SUNY Optional Retirement Program (ORP) details — separate DC alternative"
+  ]
+}
