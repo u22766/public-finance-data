@@ -45,6 +45,18 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+### foreign-service-pay-tables.json v2026.1
+
+**Date:** 2026-03-24
+
+**Session 56 — Foreign Service Pay Tables: 11-year historical build (2016–2026)**
+
+New file. Complete Foreign Service base pay schedule covering all 9 grades (FP-1 through FP-9), all 14 steps, for 11 years (2016–2026). Includes Senior Foreign Service pay ranges, Executive Schedule caps, GS-15/Step-10 base pay cap history, GS equivalency mapping, and annual base raise history. Computed from official 2017 State Department PDF (anchor year) and verified against 2024 Plumbook values (exact match within $2 rounding). 2026 values verified against Path to Foreign Service 2026 salary guide (FP-5/Step-7 = $65,058 ± $1). Companion to `reference/foreign-service-retirement-rules.json` — provides the salary input data needed for High-3 average computation in FSRDS/FSPS retirement formulas.
+
+**CI:** Added `validate_fs_pay.py` (1,893 checks). Total: ~12,924 checks across 26 suites.
+
+**No schema changes. Non-breaking addition.**
+
 ### pay-tables.json v2.0
 
 **Date:** 2026-03-23

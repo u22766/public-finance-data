@@ -43,7 +43,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 
 ```
 public-finance-data/
-├── manifest.json                                ← Fetch this first (master version index, 68 entries)
+├── manifest.json                                ← Fetch this first (master version index, 69 entries)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -69,6 +69,7 @@ public-finance-data/
 │   ├── filing-status-thresholds.json            ← IRS filing status thresholds — 5 statuses × 6 domains (2016–2025)
 │   ├── leo-premium-pay.json                     ← LEO premium pay rates — availability, administratively uncontrollable overtime
 │   ├── military-pay-tables.json                 ← Military basic pay by grade/YOS (2016–2026, 27 grades)
+│   ├── foreign-service-pay-tables.json          ← Foreign Service pay by grade FP-1–FP-9/step 1–14 (2016–2026)
 │   ├── dcips/
 │   │   └── dcips-pay-tables.json                ← DCIPS pay bands — all occupational categories
 │   ├── healthcare/
@@ -167,7 +168,8 @@ public-finance-data/
     ├── validate_foreign_service.py              ← Foreign service retirement rules validation (94 checks)
     ├── validate_systems_index.py                ← Federal retirement systems index validation (114 checks)
     ├── validate_fers_eligibility.py             ← FERS eligibility + service credit validation (206 checks)
-    └── validate_pay_tables.py                   ← GS pay tables (11yr) + VA comp history validation (1,333 checks)
+    ├── validate_pay_tables.py                   ← GS pay tables (11yr) + VA comp history validation (1,333 checks)
+    └── validate_fs_pay.py                       ← Foreign Service pay tables validation (1,893 checks)
 ```
 
 ### Domain Organization
@@ -206,6 +208,7 @@ Files are organized by jurisdiction and domain:
 | `fegli_rates` | 1.0 | `federal/fegli-rates.json` |
 | `filing_status_thresholds` | 2026.2 | `federal/filing-status-thresholds.json` |
 | `leo_premium_pay` | 2026.1 | `federal/leo-premium-pay.json` |
+| `fs_pay_tables` | 2026.1 | `federal/foreign-service-pay-tables.json` |
 | `military_pay_tables` | 2026.1 | `federal/military-pay-tables.json` |
 | `fehb_rates` | 2026.3 | `federal/healthcare/fehb-rates.json` |
 | `fehb_plan_benefits` | 2026.1 | `federal/healthcare/fehb-plan-benefits.json` |
@@ -314,6 +317,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Systems Index | `validate_systems_index.py` | 114 | Federal retirement systems index — all known systems + 6(c) positions |
 | FERS Eligibility | `validate_fers_eligibility.py` | 206 | FERS eligibility rules + service credit rules + cross-file consistency |
 | Pay Tables Bundle | `validate_pay_tables.py` | 1,333 | GS pay tables (11yr, OPM-verified) + VA compensation history (11yr) |
+| FS Pay Tables | `validate_fs_pay.py` | 1,893 | Foreign Service pay tables — 9 grades × 14 steps × 11 years |
 
 ---
 

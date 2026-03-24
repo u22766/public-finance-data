@@ -2,7 +2,7 @@
   "_comment": "Public Finance Data \u2014 Master Manifest. Fetch this file first. Compare versions to cached local copies to determine what needs refreshing.",
   "schema_version": "2.2",
   "schema_min_compatible": "2.2",
-  "last_updated": "2026-03-23",
+  "last_updated": "2026-03-24",
   "maintained_by": "public-finance-data repo owner",
   "_migration_note": "Schema 2.0 restructured all file paths. Consumers on schema 1.x must update their fetchManifest() to use new paths. See schema-changelog.md for migration details.",
   "files": {
@@ -599,6 +599,13 @@
       "version": "1.0",
       "last_updated": "2026-03-23",
       "update_cycle": "annual (interest rate)"
+    },
+    "fs_pay_tables": {
+      "url": "federal/foreign-service-pay-tables.json",
+      "description": "Foreign Service (FS) base pay tables by grade (FP-1 through FP-9) and step (1-14), 2016-2026. Companion to foreign-service-retirement-rules.json for High-3 salary computation.",
+      "version": "2026.1",
+      "last_updated": "2026-03-24",
+      "update_cycle": "annual (January, after Executive Order)"
     }
   }
 }
