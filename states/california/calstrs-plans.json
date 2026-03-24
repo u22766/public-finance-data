@@ -1,0 +1,353 @@
+{
+  "_comment": "California State Teachers' Retirement System (CalSTRS) — Defined Benefit Program. Consumer-agnostic data only. No Meridian-specific references.",
+  "systemName": "California State Teachers' Retirement System",
+  "systemAbbreviation": "CalSTRS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "California",
+    "state": "CA",
+    "type": "statewide_educator_pension"
+  },
+  "administeredBy": "CalSTRS — governed by the Teachers' Retirement Board (12 members)",
+  "established": 1913,
+  "totalMembers": {
+    "approximate": 990000,
+    "note": "~990K total active, retired, and beneficiaries as of 2025. Largest educator-only pension fund in the world.",
+    "activeApproximate": 530000,
+    "retiredAndBeneficiariesApproximate": 460000
+  },
+  "coverage": {
+    "populations": [
+      "California public school educators preK–12",
+      "Community college instructors",
+      "Certain county office of education employees",
+      "Certain participating charter school employees"
+    ],
+    "excluded": [
+      "University of California employees (covered by UCRP)",
+      "CalPERS-covered school classified staff",
+      "Railroad and federal employees"
+    ]
+  },
+  "socialSecurity": {
+    "covered": false,
+    "note": "CalSTRS members do not pay into or receive Social Security from CalSTRS-covered service. California educators are exempt from Social Security under Section 218 agreements. The Social Security Fairness Act (H.R. 82, signed Jan 5 2025) eliminated WEP and GPO for SS benefits payable after Dec 2023 — CalSTRS retirement benefits themselves are unaffected.",
+    "source": "https://www.calstrs.com/news/social-security-fairness-act"
+  },
+  "programStructure": {
+    "programs": [
+      "Defined Benefit (DB) Program — primary pension, modeled here",
+      "Defined Benefit Supplement (DBS) Program — separate account for excess service earnings",
+      "Cash Balance Benefit Program — for part-time/adjunct educators, DC-style",
+      "Pension2 — voluntary 403(b)/457(b) supplement"
+    ],
+    "note": "This file models the DB Program only. DBS and Cash Balance are separate structures."
+  },
+  "tiers": {
+    "tier_2pct_at_60": {
+      "tierName": "CalSTRS 2% at 60",
+      "pepra": false,
+      "eligibility": "First hired to perform CalSTRS-creditable service on or before December 31, 2012",
+      "cutoffDate": "2012-12-31",
+      "formula": {
+        "structure": "Age Factor x Years of Service Credit x Final Compensation",
+        "ageFactor": {
+          "standardAtNormalRetirementAge": 0.02,
+          "normalRetirementAge": 60,
+          "minimum": {
+            "factor": 0.011,
+            "age": 50,
+            "note": "1.1% age factor at age 50 — minimum retirement age with 30+ years of service"
+          },
+          "maximum": {
+            "factor": 0.024,
+            "age": 63,
+            "note": "2.4% age factor at age 63 or older"
+          },
+          "keyBreakpoints": [
+            {"age": 50, "factor": 0.011},
+            {"age": 55, "factor": 0.014},
+            {"age": 60, "factor": 0.020},
+            {"age": 63, "factor": 0.024}
+          ],
+          "note": "Age factor increases gradually by quarter-year of age. Full breakpoint table in CalSTRS 'The Benefit of a Lifetime' publication.",
+          "source": "https://www.calstrs.com/files/27c793b44/theagefactor.pdf"
+        },
+        "careerFactor": {
+          "available": true,
+          "requirement": "30 or more years of service credit",
+          "bonus": 0.002,
+          "note": "Add 0.2% to age factor for members with 30+ years of service credit. Maximum age factor with career factor is 2.4%.",
+          "source": "CalSTRS Member Handbook 2025, CalSTRS.com/publications"
+        },
+        "finalCompensation": {
+          "method_post1996": {
+            "period": "highest_36_consecutive_months",
+            "description": "Average annual compensation earnable over highest 36 consecutive months",
+            "appliesTo": "Members hired on or after January 1, 1997"
+          },
+          "method_pre1997": {
+            "period": "highest_12_consecutive_months",
+            "description": "Average annual compensation earnable over highest 12 consecutive months",
+            "appliesTo": "Members hired before January 1, 1997"
+          },
+          "compensationCap": {
+            "applicable": false,
+            "note": "No PEPRA pensionable compensation cap for Classic (2% at 60) members. IRS 415(b) limits apply."
+          }
+        }
+      },
+      "retirementEligibility": {
+        "normalRetirement": {
+          "minimumAge": 60,
+          "minimumService": 5,
+          "note": "Age 60 with 5 years of service credit"
+        },
+        "earlyRetirement": [
+          {
+            "rule": "age_50_30_years",
+            "minimumAge": 50,
+            "minimumService": 30,
+            "reduction": "none",
+            "note": "Unreduced benefit at age 50 with 30+ years of service"
+          },
+          {
+            "rule": "age_55_5_years",
+            "minimumAge": 55,
+            "minimumService": 5,
+            "reduction": "actuarial",
+            "note": "Reduced benefit at age 55 with 5 years; also available through concurrent retirement with certain California public retirement systems"
+          }
+        ],
+        "minimumRetirementAge": 50
+      },
+      "vesting": {
+        "years": 5,
+        "schedule": "cliff",
+        "note": "5 years of service credit required for vested benefit"
+      },
+      "memberContribution": {
+        "rate_fy2025_26": 0.1025,
+        "note": "10.25% of creditable earnings. Rate has been fixed at 10.25% since July 1, 2016 under the CalSTRS Funding Plan.",
+        "source": "https://www.calstrs.com/contributions"
+      }
+    },
+    "tier_2pct_at_62": {
+      "tierName": "CalSTRS 2% at 62",
+      "pepra": true,
+      "eligibility": "First hired to perform CalSTRS-creditable service on or after January 1, 2013 (PEPRA)",
+      "cutoffDate": "2013-01-01",
+      "formula": {
+        "structure": "Age Factor x Years of Service Credit x Final Compensation",
+        "ageFactor": {
+          "standardAtNormalRetirementAge": 0.02,
+          "normalRetirementAge": 62,
+          "minimum": {
+            "factor": 0.0116,
+            "age": 55,
+            "note": "1.16% age factor at age 55 — minimum retirement age for PEPRA members"
+          },
+          "maximum": {
+            "factor": 0.024,
+            "age": 65,
+            "note": "2.4% age factor at age 65 or older"
+          },
+          "keyBreakpoints": [
+            {"age": 55, "factor": 0.0116},
+            {"age": 60, "factor": 0.0188},
+            {"age": 62, "factor": 0.020},
+            {"age": 65, "factor": 0.024}
+          ],
+          "note": "Age factor increases gradually by quarter-year of age. Full breakpoint table in CalSTRS 'The Benefit of a Lifetime' publication.",
+          "source": "https://www.calstrs.com/files/27c793b44/theagefactor.pdf"
+        },
+        "careerFactor": {
+          "available": false,
+          "note": "PEPRA members are NOT eligible for the 0.2% career factor enhancement."
+        },
+        "finalCompensation": {
+          "method": {
+            "period": "highest_36_consecutive_months",
+            "description": "Average annual compensation earnable over highest 36 consecutive months. No 12-month option.",
+            "appliesTo": "All CalSTRS 2% at 62 members regardless of hire date"
+          },
+          "compensationCap": {
+            "applicable": true,
+            "fy2025_26": 187369,
+            "fy2024_25": 182266,
+            "fy2023_24": 176614,
+            "fy2022_23": 166617,
+            "note": "Annual creditable compensation cap for PEPRA members, indexed to CPI annually. Members cannot earn service credit or contributions on earnings above this cap.",
+            "authority": "Government Code 7522.10; Education Code 22119.5",
+            "source": "https://www.calstrs.com/limits"
+          }
+        }
+      },
+      "retirementEligibility": {
+        "normalRetirement": {
+          "minimumAge": 62,
+          "minimumService": 5,
+          "note": "Age 62 with 5 years of service credit"
+        },
+        "earlyRetirement": [
+          {
+            "rule": "age_55_5_years",
+            "minimumAge": 55,
+            "minimumService": 5,
+            "reduction": "actuarial",
+            "note": "Reduced benefit available at age 55 with 5 years of service"
+          }
+        ],
+        "minimumRetirementAge": 55,
+        "note": "PEPRA members cannot retire as early as age 50 — minimum is age 55."
+      },
+      "vesting": {
+        "years": 5,
+        "schedule": "cliff",
+        "note": "5 years of service credit required for vested benefit. Same as Classic tier."
+      },
+      "memberContribution": {
+        "rate_fy2025_26": 0.10205,
+        "note": "10.205% of creditable earnings for FY 2025-26. Rate is set at 50% of the normal cost of benefits, adjusted annually based on actuarial valuation. Rate may change year to year.",
+        "rateSettingAuthority": "Teachers' Retirement Board, per Education Code — 50% of normal cost",
+        "source": "https://www.calstrs.com/contributions"
+      }
+    }
+  },
+  "employerContributions": {
+    "rate_fy2025_26": 0.1910,
+    "dbSupplement_rate": 0.0825,
+    "note": "19.10% of creditable earnings to Teachers' Retirement Fund for FY 2025-26. Additional 8.25% to DBS. Board has authority to adjust employer rate up or down up to 1% per year, maximum 20.25%.",
+    "source": "https://www.calstrs.com/contributions"
+  },
+  "stateContributions": {
+    "sbmaContribution_pct_of_payroll": 0.025,
+    "note": "State of California contributes 2.5% of prior-year covered payroll to the Supplemental Benefit Maintenance Account (SBMA) annually from the General Fund.",
+    "source": "Education Code Section 22954; CalSTRS Funding Plan"
+  },
+  "cola": {
+    "type": "simple_2pct_annual",
+    "method": "simple",
+    "rate": 0.02,
+    "note": "CalSTRS applies a 2% SIMPLE (non-compounding) annual benefit improvement factor to all DB Program retirees. This is NOT compounding — it adds 2% of the original (initial) benefit each year, not 2% of the current benefit. This is a key distinction from CalPERS (compounding) and from standard CPI-linked COLAs.",
+    "effectiveDate": "September 1 each year following first anniversary of effective retirement date",
+    "measurementBasis": "Fixed 2% of original base allowance — not CPI-linked",
+    "authority": "Education Code Sections 22140, 22141, and 24402",
+    "source": "https://www.calstrs.com/files/486c369d0/SupplementalPayments2024-25.pdf"
+  },
+  "purchasingPowerProtection": {
+    "sbma": {
+      "name": "Supplemental Benefit Maintenance Account",
+      "purchasingPowerFloor": 0.85,
+      "absoluteMinimum": 0.80,
+      "note": "When inflation erodes purchasing power of a member's benefit below 85% of the initial benefit, CalSTRS pays quarterly supplemental payments from the SBMA to restore purchasing power to the 85% floor. If SBMA funds are insufficient to maintain 85%, the floor may be reduced to no lower than 80%. Board adjusts the floor between 80-85% based on actuarial sufficiency projections.",
+      "paymentSchedule": "Quarterly: October, January, April, July",
+      "inflationMeasure": "California CPI-U (Department of Finance, June figure for each fiscal year)",
+      "fundingSufficiency": "Projected solvent through 2089 at 85% protection level (68% probability per stochastic model)",
+      "fundingSource": "State General Fund contributions (2.5% of payroll) + School Lands Revenue + investment returns credited at assumed DB rate (7%)",
+      "eligibilityDetermination": "Automated annual review; members receive confirmation letter if eligible",
+      "authority": "Education Code Sections 22216, 22954, 22954.1, 24415, 24415.5, 24416; California Code of Regulations Section 26000",
+      "source": "https://www.calstrs.com/inflation-protection"
+    },
+    "schoolLandsRevenue": {
+      "note": "School Lands Revenue (from state school land grants) provides purchasing power restoration from 0% to 80%. SBMA covers from 80% to 85%. Together they provide the full 85% floor.",
+      "authority": "Education Code Sections 24412 and 24413"
+    }
+  },
+  "serviceCredit": {
+    "standardPerYear": 1.0,
+    "note": "Maximum 1.0 year of service credit earned per school year from CalSTRS-covered service. Part-time service earns proportional credit.",
+    "purchaseOptions": [
+      "Prior California public school service",
+      "Other California public retirement system service (subject to reciprocity)",
+      "Military service",
+      "Maternity/paternity leave",
+      "Sabbatical leave"
+    ]
+  },
+  "disabilityBenefits": {
+    "available": true,
+    "type": "defined_benefit",
+    "coverageA": {
+      "name": "Coverage A — Career Factor / Disability Allowance",
+      "note": "Automatic basic disability coverage. Benefit based on years of service credit with minimum of 1.4% of final compensation for service-connected disability."
+    },
+    "coverageB": {
+      "name": "Coverage B — Enhanced Disability",
+      "note": "Optional enhanced disability coverage. Higher benefit formula. Member elects at hire.",
+      "benefitFormula": "50% of final compensation (service-connected disability)"
+    },
+    "source": "CalSTRS Member Handbook 2025, CalSTRS.com/publications"
+  },
+  "survivorBenefits": {
+    "preRetirementDeath": {
+      "oneTimeDeath_coverageA_fy2025_26": 7288,
+      "oneTimeDeath_coverageB_fy2025_26": 29152,
+      "note": "One-time death benefit amounts effective July 1, 2025. Coverage A is automatic; Coverage B is optional elected coverage."
+    },
+    "postRetirementDeath": {
+      "oneTimeDeath_fy2025_26": 7288,
+      "note": "Same $7,288 death benefit after retirement under both Coverage A and Coverage B."
+    },
+    "optionBeneficiaries": {
+      "available": true,
+      "options": [
+        "Member-Only Benefit (no survivor continuation)",
+        "Option 1 — Lump sum refund to beneficiary of remaining contributions",
+        "Option 2 — 100% of monthly benefit continues to beneficiary for life",
+        "Option 3 — 50% of monthly benefit continues to beneficiary for life",
+        "Compound Option — multiple beneficiaries with different option elections"
+      ],
+      "note": "Electing a survivor option reduces the monthly retirement benefit actuarially."
+    },
+    "source": "CalSTRS Member Handbook 2025"
+  },
+  "returnToWork": {
+    "earningsLimit_fy2025_26": 80245,
+    "earningsLimit_fy2024_25": 74733,
+    "note": "Retired members who return to CalSTRS-covered work are limited in annual earnings. Limit indexed annually. Working beyond the limit may affect retirement benefit. Exceptions apply for critical shortage positions.",
+    "source": "https://www.calstrs.com/limits"
+  },
+  "irc415bLimits": {
+    "dollar_limit_at_60_cy2025": 203383,
+    "dollar_limit_at_65_cy2025": 238397,
+    "dollar_limit_at_60_cy2026": 210622,
+    "dollar_limit_at_65_cy2026": 246847,
+    "note": "IRS 415(b) limits the dollar amount CalSTRS can pay for a retirement benefit; limits vary by age at retirement and are indexed annually.",
+    "source": "https://www.calstrs.com/limits"
+  },
+  "reciprocity": {
+    "available": true,
+    "systems": [
+      "CalPERS",
+      "UC Retirement Plan (UCRP)",
+      "SDCERA",
+      "LACERA",
+      "Other California county retirement systems (1937 Act)"
+    ],
+    "note": "Reciprocity allows members who move between eligible systems to have service in both systems recognized for retirement eligibility. Final compensation uses the higher-paying system. Members must apply for reciprocity — it is not automatic."
+  },
+  "fundingStatus": {
+    "fundedRatio_fy2024_25": 0.70,
+    "note": "Approximate funded ratio as of June 30, 2025. CalSTRS is on a legislated path to full funding by 2046 under the CalSTRS Funding Plan (AB 1469, 2014). Funded ratio has improved from ~67% in 2014.",
+    "source": "CalSTRS Annual Report 2024-25"
+  },
+  "sources": [
+    "https://www.calstrs.com/two-benefit-structures",
+    "https://www.calstrs.com/contributions",
+    "https://www.calstrs.com/inflation-protection",
+    "https://www.calstrs.com/limits",
+    "https://www.calstrs.com/files/27c793b44/theagefactor.pdf",
+    "https://www.calstrs.com/files/486c369d0/SupplementalPayments2024-25.pdf",
+    "https://www.calstrs.com/general-information/SBMA-purchasing-power-protection"
+  ],
+  "researchGaps": [
+    "Full age factor breakpoint tables by quarter-year of age (available in CalSTRS PDF publications)",
+    "Reduced Benefit Election details (available to 2% at 60 members only)",
+    "Replacement Benefits Program details",
+    "DBS Program detailed structure and payout options",
+    "Cash Balance Benefit Program contribution rates and benefit structure"
+  ]
+}

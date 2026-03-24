@@ -2,8 +2,8 @@
   "_comment": "City of Falls Church Basic and Police Pension Plans",
   "systemName": "City of Falls Church Pension Plans",
   "systemAbbreviation": "FCPP",
-  "version": "2026.2",
-  "last_updated": "2026-03-15",
+  "version": "2026.3",
+  "last_updated": "2026-03-24",
   "jurisdiction": {
     "level": "city",
     "name": "City of Falls Church",
@@ -422,7 +422,9 @@
         "note": "Half of CPI-U increase means if CPI rises 5%, retirees get 2.5%. If CPI rises 10%, retirees get max 4%. No COLA in deflationary years.",
         "actuarial_assumption": 0.01125,
         "authority": "City of Falls Church Police Pension Plan Document, as summarized in Section 4, Exhibit F of actuarial valuation",
-        "source": "City of Falls Church Police Pension Plan Actuarial Valuation as of June 30, 2025 (Segal), Section 4 Exhibit F, page 44"
+        "source": "City of Falls Church Police Pension Plan Actuarial Valuation as of June 30, 2025 (Segal), Section 4 Exhibit F, page 44",
+        "determinationDate": "January 1 each year",
+        "measurementPeriod": "September-to-September CPI comparison"
       },
       "disability": {
         "available": true,
@@ -438,7 +440,6 @@
     "police_30yr": "(2.8% x 20 + 3.0% x 10) x FAC = 86% of final average compensation"
   },
   "researchGaps": [
-    "COLA formula and rate (Plan Document Section 5.04 exists but full content not extracted)",
     "Specific actuarial reduction factors for reduced early retirement",
     "Police Plan detailed survivor options and death benefits",
     "Post-retirement medical benefits eligibility and contribution details",
