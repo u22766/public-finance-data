@@ -62,7 +62,9 @@ Added `benefit_factor_table` to all 9 LACERA plans. Each table contains per-year
 
 Cross-plan CERL curve consistency verified: Plan B ages 58–65 exactly match Plan A ages 55–62 (3-year offset). Safety factors confirmed higher than general factors at all overlapping ages.
 
-**CI:** Expanded `validate_lacera.py` from 532 to 768 checks (+236). Total: ~13,700 checks across 27 suites.
+Added `service_accrual` structured object to Plan E documenting the half-rate accrual after 35 years of service (reduced_rate_multiplier: 0.5) and 80% FAC cap. Verified against official table: 36yr@65 = 71.00%, 45yr@65 = 80.00% (cap).
+
+**CI:** Expanded `validate_lacera.py` from 532 to 775 checks (+243). Total: ~13,700 checks across 27 suites.
 
 **No schema changes. Non-breaking addition.**
 

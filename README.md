@@ -164,7 +164,7 @@ public-finance-data/
     ├── validate_federal_retirement.py           ← Federal retirement rules validation (157 checks)
     ├── validate_municipal.py                    ← Municipal pension validation (153 checks)
     ├── validate_sdcera.py                       ← SDCERA pension validation (178 checks)
-    ├── validate_lacera.py                       ← LACERA pension validation (768 checks)
+    ├── validate_lacera.py                       ← LACERA pension validation (775 checks)
     ├── validate_filing_status.py                ← Filing status thresholds validation (816 checks)
     ├── validate_county_property_tax.py          ← County property tax — 13 states, 44 counties (1,635 checks)
     ├── validate_leo_fers_comp.py                ← LEO premium pay + FERS computation validation (207 checks)
@@ -314,7 +314,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | Federal Retirement | `validate_federal_retirement.py` | 157 | FERS/CSRS rules, contribution rates, FEGLI, FEHB eligibility |
 | Municipal | `validate_municipal.py` | 153 | Municipal pension plans — MCERP, FCPP, RRS, ACERS |
 | SDCERA | `validate_sdcera.py` | 178 | SDCERA 9-tier pension system — formulas, eligibility, PEPRA flags |
-| LACERA | `validate_lacera.py` | 768 | LACERA 9-plan pension system — general/safety plans, COLA, benefit factors |
+| LACERA | `validate_lacera.py` | 775 | LACERA 9-plan pension system — general/safety plans, COLA, benefit factors |
 | Filing Status | `validate_filing_status.py` | 816 | Filing status thresholds — 5 statuses × 6 domains (2016–2025) |
 | County Property Tax | `validate_county_property_tax.py` | 1,635 | County property tax — 13 states, 44 counties, rates + exemptions |
 | LEO/FERS Comp | `validate_leo_fers_comp.py` | 207 | LEO premium pay rates + FERS computation rules |

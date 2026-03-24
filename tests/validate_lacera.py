@@ -327,6 +327,24 @@ def main():
     check(abs(20 * fe.get("60", 0) - 24.04) < 0.01, "Plan E: 20yrs × 1.202% at 60 = 24.04%")
     # Cross-check: 30yr @ 65 = 60.00% (from official table)
     check(abs(30 * fe.get("65", 0) - 60.00) < 0.01, "Plan E: 30yrs × 2.0% at 65 = 60.00%")
+
+    # Plan E service_accrual (half-rate after 35 years)
+    sa = plans["general_E"].get("service_accrual", {})
+    check("service_accrual" in plans["general_E"], "Plan E has service_accrual")
+    check(sa.get("full_rate_years") == 35, f"Plan E full_rate_years = 35, got {sa.get('full_rate_years')}")
+    check(sa.get("reduced_rate_multiplier") == 0.5, f"Plan E reduced multiplier = 0.5, got {sa.get('reduced_rate_multiplier')}")
+    check(sa.get("max_benefit_pct_of_fac") == 80, f"Plan E service_accrual max = 80%, got {sa.get('max_benefit_pct_of_fac')}")
+    # Verify half-rate reproduces official table: 36yr @ 65 = 71.00%
+    f65 = fe.get("65", 0)
+    calc_36 = 35 * f65 + 1 * (f65 * sa.get("reduced_rate_multiplier", 0))
+    check(abs(calc_36 - 71.00) < 0.01, f"Plan E half-rate: 36yr@65 = 71.00%, calc={calc_36:.2f}%")
+    # 45yr @ 65 = 80.00% (hits cap)
+    calc_45 = min(35 * f65 + 10 * (f65 * sa.get("reduced_rate_multiplier", 0)), 80.0)
+    check(abs(calc_45 - 80.00) < 0.01, f"Plan E half-rate+cap: 45yr@65 = 80.00%, calc={calc_45:.2f}%")
+    # Verify max_benefit_pct_of_fac at plan level matches service_accrual
+    check(plans["general_E"].get("max_benefit_pct_of_fac") == sa.get("max_benefit_pct_of_fac"),
+          "Plan E max_benefit_pct consistent between plan and service_accrual")
+
     # Plan E factors should be lower than Plan B at same ages (noncontributory)
     for age in ["55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65"]:
         check(fe.get(age, 99) < fb.get(age, 0),

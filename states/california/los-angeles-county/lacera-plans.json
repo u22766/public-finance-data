@@ -409,7 +409,7 @@
       },
       "county_life_insurance_active": 10000,
       "benefit_factor_table": {
-        "_description": "Per-year-of-service factor by age at retirement, derived from 10-year row of LACERA Plan E official benefit table; applies to first 35 years of service; years 36+ accrue at half rate; max benefit 80% FAC",
+        "_description": "Per-year-of-service factor by age at retirement, derived from 10-year row of LACERA Plan E official benefit table; see service_accrual for reduced rate after 35 years",
         "_source": "https://www.lacera.gov/plan/general-e/plan-book/calculating-your-retirement-allowance",
         "55": 0.75,
         "56": 0.822,
@@ -422,6 +422,13 @@
         "63": 1.623,
         "64": 1.8,
         "65": 2.0
+      },
+      "service_accrual": {
+        "full_rate_years": 35,
+        "reduced_rate_multiplier": 0.5,
+        "reduced_rate_description": "Years of service beyond 35 accrue at half the per-year benefit factor",
+        "max_benefit_pct_of_fac": 80,
+        "max_benefit_note": "Combined full-rate and half-rate accrual cannot exceed 80% of final average compensation"
       }
     },
     "general_G": {
