@@ -1,0 +1,310 @@
+{
+  "_comment": "Ohio Public Employees Retirement System (OPERS) — Traditional Pension Plan (Groups A/B/C), Member-Directed Plan, Combined Plan. Consumer-agnostic data only.",
+  "systemName": "Ohio Public Employees Retirement System",
+  "systemAbbreviation": "OPERS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "Ohio",
+    "state": "OH",
+    "type": "statewide_public_employee_pension"
+  },
+  "administeredBy": "OPERS — governed by an 11-member Board of Trustees",
+  "boardComposition": "4 elected members (state/county, municipal/township, university/college, and miscellaneous employees), 1 elected retiree, 1 Director of Department of Administrative Services (statutory), 3 investment experts appointed (by Governor, Treasurer of State, and jointly by Speaker of Ohio House and President of Ohio Senate), plus 2 additional members per statute",
+  "established": 1935,
+  "legalAuthority": "Ohio Revised Code Chapter 145",
+  "totalMembers": {
+    "approximate": 1000000,
+    "note": "Over 1 million active members, retirees, and beneficiaries across ~3,700 employers. Largest of Ohio's five public pension systems. 14th-largest public pension fund in the United States.",
+    "source": "https://www.opers.org/about/opers101.shtml"
+  },
+  "coverage": {
+    "populations": [
+      "State of Ohio employees",
+      "County employees",
+      "Municipal and township employees",
+      "University and college employees",
+      "Library employees",
+      "Transit authority employees",
+      "Housing authority employees",
+      "Public hospital employees"
+    ],
+    "exclusions": [
+      "Ohio public school teachers and administrators — covered by STRS Ohio",
+      "School support staff — covered by SERS",
+      "State Highway Patrol — covered by HPRS",
+      "Police and fire personnel in OP&F-covered jurisdictions"
+    ],
+    "employers": "approximately 3,700 public employers",
+    "planChoice": "New members have 180 days from date of hire to elect Traditional Pension Plan or Member-Directed Plan. Members who do not elect within 180 days are automatically enrolled in the Traditional Pension Plan. Members may switch plans one time during career.",
+    "note": "Members in law enforcement or public safety positions are required to contribute to the Traditional Pension Plan and may not elect the Member-Directed Plan."
+  },
+  "socialSecurity": {
+    "covered": false,
+    "medicareOnly": true,
+    "note": "OPERS is a substitute for Social Security. Members contribute to Medicare but not Social Security from OPERS-covered employment. The Social Security Fairness Act (signed Jan. 5, 2025) repealed WEP and GPO, which may affect OPERS members who have Social Security benefits from non-OPERS employment, but does not change OPERS pension benefits.",
+    "source": "https://www.opers.org/about/opers101.shtml"
+  },
+  "vesting": {
+    "years": 5,
+    "note": "Members must have at least 5 years of contributing service credit while earning the minimum required salary to earn an OPERS pension."
+  },
+  "contributions": {
+    "generalMembers": {
+      "memberRate": 0.10,
+      "employerRate": 0.14,
+      "note": "State and local general employees. Contributions are pre-tax."
+    },
+    "lawEnforcement": {
+      "memberRate": 0.13,
+      "employerRate": 0.181,
+      "note": "Full-time law enforcement officers as defined by ORC 145.01(AA)–(UU) and 145.01(WW). Higher contribution rates reflect earlier retirement eligibility."
+    },
+    "publicSafety": {
+      "memberRate": 0.12,
+      "employerRate": 0.181,
+      "note": "Full-time public safety officers. Employer rate matches law enforcement at 18.1%."
+    },
+    "source": "https://www.opers.org/about/opers101.shtml"
+  },
+  "compensationLimits": {
+    "hiredFrom1994": {
+      "annualLimit": 360000,
+      "note": "Members hired on or after 1994. Contributions stop once this limit is reached in retirement-eligible earnings."
+    },
+    "hiredBefore1994": {
+      "annualLimit": 535000,
+      "note": "Members hired prior to 1994."
+    },
+    "source": "https://hr.osu.edu/benefits/retirement/active/opers/"
+  },
+  "cola": {
+    "type": "cpi_based",
+    "index": "CPI-W",
+    "cap": 0.03,
+    "floor": 0.00,
+    "timing": "Paid annually on member's retirement anniversary date",
+    "note": "Annual cost-of-living adjustment tied to the Consumer Price Index for Urban Wage Earners and Clerical Workers (CPI-W), capped at 3%. Actual amount varies with CPI-W.",
+    "source": "https://opers.org/pubs-archive/education/webinar-handouts/webinar-handout-Understanding-the-Value-of-Your-OPERS-Retirement.pdf"
+  },
+  "plans": {
+    "overview": "OPERS offers three plan types: Traditional Pension Plan (defined benefit, ~95% of members), Member-Directed Plan (defined contribution, ~3%), and Combined Plan (closed to new members Jan. 1, 2022). This file fully models the Traditional Pension Plan and provides summary data for the other plans.",
+    "traditionalPensionPlan": {
+      "planName": "Traditional Pension Plan",
+      "planType": "defined_benefit",
+      "status": "OPEN — default enrollment for new hires",
+      "memberGroups": {
+        "overview": "All Traditional and Combined Plan members are assigned to one of three retirement groups (A, B, or C) based on membership date and attainment of prior eligibility criteria per Ohio Sub. S.B. 343 (effective January 7, 2013). The group determines retirement eligibility requirements, FAS calculation period, and formula thresholds.",
+        "groupAssignment": "Group is determined by whether the member had attained the legacy eligibility thresholds (age 55/25 years, age 60/5 years, or any age/30 years) by specific dates stated in Sub. S.B. 343. Most members hired after the reform effective date are Group C.",
+        "groupA": {
+          "group": "A",
+          "description": "Members with earliest membership dates who met or were closest to meeting the legacy retirement eligibility thresholds (55/25, 60/5, or any age/30) prior to S.B. 343.",
+          "finalAverageSalary": {
+            "years": 3,
+            "method": "highest_3_years",
+            "note": "Average of the member's three highest years of earnable salary."
+          },
+          "formula": {
+            "structure": "2.2% x FAS x first 30 years + 2.5% x FAS x years over 30",
+            "multiplierBase": 0.022,
+            "multiplierEnhanced": 0.025,
+            "enhancedThreshold_years": 30,
+            "note": "Annual lifetime allowance. The 2.5% multiplier applies to each year of service credit over 30 years."
+          },
+          "retirementEligibility": {
+            "unreduced": [
+              {"rule": "any_age_30_years", "age": null, "service": 30, "note": "Any age with 30 years of service credit"},
+              {"rule": "age_65_5_years", "age": 65, "service": 5}
+            ],
+            "reduced": [
+              {"rule": "age_55_25_years", "age": 55, "service": 25},
+              {"rule": "age_60_5_years", "age": 60, "service": 5}
+            ]
+          }
+        },
+        "groupB": {
+          "group": "B",
+          "description": "Mid-tier members who joined OPERS after Group A cutoffs but before Group C reform requirements applied.",
+          "finalAverageSalary": {
+            "years": 3,
+            "method": "highest_3_years",
+            "note": "Average of the member's three highest years of earnable salary. Same as Group A."
+          },
+          "formula": {
+            "structure": "2.2% x FAS x first 30 years + 2.5% x FAS x years over 30",
+            "multiplierBase": 0.022,
+            "multiplierEnhanced": 0.025,
+            "enhancedThreshold_years": 30,
+            "note": "Same formula structure as Group A. 2.5% multiplier applies to years over 30."
+          },
+          "retirementEligibility": {
+            "unreduced": [
+              {"rule": "any_age_32_years", "age": null, "service": 32, "note": "Any age with 32 years of service credit"},
+              {"rule": "age_52_31_years", "age": 52, "service": 31},
+              {"rule": "age_66_5_years", "age": 66, "service": 5}
+            ],
+            "reduced": [
+              {"rule": "age_55_25_years", "age": 55, "service": 25},
+              {"rule": "age_60_5_years", "age": 60, "service": 5}
+            ],
+            "reductionNote": "A reduction multiplier is applied to the formula benefit for Group B members who have not attained the age and service required for unreduced benefit."
+          }
+        },
+        "groupC": {
+          "group": "C",
+          "description": "All other members — generally those hired after the S.B. 343 reform thresholds. Most new hires belong to Group C.",
+          "finalAverageSalary": {
+            "years": 5,
+            "method": "highest_5_years",
+            "note": "Average of the member's five highest years of earnable salary. Less favorable than Groups A/B."
+          },
+          "formula": {
+            "structure": "2.2% x FAS x first 35 years + 2.5% x FAS x years over 35",
+            "multiplierBase": 0.022,
+            "multiplierEnhanced": 0.025,
+            "enhancedThreshold_years": 35,
+            "note": "Annual lifetime allowance. The 2.5% enhanced multiplier applies only after 35 years of service, compared to 30 years for Groups A/B."
+          },
+          "retirementEligibility": {
+            "unreduced": [
+              {"rule": "age_55_32_years", "age": 55, "service": 32},
+              {"rule": "age_67_5_years", "age": 67, "service": 5}
+            ],
+            "reduced": [
+              {"rule": "age_57_25_years", "age": 57, "service": 25},
+              {"rule": "age_62_5_years", "age": 62, "service": 5}
+            ],
+            "reductionNote": "A reduction multiplier is applied to the formula benefit for Group C members who have not attained the age and service required for unreduced benefit."
+          }
+        }
+      },
+      "lawEnforcementPublicSafety": {
+        "note": "Law enforcement and public safety officers have a different retirement eligibility timetable from general member Groups A, B, and C. They must contribute to the Traditional Pension Plan and may not elect the Member-Directed Plan. Eligibility is governed by the OPERS Law Enforcement/Public Safety Officers leaflet. Contribution rates differ (see contributions section).",
+        "source": "https://www.opers.org/members/retiring.shtml"
+      },
+      "paymentOptions": {
+        "singleLifePlan": "Monthly benefit paid for member's lifetime; no continuation to survivors.",
+        "jointLifePlan": "Reduced monthly benefit continuing to a designated beneficiary after member's death. Member selects 100% or other percentage for up to 4 survivors.",
+        "multipleLifePlan": "Reduced monthly benefit continuing to up to 4 designated beneficiaries.",
+        "plop": {
+          "name": "Partial Lump Sum Option Payment",
+          "abbreviation": "PLOP",
+          "range": "6 to 36 times the monthly pension amount",
+          "effect": "Reduces monthly pension benefit. Lump sum is taxable unless rolled to a qualified plan. Released 90 days after first benefit payment.",
+          "note": "Law enforcement/public safety members who terminate at age 50+ and receive a PLOP are exempt from the additional 10% early distribution tax.",
+          "source": "https://www.opers.org/members/retiring.shtml"
+        }
+      },
+      "disabilityBenefits": {
+        "available": true,
+        "note": "Available to members who become permanently mentally or physically incapable of performing duties of their last position of public employment."
+      },
+      "survivorBenefits": {
+        "minimumService": 1.5,
+        "note": "Survivors qualify for benefits if member had at least 18 months of contributing service at time of death. Survivors may elect monthly benefits or lump sum refund. If surviving children are eligible for monthly benefits, only monthly payments can be paid.",
+        "deathBenefit": "One-time lump sum payment to survivors based on years of service."
+      }
+    },
+    "memberDirectedPlan": {
+      "planName": "Member-Directed Plan",
+      "planType": "defined_contribution",
+      "status": "OPEN",
+      "retirementEligibility": {
+        "note": "Member must be age 55 or older to retire from the Member-Directed Plan."
+      },
+      "note": "Members direct investment of contributions among OPERS investment options. Benefit is based on final vested account balance. Law enforcement and public safety officers may not elect this plan. A monthly administrative fee of $6 is charged regardless of balance. A mitigating rate is applied — a percentage of employer contributions is directed to OPERS to offset unfunded pension liability per ORC 3305.06.",
+      "source": "https://www.opers.org/members/Plan-select/index.shtml"
+    },
+    "combinedPlan": {
+      "planName": "Combined Plan",
+      "planType": "hybrid",
+      "status": "CLOSED — no new members on or after January 1, 2022",
+      "note": "The Combined Plan was a hybrid of defined benefit and defined contribution. It is closed to new members as of January 1, 2022. Members already enrolled in the Combined Plan prior to that date may remain. Combined Plan DB formula multipliers are half those of the Traditional Pension Plan (1% base, 1.25% enhanced). Eligibility groups (A, B, C) apply similarly."
+    }
+  },
+  "healthCare": {
+    "overview": "Ohio law does not require OPERS to provide health care coverage. OPERS currently offers a health care program at its Board's discretion.",
+    "eligibility": {
+      "generalRule": "Retirees must be receiving a retirement benefit before accessing OPERS health care coverage.",
+      "byGroup": {
+        "groupA": "Age 60+ with 20+ years qualifying service, or any age with 30 years qualifying service",
+        "groupB": "Age 60+ with 20+ years qualifying service, or any age with 31–32 years qualifying service",
+        "groupC": "Age 60+ with 20+ years qualifying service, or any age with 32 years qualifying service"
+      },
+      "agingIn": "Members not eligible for health care at retirement because they do not yet meet the age requirement may begin receiving a retirement benefit and then age into health care coverage later.",
+      "lawEnforcementPublicSafety": "See Law Enforcement/Public Safety Officers leaflet for separate eligibility rules."
+    },
+    "preMedicareMembers": {
+      "model": "Health Reimbursement Arrangement (HRA)",
+      "effectiveDate": "2022-01-01",
+      "note": "Effective January 1, 2022, pre-Medicare retirees use a reimbursement model rather than a group health plan. Retirees pay premiums and eligible expenses and are reimbursed through an OPERS-funded HRA."
+    },
+    "medicareEligibleMembers": {
+      "model": "OPERS Medicare Connector via Via Benefits",
+      "note": "Medicare-eligible retirees enrolled in Medicare Parts A and B select individual plans through Via Benefits. OPERS funds an HRA for reimbursement of premiums and eligible expenses. Spouse premiums may also be covered."
+    },
+    "qualifyingServiceTypes": [
+      "Contributing service",
+      "Eligible service in another Ohio retirement system",
+      "Military time interrupting public service (USERRA)",
+      "Unreported public service",
+      "OPERS redeposit (restored) service"
+    ],
+    "minimumSalaryForHealthCare": {
+      "amount": 1000,
+      "period": "monthly",
+      "note": "As of January 1, 2014, a member must earn at least $1,000 per month to earn full service credit applicable to health care eligibility. This threshold is higher than the pension service credit threshold."
+    },
+    "source": "https://www.opers.org/about/opers101.shtml"
+  },
+  "funding": {
+    "fy2025": {
+      "investmentReturn": 0.144,
+      "investmentReturnNote": "Preliminary FY2025 net-of-fees return of 14.4%",
+      "estimatedFundedRatio": 0.82,
+      "fundedRatioNote": "Estimated pension funded ratio approximately 82% at end of 2025, down from 83% in 2024 due to 4-year smoothing methodology",
+      "assumedRateOfReturn": 0.069,
+      "healthCareSolvency_years": 32,
+      "amortizationPeriod_years": 17
+    },
+    "source": "https://perspective.opers.org/opers-funded-level-changes/"
+  },
+  "sources": [
+    {
+      "title": "OPERS 101 Overview",
+      "url": "https://www.opers.org/about/opers101.shtml",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Traditional Pension Plan Features",
+      "url": "https://www.opers.org/members/traditional/plan-features.shtml",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Pension and Health Care Eligibility Guide (March 2019)",
+      "url": "https://www.opers.org/pubs-archive/members/2019-03-PNSHCELIGGUIDE-Pension-and-Health-Care-Eligibility-Guide.pdf",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "OPERS Traditional Pension Plan Education (Ohio Auditor 2018)",
+      "url": "https://ohioauditor.gov/trainings/docs/2018/OPERS_Education_Department.pdf",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "OPERS Retirement — Law Enforcement/Public Safety",
+      "url": "https://www.opers.org/members/retiring.shtml",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "OPERS Plan Selection",
+      "url": "https://www.opers.org/members/Plan-select/index.shtml",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Funded Level Changes (perspective.opers.org)",
+      "url": "https://perspective.opers.org/opers-funded-level-changes/",
+      "accessed": "2026-03-24"
+    }
+  ]
+}

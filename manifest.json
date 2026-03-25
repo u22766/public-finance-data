@@ -708,6 +708,16 @@
       "last_updated": "2026-03-24",
       "jurisdiction": "DC",
       "type": "state_pension"
+    },
+    "opers_plans_ohio": {
+      "description": "Ohio Public Employees Retirement System (OPERS) \u2014 1M+ members. Non-SS-covered. Traditional Pension Plan Groups A/B/C (2.2%/2.5% formula). Member-Directed (DC) and Combined (closed Jan 2022). LE/PS separate tiers. CPI-W COLA cap 3%.",
+      "url": "states/ohio/opers-plans.json",
+      "category": "state_local_pension",
+      "subcategory": "state_pension",
+      "state": "ohio",
+      "scope": "statewide",
+      "version": "2026.1",
+      "last_updated": "2026-03-24"
     }
   }
 }
