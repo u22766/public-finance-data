@@ -1,6 +1,9 @@
 {
   "_comment": "Educational Employees' Supplementary Retirement System of Fairfax County (ERFC). County-level supplemental defined benefit plan for FCPS full-time educational and administrative employees. Supplements VRS and Social Security. Update as ERFC rules change.",
-  "version": "2.0.0",
+  "systemName": "Employees' Retirement Fund of the City of Fairfax",
+  "systemAbbreviation": "ERFC",
+  "version": "2026.1",
+  "last_updated": "2026-03-25",
   "effective_date": "2026-01-01",
   "employer": "Educational Employees' Supplementary Retirement System of Fairfax County",
   "scope": "county",

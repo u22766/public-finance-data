@@ -1,6 +1,9 @@
 {
   "_comment": "Fairfax County Employees' Retirement System (FCERS/ERS). Fully independent defined benefit pension system (not VRS). Established 1955. Covers general county employees and certain FCPS non-teaching positions (bus drivers, cafeteria, clerical, custodians, trades). Five plan tiers (A-E) based on hire date and contribution election. Update as Fairfax County Code changes.",
+  "systemName": "Fairfax County Employees' Retirement System",
+  "systemAbbreviation": "FCERS",
   "version": "2026.1",
+  "last_updated": "2026-01-01",
   "effective_date": "2026-01-01",
   "employer": "Fairfax County Employees' Retirement System",
   "scope": "county",

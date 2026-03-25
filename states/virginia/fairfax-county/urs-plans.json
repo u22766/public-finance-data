@@ -1,6 +1,9 @@
 {
   "_comment": "Fairfax County Uniformed Retirement System (URS). Fully independent defined benefit pension system (not VRS). Established 1974. Covers uniformed/sworn employees of Fire and Rescue, Sheriff, Animal Control, Police Helicopter Unit, and Public Safety Communications (since 2005). Four modeled plan tiers (B, D, E, F). Plans A and C are legacy tiers with very few remaining active members and are noted but not fully modeled. Update as Fairfax County Code changes.",
+  "systemName": "Fairfax County Uniformed Retirement System",
+  "systemAbbreviation": "URS",
   "version": "2026.1",
+  "last_updated": "2026-01-01",
   "effective_date": "2026-01-01",
   "employer": "Fairfax County Uniformed Retirement System",
   "scope": "county",

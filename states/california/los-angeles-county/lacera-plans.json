@@ -1,5 +1,8 @@
 {
+  "systemName": "Los Angeles County Employees Retirement Association",
+  "systemAbbreviation": "LACERA",
   "version": "2026.3",
+  "last_updated": "2026-04-01",
   "effective_date": "2026-04-01",
   "description": "LACERA (Los Angeles County Employees Retirement Association) retirement plan data. Covers all 10 plans: General A/B/C/D/E/G and Safety A/B/C. Governed by the County Employees Retirement Law of 1937 (CERL) and PEPRA.",
   "source": "LACERA official plan books, basic provisions pages, COLA announcements, and actuarial reports",

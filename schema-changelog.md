@@ -46,6 +46,33 @@ function compareVersions(a, b) {
 ## Data Corrections Log
 
 
+### Session 68 — Schema Normalization Batch (10 files)
+
+**Date:** 2026-03-25
+
+Normalized 10 pension files to current schema standard. All 23 pension files now have `systemName`, `systemAbbreviation`, `last_updated`, and `2026.x` versioning.
+
+**Changes by file:**
+
+| File | Changes |
+|---|---|
+| `lacera-plans.json` | Added `systemName` ("LACERA"), `systemAbbreviation`, `last_updated` (from `effective_date`). |
+| `sdcera-plans.json` | Added `systemName` ("SDCERA"), `systemAbbreviation`, `last_updated`. Version 1.0 → 2026.1. |
+| `acers-plans.json` | Added `systemName` ("ACERS"), `systemAbbreviation`. Renamed `lastUpdated` → `last_updated`. |
+| `erfc-plans.json` | Added `systemName` ("ERFC"), `systemAbbreviation`, `last_updated`. Version 2.0.0 → 2026.1. |
+| `fcers-plans.json` | Added `systemName` ("FCERS"), `systemAbbreviation`, `last_updated` (from `effective_date`). |
+| `pors-plans.json` | Added `systemName` ("PORS"), `systemAbbreviation`, `last_updated` (from `effective_date`). |
+| `urs-plans.json` | Added `systemName` ("URS"), `systemAbbreviation`, `last_updated` (from `effective_date`). |
+| `rrs-plans.json` | Renamed `lastUpdated` → `last_updated`. Already had `systemName`/`systemAbbreviation`. |
+| `vrs-plans.json` | Renamed `lastUpdated` → `last_updated`. Already had `systemName`/`systemAbbreviation`. |
+| `mcerp-plans.json` | Removed stale `lastUpdated` field (already had `last_updated`). |
+
+**Validators updated:**
+- `validate.py`: RRS check updated from `lastUpdated` to `last_updated`.
+- `validate_sdcera.py`: Version check updated from 1.0 to 2026.1.
+
+**No breaking changes. All existing fields retained (`effective_date`, `employer`, etc.). Non-breaking additions only.**
+
 ### Session 68 — Data Vintage File & Validator
 
 **Date:** 2026-03-25

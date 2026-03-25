@@ -1,6 +1,9 @@
 {
   "_comment": "Arlington County Employees' Retirement System (ACERS). Fully independent defined benefit pension system (not VRS). Covers county employees under three code chapters: Ch.21 (pre-1969 general/uniform), Ch.35 (school board, 1969+), Ch.46 (all hired 2/8/1981+). $3.28B assets, 111% funded (FY2024). Update as Arlington County Code changes.",
+  "systemName": "Arlington County Employees' Retirement System",
+  "systemAbbreviation": "ACERS",
   "version": "2026.2",
+  "last_updated": "2026-03-14",
   "effective_date": "2026-01-01",
   "employer": "Arlington County Employees' Retirement System",
   "scope": "county",
@@ -443,6 +446,5 @@
         "note": "Line of duty death: 100% of \u00a7 46-38.A calculation, service requirements waived. Benefit \u2265 5% of AFC."
       }
     }
-  },
-  "lastUpdated": "2026-03-14"
+  }
 }

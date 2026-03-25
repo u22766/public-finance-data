@@ -30,7 +30,7 @@ def main():
         data = json.load(f)
 
     print("=== SDCERA System Overview ===")
-    check(data.get("version") == "1.0", "version is 1.0")
+    check(data.get("version") == "2026.1", "version is 2026.1")
     check("SDCERA" in data.get("description", ""), "description mentions SDCERA")
     check("1937" in data.get("description", ""), "description mentions 1937 Act")
 

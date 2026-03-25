@@ -1,5 +1,8 @@
 {
-  "version": "1.0",
+  "systemName": "San Diego County Employees Retirement Association",
+  "systemAbbreviation": "SDCERA",
+  "version": "2026.1",
+  "last_updated": "2026-01-01",
   "effective_date": "2026-01-01",
   "description": "San Diego County Employees Retirement Association (SDCERA) \u2014 defined benefit pension plans under the California County Employees Retirement Law of 1937 (CERL), covering General and Safety members across 9 benefit tiers",
   "source": "SDCERA GASB 68 Actuarial Valuation (FY2021), 2024 ACFR, SDCERA FAQ and member resources",

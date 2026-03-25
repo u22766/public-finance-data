@@ -2,6 +2,8 @@
   "_comment": "Richmond Retirement System (RRS) pension plan parameters",
   "systemName": "Richmond Retirement System",
   "systemAbbreviation": "RRS",
+  "version": "2026.1",
+  "last_updated": "2026-03-14",
   "established": 1945,
   "status": "CLOSED",
   "closedDate": "2024-01-01",
@@ -13,8 +15,6 @@
     "note": "Independent city; all full-time permanent City of Richmond employees (general and sworn)"
   },
   "scope": "city",
-  "version": "2026.1",
-  "lastUpdated": "2026-03-14",
   "sources": [
     "https://www.rva.gov/retirement-system/employees",
     "https://www.rva.gov/retirement-transition/my-options",

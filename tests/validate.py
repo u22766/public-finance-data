@@ -795,7 +795,7 @@ def test_rrs_plans(s):
     s.check("RRS closedDate is 2024-01-01", data.get("closedDate") == "2024-01-01")
     s.check("RRS participates in SS", data.get("socialSecurityParticipation") is True)
     s.check("RRS has version", "version" in data)
-    s.check("RRS has lastUpdated", "lastUpdated" in data)
+    s.check("RRS has last_updated", "last_updated" in data)
     s.check("RRS has sources list", isinstance(data.get("sources"), list) and len(data["sources"]) >= 2)
     s.check("RRS has jurisdiction", "jurisdiction" in data)
     s.check("RRS jurisdiction state is virginia", data.get("jurisdiction", {}).get("state") == "virginia")

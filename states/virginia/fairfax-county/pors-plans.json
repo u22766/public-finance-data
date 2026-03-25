@@ -1,6 +1,9 @@
 {
   "_comment": "Fairfax County Police Officers Retirement System (PORS). Fully independent defined benefit pension system (not VRS). Established 1944 (oldest of Fairfax County's three retirement systems). Covers sworn full-time law enforcement officers of the Fairfax County Police Department only. Three plan tiers (A-C) based on hire date. Update as Fairfax County Code changes.",
+  "systemName": "Fairfax County Police Officers Retirement System",
+  "systemAbbreviation": "PORS",
   "version": "2026.1",
+  "last_updated": "2026-01-01",
   "effective_date": "2026-01-01",
   "employer": "Fairfax County Police Officers Retirement System",
   "scope": "county",
