@@ -1,7 +1,8 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 36 validation suites (~15,450 checks)
+# 37 validation suites (~15,980 checks)
+# Session 68: Added validate_vintage.py (530 checks) for data_vintage.json manifest sync guard
 # Session 67: Added 10 missing suites — calpers, calstrs, copera, dcrb, md_srps, ny_pensions, opers, state_pensions, tx_ers, pay_tables
 # Session 57: Added validate_lacera.py (532 checks) for LACERA (Los Angeles County) pension plans
 # Session 56: Added validate_fs_pay.py (1893 checks) for Foreign Service pay tables (FP-1 through FP-9, 2016-2026)
@@ -149,7 +150,10 @@ jobs:
 
       - name: Validate Texas ERS and TRS pension plans (240 checks)
         run: python tests/validate_tx_ers.py
+
+      - name: Validate data vintage manifest sync (530 checks)
+        run: python tests/validate_vintage.py
       
       - name: Validation summary
         if: success()
-        run: echo "✓ All 36 validation suites passed"
+        run: echo "✓ All 37 validation suites passed"
