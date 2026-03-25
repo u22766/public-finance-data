@@ -1,0 +1,449 @@
+{
+  "_comment": "Maryland State Retirement and Pension System (SRPS) — defined benefit pension data for Maryland state employees, teachers, law enforcement, correctional officers, judges, and legislators. Consumer-agnostic data only. No Meridian-specific references. Covers all major SRPS subsystems. 150+ voluntary local government employer participants in addition to primary state sponsor.",
+  "systemName": "Maryland State Retirement and Pension System",
+  "systemAbbreviation": "MD-SRPS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "Maryland",
+    "state": "MD",
+    "type": "statewide_public_employee_pension"
+  },
+  "administeredBy": "Maryland State Retirement Agency (SRA) — governed by a 15-member Board of Trustees chaired by the State Treasurer; State Comptroller serves as Vice Chair. Three ex-officio trustees; others elected by members or Governor-appointed.",
+  "established": 1927,
+  "totalMembers": {
+    "approximate": 420000,
+    "note": "420,000+ active and former members including state employees, teachers, State Police, judges, and law enforcement as of 2024. Primary sponsor is the State of Maryland; 150+ local governmental agencies voluntarily participate.",
+    "source": "https://sra.maryland.gov/about"
+  },
+  "coverage": {
+    "populations": [
+      "Maryland state employees (executive, judicial, legislative branches — Employees' Pension System)",
+      "Maryland public school teachers, faculty, and school support staff (Teachers' Pension System)",
+      "Maryland State Police (Maryland State Police Retirement System)",
+      "Law enforcement officers at state and participating local agencies (Law Enforcement Officers' Pension System — LEOPS)",
+      "Correctional officers at state and participating local detention facilities (Correctional Officers' Retirement System — CORS)",
+      "Maryland judges and justices (Judges' Retirement System)",
+      "Maryland legislators (Legislative Pension Plan)",
+      "Employees of 150+ voluntary local government employers"
+    ],
+    "excluded": [
+      "Montgomery County MCERP participants (separate county plan — MCERP is covered separately in this repo)",
+      "Baltimore City employees covered by Baltimore City Employees' Retirement System",
+      "University System of Maryland faculty and staff who elected Optional Retirement Program (ORP — separate 403(b))",
+      "Certain federal program employees"
+    ],
+    "note": "Most SRPS members participate in Social Security in addition to their SRPS pension. Members of the Employees' and Teachers' Retirement System (legacy, closed 1980) do not participate in Social Security."
+  },
+  "socialSecurity": {
+    "covered": true,
+    "note": "Most SRPS members participate in Social Security. SRPS pension is in addition to Social Security. Exception: members of the legacy Employees' and Teachers' Retirement System (closed to new members January 1, 1980) are not covered by Social Security.",
+    "source": "https://www.usmd.edu/usm/adminfinance/orp_handbook.pdf"
+  },
+  "assumedRateOfReturn": 0.0775,
+  "assumedRateNote": "7.75% current actuarial assumed rate of return. This rate determines whether RCPB/RCPS COLA is paid at the standard 2.5% cap or the lower 1% cap in a given year.",
+  "systems": {
+    "_note": "SRPS comprises multiple subsystems. The two largest — Teachers' Pension System and Employees' Pension System — each have two benefit components based on enrollment date (before or after July 1, 2011). The legacy Retirement System (closed 1980) and special systems for police, corrections, judges, and legislators complete the structure.",
+    "teachersPensionSystem": {
+      "systemName": "Teachers' Pension System (TPS)",
+      "status": "OPEN — new members enrolled since January 1, 1980",
+      "covers": "Maryland public school teachers, school administrators, community college faculty, and certain university staff",
+      "components": {
+        "acps": {
+          "componentName": "Alternate Contributory Pension Selection (ACPS)",
+          "eligibility": "Members enrolled in TPS on or before June 30, 2011 (generally members who were active on June 30, 2006 or became members July 1, 2006 through June 30, 2011). Vested ACPS members who return after a break of 4 years or less remain in ACPS.",
+          "memberContribution": {
+            "rate": 0.07,
+            "note": "7% of earnable compensation. Earns 5% annual compounded interest on accumulated contributions."
+          },
+          "formula": {
+            "structure": "1.2% × AFC × Service before July 1, 1998 + 1.8% × AFC × Service on/after July 1, 1998 = Annual Basic Allowance",
+            "multiplier_pre1998": 0.012,
+            "multiplier_post1998": 0.018,
+            "afc": {
+              "description": "Average Final Compensation — average earnable annual compensation for the 3 highest consecutive years",
+              "period_years": 3,
+              "salaryCapNote": "Salary increases in AFC years exceeding 20% are generally excluded unless the increase would raise the benefit by $25 or less, or is not deemed extraordinary."
+            }
+          },
+          "retirementEligibility": {
+            "normalRetirement": [
+              {
+                "rule": "Rule of 90",
+                "description": "Age + years of eligibility service ≥ 90, with minimum age 55",
+                "example": "Age 58 with 32 years = age 90 — eligible for normal service retirement"
+              },
+              {
+                "rule": "Age 62 with 5 years",
+                "description": "Age 62 with at least 5 years of eligibility service"
+              }
+            ],
+            "earlyRetirement": {
+              "minimumAge": 55,
+              "minimumService": 15,
+              "reductionFactor": "0.5% per month (6% per year) before age 62",
+              "maximumReduction": "30% (5 years × 6%)",
+              "note": "Early service retirement available at age 55 with 15 years. Reduction applies for months before age 62."
+            },
+            "vestedBenefit": {
+              "minimumService": 10,
+              "payableAge": 62,
+              "earlyVested": "Age 55 with 15 years, same reduction as early service retirement"
+            }
+          },
+          "vesting": { "years": 10, "schedule": "cliff" },
+          "cola": {
+            "mechanism": "compounded",
+            "eligibility": "Retired at least one year as of July 1",
+            "paymentDate": "July 1 each year",
+            "twoTierStructure": {
+              "serviceBeforeJuly12011": {
+                "cap": 0.03,
+                "note": "3% maximum COLA for the portion of benefit attributable to service earned before July 1, 2011"
+              },
+              "serviceOnAfterJuly12011": {
+                "cap_investment_met": 0.025,
+                "cap_investment_not_met": 0.01,
+                "note": "2.5% cap when system earns assumed rate of return (7.75%); 1% cap when assumed rate not earned. Applies to benefit portion for service on/after July 1, 2011."
+              }
+            }
+          }
+        },
+        "rcpb": {
+          "componentName": "Reformed Contributory Pension Benefit (RCPB)",
+          "eligibility": "Members first enrolled in TPS on or after July 1, 2011. Also applies to former ACPS members who did not vest and returned after a break of more than 4 years.",
+          "memberContribution": {
+            "rate": 0.07,
+            "note": "7% of earnable compensation. Same rate as ACPS. Earns 5% annual compounded interest."
+          },
+          "formula": {
+            "structure": "1.5% × AFC × Years of Creditable Service = Annual Basic Allowance",
+            "multiplier": 0.015,
+            "afc": {
+              "description": "Average Final Compensation — average earnable annual compensation for the 5 highest consecutive years",
+              "period_years": 5,
+              "salaryCapNote": "Salary increases in AFC years exceeding 20% are generally excluded unless increase raises benefit by $25 or less."
+            }
+          },
+          "retirementEligibility": {
+            "normalRetirement": [
+              {
+                "rule": "Rule of 90",
+                "description": "Age + years of eligibility service ≥ 90, with minimum age 55",
+                "example": "Age 55 with 35 years = age 90 eligible; age 58 with 32 years also eligible"
+              },
+              {
+                "rule": "Age 65 with 10 years",
+                "description": "Age 65 with at least 10 years of eligibility service"
+              }
+            ],
+            "earlyRetirement": {
+              "minimumAge": 60,
+              "minimumService": 15,
+              "reductionFactor": "0.5% per month (6% per year) before age 65",
+              "maximumReduction": "30% (5 years × 6%)",
+              "note": "Early service retirement at age 60 with 15 years. Reduction applies for months before age 65 (not age 62 as in ACPS)."
+            },
+            "vestedBenefit": {
+              "minimumService": 10,
+              "payableAge": 65,
+              "earlyVested": "Age 60 with 15 years, same reduction as early service retirement"
+            }
+          },
+          "vesting": { "years": 10, "schedule": "cliff" },
+          "cola": {
+            "mechanism": "compounded",
+            "eligibility": "Retired at least one year as of July 1",
+            "paymentDate": "July 1 each year",
+            "cap_investment_met": 0.025,
+            "cap_investment_not_met": 0.01,
+            "note": "2.5% maximum when system earns assumed rate (7.75%); 1% when not. Applies to entire benefit (no split as in ACPS). If CPI is negative, zero COLA applied; carryover reduces future COLA."
+          }
+        }
+      },
+      "benefitOptions": {
+        "note": "At retirement, members choose from: Basic Allowance (highest lifetime payment, no survivor benefit), Option 1 (full present-value return), Option 2 (100% joint and survivor), Option 3 (50% joint and survivor), Option 4 (full return of employee contributions), Option 5 (100% survivor with pop-up), Option 6 (50% survivor with pop-up). Options 2/5 restrict survivor beneficiary to ≤10 years younger unless spouse or disabled child.",
+        "source": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook_teachers_rcpb.pdf"
+      },
+      "disabilityRetirement": {
+        "ordinary": {
+          "requirement": "5 years of eligibility service; permanently disabled from normal duties",
+          "benefit": "Normal service retirement formula projected to age 65 if under 65"
+        },
+        "accidental": {
+          "requirement": "No service requirement; on-duty accident, permanent total disability",
+          "benefit": "2/3 of AFC plus annuity based on accumulated member contributions"
+        }
+      },
+      "unusedSickLeave": {
+        "available": true,
+        "note": "Members retiring within 30 days of termination may receive creditable service for unused sick leave at 22 days = 1 month of additional service. Maximum 15 days/year accrual. Does not affect eligibility to retire."
+      }
+    },
+    "employeesPensionSystem": {
+      "systemName": "Employees' Pension System (EPS)",
+      "status": "OPEN — new members since January 1, 1980",
+      "covers": "Maryland state government employees and employees of 150+ participating local governments",
+      "components": {
+        "acps": {
+          "componentName": "Alternate Contributory Pension Selection (ACPS)",
+          "eligibility": "Members enrolled in EPS on or before June 30, 2011",
+          "memberContribution": { "rate": 0.07, "note": "7% of earnable compensation" },
+          "formula": {
+            "structure": "1.2% × AFC × Service before July 1, 1998 + 1.8% × AFC × Service on/after July 1, 1998",
+            "multiplier_pre1998": 0.012,
+            "multiplier_post1998": 0.018,
+            "afc": { "period_years": 3, "note": "3 highest consecutive years of earnable compensation" }
+          },
+          "retirementEligibility": {
+            "normalRetirement": [
+              { "rule": "Rule of 90", "description": "Age + eligibility service ≥ 90 at minimum age 55" },
+              { "rule": "Age 62 with 5 years" }
+            ],
+            "earlyRetirement": {
+              "minimumAge": 55,
+              "minimumService": 15,
+              "reductionFactor": "0.5% per month before age 62"
+            }
+          },
+          "vesting": { "years": 10, "schedule": "cliff" },
+          "cola": {
+            "twoTierStructure": true,
+            "serviceBeforeJuly12011": { "cap": 0.03 },
+            "serviceOnAfterJuly12011": { "cap_investment_met": 0.025, "cap_investment_not_met": 0.01 }
+          }
+        },
+        "rcpb": {
+          "componentName": "Reformed Contributory Pension Benefit (RCPB)",
+          "eligibility": "Members first enrolled in EPS on or after July 1, 2011",
+          "memberContribution": { "rate": 0.07 },
+          "formula": {
+            "structure": "1.5% × AFC × Years of Creditable Service",
+            "multiplier": 0.015,
+            "afc": { "period_years": 5, "note": "5 highest consecutive years" }
+          },
+          "retirementEligibility": {
+            "normalRetirement": [
+              { "rule": "Rule of 90", "description": "Age + eligibility service ≥ 90 at minimum age 55" },
+              { "rule": "Age 65 with 10 years" }
+            ],
+            "earlyRetirement": {
+              "minimumAge": 60,
+              "minimumService": 15,
+              "reductionFactor": "0.5% per month before age 65"
+            }
+          },
+          "vesting": { "years": 10, "schedule": "cliff" },
+          "cola": {
+            "cap_investment_met": 0.025,
+            "cap_investment_not_met": 0.01
+          }
+        },
+        "ncps": {
+          "componentName": "Non-Contributory Pension Selection (NCPS)",
+          "eligibility": "Active members of employers who did not elect to participate in the Contributory, Alternate, or Reformed plans",
+          "memberContribution": { "rate": 0.0, "note": "Non-contributory — no member contribution required" },
+          "note": "Less common; applies primarily to certain small local government employers"
+        }
+      },
+      "note": "EPS benefit formulas, eligibility, and COLA provisions mirror the Teachers' Pension System ACPS/RCPB structure. Member contributions are the same (7%)."
+    },
+    "legacyRetirementSystem": {
+      "systemName": "Employees' and Teachers' Retirement System (ETRS)",
+      "status": "CLOSED — no new members since January 1, 1980",
+      "covers": "Employees and teachers who joined before January 1, 1980 and did not transfer to the Pension System",
+      "formula": {
+        "structure": "Total Creditable Service ÷ 55 × AFC = Annual Allowance",
+        "note": "Fraction-of-55 formula is the legacy structure. Example: 30 years ÷ 55 = 54.5% of AFC.",
+        "afc": { "period_years": 3, "note": "Typically 1-year AFC for judges; 3 years for general members" }
+      },
+      "cola": {
+        "planA": { "cap": "unlimited", "contribution": "7% — member elected higher contribution to maintain all benefits" },
+        "planB": { "cap": 0.05, "contribution": "5% — limited COLA cap at 5%" },
+        "planC": { "description": "Bifurcated — pre-election service as ETRS (plan A or B cap); post-election service as Pension System (2.5%/1% COLA cap)" }
+      },
+      "vesting": { "years": 5, "schedule": "cliff" },
+      "socialSecurity": { "covered": false, "note": "ETRS members do not participate in Social Security" },
+      "note": "Covers only legacy members still active; all new members since 1980 are in the Pension System."
+    },
+    "cors": {
+      "systemName": "Correctional Officers' Retirement System (CORS)",
+      "status": "OPEN — state and participating local detention facility correctional officers",
+      "covers": "State correctional officers, dietary/maintenance/supply/laundry officers, security attendants at Clifton T. Perkins Hospital Center, and certain correctional officers at participating local governments",
+      "formula": {
+        "multiplier": 0.018,
+        "structure": "1.8% × AFC × Years of Service = Annual Basic Allowance",
+        "afc": { "period_years": 3, "note": "3 highest consecutive years" },
+        "note": "Same 1.8% multiplier as EPS/TPS ACPS post-1998 service"
+      },
+      "retirementEligibility": {
+        "normalRetirement": { "minimumService": 20, "note": "Any age with 20 years of creditable service — reflects physically demanding nature of work" },
+        "earlyRetirement": { "minimumAge": 55, "minimumService": 5 }
+      },
+      "vesting": { "years": 5, "schedule": "cliff" },
+      "memberContribution": { "rate": 0.07, "note": "7% of earnable compensation" },
+      "source": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook_cors.pdf"
+    },
+    "msprs": {
+      "systemName": "Maryland State Police Retirement System (MSPRS)",
+      "status": "OPEN — Maryland State Police troopers",
+      "covers": "Maryland State Police troopers",
+      "specialFeature": "Includes a Deferred Retirement Option Program (DROP). DROP participants are treated as retirees for plan purposes while continuing to work; DROP funds accumulate separately.",
+      "memberContribution": { "note": "Contribution rate set by statute — higher than general employee rates reflecting enhanced benefit" },
+      "note": "Full benefit formula details in MSPRS benefit handbook. Benefit is pension with continuing spousal benefit upon death (unlike standard Basic Allowance for other systems).",
+      "source": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook-msp.pdf"
+    },
+    "leops": {
+      "systemName": "Law Enforcement Officers' Pension System (LEOPS)",
+      "status": "OPEN — state and participating local law enforcement",
+      "covers": "State law enforcement officers and law enforcement officers of participating local governments (counties, municipalities)",
+      "formula": {
+        "multiplier": 0.020,
+        "structure": "2.0% × AFC × Years of Service = Annual Basic Allowance (maximum 30 years / 60% of AFC)",
+        "maximumServiceCredit": 30,
+        "maximumBenefitPct": 0.60,
+        "transferBonus": {
+          "description": "Members who transferred from the Employees' Retirement System (ERS) before January 1, 2005 receive 2.3% multiplier for first 30 years of combined ERS + LEOPS service",
+          "transferMultiplier": 0.023
+        },
+        "afc": { "period_years": 3, "note": "3 highest consecutive years" }
+      },
+      "memberContribution": { "rate": 0.04, "note": "4% of annual salary — lower than EPS/TPS at 7%" },
+      "retirementEligibility": {
+        "note": "Full eligibility details available in LEOPS benefit handbook. System designed for law enforcement career service.",
+        "minimumService_normal": "Varies by employer contract; typically 20-25 years at any age"
+      },
+      "vesting": { "years": 5, "schedule": "cliff" },
+      "note": "LEOPS opened to local government law enforcement. Basic Allowance for LEOPS/judges/state police/legislators provides a continuing benefit to spouses (unlike general member Basic Allowance which ceases at death).",
+      "source": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook-leo.pdf"
+    },
+    "jrs": {
+      "systemName": "Judges' Retirement System (JRS)",
+      "status": "OPEN — Maryland judges",
+      "covers": "Maryland Supreme Court justices, Court of Appeals judges, circuit court judges, orphans' court judges",
+      "memberContribution": { "note": "Higher contribution rate reflecting enhanced benefits" },
+      "note": "Benefit formula and eligibility details in JRS handbook. Judges receive enhanced benefits reflecting judicial independence and career structure. Basic Allowance provides continuing spousal benefit.",
+      "source": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook-jud.pdf"
+    },
+    "lpp": {
+      "systemName": "Legislative Pension Plan (LPP)",
+      "status": "OPEN — Maryland legislators",
+      "covers": "Members of the Maryland General Assembly",
+      "note": "Benefit formula and eligibility details in LPP handbook.",
+      "source": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook-leg_0.pdf"
+    }
+  },
+  "supplementalPlans": {
+    "orp": {
+      "name": "Optional Retirement Program (ORP)",
+      "type": "defined_contribution",
+      "authority": "IRC Section 403(b)",
+      "eligible": "Faculty and certain staff at University System of Maryland institutions, Morgan State University, St. Mary's College",
+      "note": "ORP is a DC alternative to SRPS DB membership. Eligible employees make a one-time irrevocable election between SRPS DB and ORP within 60 days of hire.",
+      "source": "https://sra.maryland.gov/sites/main/files/file-attachments/orp_handbook.pdf"
+    },
+    "supplementalRetirementPlans": {
+      "name": "Maryland Teachers and State Employees Supplemental Retirement Plans",
+      "administrator": "Separate agency from SRA",
+      "plans": ["457 Deferred Compensation Plan", "401(k) Savings & Investment Plan", "403(b) Tax Deferred Annuity Plan"],
+      "note": "Voluntary supplemental plans administered by the Maryland State Employees Supplemental Retirement Plans Agency, not by SRA. Pre-tax and Roth options available.",
+      "contact": "410-767-8740 or 1-800-545-4730; www.marylanddc.com"
+    }
+  },
+  "contributionRates": {
+    "memberRates": {
+      "tps_eps_acps_rcpb": 0.07,
+      "leops": 0.04,
+      "cors": 0.07,
+      "note": "Member rates are statutory. Employer rates are set annually by the Board of Trustees based on actuarial valuation."
+    },
+    "employerRates": {
+      "note": "Employer contribution rates vary annually by system and subsystem, determined by actuarial valuation as of June 30 each year. FY2026 rates published by SRA at sra.maryland.gov/contributory-rates-system.",
+      "source": "https://sra.maryland.gov/contributory-rates-system"
+    }
+  },
+  "fundingStatus": {
+    "totalAssets_billions_approx": 70,
+    "annualBenefitPayments_billions": 3.59,
+    "annualBenefitPayments_year": 2023,
+    "investmentReturn_fy2024": 0.0693,
+    "assumedRateOfReturn": 0.0775,
+    "note": "FY2024 investment return of 6.93% — just below the 7.75% assumed rate. Portfolio as of 2024 approximately $70 billion. Annual pension payments of $3.59 billion stay in Maryland (as of June 30, 2023).",
+    "colaImplication_fy2024": "Because FY2024 return (6.93%) did not meet assumed rate (7.75%), RCPB/RCPS COLA is capped at 1% (not 2.5%) for eligible retirees in 2025.",
+    "source_return": "https://sra.maryland.gov/post/maryland-state-retirement-and-pension-system-successfully-exceeds-annual-benchmark-delivering",
+    "source_assets": "https://www.marylandcomptroller.gov/boards/state-retirement-pension-system.html"
+  },
+  "reemploymentAfterRetirement": {
+    "waitPeriod_days": 45,
+    "earningsLimitation": {
+      "normalServiceRetirement": "Earnings limit = AFC at retirement minus annualized Basic Allowance. Reduction $1 for each $1 over limit. Waived after 5 years of retirement, if AFC < $25,000, or for elected officials.",
+      "earlyServiceRetirement": "Special earnings limit during first 12 months. After 12 months, only applies if returning to same employer.",
+      "ordinaryDisability": "Earnings limit applies until age 65. Limit = AFC + $5,000 (CPI-adjusted) minus Basic Allowance.",
+      "note": "All units of Maryland state government including University System of Maryland are considered one employer for earnings limit purposes."
+    }
+  },
+  "sources": [
+    {
+      "name": "SRPS About Page — sra.maryland.gov",
+      "url": "https://sra.maryland.gov/about"
+    },
+    {
+      "name": "SRPS Member Benefit Handbooks Index",
+      "url": "https://sra.maryland.gov/member-benefit-handbooks"
+    },
+    {
+      "name": "Teachers' Pension System RCPB Benefit Handbook",
+      "url": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook_teachers_rcpb.pdf"
+    },
+    {
+      "name": "Teachers' Pension System ACPS Benefit Handbook",
+      "url": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook_teachers_acps.pdf"
+    },
+    {
+      "name": "Employees' Pension System RCPB Benefit Handbook",
+      "url": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook_employees_rcpb.pdf"
+    },
+    {
+      "name": "CORS Benefit Handbook",
+      "url": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook_cors.pdf"
+    },
+    {
+      "name": "LEOPS Benefit Handbook",
+      "url": "https://sra.maryland.gov/sites/main/files/file-attachments/benefithandbook-leo.pdf"
+    },
+    {
+      "name": "Maryland State Police Retirement System DROP Handbook",
+      "url": "https://sra.maryland.gov/sites/main/files/file-attachments/form_756.pdf"
+    },
+    {
+      "name": "Maryland Comptroller — SRPS Board Page ($70B portfolio)",
+      "url": "https://www.marylandcomptroller.gov/boards/state-retirement-pension-system.html"
+    },
+    {
+      "name": "SRPS FY2024 Investment Return Press Release",
+      "url": "https://sra.maryland.gov/post/maryland-state-retirement-and-pension-system-successfully-exceeds-annual-benchmark-delivering"
+    },
+    {
+      "name": "SRPS Employer Contribution Rates FY2026",
+      "url": "https://sra.maryland.gov/contributory-rates-system"
+    },
+    {
+      "name": "University of Maryland SRPS RCPB Overview",
+      "url": "https://uhr.umd.edu/retirement/state-retirement-and-pension-system"
+    },
+    {
+      "name": "MSEA Pension Calculation Details (ACPS/RCPB formula breakdown)",
+      "url": "https://marylandeducators.org/career-resources/pensions/pension-calculation-details/"
+    }
+  ],
+  "researchGaps": [
+    "MSPRS (State Police) full benefit formula and contribution rate — available at sra.maryland.gov/member-benefit-handbooks",
+    "JRS (Judges) full benefit formula — available at sra.maryland.gov/member-benefit-handbooks",
+    "LPP (Legislators) full benefit formula — available at sra.maryland.gov/member-benefit-handbooks",
+    "Precise funded ratio by system (TCS vs ECS vs CORS vs LEOPS vs MSPRS) from most recent actuarial valuation",
+    "FY2026 employer contribution rates by system — available at sra.maryland.gov/contributory-rates-system",
+    "CORS normal retirement eligibility details for local government participants",
+    "ETRS (legacy Retirement System) full membership count and remaining active/retiree split"
+  ]
+}

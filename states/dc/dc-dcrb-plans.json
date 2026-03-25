@@ -1,0 +1,167 @@
+{
+  "_comment": "District of Columbia Retirement Board (DCRB) pension data for DC Police Officers and Firefighters Retirement Plan and DC Teachers Retirement Plan. Consumer-agnostic. No Meridian-specific references. Most DC government employees hired after 1987 are covered by FERS. DCRB covers MPD officers, FEMS firefighters, and DCPS ET-classified teachers only.",
+  "systemName": "District of Columbia Retirement Board",
+  "systemAbbreviation": "DCRB",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "district",
+    "name": "District of Columbia",
+    "state": "DC",
+    "type": "district_public_employee_pension"
+  },
+  "administeredBy": "DC Retirement Board (DCRB) — independent DC agency. Federal benefit payments for pre-July 1, 1997 service managed by US Treasury Office of DC Pensions (ODCP). Benefits jointly administered by DCRB and Treasury.",
+  "scopingNote": "DCRB covers only MPD police officers, FEMS firefighters, and DCPS teachers (ET-classified). Most DC government employees are in FERS (federal). DC workers hired on or after October 1, 1987 are in FERS; pre-October 1, 1987 may be in CSRS. FERS/CSRS data is in the federal data files in this repo.",
+  "federalBenefitSplit": {
+    "description": "Under the National Capital Revitalization and Self-Government Improvement Act of 1997 (Balanced Budget Act, Title XI), the federal government assumed DC unfunded pension liability. US Treasury funds benefits for service before July 1, 1997; DC government funds benefits for service on or after July 1, 1997. DCRB administers both portions.",
+    "federalServiceCutoff": "1997-07-01",
+    "authority": "Balanced Budget Act of 1997, Public Law 105-33, Title XI",
+    "source": "https://home.treasury.gov/about/offices/management/human-resources-and-chief-human-capital-officer/dc-pensions"
+  },
+  "plans": {
+    "policeFire": {
+      "planName": "District of Columbia Police Officers and Firefighters Retirement Plan",
+      "status": "OPEN",
+      "covers": ["DC Metropolitan Police Department (MPD) sworn officers", "DC Fire and Emergency Medical Services (FEMS) uniformed firefighters and EMTs"],
+      "socialSecurity": {
+        "covered": false,
+        "note": "Police officers and firefighters are not covered by Social Security. This plan is their primary retirement benefit."
+      },
+      "tiers": {
+        "_note": "Three tiers by hire date. One-time irrevocable voluntary tier change allowed at full actuarial cost (Retirement Options Act, D.C. Law 17-224).",
+        "tier1": {
+          "tierName": "Tier 1 — Pre-February 15, 1980",
+          "hireDateRange": "Before February 15, 1980",
+          "formula": {
+            "structure": "2.5% x Average Base Pay x Service up to 20 years + 3.0% x Average Base Pay x Service beyond 20 years",
+            "multiplier_first20": 0.025,
+            "multiplier_beyond20": 0.030,
+            "averageBasePay": {"period_months": 12, "description": "Highest annual pay averaging over any 12 consecutive months"}
+          },
+          "retirementEligibility": {"normalRetirement": {"minimumService": 20, "note": "20 years at any age"}},
+          "memberContribution": {"rate": 0.07},
+          "cola": {"cap": null, "note": "Uncapped CPI-based COLA for Tier 1. Pre-February 15, 1980 retirees receive equalization pay rather than COLA.", "effectiveDate": "March 1; payable April 1"}
+        },
+        "tier2": {
+          "tierName": "Tier 2 — February 15, 1980 through November 9, 1996",
+          "hireDateRange": "February 15, 1980 through November 9, 1996",
+          "formula": {
+            "structure": "2.5% x Average Base Pay x Service up to 25 years + 3.0% x Average Base Pay x Service beyond 25 years",
+            "multiplier_first25": 0.025,
+            "multiplier_beyond25": 0.030,
+            "maximumBenefitPct": 0.80,
+            "averageBasePay": {"period_months": 36, "description": "Highest annual pay averaging over any 36 consecutive months. Includes longevity pay for officers with 25+ years (police) or firefighters."}
+          },
+          "retirementEligibility": {
+            "normalRetirement": {"minimumService": 25, "minimumAge": 50, "note": "25 years of service and at least age 50"},
+            "mandatoryRetirement": {"age": 60, "note": "Mandatory at age 60; Mayor may grant extensions"}
+          },
+          "memberContribution": {"rate": 0.07},
+          "vesting": {"years": 5, "schedule": "cliff"},
+          "cola": {"cap": 0.03, "cola_2026": 0.027, "cola_2025": 0.029, "effectiveDate": "March 1; payable April 1"}
+        },
+        "tier3": {
+          "tierName": "Tier 3 — November 10, 1996 and Later",
+          "hireDateRange": "On or after November 10, 1996",
+          "formula": {
+            "structure": "2.5% x Average Base Pay x Total Creditable Service",
+            "multiplier": 0.025,
+            "maximumBenefitPct": 0.80,
+            "averageBasePay": {"period_months": 36, "description": "Highest annual pay averaging over any 36 consecutive months"},
+            "exampleBenefit": {
+              "scenario": "Officer with 25 years service, $100,000 average base pay",
+              "calculation": "2.5% x $100,000 x 25 = $62,500/year",
+              "source": "https://joinmpd.dc.gov/metropolitan-police/police-officer"
+            }
+          },
+          "retirementEligibility": {
+            "normalRetirement": {"minimumService": 25, "minimumAge": null, "note": "25 years at any age — no minimum age requirement"},
+            "mandatoryRetirement": {"age": 60, "note": "Mandatory at age 60; Mayor may grant extensions"}
+          },
+          "memberContribution": {"rate": 0.08, "note": "8% — higher than Tier 1/2"},
+          "vesting": {"years": 5, "schedule": "cliff"},
+          "cola": {"cap": 0.03, "cola_2026": 0.027, "cola_2025": 0.029, "effectiveDate": "March 1; payable April 1"},
+          "unusedSickLeave": "Added to service for benefit calculation; not used for retirement eligibility or longevity pay"
+        }
+      },
+      "survivorBenefit": "Standard survivor benefit provided automatically. Optional enhanced survivor benefit at retirement reduces member benefit by 10%; survivor receives increased benefit.",
+      "lineOfDutyDisability": "Two-thirds of average pay if higher than formula-based benefit"
+    },
+    "teachers": {
+      "planName": "District of Columbia Teachers Retirement Plan",
+      "status": "OPEN",
+      "covers": ["DCPS teachers and instructional employees in ET-classified positions (salary grades ET 1-15)", "Former DCPS teachers who transferred within 60 days to a DC public charter school and elected to continue"],
+      "excludes": ["Non-ET classified DCPS employees (covered by FERS or CSRS)", "Charter school teachers not previously DCPS employees", "Retired teachers rehired by DCPS"],
+      "socialSecurity": {
+        "covered": true,
+        "note": "DCPS teachers hired on or after October 1, 1987 participate in Social Security. Teachers hired before October 1, 1987 may be under CSRS (non-SS). This plan is in addition to Social Security for most current teachers.",
+        "source": "https://dcps.dc.gov/page/retirement"
+      },
+      "vesting": {"years": 5, "schedule": "cliff"},
+      "tiers": {
+        "_note": "Two tiers based on hire date relative to November 1, 1996. Difference: formula multiplier structure, contribution rate, COLA cap.",
+        "pre1996": {
+          "tierName": "Pre-November 1, 1996",
+          "hireDateRange": "Hired before November 1, 1996",
+          "formula": {
+            "structure": "Tiered multiplier: 1.5% x Average Salary x first 5 years + 1.75% x Average Salary x years 5-10 + 2.0% x Average Salary x years beyond 10",
+            "multiplier_first5": 0.015,
+            "multiplier_5to10": 0.0175,
+            "multiplier_beyond10": 0.020,
+            "averageSalary": {"period_months": 36, "description": "Highest annual pay averaging over any 36 consecutive months of teaching service"}
+          },
+          "memberContribution": {"rate": 0.07},
+          "cola": {"cap": null, "cola_2026": 0.026, "cola_2025": 0.028, "effectiveDate": "March 1; payable April 1", "note": "Generally uncapped for pre-1996 teachers"}
+        },
+        "post1996": {
+          "tierName": "Post-November 1, 1996 (current standard)",
+          "hireDateRange": "On or after November 1, 1996",
+          "formula": {
+            "structure": "2.0% x Average Salary x Years of Service",
+            "multiplier": 0.020,
+            "averageSalary": {"period_months": 36, "description": "Highest annual pay averaging over any 36 consecutive months of teaching service"},
+            "exampleBenefit": {
+              "scenario": "Teacher with 25 years, $70,000 average salary",
+              "calculation": "2.0% x $70,000 x 25 = $35,000/year (50% of average salary)",
+              "source": "https://www.teacherpensions.org/state/district-columbia"
+            }
+          },
+          "retirementEligibility": {
+            "normalRetirement": [
+              {"rule": "Age 62 with 5 years of service"},
+              {"rule": "Any age with 30 years of service"},
+              {"rule": "Age 60 with 20 years of service"},
+              {"rule": "Age 55 with 30 years of service"}
+            ],
+            "deferredRetirement": "Terminated vested members (5+ years) may receive deferred annuity at age 62, or lump-sum refund of contributions"
+          },
+          "memberContribution": {"rate": 0.08, "note": "8% — higher than pre-1996 tier"},
+          "cola": {"cap": 0.03, "cola_2026": 0.026, "cola_2025": 0.028, "effectiveDate": "March 1; payable April 1"}
+        }
+      }
+    }
+  },
+  "colaHistory": {
+    "_note": "Both plans base COLA on prior-year CPI change. Effective March 1; payable April 1. Post-1996/Tier 3 cap is 3%; pre-1996/Tier 1 may be uncapped.",
+    "cola_2026": {"teachers": 0.026, "policeFire": 0.027, "effectiveDate": "2026-03-01", "source": "https://dcrb.dc.gov/release/2026-cost-living-adjustment-notices-washington-dc-public-school-teachers-police-officers-and"},
+    "cola_2025": {"teachers": 0.028, "policeFire": 0.029, "effectiveDate": "2025-03-01", "source": "https://dcrb.dc.gov/release/2025-cost-living-adjustment-notices-washington-dc-public-school-teachers-police-officers-and"}
+  },
+  "sources": [
+    {"name": "DCRB — Retirement Information", "url": "https://dcrb.dc.gov/service/retirement"},
+    {"name": "DCRB — Police and Fire Summary Plan FAQs", "url": "https://dcrb.dc.gov/page/summary-plans-faqs-retired-police-and-firefighters"},
+    {"name": "DCRB — Teachers Summary Plan FAQs", "url": "https://dcrb.dc.gov/page/summary-plan-faqs-retired-teachers"},
+    {"name": "DCRB — Police/Fire Statement of Estimated Benefits FAQs", "url": "https://dcrb.dc.gov/page/statement-estimated-benefits-faqs-police-officers-and-firefighters"},
+    {"name": "DCRB — Teachers Statement of Estimated Benefits FAQs", "url": "https://dcrb.dc.gov/page/statement-estimated-benefits-faqs-teachers"},
+    {"name": "US Treasury — DC Pensions Office", "url": "https://home.treasury.gov/about/offices/management/human-resources-and-chief-human-capital-officer/dc-pensions"},
+    {"name": "DCRB — 2026 COLA Notice", "url": "https://dcrb.dc.gov/release/2026-cost-living-adjustment-notices-washington-dc-public-school-teachers-police-officers-and"},
+    {"name": "DCPS — Retirement Plans Overview", "url": "https://dcps.dc.gov/page/retirement"},
+    {"name": "MPD Recruitment — Police Retirement Benefits", "url": "https://joinmpd.dc.gov/metropolitan-police/police-officer"},
+    {"name": "DC Retirement Options Act FAQ", "url": "https://dcrb.dc.gov/sites/default/files/dc/sites/dcrb/release_content/attachments/mpd-retirement-options-act-faq.pdf"}
+  ],
+  "researchGaps": [
+    "Exact active member counts by plan (not prominently published)",
+    "Total fund assets — available in ODCP Annual Reports at treasury.gov",
+    "DC Judges Retirement Plan — administered by Treasury ODCP, not DCRB; would need separate file",
+    "Pre-1996 teacher tiered multiplier exact breakpoints — full details in Teachers Plan SPD 2023 at treasury.gov"
+  ]
+}
