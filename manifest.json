@@ -718,6 +718,16 @@
       "scope": "statewide",
       "version": "2026.1",
       "last_updated": "2026-03-24"
+    },
+    "ers_plans_texas": {
+      "description": "Employees Retirement System of Texas (ERS) \u2014 ~140K active / ~125K retired. SS-covered. Groups 1-3: DB (2.3% x service x HAS; FAS 36/48/60 months). Group 4 (hired 9/1/2022+): cash balance, 6% member / 150% state match, 4-7% annual interest. Rule of 80 eligibility. LECOS supplemental fund.",
+      "url": "states/texas/ers-plans.json",
+      "category": "state_local_pension",
+      "subcategory": "state_pension",
+      "state": "texas",
+      "scope": "statewide",
+      "version": "2026.1",
+      "last_updated": "2026-03-24"
     }
   }
 }

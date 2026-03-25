@@ -1,0 +1,350 @@
+{
+  "_comment": "Employees Retirement System of Texas (ERS) — State of Texas Retirement. Groups 1–3 defined benefit; Group 4 cash balance. Consumer-agnostic data only.",
+  "systemName": "Employees Retirement System of Texas",
+  "systemAbbreviation": "ERS",
+  "version": "2026.1",
+  "last_updated": "2026-03-24",
+  "jurisdiction": {
+    "level": "state",
+    "name": "Texas",
+    "state": "TX",
+    "type": "statewide_public_employee_pension"
+  },
+  "administeredBy": "ERS — governed by a 6-member Board of Trustees",
+  "legalAuthority": "Texas Government Code, Title 8 (Chapters 811–815 and related); Article XVI, Section 67, Texas Constitution",
+  "established": 1947,
+  "totalMembers": {
+    "activeEmployees": 139958,
+    "retireesBeneficiaries": 124504,
+    "note": "As of FY2023 (year ended Aug. 31, 2023). ERS also administers the Texas Employees Group Benefits Program (GBP) for ~538,000 employees, retirees, and dependents.",
+    "source": "https://www.nirsonline.org/wp-content/uploads/2025/01/AARP-In-The-States-Snapshot-TX-Public-Employee-Retirement-System.pdf"
+  },
+  "coverage": {
+    "populations": [
+      "Employees of State of Texas agencies",
+      "Certified peace officers and custodial officers eligible for LECOS Fund",
+      "Elected state officials, including district and criminal district attorneys receiving state general revenue salaries",
+      "Eligible state judges and justices (Judicial Retirement System Plan 2)"
+    ],
+    "exclusions": [
+      "Employees of Texas higher education institutions — covered by TRS or Optional Retirement Program (ORP); ERS administers their insurance benefits only",
+      "Employees of Community Supervision and Corrections Department — not administered by ERS for annuity purposes",
+      "Employees of Windham School District — not administered by ERS for annuity purposes"
+    ],
+    "mandatory": true,
+    "note": "Participation in State of Texas Retirement is mandatory for all covered state agency employees. The first contribution is deducted from the first paycheck."
+  },
+  "socialSecurity": {
+    "covered": true,
+    "note": "Most State of Texas agency employees participate in federal Social Security in addition to ERS retirement. ERS encourages a three-legged stool approach: ERS pension + Social Security + personal savings (Texa$aver 401k/457).",
+    "source": "https://www.ers.texas.gov/active-employees/retirement"
+  },
+  "vesting": {
+    "regularAccount_years": 5,
+    "lecoSupplementalAccount_years": 20,
+    "note": "Groups 1–4 regular account: fully vested after 5 years of contributing service. LECO Supplemental account (Group 4): fully vested after 20 years in a LECO position. Vesting means the member can begin receiving pension benefits if retirement eligibility is met.",
+    "source": "https://ers.texas.gov/PDFs/Retirement/group4-recruitment-handout-final"
+  },
+  "contributions": {
+    "groups1to3": {
+      "memberRate": 0.095,
+      "stateAndAgencyRate": 0.10,
+      "note": "Members hired before Sept. 1, 2022 (Groups 1, 2, 3) contribute 9.5% of salary pre-tax. State and agency employers together contribute 10% of salary to the ERS Retirement Trust Fund."
+    },
+    "group4": {
+      "memberRate": 0.06,
+      "stateAndAgencyRate": 0.10,
+      "note": "Members hired on or after Sept. 1, 2022 (Group 4) contribute 6% of salary pre-tax. State match of 150% of entire account balance (contributions + interest + gain-sharing) applied at retirement — not credited monthly.",
+      "stateMatchAtRetirement": 1.50
+    },
+    "lecos": {
+      "additionalMemberRate_groups1to3": null,
+      "additionalStateRate_groups1to3": 0.0175,
+      "additionalMemberRate_group4": 0.02,
+      "additionalStateMatchAtRetirement_group4": 3.00,
+      "note": "For certified law enforcement and custodial officers (LECOs): state contributes an additional 1.75% of salary to the LECOS Retirement Fund (Groups 1–3). Group 4 LECOs contribute an additional 2% to a supplemental LECO account; state applies a 300% match of the LECO account balance at retirement."
+    },
+    "source": "https://ers.texas.gov/contact-ers/additional-resources/faqs/retirement-general"
+  },
+  "retirementGroups": {
+    "overview": "ERS has four retirement groups based on the date the member began contributing to a State of Texas agency. If a member leaves, withdraws their account, and returns, their group is based on the return-to-work date. Buying back withdrawn service credit does not restore the prior group.",
+    "group1": {
+      "group": "1",
+      "hireRange": "Before September 1, 2009",
+      "planType": "defined_benefit",
+      "finalAverageSalary": {
+        "months": 36,
+        "method": "highest_36_months",
+        "components": ["base pay", "longevity pay", "Benefit Replacement Pay (BRP)", "hazardous duty pay (if applicable)"]
+      },
+      "formula": {
+        "structure": "2.3% × years and months of service × highest average salary",
+        "multiplierStandard": 0.023,
+        "multiplierLECO": 0.028,
+        "lecoThreshold_years": 20,
+        "maxAnnuity": "100% of highest average salary",
+        "note": "Standard multiplier is 2.3% for general employees. For certified LECOs with 20+ years of LECO service, the multiplier is 2.8% applied to LECO service years."
+      },
+      "retirementEligibility": {
+        "ruleOf80": {
+          "rule": "age_plus_service_equals_80",
+          "minimumService_years": 10,
+          "note": "Age (in years and months) plus years and months of service credit must equal 80 or more. Minimum 10 years of service required. No early retirement reduction for Group 1 under Rule of 80."
+        },
+        "alternativeEligibility": [
+          {"rule": "age_65_10_years", "age": 65, "service": 10}
+        ],
+        "earlyRetirementReduction": null,
+        "note": "Group 1 members can use unused sick and annual leave toward both retirement eligibility and annuity calculation when retiring directly from state employment."
+      },
+      "source": "https://ers.texas.gov/contact-ers/additional-resources/faqs/retirement-general"
+    },
+    "group2": {
+      "group": "2",
+      "hireRange": "September 1, 2009 – August 31, 2013",
+      "planType": "defined_benefit",
+      "finalAverageSalary": {
+        "months": 48,
+        "method": "highest_48_months",
+        "components": ["base pay", "longevity pay", "Benefit Replacement Pay (BRP)", "hazardous duty pay (if applicable)"]
+      },
+      "formula": {
+        "structure": "2.3% × years and months of service × highest average salary",
+        "multiplierStandard": 0.023,
+        "multiplierLECO": 0.028,
+        "lecoThreshold_years": 20,
+        "maxAnnuity": "100% of highest average salary"
+      },
+      "retirementEligibility": {
+        "ruleOf80": {
+          "rule": "age_plus_service_equals_80",
+          "minimumService_years": 10,
+          "note": "Age plus service must equal 80 or more with minimum 10 years service."
+        },
+        "alternativeEligibility": [
+          {
+            "rule": "age_60_5_years",
+            "age": 60,
+            "service": 5,
+            "note": "Optional benefits and health insurance available at age 65 if retiring at age 60 without meeting Rule of 80."
+          },
+          {"rule": "age_65_10_years", "age": 65, "service": 10}
+        ],
+        "earlyRetirementReduction": {
+          "applies": true,
+          "threshold_age": 60,
+          "reductionPerYearUnder": 0.05,
+          "cap": 0.25,
+          "note": "Group 2 members who retire before age 60 (e.g., via Rule of 80 under age 60) receive a permanent 5% annuity reduction for each year under age 60 at retirement. Reduction is capped at 25%.",
+          "example": "A Group 2 member meeting Rule of 80 at age 57 retires with a 15% permanent annuity reduction."
+        }
+      },
+      "source": "https://ers.texas.gov/active-employees/retirement/retirement-annuity-and-insurance-eligibility-for-r"
+    },
+    "group3": {
+      "group": "3",
+      "hireRange": "September 1, 2013 – August 31, 2022",
+      "planType": "defined_benefit",
+      "finalAverageSalary": {
+        "months": 60,
+        "method": "highest_60_months",
+        "components": ["base pay", "longevity pay", "Benefit Replacement Pay (BRP)", "hazardous duty pay (if applicable)"]
+      },
+      "formula": {
+        "structure": "2.3% × years and months of service × highest average salary",
+        "multiplierStandard": 0.023,
+        "multiplierLECO": 0.028,
+        "lecoThreshold_years": 20,
+        "maxAnnuity": "100% of highest average salary"
+      },
+      "retirementEligibility": {
+        "ruleOf80": {
+          "rule": "age_plus_service_equals_80",
+          "minimumService_years": 10,
+          "note": "Age plus service must equal 80 or more with minimum 10 years service."
+        },
+        "alternativeEligibility": [
+          {
+            "rule": "age_65_10_years",
+            "age": 65,
+            "service": 10
+          }
+        ],
+        "earlyRetirementReduction": {
+          "applies": true,
+          "threshold_age": 62,
+          "reductionPerYearUnder": 0.05,
+          "cap": null,
+          "note": "Group 3 members who retire before age 62 (e.g., via Rule of 80 under age 62) receive a permanent 5% annuity reduction for each year under age 62 at retirement. There is no cap on the reduction.",
+          "example": "A Group 3 member meeting Rule of 80 at age 59 retires with a 15% permanent annuity reduction. A member retiring at age 56 via Rule of 80 would have a 30% reduction."
+        }
+      },
+      "source": "https://ers.texas.gov/active-employees/retirement/state-employees-group-3"
+    },
+    "group4": {
+      "group": "4",
+      "hireRange": "September 1, 2022 and later",
+      "planType": "cash_balance",
+      "planTypeNote": "Group 4 is a cash balance benefit — a defined benefit structure in which the lifetime annuity is based on the account balance at retirement. It is not a 401(k); the monthly annuity is guaranteed for life regardless of investment performance after retirement.",
+      "accountMechanics": {
+        "memberContributionRate": 0.06,
+        "guaranteedAnnualInterest": 0.04,
+        "gainSharing": {
+          "available": true,
+          "maxAdditionalInterest": 0.03,
+          "formula": "Half of the excess of the 5-year average ERS Trust Fund return over 4%, capped at 3%",
+          "fy2025GainShare": 0.0296,
+          "note": "Gain-share is applied to Aug. 31 account balances in December each year. Account can grow as much as 7% per year but never less than 4%."
+        },
+        "stateMatchAtRetirement": {
+          "regularAccount": 1.50,
+          "note": "State adds 150% of the entire account balance (contributions + interest + gain-sharing) at retirement. This match is not credited incrementally; it is applied when the member retires."
+        }
+      },
+      "retirementEligibility": {
+        "ruleOf80": {
+          "rule": "age_plus_service_equals_80",
+          "minimumService_years": 5,
+          "note": "Age plus years and months of service credit must equal 80 or more, with a minimum 5 years of service. No early retirement reduction for Group 4 under Rule of 80."
+        },
+        "alternativeEligibility": [
+          {"rule": "age_65_10_years", "age": 65, "service": 10}
+        ]
+      },
+      "gainSharingRetireesNote": "Group 4 retirees receive the same gain-sharing applied to their account at retirement as active members. Once a gain-share increase is applied to the annuity, the annuity is never reduced.",
+      "lecos_group4": {
+        "additionalMemberContributionRate": 0.02,
+        "lecoAccountGainSharing": true,
+        "stateMatchAtRetirement_lecoAccount": 3.00,
+        "vestingLecoAccount_years": 20,
+        "retirementEligibility": "20 years of LECO service credit",
+        "note": "Group 4 LECOs contribute an additional 2% to a separate LECO supplemental account. The state applies a 300% match of the entire LECO account balance at retirement. LECO account vests after 20 years in LECO positions."
+      },
+      "source": "https://ers.texas.gov/PDFs/Retirement/group4-recruitment-handout-final"
+    }
+  },
+  "cola": {
+    "groups1to3": {
+      "type": "legislative_discretionary",
+      "guaranteed": false,
+      "note": "No guaranteed COLA for Groups 1–3. Annuity increases require authorization by the Texas Legislature. ERS does not guarantee regular annuity increases for Groups 1–3 retirees."
+    },
+    "group4": {
+      "type": "gain_sharing",
+      "guaranteed": false,
+      "maxAnnualIncrease": 0.03,
+      "permanent": true,
+      "note": "Group 4 retirees may receive gain-sharing annuity increases of up to 3% per year when ERS investment returns allow. These increases are permanent — once applied, the annuity is never reduced.",
+      "fy2025GainShare": 0.0296
+    },
+    "source": "https://ers.texas.gov/active-employees/retirement/state-of-texas-retirement/gain-share-for-members"
+  },
+  "lecos": {
+    "overview": "The Law Enforcement and Custodial Officer Supplemental (LECOS) Retirement Fund provides an additional retirement benefit for certified peace officers and custodial officers at ERS-covered state agencies.",
+    "eligibility": "Certified law enforcement officers and custodial officers as defined by Texas Government Code who work at ERS-covered state agencies.",
+    "groups1to3Formula": "2.8% multiplier (vs. 2.3% standard) for LECO service years, requires 20+ years of LECO service credit",
+    "additionalStateContribution_groups1to3": 0.0175,
+    "fundedStatus_aug2024": {
+      "fundedRatio": 1.015,
+      "surplus_millions": 27.8,
+      "note": "LECOSRF funded ratio was 101.5% (surplus of $27.8 million) as of August 31, 2024, up from 100.0% in FY2023. Fully funded after $772 million appropriation from Texas Legislature (House Bill 1) eliminated prior unfunded liability.",
+      "source": "https://agendasuite.org/iip/erstexas/file/getfile/4885"
+    }
+  },
+  "retirementInsurance": {
+    "eligibilityRequirement": "At least 10 years of eligible service credit with state agencies/higher education institutions participating in the Texas Employees Group Benefits Program (GBP).",
+    "grandfatherException": "Members with at least 5 years of GBP participation as of September 1, 2014 are not subject to tiered retiree health insurance premiums.",
+    "tieredStatePremiumContribution": {
+      "years10to14": 0.50,
+      "years15to19": 0.75,
+      "years20plus": 1.00,
+      "note": "State pays 50%, 75%, or 100% of health insurance premium for full-time retirees based on eligible service credit. Part-time retirees receive half these amounts.",
+      "source": "https://ers.texas.gov/active-employees/retirement/Tiered-Retiree-Insurance"
+    },
+    "allGroupsSameInsuranceRules": true,
+    "note": "All four retirement groups have the same requirements to be eligible for retiree insurance. Health and other insurance benefits are subject to change based on available state funding — the Legislature has no continuing obligation to provide these benefits beyond each fiscal year."
+  },
+  "supplementalSavings": {
+    "name": "Texa$aver 401(k) / 457 Program",
+    "types": ["401(k)", "457(b)"],
+    "options": ["traditional (pre-tax)", "Roth"],
+    "autoEnrollment": {
+      "applies": true,
+      "defaultRate": 0.01,
+      "defaultFund": "target date fund",
+      "note": "Eligible state agency employees are automatically enrolled at 1% contribution in a target date fund. Employees may opt out or adjust contributions at any time."
+    },
+    "note": "ERS encourages employees to supplement State of Texas Retirement and Social Security with personal savings through Texa$aver. Average ERS annuity is approximately half of working salary.",
+    "source": "https://www.ers.texas.gov/active-employees/retirement"
+  },
+  "funding": {
+    "trustFund": {
+      "marketValue_billions": 45,
+      "marketValueNote": "As of early 2026, ERS manages pension fund assets of more than $45 billion. The fund crossed $40 billion for the first time in September 2024.",
+      "fy2024Return": 0.1251,
+      "fiveYearAnnualizedReturn": 0.0963,
+      "assumedRateOfReturn": 0.07,
+      "annualAnnuityPayments_billions": 3.0,
+      "targetFullyFunded": "August 31, 2054",
+      "note": "Per SB 321 (passed 2021), ERS pension plan is on track to reach fully funded status by Aug. 31, 2054. The Legislature has made additional appropriations (totaling $1.53B+ under SB 321 and additional funds in subsequent sessions) to accelerate liability reduction.",
+      "source": "https://ers.texas.gov/about-ers/ers-organization/media-newsroom/2024-9-17-ers-40-billion-news-release"
+    }
+  },
+  "sources": [
+    {
+      "title": "ERS Retirement Groups Overview",
+      "url": "https://ers.texas.gov/ers-retirement-groups",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Retirement — General FAQ",
+      "url": "https://ers.texas.gov/contact-ers/additional-resources/faqs/retirement-general",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Standard Annuity Calculation",
+      "url": "https://www.ers.texas.gov/active-employees/retirement/standard-annuity",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Retirement Annuity and Insurance Eligibility for Regular State Agency Employees",
+      "url": "https://ers.texas.gov/active-employees/retirement/retirement-annuity-and-insurance-eligibility-for-r",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Group 3 Retirement Eligibility",
+      "url": "https://ers.texas.gov/active-employees/retirement/state-employees-group-3",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Group 4 Recruitment Handout (Regular Employees)",
+      "url": "https://ers.texas.gov/PDFs/Retirement/group4-recruitment-handout-final",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Group 4 Gain-Share for Members",
+      "url": "https://ers.texas.gov/active-employees/retirement/state-of-texas-retirement/gain-share-for-members",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "LECOS Retirement Fund Actuarial Valuation Aug. 31, 2024",
+      "url": "https://agendasuite.org/iip/erstexas/file/getfile/4885",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "Tiered Retiree Insurance",
+      "url": "https://ers.texas.gov/active-employees/retirement/Tiered-Retiree-Insurance",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "ERS Trust Fund Exceeds $40 Billion News Release (Sept. 2024)",
+      "url": "https://ers.texas.gov/about-ers/ers-organization/media-newsroom/2024-9-17-ers-40-billion-news-release",
+      "accessed": "2026-03-24"
+    },
+    {
+      "title": "New Employee Benefits Information",
+      "url": "https://www.ers.texas.gov/new-employee",
+      "accessed": "2026-03-24"
+    }
+  ]
+}
