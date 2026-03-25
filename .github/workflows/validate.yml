@@ -1,18 +1,18 @@
 # .github/workflows/validate.yml
 # public-finance-data CI Validation
 # Runs on every push and PR to main
-# 27 validation suites
+# 36 validation suites (~15,450 checks)
+# Session 67: Added 10 missing suites — calpers, calstrs, copera, dcrb, md_srps, ny_pensions, opers, state_pensions, tx_ers, pay_tables
 # Session 57: Added validate_lacera.py (532 checks) for LACERA (Los Angeles County) pension plans
 # Session 56: Added validate_fs_pay.py (1893 checks) for Foreign Service pay tables (FP-1 through FP-9, 2016-2026)
 # Session 54: Added validate_fers_eligibility.py (206 checks) for FERS eligibility rules + service credit rules
 # Session 53: Added validate_foreign_service.py (94 checks) and validate_systems_index.py (114 checks)
 # Session 48: Added validate_leo_fers_comp.py (207 checks) for LEO premium pay + FERS computation rules
 # Session 46: Added validate_county_property_tax.py for county property tax coverage (auto-detects all states/counties)
-# Session 40: Added validate_filing_status.py (816 checks) for filing-status-thresholds.json
 # Session 44: Added validate_sdcera.py for SDCERA (San Diego County) pension plans
-#
 # Session 43: Added validate_federal_retirement.py (157 checks) for TSP Roth conversion, FERS SRS, CSRS rules, FEGLI, FEHB retirement eligibility
 # Session 42: Added validate_municipal.py (153 checks) for MCERP and FCPP municipal pension data
+# Session 40: Added validate_filing_status.py (816 checks) for filing-status-thresholds.json
 # Session 31: Added validate_territories.py (129 checks) for US territory expansion (AS, GU, MP, PR, VI)
 # Session 30: Added validate_vehicle_audit.py (111 checks) for vehicle/personal property tax audit
 # Session 29: Added validate_tier3d.py (176 checks) for final 6 states — 50 states + DC complete
@@ -42,19 +42,19 @@ jobs:
         with:
           python-version: '3.13'
       
-      - name: Run core validation (179 checks)
+      - name: Run core validation (1309 checks)
         run: python tests/validate.py
       
-      - name: Run Tier 2 validation (~120 checks)
+      - name: Run Tier 2 validation (530 checks)
         run: python tests/validate_tier2.py states/state-benefits.json
       
-      - name: Validate Medicare rates
+      - name: Validate Medicare rates (7 checks)
         run: python tests/validate_medicare.py federal/healthcare/medicare-rates.json
 
-      - name: Validate DCIPS Pay Tables
+      - name: Validate DCIPS Pay Tables (424 checks)
         run: python tests/validate_dcips.py
 
-      - name: Validate historical data files
+      - name: Validate historical data files (2028 checks)
         run: python tests/validate_historical.py
 
       - name: Validate TRICARE pharmacy costs (92 checks)
@@ -66,19 +66,19 @@ jobs:
       - name: Validate OBBBA tax provisions (71 checks)
         run: python tests/validate_obbba.py
 
-      - name: Validate Tier 3A states (123 checks)
+      - name: Validate Tier 3A states (125 checks)
         run: python tests/validate_tier3.py
 
-      - name: Validate Tier 3B states (170 checks)
+      - name: Validate Tier 3B states (172 checks)
         run: python tests/validate_tier3b.py
 
       - name: Validate Tier 3C states (187 checks)
         run: python tests/validate_tier3c.py
 
-      - name: Validate Tier 3D states — 50 states + DC complete (176 checks)
+      - name: Validate Tier 3D states — 50 states + DC complete (179 checks)
         run: python tests/validate_tier3d.py
 
-      - name: Validate vehicle/personal property tax audit (111 checks)
+      - name: Validate vehicle/personal property tax audit (123 checks)
         run: python tests/validate_vehicle_audit.py
 
       - name: Validate military retirement rules and pay tables (705 checks)
@@ -87,19 +87,19 @@ jobs:
       - name: Validate US territory expansion (129 checks)
         run: python tests/validate_territories.py
 
-      - name: Validate municipal pension plans — MCERP and FCPP (153 checks)
+      - name: Validate municipal pension plans — MCERP, FCPP, RRS, ACERS (153 checks)
         run: python tests/validate_municipal.py
 
-      - name: Validate federal retirement benefits gaps — TSP Roth, SRS, CSRS, FEGLI, FEHB (157 checks)
+      - name: Validate federal retirement benefits — TSP Roth, SRS, CSRS, FEGLI, FEHB (157 checks)
         run: python tests/validate_federal_retirement.py
 
-      - name: Validate SDCERA San Diego County pension plans (9 tiers)
+      - name: Validate SDCERA San Diego County pension plans (178 checks)
         run: python tests/validate_sdcera.py
 
       - name: Validate filing status thresholds (816 checks)
         run: python tests/validate_filing_status.py
 
-      - name: Validate county property tax — 13 states (1635 checks)
+      - name: Validate county property tax — 13 states, 44 counties (1635 checks)
         run: python tests/validate_county_property_tax.py
 
       - name: Validate LEO premium pay and FERS computation rules (207 checks)
@@ -117,9 +117,39 @@ jobs:
       - name: Validate Foreign Service pay tables (1893 checks)
         run: python tests/validate_fs_pay.py
 
-      - name: Validate LACERA pension plans (532 checks)
+      - name: Validate LACERA pension plans (1134 checks)
         run: python tests/validate_lacera.py
+
+      - name: Validate GS pay tables and VA compensation history (1333 checks)
+        run: python tests/validate_pay_tables.py
+
+      - name: Validate CalPERS pension plans (208 checks)
+        run: python tests/validate_calpers.py
+
+      - name: Validate CalSTRS pension plans (98 checks)
+        run: python tests/validate_calstrs.py
+
+      - name: Validate COPERA pension plans (128 checks)
+        run: python tests/validate_copera.py
+
+      - name: Validate DC Retirement Board plans (86 checks)
+        run: python tests/validate_dcrb.py
+
+      - name: Validate Maryland SRPS pension plans (110 checks)
+        run: python tests/validate_md_srps.py
+
+      - name: Validate New York pension plans — NYSLRS and NYSTRS (92 checks)
+        run: python tests/validate_ny_pensions.py
+
+      - name: Validate Ohio OPERS pension plans (231 checks)
+        run: python tests/validate_opers.py
+
+      - name: Validate state pension plans — FRS, CalPERS, CalSTRS multi-state (142 checks)
+        run: python tests/validate_state_pensions.py
+
+      - name: Validate Texas ERS and TRS pension plans (240 checks)
+        run: python tests/validate_tx_ers.py
       
       - name: Validation summary
         if: success()
-        run: echo "✓ All validation checks passed"
+        run: echo "✓ All 36 validation suites passed"
