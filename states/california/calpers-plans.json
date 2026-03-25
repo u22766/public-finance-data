@@ -2,7 +2,7 @@
   "_comment": "California Public Employees' Retirement System (CalPERS) — Defined Benefit pension data. Consumer-agnostic data only. No Meridian-specific references. Representative formula set: Classic Misc 2%@55, Classic Misc 2%@60, PEPRA Misc 2%@62, Classic Safety 3%@50, PEPRA Safety 2.7%@57. CalPERS has 3,000+ contracting employers; this file models the most prevalent formulas across member categories.",
   "systemName": "California Public Employees' Retirement System",
   "systemAbbreviation": "CalPERS",
-  "version": "2026.1",
+  "version": "2026.2",
   "last_updated": "2026-03-24",
   "jurisdiction": {
     "level": "state",
@@ -63,9 +63,15 @@
   },
   "compensationLimits": {
     "classic_irc_401a17": {
+      "limit_2026": 360000,
       "limit_2025": 350000,
+      "limit_2024": 345000,
+      "limit_2023": 330000,
+      "limit_2022": 305000,
+      "limit_2021": 290000,
       "description": "IRS section 401(a)(17) compensation limit for Classic members. Members with membership dates prior to July 1, 1996 are not subject to this limit.",
-      "source": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-001-25"
+      "source_2026": "https://www.irs.gov/pub/irs-drop/n-25-67.pdf",
+      "source_2025": "https://www.calpers.ca.gov/employers/policies-and-procedures/circular-letters/200-001-25"
     },
     "pepra_with_ss_2026": {
       "limit_2026": 159733,

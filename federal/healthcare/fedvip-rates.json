@@ -1,15 +1,15 @@
 {
   "_metadata": {
     "file": "fedvip-rates.json",
-    "version": "2026.1",
+    "version": "2026.2",
     "effective_date": "2026-01-01",
     "source": "OPM FEDVIP Premium Rate Charts",
     "source_urls": [
       "https://www.opm.gov/healthcare-insurance/dental-vision/plan-information/premiums/2026/2026-fedvip-dental-premiums.xlsx",
       "https://www.opm.gov/healthcare-insurance/dental-vision/plan-information/premiums/2026/2026-fedvip-vision-premiums.xlsx"
     ],
-    "last_verified": "2026-03-11",
-    "notes": "2026 FEDVIP dental and vision premium rates. Dental plans use rating regions (0-9); vision plans vary by location. Average increase: dental 3.35%, vision 0.47%."
+    "last_verified": "2026-03-24",
+    "notes": "2026 FEDVIP dental and vision premium rates. Dental plans use rating regions (0-9); vision plans vary by location. Average increase: dental 3.35%, vision 0.47%. v2026.2: added premium_change_history 2021-2026."
   },
   "program_overview": {
     "name": "Federal Employees Dental and Vision Insurance Program",
@@ -22,6 +22,15 @@
     "average_increase": {
       "dental_pct": 3.35,
       "vision_pct": 0.47
+    },
+    "premium_change_history": {
+      "_note": "Average program-wide premium change by plan year. Source: OPM announcements via FedSmith.com.",
+      "2021": {"dental_pct": null, "vision_pct": null, "_note": "OPM did not publish a single avg pct for 2021; individual plan changes varied."},
+      "2022": {"dental_pct": 0.81, "vision_pct": 0.95},
+      "2023": {"dental_pct": 0.21, "vision_pct": -0.41},
+      "2024": {"dental_pct": 1.4,  "vision_pct": 1.1},
+      "2025": {"dental_pct": 2.97, "vision_pct": 0.87},
+      "2026": {"dental_pct": 3.35, "vision_pct": 0.47}
     }
   },
   "dental": {

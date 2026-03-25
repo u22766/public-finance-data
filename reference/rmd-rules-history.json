@@ -66,6 +66,11 @@
       "change": "RMD waiver for 2020 due to COVID-19"
     },
     {
+      "year": 2021,
+      "law": "IRS Notice 2021-17",
+      "change": "RMDs resumed for 2021 following 2020 waiver. Normal distribution rules reinstated."
+    },
+    {
       "year": 2022,
       "law": "IRS updated tables",
       "change": "New Uniform Lifetime Table effective 2022 \u2014 reduced RMD amounts (longer life expectancy factors)"
@@ -79,6 +84,11 @@
       "year": 2024,
       "law": "SECURE 2.0",
       "change": "Roth 401(k)/403(b)/TSP no longer subject to RMDs for original owner."
+    },
+    {
+      "year": 2025,
+      "law": "IRS Final Regulations (T.D. 10001)",
+      "change": "Finalized inherited IRA 10-year rule: non-eligible designated beneficiaries must take annual RMDs during the 10-year period when original owner had reached RMD age. Effective for distributions in 2025."
     },
     {
       "year": 2033,

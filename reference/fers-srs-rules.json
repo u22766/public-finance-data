@@ -116,10 +116,13 @@
       "Social Security benefits (none should be received during SRS period)"
     ],
     "exempt_amounts": {
+      "2021": 18960,
+      "2022": 19560,
+      "2023": 21240,
       "2024": 22320,
       "2025": 23400,
       "2026": 24480,
-      "_note": "Same exempt amount as SSA earnings test (under FRA, all year). Indexed annually to national average wage index."
+      "_note": "Same exempt amount as SSA earnings test (under FRA, all year). Indexed annually to national average wage index. Source: ssa.gov/oact/cola/rtea.html"
     },
     "reduction_formula": {
       "description": "SRS is reduced by $1 for every $2 earned above the annual exempt amount",

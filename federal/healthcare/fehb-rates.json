@@ -31,10 +31,14 @@
     "total_average_increase_pct": 10.2,
     "government_share_increase_pct": 9.2,
     "historical_increases": {
+      "2026": 12.3,
       "2025": 13.5,
       "2024": 7.7,
       "2023": 8.7,
-      "2022": 3.8
+      "2022": 3.8,
+      "2021": 3.6,
+      "2020": 4.0,
+      "_note": "Enrollee share average increase pct. Source: OPM annual FEHB premium announcements."
     },
     "plans_with_premium_decrease": 23,
     "plans_below_average_increase": 57,
