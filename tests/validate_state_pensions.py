@@ -344,6 +344,17 @@ def validate_frs_fl_multipliers(data: dict) -> List[str]:
         errors.append(f"FRS-FL: Special Risk multiplier expected 0.03 (3.0%), got {classes.get('special_risk', {}).get('multiplier')}")
     if classes.get("senior_management", {}).get("multiplier") != 0.02:
         errors.append(f"FRS-FL: Senior Management multiplier expected 0.02 (2.0%), got {classes.get('senior_management', {}).get('multiplier')}")
+    # EOC subclasses — judges 3-1/3%, other 3.0%
+    eoc = classes.get("elected_officers", {}).get("subclasses", {})
+    if not eoc:
+        errors.append("FRS-FL: elected_officers.subclasses missing")
+    else:
+        j_mult = eoc.get("judges", {}).get("multiplier")
+        if j_mult != 0.03333:
+            errors.append(f"FRS-FL: EOC judges multiplier expected 0.03333 (3-1/3%), got {j_mult}")
+        o_mult = eoc.get("other_elected", {}).get("multiplier")
+        if o_mult != 0.03:
+            errors.append(f"FRS-FL: EOC other_elected multiplier expected 0.03 (3.0%), got {o_mult}")
     return errors
 
 
@@ -355,6 +366,54 @@ def validate_frs_fl_contributions(data: dict) -> List[str]:
         errors.append(f"FRS-FL: member contribution rate expected 0.03 (3%), got {m.get('rate')}")
     if not (0 < m.get("rate", 0) < 1):
         errors.append("FRS-FL: member contribution rate out of range")
+    # Employer FY2025-26 rates
+    er = contrib.get("employer", {}).get("fy2025_26", {})
+    if not er:
+        errors.append("FRS-FL: employer.fy2025_26 missing")
+    else:
+        rates = er.get("rates", {})
+        expected_rates = {
+            "regularClass": 0.1403,
+            "specialRiskClass": 0.3519,
+            "specialRiskAdminSupport": 0.3948,
+            "seniorManagementClass": 0.3324,
+            "eocJudges": 0.4614,
+            "eocLegislators": 0.6266,
+            "eocGovernorCabinet": 0.6266,
+            "eocStateAttorneyPublicDefender": 0.6266,
+            "eocCountyCitySpecialDistrict": 0.5457,
+            "drop": 0.2202,
+        }
+        for cls, exp_rate in expected_rates.items():
+            actual = rates.get(cls, {}).get("rate")
+            if actual != exp_rate:
+                errors.append(f"FRS-FL: employer FY25-26 {cls} rate expected {exp_rate}, got {actual}")
+        # Rate components
+        components = er.get("rateComponents", {})
+        if components.get("hisContribution", {}).get("rate") != 0.02:
+            errors.append("FRS-FL: employer HIS component expected 0.02")
+        if components.get("adminAssessment", {}).get("rate") != 0.0006:
+            errors.append("FRS-FL: employer admin assessment expected 0.0006")
+        ual = components.get("ualByClass", {})
+        if ual.get("regularClass", {}).get("rate") != 0.0487:
+            errors.append("FRS-FL: UAL Regular Class expected 0.0487")
+    # Employer FY2024-25 rates (prior year baseline)
+    er_prior = contrib.get("employer", {}).get("fy2024_25", {})
+    if not er_prior:
+        errors.append("FRS-FL: employer.fy2024_25 missing")
+    else:
+        prior_rates = er_prior.get("rates", {})
+        if prior_rates.get("regularClass", {}).get("rate") != 0.1363:
+            errors.append("FRS-FL: employer FY24-25 regularClass rate expected 0.1363")
+    # Compensation caps
+    caps = contrib.get("compensationCaps", {}).get("fy2025_26", {})
+    if not caps:
+        errors.append("FRS-FL: compensationCaps.fy2025_26 missing")
+    else:
+        if caps.get("preJuly1996Enrollees") != 524520:
+            errors.append(f"FRS-FL: comp cap pre-1996 expected 524520, got {caps.get('preJuly1996Enrollees')}")
+        if caps.get("postJuly1996Enrollees") != 350000:
+            errors.append(f"FRS-FL: comp cap post-1996 expected 350000, got {caps.get('postJuly1996Enrollees')}")
     return errors
 
 
@@ -401,8 +460,25 @@ def validate_frs_fl_early_retirement(data: dict) -> List[str]:
     errors = []
     bf = data.get("benefitFormula", {})
     er = bf.get("earlyRetirement", {})
-    if "5%" not in str(er.get("reduction", "")):
-        errors.append("FRS-FL: earlyRetirement.reduction should reference 5% per year")
+    if "5%" not in str(er.get("reductionRate", "")):
+        errors.append("FRS-FL: earlyRetirement.reductionRate should reference 5% per year")
+    if er.get("reductionIsPermanent") is not True:
+        errors.append("FRS-FL: earlyRetirement.reductionIsPermanent should be true")
+    benchmarks = er.get("benchmarkAgesByClass", {})
+    if not benchmarks:
+        errors.append("FRS-FL: earlyRetirement.benchmarkAgesByClass missing")
+    else:
+        if benchmarks.get("regularClass", {}).get("benchmarkAge") != 65:
+            errors.append("FRS-FL: Regular Class early retirement benchmark age expected 65")
+        if benchmarks.get("seniorManagementClass", {}).get("benchmarkAge") != 65:
+            errors.append("FRS-FL: Senior Mgmt early retirement benchmark age expected 65")
+        if benchmarks.get("electedOfficersClass", {}).get("benchmarkAge") != 65:
+            errors.append("FRS-FL: EOC early retirement benchmark age expected 65")
+        sr = benchmarks.get("specialRiskClass", {})
+        if sr.get("benchmarkAge") != 60:
+            errors.append("FRS-FL: Special Risk early retirement benchmark age expected 60")
+        if sr.get("alternativeAge") != 57:
+            errors.append("FRS-FL: Special Risk alternative benchmark age expected 57 (30+ yrs SR service)")
     return errors
 
 
@@ -541,12 +617,12 @@ def count_granular_checks() -> int:
     c += 12   # top-level keys + abbrev + state
     c += 6    # tiers: tier1/2 exist, vesting 6+8, AFC 5+8
     c += 3    # cola: tier1 available+maxRate, tier2 not available
-    c += 3    # multipliers Regular+SpecialRisk+SeniorMgmt
-    c += 2    # contributions member rate + range
+    c += 6    # multipliers Regular+SpecialRisk+SeniorMgmt + EOC subclasses exist + judges + other
+    c += 21   # contributions: member(2) + fy2025_26 exists(1) + 10 rate values + components(3) + fy2024_25(2) + caps(3)
     c += 4    # DROP available + interest + maxParticipation x2
     c += 5    # HIS available + max + fundingRate + minService x2
     c += 1    # SS covered=true
-    c += 1    # early retirement 5%
+    c += 8    # early retirement: reductionRate + permanent + benchmarks exist + 4 class ages + SR alternative
     c += 3    # metadata
     return c
 

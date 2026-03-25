@@ -2,117 +2,353 @@
   "_comment": "Data vintage labels for all files in public-finance-data. Indicates what year's rates/rules each dataset reflects, not when the file was last edited. Built Session 68, 2026-03-25.",
   "bundle_version": 1,
   "vintage_schema_version": "1.0",
-
   "data_vintage": {
-
-    "_comment_federal_tax": "Federal tax data — Tax Year (TY) convention, effective January 1",
-    "rates_annual":                 { "reflects": "TY2026", "rates_effective": "2026-01-01" },
-    "federal_tax_brackets":         { "reflects": "TY2026", "last_entry_year": 2026 },
-    "standard_deduction_history":   { "reflects": "TY2026", "last_entry_year": 2026 },
-    "capital_gains_rates":          { "reflects": "TY2026", "last_entry_year": 2026 },
-    "filing_status_thresholds":     { "reflects": "TY2026", "rates_effective": "2026-01-01", "last_entry_year": 2025 },
-    "estate_gift_tax":              { "reflects": "TY2026", "last_entry_year": 2026 },
-    "hsa_limits":                   { "reflects": "TY2026", "last_entry_year": 2026 },
-    "obbba_tax_provisions":         { "reflects": "TY2025", "rates_effective": "2025-07-04" },
-
-    "_comment_ss": "Social Security — Calendar Year (CY) convention",
-    "ss_bend_points":               { "reflects": "CY2026", "last_entry_year": 2026 },
-    "ss_taxable_max":               { "reflects": "CY2026", "last_entry_year": 2026 },
-    "social_security_claiming":     { "reflects": "CY2026", "rates_effective": "2026-01-01" },
-    "cola_history":                 { "reflects": "CY2026", "last_entry_year": 2026 },
-
-    "_comment_contribution": "Contribution limits — Calendar Year (CY) convention",
-    "tsp_limits":                   { "reflects": "CY2026", "last_entry_year": 2026 },
-    "ira_limits":                   { "reflects": "CY2026", "last_entry_year": 2026 },
-    "fers_contribution_rates":      { "reflects": "CY2026", "rates_effective": "2026-01-01" },
-
-    "_comment_healthcare": "Healthcare — Plan Year (PY) for FEHB/FEDVIP, Calendar Year (CY) for Medicare",
-    "fehb_rates":                   { "reflects": "PY2026", "rates_effective": "2026-01-01" },
-    "fehb_plan_benefits":           { "reflects": "PY2026", "rates_effective": "2026-01-01" },
-    "fehb_premium_history":         { "reflects": "PY2026", "last_entry_year": 2026 },
-    "fehb_retirement_eligibility":  { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "fedvip_rates":                 { "reflects": "PY2026", "rates_effective": "2026-01-01" },
-    "medicare_rates":               { "reflects": "CY2026", "rates_effective": "2026-01-01" },
-    "tricare_rates":                { "reflects": "FY2026", "rates_effective": "2025-10-01" },
-
-    "_comment_va_military": "Veterans Affairs and Military — Fiscal Year (FY) convention, VA rates effective December 1",
-    "va_compensation":              { "reflects": "FY2026", "rates_effective": "2025-12-01" },
-    "vgli":                         { "reflects": "2026",   "rates_effective": "2025-07-01" },
-    "military_retirement_rules":    { "reflects": "2026",   "rates_effective": "2026-01-01" },
-
-    "_comment_pay": "Pay tables — Calendar Year (CY), effective January 1",
-    "pay_tables":                   { "reflects": "CY2026", "last_entry_year": 2026 },
-    "dcips_pay_tables":             { "reflects": "CY2026", "rates_effective": "2026-01-01" },
-    "military_pay_tables":          { "reflects": "CY2026", "last_entry_year": 2026 },
-    "fs_pay_tables":                { "reflects": "CY2026", "last_entry_year": 2026 },
-    "federal_pay_raises":           { "reflects": "CY2026", "last_entry_year": 2026 },
-    "leo_premium_pay":              { "reflects": "CY2026", "rates_effective": "2026-01-01" },
-
-    "_comment_federal_retirement": "Federal retirement rules — effective dates vary",
-    "fers_computation_rules":       { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "fers_eligibility_rules":       { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "fers_service_credit_rules":    { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "fers_srs_rules":               { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "csrs_retirement_rules":        { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "fegli_rates":                  { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "tsp_roth_conversion":          { "reflects": "2026",   "rates_effective": "2026-01-28" },
-    "foreign_service_retirement_rules": { "reflects": "2026", "rates_effective": "2026-01-01" },
-    "federal_retirement_systems_index": { "reflects": "2026", "rates_effective": "2026-01-01" },
-
+    "_comment_federal_tax": "Federal tax data \u2014 Tax Year (TY) convention, effective January 1",
+    "rates_annual": {
+      "reflects": "TY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "federal_tax_brackets": {
+      "reflects": "TY2026",
+      "last_entry_year": 2026
+    },
+    "standard_deduction_history": {
+      "reflects": "TY2026",
+      "last_entry_year": 2026
+    },
+    "capital_gains_rates": {
+      "reflects": "TY2026",
+      "last_entry_year": 2026
+    },
+    "filing_status_thresholds": {
+      "reflects": "TY2026",
+      "rates_effective": "2026-01-01",
+      "last_entry_year": 2025
+    },
+    "estate_gift_tax": {
+      "reflects": "TY2026",
+      "last_entry_year": 2026
+    },
+    "hsa_limits": {
+      "reflects": "TY2026",
+      "last_entry_year": 2026
+    },
+    "obbba_tax_provisions": {
+      "reflects": "TY2025",
+      "rates_effective": "2025-07-04"
+    },
+    "_comment_ss": "Social Security \u2014 Calendar Year (CY) convention",
+    "ss_bend_points": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "ss_taxable_max": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "social_security_claiming": {
+      "reflects": "CY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "cola_history": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "_comment_contribution": "Contribution limits \u2014 Calendar Year (CY) convention",
+    "tsp_limits": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "ira_limits": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "fers_contribution_rates": {
+      "reflects": "CY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "_comment_healthcare": "Healthcare \u2014 Plan Year (PY) for FEHB/FEDVIP, Calendar Year (CY) for Medicare",
+    "fehb_rates": {
+      "reflects": "PY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fehb_plan_benefits": {
+      "reflects": "PY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fehb_premium_history": {
+      "reflects": "PY2026",
+      "last_entry_year": 2026
+    },
+    "fehb_retirement_eligibility": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fedvip_rates": {
+      "reflects": "PY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "medicare_rates": {
+      "reflects": "CY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "tricare_rates": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-10-01"
+    },
+    "_comment_va_military": "Veterans Affairs and Military \u2014 Fiscal Year (FY) convention, VA rates effective December 1",
+    "va_compensation": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-12-01"
+    },
+    "vgli": {
+      "reflects": "2026",
+      "rates_effective": "2025-07-01"
+    },
+    "military_retirement_rules": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "_comment_pay": "Pay tables \u2014 Calendar Year (CY), effective January 1",
+    "pay_tables": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "dcips_pay_tables": {
+      "reflects": "CY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "military_pay_tables": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "fs_pay_tables": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "federal_pay_raises": {
+      "reflects": "CY2026",
+      "last_entry_year": 2026
+    },
+    "leo_premium_pay": {
+      "reflects": "CY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "_comment_federal_retirement": "Federal retirement rules \u2014 effective dates vary",
+    "fers_computation_rules": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fers_eligibility_rules": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fers_service_credit_rules": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fers_srs_rules": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "csrs_retirement_rules": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fegli_rates": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "tsp_roth_conversion": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-28"
+    },
+    "foreign_service_retirement_rules": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "federal_retirement_systems_index": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
     "_comment_reference": "Reference and actuarial data",
-    "ssa_life_table":               { "reflects": "2023",   "rates_effective": "2023-01-01" },
-    "rmd_rules_history":            { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "static_refs":                  { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "other_db_template":            { "reflects": "2026",   "rates_effective": "2026-01-01" },
-
-    "_comment_state_benefits": "State income tax treatment and veteran benefits — effective January 1 of tax year",
-    "state_benefits":               { "reflects": "TY2026", "rates_effective": "2026-01-01" },
-
-    "_comment_county_property_tax": "County property tax — Tax Year varies by jurisdiction; mixed TY2025/TY2026 where counties set rates on different cycles",
-    "county_property_tax_az":       { "reflects": "TY2025", "rates_effective": "2025-01-01" },
-    "county_property_tax_california": { "reflects": "TY2026", "rates_effective": "2025-07-01" },
-    "county_property_tax_co":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-    "county_property_tax_fl":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-    "county_property_tax_ga":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-    "county_property_tax_md":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-    "county_property_tax_nc":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-    "county_property_tax_nv":       { "reflects": "TY2025", "rates_effective": "2025-01-01" },
-    "county_property_tax_sc":       { "reflects": "TY2025", "rates_effective": "2025-01-01" },
-    "county_property_tax_tn":       { "reflects": "TY2025", "rates_effective": "2025-01-01" },
-    "county_property_tax_tx":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-    "county_property_tax_va":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-    "county_property_tax_wa":       { "reflects": "TY2025-2026", "rates_effective": "2025-01-01" },
-
+    "ssa_life_table": {
+      "reflects": "2023",
+      "rates_effective": "2023-01-01"
+    },
+    "rmd_rules_history": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "static_refs": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "other_db_template": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "_comment_state_benefits": "State income tax treatment and veteran benefits \u2014 effective January 1 of tax year",
+    "state_benefits": {
+      "reflects": "TY2026",
+      "rates_effective": "2026-01-01"
+    },
+    "_comment_county_property_tax": "County property tax \u2014 Tax Year varies by jurisdiction; mixed TY2025/TY2026 where counties set rates on different cycles",
+    "county_property_tax_az": {
+      "reflects": "TY2025",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_california": {
+      "reflects": "TY2026",
+      "rates_effective": "2025-07-01"
+    },
+    "county_property_tax_co": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_fl": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_ga": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_md": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_nc": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_nv": {
+      "reflects": "TY2025",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_sc": {
+      "reflects": "TY2025",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_tn": {
+      "reflects": "TY2025",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_tx": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_va": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
+    "county_property_tax_wa": {
+      "reflects": "TY2025-2026",
+      "rates_effective": "2025-01-01"
+    },
     "_comment_state_pensions_va": "Virginia state and municipal pensions",
-    "vrs_plans":                    { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "erfc_plans_fairfax":           { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "plan_combinations_fairfax":    { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "fcers_plans_fairfax":          { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "pors_plans_fairfax":           { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "urs_plans_fairfax":            { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "acers_plans_arlington":        { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "rrs_plans_richmond":           { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "fcpp_plans_falls_church":      { "reflects": "2026",   "rates_effective": "2026-01-01" },
-
+    "vrs_plans": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "erfc_plans_fairfax": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "plan_combinations_fairfax": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fcers_plans_fairfax": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "pors_plans_fairfax": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "urs_plans_fairfax": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "acers_plans_arlington": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "rrs_plans_richmond": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "fcpp_plans_falls_church": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
     "_comment_state_pensions_md": "Maryland pensions",
-    "mcerp_plans_montgomery":       { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "md_srps_plans_maryland":       { "reflects": "2026",   "rates_effective": "2026-01-01" },
-
+    "mcerp_plans_montgomery": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "md_srps_plans_maryland": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
     "_comment_state_pensions_ca": "California pensions",
-    "calpers_plans_california":     { "reflects": "2026",   "rates_effective": "2025-07-01" },
-    "calstrs_plans_california":     { "reflects": "2026",   "rates_effective": "2025-07-01" },
-    "sdcera_plans":                 { "reflects": "2026",   "rates_effective": "2026-01-01" },
-    "lacera_plans_los_angeles":     { "reflects": "2026",   "rates_effective": "2026-04-01" },
-
+    "calpers_plans_california": {
+      "reflects": "2026",
+      "rates_effective": "2025-07-01"
+    },
+    "calstrs_plans_california": {
+      "reflects": "2026",
+      "rates_effective": "2025-07-01"
+    },
+    "sdcera_plans": {
+      "reflects": "2026",
+      "rates_effective": "2026-01-01"
+    },
+    "lacera_plans_los_angeles": {
+      "reflects": "2026",
+      "rates_effective": "2026-04-01"
+    },
     "_comment_state_pensions_other": "Other state pensions",
-    "copera_plans_colorado":        { "reflects": "FY2026", "rates_effective": "2025-07-01" },
-    "frs_plans_florida":            { "reflects": "FY2026", "rates_effective": "2025-07-01" },
-    "nyslrs_plans_new_york":        { "reflects": "2026",   "rates_effective": "2026-04-01" },
-    "nystrs_plans_new_york":        { "reflects": "2026",   "rates_effective": "2025-09-01" },
-    "trs_plans_texas":              { "reflects": "FY2026", "rates_effective": "2025-09-01" },
-    "ers_plans_texas":              { "reflects": "FY2026", "rates_effective": "2025-09-01" },
-    "strs_ohio_plans":              { "reflects": "FY2026", "rates_effective": "2025-07-01" },
-    "opers_plans_ohio":             { "reflects": "FY2026", "rates_effective": "2025-07-01" },
-    "dcrb_plans_dc":                { "reflects": "FY2026", "rates_effective": "2025-10-01" }
+    "copera_plans_colorado": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-07-01"
+    },
+    "frs_plans_florida": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-07-01"
+    },
+    "nyslrs_plans_new_york": {
+      "reflects": "2026",
+      "rates_effective": "2026-04-01"
+    },
+    "nystrs_plans_new_york": {
+      "reflects": "2026",
+      "rates_effective": "2025-09-01"
+    },
+    "trs_plans_texas": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-09-01"
+    },
+    "ers_plans_texas": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-09-01"
+    },
+    "strs_ohio_plans": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-07-01"
+    },
+    "opers_plans_ohio": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-07-01"
+    },
+    "dcrb_plans_dc": {
+      "reflects": "FY2026",
+      "rates_effective": "2025-10-01"
+    },
+    "data_vintage": {
+      "reflects": "2026",
+      "last_entry_year": 2026
+    }
   }
 }

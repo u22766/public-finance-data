@@ -60,6 +60,34 @@ Added `data_vintage.json` — a standalone reference file that labels what fisca
 
 **No schema changes. Non-breaking addition.**
 
+### Session 68 — FRS Florida Depth Update (v2026.1 → v2026.2)
+
+**Date:** 2026-03-25
+
+FRS employer contribution rates, EOC multiplier correction, early retirement detail, and compensation caps. Resolves 3 of 5 original `researchGaps` items (employer rates, EOC multiplier detail, early retirement reduction tables).
+
+**Changed file:** `states/florida/frs-plans.json` (v2026.1 → v2026.2)
+
+**New data:**
+- FY2025-26 employer contribution rates for all 10 membership classes, with rate component breakdown (HIS, admin assessment, UAL by class). Source: `frs.fl.gov/forms/2025-26_contributions_total.pdf`.
+- FY2024-25 employer rates (prior year baseline). Source: `frs.fl.gov/forms/2024-25_contributions_total.pdf`.
+- Compensation caps: $524,520 (pre-July 1996 enrollees) / $350,000 (post-July 1996). Source: IR 25-239.
+- Investment Plan member account allocation rates by class for FY2025-26.
+- Membership counts by class from 2024 actuarial data (Regular 560K, Special Risk 78K, SR Admin 102).
+- DROP employer contribution rate (22.02% FY2025-26).
+
+**Corrections:**
+- EOC multiplier: was "3.0% to 3.4%". Now correctly structured as subclasses — judges 3⅓% (0.03333), all other EOC 3.0%. Per §121.091(1)(a)4, Florida Statutes.
+
+**Enhanced:**
+- Early retirement: was generic "5% per year". Now includes class-specific benchmark ages: Regular/SMSC/EOC from age 65, Special Risk from age 60 (or 57 with 30+ years SR service). Per §121.091(3)(a).
+
+**Validator:** `validate_state_pensions.py` FRS checks expanded 142 → 171 (29 new checks covering employer rates, UAL components, comp caps, EOC subclasses, benchmark ages).
+
+**Manifest:** `data_vintage.json` added to manifest (82 → 83 entries). FRS entry updated to v2026.2.
+
+**No schema changes. Non-breaking addition.**
+
 ### Session 67 — Documentation & CI Catch-up
 
 **Date:** 2026-03-24
