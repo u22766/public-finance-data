@@ -45,6 +45,75 @@ function compareVersions(a, b) {
 
 ## Data Corrections Log
 
+
+### Session 67 — Documentation & CI Catch-up
+
+**Date:** 2026-03-24
+
+Documentation and CI infrastructure catch-up to close gaps accumulated during the Sessions 60–66 state pension expansion sprint.
+
+**CI workflow:** Added 10 missing validation suites to `.github/workflows/validate.yml`. These suites existed on disk and ran locally but were never added to the CI pipeline: `validate_calpers.py` (208), `validate_calstrs.py` (98), `validate_copera.py` (128), `validate_dcrb.py` (86), `validate_md_srps.py` (110), `validate_ny_pensions.py` (92), `validate_opers.py` (231), `validate_pay_tables.py` (1,333), `validate_state_pensions.py` (142), `validate_tx_ers.py` (240). CI now runs 36 suites (was 26). Total: ~15,450 checks.
+
+**README.md:** Full rewrite of 7 stale sections: file count (70→82), file tree (added 12 state pension files + 3 new state directories), manifest table (66→82 entries, 12 rows added), state/local pension coverage section (4 states → 9 states + DC, 24 system files), validation table (27→36 suites, check counts updated), "What This Is" bullet, Data Sources table (12 new pension system sources added). Update Schedule table updated with state pension row.
+
+**schema-changelog.md:** Backfilled entries for Sessions 60–66 documenting all 12 new state pension files, 9 new validators, CalPERS IRC correction, and depth audit work.
+
+**No data changes. No schema changes.**
+
+### calpers-plans.json v2026.2
+
+**Date:** 2026-03-24
+
+**Session 66 — Depth & Currency Audit: CalPERS IRC 401(a)(17) correction**
+
+Fixed `classic_irc_401a17` limit: was `$350,000` (stale 2025 value), corrected to `$360,000` per IRS Notice 2025-67 for 2026. Added 5-year IRC limit history (2021–2025).
+
+Also in Session 66: Added 2026 COLA row to `cola-history.json` (v1.0→v1.1), extended FEDVIP and FEHB historical series, added FERS-SRS exempt amounts for 2021–2023, added 2021/2025 RMD rules history entries. See session 66 handoff for full list.
+
+**CI:** 36/36 suites passed. `validate_historical.py` check count increased 2025→2028 (new COLA row).
+
+**No schema changes. Non-breaking correction.**
+
+### State Pension Expansion — Sessions 60–65
+
+**Dates:** 2026-03-24 (pushed across Sessions 60–65)
+
+12 new state pension system files added in a rapid expansion sprint, covering 9 states + DC. Each file includes benefit formulas, eligibility rules, COLA provisions, contribution rates, and IRC limits where applicable. Listed by session:
+
+**Session 60 — CalSTRS, FRS, TRS-TX, STRS-Ohio (4 files, 3 validators)**
+
+- `states/california/calstrs-plans.json` (v2026.1) — California State Teachers' Retirement System. 2 tiers (2%@60 Classic, 2%@62 PEPRA), 2% simple COLA, SBMA purchasing power protection, contribution rates. ~990K members. **Validator:** `validate_calstrs.py` (98 checks).
+- `states/florida/frs-plans.json` (v2026.1) — Florida Retirement System Pension Plan. DB plan, Investment Plan, and hybrid options. ~1M active members. **Validator:** `validate_state_pensions.py` covers FRS.
+- `states/texas/trs-plans.json` (v2026.1) — Teacher Retirement System of Texas. 8 tiers, non-SS-covered population. ~2M members. **Validator:** `validate_state_pensions.py` covers TRS-TX.
+- `states/ohio/strs-ohio-plans.json` (v2026.1) — State Teachers Retirement System of Ohio. 4 tiers, DB + DC + Combined. ~500K members. **Validator:** `validate_state_pensions.py` covers STRS-OH.
+
+**Session 61 — NYSLRS, NYSTRS (2 files, 1 validator)**
+
+- `states/new-york/nyslrs-plans.json` (v2026.1) — New York State and Local Retirement System. ERS + PFRS tiers. ~1.1M members. **Validator:** `validate_ny_pensions.py` (92 checks).
+- `states/new-york/nystrs-plans.json` (v2026.1) — New York State Teachers' Retirement System. 7 tiers. ~430K members. **Validator:** `validate_ny_pensions.py` covers NYSTRS.
+
+**Session 62 — CalPERS (1 file, 1 validator)**
+
+- `states/california/calpers-plans.json` (v2026.1) — California Public Employees' Retirement System. 5 representative formulas (Classic Misc 2%@55/60, PEPRA Misc 2%@62, Classic/PEPRA Safety), COLA/PPPA, comp caps, funding status, health benefits overview. ~2M members. Largest US public pension system. **Validator:** `validate_calpers.py` (208 checks).
+
+**Session 63 — COPERA (1 file, 1 validator)**
+
+- `states/colorado/copera-plans.json` (v2026.1) — Colorado Public Employees' Retirement Association. State, school, local government, judicial, and DPS divisions. COLA provisions, benefit formulas, contribution rates. **Validator:** `validate_copera.py` (128 checks).
+
+**Session 64 — MD-SRPS (1 file, 1 validator)**
+
+- `states/maryland/md-srps-plans.json` (v2026.1) — Maryland State Retirement and Pension System. 7 subsystems (EPS, TPS, CORS, LEOPS, MSPRS, JRS, LPP). ~400K members. **Validator:** `validate_md_srps.py` (110 checks).
+
+**Session 64/65 — DCRB, OPERS, TX ERS (3 files, 3 validators)**
+
+- `states/dc/dc-dcrb-plans.json` (v2026.1) — District of Columbia Retirement Board. Police & Firefighters' plan, legacy teacher plan. **Validator:** `validate_dcrb.py` (86 checks).
+- `states/ohio/opers-plans.json` (v2026.1) — Ohio Public Employees Retirement System. DB, DC, and Combined plans. ~1M members. **Validator:** `validate_opers.py` (231 checks).
+- `states/texas/ers-plans.json` (v2026.1) — Employees Retirement System of Texas. State employee pension. ~350K members. **Validator:** `validate_tx_ers.py` (240 checks).
+
+**Totals:** 12 new data files, 9 new validators (1,335 new checks), manifest expanded from 70 to 82 entries.
+
+**No schema changes. All non-breaking additions.**
+
 ### lacera-plans.json v2026.3
 
 **Date:** 2026-03-24
