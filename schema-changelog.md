@@ -46,6 +46,20 @@ function compareVersions(a, b) {
 ## Data Corrections Log
 
 
+### Session 68 — Data Vintage File & Validator
+
+**Date:** 2026-03-25
+
+Added `data_vintage.json` — a standalone reference file that labels what fiscal/tax/plan/calendar year each dataset reflects. Covers all 82 manifest entries with `reflects` (e.g., "TY2026", "FY2026", "PY2026") and `rates_effective` or `last_entry_year` per entry. Top-level `bundle_version` (integer, for snapshot migration logic) and `vintage_schema_version` (string, for evolving the vintage block structure).
+
+**New file:** `data_vintage.json` at repo root, peer to `manifest.json`.
+
+**New validator:** `tests/validate_vintage.py` (530 checks) — ensures every manifest key has a corresponding vintage entry and vice versa, validates entry structure (`reflects` format, date formats, required fields), and guards against consumer-specific references.
+
+**CI workflow:** Added `validate_vintage.py` step. Suite count 36→37. Total: ~15,980 checks.
+
+**No schema changes. Non-breaking addition.**
+
 ### Session 67 — Documentation & CI Catch-up
 
 **Date:** 2026-03-24

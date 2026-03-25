@@ -44,6 +44,7 @@ The `schema_version` and `schema_min_compatible` fields in the manifest enable c
 ```
 public-finance-data/
 ├── manifest.json                                ← Fetch this first (master version index, 82 entries)
+├── data_vintage.json                            ← Dataset vintage labels (what year's rates each file reflects)
 ├── schema-changelog.md                          ← Documents every schema structure change
 │
 ├── federal/
@@ -334,7 +335,7 @@ Each state entry includes income tax treatment of retirement income (Social Secu
 
 ## Validation & CI
 
-All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **36 test suites** totaling **~15,450 checks**:
+All data files are validated on every push and pull request via GitHub Actions. The CI pipeline runs **37 test suites** totaling **~15,980 checks**:
 
 | Suite | File | Checks | Coverage |
 |-------|------|--------|----------|
@@ -374,6 +375,7 @@ All data files are validated on every push and pull request via GitHub Actions. 
 | OPERS | `validate_opers.py` | 231 | Ohio OPERS — DB + DC + Combined plans, eligibility, COLA |
 | State Pensions | `validate_state_pensions.py` | 142 | Multi-state pension validation — FRS, TRS-TX, STRS-OH |
 | TX ERS/TRS | `validate_tx_ers.py` | 240 | Texas ERS + TRS — benefit formulas, eligibility, IRC limits |
+| Data Vintage | `validate_vintage.py` | 530 | Manifest ↔ vintage sync guard — cross-reference, entry structure, format |
 
 ---
 
