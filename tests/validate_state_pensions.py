@@ -274,6 +274,210 @@ def validate_strs_oh_social_security(data: dict) -> List[str]:
     return errors
 
 
+def validate_strs_oh_benefit_calc_table(data: dict) -> List[str]:
+    """Validate benefit calculation table / actuarial reduction factors."""
+    errors = []
+    db = data.get("plans", {}).get("definedBenefit", {})
+    bct = db.get("benefitCalculationTable", {})
+    if not bct:
+        errors.append("STRS-OH: missing benefitCalculationTable")
+        return errors
+    # Unreduced benchmarks
+    benchmarks = bct.get("unreducedBenchmarks", {}).get("examples", [])
+    if len(benchmarks) < 3:
+        errors.append(f"STRS-OH: benefitCalculationTable should have >=3 unreduced benchmarks, got {len(benchmarks)}")
+    # Check 30 years = 66% (30 x 2.2%)
+    b30 = next((b for b in benchmarks if b.get("years") == 30), None)
+    if b30 and b30.get("percentOfFAS") != 66.0:
+        errors.append(f"STRS-OH: 30yr unreduced should be 66.0% of FAS, got {b30.get('percentOfFAS')}")
+    # Reduced benefit factors
+    factors = bct.get("reducedBenefitFactors", {}).get("sampleFactors_percentOfFAS", [])
+    if len(factors) < 5:
+        errors.append(f"STRS-OH: should have >=5 reduced benefit sample factors, got {len(factors)}")
+    # Check age 65 with 10 years = 22.0% (unreduced = 10 x 2.2%)
+    f10_65 = next((f for f in factors if f.get("years") == 10 and f.get("age") == 65), None)
+    if f10_65 and f10_65.get("factor") != 22.0:
+        errors.append(f"STRS-OH: 10yr/age65 factor should be 22.0, got {f10_65.get('factor')}")
+    # Age 65 should always equal unreduced (impliedReduction = 1.0)
+    if f10_65 and f10_65.get("impliedReduction") != 1.0:
+        errors.append(f"STRS-OH: 10yr/age65 impliedReduction should be 1.0, got {f10_65.get('impliedReduction')}")
+    # Age 60 should be less than age 65 (actuarial reduction)
+    f10_60 = next((f for f in factors if f.get("years") == 10 and f.get("age") == 60), None)
+    if f10_60 and f10_65 and f10_60.get("factor", 99) >= f10_65.get("factor", 0):
+        errors.append("STRS-OH: age 60 factor should be less than age 65 (actuarial reduction)")
+    return errors
+
+
+def validate_strs_oh_plop_depth(data: dict) -> List[str]:
+    """Validate PLOP depth details added in v2026.2."""
+    errors = []
+    db = data.get("plans", {}).get("definedBenefit", {})
+    plop = db.get("plop", {})
+    if not plop.get("available"):
+        errors.append("STRS-OH: PLOP should be available=true")
+        return errors
+    rng = plop.get("range", {})
+    if not rng:
+        errors.append("STRS-OH: PLOP missing range details")
+    else:
+        if "6 times" not in str(rng.get("minimum", "")):
+            errors.append("STRS-OH: PLOP minimum should be 6 times SLA")
+        if "36 times" not in str(rng.get("maximum", "")):
+            errors.append("STRS-OH: PLOP maximum should be 36 times SLA")
+        if "50%" not in str(rng.get("floor", "")):
+            errors.append("STRS-OH: PLOP floor should reference 50% minimum")
+    cost = plop.get("costExample", {})
+    if cost:
+        if cost.get("costPer1000_age60") != 7.26:
+            errors.append(f"STRS-OH: PLOP cost per $1000 at age 60 expected 7.26, got {cost.get('costPer1000_age60')}")
+    tax = plop.get("taxImplications", {})
+    if not tax:
+        errors.append("STRS-OH: PLOP missing taxImplications")
+    elif "20%" not in str(tax.get("federalWithholding", "")):
+        errors.append("STRS-OH: PLOP federal withholding should reference 20%")
+    return errors
+
+
+def validate_strs_oh_healthcare_depth(data: dict) -> List[str]:
+    """Validate health care coverage depth added in v2026.2."""
+    errors = []
+    db = data.get("plans", {}).get("definedBenefit", {})
+    hc = db.get("healthCareCoverage", {})
+    if not hc.get("available"):
+        errors.append("STRS-OH: healthCareCoverage should be available=true")
+        return errors
+    # Check medical plans
+    mp = hc.get("medicalPlans", {})
+    if "aetnaMedicarePlan" not in mp:
+        errors.append("STRS-OH: HC missing aetnaMedicarePlan")
+    if "aetnaBasicPlan" not in mp:
+        errors.append("STRS-OH: HC missing aetnaBasicPlan")
+    # Check eligibility tiers
+    elig = hc.get("eligibilityByRetirementDate", {})
+    if len(elig) < 3:
+        errors.append(f"STRS-OH: HC should have >=3 eligibility tiers by retirement date, got {len(elig)}")
+    # Retire after 2023: 20 years minimum
+    post2023 = elig.get("retireOnOrAfter_2023_08_01", {})
+    if post2023 and post2023.get("minimumServiceForCoverage") != 20:
+        errors.append(f"STRS-OH: post-2023 HC coverage minimum should be 20 years, got {post2023.get('minimumServiceForCoverage')}")
+    # Check 2026 premiums exist
+    p2026 = hc.get("premiums_2026", {})
+    if not p2026:
+        errors.append("STRS-OH: HC missing premiums_2026")
+    else:
+        medicare_tiers = p2026.get("medicarePlan_aetna", {}).get("selectedTiers_monthlyPremium", [])
+        if len(medicare_tiers) < 4:
+            errors.append(f"STRS-OH: HC should have >=4 Medicare premium tiers, got {len(medicare_tiers)}")
+        # 30+ years Medicare plan should be $37
+        t30 = next((t for t in medicare_tiers if t.get("yearsOfService") == "30+"), None)
+        if t30 and t30.get("retireBefore_2023_08_01") != 37:
+            errors.append(f"STRS-OH: Medicare 30+ yr premium expected $37, got {t30.get('retireBefore_2023_08_01')}")
+        nonmed = p2026.get("nonMedicarePlan_aetnaBasic", {}).get("selectedTiers_monthlyPremium", [])
+        if len(nonmed) < 3:
+            errors.append(f"STRS-OH: HC should have >=3 non-Medicare premium tiers, got {len(nonmed)}")
+        # Prescription OOP
+        rx = p2026.get("prescriptionOutOfPocket_2026", {})
+        if rx.get("medicarePart_D_maxOOP") != 2100:
+            errors.append(f"STRS-OH: Medicare Part D max OOP expected $2100, got {rx.get('medicarePart_D_maxOOP')}")
+        if rx.get("nonMedicare_maxOOP") != 4000:
+            errors.append(f"STRS-OH: non-Medicare max OOP expected $4000, got {rx.get('nonMedicare_maxOOP')}")
+    if not hc.get("medicareRequirement"):
+        errors.append("STRS-OH: HC missing medicareRequirement")
+    return errors
+
+
+def validate_strs_oh_funding_status(data: dict) -> List[str]:
+    """Validate funding status depth added in v2026.2."""
+    errors = []
+    fs = data.get("fundingStatus", {})
+    if not fs:
+        errors.append("STRS-OH: missing fundingStatus")
+        return errors
+    if fs.get("fundedRatio_actuarialValue") != 0.809:
+        errors.append(f"STRS-OH: funded ratio (AVA) expected 0.809, got {fs.get('fundedRatio_actuarialValue')}")
+    if fs.get("fundedRatio_marketValue") != 0.841:
+        errors.append(f"STRS-OH: funded ratio (MVA) expected 0.841, got {fs.get('fundedRatio_marketValue')}")
+    if fs.get("fundingPeriod_years") != 11.8:
+        errors.append(f"STRS-OH: funding period expected 11.8 years, got {fs.get('fundingPeriod_years')}")
+    if fs.get("assumedRateOfReturn") != 0.07:
+        errors.append(f"STRS-OH: assumed rate of return expected 0.07, got {fs.get('assumedRateOfReturn')}")
+    if fs.get("investmentReturn_FY2025") != 0.104:
+        errors.append(f"STRS-OH: FY2025 investment return expected 0.104, got {fs.get('investmentReturn_FY2025')}")
+    cf = fs.get("cashFlow", {})
+    if cf.get("negative") is not True:
+        errors.append("STRS-OH: cashFlow.negative should be true (mature plan)")
+    hist = fs.get("fundedRatioHistory", [])
+    if len(hist) < 3:
+        errors.append(f"STRS-OH: fundedRatioHistory should have >=3 entries, got {len(hist)}")
+    hcf = fs.get("healthCareFund", {})
+    if hcf.get("fundedRatio") != 1.283:
+        errors.append(f"STRS-OH: HC fund ratio expected 1.283 (128.3%), got {hcf.get('fundedRatio')}")
+    return errors
+
+
+def validate_strs_oh_combined_plan_depth(data: dict) -> List[str]:
+    """Validate Combined Plan depth added in v2026.2."""
+    errors = []
+    cp = data.get("plans", {}).get("combinedPlan", {})
+    if not cp:
+        errors.append("STRS-OH: missing combinedPlan")
+        return errors
+    db_comp = cp.get("dbComponent", {})
+    if db_comp.get("multiplier") != 0.01:
+        errors.append(f"STRS-OH: Combined Plan DB multiplier expected 0.01 (1.0%), got {db_comp.get('multiplier')}")
+    contribs = cp.get("contributions", {})
+    member = contribs.get("member", {})
+    if member.get("toDBPortion") != 0.02:
+        errors.append(f"STRS-OH: Combined Plan member DB portion expected 0.02, got {member.get('toDBPortion')}")
+    if member.get("toDCPortion") != 0.12:
+        errors.append(f"STRS-OH: Combined Plan member DC portion expected 0.12, got {member.get('toDCPortion')}")
+    if cp.get("survivorBenefits") is not True:
+        errors.append("STRS-OH: Combined Plan should have survivorBenefits=true")
+    if cp.get("disabilityBenefits") is not True:
+        errors.append("STRS-OH: Combined Plan should have disabilityBenefits=true")
+    if cp.get("healthCareEligibility") is not True:
+        errors.append("STRS-OH: Combined Plan should have healthCareEligibility=true")
+    return errors
+
+
+def validate_strs_oh_legislative_watch(data: dict) -> List[str]:
+    """Validate legislative watch block."""
+    errors = []
+    cola = data.get("plans", {}).get("definedBenefit", {}).get("cola", {})
+    lw = cola.get("legislativeWatch", {})
+    if not isinstance(lw, dict):
+        errors.append("STRS-OH: cola.legislativeWatch should be a dict (v2026.2+)")
+        return errors
+    sb69 = lw.get("sb69", {})
+    if not sb69:
+        errors.append("STRS-OH: legislativeWatch missing sb69 entry")
+    else:
+        if sb69.get("status") != "placeholder_no_action":
+            errors.append(f"STRS-OH: SB 69 status expected 'placeholder_no_action', got {sb69.get('status')}")
+        systems = sb69.get("systemsCovered", [])
+        if len(systems) != 5:
+            errors.append(f"STRS-OH: SB 69 should cover 5 systems, got {len(systems)}")
+    return errors
+
+
+def validate_strs_oh_plans_of_payment(data: dict) -> List[str]:
+    """Validate plans of payment detail."""
+    errors = []
+    db = data.get("plans", {}).get("definedBenefit", {})
+    pop = db.get("plansOfPayment", {})
+    if not pop:
+        errors.append("STRS-OH: missing plansOfPayment")
+        return errors
+    options = pop.get("options", [])
+    if len(options) < 3:
+        errors.append(f"STRS-OH: should have >=3 plans of payment, got {len(options)}")
+    names = [o.get("name", "") for o in options]
+    for expected in ["Single Life Annuity", "Joint and Survivor", "Annuity Certain"]:
+        if not any(expected in n for n in names):
+            errors.append(f"STRS-OH: missing plan of payment '{expected}'")
+    return errors
+
+
 # ============================================================
 # FRS Florida Validators
 # ============================================================
@@ -545,6 +749,13 @@ def run_all() -> int:
         validate_strs_oh_vesting,
         validate_strs_oh_plans_exist,
         validate_strs_oh_social_security,
+        validate_strs_oh_benefit_calc_table,
+        validate_strs_oh_plop_depth,
+        validate_strs_oh_healthcare_depth,
+        validate_strs_oh_funding_status,
+        validate_strs_oh_combined_plan_depth,
+        validate_strs_oh_legislative_watch,
+        validate_strs_oh_plans_of_payment,
         lambda d: validate_metadata(STRS_OH_PATH, "STRS-OH", d),
     ]
     for v in strs_validators:
@@ -612,6 +823,13 @@ def count_granular_checks() -> int:
     c += 1    # vesting years
     c += 4    # plans exist + DC member + employer contributions
     c += 1    # SS covered=false
+    c += 6    # benefit calc table: benchmarks count, 30yr=66%, factors count, f10_65 factor, impliedReduction, f10_60<f10_65
+    c += 8    # PLOP depth: available, range exists, min 6x, max 36x, floor 50%, cost/1000, tax exists, federal 20%
+    c += 12   # HC depth: available, 2 plans, elig tiers >=3, post2023 20yr, premiums exist, medicare tiers, 30+=$37, nonmed tiers, rx Medicare, rx nonMed, medicareReq
+    c += 8    # funding status: AVA ratio, MVA ratio, period, RoR assumed, FY2025 return, cashFlow, history, HC fund ratio
+    c += 7    # combined plan: exists, DB multiplier, member DB, member DC, survivor, disability, healthCare
+    c += 4    # legislative watch: is dict, sb69 exists, status, systems count
+    c += 5    # plans of payment: exists, count >=3, SLA, J&S, AC
     c += 3    # metadata
     # FRS FL
     c += 12   # top-level keys + abbrev + state
